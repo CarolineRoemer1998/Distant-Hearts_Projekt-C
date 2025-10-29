@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://su76vb6becee"
+path="res://.godot/imported/Nature Ambience.mp3-70a76bcaf6c0e0101093eba54cb19fe5.mp3str"
+
+[deps]
+
+source_file="res://Sounds/Music/Nature Ambience.mp3"
+dest_files=["res://.godot/imported/Nature Ambience.mp3-70a76bcaf6c0e0101093eba54cb19fe5.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

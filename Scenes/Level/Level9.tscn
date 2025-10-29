@@ -1,0 +1,368 @@
+[gd_scene load_steps=26 format=3 uid="uid://bvgharfdl8dr3"]
+
+[ext_resource type="Script" uid="uid://ddiwo6yyhfkuc" path="res://Scripts/level.gd" id="1_mehec"]
+[ext_resource type="PackedScene" uid="uid://de75tdyuyniof" path="res://Scenes/background_lvl_9.tscn" id="2_qf8l7"]
+[ext_resource type="PackedScene" uid="uid://i448npnkeckp" path="res://Scenes/ice_floor.tscn" id="3_jskqn"]
+[ext_resource type="PackedScene" uid="uid://be6k5yjppap8y" path="res://Scenes/CreaturesAndPlayer/creature_yellow.tscn" id="4_ba60x"]
+[ext_resource type="PackedScene" uid="uid://c6dmpno4s3103" path="res://Scenes/door.tscn" id="4_fy58k"]
+[ext_resource type="PackedScene" uid="uid://bu7a5geiluu3r" path="res://Scenes/icicle.tscn" id="4_rew0p"]
+[ext_resource type="Texture2D" uid="uid://cmeverec805io" path="res://Sprites/IceFloor/Ice-floor-T.png" id="4_wja1h"]
+[ext_resource type="Texture2D" uid="uid://btwlvk2xprfh2" path="res://Sprites/IceFloor/Ice-floor-R.png" id="5_a8gpy"]
+[ext_resource type="PackedScene" uid="uid://bt4pnhd7cx7xc" path="res://Scenes/button.tscn" id="5_mehec"]
+[ext_resource type="Texture2D" uid="uid://d2wcstlnxmknt" path="res://Sprites/IceFloor/Ice-floor-L.png" id="6_6v1nk"]
+[ext_resource type="Texture2D" uid="uid://ce8efu0a3oy2r" path="res://Sprites/IceFloor/Ice-floor-L-B.png" id="6_k60m7"]
+[ext_resource type="Texture2D" uid="uid://b45v4bjjuo8eb" path="res://Sprites/IceFloor/Ice-floor-R-B.png" id="7_6v1nk"]
+[ext_resource type="PackedScene" uid="uid://oy61arlldjo3" path="res://Scenes/pushable.tscn" id="7_787sw"]
+[ext_resource type="Texture2D" uid="uid://do6thefjlbd1q" path="res://Sprites/IceFloor/Ice-floor-R-T.png" id="7_oo63g"]
+[ext_resource type="Texture2D" uid="uid://dhgxskyq6mhsp" path="res://Sprites/IceFloor/Ice-floor-B.png" id="7_tln33"]
+[ext_resource type="Texture2D" uid="uid://0v0seu6aq5vl" path="res://Sprites/IceFloor/Ice-floor-T-B.png" id="8_h67c5"]
+[ext_resource type="PackedScene" uid="uid://bhgu3tj2dehs2" path="res://Scenes/Menu/reset_bar.tscn" id="8_mehec"]
+[ext_resource type="Texture2D" uid="uid://bc7d4qmidqg4y" path="res://Sprites/IceFloor/Ice-floor-L-T.png" id="8_s0dtf"]
+[ext_resource type="PackedScene" uid="uid://dsycxcakay6h8" path="res://Scenes/creature_blue.tscn" id="9_qunt2"]
+[ext_resource type="Texture2D" uid="uid://dkgld5dg1asp" path="res://Sprites/IceFloor/Ice-floor-L-R.png" id="9_s20ic"]
+[ext_resource type="Texture2D" uid="uid://dis43boq1dnwi" path="res://Sprites/IceFloor/Ice-floor-L-R-B.png" id="11_11ccv"]
+[ext_resource type="PackedScene" uid="uid://huckdpk3ykew" path="res://Scenes/merged_creature.tscn" id="12_2eq8c"]
+[ext_resource type="PackedScene" uid="uid://g3u7bc1jo6gj" path="res://Scenes/CreaturesAndPlayer/player.tscn" id="14_7agio"]
+[ext_resource type="PackedScene" uid="uid://pb5o008ihthl" path="res://Scenes/Menu/win_screen.tscn" id="14_qf8l7"]
+[ext_resource type="PackedScene" uid="uid://dp2qf8g2kvpfa" path="res://Scenes/level_wall.tscn" id="15_dtgac"]
+
+[node name="Level9" type="Node2D"]
+script = ExtResource("1_mehec")
+level_number = 9
+
+[node name="Background_Lvl8" parent="." instance=ExtResource("2_qf8l7")]
+
+[node name="IceTiles" type="Node2D" parent="."]
+
+[node name="IceFloor7" parent="IceTiles" instance=ExtResource("3_jskqn")]
+position = Vector2(192, 64)
+texture = ExtResource("4_wja1h")
+
+[node name="IceFloor21" parent="IceTiles" instance=ExtResource("3_jskqn")]
+position = Vector2(448, 64)
+texture = ExtResource("4_wja1h")
+
+[node name="IceFloor65" parent="IceTiles" instance=ExtResource("3_jskqn")]
+position = Vector2(576, 192)
+texture = ExtResource("5_a8gpy")
+
+[node name="IceFloor69" parent="IceTiles" instance=ExtResource("3_jskqn")]
+position = Vector2(576, 448)
+
+[node name="IceFloor74" parent="IceTiles" instance=ExtResource("3_jskqn")]
+position = Vector2(576, 448)
+texture = ExtResource("5_a8gpy")
+
+[node name="IceFloor2" parent="IceTiles" instance=ExtResource("3_jskqn")]
+position = Vector2(256, 64)
+texture = ExtResource("4_wja1h")
+
+[node name="IceFloor3" parent="IceTiles" instance=ExtResource("3_jskqn")]
+position = Vector2(64, 128)
+texture = ExtResource("6_6v1nk")
+
+[node name="IceFloor4" parent="IceTiles" instance=ExtResource("3_jskqn")]
+position = Vector2(128, 128)
+
+[node name="IceFloor5" parent="IceTiles" instance=ExtResource("3_jskqn")]
+position = Vector2(192, 128)
+texture = ExtResource("7_tln33")
+
+[node name="IceFloor6" parent="IceTiles" instance=ExtResource("3_jskqn")]
+position = Vector2(256, 128)
+texture = ExtResource("7_tln33")
+
+[node name="IceFloor8" parent="IceTiles" instance=ExtResource("3_jskqn")]
+position = Vector2(320, 64)
+texture = ExtResource("4_wja1h")
+
+[node name="IceFloor9" parent="IceTiles" instance=ExtResource("3_jskqn")]
+position = Vector2(320, 128)
+texture = ExtResource("7_tln33")
+
+[node name="IceFloor10" parent="IceTiles" instance=ExtResource("3_jskqn")]
+position = Vector2(384, 64)
+texture = ExtResource("4_wja1h")
+
+[node name="IceFloor11" parent="IceTiles" instance=ExtResource("3_jskqn")]
+position = Vector2(384, 128)
+texture = ExtResource("7_tln33")
+
+[node name="IceFloor15" parent="IceTiles" instance=ExtResource("3_jskqn")]
+position = Vector2(384, 256)
+texture = ExtResource("7_oo63g")
+
+[node name="IceFloor16" parent="IceTiles" instance=ExtResource("3_jskqn")]
+position = Vector2(320, 256)
+texture = ExtResource("8_h67c5")
+
+[node name="IceFloor17" parent="IceTiles" instance=ExtResource("3_jskqn")]
+position = Vector2(256, 320)
+texture = ExtResource("9_s20ic")
+
+[node name="IceFloor18" parent="IceTiles" instance=ExtResource("3_jskqn")]
+position = Vector2(384, 320)
+texture = ExtResource("9_s20ic")
+
+[node name="IceFloor19" parent="IceTiles" instance=ExtResource("3_jskqn")]
+position = Vector2(256, 256)
+texture = ExtResource("8_s0dtf")
+
+[node name="IceFloor20" parent="IceTiles" instance=ExtResource("3_jskqn")]
+position = Vector2(64, 320)
+texture = ExtResource("6_6v1nk")
+
+[node name="IceFloor22" parent="IceTiles" instance=ExtResource("3_jskqn")]
+position = Vector2(128, 320)
+texture = ExtResource("5_a8gpy")
+
+[node name="IceFloor23" parent="IceTiles" instance=ExtResource("3_jskqn")]
+position = Vector2(128, 384)
+texture = ExtResource("5_a8gpy")
+
+[node name="IceFloor27" parent="IceTiles" instance=ExtResource("3_jskqn")]
+position = Vector2(256, 384)
+texture = ExtResource("11_11ccv")
+
+[node name="IceFloor31" parent="IceTiles" instance=ExtResource("3_jskqn")]
+position = Vector2(384, 384)
+texture = ExtResource("9_s20ic")
+
+[node name="IceFloor32" parent="IceTiles" instance=ExtResource("3_jskqn")]
+position = Vector2(384, 448)
+texture = ExtResource("9_s20ic")
+
+[node name="IceFloor34" parent="IceTiles" instance=ExtResource("3_jskqn")]
+position = Vector2(512, 320)
+texture = ExtResource("6_6v1nk")
+
+[node name="IceFloor35" parent="IceTiles" instance=ExtResource("3_jskqn")]
+position = Vector2(512, 384)
+texture = ExtResource("6_6v1nk")
+
+[node name="IceFloor73" parent="IceTiles" instance=ExtResource("3_jskqn")]
+position = Vector2(448, 128)
+texture = ExtResource("7_tln33")
+
+[node name="IceFloor38" parent="IceTiles" instance=ExtResource("3_jskqn")]
+position = Vector2(512, 192)
+texture = ExtResource("6_6v1nk")
+
+[node name="IceFloor39" parent="IceTiles" instance=ExtResource("3_jskqn")]
+position = Vector2(512, 256)
+texture = ExtResource("6_6v1nk")
+
+[node name="IceFloor41" parent="IceTiles" instance=ExtResource("3_jskqn")]
+position = Vector2(448, 512)
+texture = ExtResource("4_wja1h")
+
+[node name="IceFloor42" parent="IceTiles" instance=ExtResource("3_jskqn")]
+position = Vector2(512, 448)
+texture = ExtResource("6_6v1nk")
+
+[node name="IceFloor43" parent="IceTiles" instance=ExtResource("3_jskqn")]
+position = Vector2(512, 512)
+
+[node name="IceFloor45" parent="IceTiles" instance=ExtResource("3_jskqn")]
+position = Vector2(320, 512)
+texture = ExtResource("8_s0dtf")
+
+[node name="IceFloor52" parent="IceTiles" instance=ExtResource("3_jskqn")]
+position = Vector2(128, 448)
+texture = ExtResource("5_a8gpy")
+
+[node name="IceFloor53" parent="IceTiles" instance=ExtResource("3_jskqn")]
+position = Vector2(128, 512)
+
+[node name="IceFloor54" parent="IceTiles" instance=ExtResource("3_jskqn")]
+position = Vector2(64, 384)
+texture = ExtResource("6_6v1nk")
+
+[node name="IceFloor61" parent="IceTiles" instance=ExtResource("3_jskqn")]
+position = Vector2(128, 576)
+texture = ExtResource("7_tln33")
+
+[node name="IceFloor56" parent="IceTiles" instance=ExtResource("3_jskqn")]
+position = Vector2(576, 512)
+texture = ExtResource("5_a8gpy")
+
+[node name="IceFloor58" parent="IceTiles" instance=ExtResource("3_jskqn")]
+position = Vector2(576, 256)
+texture = ExtResource("5_a8gpy")
+
+[node name="IceFloor59" parent="IceTiles" instance=ExtResource("3_jskqn")]
+position = Vector2(576, 320)
+texture = ExtResource("5_a8gpy")
+
+[node name="IceFloor64" parent="IceTiles" instance=ExtResource("3_jskqn")]
+position = Vector2(576, 384)
+texture = ExtResource("5_a8gpy")
+
+[node name="IceFloor75" parent="IceTiles" instance=ExtResource("3_jskqn")]
+position = Vector2(448, 576)
+texture = ExtResource("7_tln33")
+
+[node name="IceFloor76" parent="IceTiles" instance=ExtResource("3_jskqn")]
+position = Vector2(192, 576)
+texture = ExtResource("7_6v1nk")
+
+[node name="IceFloor77" parent="IceTiles" instance=ExtResource("3_jskqn")]
+position = Vector2(64, 448)
+texture = ExtResource("6_6v1nk")
+
+[node name="IceFloor78" parent="IceTiles" instance=ExtResource("3_jskqn")]
+position = Vector2(64, 192)
+texture = ExtResource("6_6v1nk")
+
+[node name="IceFloor66" parent="IceTiles" instance=ExtResource("3_jskqn")]
+position = Vector2(384, 576)
+texture = ExtResource("7_tln33")
+
+[node name="IceFloor67" parent="IceTiles" instance=ExtResource("3_jskqn")]
+position = Vector2(320, 576)
+texture = ExtResource("6_k60m7")
+
+[node name="IceFloor70" parent="IceTiles" instance=ExtResource("3_jskqn")]
+position = Vector2(64, 256)
+texture = ExtResource("6_6v1nk")
+
+[node name="IceFloor71" parent="IceTiles" instance=ExtResource("3_jskqn")]
+position = Vector2(128, 256)
+texture = ExtResource("5_a8gpy")
+
+[node name="IceFloor72" parent="IceTiles" instance=ExtResource("3_jskqn")]
+position = Vector2(128, 192)
+texture = ExtResource("5_a8gpy")
+
+[node name="IceFloor62" parent="IceTiles" instance=ExtResource("3_jskqn")]
+position = Vector2(512, 64)
+texture = ExtResource("4_wja1h")
+
+[node name="IceFloor63" parent="IceTiles" instance=ExtResource("3_jskqn")]
+position = Vector2(512, 128)
+
+[node name="IceFloor47" parent="IceTiles" instance=ExtResource("3_jskqn")]
+position = Vector2(384, 512)
+
+[node name="IceFloor49" parent="IceTiles" instance=ExtResource("3_jskqn")]
+position = Vector2(192, 512)
+texture = ExtResource("7_oo63g")
+
+[node name="IceFloor50" parent="IceTiles" instance=ExtResource("3_jskqn")]
+position = Vector2(64, 512)
+texture = ExtResource("6_6v1nk")
+
+[node name="IceFloor51" parent="IceTiles" instance=ExtResource("3_jskqn")]
+position = Vector2(64, 576)
+texture = ExtResource("6_k60m7")
+
+[node name="IceFloor55" parent="IceTiles" instance=ExtResource("3_jskqn")]
+position = Vector2(512, 576)
+texture = ExtResource("7_tln33")
+
+[node name="IceFloor57" parent="IceTiles" instance=ExtResource("3_jskqn")]
+position = Vector2(576, 576)
+texture = ExtResource("7_6v1nk")
+
+[node name="IceFloor60" parent="IceTiles" instance=ExtResource("3_jskqn")]
+position = Vector2(576, 128)
+texture = ExtResource("5_a8gpy")
+
+[node name="IceFloor68" parent="IceTiles" instance=ExtResource("3_jskqn")]
+position = Vector2(576, 64)
+texture = ExtResource("7_oo63g")
+
+[node name="IceFloor79" parent="IceTiles" instance=ExtResource("3_jskqn")]
+position = Vector2(128, 64)
+texture = ExtResource("4_wja1h")
+
+[node name="IceFloor80" parent="IceTiles" instance=ExtResource("3_jskqn")]
+position = Vector2(64, 64)
+texture = ExtResource("8_s0dtf")
+
+[node name="ButtonTop" parent="." instance=ExtResource("5_mehec")]
+position = Vector2(352, 160)
+type = 0
+
+[node name="ButtonRight" parent="." instance=ExtResource("5_mehec")]
+position = Vector2(544, 348)
+type = 0
+
+[node name="ButtonBottom" parent="." instance=ExtResource("5_mehec")]
+position = Vector2(352, 540)
+
+[node name="ButtonBottom2" parent="." instance=ExtResource("5_mehec")]
+position = Vector2(417, 540)
+
+[node name="ButtonBottom3" parent="." instance=ExtResource("5_mehec")]
+position = Vector2(481, 540)
+
+[node name="ButtonLeft" parent="." instance=ExtResource("5_mehec")]
+position = Vector2(160, 352)
+type = 0
+
+[node name="DoorRight" parent="." instance=ExtResource("4_fy58k")]
+position = Vector2(416, 352)
+buttons = Array[NodePath]([NodePath("../ButtonRight")])
+
+[node name="DoorLeft" parent="." instance=ExtResource("4_fy58k")]
+position = Vector2(288, 352)
+buttons = Array[NodePath]([NodePath("../ButtonLeft")])
+
+[node name="DoorTop" parent="." instance=ExtResource("4_fy58k")]
+position = Vector2(352, 288)
+rotation = 1.57079
+buttons = Array[NodePath]([NodePath("../ButtonTop")])
+
+[node name="DoorExit" parent="." instance=ExtResource("4_fy58k")]
+position = Vector2(416, 480)
+buttons = Array[NodePath]([NodePath("../ButtonBottom"), NodePath("../ButtonBottom2"), NodePath("../ButtonBottom3")])
+
+[node name="LevelWall" parent="." instance=ExtResource("15_dtgac")]
+
+[node name="Pushable" parent="." instance=ExtResource("7_787sw")]
+position = Vector2(160, 544)
+
+[node name="Icicles" type="Node2D" parent="."]
+
+[node name="Icicle" parent="Icicles" instance=ExtResource("4_rew0p")]
+position = Vector2(96, 96)
+
+[node name="Icicle2" parent="Icicles" instance=ExtResource("4_rew0p")]
+position = Vector2(160, 96)
+
+[node name="Icicle3" parent="Icicles" instance=ExtResource("4_rew0p")]
+position = Vector2(608, 96)
+
+[node name="Icicle4" parent="Icicles" instance=ExtResource("4_rew0p")]
+position = Vector2(608, 160)
+
+[node name="Icicle5" parent="Icicles" instance=ExtResource("4_rew0p")]
+position = Vector2(608, 608)
+
+[node name="Icicle6" parent="Icicles" instance=ExtResource("4_rew0p")]
+position = Vector2(545, 608)
+
+[node name="Icicle7" parent="Icicles" instance=ExtResource("4_rew0p")]
+position = Vector2(96, 608)
+
+[node name="Icicle8" parent="Icicles" instance=ExtResource("4_rew0p")]
+position = Vector2(96, 544)
+
+[node name="CreatureBlue" parent="." instance=ExtResource("9_qunt2")]
+position = Vector2(225, 608)
+
+[node name="CreatureYellow" parent="." instance=ExtResource("4_ba60x")]
+position = Vector2(288, 416)
+
+[node name="MergedCreature" parent="." instance=ExtResource("12_2eq8c")]
+visible = false
+
+[node name="Player" parent="." instance=ExtResource("14_7agio")]
+position = Vector2(416, 288)
+
+[node name="LevelWall2" parent="." instance=ExtResource("15_dtgac")]
+
+[node name="ResetBar" parent="." instance=ExtResource("8_mehec")]
+
+[node name="WinScreen" parent="." instance=ExtResource("14_qf8l7")]

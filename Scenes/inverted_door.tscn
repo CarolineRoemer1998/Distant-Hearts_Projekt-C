@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cdt5m2v6xjjuf"]
+
+[ext_resource type="Script" uid="uid://cxeg0yjxth3ww" path="res://Scripts/inverted_door.gd" id="1_fcgqf"]
+[ext_resource type="Texture2D" uid="uid://byoqexwjlcug4" path="res://Sprites/fence-gate-closed.png" id="2_37yyt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3spc7"]
+size = Vector2(60, 60)
+
+[node name="Inverted_Door" type="StaticBody2D" groups=["door"]]
+collision_layer = 8
+collision_mask = 7
+script = ExtResource("1_fcgqf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["door"]]
+shape = SubResource("RectangleShape2D_3spc7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("2_37yyt")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)

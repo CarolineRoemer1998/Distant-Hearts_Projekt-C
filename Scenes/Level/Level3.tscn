@@ -1,0 +1,54 @@
+[gd_scene load_steps=12 format=3 uid="uid://bds2jiuumsjsj"]
+
+[ext_resource type="Script" uid="uid://ddiwo6yyhfkuc" path="res://Scripts/level.gd" id="1_cp0jt"]
+[ext_resource type="PackedScene" uid="uid://cocjkjeb4n57" path="res://Scenes/background_lvl_3.tscn" id="2_p6pjf"]
+[ext_resource type="PackedScene" uid="uid://c6dmpno4s3103" path="res://Scenes/door.tscn" id="3_m7vvj"]
+[ext_resource type="PackedScene" uid="uid://g3u7bc1jo6gj" path="res://Scenes/CreaturesAndPlayer/player.tscn" id="4_kg31f"]
+[ext_resource type="PackedScene" uid="uid://bt4pnhd7cx7xc" path="res://Scenes/button.tscn" id="5_ncjpd"]
+[ext_resource type="PackedScene" uid="uid://ccncnjkm8w8ta" path="res://Scenes/CreaturesAndPlayer/creature_blue.tscn" id="6_ffsx8"]
+[ext_resource type="PackedScene" uid="uid://be6k5yjppap8y" path="res://Scenes/CreaturesAndPlayer/creature_yellow.tscn" id="7_dl4b5"]
+[ext_resource type="PackedScene" uid="uid://23u33yt4jga3" path="res://Scenes/CreaturesAndPlayer/merged_creature.tscn" id="8_t5kwq"]
+[ext_resource type="PackedScene" uid="uid://pb5o008ihthl" path="res://Scenes/Menu/win_screen.tscn" id="9_p6pjf"]
+[ext_resource type="PackedScene" uid="uid://bhgu3tj2dehs2" path="res://Scenes/Menu/reset_bar.tscn" id="10_m7vvj"]
+[ext_resource type="PackedScene" uid="uid://dp2qf8g2kvpfa" path="res://Scenes/level_wall.tscn" id="11_wxy6n"]
+
+[node name="Level3" type="Node2D"]
+script = ExtResource("1_cp0jt")
+level_number = 3
+
+[node name="Background_Lvl3" parent="." instance=ExtResource("2_p6pjf")]
+
+[node name="Door" parent="." instance=ExtResource("3_m7vvj")]
+position = Vector2(544, 352)
+buttons = Array[NodePath]([NodePath("../Button"), NodePath("../Button2")])
+
+[node name="Button" parent="." instance=ExtResource("5_ncjpd")]
+position = Vector2(480, 416)
+
+[node name="Button2" parent="." instance=ExtResource("5_ncjpd")]
+position = Vector2(480, 288)
+
+[node name="MergedCreature" parent="." instance=ExtResource("8_t5kwq")]
+visible = false
+
+[node name="CreatureBlue" parent="." instance=ExtResource("6_ffsx8")]
+position = Vector2(544, 224)
+
+[node name="CreatureYellow" parent="." instance=ExtResource("7_dl4b5")]
+position = Vector2(544, 480)
+
+[node name="AnimationTree" parent="CreatureYellow" index="3"]
+parameters/Idle/BlendSpace2D/blend_position = Vector2(0.0101868, -0.593407)
+
+[node name="Player" parent="." instance=ExtResource("4_kg31f")]
+position = Vector2(224, 160)
+
+[node name="WinScreen" parent="." instance=ExtResource("9_p6pjf")]
+
+[node name="ResetBar" parent="." instance=ExtResource("10_m7vvj")]
+offset_right = 0.0
+offset_bottom = 0.0
+
+[node name="LevelWall" parent="." instance=ExtResource("11_wxy6n")]
+
+[editable path="CreatureYellow"]

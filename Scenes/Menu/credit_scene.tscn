@@ -1,0 +1,238 @@
+[gd_scene load_steps=17 format=4 uid="uid://d2q7tvh62427v"]
+
+[ext_resource type="Script" uid="uid://djjmttkmi8agm" path="res://Scripts/credit_scene.gd" id="1_skr61"]
+[ext_resource type="Texture2D" uid="uid://daocnama176b2" path="res://Sprites/Tile.png" id="2_pu1wf"]
+[ext_resource type="FontFile" uid="uid://d3id6ewnchky" path="res://Fonts/GrapeSoda.ttf" id="3_b6o8g"]
+[ext_resource type="Texture2D" uid="uid://dxnoeao04xwyf" path="res://Sprites/Tile_brown_.png" id="3_drsay"]
+[ext_resource type="Texture2D" uid="uid://dlgbpysuafk0b" path="res://Sprites/Verworfen/wall-new.png" id="4_fh0pi"]
+[ext_resource type="Script" uid="uid://bld4747e6bxrc" path="res://Scripts/menu_button.gd" id="4_ge1f6"]
+[ext_resource type="Texture2D" uid="uid://c651rcsia4yvj" path="res://Sprites/wall-sprites-4-corners.png" id="5_7ocua"]
+[ext_resource type="Texture2D" uid="uid://d0gndbeyxhfii" path="res://Sprites/grass-floor.png" id="6_74pdu"]
+[ext_resource type="Theme" uid="uid://i7fixmxgctx7" path="res://Sprites/MenuSprites/Button.tres" id="9_7ocua"]
+[ext_resource type="PackedScene" uid="uid://c782ktl2vx0tk" path="res://Scenes/Menu/AudioManager.tscn" id="9_fh0pi"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_japxf"]
+texture = ExtResource("2_pu1wf")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+1:1/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1ffvo"]
+texture = ExtResource("3_drsay")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vglai"]
+texture = ExtResource("4_fh0pi")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k8nru"]
+texture = ExtResource("5_7ocua")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+3:1/0 = 0
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+3:2/0 = 0
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+0:3/0 = 0
+0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+1:3/0 = 0
+2:3/0 = 0
+2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+3:3/0 = 0
+4:0/0 = 0
+4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+4:1/0 = 0
+4:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+4:2/0 = 0
+4:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+4:3/0 = 0
+4:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+0:4/0 = 0
+0:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+1:4/0 = 0
+1:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+2:4/0 = 0
+2:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+3:4/0 = 0
+3:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+4:4/0 = 0
+4:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nvxm5"]
+texture = ExtResource("6_74pdu")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_cqlev"]
+tile_size = Vector2i(64, 64)
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_japxf")
+sources/1 = SubResource("TileSetAtlasSource_1ffvo")
+sources/4 = SubResource("TileSetAtlasSource_vglai")
+sources/6 = SubResource("TileSetAtlasSource_k8nru")
+sources/8 = SubResource("TileSetAtlasSource_nvxm5")
+
+[node name="CreditScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_skr61")
+
+[node name="Hover_sound" parent="." instance=ExtResource("9_fh0pi")]
+
+[node name="Background_Lvl1" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_cqlev")
+format = 2
+
+[node name="ground" type="TileMapLayer" parent="Background_Lvl1"]
+use_parent_material = true
+position = Vector2(0, 256)
+tile_map_data = PackedByteArray("AAAJAP3/CAAAAAEAAAAIAP3/CAACAAEAAAAHAP3/CAABAAEAAAAGAP3/CAAAAAEAAAAFAP3/CAABAAIAAAAEAP3/CAABAAEAAAADAP3/CAAAAAEAAAACAP3/CAACAAEAAAABAP3/CAABAAEAAAABAP7/CAABAAIAAAACAP7/CAACAAIAAAADAP7/CAAAAAIAAAAEAP7/CAABAAIAAAAFAP7/CAAAAAAAAAAGAP7/CAACAAEAAAAHAP7/CAABAAIAAAAIAP7/CAACAAIAAAAJAP7/CAAAAAIAAAAJAP//CAACAAAAAAAIAP//CAAAAAAAAAAHAP//CAAAAAAAAAAGAP//CAACAAAAAAAFAP//CAABAAAAAAAEAP//CAAAAAAAAAADAP//CAACAAAAAAACAP//CAAAAAAAAAABAP//CAAAAAAAAAABAAAACAAAAAEAAAACAAAACAABAAEAAAADAAAACAACAAEAAAAEAAAACAAAAAEAAAAFAAAACAABAAEAAAAGAAAACAABAAIAAAAHAAAACAAAAAEAAAAIAAAACAABAAEAAAAJAAAACAACAAEAAAAJAAEACAACAAIAAAAIAAEACAABAAIAAAAHAAEACAAAAAIAAAAGAAEACAAAAAAAAAAFAAEACAABAAIAAAAEAAEACAABAAIAAAADAAEACAACAAIAAAACAAEACAABAAIAAAABAAEACAAAAAIAAAABAAIACAABAAAAAAACAAIACAAAAAAAAAADAAIACAABAAAAAAAEAAIACAACAAAAAAAFAAIACAAAAAAAAAAGAAIACAABAAAAAAAHAAIACAACAAAAAAAIAAIACAAAAAAAAAAJAAIACAABAAAAAAAJAAMACAABAAEAAAAIAAMACAAAAAEAAAAHAAMACAACAAEAAAAGAAMACAABAAEAAAAFAAMACAAAAAEAAAAEAAMACAACAAEAAAADAAMACAABAAEAAAACAAMACAAAAAEAAAABAAMACAABAAEAAAABAAQACAABAAIAAAACAAQACAAAAAIAAAADAAQACAABAAIAAAAEAAQACAACAAIAAAAFAAQACAABAAIAAAAGAAQACAABAAIAAAAHAAQACAAAAAAAAAAIAAQACAABAAIAAAAJAAQACAABAAIAAAAJAAUACAAAAAEAAAAIAAUACAACAAEAAAAHAAUACAABAAEAAAAGAAUACAAAAAEAAAAFAAUACAABAAIAAAAEAAUACAABAAEAAAADAAUACAAAAAEAAAACAAUACAACAAEAAAABAAUACAABAAEAAAAAAPz/CAAAAAAAAAAAAP3/CAAAAAEAAAAAAP7/CAAAAAIAAAAAAP//CAACAAAAAAAAAAAACAACAAEAAAAAAAEACAACAAIAAAAAAAIACAAAAAAAAAAAAAMACAAAAAEAAAAAAAUACAAAAAEAAAAAAAYACAAAAAIAAAABAAYACAABAAIAAAAAAAQACAAAAAIAAAACAAYACAACAAIAAAADAAYACAAAAAIAAAAEAAYACAABAAIAAAAFAAYACAACAAIAAAAGAAYACAAAAAIAAAAHAAYACAABAAIAAAAIAAYACAACAAIAAAAJAAYACAAAAAIAAAAKAAYACAABAAIAAAAKAAUACAABAAEAAAAKAAQACAACAAIAAAAKAAMACAACAAEAAAAKAAIACAACAAAAAAAKAAEACAACAAIAAAAKAAAACAACAAEAAAAKAP//CAACAAAAAAAKAP7/CAABAAIAAAAKAP3/CAABAAEAAAAKAPz/CAABAAAAAAAJAPz/CAAAAAAAAAAIAPz/CAACAAAAAAAHAPz/CAABAAAAAAAGAPz/CAAAAAAAAAAFAPz/CAACAAAAAAAEAPz/CAABAAAAAAADAPz/CAAAAAAAAAACAPz/CAACAAAAAAABAPz/CAABAAAAAAA=")
+tile_set = SubResource("TileSet_cqlev")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 2.0
+offset_right = 1.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background_Lvl2" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_cqlev")
+format = 2
+
+[node name="wall" type="TileMapLayer" parent="Background_Lvl2"]
+use_parent_material = true
+position = Vector2(0, 256)
+tile_map_data = PackedByteArray("AAAAAAYABgABAAQAAAACAAYABgABAAQAAAAEAAYABgABAAQAAAAGAAYABgABAAQAAAAIAAYABgABAAQAAAAKAAYABgABAAQAAAABAAYABgADAAQAAAADAAYABgADAAQAAAAFAAYABgADAAQAAAAHAAYABgADAAQAAAAJAAYABgADAAQAAAABAPz/BgABAAQAADADAPz/BgABAAQAADAFAPz/BgABAAQAADAHAPz/BgABAAQAADAJAPz/BgABAAQAADAAAPz/BgADAAQAADACAPz/BgADAAQAADAEAPz/BgADAAQAADAGAPz/BgADAAQAADAIAPz/BgADAAQAADAKAPz/BgADAAQAADA=")
+tile_set = SubResource("TileSet_cqlev")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.298
+anchor_top = 0.421
+anchor_right = 0.702
+anchor_bottom = 0.579
+offset_left = -9.79201
+offset_top = -11.442
+offset_right = 9.79199
+offset_bottom = 11.326
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="Caro" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_b6o8g")
+theme_override_font_sizes/font_size = 25
+text = "Programming:  Nikolai, Caroline"
+
+[node name="Nikolai" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_b6o8g")
+theme_override_font_sizes/font_size = 25
+text = "Art:              Nikolai, Caroline"
+
+[node name="Nikolai2" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_b6o8g")
+theme_override_font_sizes/font_size = 25
+text = "Level Design:   Nikolai, Caroline"
+
+[node name="Nikolai3" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_b6o8g")
+theme_override_font_sizes/font_size = 25
+text = "Music & SFX:   Caroline"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.298
+anchor_top = 0.421
+anchor_right = 0.702
+anchor_bottom = 0.579
+offset_left = 0.207993
+offset_top = 84.616
+offset_right = 0.791992
+offset_bottom = 86.384
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="Caro" type="Label" parent="VBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_b6o8g")
+theme_override_font_sizes/font_size = 25
+horizontal_alignment = 1
+
+[node name="Nikolai" type="Label" parent="VBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_b6o8g")
+theme_override_font_sizes/font_size = 25
+horizontal_alignment = 1
+
+[node name="Back" type="Button" parent="VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("9_7ocua")
+text = "Back"
+script = ExtResource("4_ge1f6")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -239.0
+offset_top = 192.0
+offset_right = 241.0
+offset_bottom = 272.0
+grow_horizontal = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_b6o8g")
+theme_override_font_sizes/font_size = 80
+text = "CREDITS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="VBoxContainer2/Back" to="." method="_on_exit_pressed"]

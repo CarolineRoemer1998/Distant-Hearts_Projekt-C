@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://c782ktl2vx0tk"]
+
+[ext_resource type="Script" uid="uid://knf52qmkhjp2" path="res://Scripts/AudioManager.gd" id="1_bxr8e"]
+
+[node name="AudioManager" type="Node"]
+script = ExtResource("1_bxr8e")
+
+[node name="SFXAudioPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"sfx"
+
+[node name="MusicAudioPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+bus = &"music"
+
+[connection signal="finished" from="MusicAudioPlayer" to="." method="_replay"]

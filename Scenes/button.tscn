@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://bt4pnhd7cx7xc"]
+
+[ext_resource type="Script" uid="uid://uqtwv08m1ohx" path="res://Scripts/button.gd" id="1_vxja4"]
+[ext_resource type="Texture2D" uid="uid://boolpgih6glii" path="res://Sprites/button_unpressed.png" id="2_smycg"]
+[ext_resource type="Texture2D" uid="uid://r3hihy7efgj8" path="res://Sprites/button_pressed.png" id="3_iju5o"]
+[ext_resource type="AudioStream" uid="uid://degn8ya32ef5u" path="res://Sounds/Push Button 5.mp3" id="4_edukx"]
+[ext_resource type="AudioStream" uid="uid://7cr6m3opt7u7" path="res://Sounds/Leave Button 3.mp3" id="5_edukx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2kp8h"]
+size = Vector2(28, 24)
+
+[node name="Button" type="Node2D"]
+script = ExtResource("1_vxja4")
+
+[node name="Button_GREEN" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("3_iju5o")
+
+[node name="Button_RED" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("2_smycg")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1, -4)
+shape = SubResource("RectangleShape2D_2kp8h")
+
+[node name="AudioPushButton" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_edukx")
+volume_db = 5.0
+bus = &"sfx"
+
+[node name="AudioLeave" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_edukx")
+volume_db = 5.0
+bus = &"sfx"
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_body_exited"]

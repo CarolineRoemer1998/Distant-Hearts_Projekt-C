@@ -1,0 +1,249 @@
+[gd_scene load_steps=10 format=3 uid="uid://ckkosqi7rtbdb"]
+
+[ext_resource type="FontFile" uid="uid://d3id6ewnchky" path="res://Fonts/GrapeSoda.ttf" id="1_diuch"]
+[ext_resource type="Texture2D" uid="uid://dugdhrnqmujux" path="res://Sprites/heart.png" id="2_xh2fq"]
+[ext_resource type="Texture2D" uid="uid://v56kyxx7qfib" path="res://Scenes/Ui_Controller/Ui_Acept.tres" id="3_oupf0"]
+
+[sub_resource type="Animation" id="Animation_2h8qs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WinLable:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.992157, 0.392157, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WinLable/GPUParticles2D:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("WinLable/GPUParticles2D2:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_bdlbp"]
+resource_name = "You win"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WinLable:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.1, 0.1), Vector2(1.2, 1.2), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.992157, 0.392157, 1, 0), Color(0.992157, 0.392157, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WinLable/GPUParticles2D:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("WinLable/GPUParticles2D2:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rpty4"]
+_data = {
+&"RESET": SubResource("Animation_2h8qs"),
+&"You win": SubResource("Animation_bdlbp")
+}
+
+[sub_resource type="Curve" id="Curve_oupf0"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.651757, 0), -3.31507, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ex32u"]
+curve = SubResource("Curve_oupf0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0r8oa"]
+particle_flag_disable_z = true
+angle_min = -45.0
+angle_max = 45.0
+direction = Vector3(0, -10, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+angular_velocity_min = -1.60933e-05
+angular_velocity_max = -1.60933e-05
+gravity = Vector3(0, 100, 0)
+scale_curve = SubResource("CurveTexture_ex32u")
+color = Color(1, 0.426317, 0.352492, 1)
+
+[node name="GameCompleted" type="Control"]
+visible = false
+custom_minimum_size = Vector2(704, 704)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 704.0
+offset_bottom = 704.0
+
+[node name="WinAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_rpty4")
+}
+
+[node name="Panel" type="Panel" parent="."]
+modulate = Color(0.992157, 0.392157, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_right = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WinLable" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -157.5
+offset_top = -61.5
+offset_right = 157.5
+offset_bottom = 61.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(157.5, 61.5)
+theme_override_fonts/font = ExtResource("1_diuch")
+theme_override_font_sizes/font_size = 60
+text = "All Hearts 
+Connected <3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="WinLable"]
+position = Vector2(44.5, 112.5)
+scale = Vector2(3, 3)
+emitting = false
+amount = 16
+texture = ExtResource("2_xh2fq")
+lifetime = 2.0
+one_shot = true
+speed_scale = 1.2
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_0r8oa")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="WinLable"]
+position = Vector2(255.5, 112.5)
+scale = Vector2(3, 3)
+emitting = false
+amount = 16
+texture = ExtResource("2_xh2fq")
+lifetime = 2.0
+one_shot = true
+speed_scale = 1.2
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_0r8oa")
+
+[node name="Label" type="Label" parent="WinLable"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.355
+anchor_top = 1.0
+anchor_right = 0.645
+anchor_bottom = 1.22
+offset_left = -26.325
+offset_top = 12.5
+offset_right = 27.325
+offset_bottom = 16.44
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_diuch")
+theme_override_font_sizes/font_size = 30
+text = "Press"
+vertical_alignment = 1
+
+[node name="UiAcept" type="Sprite2D" parent="WinLable/Label"]
+position = Vector2(112, 14)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_oupf0")

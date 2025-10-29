@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://c6dmpno4s3103"]
+
+[ext_resource type="Script" uid="uid://c3no2lx41nut1" path="res://Scripts/door.gd" id="1_yjehn"]
+[ext_resource type="Texture2D" uid="uid://byoqexwjlcug4" path="res://Sprites/fence-gate-closed.png" id="2_yjehn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3spc7"]
+size = Vector2(60, 60)
+
+[node name="Door" type="StaticBody2D" groups=["door"]]
+collision_layer = 8
+collision_mask = 7
+script = ExtResource("1_yjehn")
+buttons = Array[NodePath]([NodePath("../Button")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["door"]]
+shape = SubResource("RectangleShape2D_3spc7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("2_yjehn")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)

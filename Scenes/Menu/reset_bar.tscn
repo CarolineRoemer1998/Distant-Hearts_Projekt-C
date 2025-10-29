@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://bhgu3tj2dehs2"]
+
+[ext_resource type="Script" uid="uid://ctmjtkcdjjiow" path="res://Scripts/reset_bar.gd" id="1_t2yve"]
+[ext_resource type="Texture2D" uid="uid://ca50fts6eoamr" path="res://Sprites/circelBig.png" id="2_54yt7"]
+[ext_resource type="FontFile" uid="uid://d3id6ewnchky" path="res://Fonts/GrapeSoda.ttf" id="3_t2yve"]
+[ext_resource type="Texture2D" uid="uid://f3h20id5ioey" path="res://Scenes/Ui_Controller/Ui_Restart.tres" id="4_54yt7"]
+
+[node name="ResetBar" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 192.0
+offset_bottom = 64.0
+script = ExtResource("1_t2yve")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+scale = Vector2(1.2, 1.2)
+max_value = 1.0
+step = 0.01
+value = 1.0
+fill_mode = 4
+texture_progress = ExtResource("2_54yt7")
+tint_under = Color(0, 0, 0, 0.313726)
+tint_progress = Color(0.957092, 0.608527, 0.924495, 1)
+
+[node name="LabelPressFToStopControl" type="Label" parent="TextureProgressBar"]
+layout_mode = 1
+offset_left = 10.95
+offset_top = 18.725
+offset_right = 195.95
+offset_bottom = 50.725
+scale = Vector2(0.55, 0.55)
+pivot_offset = Vector2(38.5, 8)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.45, 0.297, 0.3225, 0.992157)
+theme_override_constants/outline_size = 14
+theme_override_fonts/font = ExtResource("3_t2yve")
+theme_override_font_sizes/font_size = 32
+text = "R   to Restart"
+
+[node name="UiRestart" type="Sprite2D" parent="TextureProgressBar"]
+position = Vector2(32, 32)
+texture = ExtResource("4_54yt7")

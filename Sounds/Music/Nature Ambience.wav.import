@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://mlq0shedq13f"
+path="res://.godot/imported/Nature Ambience.wav-99f1e0ce4377be95398186be0cde795b.sample"
+
+[deps]
+
+source_file="res://Sounds/Music/Nature Ambience.wav"
+dest_files=["res://.godot/imported/Nature Ambience.wav-99f1e0ce4377be95398186be0cde795b.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

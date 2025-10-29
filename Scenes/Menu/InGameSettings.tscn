@@ -1,0 +1,127 @@
+[gd_scene load_steps=10 format=3 uid="uid://bjggi6b1cbue8"]
+
+[ext_resource type="Script" uid="uid://cjwotyxepuimk" path="res://Scripts/in_game_settings.gd" id="1_r2836"]
+[ext_resource type="Texture2D" uid="uid://bch4qo0v7oudb" path="res://Sprites/Verworfen/Wall.png" id="2_3v052"]
+[ext_resource type="FontFile" uid="uid://d3id6ewnchky" path="res://Fonts/GrapeSoda.ttf" id="3_klyfr"]
+[ext_resource type="PackedScene" uid="uid://c7xbrqq8jp67b" path="res://Scenes/Menu/VolumeSlider.tscn" id="4_gykc7"]
+[ext_resource type="Theme" uid="uid://i7fixmxgctx7" path="res://Sprites/MenuSprites/Button.tres" id="5_3v052"]
+[ext_resource type="Theme" uid="uid://dn5ts3pcaoad5" path="res://Sprites/MenuSprites/HSlider.tres" id="5_klyfr"]
+[ext_resource type="Script" uid="uid://bld4747e6bxrc" path="res://Scripts/menu_button.gd" id="5_oubub"]
+[ext_resource type="Theme" uid="uid://d0haimlpaexgt" path="res://Sprites/MenuSprites/ToggleSlider.tres" id="6_klyfr"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ng16n"]
+texture = ExtResource("2_3v052")
+
+[node name="Settings" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_r2836")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ng16n")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -142.0
+offset_top = -115.0
+offset_right = 143.0
+offset_bottom = 115.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Music" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_klyfr")
+theme_override_font_sizes/font_size = 30
+text = "Music:"
+vertical_alignment = 1
+
+[node name="MusicSlider" parent="VBoxContainer" instance=ExtResource("4_gykc7")]
+layout_mode = 2
+theme = ExtResource("5_klyfr")
+bus_name = "music"
+
+[node name="SFX" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_klyfr")
+theme_override_font_sizes/font_size = 30
+text = "SFX:"
+vertical_alignment = 1
+
+[node name="SFXSlider" parent="VBoxContainer" instance=ExtResource("4_gykc7")]
+process_mode = 3
+layout_mode = 2
+theme = ExtResource("5_klyfr")
+bus_name = "sfx"
+
+[node name="Fullscreen" type="CheckButton" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("6_klyfr")
+text = "Fullscreen"
+
+[node name="Main Menu" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("5_3v052")
+theme_override_fonts/font = ExtResource("3_klyfr")
+text = "Main Menu"
+script = ExtResource("5_oubub")
+
+[node name="Back" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("5_3v052")
+text = "Back"
+script = ExtResource("5_oubub")
+
+[node name="Settings" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -228.0
+offset_top = 82.0
+offset_right = 228.0
+offset_bottom = 157.0
+grow_horizontal = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_klyfr")
+theme_override_font_sizes/font_size = 80
+text = "Settings"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -30.0
+autoplay = true
+bus = &"music"
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+volume_db = -40.0
+pitch_scale = 3.58
+autoplay = true
+bus = &"sfx"
+
+[connection signal="toggled" from="VBoxContainer/Fullscreen" to="." method="_on_fullscreen_toggled"]
+[connection signal="pressed" from="VBoxContainer/Main Menu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="VBoxContainer/Back" to="." method="_on_back_pressed"]
