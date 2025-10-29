@@ -577,5 +577,10 @@ volume_db = 5.0
 pitch_scale = 0.6
 bus = &"sfx"
 
+[node name="StepTimer" type="Timer" parent="."]
+wait_time = 0.125
+one_shot = true
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_creature_detected"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_creature_undetected"]
+[connection signal="timeout" from="StepTimer" to="." method="_on_step_timer_timeout"]

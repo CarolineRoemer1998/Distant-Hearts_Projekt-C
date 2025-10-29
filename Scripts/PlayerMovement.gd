@@ -24,6 +24,7 @@ var possessed_creature_until_next_tile: Creature = null
 @onready var audio_control: AudioStreamPlayer2D = $AudioControl
 @onready var audio_uncontrol: AudioStreamPlayer2D = $AudioUncontrol
 @onready var animation_tree: AnimationTree = $AnimationTree
+@onready var step_timer: Timer = $StepTimer
 
 # LAYER BITS
 const WALL_AND_PLAYER_LAYER_BIT := 0
@@ -46,6 +47,8 @@ var is_on_ice := false
 
 var current_direction := Vector2(0,0)
 
+var direction := Vector2.ZERO
+var can_take_next_step := true
 
 func _ready():
 	# Spieler korrekt auf Grid ausrichten
@@ -57,36 +60,45 @@ func _ready():
 func _process(delta):
 	move(delta)
 	update_heart_visibility()
+	handle_input()
 
-
-func _unhandled_input(event):
-	if not event.is_pressed():
-		return
-		
-	var direction := Vector2.ZERO
-	
-	if event.is_action_pressed("ui_cancel"):
-			SceneSwitcher.go_to_settings()
+func handle_input():	
+	if Input.is_action_just_pressed("ui_cancel"):
+		SceneSwitcher.go_to_settings()
 	
 	if can_move:
 		# Bewegungsrichtungen (directional input)
-		if event.is_action_pressed("Player_Up"):
+		if Input.is_action_pressed("Player_Up") and can_take_next_step:
 			direction = Vector2.UP
-		elif event.is_action_pressed("Player_Down"):
+			can_take_next_step = false
+			step_timer.start()
+		elif Input.is_action_pressed("Player_Down") and can_take_next_step:
 			direction = Vector2.DOWN
-		elif event.is_action_pressed("Player_Left"):
+			can_take_next_step = false
+			step_timer.start()
+		elif Input.is_action_pressed("Player_Left") and can_take_next_step:
 			direction = Vector2.LEFT
-		elif event.is_action_pressed("Player_Right"):
+			can_take_next_step = false
+			step_timer.start()
+		elif Input.is_action_pressed("Player_Right") and can_take_next_step:
 			direction = Vector2.RIGHT
+			can_take_next_step = false
+			step_timer.start()
 
 		# Interaktionsbutton
-		elif event.is_action_pressed("Interact"):
+		elif Input.is_action_just_pressed("Interact"):
 			if not is_moving:
 				possess_or_unpossess_creature()
 		
-		animation_tree.set("parameters/Idle/BlendSpace2D/blend_position", direction)
+		else:
+			direction = Vector2.ZERO
+		
+		if direction != Vector2.ZERO:
+			animation_tree.set("parameters/Idle/BlendSpace2D/blend_position", direction)
+		
 		if currently_possessed_creature:
-			currently_possessed_creature.animation_tree.set("parameters/Idle/BlendSpace2D/blend_position", direction)
+			if direction != Vector2.ZERO:
+				currently_possessed_creature.animation_tree.set("parameters/Idle/BlendSpace2D/blend_position", direction)
 
 		# Bewegungsversuch oder Puffern
 		if direction != Vector2.ZERO:
@@ -97,8 +109,50 @@ func _unhandled_input(event):
 	else:
 		# Szenewechsel durch Tastatur, Maus oder Gamepad
 		
-		if event.is_action_pressed("ui_accept"):# or (event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT) :
+		if Input.is_action_just_pressed("ui_accept"):
 			SceneSwitcher.go_to_next_level()
+
+
+#func _unhandled_input(event):
+	#if not event.is_pressed():
+		#return
+		#
+	#var direction := Vector2.ZERO
+	#
+	#if event.is_action_pressed("ui_cancel"):
+			#SceneSwitcher.go_to_settings()
+	#
+	#if can_move:
+		## Bewegungsrichtungen (directional input)
+		#if event.is_action_pressed("Player_Up"):
+			#direction = Vector2.UP
+		#elif event.is_action_pressed("Player_Down"):
+			#direction = Vector2.DOWN
+		#elif event.is_action_pressed("Player_Left"):
+			#direction = Vector2.LEFT
+		#elif event.is_action_pressed("Player_Right"):
+			#direction = Vector2.RIGHT
+#
+		## Interaktionsbutton
+		#elif event.is_action_pressed("Interact"):
+			#if not is_moving:
+				#possess_or_unpossess_creature()
+		#
+		#animation_tree.set("parameters/Idle/BlendSpace2D/blend_position", direction)
+		#if currently_possessed_creature:
+			#currently_possessed_creature.animation_tree.set("parameters/Idle/BlendSpace2D/blend_position", direction)
+#
+		## Bewegungsversuch oder Puffern
+		#if direction != Vector2.ZERO:
+			#if is_moving:
+				#buffered_direction = direction
+			#else:
+				#try_move(direction)
+	#else:
+		## Szenewechsel durch Tastatur, Maus oder Gamepad
+		#
+		#if event.is_action_pressed("ui_accept"):# or (event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT) :
+			#SceneSwitcher.go_to_next_level()
 
 
 func move(delta):
@@ -432,3 +486,7 @@ func update_heart_visibility():
 
 	# Kein passender Nachbar gefunden → Herz aus
 	heart.visible = false
+
+
+func _on_step_timer_timeout() -> void:
+	can_take_next_step = true
