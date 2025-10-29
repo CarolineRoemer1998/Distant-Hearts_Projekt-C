@@ -49,6 +49,9 @@ var current_direction := Vector2(0,0)
 
 var direction := Vector2.ZERO
 var can_take_next_step := true
+var step_sound_pitch_scales := [0.95, 0.96, 0.97, 0.98, 0.99, 1, 1.01, 1.02, 1.03, 1.04, 1.05]
+
+var step_sound_volume_changes := [6.0, 6.5, 7.0, 7.5, 8.0]
 
 func _ready():
 	# Spieler korrekt auf Grid ausrichten
@@ -111,48 +114,6 @@ func handle_input():
 		
 		if Input.is_action_just_pressed("ui_accept"):
 			SceneSwitcher.go_to_next_level()
-
-
-#func _unhandled_input(event):
-	#if not event.is_pressed():
-		#return
-		#
-	#var direction := Vector2.ZERO
-	#
-	#if event.is_action_pressed("ui_cancel"):
-			#SceneSwitcher.go_to_settings()
-	#
-	#if can_move:
-		## Bewegungsrichtungen (directional input)
-		#if event.is_action_pressed("Player_Up"):
-			#direction = Vector2.UP
-		#elif event.is_action_pressed("Player_Down"):
-			#direction = Vector2.DOWN
-		#elif event.is_action_pressed("Player_Left"):
-			#direction = Vector2.LEFT
-		#elif event.is_action_pressed("Player_Right"):
-			#direction = Vector2.RIGHT
-#
-		## Interaktionsbutton
-		#elif event.is_action_pressed("Interact"):
-			#if not is_moving:
-				#possess_or_unpossess_creature()
-		#
-		#animation_tree.set("parameters/Idle/BlendSpace2D/blend_position", direction)
-		#if currently_possessed_creature:
-			#currently_possessed_creature.animation_tree.set("parameters/Idle/BlendSpace2D/blend_position", direction)
-#
-		## Bewegungsversuch oder Puffern
-		#if direction != Vector2.ZERO:
-			#if is_moving:
-				#buffered_direction = direction
-			#else:
-				#try_move(direction)
-	#else:
-		## Szenewechsel durch Tastatur, Maus oder Gamepad
-		#
-		#if event.is_action_pressed("ui_accept"):# or (event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT) :
-			#SceneSwitcher.go_to_next_level()
 
 
 func move(delta):
@@ -396,6 +357,9 @@ func set_is_moving(value: bool):
 		# Sound NUR EINMAL pro Tile-Bewegung abspielen
 		audio_stream_player_2d.stop()
 		audio_stream_player_2d.play()
+		
+		audio_stream_player_2d.pitch_scale = step_sound_pitch_scales.pick_random()
+		audio_stream_player_2d.volume_db = step_sound_volume_changes.pick_random()
 
 		# Besessene Kreatur mitziehen lassen
 		if currently_possessed_creature:
