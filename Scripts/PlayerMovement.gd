@@ -9,6 +9,7 @@ var target_position: Vector2
 var is_moving := false
 var is_sliding := false
 var buffered_direction: Vector2 = Vector2.ZERO
+var state_direction := Vector2.ZERO
 
 var hovering_over: Creature = null
 var currently_possessed_creature: Creature = null
@@ -73,25 +74,34 @@ func handle_input():
 		# Bewegungsrichtungen (directional input)
 		if Input.is_action_pressed("Player_Up") and can_take_next_step:
 			direction = Vector2.UP
+			state_direction = direction
 			can_take_next_step = false
 			step_timer.start()
+			Signals.state_changed.emit()
 		elif Input.is_action_pressed("Player_Down") and can_take_next_step:
 			direction = Vector2.DOWN
+			state_direction = direction
 			can_take_next_step = false
 			step_timer.start()
+			Signals.state_changed.emit()
 		elif Input.is_action_pressed("Player_Left") and can_take_next_step:
 			direction = Vector2.LEFT
+			state_direction = direction
 			can_take_next_step = false
 			step_timer.start()
+			Signals.state_changed.emit()
 		elif Input.is_action_pressed("Player_Right") and can_take_next_step:
 			direction = Vector2.RIGHT
+			state_direction = direction
 			can_take_next_step = false
 			step_timer.start()
+			Signals.state_changed.emit()
 
 		# Interaktionsbutton
 		elif Input.is_action_just_pressed("Interact"):
 			if not is_moving:
 				possess_or_unpossess_creature()
+				Signals.state_changed.emit()
 		
 		else:
 			direction = Vector2.ZERO
@@ -115,6 +125,13 @@ func handle_input():
 		if Input.is_action_just_pressed("ui_accept"):
 			SceneSwitcher.go_to_next_level()
 
+func set_animation_direction(_direction : Vector2):
+	if _direction != Vector2.ZERO:
+		animation_tree.set("parameters/Idle/BlendSpace2D/blend_position", _direction)
+		
+	if currently_possessed_creature:
+		if _direction != Vector2.ZERO:
+			currently_possessed_creature.animation_tree.set("parameters/Idle/BlendSpace2D/blend_position", _direction)
 
 func move(delta):
 	if is_moving:

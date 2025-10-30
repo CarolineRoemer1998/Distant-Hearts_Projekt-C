@@ -18,7 +18,6 @@ func play_music(path: String):
 	curently_playing_song = path
 	is_music_playing = true
 	music_player.play()
-	print ("music Playing")
 
 func stop_music():
 	music_player.stop()
@@ -32,4 +31,3 @@ func _replay() -> void:
 	AudioManager.music_player.stream = load(AudioManager.curently_playing_song)
 	is_music_playing = true
 	music_player.play()
-	print ("music Playing")
