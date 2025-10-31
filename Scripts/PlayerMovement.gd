@@ -23,7 +23,7 @@ const ICE_MOVE_SPEED := 400.0
 # LAYER BITS
 const WALL_AND_PLAYER_LAYER_BIT := 0
 const CREATURE_LAYER_BIT 	:= 1
-const PUSHABLE_LAYER_BIT 	:= 2
+const STONE_LAYER_BIT 	:= 2
 const DOOR_LAYER_BIT    	:= 3
 const ICE_LAYER_BIT     	:= 5
 const LEVEL_WALL_LAYER_BIT  := 6
@@ -205,7 +205,7 @@ func move(delta):
 
 
 func move_on_ice(delta):
-	var block_mask = (1 << WALL_AND_PLAYER_LAYER_BIT) | (1 << DOOR_LAYER_BIT) | (1 << CREATURE_LAYER_BIT) | (1 << PUSHABLE_LAYER_BIT)
+	var block_mask = (1 << WALL_AND_PLAYER_LAYER_BIT) | (1 << DOOR_LAYER_BIT) | (1 << CREATURE_LAYER_BIT) | (1 << STONE_LAYER_BIT)
 	var slide_end = target_position
 	var push_end = Vector2(0,0)
 	var result_block
@@ -213,9 +213,9 @@ func move_on_ice(delta):
 	
 	set_is_on_ice(target_position + current_direction * GRID_SIZE)
 	
-	var next_collision = get_collision_on_tile(slide_end, 1 << PUSHABLE_LAYER_BIT)
+	var next_collision = get_collision_on_tile(slide_end, 1 << STONE_LAYER_BIT)
 	if not is_sliding and next_collision.size() > 0:
-		if next_collision[0].collider is Pushable:
+		if next_collision[0].collider is Stone:
 			is_sliding = true
 			push_end = slide_end
 			slide_end = slide_end - (current_direction * GRID_SIZE)
@@ -286,9 +286,9 @@ func try_move(direction: Vector2):
 	
 	
 	
-	# Query für Pushables
-	query.collision_mask = (1 << PUSHABLE_LAYER_BIT)
-	var result_pushables = space_state.intersect_point(query, 1)
+	# Query für Stones
+	query.collision_mask = (1 << STONE_LAYER_BIT)
+	var result_stones = space_state.intersect_point(query, 1)
 	
 	# Query für Türen
 	query.collision_mask = (1 << DOOR_LAYER_BIT)
@@ -309,14 +309,14 @@ func try_move(direction: Vector2):
 		return
 	
 	# Kein Objekt: Bewegung frei
-	if (result_pushables.is_empty() or currently_possessed_creature == null) and (result_doors.is_empty() or currently_possessed_creature == null) and result_wall.is_empty():
+	if (result_stones.is_empty() or currently_possessed_creature == null) and (result_doors.is_empty() or currently_possessed_creature == null) and result_wall.is_empty():
 		spawn_trail(position)
 		target_position = new_pos
 		set_is_moving(true)
 		Signals.state_changed.emit(get_player_info())
 		return
 	
-	try_push_and_move(result_pushables, result_doors, result_wall, new_pos, direction, space_state)
+	try_push_and_move(result_stones, result_doors, result_wall, new_pos, direction, space_state)
 
 func set_is_on_ice(new_pos) -> bool:
 	var space_state = get_world_2d().direct_space_state
@@ -358,10 +358,10 @@ func _merge(direction : Vector2, neighbor : Creature):
 			return true
 	return false
 
-func try_push_and_move(pushable, door, wall, new_pos, direction, space_state):
+func try_push_and_move(stone, door, wall, new_pos, direction, space_state):
 	
 	# Wand vor Spieler, keine Bewegung
-	if pushable.is_empty() and door.is_empty() and not wall.is_empty():
+	if stone.is_empty() and door.is_empty() and not wall.is_empty():
 		return
 	
 	# Spieler ist Geist und kann sich durch restliche Objekte durch bewegen
@@ -383,27 +383,27 @@ func try_push_and_move(pushable, door, wall, new_pos, direction, space_state):
 			spawn_trail(position)
 			target_position = new_pos
 			set_is_moving(true)
-			# Wenn Spieler kein Pushable durch die Tür schiebt, Funktion hier beenden
-			if pushable.is_empty():
+			# Wenn Spieler kein Stone durch die Tür schiebt, Funktion hier beenden
+			if stone.is_empty():
 				return
 	
-	# Ziel hinter dem pushable prüfen
+	# Ziel hinter dem stone prüfen
 	var push_target = new_pos + direction * GRID_SIZE
 	var push_query := PhysicsPointQueryParameters2D.new()
 	push_query.position = push_target
-	push_query.collision_mask = (1 << PUSHABLE_LAYER_BIT) | (1 << DOOR_LAYER_BIT) | (1 << WALL_AND_PLAYER_LAYER_BIT) | (1 << CREATURE_LAYER_BIT)
+	push_query.collision_mask = (1 << STONE_LAYER_BIT) | (1 << DOOR_LAYER_BIT) | (1 << WALL_AND_PLAYER_LAYER_BIT) | (1 << CREATURE_LAYER_BIT)
 	var push_result = space_state.intersect_point(push_query, 1)
 	
 	for i in push_result:
 		if i.collider is Door and not i.collider.door_is_closed:
-			if pushable[0].collider.push(direction * GRID_SIZE):
+			if stone[0].collider.push(direction * GRID_SIZE):
 				target_position = new_pos
 				set_is_moving(true)
 				return
 		
 	# Falls frei oder Tür die offen ist, push ausführen
 	if push_result.is_empty():
-		if pushable[0].collider.push(direction * GRID_SIZE):
+		if stone[0].collider.push(direction * GRID_SIZE):
 			target_position = new_pos
 			set_is_moving(true)
 			Signals.state_changed.emit(get_player_info())

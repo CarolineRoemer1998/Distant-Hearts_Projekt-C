@@ -1,6 +1,7 @@
 extends Control
 
 @onready var back: Button = $VBoxContainer2/Back
+
 var used_controller = false
 
 func _process(delta: float) -> void:

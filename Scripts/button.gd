@@ -7,19 +7,8 @@ signal deactivated
 
 enum BUTTON_TYPE {TOGGLE, STICKY, PRESSURE}
 
-var sprite_sticky_off := preload("res://Sprites/button_unpressed.png")
-var sprite_sticky_on := preload("res://Sprites/button_pressed.png")
-var sprite_pressure_off := preload("res://Sprites/pressure_plate_off.png")
-var sprite_pressure_on := preload("res://Sprites/pressure_plate_on.png")
-var sprite_toggle_orange := preload("res://Sprites/toggle-button-orange.png")
-var sprite_toggle_purple := preload("res://Sprites/toggle-button-purple.png")
-
 @export var type : BUTTON_TYPE = BUTTON_TYPE.STICKY
 @export var start_active: bool = false
-var active: bool = false
-var sticky_audio_played : bool = false
-var door_is_permanently_opened : bool = false
-
 
 @onready var button_green: Sprite2D = $Button_GREEN
 @onready var button_red: Sprite2D = $Button_RED
@@ -27,13 +16,40 @@ var door_is_permanently_opened : bool = false
 @onready var audio_push_button: AudioStreamPlayer2D = $AudioPushButton
 @onready var audio_leave: AudioStreamPlayer2D = $AudioLeave
 
+var sprite_sticky_off := preload("res://Sprites/button_unpressed.png")
+var sprite_sticky_on := preload("res://Sprites/button_pressed.png")
+var sprite_pressure_off := preload("res://Sprites/pressure_plate_off.png")
+var sprite_pressure_on := preload("res://Sprites/pressure_plate_on.png")
+var sprite_toggle_orange := preload("res://Sprites/toggle-button-orange.png")
+var sprite_toggle_purple := preload("res://Sprites/toggle-button-purple.png")
+
+var active: bool = false
+var sticky_audio_played : bool = false
+var door_is_permanently_opened : bool = false
+
+
 func _ready() -> void:
+	add_to_group(str(Constants.GROUP_NAME_BUTTONS))
+	
 	_set_button_sprites()
 	area.body_entered.connect(_on_body_entered)
 	area.body_exited.connect(_on_body_exited)
 	set_active(start_active)
+
+func get_button_info() -> Dictionary:
+	return {
+		"active": active,
+		"sticky_audio_played": sticky_audio_played,
+		"door_is_permanently_opened": door_is_permanently_opened
+	}
+
+func set_button_info(info : Dictionary):
+	active = info.get("active")
+	sticky_audio_played = info.get("sticky_audio_played")
+	door_is_permanently_opened = info.get("door_is_permanently_opened")
 	
-	
+	set_active(active)
+
 func _on_body_entered(body: Node) -> void:
 	if door_is_permanently_opened:
 		return

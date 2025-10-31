@@ -1,11 +1,10 @@
 extends Node2D
 
-@onready var win_animation: AnimationPlayer = $UI/WinScreen/WinAnimation
-@onready var game_completed_animation: AnimationPlayer = $UI/GameCompleted/WinAnimation
-
-
 @export var final_level: bool = false
 @export var level_number: int = 0
+
+@onready var win_animation: AnimationPlayer = $UI/WinScreen/WinAnimation
+@onready var game_completed_animation: AnimationPlayer = $UI/GameCompleted/WinAnimation
 
 
 func _ready() -> void:
@@ -52,13 +51,36 @@ func save_level_state(player_info : Dictionary):
 		
 		
 		# Creatures speichern
-		for c in get_tree().get_nodes_in_group(str(Constants.GROUP_NAME_CREATURE)):
-			if c is Creature:
+		for creature in get_tree().get_nodes_in_group(str(Constants.GROUP_NAME_CREATURE)):
+			if creature is Creature:
 				if not state.has("creatures"): 
 					state["creatures"] = []
 				
-				state["creatures"].append(c.get_creature_info())
+				state["creatures"].append(creature.get_creature_info())
+		
+		# Doors speichern
+		for door in get_tree().get_nodes_in_group(str(Constants.GROUP_NAME_DOORS)):
+			if door is Door:
+				if not state.has("doors"): 
+					state["doors"] = []
 				
+				state["doors"].append(door.get_door_info())
+		
+		# Buttons speichern
+		for button in get_tree().get_nodes_in_group(str(Constants.GROUP_NAME_BUTTONS)):
+			if button is GameButton:
+				if not state.has("buttons"): 
+					state["buttons"] = []
+				
+				state["buttons"].append(button.get_button_info())
+		
+		# Stones speichern
+		for stone in get_tree().get_nodes_in_group(str(Constants.GROUP_NAME_STONES)):
+			if stone is Stone:
+				if not state.has("stones"): 
+					state["stones"] = []
+				
+				state["stones"].append(stone.get_stone_info())
 		
 		StateSaver.saved_states.append(state)
 
@@ -66,6 +88,9 @@ func save_level_state(player_info : Dictionary):
 func undo():
 	set_state_player()
 	set_state_creatures()
+	set_state_doors()
+	set_state_buttons()
+	set_state_stones()
 	StateSaver.remove_last_state()
 
 func set_state_player():
@@ -92,3 +117,36 @@ func set_state_creatures():
 					
 					if creature.global_position == creature.init_position:
 						creature.set_animation_direction_by_val(creature.init_direction)
+
+func set_state_doors():
+	if StateSaver.get_last_state().has("doors"):
+		var doors_states : Array = StateSaver.get_last_state()["doors"]
+		
+		for door in get_tree().get_nodes_in_group(str(Constants.GROUP_NAME_DOORS)):
+			if door != null:
+				if StateSaver.saved_states.size() > 0:
+					door.set_creature_info(doors_states[0])
+					
+					doors_states.remove_at(0)
+
+func set_state_buttons():
+	if StateSaver.get_last_state().has("buttons"):
+		var buttons_states : Array = StateSaver.get_last_state()["buttons"]
+		
+		for button in get_tree().get_nodes_in_group(str(Constants.GROUP_NAME_BUTTONS)):
+			if button != null:
+				if StateSaver.saved_states.size() > 0:
+					button.set_creature_info(buttons_states[0])
+					
+					buttons_states.remove_at(0)
+
+func set_state_stones():
+	if StateSaver.get_last_state().has("stones"):
+		var stones_states : Array = StateSaver.get_last_state()["stones"]
+		
+		for stone in get_tree().get_nodes_in_group(str(Constants.GROUP_NAME_STONES)):
+			if stone != null:
+				if StateSaver.saved_states.size() > 0:
+					stone.set_stone_info(stones_states[0])
+					
+					stones_states.remove_at(0)

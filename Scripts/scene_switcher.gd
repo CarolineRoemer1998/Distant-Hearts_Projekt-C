@@ -1,6 +1,7 @@
 extends Node
 
 @onready var fade_scene = preload("res://Scenes/Menu/fade.tscn")
+
 var fade_node = null
 var fade_animation = null
 var level_folder = "res://Scenes/Level/"

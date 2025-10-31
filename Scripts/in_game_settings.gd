@@ -4,7 +4,6 @@ extends Control
 @onready var fullscreen: CheckButton = $VBoxContainer/Fullscreen
 
 var cooldown_timer: float = 0.2
-
 var used_controller = false
 
 func _ready() -> void:

@@ -3,8 +3,8 @@ extends Control
 @onready var back: Button = $VBoxContainer/Back
 @onready var fullscreen: CheckButton = $VBoxContainer/Fullscreen
 
-
 var used_controller = false
+
 
 func _ready() -> void:
 	if OS.has_feature("web"):

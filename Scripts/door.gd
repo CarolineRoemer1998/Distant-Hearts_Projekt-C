@@ -15,6 +15,7 @@ var closed_door_sprite := preload("res://Sprites/fence-gate-closed.png")
 var door_is_closed := true
 
 func _ready():
+	add_to_group(str(Constants.GROUP_NAME_DOORS))
 	# Resolve NodePaths to actual button nodes
 	for path in buttons:
 		var button = get_node(path)
@@ -24,6 +25,19 @@ func _ready():
 			button.deactivated.connect(_on_button_state_changed)
 	
 	_check_buttons()
+
+func get_door_info() -> Dictionary:
+	return {
+		"door_is_closed": door_is_closed
+	}
+
+func set_door_info(info : Dictionary):
+	door_is_closed = info.get("door_is_closed")
+	
+	if door_is_closed:
+		_close_door()
+	else:
+		_open_door()
 
 func _on_button_state_changed():
 	_check_buttons()
