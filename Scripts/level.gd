@@ -135,4 +135,5 @@ func set_state_creatures():
 					
 					creatures_states.remove_at(0)
 					
-						
+					if creature.global_position == creature.init_position:
+						creature.set_animation_direction_by_val(creature.init_direction)

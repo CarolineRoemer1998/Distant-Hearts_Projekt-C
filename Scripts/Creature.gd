@@ -27,9 +27,11 @@ var neighbor_left : Creature = null
 var neighbor_top : Creature = null
 var current_direction := init_direction
 
+@onready var init_position : Vector2
 
 func _ready():
 	target_position = position.snapped(GRID_SIZE / 2)
+	init_position = global_position
 	position = target_position
 	animation_tree.get("parameters/playback").travel("Idle")
 	animation_tree.set("parameters/Idle/BlendSpace2D/blend_position", init_direction)
