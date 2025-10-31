@@ -90,7 +90,7 @@ func handle_input():
 			else:
 				try_move(direction)
 				
-			Signals.state_changed.emit(direction)
+			Signals.state_changed.emit(direction, currently_possessed_creature)
 
 		# Interaktionsbutton
 		elif Input.is_action_just_pressed("Interact"):
@@ -365,7 +365,7 @@ func set_is_moving(value: bool):
 
 
 func possess_or_unpossess_creature():
-	Signals.state_changed.emit(direction)
+	Signals.state_changed.emit(direction, currently_possessed_creature)
 	if currently_possessed_creature:
 		# Unpossess: Sichtbarkeit zurücksetzen
 		if is_instance_valid(currently_possessed_creature):

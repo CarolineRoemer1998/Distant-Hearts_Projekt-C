@@ -1,3 +1,3 @@
 extends Node
 
-signal state_changed(direction : Vector2)
+signal state_changed(direction : Vector2, possessed_creature : Creature)

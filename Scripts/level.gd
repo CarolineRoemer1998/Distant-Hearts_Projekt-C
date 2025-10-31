@@ -27,7 +27,7 @@ func show_win_screen():
 		return
 	win_animation.play("You win")
 
-func save_level_state(direction : Vector2):
+func save_level_state(direction : Vector2, possessed_creature : Creature):
 	if level_number == SceneSwitcher.current_level:
 		var state = {
 		}
@@ -48,7 +48,7 @@ func save_level_state(direction : Vector2):
 			if p is Player:
 				state["player"] = p.duplicate()
 				state["player"].direction = direction
-				print(direction)
+				state["player"].currently_possessed_creature = possessed_creature
 		
 		# Creatures speichern
 		for c in get_children():
@@ -58,6 +58,15 @@ func save_level_state(direction : Vector2):
 				state["creatures"].append(c.duplicate())
 		
 		StateSaver.saved_states.append(state)
+		
+		#for i in StateSaver.saved_states:
+			#for j in i:
+				#if j == "player":
+					#print(i["player"].direction)
+					#print(i["player"].currently_possessed_creature)
+					#print(i["player"].direction)
+					#print(i["player"].direction)
+				#print(j)
 		
 		#for i in StateSaver.saved_states:
 			#print(i["player"].global_position)
@@ -88,6 +97,9 @@ func set_state_player():
 					player.buffered_direction = Vector2.ZERO
 					player.can_take_next_step = true
 					player.step_timer.stop()
+					
+					print(player.currently_possessed_creature)
+					print(player_state.currently_possessed_creature)
 					
 					if player.currently_possessed_creature != player_state.currently_possessed_creature:
 						player.possess_or_unpossess_creature()
