@@ -18,9 +18,11 @@ level_number = 1
 
 [node name="Creature" parent="." instance=ExtResource("2_6ll4n")]
 position = Vector2(288, 288)
+init_direction = Vector2(0, 1)
 
 [node name="Creature2" parent="." instance=ExtResource("11_2h8qs")]
 position = Vector2(416, 288)
+init_direction = Vector2(0, 1)
 
 [node name="Player" parent="." instance=ExtResource("3_kylad")]
 position = Vector2(352, 480)

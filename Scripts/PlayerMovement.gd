@@ -45,7 +45,7 @@ var obstacle : Node = null
 
 var is_on_ice := false
 
-var current_direction := Vector2(0,0)
+var current_direction := Vector2.ZERO
 
 var direction := Vector2.ZERO
 var can_take_next_step := true
@@ -81,7 +81,9 @@ func handle_input():
 				direction = Vector2.LEFT
 			elif Input.is_action_pressed("Player_Right"):
 				direction = Vector2.RIGHT
-					
+			
+			if currently_possessed_creature:
+				currently_possessed_creature.current_direction = direction
 			
 			can_take_next_step = false
 			step_timer.start()
@@ -90,24 +92,27 @@ func handle_input():
 			else:
 				try_move(direction)
 				
-			Signals.state_changed.emit(direction, currently_possessed_creature)
+			#Signals.state_changed.emit(direction, currently_possessed_creature)
 
 		# Interaktionsbutton
 		elif Input.is_action_just_pressed("Interact"):
 			if not is_moving:
+				Signals.state_changed.emit(direction, currently_possessed_creature)
 				possess_or_unpossess_creature()
 		
-		set_animation_direction(direction)
+		set_player_animation_direction(direction)
+		set_creature_animation_direction(direction)
 
 	else:
 		# Szenewechsel durch Tastatur, Maus oder Gamepad
 		if Input.is_action_just_pressed("ui_accept"):
 			SceneSwitcher.go_to_next_level()
 
-func set_animation_direction(_direction : Vector2):
+func set_player_animation_direction(_direction : Vector2):
 	if _direction != Vector2.ZERO:
 		animation_tree.set("parameters/Idle/BlendSpace2D/blend_position", _direction)
-		
+
+func set_creature_animation_direction(_direction : Vector2):
 	if currently_possessed_creature:
 		if _direction != Vector2.ZERO:
 			currently_possessed_creature.animation_tree.set("parameters/Idle/BlendSpace2D/blend_position", _direction)
@@ -251,6 +256,7 @@ func try_move(direction: Vector2):
 		spawn_trail(position)
 		target_position = new_pos
 		set_is_moving(true)
+		Signals.state_changed.emit(direction, currently_possessed_creature)
 		return
 	
 	try_push_and_move(result_pushables, result_doors, result_wall, new_pos, direction, space_state)
@@ -306,6 +312,7 @@ func try_push_and_move(pushable, door, wall, new_pos, direction, space_state):
 		spawn_trail(position)
 		target_position = new_pos
 		set_is_moving(true)
+		Signals.state_changed.emit(direction, currently_possessed_creature)
 		return
 	
 	# Tür vor Spieler
@@ -342,6 +349,7 @@ func try_push_and_move(pushable, door, wall, new_pos, direction, space_state):
 		if pushable[0].collider.push(direction * GRID_SIZE):
 			target_position = new_pos
 			set_is_moving(true)
+			Signals.state_changed.emit(direction, currently_possessed_creature)
 	else:
 		buffered_direction = Vector2.ZERO
 
@@ -365,11 +373,12 @@ func set_is_moving(value: bool):
 
 
 func possess_or_unpossess_creature():
-	Signals.state_changed.emit(direction, currently_possessed_creature)
 	if currently_possessed_creature:
 		# Unpossess: Sichtbarkeit zurücksetzen
 		if is_instance_valid(currently_possessed_creature):
 			currently_possessed_creature.border.visible = false
+		
+		currently_possessed_creature.set_animation_direction()
 
 		currently_possessed_creature = null
 		label_press_f_to_control.visible = true
@@ -386,6 +395,10 @@ func possess_or_unpossess_creature():
 			currently_possessed_creature.border.visible = true
 			animated_sprite_2d.modulate = Color(1, 1, 1, 0)
 			audio_control.play()
+			
+			# direction an Creature anpassen
+			print(currently_possessed_creature.current_direction)
+			direction = currently_possessed_creature.current_direction
 
 			# Position sofort synchronisieren
 			currently_possessed_creature.position = target_position

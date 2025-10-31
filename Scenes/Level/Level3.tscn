@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://23u33yt4jga3" path="res://Scenes/CreaturesAndPlayer/merged_creature.tscn" id="8_t5kwq"]
 [ext_resource type="PackedScene" uid="uid://pb5o008ihthl" path="res://Scenes/Menu/win_screen.tscn" id="9_p6pjf"]
 [ext_resource type="PackedScene" uid="uid://bhgu3tj2dehs2" path="res://Scenes/Menu/reset_bar.tscn" id="10_m7vvj"]
-[ext_resource type="PackedScene" uid="uid://dp2qf8g2kvpfa" path="res://Scenes/level_wall.tscn" id="11_wxy6n"]
+[ext_resource type="PackedScene" path="res://Scenes/level_wall.tscn" id="11_wxy6n"]
 
 [node name="Level3" type="Node2D"]
 script = ExtResource("1_cp0jt")
@@ -36,9 +36,10 @@ position = Vector2(544, 224)
 
 [node name="CreatureYellow" parent="." instance=ExtResource("7_dl4b5")]
 position = Vector2(544, 480)
+init_direction = Vector2(0, -1)
 
 [node name="AnimationTree" parent="CreatureYellow" index="3"]
-parameters/Idle/BlendSpace2D/blend_position = Vector2(0.0101868, -0.593407)
+parameters/Idle/BlendSpace2D/blend_position = Vector2(-0.0008968711, -0.75784755)
 
 [node name="Player" parent="." instance=ExtResource("4_kg31f")]
 position = Vector2(224, 160)

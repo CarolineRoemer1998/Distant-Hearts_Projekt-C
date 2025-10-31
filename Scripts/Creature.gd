@@ -14,6 +14,10 @@ enum CREATURE_COLOR {Red, Blue, Yellow, Green, Purple, Turquois, Orange, Pink}
 @onready var area_2d_top: Area2D = $Area2D_Top
 @onready var animation_tree: AnimationTree = $AnimationTree
 
+@export var init_direction := Vector2.DOWN
+@export var own_color : CREATURE_COLOR = CREATURE_COLOR.Red
+@export var desired_color : CREATURE_COLOR = CREATURE_COLOR.Green
+
 const GRID_SIZE := Vector2(64, 64)
 var target_position: Vector2
 
@@ -21,16 +25,20 @@ var neighbor_right : Creature = null
 var neighbor_bottom : Creature = null
 var neighbor_left : Creature = null
 var neighbor_top : Creature = null
-
-@export var own_color : CREATURE_COLOR = CREATURE_COLOR.Red
-@export var desired_color : CREATURE_COLOR = CREATURE_COLOR.Green
+var current_direction := init_direction
 
 
 func _ready():
 	target_position = position.snapped(GRID_SIZE / 2)
 	position = target_position
 	animation_tree.get("parameters/playback").travel("Idle")
+	animation_tree.set("parameters/Idle/BlendSpace2D/blend_position", init_direction)
 
+func set_animation_direction():
+	animation_tree.set("parameters/Idle/BlendSpace2D/blend_position", current_direction)
+
+func set_animation_direction_by_val(direction):
+	animation_tree.set("parameters/Idle/BlendSpace2D/blend_position", direction)
 
 func can_merge_with(creature : Creature) -> bool:
 	if self.desired_color == creature.own_color:

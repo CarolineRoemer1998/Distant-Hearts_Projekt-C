@@ -20,10 +20,10 @@
 [ext_resource type="Texture2D" uid="uid://dhgxskyq6mhsp" path="res://Sprites/IceFloor/Ice-floor-B.png" id="9_gv0gm"]
 [ext_resource type="Texture2D" uid="uid://b45v4bjjuo8eb" path="res://Sprites/IceFloor/Ice-floor-R-B.png" id="10_a2eh8"]
 [ext_resource type="PackedScene" uid="uid://pb5o008ihthl" path="res://Scenes/Menu/win_screen.tscn" id="10_mehec"]
-[ext_resource type="PackedScene" uid="uid://bu7a5geiluu3r" path="res://Scenes/icicle.tscn" id="11_fy58k"]
+[ext_resource type="PackedScene" path="res://Scenes/icicle.tscn" id="11_fy58k"]
 [ext_resource type="Texture2D" uid="uid://dis43boq1dnwi" path="res://Sprites/IceFloor/Ice-floor-L-R-B.png" id="12_7suub"]
 [ext_resource type="PackedScene" uid="uid://oy61arlldjo3" path="res://Scenes/pushable.tscn" id="12_mehec"]
-[ext_resource type="PackedScene" uid="uid://dp2qf8g2kvpfa" path="res://Scenes/level_wall.tscn" id="15_mehec"]
+[ext_resource type="PackedScene" path="res://Scenes/level_wall.tscn" id="15_mehec"]
 
 [node name="Level6" type="Node2D"]
 script = ExtResource("1_vb4or")
@@ -209,9 +209,11 @@ position = Vector2(544, 160)
 
 [node name="CreatureBlue" parent="." instance=ExtResource("3_ddi5y")]
 position = Vector2(352, 480)
+init_direction = Vector2(0, 1)
 
 [node name="CreatureYellow" parent="." instance=ExtResource("4_ba60x")]
 position = Vector2(352, 160)
+init_direction = Vector2(0, 1)
 
 [node name="MergedCreature" parent="." instance=ExtResource("6_c254e")]
 visible = false
@@ -224,3 +226,5 @@ position = Vector2(352, 608)
 [node name="WinScreen" parent="." instance=ExtResource("10_mehec")]
 
 [node name="LevelWall" parent="." instance=ExtResource("15_mehec")]
+
+[editable path="CreatureBlue"]

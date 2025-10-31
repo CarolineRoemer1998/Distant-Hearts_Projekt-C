@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c6dmpno4s3103" path="res://Scenes/door.tscn" id="3_us1oe"]
 [ext_resource type="Texture2D" uid="uid://cmeverec805io" path="res://Sprites/IceFloor/Ice-floor-T.png" id="4_6kj52"]
 [ext_resource type="Texture2D" uid="uid://bc7d4qmidqg4y" path="res://Sprites/IceFloor/Ice-floor-L-T.png" id="4_f1nlr"]
-[ext_resource type="PackedScene" uid="uid://bu7a5geiluu3r" path="res://Scenes/icicle.tscn" id="4_teeuy"]
+[ext_resource type="PackedScene" path="res://Scenes/icicle.tscn" id="4_teeuy"]
 [ext_resource type="PackedScene" uid="uid://bt4pnhd7cx7xc" path="res://Scenes/button.tscn" id="4_tf17e"]
 [ext_resource type="PackedScene" uid="uid://dsycxcakay6h8" path="res://Scenes/creature_blue.tscn" id="4_us1oe"]
 [ext_resource type="PackedScene" uid="uid://cdt5m2v6xjjuf" path="res://Scenes/inverted_door.tscn" id="5_teeuy"]
@@ -21,7 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://b45v4bjjuo8eb" path="res://Sprites/IceFloor/Ice-floor-R-B.png" id="11_2kmlx"]
 [ext_resource type="PackedScene" uid="uid://g3u7bc1jo6gj" path="res://Scenes/CreaturesAndPlayer/player.tscn" id="12_keikn"]
 [ext_resource type="PackedScene" uid="uid://oy61arlldjo3" path="res://Scenes/pushable.tscn" id="14_h6i6i"]
-[ext_resource type="PackedScene" uid="uid://dp2qf8g2kvpfa" path="res://Scenes/level_wall.tscn" id="15_dtgac"]
+[ext_resource type="PackedScene" path="res://Scenes/level_wall.tscn" id="15_dtgac"]
 [ext_resource type="PackedScene" uid="uid://pb5o008ihthl" path="res://Scenes/Menu/win_screen.tscn" id="15_keikn"]
 
 [node name="Level7" type="Node2D"]
@@ -144,9 +144,11 @@ type = 2
 
 [node name="CreatureBlue" parent="." instance=ExtResource("4_us1oe")]
 position = Vector2(288, 160)
+init_direction = Vector2(0, 1)
 
 [node name="CreatureYellow" parent="." instance=ExtResource("5_tf17e")]
 position = Vector2(544, 544)
+init_direction = Vector2(0, 1)
 
 [node name="MergedCreature" parent="." instance=ExtResource("6_teeuy")]
 visible = false

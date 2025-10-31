@@ -49,9 +49,18 @@ func save_level_state(direction : Vector2, possessed_creature : Creature):
 				state["player"] = p.duplicate()
 				state["player"].direction = direction
 				state["player"].currently_possessed_creature = possessed_creature
+				
+				#print("target_position:                     ", p.target_position)
+				#print("is_moving:                           ", p.is_moving)
+				#print("is_sliding:                          ", p.is_sliding)
+				#print("buffered_direction:                  ", p.buffered_direction)
+				#print("hovering_over:                       ", p.hovering_over)
+				#print("currently_possessed_creature:        ", p.currently_possessed_creature)
+				#print("possessed_creature_until_next_tile:  ", p.possessed_creature_until_next_tile)
+				#print()
 		
 		# Creatures speichern
-		for c in get_children():
+		for c in get_children(true):
 			if c is Creature:
 				if not state.has("creatures"): 
 					state["creatures"] = []
@@ -88,7 +97,7 @@ func set_state_player():
 					player.global_position = player_state.global_position
 					
 					player.direction = player_state.direction
-					player.set_animation_direction(player_state.direction)
+					player.set_player_animation_direction(player_state.direction)
 					
 					player.target_position = player.global_position
 					player.is_moving = false
@@ -98,19 +107,16 @@ func set_state_player():
 					player.can_take_next_step = true
 					player.step_timer.stop()
 					
-					print(player.currently_possessed_creature)
-					print(player_state.currently_possessed_creature)
 					
 					if player.currently_possessed_creature != player_state.currently_possessed_creature:
 						player.possess_or_unpossess_creature()
+						if player.currently_possessed_creature:
+							player.currently_possessed_creature.set_animation_direction_by_val(player.currently_possessed_creature.init_direction)
 					
 					player.hovering_over = player_state.hovering_over
 					player.currently_possessed_creature = player_state.currently_possessed_creature
 					player.possessed_creature_until_next_tile = player_state.possessed_creature_until_next_tile
-					
-					#var hovering_over: Creature = null
-					#var currently_possessed_creature: Creature = null
-					#var possessed_creature_until_next_tile: Creature = null
+
 
 func set_state_creatures():
 	if StateSaver.get_last_state().has("creatures"):
@@ -128,3 +134,5 @@ func set_state_creatures():
 					creature.neighbor_top = creatures_states[0].neighbor_top
 					
 					creatures_states.remove_at(0)
+					
+						

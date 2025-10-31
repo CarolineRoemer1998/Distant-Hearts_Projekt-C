@@ -17,10 +17,10 @@
 [ext_resource type="Texture2D" uid="uid://bc7d4qmidqg4y" path="res://Sprites/IceFloor/Ice-floor-L-T.png" id="9_7wb65"]
 [ext_resource type="PackedScene" uid="uid://ccncnjkm8w8ta" path="res://Scenes/CreaturesAndPlayer/creature_blue.tscn" id="9_jq2c1"]
 [ext_resource type="Texture2D" uid="uid://dkgld5dg1asp" path="res://Sprites/IceFloor/Ice-floor-L-R.png" id="9_vu1yg"]
-[ext_resource type="PackedScene" uid="uid://bu7a5geiluu3r" path="res://Scenes/icicle.tscn" id="10_xhsd0"]
+[ext_resource type="PackedScene" path="res://Scenes/icicle.tscn" id="10_xhsd0"]
 [ext_resource type="Texture2D" uid="uid://ce8efu0a3oy2r" path="res://Sprites/IceFloor/Ice-floor-L-B.png" id="10_yviyk"]
 [ext_resource type="PackedScene" uid="uid://23u33yt4jga3" path="res://Scenes/CreaturesAndPlayer/merged_creature.tscn" id="11_u7nce"]
-[ext_resource type="PackedScene" uid="uid://dp2qf8g2kvpfa" path="res://Scenes/level_wall.tscn" id="11_y20sl"]
+[ext_resource type="PackedScene" path="res://Scenes/level_wall.tscn" id="11_y20sl"]
 [ext_resource type="PackedScene" uid="uid://g3u7bc1jo6gj" path="res://Scenes/CreaturesAndPlayer/player.tscn" id="12_1ewnr"]
 [ext_resource type="Texture2D" uid="uid://dis43boq1dnwi" path="res://Sprites/IceFloor/Ice-floor-L-R-B.png" id="13_bs21i"]
 [ext_resource type="PackedScene" uid="uid://bhgu3tj2dehs2" path="res://Scenes/Menu/reset_bar.tscn" id="13_efhq8"]
@@ -273,9 +273,11 @@ buttons = Array[NodePath]([NodePath("../Buttons/Button"), NodePath("../Buttons/B
 
 [node name="CreatureBlue" parent="." instance=ExtResource("9_jq2c1")]
 position = Vector2(480, 600)
+init_direction = Vector2(0, 1)
 
 [node name="CreatureYellow" parent="." instance=ExtResource("5_y20sl")]
 position = Vector2(160, 288)
+init_direction = Vector2(0, 1)
 
 [node name="MergedCreature" parent="." instance=ExtResource("11_u7nce")]
 visible = false

@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://be6k5yjppap8y" path="res://Scenes/CreaturesAndPlayer/creature_yellow.tscn" id="5_p4u3k"]
 [ext_resource type="PackedScene" uid="uid://23u33yt4jga3" path="res://Scenes/CreaturesAndPlayer/merged_creature.tscn" id="6_au75x"]
 [ext_resource type="PackedScene" uid="uid://bhgu3tj2dehs2" path="res://Scenes/Menu/reset_bar.tscn" id="9_70df5"]
-[ext_resource type="PackedScene" uid="uid://dp2qf8g2kvpfa" path="res://Scenes/level_wall.tscn" id="10_n7tbg"]
+[ext_resource type="PackedScene" path="res://Scenes/level_wall.tscn" id="10_n7tbg"]
 
 [node name="Level2" type="Node2D"]
 script = ExtResource("1_70df5")
@@ -58,13 +58,15 @@ position = Vector2(352, 160)
 [node name="Pushable13" parent="Pushables" instance=ExtResource("3_jriq2")]
 position = Vector2(352, 96)
 
-[node name="Creatures" type="Node" parent="."]
-
-[node name="CreatureBlue" parent="Creatures" instance=ExtResource("4_ehjmi")]
+[node name="CreatureBlue" parent="." instance=ExtResource("4_ehjmi")]
 position = Vector2(160, 224)
+init_direction = Vector2(0, 1)
 
-[node name="CreatureYellow" parent="Creatures" instance=ExtResource("5_p4u3k")]
+[node name="CreatureYellow" parent="." instance=ExtResource("5_p4u3k")]
 position = Vector2(542, 224)
+init_direction = Vector2(0, 1)
+
+[node name="Creatures" type="Node" parent="."]
 
 [node name="Player" parent="." instance=ExtResource("2_ms0wi")]
 top_level = true
@@ -81,6 +83,7 @@ offset_bottom = 0.0
 
 [node name="LevelWall" parent="." instance=ExtResource("10_n7tbg")]
 
-[editable path="Creatures/CreatureBlue"]
+[editable path="CreatureBlue"]
+[editable path="CreatureYellow"]
 [editable path="MergedCreature"]
 [editable path="WinScreen"]
