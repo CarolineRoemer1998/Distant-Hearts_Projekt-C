@@ -33,11 +33,11 @@ func get_door_info() -> Dictionary:
 
 func set_door_info(info : Dictionary):
 	door_is_closed = info.get("door_is_closed")
-	
-	if door_is_closed:
-		_close_door()
-	else:
-		_open_door()
+	_check_buttons()
+	#if door_is_closed:
+		#_close_door()
+	#else:
+		#_open_door()
 
 func _on_button_state_changed():
 	_check_buttons()

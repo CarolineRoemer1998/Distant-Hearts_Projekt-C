@@ -52,7 +52,7 @@ func save_level_state(player_info : Dictionary):
 		
 		# Creatures speichern
 		for creature in get_tree().get_nodes_in_group(str(Constants.GROUP_NAME_CREATURE)):
-			if creature is Creature:
+			if creature != null:
 				if not state.has("creatures"): 
 					state["creatures"] = []
 				
@@ -60,15 +60,18 @@ func save_level_state(player_info : Dictionary):
 		
 		# Doors speichern
 		for door in get_tree().get_nodes_in_group(str(Constants.GROUP_NAME_DOORS)):
-			if door is Door:
+			if door != null:
 				if not state.has("doors"): 
 					state["doors"] = []
 				
 				state["doors"].append(door.get_door_info())
 		
+		for d in state["doors"]:
+			print(d)
+		
 		# Buttons speichern
 		for button in get_tree().get_nodes_in_group(str(Constants.GROUP_NAME_BUTTONS)):
-			if button is GameButton:
+			if button != null:
 				if not state.has("buttons"): 
 					state["buttons"] = []
 				
@@ -76,7 +79,7 @@ func save_level_state(player_info : Dictionary):
 		
 		# Stones speichern
 		for stone in get_tree().get_nodes_in_group(str(Constants.GROUP_NAME_STONES)):
-			if stone is Stone:
+			if stone != null:
 				if not state.has("stones"): 
 					state["stones"] = []
 				
@@ -122,10 +125,13 @@ func set_state_doors():
 	if StateSaver.get_last_state().has("doors"):
 		var doors_states : Array = StateSaver.get_last_state()["doors"]
 		
+		for i in doors_states[0]:
+			print(i)
+			
 		for door in get_tree().get_nodes_in_group(str(Constants.GROUP_NAME_DOORS)):
 			if door != null:
 				if StateSaver.saved_states.size() > 0:
-					door.set_creature_info(doors_states[0])
+					door.set_door_info(doors_states[0])
 					
 					doors_states.remove_at(0)
 
@@ -136,7 +142,7 @@ func set_state_buttons():
 		for button in get_tree().get_nodes_in_group(str(Constants.GROUP_NAME_BUTTONS)):
 			if button != null:
 				if StateSaver.saved_states.size() > 0:
-					button.set_creature_info(buttons_states[0])
+					button.set_button_info(buttons_states[0])
 					
 					buttons_states.remove_at(0)
 

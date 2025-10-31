@@ -22,7 +22,7 @@ func get_stone_info() -> Dictionary:
 
 func set_stone_info(info : Dictionary):
 	global_position = info.get("global_position")
-	target_position = info.get("target_position")
+	target_position = global_position
 	is_moving = false
 	is_sliding = false
 

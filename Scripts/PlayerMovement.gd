@@ -398,6 +398,7 @@ func try_push_and_move(stone, door, wall, new_pos, direction, space_state):
 		if i.collider is Door and not i.collider.door_is_closed:
 			if stone[0].collider.push(direction * GRID_SIZE):
 				target_position = new_pos
+				Signals.state_changed.emit(get_player_info())
 				set_is_moving(true)
 				return
 		
