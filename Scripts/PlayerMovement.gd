@@ -141,10 +141,6 @@ func get_player_info() -> Dictionary:
 
 
 func set_player_info(info : Dictionary):
-	#label_press_f_to_control.visible = info.get("label_press_f_to_control").visible
-	#label_press_f_to_stop_control.visible = info.get("label_press_f_to_stop_control").visible
-	#heart.visible = info.get("heart").visible
-	
 	# variables
 	global_position = info.get("global_position")
 	is_active = info.get("is_active")

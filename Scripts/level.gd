@@ -70,10 +70,10 @@ func set_state_player():
 	if StateSaver.get_last_state().has("player"):
 		var player_state = StateSaver.get_last_state()["player"]
 	
-		for player in get_children():
-			if player is Player:
-				if StateSaver.saved_states.size() > 0:
-					player.set_player_info(player_state)
+		var player : Player = get_tree().get_first_node_in_group(str(Constants.GROUP_NAME_PLAYER))
+		if player != null:
+			if StateSaver.saved_states.size() > 0:
+				player.set_player_info(player_state)
 					
 
 
@@ -81,8 +81,8 @@ func set_state_creatures():
 	if StateSaver.get_last_state().has("creatures"):
 		var creatures_states : Array = StateSaver.get_last_state()["creatures"]
 		
-		for creature in get_children():
-			if creature is Creature:
+		for creature in get_tree().get_nodes_in_group(str(Constants.GROUP_NAME_CREATURE)):
+			if creature != null:
 				if StateSaver.saved_states.size() > 0:
 					creature.set_creature_info(creatures_states[0])
 					

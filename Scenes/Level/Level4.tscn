@@ -56,13 +56,13 @@ position = Vector2(160, 288)
 [node name="Pushable4" parent="Stones" instance=ExtResource("4_rgu2x")]
 position = Vector2(96, 288)
 
+[node name="Creatures" type="Node" parent="."]
+
 [node name="CreatureYellow" parent="." instance=ExtResource("2_1ktle")]
 position = Vector2(160, 416)
-init_direction = Vector2(0, 1)
 
 [node name="CreatureBlue" parent="." instance=ExtResource("3_rgu2x")]
 position = Vector2(544, 480)
-init_direction = Vector2(0, 1)
 
 [node name="Player" type="Node" parent="."]
 
