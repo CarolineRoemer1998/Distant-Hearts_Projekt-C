@@ -1,6 +1,8 @@
 extends Node2D
 
-@onready var win_animation: AnimationPlayer = $WinScreen/WinAnimation
+@onready var win_animation: AnimationPlayer = $UI/WinScreen/WinAnimation
+@onready var game_completed_animation: AnimationPlayer = $UI/GameCompleted/WinAnimation
+
 
 @export var final_level: bool = false
 @export var level_number: int = 0
@@ -23,7 +25,7 @@ func _process(delta: float) -> void:
 
 func show_win_screen():
 	if final_level:
-		$GameCompleted/WinAnimation.play("You win")
+		game_completed_animation.play("You win")
 		return
 	win_animation.play("You win")
 

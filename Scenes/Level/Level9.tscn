@@ -32,6 +32,8 @@ level_number = 9
 
 [node name="Background_Lvl8" parent="." instance=ExtResource("2_qf8l7")]
 
+[node name="LevelWall" parent="Background_Lvl8" instance=ExtResource("15_dtgac")]
+
 [node name="IceTiles" type="Node2D" parent="."]
 
 [node name="IceFloor7" parent="IceTiles" instance=ExtResource("3_jskqn")]
@@ -280,50 +282,7 @@ texture = ExtResource("4_wja1h")
 position = Vector2(64, 64)
 texture = ExtResource("8_s0dtf")
 
-[node name="ButtonTop" parent="." instance=ExtResource("5_mehec")]
-position = Vector2(352, 160)
-type = 0
-
-[node name="ButtonRight" parent="." instance=ExtResource("5_mehec")]
-position = Vector2(544, 348)
-type = 0
-
-[node name="ButtonBottom" parent="." instance=ExtResource("5_mehec")]
-position = Vector2(352, 540)
-
-[node name="ButtonBottom2" parent="." instance=ExtResource("5_mehec")]
-position = Vector2(417, 540)
-
-[node name="ButtonBottom3" parent="." instance=ExtResource("5_mehec")]
-position = Vector2(481, 540)
-
-[node name="ButtonLeft" parent="." instance=ExtResource("5_mehec")]
-position = Vector2(160, 352)
-type = 0
-
-[node name="DoorRight" parent="." instance=ExtResource("4_fy58k")]
-position = Vector2(416, 352)
-buttons = Array[NodePath]([NodePath("../ButtonRight")])
-
-[node name="DoorLeft" parent="." instance=ExtResource("4_fy58k")]
-position = Vector2(288, 352)
-buttons = Array[NodePath]([NodePath("../ButtonLeft")])
-
-[node name="DoorTop" parent="." instance=ExtResource("4_fy58k")]
-position = Vector2(352, 288)
-rotation = 1.57079
-buttons = Array[NodePath]([NodePath("../ButtonTop")])
-
-[node name="DoorExit" parent="." instance=ExtResource("4_fy58k")]
-position = Vector2(416, 480)
-buttons = Array[NodePath]([NodePath("../ButtonBottom"), NodePath("../ButtonBottom2"), NodePath("../ButtonBottom3")])
-
-[node name="LevelWall" parent="." instance=ExtResource("15_dtgac")]
-
-[node name="Pushable" parent="." instance=ExtResource("7_787sw")]
-position = Vector2(160, 544)
-
-[node name="Icicles" type="Node2D" parent="."]
+[node name="Icicles" type="Node" parent="."]
 
 [node name="Icicle" parent="Icicles" instance=ExtResource("4_rew0p")]
 position = Vector2(96, 96)
@@ -349,22 +308,73 @@ position = Vector2(96, 608)
 [node name="Icicle8" parent="Icicles" instance=ExtResource("4_rew0p")]
 position = Vector2(96, 544)
 
-[node name="CreatureBlue" parent="." instance=ExtResource("9_qunt2")]
+[node name="Doors" type="Node" parent="."]
+
+[node name="Door1" parent="Doors" instance=ExtResource("4_fy58k")]
+position = Vector2(288, 352)
+buttons = Array[NodePath]([NodePath("../../Buttons/Button1_1")])
+
+[node name="Door2" parent="Doors" instance=ExtResource("4_fy58k")]
+position = Vector2(352, 288)
+rotation = 1.57079
+buttons = Array[NodePath]([NodePath("../../Buttons/Button2_1")])
+
+[node name="Door3" parent="Doors" instance=ExtResource("4_fy58k")]
+position = Vector2(416, 352)
+buttons = Array[NodePath]([NodePath("../../Buttons/Button3_1")])
+
+[node name="Door4" parent="Doors" instance=ExtResource("4_fy58k")]
+position = Vector2(416, 480)
+buttons = Array[NodePath]([NodePath("../../Buttons/Button4_1"), NodePath("../../Buttons/ButtonBottom2"), NodePath("../../Buttons/Button4_2")])
+
+[node name="Buttons" type="Node" parent="."]
+
+[node name="Button1_1" parent="Buttons" instance=ExtResource("5_mehec")]
+position = Vector2(160, 352)
+type = 0
+
+[node name="Button2_1" parent="Buttons" instance=ExtResource("5_mehec")]
+position = Vector2(352, 160)
+type = 0
+
+[node name="Button3_1" parent="Buttons" instance=ExtResource("5_mehec")]
+position = Vector2(544, 348)
+type = 0
+
+[node name="Button4_1" parent="Buttons" instance=ExtResource("5_mehec")]
+position = Vector2(352, 540)
+
+[node name="Button4_2" parent="Buttons" instance=ExtResource("5_mehec")]
+position = Vector2(417, 540)
+
+[node name="Button4_3" parent="Buttons" instance=ExtResource("5_mehec")]
+position = Vector2(481, 540)
+
+[node name="Stones" type="Node" parent="."]
+
+[node name="Stone" parent="Stones" instance=ExtResource("7_787sw")]
+position = Vector2(160, 544)
+
+[node name="Creatures" type="Node" parent="."]
+
+[node name="CreatureBlue" parent="Creatures" instance=ExtResource("9_qunt2")]
 position = Vector2(225, 608)
-init_direction = Vector2(0, 1)
 
-[node name="CreatureYellow" parent="." instance=ExtResource("4_ba60x")]
+[node name="CreatureYellow" parent="Creatures" instance=ExtResource("4_ba60x")]
 position = Vector2(288, 416)
-init_direction = Vector2(0, 1)
 
-[node name="MergedCreature" parent="." instance=ExtResource("12_2eq8c")]
-visible = false
+[node name="Player" type="Node" parent="."]
 
-[node name="Player" parent="." instance=ExtResource("14_7agio")]
+[node name="Player" parent="Player" instance=ExtResource("14_7agio")]
 position = Vector2(416, 288)
 
-[node name="LevelWall2" parent="." instance=ExtResource("15_dtgac")]
+[node name="MergedCreatures" type="Node" parent="."]
 
-[node name="ResetBar" parent="." instance=ExtResource("8_mehec")]
+[node name="MergedCreature" parent="MergedCreatures" instance=ExtResource("12_2eq8c")]
+visible = false
 
-[node name="WinScreen" parent="." instance=ExtResource("14_qf8l7")]
+[node name="UI" type="Node" parent="."]
+
+[node name="ResetBar" parent="UI" instance=ExtResource("8_mehec")]
+
+[node name="WinScreen" parent="UI" instance=ExtResource("14_qf8l7")]

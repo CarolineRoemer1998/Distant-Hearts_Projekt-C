@@ -18,38 +18,51 @@ level_number = 3
 
 [node name="Background_Lvl3" parent="." instance=ExtResource("2_p6pjf")]
 
-[node name="Door" parent="." instance=ExtResource("3_m7vvj")]
-position = Vector2(544, 352)
-buttons = Array[NodePath]([NodePath("../Button"), NodePath("../Button2")])
+[node name="LevelWall" parent="Background_Lvl3" instance=ExtResource("11_wxy6n")]
 
-[node name="Button" parent="." instance=ExtResource("5_ncjpd")]
+[node name="Doors" type="Node" parent="."]
+
+[node name="Door1" parent="Doors" instance=ExtResource("3_m7vvj")]
+position = Vector2(544, 352)
+buttons = Array[NodePath]([NodePath("../../Buttons/Button1_1"), NodePath("../../Buttons/Button1_2")])
+
+[node name="Buttons" type="Node" parent="."]
+
+[node name="Button1_1" parent="Buttons" instance=ExtResource("5_ncjpd")]
 position = Vector2(480, 416)
 
-[node name="Button2" parent="." instance=ExtResource("5_ncjpd")]
+[node name="Button1_2" parent="Buttons" instance=ExtResource("5_ncjpd")]
 position = Vector2(480, 288)
 
-[node name="MergedCreature" parent="." instance=ExtResource("8_t5kwq")]
-visible = false
+[node name="Creatures" type="Node" parent="."]
 
-[node name="CreatureBlue" parent="." instance=ExtResource("6_ffsx8")]
+[node name="CreatureBlue" parent="Creatures" instance=ExtResource("6_ffsx8")]
 position = Vector2(544, 224)
 
-[node name="CreatureYellow" parent="." instance=ExtResource("7_dl4b5")]
+[node name="CreatureYellow" parent="Creatures" instance=ExtResource("7_dl4b5")]
 position = Vector2(544, 480)
 init_direction = Vector2(0, -1)
 
-[node name="AnimationTree" parent="CreatureYellow" index="3"]
+[node name="AnimationTree" parent="Creatures/CreatureYellow" index="3"]
 parameters/Idle/BlendSpace2D/blend_position = Vector2(-0.0008968711, -0.75784755)
 
-[node name="Player" parent="." instance=ExtResource("4_kg31f")]
+[node name="Player" type="Node" parent="."]
+
+[node name="Player" parent="Player" instance=ExtResource("4_kg31f")]
 position = Vector2(224, 160)
 
-[node name="WinScreen" parent="." instance=ExtResource("9_p6pjf")]
+[node name="MergedCreatures" type="Node" parent="."]
 
-[node name="ResetBar" parent="." instance=ExtResource("10_m7vvj")]
+[node name="MergedCreature" parent="MergedCreatures" instance=ExtResource("8_t5kwq")]
+visible = false
+
+[node name="UI" type="Node" parent="."]
+
+[node name="ResetBar" parent="UI" instance=ExtResource("10_m7vvj")]
 offset_right = 0.0
 offset_bottom = 0.0
 
-[node name="LevelWall" parent="." instance=ExtResource("11_wxy6n")]
+[node name="WinScreen" parent="UI" instance=ExtResource("9_p6pjf")]
 
-[editable path="CreatureYellow"]
+[editable path="Creatures/CreatureYellow"]
+[editable path="UI/WinScreen"]

@@ -16,26 +16,34 @@ level_number = 1
 
 [node name="Background_Lvl1" parent="." instance=ExtResource("1_ysn8j")]
 
-[node name="Creature" parent="." instance=ExtResource("2_6ll4n")]
+[node name="LevelWall" parent="Background_Lvl1" instance=ExtResource("9_xtiaw")]
+
+[node name="Creature" type="Node" parent="."]
+
+[node name="CreatureBlue" parent="Creature" instance=ExtResource("2_6ll4n")]
 position = Vector2(288, 288)
 
-[node name="Creature2" parent="." instance=ExtResource("11_2h8qs")]
+[node name="CreatureYellow" parent="Creature" instance=ExtResource("11_2h8qs")]
 position = Vector2(416, 288)
 
-[node name="Player" parent="." instance=ExtResource("3_kylad")]
+[node name="Player" type="Node" parent="."]
+
+[node name="Player" parent="Player" instance=ExtResource("3_kylad")]
 position = Vector2(352, 480)
 
-[node name="MergedCreature" parent="." instance=ExtResource("8_6ll4n")]
+[node name="MergedCreatures" type="Node" parent="."]
+
+[node name="MergedCreature" parent="MergedCreatures" instance=ExtResource("8_6ll4n")]
 visible = false
 
-[node name="WinScreen" parent="." instance=ExtResource("9_kylad")]
+[node name="UI" type="Node" parent="."]
 
-[node name="ResetBar" parent="." instance=ExtResource("8_kylad")]
+[node name="ResetBar" parent="UI" instance=ExtResource("8_kylad")]
 offset_right = 0.0
 offset_bottom = 0.0
 
-[node name="LevelWall" parent="." instance=ExtResource("9_xtiaw")]
+[node name="WinScreen" parent="UI" instance=ExtResource("9_kylad")]
 
-[editable path="Creature"]
-[editable path="MergedCreature"]
-[editable path="WinScreen"]
+[editable path="Creature/CreatureBlue"]
+[editable path="MergedCreatures/MergedCreature"]
+[editable path="UI/WinScreen"]
