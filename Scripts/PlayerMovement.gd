@@ -1,30 +1,24 @@
 extends CharacterBody2D
 class_name Player
 
+@export var trail_scene: PackedScene 
+
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var animation_tree: AnimationTree = $AnimationTree
+
+@onready var label_press_f_to_control: Label = $LabelPressFToControl
+@onready var label_press_f_to_stop_control: Label = $LabelPressFToStopControl
+@onready var heart: Sprite2D = $Heart
+
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
+@onready var audio_control: AudioStreamPlayer2D = $AudioControl
+@onready var audio_uncontrol: AudioStreamPlayer2D = $AudioUncontrol
+
+@onready var step_timer: Timer = $StepTimer
+
 const GRID_SIZE := Vector2(64, 64)
 const MOVE_SPEED := 500.0
 const ICE_MOVE_SPEED := 400.0
-
-var target_position: Vector2
-var is_moving := false
-var is_sliding := false
-var buffered_direction: Vector2 = Vector2.ZERO
-
-var hovering_over: Creature = null
-var currently_possessed_creature: Creature = null
-var possessed_creature_until_next_tile: Creature = null
-@export var trail_scene: PackedScene 
-
-@onready var sprite_2d: Sprite2D = $Sprite2D
-@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
-@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
-@onready var heart: Sprite2D = $Heart
-@onready var label_press_f_to_control: Label = $LabelPressFToControl
-@onready var label_press_f_to_stop_control: Label = $LabelPressFToStopControl
-@onready var audio_control: AudioStreamPlayer2D = $AudioControl
-@onready var audio_uncontrol: AudioStreamPlayer2D = $AudioUncontrol
-@onready var animation_tree: AnimationTree = $AnimationTree
-@onready var step_timer: Timer = $StepTimer
 
 # LAYER BITS
 const WALL_AND_PLAYER_LAYER_BIT := 0
@@ -34,30 +28,38 @@ const DOOR_LAYER_BIT    	:= 3
 const ICE_LAYER_BIT     	:= 5
 const LEVEL_WALL_LAYER_BIT  := 6
 
-var can_move := true
+const STEP_SOUND_PITCH_SCALES := [0.95, 0.96, 0.97, 0.98, 0.99, 1, 1.01, 1.02, 1.03, 1.04, 1.05]
+const STEP_SOUND_VOLUME_CHANGE := [6.0, 6.5, 7.0, 7.5, 8.0]
 
-var heart_position_right := Vector2(32,0)
-var heart_position_bottom := Vector2(0,32)
-var heart_position_left := Vector2(-32,0)
-var heart_position_top := Vector2(0,-32)
+const HEART_POSITION_RIGHT := Vector2(32,0)
+const HEART_POSITION_BOTTOM := Vector2(0,32)
+const HEART_POSITION_LEFT := Vector2(-32,0)
+const HEART_POSITION_TOP := Vector2(0,-32)
 
-var obstacle : Node = null
-
-var is_on_ice := false
-
-var current_direction := Vector2.ZERO
+var is_active := true
 
 var direction := Vector2.ZERO
-var can_take_next_step := true
-var step_sound_pitch_scales := [0.95, 0.96, 0.97, 0.98, 0.99, 1, 1.01, 1.02, 1.03, 1.04, 1.05]
+var current_direction := Vector2.ZERO
+var buffered_direction: Vector2 = Vector2.ZERO
 
-var step_sound_volume_changes := [6.0, 6.5, 7.0, 7.5, 8.0]
+var target_position: Vector2
+
+var is_moving := false
+var is_on_ice := false
+var is_sliding := false
+var can_move := true
+
+var hovering_over: Creature = null
+var currently_possessed_creature: Creature = null
+var possessed_creature_until_next_tile: Creature = null
+
 
 func _ready():
 	# Spieler korrekt auf Grid ausrichten
 	target_position = position.snapped(GRID_SIZE / 2)
 	position = target_position
 	animation_tree.get("parameters/playback").travel("Idle")
+	self.add_to_group(Constants.GROUP_NAME_PLAYER)
 
 
 func _process(delta):
@@ -65,13 +67,13 @@ func _process(delta):
 	update_heart_visibility()
 	handle_input()
 
-func handle_input():	
+func handle_input():
 	if Input.is_action_just_pressed("ui_cancel"):
 		SceneSwitcher.go_to_settings()
 	
-	if can_move:
+	if is_active:
 		# Wenn Input Bewegung ist
-		if can_take_next_step and (Input.is_action_pressed("Player_Up") or Input.is_action_pressed("Player_Down") or Input.is_action_pressed("Player_Left") or Input.is_action_pressed("Player_Right")):
+		if can_move and (Input.is_action_pressed("Player_Up") or Input.is_action_pressed("Player_Down") or Input.is_action_pressed("Player_Left") or Input.is_action_pressed("Player_Right")):
 			# Bewegungsrichtungen
 			if Input.is_action_pressed("Player_Up"):
 				direction = Vector2.UP
@@ -85,19 +87,19 @@ func handle_input():
 			if currently_possessed_creature:
 				currently_possessed_creature.current_direction = direction
 			
-			can_take_next_step = false
+			can_move = false
 			step_timer.start()
 			if is_moving:
 				buffered_direction = direction
 			else:
 				try_move(direction)
 				
-			#Signals.state_changed.emit(direction, currently_possessed_creature)
+			#Signals.state_changed.emit(get_player_info())
 
 		# Interaktionsbutton
 		elif Input.is_action_just_pressed("Interact"):
 			if not is_moving:
-				Signals.state_changed.emit(direction, currently_possessed_creature)
+				Signals.state_changed.emit(get_player_info())
 				possess_or_unpossess_creature()
 		
 		set_player_animation_direction(direction)
@@ -107,6 +109,65 @@ func handle_input():
 		# Szenewechsel durch Tastatur, Maus oder Gamepad
 		if Input.is_action_just_pressed("ui_accept"):
 			SceneSwitcher.go_to_next_level()
+
+func get_player_info() -> Dictionary:
+	return {
+		# onready
+		#"animated_sprite_2d": animated_sprite_2d.duplicate(),
+		#
+		#"label_press_f_to_control": label_press_f_to_control.duplicate(),
+		#"label_press_f_to_stop_control": label_press_f_to_stop_control.duplicate(),
+		#"heart": heart.duplicate(),
+		
+		# variables
+		"global_position": global_position,
+		"is_active": is_active,
+		
+		"direction": direction,
+		"current_direction": current_direction,
+		"buffered_direction": buffered_direction,
+		
+		"target_position": target_position,
+		
+		"is_moving": is_moving,
+		"is_on_ice": is_on_ice,
+		"is_sliding": is_sliding,
+		"can_move": can_move,
+		
+		"hovering_over": hovering_over,
+		"currently_possessed_creature": currently_possessed_creature,
+		"possessed_creature_until_next_tile": possessed_creature_until_next_tile
+	}
+
+
+func set_player_info(info : Dictionary):
+	#label_press_f_to_control.visible = info.get("label_press_f_to_control").visible
+	#label_press_f_to_stop_control.visible = info.get("label_press_f_to_stop_control").visible
+	#heart.visible = info.get("heart").visible
+	
+	# variables
+	global_position = info.get("global_position")
+	is_active = info.get("is_active")
+	
+	direction = info.get("direction")
+	current_direction = info.get("current_direction")
+	buffered_direction = info.get("buffered_direction")
+	
+	target_position = global_position
+	
+	is_moving = false
+	is_on_ice = info.get("is_on_ice")
+	is_sliding = false
+	can_move = true
+	
+	hovering_over = info.get("hovering_over")
+	currently_possessed_creature = info.get("currently_possessed_creature")
+	possessed_creature_until_next_tile = info.get("possessed_creature_until_next_tile")
+	
+	change_visibility(currently_possessed_creature==null)
+	
+	if hovering_over and not currently_possessed_creature:
+		hovering_over.border.visible = false
 
 func set_player_animation_direction(_direction : Vector2):
 	if _direction != Vector2.ZERO:
@@ -256,7 +317,7 @@ func try_move(direction: Vector2):
 		spawn_trail(position)
 		target_position = new_pos
 		set_is_moving(true)
-		Signals.state_changed.emit(direction, currently_possessed_creature)
+		Signals.state_changed.emit(get_player_info())
 		return
 	
 	try_push_and_move(result_pushables, result_doors, result_wall, new_pos, direction, space_state)
@@ -297,7 +358,7 @@ func _merge(direction : Vector2, neighbor : Creature):
 				neighbor.shrink()
 				merged_creature.visible = true
 				merged_creature.appear()
-			can_move = false
+			is_active = false
 			return true
 	return false
 
@@ -312,7 +373,7 @@ func try_push_and_move(pushable, door, wall, new_pos, direction, space_state):
 		spawn_trail(position)
 		target_position = new_pos
 		set_is_moving(true)
-		Signals.state_changed.emit(direction, currently_possessed_creature)
+		Signals.state_changed.emit(get_player_info())
 		return
 	
 	# Tür vor Spieler
@@ -349,7 +410,7 @@ func try_push_and_move(pushable, door, wall, new_pos, direction, space_state):
 		if pushable[0].collider.push(direction * GRID_SIZE):
 			target_position = new_pos
 			set_is_moving(true)
-			Signals.state_changed.emit(direction, currently_possessed_creature)
+			Signals.state_changed.emit(get_player_info())
 	else:
 		buffered_direction = Vector2.ZERO
 
@@ -362,8 +423,8 @@ func set_is_moving(value: bool):
 		audio_stream_player_2d.stop()
 		audio_stream_player_2d.play()
 		
-		audio_stream_player_2d.pitch_scale = step_sound_pitch_scales.pick_random()
-		audio_stream_player_2d.volume_db = step_sound_volume_changes.pick_random()
+		audio_stream_player_2d.pitch_scale = STEP_SOUND_PITCH_SCALES.pick_random()
+		audio_stream_player_2d.volume_db = STEP_SOUND_VOLUME_CHANGE.pick_random()
 
 		# Besessene Kreatur mitziehen lassen
 		if currently_possessed_creature:
@@ -381,24 +442,22 @@ func possess_or_unpossess_creature():
 		currently_possessed_creature.set_animation_direction()
 
 		currently_possessed_creature = null
-		label_press_f_to_control.visible = true
-		label_press_f_to_stop_control.visible = false
-		animated_sprite_2d.modulate = Color(1, 1, 1, 0.8)
+		change_visibility(true)
 		audio_uncontrol.play()
 
 	else:
 		# Possess: Übernehmen und sofort synchronisieren
 		if hovering_over and hovering_over is Creature:
 			currently_possessed_creature = hovering_over
-			label_press_f_to_control.visible = false
-			label_press_f_to_stop_control.visible = true
 			currently_possessed_creature.border.visible = true
-			animated_sprite_2d.modulate = Color(1, 1, 1, 0)
+			change_visibility(false)
 			audio_control.play()
 			
 			# direction an Creature anpassen
 			print(currently_possessed_creature.current_direction)
 			direction = currently_possessed_creature.current_direction
+			set_player_animation_direction(direction)
+			set_creature_animation_direction(direction)
 
 			# Position sofort synchronisieren
 			currently_possessed_creature.position = target_position
@@ -408,6 +467,17 @@ func possess_or_unpossess_creature():
 	if not currently_possessed_creature:
 		possessed_creature_until_next_tile = null
 
+func change_visibility(make_visible : bool):
+	if make_visible:
+		animated_sprite_2d.modulate = Color(1, 1, 1, 0.8)
+		if hovering_over:
+			label_press_f_to_control.visible = true
+			label_press_f_to_stop_control.visible = false
+	else:
+		animated_sprite_2d.modulate = Color(1, 1, 1, 0)
+		if hovering_over:
+			label_press_f_to_control.visible = false
+			label_press_f_to_stop_control.visible = true
 
 func _on_creature_detected(body: Node) -> void:
 	if body is Creature:
@@ -439,22 +509,22 @@ func update_heart_visibility():
 	var c := currently_possessed_creature
 
 	if c.neighbor_right and c.can_merge_with(c.neighbor_right):
-		heart.position = self.position + heart_position_right
+		heart.position = self.position + HEART_POSITION_RIGHT
 		heart.visible = true
 		return
 
 	if c.neighbor_bottom and c.can_merge_with(c.neighbor_bottom):
-		heart.position = self.position + heart_position_bottom
+		heart.position = self.position + HEART_POSITION_BOTTOM
 		heart.visible = true
 		return
 
 	if c.neighbor_left and c.can_merge_with(c.neighbor_left):
-		heart.position = self.position + heart_position_left
+		heart.position = self.position + HEART_POSITION_LEFT
 		heart.visible = true
 		return
 
 	if c.neighbor_top and c.can_merge_with(c.neighbor_top):
-		heart.position = self.position + heart_position_top
+		heart.position = self.position + HEART_POSITION_TOP
 		heart.visible = true
 		return
 
@@ -463,4 +533,4 @@ func update_heart_visibility():
 
 
 func _on_step_timer_timeout() -> void:
-	can_take_next_step = true
+	can_move = true

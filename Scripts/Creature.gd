@@ -4,37 +4,61 @@ class_name Creature
 
 enum CREATURE_COLOR {Red, Blue, Yellow, Green, Purple, Turquois, Orange, Pink}
 
+@export var init_direction := Vector2.DOWN
+@export var own_color : CREATURE_COLOR = CREATURE_COLOR.Red
+@export var desired_color : CREATURE_COLOR = CREATURE_COLOR.Green
+
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-
 @onready var border: AnimatedSprite2D = $AnimatedSpriteBorder
-
 @onready var area_2d_right: Area2D = $Area2D_Right
 @onready var area_2d_bottom: Area2D = $Area2D_Bottom
 @onready var area_2d_left: Area2D = $Area2D_Left
 @onready var area_2d_top: Area2D = $Area2D_Top
 @onready var animation_tree: AnimationTree = $AnimationTree
+@onready var init_position : Vector2
 
-@export var init_direction := Vector2.DOWN
-@export var own_color : CREATURE_COLOR = CREATURE_COLOR.Red
-@export var desired_color : CREATURE_COLOR = CREATURE_COLOR.Green
 
 const GRID_SIZE := Vector2(64, 64)
+
+var current_direction := init_direction
 var target_position: Vector2
 
 var neighbor_right : Creature = null
 var neighbor_bottom : Creature = null
 var neighbor_left : Creature = null
 var neighbor_top : Creature = null
-var current_direction := init_direction
 
-@onready var init_position : Vector2
 
 func _ready():
+	self.add_to_group(Constants.GROUP_NAME_CREATURE)
 	target_position = position.snapped(GRID_SIZE / 2)
 	init_position = global_position
 	position = target_position
 	animation_tree.get("parameters/playback").travel("Idle")
 	animation_tree.set("parameters/Idle/BlendSpace2D/blend_position", init_direction)
+
+func get_creature_info() -> Dictionary:
+	return {
+		"global_position": global_position,
+		"current_direction": current_direction,
+		"target_position": target_position,
+		
+		"neighbor_right": neighbor_right,
+		"neighbor_bottom": neighbor_bottom,
+		"neighbor_left": neighbor_left,
+		"neighbor_top": neighbor_top,
+	}
+
+func set_creature_info(info : Dictionary):
+	global_position = info.get("global_position")
+	current_direction = info.get("current_direction")
+	target_position = global_position
+	
+	neighbor_right = info.get("neighbor_right")
+	neighbor_bottom = info.get("neighbor_bottom")
+	neighbor_left = info.get("neighbor_left")
+	neighbor_top = info.get("neighbor_top")
+	
 
 func set_animation_direction():
 	animation_tree.set("parameters/Idle/BlendSpace2D/blend_position", current_direction)

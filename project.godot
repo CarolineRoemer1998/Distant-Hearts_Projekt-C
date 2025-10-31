@@ -24,6 +24,7 @@ ControllerIcons="*res://addons/controller_icons/ControllerIcons.gd"
 AudioManager="*res://Scenes/Menu/AudioManager.tscn"
 StateSaver="*res://Scripts/StateSaver.gd"
 Signals="*res://Scripts/Signals.gd"
+Constants="*res://Scripts/Constants.gd"
 
 [display]
 

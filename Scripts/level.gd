@@ -27,7 +27,7 @@ func show_win_screen():
 		return
 	win_animation.play("You win")
 
-func save_level_state(direction : Vector2, possessed_creature : Creature):
+func save_level_state(player_info : Dictionary):
 	if level_number == SceneSwitcher.current_level:
 		var state = {
 		}
@@ -44,43 +44,22 @@ func save_level_state(direction : Vector2, possessed_creature : Creature):
 		#var icicles : Icicle = null
 		
 		# Player speichern
-		for p in get_children():
-			if p is Player:
-				state["player"] = p.duplicate()
-				state["player"].direction = direction
-				state["player"].currently_possessed_creature = possessed_creature
-				
-				#print("target_position:                     ", p.target_position)
-				#print("is_moving:                           ", p.is_moving)
-				#print("is_sliding:                          ", p.is_sliding)
-				#print("buffered_direction:                  ", p.buffered_direction)
-				#print("hovering_over:                       ", p.hovering_over)
-				#print("currently_possessed_creature:        ", p.currently_possessed_creature)
-				#print("possessed_creature_until_next_tile:  ", p.possessed_creature_until_next_tile)
-				#print()
+		var player : Player = get_tree().get_first_node_in_group(str(Constants.GROUP_NAME_PLAYER))
+		if player != null:
+			state["player"] = player_info
+		
 		
 		# Creatures speichern
-		for c in get_children(true):
+		for c in get_tree().get_nodes_in_group(str(Constants.GROUP_NAME_CREATURE)):
 			if c is Creature:
 				if not state.has("creatures"): 
 					state["creatures"] = []
-				state["creatures"].append(c.duplicate())
+				
+				state["creatures"].append(c.get_creature_info())
+				
 		
 		StateSaver.saved_states.append(state)
-		
-		#for i in StateSaver.saved_states:
-			#for j in i:
-				#if j == "player":
-					#print(i["player"].direction)
-					#print(i["player"].currently_possessed_creature)
-					#print(i["player"].direction)
-					#print(i["player"].direction)
-				#print(j)
-		
-		#for i in StateSaver.saved_states:
-			#print(i["player"].global_position)
-			#print("Saved Direction: ", i["player"].state_direction)
-		
+
 
 func undo():
 	set_state_player()
@@ -94,28 +73,8 @@ func set_state_player():
 		for player in get_children():
 			if player is Player:
 				if StateSaver.saved_states.size() > 0:
-					player.global_position = player_state.global_position
+					player.set_player_info(player_state)
 					
-					player.direction = player_state.direction
-					player.set_player_animation_direction(player_state.direction)
-					
-					player.target_position = player.global_position
-					player.is_moving = false
-					player.is_sliding = false
-					player.current_direction = player.direction
-					player.buffered_direction = Vector2.ZERO
-					player.can_take_next_step = true
-					player.step_timer.stop()
-					
-					
-					if player.currently_possessed_creature != player_state.currently_possessed_creature:
-						player.possess_or_unpossess_creature()
-						if player.currently_possessed_creature:
-							player.currently_possessed_creature.set_animation_direction_by_val(player.currently_possessed_creature.init_direction)
-					
-					player.hovering_over = player_state.hovering_over
-					player.currently_possessed_creature = player_state.currently_possessed_creature
-					player.possessed_creature_until_next_tile = player_state.possessed_creature_until_next_tile
 
 
 func set_state_creatures():
@@ -125,13 +84,7 @@ func set_state_creatures():
 		for creature in get_children():
 			if creature is Creature:
 				if StateSaver.saved_states.size() > 0:
-					creature.global_position = creatures_states[0].global_position
-					creature.target_position = creature.global_position
-					
-					creature.neighbor_right = creatures_states[0].neighbor_right
-					creature.neighbor_bottom = creatures_states[0].neighbor_bottom
-					creature.neighbor_left = creatures_states[0].neighbor_left
-					creature.neighbor_top = creatures_states[0].neighbor_top
+					creature.set_creature_info(creatures_states[0])
 					
 					creatures_states.remove_at(0)
 					
