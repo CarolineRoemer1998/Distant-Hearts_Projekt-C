@@ -1,3 +1,3 @@
 extends Node
 
-signal state_changed
+signal state_changed(direction : Vector2)

@@ -9,7 +9,6 @@ var target_position: Vector2
 var is_moving := false
 var is_sliding := false
 var buffered_direction: Vector2 = Vector2.ZERO
-var state_direction := Vector2.ZERO
 
 var hovering_over: Creature = null
 var currently_possessed_creature: Creature = null
@@ -71,57 +70,37 @@ func handle_input():
 		SceneSwitcher.go_to_settings()
 	
 	if can_move:
-		# Bewegungsrichtungen (directional input)
-		if Input.is_action_pressed("Player_Up") and can_take_next_step:
-			direction = Vector2.UP
-			state_direction = direction
+		# Wenn Input Bewegung ist
+		if can_take_next_step and (Input.is_action_pressed("Player_Up") or Input.is_action_pressed("Player_Down") or Input.is_action_pressed("Player_Left") or Input.is_action_pressed("Player_Right")):
+			# Bewegungsrichtungen
+			if Input.is_action_pressed("Player_Up"):
+				direction = Vector2.UP
+			elif Input.is_action_pressed("Player_Down"):
+				direction = Vector2.DOWN
+			elif Input.is_action_pressed("Player_Left"):
+				direction = Vector2.LEFT
+			elif Input.is_action_pressed("Player_Right"):
+				direction = Vector2.RIGHT
+					
+			
 			can_take_next_step = false
 			step_timer.start()
-			Signals.state_changed.emit()
-		elif Input.is_action_pressed("Player_Down") and can_take_next_step:
-			direction = Vector2.DOWN
-			state_direction = direction
-			can_take_next_step = false
-			step_timer.start()
-			Signals.state_changed.emit()
-		elif Input.is_action_pressed("Player_Left") and can_take_next_step:
-			direction = Vector2.LEFT
-			state_direction = direction
-			can_take_next_step = false
-			step_timer.start()
-			Signals.state_changed.emit()
-		elif Input.is_action_pressed("Player_Right") and can_take_next_step:
-			direction = Vector2.RIGHT
-			state_direction = direction
-			can_take_next_step = false
-			step_timer.start()
-			Signals.state_changed.emit()
+			if is_moving:
+				buffered_direction = direction
+			else:
+				try_move(direction)
+				
+			Signals.state_changed.emit(direction)
 
 		# Interaktionsbutton
 		elif Input.is_action_just_pressed("Interact"):
 			if not is_moving:
 				possess_or_unpossess_creature()
-				Signals.state_changed.emit()
 		
-		else:
-			direction = Vector2.ZERO
-		
-		if direction != Vector2.ZERO:
-			animation_tree.set("parameters/Idle/BlendSpace2D/blend_position", direction)
-		
-		if currently_possessed_creature:
-			if direction != Vector2.ZERO:
-				currently_possessed_creature.animation_tree.set("parameters/Idle/BlendSpace2D/blend_position", direction)
+		set_animation_direction(direction)
 
-		# Bewegungsversuch oder Puffern
-		if direction != Vector2.ZERO:
-			if is_moving:
-				buffered_direction = direction
-			else:
-				try_move(direction)
 	else:
 		# Szenewechsel durch Tastatur, Maus oder Gamepad
-		
 		if Input.is_action_just_pressed("ui_accept"):
 			SceneSwitcher.go_to_next_level()
 
@@ -386,6 +365,7 @@ func set_is_moving(value: bool):
 
 
 func possess_or_unpossess_creature():
+	Signals.state_changed.emit(direction)
 	if currently_possessed_creature:
 		# Unpossess: Sichtbarkeit zurücksetzen
 		if is_instance_valid(currently_possessed_creature):

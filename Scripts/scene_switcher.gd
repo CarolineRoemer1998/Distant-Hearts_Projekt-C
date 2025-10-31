@@ -49,6 +49,7 @@ func _deferred_switch_scene(res_path, pause_current=false):
 		fade_animation.play("fade")
 
 func switch_to_level(levelID: int):
+	StateSaver.clear_states()
 	switch_scene(level_folder + "Level"+ str(levelID) +".tscn")
 
 func go_to_next_level():
