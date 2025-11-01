@@ -486,7 +486,7 @@ func spawn_trail(input_position: Vector2):
 	var trail = trail_scene.instantiate()
 	get_tree().current_scene.add_child(trail)
 	trail.global_position = input_position
-	trail.restart()	
+	trail.restart()
 
 
 func update_heart_visibility():

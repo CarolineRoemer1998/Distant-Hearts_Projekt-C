@@ -17,6 +17,9 @@ angle_max = 360.0
 direction = Vector3(0, 0, 0)
 spread = 0.0
 gravity = Vector3(0, 0, 0)
+linear_accel_min = -2.2351742e-06
+linear_accel_max = -2.2351742e-06
+scale_min = 0.0
 scale_curve = SubResource("CurveTexture_fkybt")
 
 [node name="MoveTrail" type="GPUParticles2D"]

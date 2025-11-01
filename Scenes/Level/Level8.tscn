@@ -1,8 +1,9 @@
-[gd_scene load_steps=27 format=3 uid="uid://vge7wou5ewmh"]
+[gd_scene load_steps=28 format=3 uid="uid://vge7wou5ewmh"]
 
 [ext_resource type="Script" uid="uid://ddiwo6yyhfkuc" path="res://Scripts/level.gd" id="1_7ae7w"]
 [ext_resource type="PackedScene" uid="uid://bvgqfw5ud3p8n" path="res://Scenes/background_lvl_8.tscn" id="1_hxek4"]
 [ext_resource type="PackedScene" uid="uid://i448npnkeckp" path="res://Scenes/ice_floor.tscn" id="2_a03e5"]
+[ext_resource type="PackedScene" uid="uid://lrodaawkgfob" path="res://Scenes/undo_particles.tscn" id="2_sueau"]
 [ext_resource type="PackedScene" uid="uid://oy61arlldjo3" path="res://Scenes/pushable.tscn" id="3_mipja"]
 [ext_resource type="PackedScene" uid="uid://bt4pnhd7cx7xc" path="res://Scenes/button.tscn" id="3_xhsd0"]
 [ext_resource type="Texture2D" uid="uid://d2wcstlnxmknt" path="res://Sprites/IceFloor/Ice-floor-L.png" id="4_0656e"]
@@ -29,6 +30,7 @@
 
 [node name="Level8" type="Node2D"]
 script = ExtResource("1_7ae7w")
+undo_particles = ExtResource("2_sueau")
 level_number = 8
 
 [node name="Background_Lvl8" parent="." instance=ExtResource("1_hxek4")]

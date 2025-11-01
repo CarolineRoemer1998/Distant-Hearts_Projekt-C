@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://bs2a730k3etf4"]
+[gd_scene load_steps=12 format=3 uid="uid://bs2a730k3etf4"]
 
 [ext_resource type="Script" uid="uid://ddiwo6yyhfkuc" path="res://Scripts/level.gd" id="1_bdlbp"]
 [ext_resource type="PackedScene" uid="uid://drl8fvb23s6aj" path="res://Scenes/background_lvl1.tscn" id="1_ysn8j"]
 [ext_resource type="PackedScene" uid="uid://ccncnjkm8w8ta" path="res://Scenes/CreaturesAndPlayer/creature_blue.tscn" id="2_6ll4n"]
+[ext_resource type="PackedScene" uid="uid://lrodaawkgfob" path="res://Scenes/undo_particles.tscn" id="2_60y7f"]
 [ext_resource type="PackedScene" uid="uid://g3u7bc1jo6gj" path="res://Scenes/CreaturesAndPlayer/player.tscn" id="3_kylad"]
 [ext_resource type="PackedScene" uid="uid://23u33yt4jga3" path="res://Scenes/CreaturesAndPlayer/merged_creature.tscn" id="8_6ll4n"]
 [ext_resource type="PackedScene" uid="uid://bhgu3tj2dehs2" path="res://Scenes/Menu/reset_bar.tscn" id="8_kylad"]
@@ -13,6 +14,7 @@
 
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_bdlbp")
+undo_particles = ExtResource("2_60y7f")
 level_number = 1
 
 [node name="Background_Lvl1" parent="." instance=ExtResource("1_ysn8j")]

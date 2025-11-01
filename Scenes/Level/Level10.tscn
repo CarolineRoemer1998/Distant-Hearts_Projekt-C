@@ -30,6 +30,7 @@
 
 [node name="Level10" type="Node2D"]
 script = ExtResource("1_onvjm")
+undo_particles = ExtResource("27_i6o66")
 final_level = true
 level_number = 10
 

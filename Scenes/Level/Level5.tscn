@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://brxp384v6eu7w"]
+[gd_scene load_steps=16 format=3 uid="uid://brxp384v6eu7w"]
 
 [ext_resource type="Script" uid="uid://ddiwo6yyhfkuc" path="res://Scripts/level.gd" id="1_nonkr"]
 [ext_resource type="PackedScene" uid="uid://ccluprnt77a1y" path="res://Scenes/background_lvl10.tscn" id="2_61bxs"]
+[ext_resource type="PackedScene" uid="uid://lrodaawkgfob" path="res://Scenes/undo_particles.tscn" id="2_tebux"]
 [ext_resource type="PackedScene" uid="uid://cdt5m2v6xjjuf" path="res://Scenes/inverted_door.tscn" id="4_f5ppv"]
 [ext_resource type="PackedScene" uid="uid://g3u7bc1jo6gj" path="res://Scenes/CreaturesAndPlayer/player.tscn" id="4_to3se"]
 [ext_resource type="PackedScene" uid="uid://ccncnjkm8w8ta" path="res://Scenes/CreaturesAndPlayer/creature_blue.tscn" id="5_213sf"]
@@ -17,6 +18,7 @@
 
 [node name="Level5" type="Node2D"]
 script = ExtResource("1_nonkr")
+undo_particles = ExtResource("2_tebux")
 level_number = 5
 
 [node name="Background_Lvl1" parent="." instance=ExtResource("2_61bxs")]

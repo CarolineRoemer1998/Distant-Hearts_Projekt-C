@@ -1,12 +1,15 @@
 extends Node2D
 
+@export var undo_particles: PackedScene 
 @export var final_level: bool = false
 @export var level_number: int = 0
 
 @onready var win_animation: AnimationPlayer = $UI/WinScreen/WinAnimation
 @onready var game_completed_animation: AnimationPlayer = $UI/GameCompleted/WinAnimation
+
 @onready var undo_timer_init: Timer = $UI/UndoMechanic/UndoTimerInit
 @onready var undo_timer_continious: Timer = $UI/UndoMechanic/UndoTimerContinious
+@onready var undo_sound: AudioStreamPlayer2D = $UI/UndoMechanic/UndoSound
 
 var can_undo := true
 var is_undo_pressed := false
@@ -114,7 +117,10 @@ func _on_undo_timer_continious_timeout() -> void:
 	undo_timer_continious.start()
 
 func undo():
-	if can_undo:
+	if can_undo and StateSaver.saved_states.size() > 0:
+		undo_sound.stop()
+		undo_sound.play()
+		
 		_set_can_undo(false)
 		undo_timer_init.start()
 		
@@ -131,9 +137,18 @@ func set_state_player():
 		var player_state = StateSaver.get_last_state()["player"]
 	
 		var player : Player = get_tree().get_first_node_in_group(str(Constants.GROUP_NAME_PLAYER))
+		
+		play_undo_particles(player.global_position)
+		
 		if player != null:
 			if StateSaver.saved_states.size() > 0:
 				player.set_player_info(player_state)
+
+func play_undo_particles(pos : Vector2):
+	var particles = undo_particles.instantiate()
+	get_tree().current_scene.add_child(particles)
+	particles.global_position = pos
+	particles.restart()
 
 func set_state_creatures():
 	if StateSaver.get_last_state().has("creatures"):
