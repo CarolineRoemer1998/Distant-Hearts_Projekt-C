@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://j75l20l3hoo0"]
+[gd_scene load_steps=28 format=3 uid="uid://j75l20l3hoo0"]
 
 [ext_resource type="Script" uid="uid://ddiwo6yyhfkuc" path="res://Scripts/level.gd" id="1_onvjm"]
 [ext_resource type="PackedScene" uid="uid://bvgqfw5ud3p8n" path="res://Scenes/background_lvl_8.tscn" id="2_kxjy4"]
@@ -26,6 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://oy61arlldjo3" path="res://Scenes/pushable.tscn" id="13_xkg3g"]
 [ext_resource type="PackedScene" uid="uid://ckkosqi7rtbdb" path="res://Scenes/Menu/game_completed.tscn" id="22_c2xc4"]
 [ext_resource type="PackedScene" uid="uid://pb5o008ihthl" path="res://Scenes/Menu/win_screen.tscn" id="26_h4308"]
+[ext_resource type="PackedScene" uid="uid://d3lpfscgajhb4" path="res://Scenes/Menu/UndoMechanic.tscn" id="27_i6o66"]
 
 [node name="Level10" type="Node2D"]
 script = ExtResource("1_onvjm")
@@ -289,9 +290,9 @@ position = Vector2(480, 600)
 [node name="CreatureYellow" parent="Creatures" instance=ExtResource("4_ulphs")]
 position = Vector2(160, 288)
 
-[node name="Player2" type="Node" parent="."]
+[node name="Player" type="Node" parent="."]
 
-[node name="Player" parent="Player2" instance=ExtResource("5_61li5")]
+[node name="Player" parent="Player" instance=ExtResource("5_61li5")]
 position = Vector2(160, 608)
 
 [node name="MergedCreatures" type="Node" parent="."]
@@ -307,5 +308,8 @@ visible = false
 
 [node name="WinScreen" parent="UI" instance=ExtResource("26_h4308")]
 
+[node name="UndoMechanic" parent="UI" instance=ExtResource("27_i6o66")]
+
 [editable path="UI/GameCompleted"]
 [editable path="UI/WinScreen"]
+[editable path="UI/UndoMechanic"]

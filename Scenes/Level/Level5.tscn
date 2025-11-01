@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://brxp384v6eu7w"]
+[gd_scene load_steps=15 format=3 uid="uid://brxp384v6eu7w"]
 
 [ext_resource type="Script" uid="uid://ddiwo6yyhfkuc" path="res://Scripts/level.gd" id="1_nonkr"]
 [ext_resource type="PackedScene" uid="uid://ccluprnt77a1y" path="res://Scenes/background_lvl10.tscn" id="2_61bxs"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://c6dmpno4s3103" path="res://Scenes/door.tscn" id="10_2xldr"]
 [ext_resource type="PackedScene" uid="uid://bt4pnhd7cx7xc" path="res://Scenes/button.tscn" id="11_ytef6"]
 [ext_resource type="PackedScene" uid="uid://pb5o008ihthl" path="res://Scenes/Menu/win_screen.tscn" id="12_61bxs"]
+[ext_resource type="PackedScene" uid="uid://d3lpfscgajhb4" path="res://Scenes/Menu/UndoMechanic.tscn" id="14_gwimc"]
 [ext_resource type="PackedScene" path="res://Scenes/level_wall.tscn" id="15_tebux"]
 
 [node name="Level5" type="Node2D"]
@@ -92,6 +93,8 @@ top_level = true
 [node name="ResetBar" parent="UI" instance=ExtResource("8_xnl3v")]
 offset_right = 0.0
 offset_bottom = 0.0
+
+[node name="UndoMechanic" parent="UI" instance=ExtResource("14_gwimc")]
 
 [editable path="Creatures/CreatureBlue"]
 [editable path="MergedCreatures/MergedCreature"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bds2jiuumsjsj"]
+[gd_scene load_steps=13 format=3 uid="uid://bds2jiuumsjsj"]
 
 [ext_resource type="Script" uid="uid://ddiwo6yyhfkuc" path="res://Scripts/level.gd" id="1_cp0jt"]
 [ext_resource type="PackedScene" uid="uid://cocjkjeb4n57" path="res://Scenes/background_lvl_3.tscn" id="2_p6pjf"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://pb5o008ihthl" path="res://Scenes/Menu/win_screen.tscn" id="9_p6pjf"]
 [ext_resource type="PackedScene" uid="uid://bhgu3tj2dehs2" path="res://Scenes/Menu/reset_bar.tscn" id="10_m7vvj"]
 [ext_resource type="PackedScene" path="res://Scenes/level_wall.tscn" id="11_wxy6n"]
+[ext_resource type="PackedScene" uid="uid://d3lpfscgajhb4" path="res://Scenes/Menu/UndoMechanic.tscn" id="12_5o3oe"]
 
 [node name="Level3" type="Node2D"]
 script = ExtResource("1_cp0jt")
@@ -63,6 +64,8 @@ offset_right = 0.0
 offset_bottom = 0.0
 
 [node name="WinScreen" parent="UI" instance=ExtResource("9_p6pjf")]
+
+[node name="UndoMechanic" parent="UI" instance=ExtResource("12_5o3oe")]
 
 [editable path="Creatures/CreatureYellow"]
 [editable path="UI/WinScreen"]

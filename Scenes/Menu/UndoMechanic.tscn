@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3lpfscgajhb4"]
+
+[ext_resource type="Script" uid="uid://8xwuka4wglun" path="res://Scenes/Menu/undo_mechanic.gd" id="1_5ujvo"]
+
+[node name="UndoMechanic" type="Node"]
+script = ExtResource("1_5ujvo")
+
+[node name="UndoTimerInit" type="Timer" parent="."]
+wait_time = 0.25
+one_shot = true
+
+[node name="UndoTimerContinious" type="Timer" parent="."]
+wait_time = 0.125
+
+[connection signal="timeout" from="UndoTimerInit" to="." method="_on_undo_timer_init_timeout"]
+[connection signal="timeout" from="UndoTimerContinious" to="." method="_on_undo_timer_continious_timeout"]

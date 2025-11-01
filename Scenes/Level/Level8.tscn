@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://vge7wou5ewmh"]
+[gd_scene load_steps=27 format=3 uid="uid://vge7wou5ewmh"]
 
 [ext_resource type="Script" uid="uid://ddiwo6yyhfkuc" path="res://Scripts/level.gd" id="1_7ae7w"]
 [ext_resource type="PackedScene" uid="uid://bvgqfw5ud3p8n" path="res://Scenes/background_lvl_8.tscn" id="1_hxek4"]
@@ -25,6 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://dis43boq1dnwi" path="res://Sprites/IceFloor/Ice-floor-L-R-B.png" id="13_bs21i"]
 [ext_resource type="PackedScene" uid="uid://bhgu3tj2dehs2" path="res://Scenes/Menu/reset_bar.tscn" id="13_efhq8"]
 [ext_resource type="PackedScene" uid="uid://pb5o008ihthl" path="res://Scenes/Menu/win_screen.tscn" id="14_r8atn"]
+[ext_resource type="PackedScene" uid="uid://d3lpfscgajhb4" path="res://Scenes/Menu/UndoMechanic.tscn" id="26_bs21i"]
 
 [node name="Level8" type="Node2D"]
 script = ExtResource("1_7ae7w")
@@ -298,3 +299,5 @@ visible = false
 [node name="ResetBar" parent="UI" instance=ExtResource("13_efhq8")]
 
 [node name="WinScreen" parent="UI" instance=ExtResource("14_r8atn")]
+
+[node name="UndoMechanic" parent="UI" instance=ExtResource("26_bs21i")]

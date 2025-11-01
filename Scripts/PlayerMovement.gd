@@ -93,9 +93,7 @@ func handle_input():
 				buffered_direction = direction
 			else:
 				try_move(direction)
-				
-			#Signals.state_changed.emit(get_player_info())
-
+		
 		# Interaktionsbutton
 		elif Input.is_action_just_pressed("Interact"):
 			if not is_moving:
@@ -112,13 +110,6 @@ func handle_input():
 
 func get_player_info() -> Dictionary:
 	return {
-		# onready
-		#"animated_sprite_2d": animated_sprite_2d.duplicate(),
-		#
-		#"label_press_f_to_control": label_press_f_to_control.duplicate(),
-		#"label_press_f_to_stop_control": label_press_f_to_stop_control.duplicate(),
-		#"heart": heart.duplicate(),
-		
 		# variables
 		"global_position": global_position,
 		"is_active": is_active,
@@ -138,7 +129,6 @@ func get_player_info() -> Dictionary:
 		"currently_possessed_creature": currently_possessed_creature,
 		"possessed_creature_until_next_tile": possessed_creature_until_next_tile
 	}
-
 
 func set_player_info(info : Dictionary):
 	# variables
@@ -164,6 +154,10 @@ func set_player_info(info : Dictionary):
 	
 	if hovering_over and not currently_possessed_creature:
 		hovering_over.border.visible = false
+	if not hovering_over:
+		label_press_f_to_control.visible = false
+		label_press_f_to_stop_control.visible = false
+
 
 func set_player_animation_direction(_direction : Vector2):
 	if _direction != Vector2.ZERO:
@@ -451,7 +445,6 @@ func possess_or_unpossess_creature():
 			audio_control.play()
 			
 			# direction an Creature anpassen
-			print(currently_possessed_creature.current_direction)
 			direction = currently_possessed_creature.current_direction
 			set_player_animation_direction(direction)
 			set_creature_animation_direction(direction)

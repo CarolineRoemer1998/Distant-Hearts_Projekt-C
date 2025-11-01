@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bvgharfdl8dr3"]
+[gd_scene load_steps=27 format=3 uid="uid://bvgharfdl8dr3"]
 
 [ext_resource type="Script" uid="uid://ddiwo6yyhfkuc" path="res://Scripts/level.gd" id="1_mehec"]
 [ext_resource type="PackedScene" uid="uid://de75tdyuyniof" path="res://Scenes/background_lvl_9.tscn" id="2_qf8l7"]
@@ -25,6 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://g3u7bc1jo6gj" path="res://Scenes/CreaturesAndPlayer/player.tscn" id="14_7agio"]
 [ext_resource type="PackedScene" uid="uid://pb5o008ihthl" path="res://Scenes/Menu/win_screen.tscn" id="14_qf8l7"]
 [ext_resource type="PackedScene" path="res://Scenes/level_wall.tscn" id="15_dtgac"]
+[ext_resource type="PackedScene" uid="uid://d3lpfscgajhb4" path="res://Scenes/Menu/UndoMechanic.tscn" id="26_s20ic"]
 
 [node name="Level9" type="Node2D"]
 script = ExtResource("1_mehec")
@@ -378,3 +379,5 @@ visible = false
 [node name="ResetBar" parent="UI" instance=ExtResource("8_mehec")]
 
 [node name="WinScreen" parent="UI" instance=ExtResource("14_qf8l7")]
+
+[node name="UndoMechanic" parent="UI" instance=ExtResource("26_s20ic")]

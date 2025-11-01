@@ -5,22 +5,37 @@ extends Node2D
 
 @onready var win_animation: AnimationPlayer = $UI/WinScreen/WinAnimation
 @onready var game_completed_animation: AnimationPlayer = $UI/GameCompleted/WinAnimation
+@onready var undo_timer_init: Timer = $UI/UndoMechanic/UndoTimerInit
+@onready var undo_timer_continious: Timer = $UI/UndoMechanic/UndoTimerContinious
 
+var can_undo := true
+var is_undo_pressed := false
 
 func _ready() -> void:
-	Signals.state_changed.connect(save_level_state)
-	
-	Globals.SHOW_WIN_SCREEN.connect(show_win_screen)
 	SceneSwitcher.set_curent_level(level_number)
 	if level_number >= 6:
 		AudioManager.play_music("res://Sounds/Music/BGM-Winter.mp3")
 	else:
 		AudioManager.play_music("res://Sounds/Music/BGM-Summer.mp3")
+	
+	if level_number == SceneSwitcher.current_level:
+		Signals.undo_timer_init_timeout.connect(_on_undo_timer_init_timeout)
+		Signals.undo_timer_continuous_timeout.connect(_on_undo_timer_continious_timeout)
+		
+	Signals.state_changed.connect(save_level_state)
+	Globals.SHOW_WIN_SCREEN.connect(show_win_screen)
+
 
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("Undo"):
+	if Input.is_action_pressed("Undo"):
+		is_undo_pressed = true
 		undo()
-		
+	elif Input.is_action_just_released("Undo"):
+		is_undo_pressed = false
+		undo_timer_init.stop()
+		undo_timer_continious.stop()
+		_set_can_undo(true)
+
 
 func show_win_screen():
 	if final_level:
@@ -66,8 +81,6 @@ func save_level_state(player_info : Dictionary):
 				
 				state["doors"].append(door.get_door_info())
 		
-		for d in state["doors"]:
-			print(d)
 		
 		# Buttons speichern
 		for button in get_tree().get_nodes_in_group(str(Constants.GROUP_NAME_BUTTONS)):
@@ -87,14 +100,31 @@ func save_level_state(player_info : Dictionary):
 		
 		StateSaver.saved_states.append(state)
 
+func _set_can_undo(value : bool):
+	can_undo = value
+
+func _on_undo_timer_init_timeout() -> void:
+	print("Init")
+	_set_can_undo(true)
+	undo_timer_continious.start()
+
+func _on_undo_timer_continious_timeout() -> void:
+	print("Continuous")
+	_set_can_undo(true)
+	undo_timer_continious.start()
 
 func undo():
-	set_state_player()
-	set_state_creatures()
-	set_state_doors()
-	set_state_buttons()
-	set_state_stones()
-	StateSaver.remove_last_state()
+	if can_undo:
+		_set_can_undo(false)
+		undo_timer_init.start()
+		
+		set_state_player()
+		set_state_creatures()
+		set_state_doors()
+		set_state_buttons()
+		set_state_stones()
+		StateSaver.remove_last_state()
+
 
 func set_state_player():
 	if StateSaver.get_last_state().has("player"):
@@ -104,8 +134,6 @@ func set_state_player():
 		if player != null:
 			if StateSaver.saved_states.size() > 0:
 				player.set_player_info(player_state)
-					
-
 
 func set_state_creatures():
 	if StateSaver.get_last_state().has("creatures"):
@@ -125,9 +153,6 @@ func set_state_doors():
 	if StateSaver.get_last_state().has("doors"):
 		var doors_states : Array = StateSaver.get_last_state()["doors"]
 		
-		for i in doors_states[0]:
-			print(i)
-			
 		for door in get_tree().get_nodes_in_group(str(Constants.GROUP_NAME_DOORS)):
 			if door != null:
 				if StateSaver.saved_states.size() > 0:
