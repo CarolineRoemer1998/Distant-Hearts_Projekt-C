@@ -29,12 +29,12 @@ func _ready():
 	
 	_check_buttons()
 
-func get_door_info() -> Dictionary:
+func get_info() -> Dictionary:
 	return {
 		"door_is_closed": door_is_closed
 	}
 
-func set_door_info(info : Dictionary):
+func set_info(info : Dictionary):
 	door_is_closed = info.get("door_is_closed")
 	
 	_check_buttons()

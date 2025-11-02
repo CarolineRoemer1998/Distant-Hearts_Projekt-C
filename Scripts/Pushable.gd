@@ -14,13 +14,13 @@ func _ready():
 	target_position = position.snapped(GRID_SIZE / 2)
 	position = target_position
 
-func get_stone_info() -> Dictionary:
+func get_info() -> Dictionary:
 	return {
 		"global_position": global_position,
 		"target_position": target_position
 	}
 
-func set_stone_info(info : Dictionary):
+func set_info(info : Dictionary):
 	global_position = info.get("global_position")
 	target_position = global_position
 	is_moving = false

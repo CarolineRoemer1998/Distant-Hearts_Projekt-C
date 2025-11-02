@@ -28,6 +28,8 @@ var neighbor_bottom : Creature = null
 var neighbor_left : Creature = null
 var neighbor_top : Creature = null
 
+var has_not_moved := true
+
 
 func _ready():
 	self.add_to_group(Constants.GROUP_NAME_CREATURE)
@@ -37,7 +39,12 @@ func _ready():
 	animation_tree.get("parameters/playback").travel("Idle")
 	animation_tree.set("parameters/Idle/BlendSpace2D/blend_position", init_direction)
 
-func get_creature_info() -> Dictionary:
+func _process(delta: float) -> void:
+	pass
+	#if self.name=="CreatureBlue":
+		#print("current_direction: ", current_direction, "\ntarget_position: ", target_position, "\n\n")
+
+func get_info() -> Dictionary:
 	return {
 		"global_position": global_position,
 		"current_direction": current_direction,
@@ -47,9 +54,11 @@ func get_creature_info() -> Dictionary:
 		"neighbor_bottom": neighbor_bottom,
 		"neighbor_left": neighbor_left,
 		"neighbor_top": neighbor_top,
+		
+		"has_not_moved": has_not_moved
 	}
 
-func set_creature_info(info : Dictionary):
+func set_info(info : Dictionary):
 	global_position = info.get("global_position")
 	current_direction = info.get("current_direction")
 	target_position = global_position
@@ -59,6 +68,10 @@ func set_creature_info(info : Dictionary):
 	neighbor_left = info.get("neighbor_left")
 	neighbor_top = info.get("neighbor_top")
 	
+	if info.get("has_not_moved"):
+		set_animation_direction_by_val(init_direction)
+	has_not_moved = info.get("has_not_moved")
+
 
 func set_animation_direction():
 	animation_tree.set("parameters/Idle/BlendSpace2D/blend_position", current_direction)

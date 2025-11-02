@@ -13,6 +13,7 @@ extends Node2D
 
 var can_undo := true
 var is_undo_pressed := false
+var current_delta := 0.0
 
 func _ready() -> void:
 	SceneSwitcher.set_curent_level(level_number)
@@ -30,6 +31,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	current_delta = delta
 	if Input.is_action_pressed("Undo"):
 		is_undo_pressed = true
 		undo()
@@ -74,7 +76,7 @@ func save_level_state(player_info : Dictionary):
 				if not state.has("creatures"): 
 					state["creatures"] = []
 				
-				state["creatures"].append(creature.get_creature_info())
+				state["creatures"].append(creature.get_info())
 		
 		# Doors speichern
 		for door in get_tree().get_nodes_in_group(str(Constants.GROUP_NAME_DOORS)):
@@ -82,7 +84,7 @@ func save_level_state(player_info : Dictionary):
 				if not state.has("doors"): 
 					state["doors"] = []
 				
-				state["doors"].append(door.get_door_info())
+				state["doors"].append(door.get_info())
 		
 		
 		# Buttons speichern
@@ -91,7 +93,7 @@ func save_level_state(player_info : Dictionary):
 				if not state.has("buttons"): 
 					state["buttons"] = []
 				
-				state["buttons"].append(button.get_button_info())
+				state["buttons"].append(button.get_info())
 		
 		# Stones speichern
 		for stone in get_tree().get_nodes_in_group(str(Constants.GROUP_NAME_STONES)):
@@ -99,7 +101,7 @@ func save_level_state(player_info : Dictionary):
 				if not state.has("stones"): 
 					state["stones"] = []
 				
-				state["stones"].append(stone.get_stone_info())
+				state["stones"].append(stone.get_info())
 		
 		StateSaver.saved_states.append(state)
 
@@ -116,6 +118,12 @@ func _on_undo_timer_continious_timeout() -> void:
 	_set_can_undo(true)
 	undo_timer_continious.start()
 
+func play_undo_particles(pos : Vector2):
+	var particles = undo_particles.instantiate()
+	get_tree().current_scene.add_child(particles)
+	particles.global_position = pos
+	particles.restart()
+
 func undo():
 	if can_undo and StateSaver.saved_states.size() > 0:
 		undo_sound.stop()
@@ -131,6 +139,19 @@ func undo():
 		set_state_stones()
 		StateSaver.remove_last_state()
 
+func set_state_of_component(component_name : String, component_group_name : String):
+	if StateSaver.get_last_state().has(component_name):
+		var component_states : Array = StateSaver.get_last_state()["creatures"]
+		
+		for component in get_tree().get_nodes_in_group(component_group_name):
+			if component != null:
+				if StateSaver.saved_states.size() > 0:
+					component.set_info(component_states[0])
+					
+					component_states.remove_at(0)
+					
+					#if component is Creature and component.global_position == component.init_position:
+						#component.set_animation_direction_by_val(component.init_direction)
 
 func set_state_player():
 	if StateSaver.get_last_state().has("player"):
@@ -142,13 +163,8 @@ func set_state_player():
 		
 		if player != null:
 			if StateSaver.saved_states.size() > 0:
-				player.set_player_info(player_state)
+				player.set_info(player_state, current_delta)
 
-func play_undo_particles(pos : Vector2):
-	var particles = undo_particles.instantiate()
-	get_tree().current_scene.add_child(particles)
-	particles.global_position = pos
-	particles.restart()
 
 func set_state_creatures():
 	if StateSaver.get_last_state().has("creatures"):
@@ -157,12 +173,12 @@ func set_state_creatures():
 		for creature in get_tree().get_nodes_in_group(str(Constants.GROUP_NAME_CREATURE)):
 			if creature != null:
 				if StateSaver.saved_states.size() > 0:
-					creature.set_creature_info(creatures_states[0])
+					creature.set_info(creatures_states[0])
 					
 					creatures_states.remove_at(0)
 					
-					if creature.global_position == creature.init_position:
-						creature.set_animation_direction_by_val(creature.init_direction)
+					#if creature.global_position == creature.init_position:
+						#creature.set_animation_direction_by_val(creature.init_direction)
 
 func set_state_doors():
 	if StateSaver.get_last_state().has("doors"):
@@ -171,7 +187,7 @@ func set_state_doors():
 		for door in get_tree().get_nodes_in_group(str(Constants.GROUP_NAME_DOORS)):
 			if door != null:
 				if StateSaver.saved_states.size() > 0:
-					door.set_door_info(doors_states[0])
+					door.set_info(doors_states[0])
 					
 					doors_states.remove_at(0)
 
@@ -182,7 +198,7 @@ func set_state_buttons():
 		for button in get_tree().get_nodes_in_group(str(Constants.GROUP_NAME_BUTTONS)):
 			if button != null:
 				if StateSaver.saved_states.size() > 0:
-					button.set_button_info(buttons_states[0])
+					button.set_info(buttons_states[0])
 					
 					buttons_states.remove_at(0)
 
@@ -193,6 +209,6 @@ func set_state_stones():
 		for stone in get_tree().get_nodes_in_group(str(Constants.GROUP_NAME_STONES)):
 			if stone != null:
 				if StateSaver.saved_states.size() > 0:
-					stone.set_stone_info(stones_states[0])
+					stone.set_info(stones_states[0])
 					
 					stones_states.remove_at(0)

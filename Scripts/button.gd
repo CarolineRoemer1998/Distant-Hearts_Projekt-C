@@ -36,14 +36,14 @@ func _ready() -> void:
 	area.body_exited.connect(_on_body_exited)
 	set_active(start_active)
 
-func get_button_info() -> Dictionary:
+func get_info() -> Dictionary:
 	return {
 		"active": active,
 		"sticky_audio_played": sticky_audio_played,
 		"door_is_permanently_opened": door_is_permanently_opened
 	}
 
-func set_button_info(info : Dictionary):
+func set_info(info : Dictionary):
 	active = info.get("active")
 	sticky_audio_played = info.get("sticky_audio_played")
 	door_is_permanently_opened = info.get("door_is_permanently_opened")
