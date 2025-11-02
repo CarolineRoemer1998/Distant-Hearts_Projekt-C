@@ -2,7 +2,6 @@ extends CharacterBody2D
 
 class_name Stone
 
-const GRID_SIZE := Vector2(64, 64)
 const MOVE_SPEED := 500.0
 
 var target_position: Vector2
@@ -11,7 +10,7 @@ var is_sliding := false
 
 func _ready():
 	add_to_group(str(Constants.GROUP_NAME_STONES))
-	target_position = position.snapped(GRID_SIZE / 2)
+	target_position = position.snapped(Constants.GRID_SIZE / 2)
 	position = target_position
 
 func get_info() -> Dictionary:

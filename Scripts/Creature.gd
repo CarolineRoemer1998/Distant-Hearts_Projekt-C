@@ -17,9 +17,6 @@ enum CREATURE_COLOR {Red, Blue, Yellow, Green, Purple, Turquois, Orange, Pink}
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var init_position : Vector2
 
-
-const GRID_SIZE := Vector2(64, 64)
-
 var current_direction := init_direction
 var target_position: Vector2
 
@@ -33,7 +30,7 @@ var has_not_moved := true
 
 func _ready():
 	self.add_to_group(Constants.GROUP_NAME_CREATURE)
-	target_position = position.snapped(GRID_SIZE / 2)
+	target_position = position.snapped(Constants.GRID_SIZE / 2)
 	init_position = global_position
 	position = target_position
 	animation_tree.get("parameters/playback").travel("Idle")

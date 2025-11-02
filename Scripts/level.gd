@@ -13,7 +13,6 @@ extends Node2D
 
 var can_undo := true
 var is_undo_pressed := false
-var current_delta := 0.0
 
 func _ready() -> void:
 	SceneSwitcher.set_curent_level(level_number)
@@ -31,7 +30,6 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	current_delta = delta
 	if Input.is_action_pressed("Undo"):
 		is_undo_pressed = true
 		undo()
@@ -163,7 +161,7 @@ func set_state_player():
 		
 		if player != null:
 			if StateSaver.saved_states.size() > 0:
-				player.set_info(player_state, current_delta)
+				player.set_info(player_state)
 
 
 func set_state_creatures():

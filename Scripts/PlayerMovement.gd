@@ -16,26 +16,6 @@ class_name Player
 
 @onready var step_timer: Timer = $StepTimer
 
-const GRID_SIZE := Vector2(64, 64)
-const MOVE_SPEED := 500.0
-const ICE_MOVE_SPEED := 400.0
-
-# LAYER BITS
-const WALL_AND_PLAYER_LAYER_BIT := 0
-const CREATURE_LAYER_BIT 	:= 1
-const STONE_LAYER_BIT 	:= 2
-const DOOR_LAYER_BIT    	:= 3
-const ICE_LAYER_BIT     	:= 5
-const LEVEL_WALL_LAYER_BIT  := 6
-
-const STEP_SOUND_PITCH_SCALES := [0.95, 0.96, 0.97, 0.98, 0.99, 1, 1.01, 1.02, 1.03, 1.04, 1.05]
-const STEP_SOUND_VOLUME_CHANGE := [6.0, 6.5, 7.0, 7.5, 8.0]
-
-const HEART_POSITION_RIGHT := Vector2(32,0)
-const HEART_POSITION_BOTTOM := Vector2(0,32)
-const HEART_POSITION_LEFT := Vector2(-32,0)
-const HEART_POSITION_TOP := Vector2(0,-32)
-
 var is_active := true
 
 var direction := Vector2.ZERO
@@ -53,10 +33,9 @@ var hovering_over: Creature = null
 var currently_possessed_creature: Creature = null
 var possessed_creature_until_next_tile: Creature = null
 
-
 func _ready():
 	# Spieler korrekt auf Grid ausrichten
-	target_position = position.snapped(GRID_SIZE / 2)
+	target_position = position.snapped(Constants.GRID_SIZE / 2)
 	position = target_position
 	animation_tree.get("parameters/playback").travel("Idle")
 	self.add_to_group(Constants.GROUP_NAME_PLAYER)
@@ -113,7 +92,6 @@ func handle_input():
 
 func get_info() -> Dictionary:
 	return {
-		# variables
 		"global_position": global_position,
 		"is_active": is_active,
 		
@@ -121,20 +99,14 @@ func get_info() -> Dictionary:
 		"current_direction": current_direction,
 		"buffered_direction": buffered_direction,
 		
-		"target_position": target_position,
-		
-		"is_moving": is_moving,
 		"is_on_ice": is_on_ice,
-		"is_sliding": is_sliding,
-		"can_move": can_move,
 		
 		"hovering_over": hovering_over,
 		"currently_possessed_creature": currently_possessed_creature,
 		"possessed_creature_until_next_tile": possessed_creature_until_next_tile
 	}
 
-func set_info(info : Dictionary, delta: float):
-	# variables
+func set_info(info : Dictionary):
 	global_position = info.get("global_position")
 	is_active = info.get("is_active")
 	
@@ -153,20 +125,6 @@ func set_info(info : Dictionary, delta: float):
 		possess()
 	elif currently_possessed_creature and info.get("currently_possessed_creature") == null:
 		unpossess()
-	
-	#change_visibility(currently_possessed_creature==null)
-	
-	#hovering_over = info.get("hovering_over")
-	#currently_possessed_creature = info.get("currently_possessed_creature")
-	#possessed_creature_until_next_tile = info.get("possessed_creature_until_next_tile")
-	#set_hovering_creature(hovering_over)
-	#
-	
-	#if hovering_over and not currently_possessed_creature:
-		#hovering_over.border.visible = false
-	#if not hovering_over:
-		#label_press_f_to_control.visible = false
-		#label_press_f_to_stop_control.visible = false
 
 
 func set_player_animation_direction(_direction : Vector2):
@@ -187,21 +145,20 @@ func move(delta):
 			if target_position == position:
 				is_sliding = false
 				
-		position = position.move_toward(target_position, MOVE_SPEED * delta)
-		if target_position == position:
-			is_sliding = false
+		position = position.move_toward(target_position, Constants.PLAYER_MOVE_SPEED * delta)
 		
 		if possessed_creature_until_next_tile:
 			# Besessene Kreatur mitziehen
 			possessed_creature_until_next_tile.position = possessed_creature_until_next_tile.position.move_toward(
-				target_position, MOVE_SPEED * delta
+				target_position, Constants.PLAYER_MOVE_SPEED * delta
 			)
 
 			# Bewegung abgeschlossen → Entkoppeln
 			if possessed_creature_until_next_tile.position == target_position:
 				possessed_creature_until_next_tile = null
-
+				
 		if position == target_position:
+			is_sliding = false
 			set_is_moving(false)
 
 			# Pufferbewegung ausführen
@@ -211,20 +168,20 @@ func move(delta):
 
 
 func move_on_ice():
-	var block_mask = (1 << WALL_AND_PLAYER_LAYER_BIT) | (1 << DOOR_LAYER_BIT) | (1 << CREATURE_LAYER_BIT) | (1 << STONE_LAYER_BIT)
+	var block_mask = (1 << Constants.LAYER_BIT_WALL_AND_PLAYER) | (1 << Constants.LAYER_BIT_DOOR) | (1 << Constants.LAYER_BIT_CREATURE) | (1 << Constants.LAYER_BIT_STONE)
 	var slide_end = target_position
 	
-	set_is_on_ice(target_position + current_direction * GRID_SIZE)
+	set_is_on_ice(target_position + current_direction * Constants.GRID_SIZE)
 	
-	var next_collision = get_collision_on_tile(slide_end, 1 << STONE_LAYER_BIT)
+	var next_collision = get_collision_on_tile(slide_end, 1 << Constants.LAYER_BIT_STONE)
 	if not is_sliding and next_collision.size() > 0:
 		if next_collision[0].collider is Stone:
 			is_sliding = true
-			slide_end = slide_end - (current_direction * GRID_SIZE)
-			slide_end += current_direction * GRID_SIZE
+			slide_end = slide_end - (current_direction * Constants.GRID_SIZE)
+			slide_end += current_direction * Constants.GRID_SIZE
 	
 	while true:
-		var next_pos = slide_end + current_direction * GRID_SIZE
+		var next_pos = slide_end + current_direction * Constants.GRID_SIZE
 		
 		if check_if_collides(next_pos, block_mask):
 			break
@@ -246,7 +203,7 @@ func check_is_ice(pos: Vector2) -> bool:
 	var space = get_world_2d().direct_space_state
 	var query = PhysicsPointQueryParameters2D.new()
 	query.position = pos
-	query.collision_mask = 1 << ICE_LAYER_BIT
+	query.collision_mask = 1 << Constants.LAYER_BIT_ICE
 	var result = space.intersect_point(query, 1)
 	return not result.is_empty()
 
@@ -271,7 +228,7 @@ func get_collision_on_tile(_position, layer_mask):
 
 
 func try_move(_direction: Vector2):
-	var new_pos = target_position + _direction * GRID_SIZE
+	var new_pos = target_position + _direction * Constants.GRID_SIZE
 	current_direction = _direction
 	var space_state = get_world_2d().direct_space_state
 	
@@ -286,22 +243,22 @@ func try_move(_direction: Vector2):
 	
 	
 	# Query für Stones
-	query.collision_mask = (1 << STONE_LAYER_BIT)
+	query.collision_mask = (1 << Constants.LAYER_BIT_STONE)
 	var result_stones = space_state.intersect_point(query, 1)
 	
 	# Query für Türen
-	query.collision_mask = (1 << DOOR_LAYER_BIT)
+	query.collision_mask = (1 << Constants.LAYER_BIT_DOOR)
 	var result_doors = space_state.intersect_point(query, 1)
 	
 	# Query für Blockaden
 	var result_wall = []
 	if currently_possessed_creature != null:
-		query.collision_mask = (1 << WALL_AND_PLAYER_LAYER_BIT)
+		query.collision_mask = (1 << Constants.LAYER_BIT_WALL_AND_PLAYER)
 		result_wall = space_state.intersect_point(query, 1)
 	
 	# Query für Außenwand
 	var result_level_wall = []
-	query.collision_mask = (1 << LEVEL_WALL_LAYER_BIT)
+	query.collision_mask = (1 << Constants.LAYER_BIT_LEVEL_WALL)
 	result_level_wall = space_state.intersect_point(query, 1)
 	
 	if not result_level_wall.is_empty():
@@ -321,7 +278,7 @@ func set_is_on_ice(new_pos) -> bool:
 	var space_state = get_world_2d().direct_space_state
 	var ice_query = PhysicsPointQueryParameters2D.new()
 	ice_query.position = new_pos
-	ice_query.collision_mask = 1 << ICE_LAYER_BIT
+	ice_query.collision_mask = 1 << Constants.LAYER_BIT_ICE
 	ice_query.collide_with_bodies = true
 	ice_query.collide_with_areas  = true
 	is_on_ice = not space_state.intersect_point(ice_query, 1).is_empty()
@@ -387,15 +344,15 @@ func try_push_and_move(stone, door, wall, new_pos, _direction, space_state):
 				return
 	
 	# Ziel hinter dem stone prüfen
-	var push_target = new_pos + _direction * GRID_SIZE
+	var push_target = new_pos + _direction * Constants.GRID_SIZE
 	var push_query := PhysicsPointQueryParameters2D.new()
 	push_query.position = push_target
-	push_query.collision_mask = (1 << STONE_LAYER_BIT) | (1 << DOOR_LAYER_BIT) | (1 << WALL_AND_PLAYER_LAYER_BIT) | (1 << CREATURE_LAYER_BIT)
+	push_query.collision_mask = (1 << Constants.LAYER_BIT_STONE) | (1 << Constants.LAYER_BIT_DOOR) | (1 << Constants.LAYER_BIT_WALL_AND_PLAYER) | (1 << Constants.LAYER_BIT_CREATURE)
 	var push_result = space_state.intersect_point(push_query, 1)
 	
 	for i in push_result:
 		if i.collider is Door and not i.collider.door_is_closed:
-			if stone[0].collider.push(_direction * GRID_SIZE):
+			if stone[0].collider.push(_direction * Constants.GRID_SIZE):
 				target_position = new_pos
 				Signals.state_changed.emit(get_info())
 				set_is_moving(true)
@@ -403,7 +360,7 @@ func try_push_and_move(stone, door, wall, new_pos, _direction, space_state):
 		
 	# Falls frei oder Tür die offen ist, push ausführen
 	if push_result.is_empty():
-		if stone[0].collider.push(_direction * GRID_SIZE):
+		if stone[0].collider.push(_direction * Constants.GRID_SIZE):
 			target_position = new_pos
 			set_is_moving(true)
 			Signals.state_changed.emit(get_info())
@@ -419,8 +376,8 @@ func set_is_moving(value: bool):
 		audio_stream_player_2d.stop()
 		audio_stream_player_2d.play()
 		
-		audio_stream_player_2d.pitch_scale = STEP_SOUND_PITCH_SCALES.pick_random()
-		audio_stream_player_2d.volume_db = STEP_SOUND_VOLUME_CHANGE.pick_random()
+		audio_stream_player_2d.pitch_scale = Constants.STEP_SOUND_PITCH_SCALES.pick_random()
+		audio_stream_player_2d.volume_db = Constants.STEP_SOUND_VOLUME_CHANGE.pick_random()
 
 		# Besessene Kreatur mitziehen lassen
 		if currently_possessed_creature:
@@ -505,22 +462,22 @@ func update_heart_visibility():
 	var c := currently_possessed_creature
 
 	if c.neighbor_right and c.can_merge_with(c.neighbor_right):
-		heart.position = self.position + HEART_POSITION_RIGHT
+		heart.position = self.position + Constants.FIELD_POSITION_RIGHT
 		heart.visible = true
 		return
 
 	if c.neighbor_bottom and c.can_merge_with(c.neighbor_bottom):
-		heart.position = self.position + HEART_POSITION_BOTTOM
+		heart.position = self.position + Constants.FIELD_POSITION_BOTTOM
 		heart.visible = true
 		return
 
 	if c.neighbor_left and c.can_merge_with(c.neighbor_left):
-		heart.position = self.position + HEART_POSITION_LEFT
+		heart.position = self.position + Constants.FIELD_POSITION_LEFT
 		heart.visible = true
 		return
 
 	if c.neighbor_top and c.can_merge_with(c.neighbor_top):
-		heart.position = self.position + HEART_POSITION_TOP
+		heart.position = self.position + Constants.FIELD_POSITION_TOP
 		heart.visible = true
 		return
 
