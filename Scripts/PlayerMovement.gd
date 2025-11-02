@@ -435,7 +435,7 @@ func update_heart_visibility():
 		hearts[3].visible = true
 	else: hearts[3].visible = false
 
-	if c.neighbor_bottom:
+	if c.neighbor_bottom != null:
 		hearts[1].position = self.position + Constants.FIELD_POSITION_BOTTOM
 		hearts[1].visible = true
 	else: hearts[1].visible = false

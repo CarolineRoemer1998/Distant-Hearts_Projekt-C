@@ -383,3 +383,5 @@ visible = false
 [node name="WinScreen" parent="UI" instance=ExtResource("14_qf8l7")]
 
 [node name="UndoMechanic" parent="UI" instance=ExtResource("26_s20ic")]
+
+[editable path="UI/UndoMechanic"]

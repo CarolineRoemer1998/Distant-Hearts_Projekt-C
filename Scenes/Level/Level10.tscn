@@ -1,7 +1,8 @@
-[gd_scene load_steps=28 format=3 uid="uid://j75l20l3hoo0"]
+[gd_scene load_steps=29 format=3 uid="uid://j75l20l3hoo0"]
 
 [ext_resource type="Script" uid="uid://ddiwo6yyhfkuc" path="res://Scripts/level.gd" id="1_onvjm"]
 [ext_resource type="PackedScene" uid="uid://bvgqfw5ud3p8n" path="res://Scenes/background_lvl_8.tscn" id="2_kxjy4"]
+[ext_resource type="PackedScene" uid="uid://lrodaawkgfob" path="res://Scenes/undo_particles.tscn" id="2_netts"]
 [ext_resource type="PackedScene" uid="uid://ccncnjkm8w8ta" path="res://Scenes/CreaturesAndPlayer/creature_blue.tscn" id="3_x0sy2"]
 [ext_resource type="Texture2D" uid="uid://btwlvk2xprfh2" path="res://Sprites/IceFloor/Ice-floor-R.png" id="4_4yxgs"]
 [ext_resource type="PackedScene" uid="uid://be6k5yjppap8y" path="res://Scenes/CreaturesAndPlayer/creature_yellow.tscn" id="4_ulphs"]
@@ -30,7 +31,7 @@
 
 [node name="Level10" type="Node2D"]
 script = ExtResource("1_onvjm")
-undo_particles = ExtResource("27_i6o66")
+undo_particles = ExtResource("2_netts")
 final_level = true
 level_number = 10
 

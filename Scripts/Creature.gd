@@ -36,11 +36,6 @@ func _ready():
 	animation_tree.get("parameters/playback").travel("Idle")
 	animation_tree.set("parameters/Idle/BlendSpace2D/blend_position", init_direction)
 
-func _process(delta: float) -> void:
-	pass
-	#if self.name=="CreatureBlue":
-		#print("current_direction: ", current_direction, "\ntarget_position: ", target_position, "\n\n")
-
 func get_info() -> Dictionary:
 	return {
 		"global_position": global_position,
@@ -68,6 +63,7 @@ func set_info(info : Dictionary):
 	if info.get("has_not_moved"):
 		set_animation_direction_by_val(init_direction)
 	has_not_moved = info.get("has_not_moved")
+	
 
 
 func set_animation_direction():
@@ -93,22 +89,22 @@ func disappear():
 # -----------------------------------------------------------
 
 func on_creature_to_right(body: Node2D) -> void:
-	if body is Creature:
+	if body is Creature and body.name != self.name:
 		neighbor_right = body
 
 
 func on_creature_to_bottom(body: Node2D) -> void:
-	if body is Creature:
+	if body is Creature and body.name != self.name:
 		neighbor_bottom = body
 
 
 func on_creature_to_left(body: Node2D) -> void:
-	if body is Creature:
+	if body is Creature and body.name != self.name:
 		neighbor_left = body
 
 
 func on_creature_to_top(body: Node2D) -> void:
-	if body is Creature:
+	if body is Creature and body.name != self.name:
 		neighbor_top = body
 
 # -----------------------------------------------------------
