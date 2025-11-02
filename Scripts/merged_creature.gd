@@ -6,6 +6,10 @@ class_name MergedCreature
 @onready var gpu_particles_2d: GPUParticles2D = $GPUParticles2D
 @onready var audio_win: AudioStreamPlayer2D = $AudioWin
 
+func _ready() -> void:
+	add_to_group(Constants.GROUP_NAME_MERGED_CREATURE)
+	visible = false
+
 func appear():
 	animation_player.play("Appear")
 

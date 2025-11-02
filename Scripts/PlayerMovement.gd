@@ -2,13 +2,17 @@ extends CharacterBody2D
 class_name Player
 
 @export var trail_scene: PackedScene 
+@export var hearts: Array[Sprite2D]
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var animation_tree: AnimationTree = $AnimationTree
 
 @onready var label_press_f_to_control: Label = $LabelPressFToControl
 @onready var label_press_f_to_stop_control: Label = $LabelPressFToStopControl
-@onready var heart: Sprite2D = $Heart
+@onready var heart_TOP: Sprite2D = $Heart
+@onready var heart_BOTTOM: Sprite2D = $Heart2
+@onready var heart_LEFT: Sprite2D = $Heart3
+@onready var heart_RIGHT: Sprite2D = $Heart4
 
 @onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var audio_control: AudioStreamPlayer2D = $AudioControl
@@ -33,11 +37,12 @@ var hovering_over: Creature = null
 var currently_possessed_creature: Creature = null
 
 func _ready():
+	self.add_to_group(Constants.GROUP_NAME_PLAYER)
+	
 	# Spieler korrekt auf Grid ausrichten
 	target_position = position.snapped(Constants.GRID_SIZE / 2)
 	position = target_position
 	animation_tree.get("parameters/playback").travel("Idle")
-	self.add_to_group(Constants.GROUP_NAME_PLAYER)
 
 
 func _process(delta):
@@ -49,7 +54,7 @@ func handle_input():
 	if Input.is_action_just_pressed("ui_cancel"):
 		SceneSwitcher.go_to_settings()
 	
-	if is_active:
+	elif is_active:
 		# Wenn Input Bewegung ist
 		if can_move and (Input.is_action_pressed("Player_Up") or Input.is_action_pressed("Player_Down") or Input.is_action_pressed("Player_Left") or Input.is_action_pressed("Player_Right")):
 			# Bewegungsrichtungen
@@ -68,21 +73,15 @@ func handle_input():
 			if is_moving:
 				buffered_direction = direction
 			else:
-				if evaluate_can_move_in_direction(direction):
-					target_position = target_position + direction * Constants.GRID_SIZE
-					current_direction = direction
-					
+				if evaluate_can_move_in_direction():
 					set_is_moving(true)
-					set_is_on_ice(target_position)
-					merge_if_possible(direction)
 					
-					spawn_trail(position)
-					Signals.state_changed.emit(get_info())
+					
 			
 			set_player_animation_direction(direction)
 			set_creature_animation_direction(direction)
 		
-			
+		
 		# Interaktionsbutton
 		elif Input.is_action_just_pressed("Interact"):
 			if not is_moving:
@@ -129,17 +128,20 @@ func set_info(info : Dictionary):
 	is_sliding = false
 	can_move = true
 	
+	set_player_animation_direction(direction)
+	set_creature_animation_direction(direction)
+	
 	if info.get("currently_possessed_creature") and currently_possessed_creature == null:
 		possess()
 	elif currently_possessed_creature and info.get("currently_possessed_creature") == null:
 		unpossess()
 
 
-func set_player_animation_direction(_direction : Vector2):
+func set_player_animation_direction(_direction: Vector2):
 	if _direction != Vector2.ZERO:
 		animation_tree.set("parameters/Idle/BlendSpace2D/blend_position", _direction)
 
-func set_creature_animation_direction(_direction : Vector2):
+func set_creature_animation_direction(_direction: Vector2):
 	if currently_possessed_creature:
 		currently_possessed_creature.current_direction = direction
 		if _direction != Vector2.ZERO:
@@ -149,7 +151,7 @@ func set_creature_animation_direction(_direction : Vector2):
 func move(delta):
 	if is_moving:
 		if is_on_ice and currently_possessed_creature:
-			move_on_ice()
+			_move_on_ice()
 			if target_position == position:
 				is_sliding = false
 			
@@ -165,20 +167,11 @@ func move(delta):
 			is_sliding = false
 			set_is_moving(false)
 			if buffered_direction != Vector2.ZERO:
-				if evaluate_can_move_in_direction(buffered_direction):
-					target_position = target_position + direction * Constants.GRID_SIZE
-					current_direction = direction
-					
-					set_is_moving(true)
-					set_is_on_ice(target_position)
-					merge_if_possible(direction)
-					
-					spawn_trail(position)
-					Signals.state_changed.emit(get_info())
+				set_is_moving(evaluate_can_move_in_direction())
 				buffered_direction = Vector2.ZERO
 
 
-func move_on_ice():
+func _move_on_ice():
 	var block_mask = (1 << Constants.LAYER_BIT_WALL_AND_PLAYER) | (1 << Constants.LAYER_BIT_DOOR) | (1 << Constants.LAYER_BIT_CREATURE) | (1 << Constants.LAYER_BIT_STONE)
 	var slide_end = target_position
 	
@@ -237,18 +230,8 @@ func get_collision_on_tile(_position, layer_mask):
 	query.collision_mask = layer_mask
 	return space.intersect_point(query, 1)
 
-func später_in_move(_direction: Vector2, new_pos: Vector2):
-	current_direction = _direction
-	set_is_on_ice(new_pos)
-	merge_if_possible(direction)
-	
-	spawn_trail(position)
-	target_position = new_pos
-	set_is_moving(true)
-	Signals.state_changed.emit(get_info())
-
-func evaluate_can_move_in_direction(_direction: Vector2) -> bool:
-	var new_pos = target_position + _direction * Constants.GRID_SIZE
+func evaluate_can_move_in_direction() -> bool:
+	var new_pos = target_position + direction * Constants.GRID_SIZE
 	var space_state = get_world_2d().direct_space_state
 	
 	# Prüfen ob ein Objekt am Zielort ist
@@ -278,49 +261,9 @@ func evaluate_can_move_in_direction(_direction: Vector2) -> bool:
 	if currently_possessed_creature == null or (result_stones.is_empty() and result_doors.is_empty() and result_wall_inside.is_empty()):
 		return true
 	
-	return evaluate_can_push_object_in_direction(_direction, result_stones, result_doors, result_wall_inside, new_pos, space_state)
+	return check_object_in_direction_is_walkable(direction, result_stones, result_doors, result_wall_inside, new_pos, space_state)
 
-func set_is_on_ice(new_pos) -> bool:
-	var space_state = get_world_2d().direct_space_state
-	var ice_query = PhysicsPointQueryParameters2D.new()
-	ice_query.position = new_pos
-	ice_query.collision_mask = 1 << Constants.LAYER_BIT_ICE
-	ice_query.collide_with_bodies = true
-	ice_query.collide_with_areas  = true
-	is_on_ice = not space_state.intersect_point(ice_query, 1).is_empty()
-	return is_on_ice
-
-func merge_if_possible(_direction : Vector2) -> bool:
-	if currently_possessed_creature != null:
-		match _direction:
-			Vector2(1.0, 0.0): # right
-				return await _merge(Vector2(64,0), currently_possessed_creature.neighbor_right)
-			Vector2(0.0, 1.0): # bottom
-				return await _merge(Vector2(0,64), currently_possessed_creature.neighbor_bottom)
-			Vector2(-1.0, 0.0): # left
-				return await _merge(Vector2(-64,0), currently_possessed_creature.neighbor_left)
-			Vector2(0.0, -1.0): # top
-				return await _merge(Vector2(0,-64), currently_possessed_creature.neighbor_top)
-	return false
-
-func _merge(_direction : Vector2, neighbor : Creature):
-	if neighbor != null:
-		if currently_possessed_creature.can_merge_with(neighbor):
-			var spawn_position = currently_possessed_creature.position + _direction
-			var merged_creature = get_tree().get_first_node_in_group("MergedCreature")
-			if merged_creature and merged_creature is MergedCreature:
-				merged_creature.position = spawn_position
-				merged_creature.visible = false  # ← erst mal verstecken
-				await get_tree().create_timer(0.1).timeout # creatures verschwinden und merged_creature taucht erst nach 0.1 sekunden
-				currently_possessed_creature.shrink()
-				neighbor.shrink()
-				merged_creature.visible = true
-				merged_creature.appear()
-			is_active = false
-			return true
-	return false
-
-func evaluate_can_push_object_in_direction(_direction, stone, door, wall, new_pos, space_state) -> bool:
+func check_object_in_direction_is_walkable(_direction, stone, door, wall, new_pos, space_state) -> bool:
 	# Wand vor Spieler, keine Bewegung
 	if not wall.is_empty():
 		return false
@@ -356,33 +299,79 @@ func evaluate_can_push_object_in_direction(_direction, stone, door, wall, new_po
 	buffered_direction = Vector2.ZERO
 	return false
 
+func set_is_on_ice(new_pos) -> bool:
+	var space_state = get_world_2d().direct_space_state
+	var ice_query = PhysicsPointQueryParameters2D.new()
+	ice_query.position = new_pos
+	ice_query.collision_mask = 1 << Constants.LAYER_BIT_ICE
+	ice_query.collide_with_bodies = true
+	ice_query.collide_with_areas  = true
+	is_on_ice = not space_state.intersect_point(ice_query, 1).is_empty()
+	return is_on_ice
+
+func get_neighbor_in_direction_is_mergable(_direction : Vector2) -> Creature:
+	if currently_possessed_creature != null:
+		match _direction:
+			Vector2.RIGHT: return currently_possessed_creature.neighbor_right
+			Vector2.DOWN: return currently_possessed_creature.neighbor_bottom
+			Vector2.LEFT: return currently_possessed_creature.neighbor_left
+			Vector2.UP: return currently_possessed_creature.neighbor_top
+	return null
+
+func merge(_direction : Vector2, neighbor : Creature) -> bool:
+	if neighbor != null:
+		var merged_creature = get_tree().get_first_node_in_group("MergedCreature")
+		if merged_creature is MergedCreature:
+			merged_creature.position = currently_possessed_creature.position + _direction
+			await get_tree().create_timer(0.1).timeout # creatures verschwinden, merged_creature taucht nach 0.1 sec auf
+			currently_possessed_creature.shrink()
+			neighbor.shrink()
+			merged_creature.visible = true
+			merged_creature.appear()
+			is_active = false
+			return true
+	return false
+
 
 func set_is_moving(value: bool):
 	is_moving = value
 
 	if value:
-		# Sound NUR EINMAL pro Tile-Bewegung abspielen
+		target_position = target_position + direction * Constants.GRID_SIZE
+		current_direction = direction
+		
+		set_is_on_ice(target_position)
+		if get_neighbor_in_direction_is_mergable(direction) != null:
+			await merge(direction*Constants.GRID_SIZE, get_neighbor_in_direction_is_mergable(direction))
+		
+		spawn_trail(position)
+		
+		# Sound abspielen
+		audio_stream_player_2d.pitch_scale = Constants.STEP_SOUND_PITCH_SCALES.pick_random()
+		audio_stream_player_2d.volume_db = Constants.STEP_SOUND_VOLUME_CHANGE.pick_random()
 		audio_stream_player_2d.stop()
 		audio_stream_player_2d.play()
 		
-		audio_stream_player_2d.pitch_scale = Constants.STEP_SOUND_PITCH_SCALES.pick_random()
-		audio_stream_player_2d.volume_db = Constants.STEP_SOUND_VOLUME_CHANGE.pick_random()
+		Signals.state_changed.emit(get_info())
 
 
-func set_hovering_creature(creature: Creature):
-	hovering_over = creature
-	if currently_possessed_creature == null:
-		label_press_f_to_control.visible = true
+
+func set_hovering_creature(is_hovering: bool, creature: Creature):
+	if is_hovering:
+		hovering_over = creature
+		if currently_possessed_creature == null:
+			label_press_f_to_control.visible = true
+	else:
+		hovering_over = null
+		label_press_f_to_control.visible = false
 
 func unpossess():
 	if currently_possessed_creature and is_instance_valid(currently_possessed_creature):
-		currently_possessed_creature.border.visible = false
-		set_hovering_creature(currently_possessed_creature)
-		
-		currently_possessed_creature.set_animation_direction()
-
-		currently_possessed_creature = null
+		set_hovering_creature(true, currently_possessed_creature)
 		change_visibility(true)
+		currently_possessed_creature.border.visible = false
+		currently_possessed_creature.set_animation_direction()
+		currently_possessed_creature = null
 		audio_uncontrol.play()
 
 func possess():
@@ -405,26 +394,23 @@ func possess():
 
 func change_visibility(make_visible : bool):
 	if make_visible:
-		animated_sprite_2d.modulate = Color(1, 1, 1, 0.8)
-		if hovering_over:
-			label_press_f_to_control.visible = true
-			label_press_f_to_stop_control.visible = false
+		animated_sprite_2d.modulate = Constants.PLAYER_MODULATE_VISIBLE
 	else:
-		animated_sprite_2d.modulate = Color(1, 1, 1, 0)
-		if hovering_over:
-			label_press_f_to_control.visible = false
-			label_press_f_to_stop_control.visible = true
+		animated_sprite_2d.modulate = Constants.PLAYER_MODULATE_INVISIBLE
+		
+	if hovering_over:
+		label_press_f_to_control.visible = make_visible
+		label_press_f_to_stop_control.visible = !make_visible
+
 
 func _on_creature_detected(body: Node) -> void:
 	if body is Creature:
-		set_hovering_creature(body)
-		
+		set_hovering_creature(true, body)
 
 
 func _on_creature_undetected(body: Node) -> void:
 	if body is Creature and hovering_over == body:
-		hovering_over = null
-		label_press_f_to_control.visible = false
+		set_hovering_creature(false, body)
 
 
 func spawn_trail(input_position: Vector2):
@@ -437,35 +423,32 @@ func spawn_trail(input_position: Vector2):
 func update_heart_visibility():
 	# Wenn keine Kreatur gerade besessen ist → Herz aus
 	if currently_possessed_creature == null:
-		heart.visible = false
+		for heart in hearts:
+			heart.visible = false
 		return
 
 	# Checke alle 4 Richtungen
 	var c := currently_possessed_creature
 
-	if c.neighbor_right and c.can_merge_with(c.neighbor_right):
-		heart.position = self.position + Constants.FIELD_POSITION_RIGHT
-		heart.visible = true
-		return
+	if c.neighbor_right:
+		hearts[3].position = self.position + Constants.FIELD_POSITION_RIGHT
+		hearts[3].visible = true
+	else: hearts[3].visible = false
 
-	if c.neighbor_bottom and c.can_merge_with(c.neighbor_bottom):
-		heart.position = self.position + Constants.FIELD_POSITION_BOTTOM
-		heart.visible = true
-		return
+	if c.neighbor_bottom:
+		hearts[1].position = self.position + Constants.FIELD_POSITION_BOTTOM
+		hearts[1].visible = true
+	else: hearts[1].visible = false
 
-	if c.neighbor_left and c.can_merge_with(c.neighbor_left):
-		heart.position = self.position + Constants.FIELD_POSITION_LEFT
-		heart.visible = true
-		return
+	if c.neighbor_left:
+		hearts[2].position = self.position + Constants.FIELD_POSITION_LEFT
+		hearts[2].visible = true
+	else: hearts[2].visible = false
 
-	if c.neighbor_top and c.can_merge_with(c.neighbor_top):
-		heart.position = self.position + Constants.FIELD_POSITION_TOP
-		heart.visible = true
-		return
-
-	# Kein passender Nachbar gefunden → Herz aus
-	heart.visible = false
-
+	if c.neighbor_top:
+		hearts[0].position = self.position + Constants.FIELD_POSITION_TOP
+		hearts[0].visible = true
+	else: hearts[0].visible = false
 
 func _on_step_timer_timeout() -> void:
 	can_move = true

@@ -76,11 +76,11 @@ func set_animation_direction():
 func set_animation_direction_by_val(direction):
 	animation_tree.set("parameters/Idle/BlendSpace2D/blend_position", direction)
 
-func can_merge_with(creature : Creature) -> bool:
-	if self.desired_color == creature.own_color:
-		return true
-	else:
-		return false
+#func can_merge_with(creature : Creature) -> bool:
+	#if self.desired_color == creature.own_color:
+		#return true
+	#else:
+		#return false
 
 func shrink():
 	animation_player.play("Shrink")

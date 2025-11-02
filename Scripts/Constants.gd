@@ -8,6 +8,7 @@ const PLAYER_MOVE_SPEED := 500.0
 # GROUPS
 const GROUP_NAME_PLAYER := "Player"
 const GROUP_NAME_CREATURE := "Creature"
+const GROUP_NAME_MERGED_CREATURE := "MergedCreature"
 const GROUP_NAME_DOORS := "Door"
 const GROUP_NAME_BUTTONS := "Button"
 const GROUP_NAME_STONES := "Stone"
@@ -29,3 +30,7 @@ const FIELD_POSITION_TOP := Vector2(0,-32)
 # SFX
 const STEP_SOUND_PITCH_SCALES := [0.95, 0.96, 0.97, 0.98, 0.99, 1, 1.01, 1.02, 1.03, 1.04, 1.05]
 const STEP_SOUND_VOLUME_CHANGE := [6.0, 6.5, 7.0, 7.5, 8.0]
+
+# COLORS
+const PLAYER_MODULATE_VISIBLE := Color(1, 1, 1, 0.8)
+const PLAYER_MODULATE_INVISIBLE := Color(1, 1, 1, 0)
