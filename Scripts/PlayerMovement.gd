@@ -31,6 +31,7 @@ var target_position: Vector2
 var is_moving := false
 var is_on_ice := false
 var is_sliding := false
+var is_pushing_stone_on_ice := false
 var can_move := true
 
 var hovering_over: Creature = null
@@ -126,6 +127,7 @@ func set_info(info : Dictionary):
 	is_moving = false
 	is_on_ice = info.get("is_on_ice")
 	is_sliding = false
+	is_pushing_stone_on_ice = false
 	can_move = true
 	
 	set_player_animation_direction(direction)
@@ -152,83 +154,23 @@ func move(delta):
 	if is_moving:
 		if is_on_ice and currently_possessed_creature:
 			_move_on_ice()
-			if target_position == position:
-				is_sliding = false
 			
 		position = position.move_toward(target_position, Constants.PLAYER_MOVE_SPEED * delta)
 
 		if currently_possessed_creature:
-			# Besessene Kreatur mitziehen
 			currently_possessed_creature.position = currently_possessed_creature.position.move_toward(
 				target_position, Constants.PLAYER_MOVE_SPEED * delta
 			)
 		
 		if position == target_position:
 			is_sliding = false
+			is_pushing_stone_on_ice = false
 			set_is_moving(false)
 			if buffered_direction != Vector2.ZERO:
 				set_is_moving(evaluate_can_move_in_direction())
 				buffered_direction = Vector2.ZERO
 
 
-func _move_on_ice():
-	var block_mask = (1 << Constants.LAYER_BIT_WALL_AND_PLAYER) | (1 << Constants.LAYER_BIT_DOOR) | (1 << Constants.LAYER_BIT_CREATURE) | (1 << Constants.LAYER_BIT_STONE)
-	var slide_end = target_position
-	
-	set_is_on_ice(target_position + current_direction * Constants.GRID_SIZE)
-	
-	var next_collision = get_collision_on_tile(slide_end, 1 << Constants.LAYER_BIT_STONE)
-	if not is_sliding and next_collision.size() > 0:
-		if next_collision[0].collider is Stone:
-			is_sliding = true
-			slide_end = slide_end - (current_direction * Constants.GRID_SIZE)
-			slide_end += current_direction * Constants.GRID_SIZE
-	
-	while true:
-		var next_pos = slide_end + current_direction * Constants.GRID_SIZE
-		
-		if check_if_collides(next_pos, block_mask):
-			break
-		if not check_is_ice(next_pos) and not is_sliding:
-			slide_end = next_pos
-			break
-			
-		slide_end = next_pos
-	
-	if is_sliding and next_collision.size() > 0 and not next_collision[0].collider.is_sliding:
-		if next_collision[0].collider.is_sliding == false:
-			next_collision[0].collider.is_sliding = true
-			next_collision[0].collider.slide(slide_end)
-			
-	if not is_sliding and slide_end != target_position: 
-		target_position = slide_end
-
-func check_is_ice(pos: Vector2) -> bool:
-	var space = get_world_2d().direct_space_state
-	var query = PhysicsPointQueryParameters2D.new()
-	query.position = pos
-	query.collision_mask = 1 << Constants.LAYER_BIT_ICE
-	var result = space.intersect_point(query, 1)
-	return not result.is_empty()
-
-func check_if_collides(_position, layer_mask) -> bool:
-	var space = get_world_2d().direct_space_state
-	var query = PhysicsPointQueryParameters2D.new()
-	query.position = _position
-	query.collision_mask = layer_mask
-	var result = space.intersect_point(query, 1)
-	if not result.is_empty():
-		if result[0].collider is Door:
-			if not result[0].collider.door_is_closed:
-				return false
-	return not result.is_empty()
-
-func get_collision_on_tile(_position, layer_mask):
-	var space = get_world_2d().direct_space_state
-	var query = PhysicsPointQueryParameters2D.new()
-	query.position = _position
-	query.collision_mask = layer_mask
-	return space.intersect_point(query, 1)
 
 func evaluate_can_move_in_direction() -> bool:
 	var new_pos = target_position + direction * Constants.GRID_SIZE
@@ -299,6 +241,153 @@ func check_object_in_direction_is_walkable(_direction, stone, door, wall, new_po
 	buffered_direction = Vector2.ZERO
 	return false
 
+func _move_on_ice():
+	var block_mask = (1 << Constants.LAYER_BIT_WALL_AND_PLAYER) | (1 << Constants.LAYER_BIT_DOOR) | (1 << Constants.LAYER_BIT_CREATURE) | (1 << Constants.LAYER_BIT_STONE)
+	var slide_end = target_position
+	
+	# Ist Feld vor Spieler Eis?
+	var ice_in_front = check_is_ice(position + current_direction * Constants.GRID_SIZE)
+	
+	var next_collision = get_collision_on_tile(slide_end, 1 << Constants.LAYER_BIT_STONE)
+	if not is_pushing_stone_on_ice and next_collision.size() > 0:
+		if next_collision[0].collider is Stone:
+			is_pushing_stone_on_ice = true
+
+	if ice_in_front:
+		while true:
+			var next_pos = slide_end + current_direction * Constants.GRID_SIZE
+			
+			
+			if check_if_collides(next_pos, block_mask): # wenn nächster step blockiert ist, slide_end nicht verlängern
+				break
+			
+			if not is_pushing_stone_on_ice and not check_is_ice(next_pos):
+				break
+			
+			if not check_is_ice(next_pos):
+				slide_end = next_pos
+				break
+			
+			slide_end = next_pos
+
+	# Stein sliden lassen
+	if is_pushing_stone_on_ice and next_collision.size() > 0:
+		if next_collision[0].collider is Stone:
+			next_collision[0].collider.slide(slide_end)
+			print(slide_end)
+	
+	#check_if_collides(next_pos, block_mask)
+	var tile_after_slide_end = slide_end + (current_direction * Constants.GRID_SIZE)
+	
+	if not is_pushing_stone_on_ice and slide_end == target_position and not check_is_ice(tile_after_slide_end) and not check_if_collides(tile_after_slide_end, block_mask):
+		target_position = tile_after_slide_end
+		is_on_ice = false
+	if not is_pushing_stone_on_ice and slide_end != target_position: 
+		if not is_pushing_stone_on_ice and not check_is_ice(tile_after_slide_end) and not check_if_collides(tile_after_slide_end, block_mask):
+			target_position = tile_after_slide_end
+			is_on_ice = false
+		else:
+			target_position = slide_end
+
+# FUNKTIONIERT, aber: Wenn vor einem ein Ice Tile ist und dahinter boden und man sich dann darauf zu bewegt, stoppt man noch auf Eis
+#func _move_on_ice():
+	#var block_mask = (1 << Constants.LAYER_BIT_WALL_AND_PLAYER) | (1 << Constants.LAYER_BIT_DOOR) | (1 << Constants.LAYER_BIT_CREATURE) | (1 << Constants.LAYER_BIT_STONE)
+	#var slide_end = target_position
+	#
+	## Ist Feld vor Spieler Eis?
+	#var ice_in_front = check_is_ice(position + current_direction * Constants.GRID_SIZE)
+	#
+	#var next_collision = get_collision_on_tile(slide_end, 1 << Constants.LAYER_BIT_STONE)
+	#if not is_pushing_stone_on_ice and next_collision.size() > 0:
+		#if next_collision[0].collider is Stone:
+			#is_pushing_stone_on_ice = true
+#
+	#if ice_in_front:
+		#while true:
+			#var next_pos = slide_end + current_direction * Constants.GRID_SIZE
+			#
+			#
+			#if check_if_collides(next_pos, block_mask): # wenn nächster step blockiert ist, slide_end nicht verlängern
+				#break
+			#
+			#if not is_pushing_stone_on_ice and not check_is_ice(next_pos):
+				#break
+			#
+			#if not check_is_ice(next_pos):
+				#slide_end = next_pos
+				#break
+			#
+			#slide_end = next_pos
+#
+	## Stein sliden lassen
+	#if is_pushing_stone_on_ice and next_collision.size() > 0:
+		#if next_collision[0].collider is Stone:
+			#next_collision[0].collider.slide(slide_end)
+			#print(slide_end)
+	#
+	##check_if_collides(next_pos, block_mask)
+	#var tile_after_slide_end = slide_end + (current_direction * Constants.GRID_SIZE)
+	#if not is_pushing_stone_on_ice and slide_end != target_position: 
+		#if not is_pushing_stone_on_ice and not check_is_ice(tile_after_slide_end) and not check_if_collides(tile_after_slide_end, block_mask):
+			#target_position = tile_after_slide_end
+		#else:
+			#target_position = slide_end
+
+# FUNKTIONIERT aber spieler bleibt vor boden auf eis stehen
+#func _move_on_ice():
+	#var block_mask = (1 << Constants.LAYER_BIT_WALL_AND_PLAYER) | (1 << Constants.LAYER_BIT_DOOR) | (1 << Constants.LAYER_BIT_CREATURE) | (1 << Constants.LAYER_BIT_STONE)
+	#var slide_end = target_position
+	#
+	## Ist Feld vor Spieler Eis?
+	#var ice_in_front = check_is_ice(position + current_direction * Constants.GRID_SIZE)
+	#
+	#var next_collision = get_collision_on_tile(slide_end, 1 << Constants.LAYER_BIT_STONE)
+	#if not is_pushing_stone_on_ice and next_collision.size() > 0:
+		#if next_collision[0].collider is Stone:
+			#is_pushing_stone_on_ice = true
+#
+	#if ice_in_front:
+		#while true:
+			#var next_pos = slide_end + current_direction * Constants.GRID_SIZE
+			#
+			#
+			#if check_if_collides(next_pos, block_mask): # wenn nächster step blockiert ist, slide_end nicht verlängern
+				#break
+			#
+			#if not is_pushing_stone_on_ice and not check_is_ice(next_pos):
+				#break
+			#
+			#if not check_is_ice(next_pos):
+				#slide_end = next_pos
+				#break
+			#
+			#slide_end = next_pos
+#
+	## Stein sliden lassen
+	#if is_pushing_stone_on_ice and next_collision.size() > 0:
+		#if next_collision[0].collider is Stone:
+			#next_collision[0].collider.slide(slide_end)
+			#print(slide_end)
+	## 
+	#if not is_pushing_stone_on_ice and slide_end != target_position: 
+		#target_position = slide_end
+
+
+func check_is_ice(pos: Vector2) -> bool:
+	#var space = get_world_2d().direct_space_state
+	#var query = PhysicsPointQueryParameters2D.new()
+	#query.position = pos
+	#query.collision_mask = 1 << Constants.LAYER_BIT_ICE
+	#var result = space.intersect_point(query, 1)
+	#return not result.is_empty()
+	var space_state = get_world_2d().direct_space_state
+	var ice_query = PhysicsPointQueryParameters2D.new()
+	ice_query.position = pos
+	ice_query.collision_mask = 1 << Constants.LAYER_BIT_ICE
+	ice_query.collide_with_bodies = true
+	ice_query.collide_with_areas  = true
+	return not space_state.intersect_point(ice_query, 1).is_empty()
+
 func set_is_on_ice(new_pos) -> bool:
 	var space_state = get_world_2d().direct_space_state
 	var ice_query = PhysicsPointQueryParameters2D.new()
@@ -308,6 +397,26 @@ func set_is_on_ice(new_pos) -> bool:
 	ice_query.collide_with_areas  = true
 	is_on_ice = not space_state.intersect_point(ice_query, 1).is_empty()
 	return is_on_ice
+
+func check_if_collides(_position, layer_mask) -> bool:
+	var space = get_world_2d().direct_space_state
+	var query = PhysicsPointQueryParameters2D.new()
+	query.position = _position
+	query.collision_mask = layer_mask
+	var result = space.intersect_point(query, 1)
+	if not result.is_empty():
+		if result[0].collider is Door:
+			if not result[0].collider.door_is_closed:
+				return false
+	return not result.is_empty()
+
+func get_collision_on_tile(_position, layer_mask):
+	var space = get_world_2d().direct_space_state
+	var query = PhysicsPointQueryParameters2D.new()
+	query.position = _position
+	query.collision_mask = layer_mask
+	return space.intersect_point(query, 1)
+
 
 func get_neighbor_in_direction_is_mergable(_direction : Vector2) -> Creature:
 	if currently_possessed_creature != null:

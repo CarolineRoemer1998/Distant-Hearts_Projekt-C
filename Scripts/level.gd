@@ -29,6 +29,7 @@ func _ready() -> void:
 	Globals.SHOW_WIN_SCREEN.connect(show_win_screen)
 
 
+@warning_ignore("unused_parameter")
 func _process(delta: float) -> void:
 	if Input.is_action_pressed("Undo"):
 		is_undo_pressed = true

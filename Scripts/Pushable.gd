@@ -26,7 +26,8 @@ func set_info(info : Dictionary):
 	is_sliding = false
 
 func slide(goal_position: Vector2) -> bool:
-	if is_sliding:
+	if not is_sliding:
+		is_sliding = true
 		target_position = goal_position
 		return true
 	else:
