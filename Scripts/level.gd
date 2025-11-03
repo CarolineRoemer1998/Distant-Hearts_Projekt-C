@@ -83,10 +83,10 @@ func save_level_state(player_info : Dictionary):
 		# Buttons speichern
 		for button in get_tree().get_nodes_in_group(str(Constants.GROUP_NAME_BUTTONS)):
 			if button != null:
-				if not state.has(Constants.GROUP_NAME_DOORS): 
-					state[Constants.GROUP_NAME_DOORS] = []
+				if not state.has(Constants.GROUP_NAME_BUTTONS): 
+					state[Constants.GROUP_NAME_BUTTONS] = []
 				
-				state[Constants.GROUP_NAME_DOORS].append(button.get_info())
+				state[Constants.GROUP_NAME_BUTTONS].append(button.get_info())
 		
 		# Stones speichern
 		for stone in get_tree().get_nodes_in_group(str(Constants.GROUP_NAME_STONES)):
@@ -138,8 +138,8 @@ func set_state_of_component(component_name : String):
 		for component in get_tree().get_nodes_in_group(component_name):
 			if component != null:
 				if StateSaver.saved_states.size() > 0:
-					if component is Player: play_undo_particles(component.global_position)
+					if component is Player: 
+						play_undo_particles(component.global_position)
 					
 					component.set_info(component_states[0])
-					
 					component_states.remove_at(0)

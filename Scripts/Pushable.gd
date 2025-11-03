@@ -47,3 +47,4 @@ func _process(delta):
 		if position == target_position:
 			is_moving = false
 			is_sliding = false
+			Signals.stone_reached_target.emit()
