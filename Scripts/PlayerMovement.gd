@@ -166,14 +166,6 @@ func move(delta):
 				target_position, Constants.PLAYER_MOVE_SPEED * delta
 			)
 		
-		# Falls man beim Stein auf Eis schieben nochmal in die Richtung geht, vor Stein anhalten
-		#var stone_collision = get_collision_on_tile(target_position, 1 << Constants.LAYER_BIT_STONE)
-		#if stone_collision.size() > 0 and abs(target_position[0] - position[0]) > 64 and abs(target_position[1] - position[1]) > 64:
-			#if stone_collision[0].collider is Stone:
-				#target_position = target_position - (current_direction*Constants.GRID_SIZE)
-				
-		
-		
 		if position == target_position:
 			is_sliding = false
 			is_pushing_stone_on_ice = false
@@ -274,26 +266,19 @@ func _move_on_ice():
 			if FieldReservation.is_reserved(next_pos):
 				break
 			
-			# wenn nächster step blockiert ist, bleibt slide_end wie bisher
-			#if check_if_collides(next_pos, block_mask): 
-				#print("Abbruch")
-				#break
-			
-			var stone = get_collision_on_tile(next_pos, block_mask)
-			if not stone.is_empty():
-				#print(stone[0].collider is Stone)
-				#print(stone[0].collider.is_sliding)
-				#print()
-				if stone[0].collider is Stone and stone[0].collider.is_sliding:
-					#if FieldReservation.get_reserved_spot(stone[0].collider) != Vector2.ZERO:
-					if FieldReservation.is_reserved(stone[0].collider.target_position):
-						slide_end = stone[0].collider.target_position - current_direction * Constants.GRID_SIZE
+			var collision = get_collision_on_tile(next_pos, block_mask)
+			if not collision.is_empty():
+				# Falls sich in der Laufbahn ein aktuell slidender Stein befindet, 
+				# target_position direkt auf dessen "target_position minus ein Feld" setzen
+				if collision[0].collider is Stone and collision[0].collider.is_sliding:
+					if FieldReservation.is_reserved(collision[0].collider.target_position):
+						slide_end = collision[0].collider.target_position - current_direction * Constants.GRID_SIZE
 						target_position = slide_end
 						print(slide_end)
 						break
-				else:
+				# bei anderer collision bleibt slide_end wie bisher
+				elif check_if_collides(next_pos, block_mask):
 					break
-					
 			
 			# wenn man vom Eis auf normalen Boden rutscht
 			if not is_pushing_stone_on_ice and not check_is_ice(next_pos):
@@ -310,10 +295,7 @@ func _move_on_ice():
 	if is_pushing_stone_on_ice and next_collision.size() > 0:
 		if next_collision[0].collider is Stone:
 			next_collision[0].collider.slide(slide_end)
-			
 	
-	#if FieldReservation.is_reserved(slide_end):
-		#slide_end -= current_direction * Constants.GRID_SIZE
 	
 	var tile_after_slide_end = slide_end + (current_direction * Constants.GRID_SIZE)
 	
