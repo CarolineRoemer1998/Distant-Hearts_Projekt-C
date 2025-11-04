@@ -26,7 +26,7 @@ func _ready() -> void:
 		Signals.undo_timer_continuous_timeout.connect(_on_undo_timer_continious_timeout)
 		
 	Signals.state_changed.connect(save_level_state)
-	Globals.SHOW_WIN_SCREEN.connect(show_win_screen)
+	Signals.SHOW_WIN_SCREEN.connect(show_win_screen)
 
 
 @warning_ignore("unused_parameter")

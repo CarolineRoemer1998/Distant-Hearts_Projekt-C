@@ -63,7 +63,6 @@ func set_info(info : Dictionary):
 	if info.get("has_not_moved"):
 		set_animation_direction_by_val(init_direction)
 	has_not_moved = info.get("has_not_moved")
-	
 
 
 func set_animation_direction():
@@ -77,6 +76,29 @@ func set_animation_direction_by_val(direction):
 		#return true
 	#else:
 		#return false
+
+func get_neighbor_in_direction_is_mergable(_direction : Vector2) -> Creature:
+	match _direction:
+		Vector2.RIGHT: return neighbor_right
+		Vector2.DOWN: return neighbor_bottom
+		Vector2.LEFT: return neighbor_left
+		Vector2.UP: return neighbor_top
+	return null
+
+func merge(_direction : Vector2, neighbor : Creature) -> bool:
+	if neighbor != null:
+		var merged_creature = get_tree().get_first_node_in_group("MergedCreature")
+		if merged_creature is MergedCreature:
+			merged_creature.position = position + _direction
+			await get_tree().create_timer(0.1).timeout # creatures verschwinden, merged_creature taucht nach 0.1 sec auf
+			shrink()
+			neighbor.shrink()
+			merged_creature.visible = true
+			merged_creature.appear()
+			#is_active = false
+			Signals.level_done.emit()
+			return true
+	return false
 
 func shrink():
 	animation_player.play("Shrink")

@@ -17,7 +17,7 @@ func emit_hearts():
 	gpu_particles_2d.emitting = true
 	
 func emit_win_screen():
-	Globals.SHOW_WIN_SCREEN.emit()
+	Signals.SHOW_WIN_SCREEN.emit()
 
 func play_win_sound():
 	audio_win.play()

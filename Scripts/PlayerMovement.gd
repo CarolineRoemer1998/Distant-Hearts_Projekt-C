@@ -42,6 +42,7 @@ func _ready():
 	self.add_to_group(Constants.GROUP_NAME_PLAYER)
 	
 	Signals.stone_reached_target.connect(set_is_not_pushing_stone_on_ice)
+	Signals.level_done.connect(set_not_is_active)
 	
 	# Spieler korrekt auf Grid ausrichten
 	target_position = position.snapped(Constants.GRID_SIZE / 2)
@@ -50,6 +51,7 @@ func _ready():
 
 
 func _process(delta):
+	print(can_move)
 	move(delta)
 	update_heart_visibility()
 	handle_input()
@@ -72,20 +74,15 @@ func handle_input():
 				direction = Vector2.RIGHT
 			
 			can_move = false
-			if not is_pushing_stone_on_ice:
-				step_timer.start()
+			step_timer.start()
 			
 			if is_moving:
 				buffered_direction = direction
 			else:
 				if evaluate_can_move_in_direction():
 					set_is_moving(true)
-					
-					
 			
-			set_player_animation_direction(direction)
-			set_creature_animation_direction(direction)
-		
+			set_animation_direction(direction)
 		
 		# Interaktionsbutton
 		elif Input.is_action_just_pressed("Interact"):
@@ -96,8 +93,6 @@ func handle_input():
 						unpossess()
 					else:
 						possess()
-		
-
 	else:
 		# Szenewechsel durch Tastatur, Maus oder Gamepad
 		if Input.is_action_just_pressed("ui_accept"):
@@ -134,8 +129,7 @@ func set_info(info : Dictionary):
 	can_move = true
 	set_is_not_pushing_stone_on_ice()
 	
-	set_player_animation_direction(direction)
-	set_creature_animation_direction(direction)
+	set_animation_direction(direction)
 	
 	if info.get("currently_possessed_creature") and currently_possessed_creature == null:
 		possess()
@@ -143,15 +137,14 @@ func set_info(info : Dictionary):
 		unpossess()
 
 
-func set_player_animation_direction(_direction: Vector2):
+func set_animation_direction(_direction: Vector2):
 	if _direction != Vector2.ZERO:
 		animation_tree.set("parameters/Idle/BlendSpace2D/blend_position", _direction)
-
-func set_creature_animation_direction(_direction: Vector2):
 	if currently_possessed_creature:
 		currently_possessed_creature.current_direction = direction
 		if _direction != Vector2.ZERO:
 			currently_possessed_creature.animation_tree.set("parameters/Idle/BlendSpace2D/blend_position", _direction)
+
 
 
 func move(delta):
@@ -174,8 +167,6 @@ func move(delta):
 			if buffered_direction != Vector2.ZERO:
 				set_is_moving(evaluate_can_move_in_direction())
 				buffered_direction = Vector2.ZERO
-
-
 
 func evaluate_can_move_in_direction() -> bool:
 	var new_pos = target_position + direction * Constants.GRID_SIZE
@@ -252,9 +243,9 @@ func _move_on_ice():
 
 	
 	# Ist Feld vor Spieler Eis?
-	var ice_in_front = check_is_ice(position + current_direction * Constants.GRID_SIZE)
+	var ice_in_front = Helper.check_is_ice(position + current_direction * Constants.GRID_SIZE, get_world_2d())
 	
-	var next_collision = get_collision_on_tile(slide_end, 1 << Constants.LAYER_BIT_STONE)
+	var next_collision = Helper.get_collision_on_tile(slide_end, 1 << Constants.LAYER_BIT_STONE, get_world_2d())
 	if  next_collision.size() > 0:
 		if next_collision[0].collider is Stone:
 			is_pushing_stone_on_ice = true
@@ -266,7 +257,7 @@ func _move_on_ice():
 			if FieldReservation.is_reserved(next_pos):
 				break
 			
-			var collision = get_collision_on_tile(next_pos, block_mask)
+			var collision = Helper.get_collision_on_tile(next_pos, block_mask, get_world_2d())
 			if not collision.is_empty():
 				# Falls sich in der Laufbahn ein aktuell slidender Stein befindet, 
 				# target_position direkt auf dessen "target_position minus ein Feld" setzen
@@ -277,15 +268,15 @@ func _move_on_ice():
 						print(slide_end)
 						break
 				# bei anderer collision bleibt slide_end wie bisher
-				elif check_if_collides(next_pos, block_mask):
+				elif Helper.check_if_collides(next_pos, block_mask, get_world_2d()):
 					break
 			
 			# wenn man vom Eis auf normalen Boden rutscht
-			if not is_pushing_stone_on_ice and not check_is_ice(next_pos):
+			if not is_pushing_stone_on_ice and not Helper.check_is_ice(next_pos, get_world_2d()):
 				slide_end = next_pos
 				break
 			
-			if not check_is_ice(next_pos):
+			if not Helper.check_is_ice(next_pos, get_world_2d()):
 				slide_end = next_pos
 				break
 			
@@ -301,23 +292,13 @@ func _move_on_ice():
 	
 	if not is_pushing_stone_on_ice:
 		# bewegt sich bis zum berechneten slide_end
-		if check_if_collides(tile_after_slide_end, block_mask) or not check_is_ice(tile_after_slide_end):
+		if Helper.check_if_collides(tile_after_slide_end, block_mask, get_world_2d()) or not Helper.check_is_ice(tile_after_slide_end, get_world_2d()):
 			target_position = slide_end
 		# bewegt sich nur ein Feld weiter, von Eis auf Boden
-		if not check_is_ice(tile_after_slide_end): 
+		if not Helper.check_is_ice(tile_after_slide_end, get_world_2d()): 
 			is_on_ice = false
 			
 	is_moving_on_ice = true
-
-
-func check_is_ice(pos: Vector2) -> bool:
-	var space_state = get_world_2d().direct_space_state
-	var ice_query = PhysicsPointQueryParameters2D.new()
-	ice_query.position = pos
-	ice_query.collision_mask = 1 << Constants.LAYER_BIT_ICE
-	ice_query.collide_with_bodies = true
-	ice_query.collide_with_areas  = true
-	return not space_state.intersect_point(ice_query, 1).is_empty()
 
 func set_is_on_ice(new_pos) -> bool:
 	var space_state = get_world_2d().direct_space_state
@@ -329,54 +310,13 @@ func set_is_on_ice(new_pos) -> bool:
 	is_on_ice = not space_state.intersect_point(ice_query, 1).is_empty()
 	return is_on_ice
 
-func check_if_collides(_position, layer_mask) -> bool:
-	var space = get_world_2d().direct_space_state
-	var query = PhysicsPointQueryParameters2D.new()
-	query.position = _position
-	query.collision_mask = layer_mask
-	var result = space.intersect_point(query, 1)
-	if not result.is_empty():
-		if result[0].collider is Door:
-			if not result[0].collider.door_is_closed:
-				return false
-		#if result[0].collider is Stone and is_pushing_stone_on_ice:
-			#if result[0].collider.is_sliding:
-				#return false
-	return not result.is_empty()
-
-func get_collision_on_tile(_position, layer_mask):
-	var space = get_world_2d().direct_space_state
-	var query = PhysicsPointQueryParameters2D.new()
-	query.position = _position
-	query.collision_mask = layer_mask
-	return space.intersect_point(query, 1)
 
 func set_is_not_pushing_stone_on_ice():
 	is_pushing_stone_on_ice = false
 
-func get_neighbor_in_direction_is_mergable(_direction : Vector2) -> Creature:
-	if currently_possessed_creature != null:
-		match _direction:
-			Vector2.RIGHT: return currently_possessed_creature.neighbor_right
-			Vector2.DOWN: return currently_possessed_creature.neighbor_bottom
-			Vector2.LEFT: return currently_possessed_creature.neighbor_left
-			Vector2.UP: return currently_possessed_creature.neighbor_top
-	return null
 
-func merge(_direction : Vector2, neighbor : Creature) -> bool:
-	if neighbor != null:
-		var merged_creature = get_tree().get_first_node_in_group("MergedCreature")
-		if merged_creature is MergedCreature:
-			merged_creature.position = currently_possessed_creature.position + _direction
-			await get_tree().create_timer(0.1).timeout # creatures verschwinden, merged_creature taucht nach 0.1 sec auf
-			currently_possessed_creature.shrink()
-			neighbor.shrink()
-			merged_creature.visible = true
-			merged_creature.appear()
-			is_active = false
-			return true
-	return false
-
+func set_not_is_active():
+	is_active = false
 
 func set_is_moving(value: bool):
 	is_moving = value
@@ -386,8 +326,9 @@ func set_is_moving(value: bool):
 		current_direction = direction
 		
 		set_is_on_ice(target_position)
-		if get_neighbor_in_direction_is_mergable(direction) != null:
-			await merge(direction*Constants.GRID_SIZE, get_neighbor_in_direction_is_mergable(direction))
+		if currently_possessed_creature:
+			if currently_possessed_creature.get_neighbor_in_direction_is_mergable(direction) != null:
+				await currently_possessed_creature.merge(direction*Constants.GRID_SIZE, currently_possessed_creature.get_neighbor_in_direction_is_mergable(direction))
 		
 		spawn_trail(position)
 		
@@ -429,13 +370,12 @@ func possess():
 		
 		# direction an Creature anpassen
 		direction = currently_possessed_creature.current_direction
-		set_player_animation_direction(direction)
-		set_creature_animation_direction(direction)
+		set_animation_direction(direction)
 		
 		# Position sofort synchronisieren
 		currently_possessed_creature.position = target_position
 		currently_possessed_creature.target_position = target_position
-		
+
 
 func change_visibility(make_visible : bool):
 	if make_visible:
