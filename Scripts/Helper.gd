@@ -25,7 +25,7 @@ func check_if_collides(_position, layer_mask, world : World2D) -> bool:
 				#return false
 	return not result.is_empty()
 
-func get_collision_on_tile(_position, layer_mask, world : World2D):
+func get_collision_on_tile(_position, layer_mask, world : World2D) -> Array[Dictionary]:
 	var space = world.direct_space_state
 	var query = PhysicsPointQueryParameters2D.new()
 	query.position = _position

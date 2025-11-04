@@ -51,7 +51,6 @@ func _ready():
 
 
 func _process(delta):
-	print(can_move)
 	move(delta)
 	update_heart_visibility()
 	handle_input()
@@ -146,7 +145,6 @@ func set_animation_direction(_direction: Vector2):
 			currently_possessed_creature.animation_tree.set("parameters/Idle/BlendSpace2D/blend_position", _direction)
 
 
-
 func move(delta):
 	if is_moving:
 		if is_on_ice and currently_possessed_creature and not is_moving_on_ice:
@@ -170,43 +168,61 @@ func move(delta):
 
 func evaluate_can_move_in_direction() -> bool:
 	var new_pos = target_position + direction * Constants.GRID_SIZE
-	var space_state = get_world_2d().direct_space_state
-	
-	# Prüfen ob ein Objekt am Zielort ist
-	var query := PhysicsPointQueryParameters2D.new()
-	query.position = new_pos
+	var world = get_world_2d()
 	
 	# Queries für alle relevanten Bit Layers
-	query.collision_mask = (1 << Constants.LAYER_BIT_STONE)
-	var result_stones = space_state.intersect_point(query, 1)
+	var result_stones = Helper.get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_STONE), world)
+	var result_doors = Helper.get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_DOOR), world)
+	var result_wall_outside = Helper.get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_LEVEL_WALL), world)
+	var result_wall_inside = Helper.get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_WALL_AND_PLAYER), world)
 	
-	query.collision_mask = (1 << Constants.LAYER_BIT_DOOR)
-	var result_doors = space_state.intersect_point(query, 1)
-	
-	var result_wall_inside = []
-	if currently_possessed_creature != null:
-		query.collision_mask = (1 << Constants.LAYER_BIT_WALL_AND_PLAYER)
-		result_wall_inside = space_state.intersect_point(query, 1)
-	
-	var result_wall_outside = []
-	query.collision_mask = (1 << Constants.LAYER_BIT_LEVEL_WALL)
-	result_wall_outside = space_state.intersect_point(query, 1)
-	
-	if not result_wall_outside.is_empty():
-		return false
-	
-	# Kein Objekt: Bewegung frei
-	if currently_possessed_creature == null or (result_stones.is_empty() and result_doors.is_empty() and result_wall_inside.is_empty()):
+	if (result_stones.is_empty() and result_doors.is_empty() and result_wall_outside.is_empty() and result_wall_inside.is_empty()) or (currently_possessed_creature == null and result_wall_outside.is_empty()):
 		return true
 	
-	return check_object_in_direction_is_walkable(direction, result_stones, result_doors, result_wall_inside, new_pos, space_state)
-
-func check_object_in_direction_is_walkable(_direction, stone, door, wall, new_pos, space_state) -> bool:
-	# Wand vor Spieler, keine Bewegung
-	if not wall.is_empty():
+	if not result_wall_outside.is_empty() or (currently_possessed_creature != null and (not result_wall_inside.is_empty() and not result_stones.is_empty() and not result_doors.is_empty())):
 		return false
 	
 	# Tür vor Spieler
+	
+	if check_can_walk_on_door(result_doors, result_stones):
+		return true
+	
+	return check_can_push_object_in_direction(new_pos, result_stones, world)
+
+#func evaluate_can_move_in_direction() -> bool:
+	#var new_pos = target_position + direction * Constants.GRID_SIZE
+	#var space_state = get_world_2d().direct_space_state
+	#
+	## Prüfen ob ein Objekt am Zielort ist
+	#var query := PhysicsPointQueryParameters2D.new()
+	#query.position = new_pos
+	#
+	## Queries für alle relevanten Bit Layers
+	#query.collision_mask = (1 << Constants.LAYER_BIT_STONE)
+	#var result_stones = space_state.intersect_point(query, 1)
+	#
+	#query.collision_mask = (1 << Constants.LAYER_BIT_DOOR)
+	#var result_doors = space_state.intersect_point(query, 1)
+	#
+	#var result_wall_inside = []
+	#if currently_possessed_creature != null:
+		#query.collision_mask = (1 << Constants.LAYER_BIT_WALL_AND_PLAYER)
+		#result_wall_inside = space_state.intersect_point(query, 1)
+	#
+	#var result_wall_outside = []
+	#query.collision_mask = (1 << Constants.LAYER_BIT_LEVEL_WALL)
+	#result_wall_outside = space_state.intersect_point(query, 1)
+	#
+	#if not result_wall_outside.is_empty():
+		#return false
+	#
+	## Kein Objekt: Bewegung frei
+	#if currently_possessed_creature == null or (result_stones.is_empty() and result_doors.is_empty() and result_wall_inside.is_empty()):
+		#return true
+	#
+	#return check_can_push_object_in_direction(direction, result_stones, result_doors, result_wall_inside, new_pos, space_state)
+
+func check_can_walk_on_door(door, stone) -> bool:
 	if not door.is_empty():
 		# Tür verschlossen, keine Bewegung
 		if door[0].collider.door_is_closed:
@@ -214,28 +230,60 @@ func check_object_in_direction_is_walkable(_direction, stone, door, wall, new_po
 		# Tür offen
 		elif not door[0].collider.door_is_closed and stone.is_empty():
 			return true
-	
+	return false
+
+func check_can_push_object_in_direction(new_pos, stone, world) -> bool:
 	# Stein, checken ob Feld hinter Stein frei ist
 	if not stone.is_empty():
-		var push_target = new_pos + _direction * Constants.GRID_SIZE
-		var push_query := PhysicsPointQueryParameters2D.new()
-		push_query.position = push_target
-		push_query.collision_mask = (1 << Constants.LAYER_BIT_STONE) | (1 << Constants.LAYER_BIT_DOOR) | (1 << Constants.LAYER_BIT_WALL_AND_PLAYER) | (1 << Constants.LAYER_BIT_CREATURE)
-		var push_result = space_state.intersect_point(push_query, 1)
-		
+		var push_collision = Helper.get_collision_on_tile(new_pos + direction * Constants.GRID_SIZE, Constants.LAYER_MASK_BLOCKING_OBJECTS, world)
+		# nichts im Weg
+		if push_collision.is_empty():
+			if stone[0].collider.push(direction * Constants.GRID_SIZE):
+				return true
 		# falls Tür hinter Stein, checken ob sie offen ist
-		for i in push_result:
+		for i in push_collision:
 			if i.collider is Door and not i.collider.door_is_closed:
-				if stone[0].collider.push(_direction * Constants.GRID_SIZE):
-					return true
-			
-		# keine Tür oder Tür offen
-		if push_result.is_empty():
-			if stone[0].collider.push(_direction * Constants.GRID_SIZE):
+				stone[0].collider.push(direction * Constants.GRID_SIZE)
 				return true
 	
 	buffered_direction = Vector2.ZERO
 	return false
+
+#func check_can_push_object_in_direction(_direction, stone, door, wall, new_pos, space_state) -> bool:
+	## Wand vor Spieler, keine Bewegung
+	#if not wall.is_empty():
+		#return false
+	#
+	## Tür vor Spieler
+	#if not door.is_empty():
+		## Tür verschlossen, keine Bewegung
+		#if door[0].collider.door_is_closed:
+			#return false
+		## Tür offen
+		#elif not door[0].collider.door_is_closed and stone.is_empty():
+			#return true
+	#
+	## Stein, checken ob Feld hinter Stein frei ist
+	#if not stone.is_empty():
+		#var push_target = new_pos + _direction * Constants.GRID_SIZE
+		#var push_query := PhysicsPointQueryParameters2D.new()
+		#push_query.position = push_target
+		#push_query.collision_mask = (1 << Constants.LAYER_BIT_STONE) | (1 << Constants.LAYER_BIT_DOOR) | (1 << Constants.LAYER_BIT_WALL_AND_PLAYER) | (1 << Constants.LAYER_BIT_CREATURE)
+		#var push_result = space_state.intersect_point(push_query, 1)
+		#
+		## falls Tür hinter Stein, checken ob sie offen ist
+		#for i in push_result:
+			#if i.collider is Door and not i.collider.door_is_closed:
+				#if stone[0].collider.push(_direction * Constants.GRID_SIZE):
+					#return true
+			#
+		## keine Tür oder Tür offen
+		#if push_result.is_empty():
+			#if stone[0].collider.push(_direction * Constants.GRID_SIZE):
+				#return true
+	#
+	#buffered_direction = Vector2.ZERO
+	#return false
 
 func _move_on_ice():
 	var block_mask = (1 << Constants.LAYER_BIT_WALL_AND_PLAYER) | (1 << Constants.LAYER_BIT_DOOR) | (1 << Constants.LAYER_BIT_CREATURE) | (1 << Constants.LAYER_BIT_STONE)
