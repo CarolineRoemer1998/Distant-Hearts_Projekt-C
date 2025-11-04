@@ -10,6 +10,7 @@ var is_sliding := false
 
 func _ready():
 	add_to_group(str(Constants.GROUP_NAME_STONES))
+	activate_layer()
 	target_position = position.snapped(Constants.GRID_SIZE / 2)
 	position = target_position
 
@@ -27,6 +28,7 @@ func set_info(info : Dictionary):
 
 func slide(goal_position: Vector2) -> bool:
 	if not is_sliding:
+		FieldReservation.reserve(self, [goal_position])
 		is_sliding = true
 		target_position = goal_position
 		return true
@@ -41,12 +43,18 @@ func push(goal_position: Vector2) -> bool:
 	else:
 		return false
 
+func activate_layer():
+	set_collision_layer_value(Constants.LAYER_BIT_STONE, true)
+
+func deactivate_layer():
+	set_collision_layer_value(Constants.LAYER_BIT_STONE, false)
+
 func _process(delta):
 	if is_moving or is_sliding:
 		position = position.move_toward(target_position, MOVE_SPEED * delta)
 		if position == target_position:
 			is_moving = false
 			is_sliding = false
-			print("Stone Position: ", position)
+			#print("Stone Position: ", position)
 			FieldReservation.release(self)
 			Signals.stone_reached_target.emit()
