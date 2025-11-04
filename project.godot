@@ -25,6 +25,7 @@ AudioManager="*res://Scenes/Menu/AudioManager.tscn"
 StateSaver="*res://Scripts/StateSaver.gd"
 Signals="*res://Scripts/Signals.gd"
 Constants="*res://Scripts/Constants.gd"
+FieldReservation="*res://Scripts/FieldReservation.gd"
 
 [display]
 

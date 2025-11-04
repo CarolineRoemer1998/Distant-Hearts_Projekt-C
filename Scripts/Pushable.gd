@@ -47,4 +47,6 @@ func _process(delta):
 		if position == target_position:
 			is_moving = false
 			is_sliding = false
+			print("Stone Position: ", position)
+			FieldReservation.release(self)
 			Signals.stone_reached_target.emit()

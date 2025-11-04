@@ -29,6 +29,7 @@ var buffered_direction: Vector2 = Vector2.ZERO
 var target_position: Vector2
 
 var is_moving := false
+var is_moving_on_ice := false
 var is_on_ice := false
 var is_sliding := false
 var is_pushing_stone_on_ice := false
@@ -155,7 +156,7 @@ func set_creature_animation_direction(_direction: Vector2):
 
 func move(delta):
 	if is_moving:
-		if is_on_ice and currently_possessed_creature:
+		if is_on_ice and currently_possessed_creature and not is_moving_on_ice:
 			_move_on_ice()
 			
 		position = position.move_toward(target_position, Constants.PLAYER_MOVE_SPEED * delta)
@@ -167,17 +168,16 @@ func move(delta):
 		
 		# Falls man beim Stein auf Eis schieben nochmal in die Richtung geht, vor Stein anhalten
 		var stone_collision = get_collision_on_tile(target_position, 1 << Constants.LAYER_BIT_STONE)
-		print(stone_collision.size())
-		print("Target: ", target_position)
-		print("Target Minus: ", target_position - (current_direction*Constants.GRID_SIZE))
 		if stone_collision.size() > 0 and abs(target_position[0] - position[0]) > 64 and abs(target_position[1] - position[1]) > 64:
 			if stone_collision[0].collider is Stone:
 				target_position = target_position - (current_direction*Constants.GRID_SIZE)
+				
 		#print(abs(target_position[0] - position[0]))
 		if position == target_position:
 			is_sliding = false
 			is_pushing_stone_on_ice = false
 			set_is_moving(false)
+			is_moving_on_ice = false
 			if buffered_direction != Vector2.ZERO:
 				set_is_moving(evaluate_can_move_in_direction())
 				buffered_direction = Vector2.ZERO
@@ -270,10 +270,13 @@ func _move_on_ice():
 		while true:
 			var next_pos = slide_end + current_direction * Constants.GRID_SIZE
 			
-			if check_if_collides(next_pos, block_mask): # wenn nächster step blockiert ist, slide_end nicht verlängern
+			# wenn nächster step blockiert ist, bleibt slide_end wie bisher
+			if check_if_collides(next_pos, block_mask): 
 				break
 			
+			# wenn man vom Eis auf normalen Boden rutscht
 			if not is_pushing_stone_on_ice and not check_is_ice(next_pos):
+				slide_end = next_pos
 				break
 			
 			if not check_is_ice(next_pos):
@@ -289,17 +292,18 @@ func _move_on_ice():
 			can_move = false # neu
 			step_timer.stop() # neu
 	
-	# TODO: Aufräumen
+	
 	var tile_after_slide_end = slide_end + (current_direction * Constants.GRID_SIZE)
+	
 	if not is_pushing_stone_on_ice:
-		if slide_end != target_position:
-			if check_if_collides(tile_after_slide_end, block_mask):
-				target_position = slide_end
-				return
-			elif not check_is_ice(tile_after_slide_end) and not check_if_collides(tile_after_slide_end, block_mask):
-				if (slide_end != target_position and not check_is_ice(tile_after_slide_end)) or (slide_end == target_position):
-					target_position = tile_after_slide_end
-					is_on_ice = false
+		# bewegt sich bis zum berechneten slide_end
+		if check_if_collides(tile_after_slide_end, block_mask) or not check_is_ice(tile_after_slide_end):
+			target_position = slide_end
+		# bewegt sich nur ein Feld weiter, von Eis auf Boden
+		if not check_is_ice(tile_after_slide_end): 
+			is_on_ice = false
+	
+	is_moving_on_ice = true
 
 
 func check_is_ice(pos: Vector2) -> bool:
