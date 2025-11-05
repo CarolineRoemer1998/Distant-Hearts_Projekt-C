@@ -65,6 +65,8 @@ func push():
 	if get_can_be_pushed(buffer_target_position, buffer_direction):
 		target_position = buffer_target_position + (buffer_direction * Constants.GRID_SIZE)
 		is_moving = true
+		if Helper.check_is_ice(target_position, get_world_2d()):
+			slide(Helper.get_slide_end(Constants.LAYER_MASK_BLOCKING_OBJECTS, buffer_direction, target_position, false, get_world_2d()))
 		
 	buffer_target_position = Vector2.ZERO
 	buffer_direction = Vector2.ZERO

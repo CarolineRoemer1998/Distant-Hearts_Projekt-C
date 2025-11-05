@@ -192,33 +192,15 @@ func evaluate_can_move_in_direction(_position: Vector2, _direction: Vector2) -> 
 	return false
 
 func move_on_ice():
-	# Push Stone on Ice if Stone is in front
-	var next_collision = Helper.get_collision_on_tile(target_position, Constants.LAYER_MASK_BLOCKING_OBJECTS, get_world_2d())
-	
-	var stone_target = Helper.get_slide_end(Constants.LAYER_MASK_BLOCKING_OBJECTS, current_direction, target_position, is_pushing_stone_on_ice, get_world_2d())
-	
-	if next_collision.size() > 0 and next_collision[0].collider is Stone:
-		if not is_pushing_stone_on_ice:
-			is_pushing_stone_on_ice = true
-			next_collision[0].collider.slide(stone_target)
-	
 	target_position = Helper.get_slide_end(Constants.LAYER_MASK_BLOCKING_OBJECTS, current_direction, target_position, is_pushing_stone_on_ice, get_world_2d())
 	
-	if not is_pushing_stone_on_ice:
-		if not Helper.check_is_ice(target_position, get_world_2d()): 
-			is_on_ice = false
+	if FieldReservation.is_reserved(target_position):
+		target_position -= current_direction * Constants.GRID_SIZE
+	
+	if not Helper.check_is_ice(target_position, get_world_2d()): 
+		is_on_ice = false
 	
 	is_moving_on_ice = true
-
-func set_is_on_ice(new_pos) -> bool:
-	var space_state = get_world_2d().direct_space_state
-	var ice_query = PhysicsPointQueryParameters2D.new()
-	ice_query.position = new_pos
-	ice_query.collision_mask = 1 << Constants.LAYER_BIT_ICE
-	ice_query.collide_with_bodies = true
-	ice_query.collide_with_areas  = true
-	is_on_ice = not space_state.intersect_point(ice_query, 1).is_empty()
-	return is_on_ice
 
 func set_is_not_pushing_stone_on_ice():
 	is_pushing_stone_on_ice = false
@@ -233,14 +215,13 @@ func set_is_moving(value: bool):
 		target_position = target_position + direction * Constants.GRID_SIZE
 		current_direction = direction
 		
-		set_is_on_ice(target_position)
+		is_on_ice = Helper.check_is_ice(target_position, get_world_2d())
 		
 		if currently_possessed_creature:
 			if currently_possessed_creature.get_neighbor_in_direction_is_mergable(direction) != null:
 				await currently_possessed_creature.merge(direction*Constants.GRID_SIZE, currently_possessed_creature.get_neighbor_in_direction_is_mergable(direction))
 			if pushable_stone_in_direction != null:
 				pushable_stone_in_direction.push()
-			
 		
 		spawn_trail(position)
 		
@@ -286,7 +267,6 @@ func possess():
 		currently_possessed_creature.position = target_position
 		currently_possessed_creature.target_position = target_position
 
-
 func change_visibility(make_visible : bool):
 	if make_visible:
 		animated_sprite_2d.modulate = Constants.PLAYER_MODULATE_VISIBLE
@@ -297,23 +277,19 @@ func change_visibility(make_visible : bool):
 		label_press_f_to_control.visible = make_visible
 		label_press_f_to_stop_control.visible = !make_visible
 
-
 func _on_creature_detected(body: Node) -> void:
 	if body is Creature:
 		set_hovering_creature(true, body)
 
-
 func _on_creature_undetected(body: Node) -> void:
 	if body is Creature and hovering_over == body:
 		set_hovering_creature(false, body)
-
 
 func spawn_trail(input_position: Vector2):
 	var trail = trail_scene.instantiate()
 	get_tree().current_scene.add_child(trail)
 	trail.global_position = input_position
 	trail.restart()
-
 
 func update_heart_visibility():
 	# Wenn keine Kreatur gerade besessen ist → Herz aus
