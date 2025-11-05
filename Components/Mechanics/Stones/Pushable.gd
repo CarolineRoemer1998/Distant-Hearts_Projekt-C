@@ -10,7 +10,6 @@ var is_sliding := false
 
 var buffer_target_position := Vector2.ZERO
 var buffer_direction := Vector2.ZERO
-#var buffer_world : World2D = null
 
 
 func _ready():

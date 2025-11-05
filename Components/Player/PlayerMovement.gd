@@ -285,9 +285,10 @@ func _on_creature_undetected(body: Node) -> void:
 		set_hovering_creature(false, body)
 
 func spawn_trail(input_position: Vector2):
-	var trail = trail_scene.instantiate()
+	var trail : GPUParticles2D = trail_scene.instantiate()
 	get_tree().current_scene.add_child(trail)
 	trail.global_position = input_position
+	trail.texture = load(Constants.trails.pick_random()) as Texture2D
 	trail.restart()
 
 func update_heart_visibility():

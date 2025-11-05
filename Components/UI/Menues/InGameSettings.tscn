@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://bjggi6b1cbue8"]
 
 [ext_resource type="Script" uid="uid://cjwotyxepuimk" path="res://Components/UI/Menues/in_game_settings.gd" id="1_r2836"]
-[ext_resource type="Texture2D" uid="uid://bch4qo0v7oudb" path="res://Sprites/Verworfen/Wall.png" id="2_3v052"]
+[ext_resource type="Texture2D" uid="uid://bch4qo0v7oudb" path="res://Assets/Presentation/Verworfen/Wall.png" id="2_3v052"]
 [ext_resource type="FontFile" uid="uid://d3id6ewnchky" path="res://Fonts/GrapeSoda.ttf" id="3_klyfr"]
 [ext_resource type="PackedScene" uid="uid://c7xbrqq8jp67b" path="res://Components/UI/Controls/VolumeSlider.tscn" id="4_gykc7"]
 [ext_resource type="Theme" uid="uid://i7fixmxgctx7" path="res://Sprites/MenuSprites/Button.tres" id="5_3v052"]

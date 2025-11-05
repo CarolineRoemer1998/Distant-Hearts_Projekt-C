@@ -9,12 +9,10 @@
 [ext_resource type="Texture2D" uid="uid://bc7d4qmidqg4y" path="res://Sprites/IceFloor/Ice-floor-L-T.png" id="4_f1nlr"]
 [ext_resource type="PackedScene" uid="uid://bu7a5geiluu3r" path="res://Components/Mechanics/Winter Mechanics/icicle.tscn" id="4_teeuy"]
 [ext_resource type="PackedScene" uid="uid://bt4pnhd7cx7xc" path="res://Components/Mechanics/Buttons/button.tscn" id="4_tf17e"]
-[ext_resource type="PackedScene" uid="uid://dsycxcakay6h8" path="res://Scenes/creature_blue.tscn" id="4_us1oe"]
 [ext_resource type="PackedScene" uid="uid://cdt5m2v6xjjuf" path="res://Components/Mechanics/Doors/inverted_door.tscn" id="5_teeuy"]
 [ext_resource type="PackedScene" uid="uid://be6k5yjppap8y" path="res://Components/Creatures/creature_yellow.tscn" id="5_tf17e"]
 [ext_resource type="Texture2D" uid="uid://do6thefjlbd1q" path="res://Sprites/IceFloor/Ice-floor-R-T.png" id="5_xpbdl"]
 [ext_resource type="Texture2D" uid="uid://btwlvk2xprfh2" path="res://Sprites/IceFloor/Ice-floor-R.png" id="6_47ffa"]
-[ext_resource type="PackedScene" uid="uid://huckdpk3ykew" path="res://Scenes/merged_creature.tscn" id="6_teeuy"]
 [ext_resource type="Texture2D" uid="uid://d2wcstlnxmknt" path="res://Sprites/IceFloor/Ice-floor-L.png" id="8_6w2ae"]
 [ext_resource type="PackedScene" uid="uid://bhgu3tj2dehs2" path="res://Components/UI/Controls/reset_bar.tscn" id="8_keikn"]
 [ext_resource type="Texture2D" uid="uid://ce8efu0a3oy2r" path="res://Sprites/IceFloor/Ice-floor-L-B.png" id="9_6ujdl"]
@@ -24,6 +22,8 @@
 [ext_resource type="PackedScene" uid="uid://oy61arlldjo3" path="res://Components/Mechanics/Stones/pushable.tscn" id="14_h6i6i"]
 [ext_resource type="PackedScene" uid="uid://dp2qf8g2kvpfa" path="res://Components/Mechanics/Walls/level_wall.tscn" id="15_dtgac"]
 [ext_resource type="PackedScene" uid="uid://pb5o008ihthl" path="res://Components/UI/Menues/win_screen.tscn" id="15_keikn"]
+[ext_resource type="PackedScene" uid="uid://ccncnjkm8w8ta" path="res://Components/Creatures/creature_blue.tscn" id="20_cdw8v"]
+[ext_resource type="PackedScene" uid="uid://23u33yt4jga3" path="res://Components/Creatures/merged_creature.tscn" id="22_370of"]
 [ext_resource type="PackedScene" uid="uid://d3lpfscgajhb4" path="res://Components/UI/Controls/UndoMechanic.tscn" id="24_6w2ae"]
 
 [node name="Level7" type="Node2D"]
@@ -157,11 +157,11 @@ position = Vector2(96, 224)
 
 [node name="Creatures" type="Node" parent="."]
 
-[node name="CreatureBlue" parent="Creatures" instance=ExtResource("4_us1oe")]
-position = Vector2(288, 160)
-
 [node name="CreatureYellow" parent="Creatures" instance=ExtResource("5_tf17e")]
 position = Vector2(544, 544)
+
+[node name="CreatureBlue" parent="Creatures" instance=ExtResource("20_cdw8v")]
+position = Vector2(288, 160)
 
 [node name="Player" type="Node" parent="."]
 
@@ -170,7 +170,7 @@ position = Vector2(544, 224)
 
 [node name="MergedCreatures" type="Node" parent="."]
 
-[node name="MergedCreature" parent="MergedCreatures" instance=ExtResource("6_teeuy")]
+[node name="MergedCreature" parent="MergedCreatures" instance=ExtResource("22_370of")]
 visible = false
 
 [node name="UI" type="Node" parent="."]

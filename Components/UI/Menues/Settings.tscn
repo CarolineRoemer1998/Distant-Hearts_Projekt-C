@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://hpxk1smna33t"]
 
-[ext_resource type="Texture2D" uid="uid://bch4qo0v7oudb" path="res://Sprites/Verworfen/Wall.png" id="1_312i6"]
+[ext_resource type="Texture2D" uid="uid://bch4qo0v7oudb" path="res://Assets/Presentation/Verworfen/Wall.png" id="1_312i6"]
 [ext_resource type="Script" uid="uid://c8cn18kkxej2q" path="res://Components/UI/Menues/settings.gd" id="1_ng16n"]
 [ext_resource type="FontFile" uid="uid://d3id6ewnchky" path="res://Fonts/GrapeSoda.ttf" id="2_lnv33"]
 [ext_resource type="PackedScene" uid="uid://c782ktl2vx0tk" path="res://Components/UI/Controls/AudioManager.tscn" id="2_os8bt"]

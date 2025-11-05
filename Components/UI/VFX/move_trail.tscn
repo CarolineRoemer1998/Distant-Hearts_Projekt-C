@@ -1,11 +1,11 @@
 [gd_scene load_steps=5 format=3 uid="uid://cknlg04piy5rc"]
 
-[ext_resource type="Texture2D" uid="uid://di8ko66edmugh" path="res://Sprites/Partical/dot1.png" id="1_tewjp"]
+[ext_resource type="Texture2D" uid="uid://dgs8w1gfhjmem" path="res://Assets/Particles/dot1.png" id="1_rg4su"]
 
 [sub_resource type="Curve" id="Curve_vgqql"]
 _limits = [0.0, 1.0, 0.0, 1.5]
-_data = [Vector2(0, 0.506736), 0.0, 0.0, 0, 0, Vector2(0.154523, 0.673103), 1.13187, 1.13187, 0, 0, Vector2(0.482412, 0.570948), -1.05102, -1.05102, 0, 0, Vector2(0.798995, 0.223619), -0.679992, -0.679992, 0, 0, Vector2(1.5, 0), 0.0, 0.0, 0, 0]
-point_count = 5
+_data = [Vector2(0, 0.30337083), 0.0, -0.3169115, 0, 0, Vector2(0.29250002, 0.57303375), 0.0, 0.0, 0, 0, Vector2(1.08, 0), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_fkybt"]
 curve = SubResource("Curve_vgqql")
@@ -19,13 +19,14 @@ spread = 0.0
 gravity = Vector3(0, 0, 0)
 linear_accel_min = -2.2351742e-06
 linear_accel_max = -2.2351742e-06
-scale_min = 0.0
+scale_min = 0.5
+scale_max = 1.5
 scale_curve = SubResource("CurveTexture_fkybt")
 
 [node name="MoveTrail" type="GPUParticles2D"]
 emitting = false
 amount = 1
-texture = ExtResource("1_tewjp")
+texture = ExtResource("1_rg4su")
 lifetime = 0.5
 one_shot = true
 explosiveness = 0.56

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dxnoeao04xwyf" path="res://Sprites/Tile_brown_.png" id="2_n5qp4"]
 [ext_resource type="Texture2D" uid="uid://df71efglawdx5" path="res://Sprites/grass-floor-winter.png" id="3_3emgs"]
 [ext_resource type="Texture2D" uid="uid://b648wq1l4u8rq" path="res://Sprites/wall-sprites-4-corners-winter.png" id="4_cii2g"]
-[ext_resource type="Texture2D" uid="uid://dlgbpysuafk0b" path="res://Sprites/Verworfen/wall-new.png" id="5_fmwyp"]
+[ext_resource type="Texture2D" uid="uid://dlgbpysuafk0b" path="res://Assets/Presentation/Verworfen/wall-new.png" id="5_fmwyp"]
 [ext_resource type="Texture2D" uid="uid://c651rcsia4yvj" path="res://Sprites/wall-sprites-4-corners.png" id="6_w4ou6"]
 [ext_resource type="Texture2D" uid="uid://d0gndbeyxhfii" path="res://Sprites/grass-floor.png" id="7_e2jcq"]
 
