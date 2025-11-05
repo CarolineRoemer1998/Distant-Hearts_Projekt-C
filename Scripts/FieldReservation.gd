@@ -8,12 +8,10 @@ func _ready() -> void:
 func reserve(object, tiles: Array[Vector2]) -> void:
 	object.deactivate_layer()
 	fields[object] = tiles.duplicate()
-	#print("Reserved: ", object," : ", fields.get(object))
 	
 
 func release(object) -> void:
 	object.activate_layer()
-	#print("Released: ", object," : ", fields.get(object))
 	fields.erase(object)
 
 func clear_all() -> void:
