@@ -30,6 +30,9 @@ func set_info(info : Dictionary):
 	target_position = global_position
 	is_moving = false
 	is_sliding = false
+	
+	buffer_target_position = Vector2.ZERO
+	buffer_direction = Vector2.ZERO
 
 func slide(goal_position: Vector2) -> bool:
 	if not is_sliding:

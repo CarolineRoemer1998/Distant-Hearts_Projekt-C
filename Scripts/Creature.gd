@@ -2,18 +2,9 @@ extends CharacterBody2D
 
 class_name Creature
 
-enum CREATURE_COLOR {Red, Blue, Yellow, Green, Purple, Turquois, Orange, Pink}
-
 @export var init_direction := Vector2.DOWN
-@export var own_color : CREATURE_COLOR = CREATURE_COLOR.Red
-@export var desired_color : CREATURE_COLOR = CREATURE_COLOR.Green
-
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var border: AnimatedSprite2D = $AnimatedSpriteBorder
-@onready var area_2d_right: Area2D = $Area2D_Right
-@onready var area_2d_bottom: Area2D = $Area2D_Bottom
-@onready var area_2d_left: Area2D = $Area2D_Left
-@onready var area_2d_top: Area2D = $Area2D_Top
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var init_position : Vector2
 
@@ -26,7 +17,6 @@ var neighbor_left : Creature = null
 var neighbor_top : Creature = null
 
 var has_not_moved := true
-
 
 func _ready():
 	self.add_to_group(Constants.GROUP_NAME_CREATURE)
@@ -71,12 +61,6 @@ func set_animation_direction():
 func set_animation_direction_by_val(direction):
 	animation_tree.set("parameters/Idle/BlendSpace2D/blend_position", direction)
 
-#func can_merge_with(creature : Creature) -> bool:
-	#if self.desired_color == creature.own_color:
-		#return true
-	#else:
-		#return false
-
 func get_neighbor_in_direction_is_mergable(_direction : Vector2) -> Creature:
 	match _direction:
 		Vector2.RIGHT: return neighbor_right
@@ -114,16 +98,13 @@ func on_creature_to_right(body: Node2D) -> void:
 	if body is Creature and body.name != self.name:
 		neighbor_right = body
 
-
 func on_creature_to_bottom(body: Node2D) -> void:
 	if body is Creature and body.name != self.name:
 		neighbor_bottom = body
 
-
 func on_creature_to_left(body: Node2D) -> void:
 	if body is Creature and body.name != self.name:
 		neighbor_left = body
-
 
 func on_creature_to_top(body: Node2D) -> void:
 	if body is Creature and body.name != self.name:
@@ -137,16 +118,13 @@ func _on_creature_right_gone(body: Node2D) -> void:
 	if body is Creature:
 		neighbor_right = null
 
-
 func _on_creature_bottom_gone(body: Node2D) -> void:
 	if body is Creature:
 		neighbor_bottom = null
 
-
 func _on_creature_left_gone(body: Node2D) -> void:
 	if body is Creature:
 		neighbor_left = null
-
 
 func _on_creature_top_gone(body: Node2D) -> void:
 	if body is Creature:

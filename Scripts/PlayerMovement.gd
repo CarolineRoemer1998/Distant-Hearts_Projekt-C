@@ -50,12 +50,11 @@ func _ready():
 	position = target_position
 	animation_tree.get("parameters/playback").travel("Idle")
 
-
 func _process(delta):
 	move(delta)
 	update_heart_visibility()
 	handle_input()
-	
+
 func handle_input():
 	if Input.is_action_just_pressed("ui_cancel"):
 		SceneSwitcher.go_to_settings()

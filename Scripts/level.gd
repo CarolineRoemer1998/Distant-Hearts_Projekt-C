@@ -128,7 +128,8 @@ func undo():
 		set_state_of_component(Constants.GROUP_NAME_DOORS)
 		set_state_of_component(Constants.GROUP_NAME_BUTTONS)
 		set_state_of_component(Constants.GROUP_NAME_STONES)
-
+		
+		FieldReservation.clear_all()
 		StateSaver.remove_last_state()
 
 func set_state_of_component(component_name : String):
