@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://huckdpk3ykew"]
+[gd_scene load_steps=12 format=3 uid="uid://23u33yt4jga3"]
 
 [ext_resource type="Texture2D" uid="uid://dugdhrnqmujux" path="res://Sprites/heart.png" id="1_1mbql"]
 [ext_resource type="Script" uid="uid://dodwxfhbqq1o3" path="res://Components/Creatures/merged_creature.gd" id="1_ex32u"]
@@ -104,7 +104,7 @@ _data = {
 &"RESET": SubResource("Animation_ex32u")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hlrf2"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2m3wk"]
 size = Vector2(60, 60)
 
 [node name="MergedCreature" type="CharacterBody2D" groups=["MergedCreature"]]
@@ -132,7 +132,8 @@ libraries = {
 
 [node name="AudioWin" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_hlrf2")
+volume_db = 7.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-shape = SubResource("RectangleShape2D_hlrf2")
+shape = SubResource("RectangleShape2D_2m3wk")

@@ -1,77 +1,77 @@
-[gd_scene load_steps=52 format=3 uid="uid://blirp0o0j78gs"]
+[gd_scene load_steps=49 format=3 uid="uid://g3u7bc1jo6gj"]
 
-[ext_resource type="Script" uid="uid://dr4elx8otc5ga" path="res://Components/Player/PlayerMovement.gd" id="1_cvnsp"]
-[ext_resource type="PackedScene" uid="uid://cknlg04piy5rc" path="res://Components/UI/VFX/move_trail.tscn" id="3_6t5aa"]
-[ext_resource type="AudioStream" uid="uid://damiurfwmb0mb" path="res://Sounds/step5.mp3" id="4_x3wgy"]
-[ext_resource type="Texture2D" uid="uid://dugdhrnqmujux" path="res://Sprites/heart.png" id="5_fkybt"]
-[ext_resource type="FontFile" uid="uid://d3id6ewnchky" path="res://Fonts/GrapeSoda.ttf" id="6_x3wgy"]
-[ext_resource type="AudioStream" uid="uid://cg110h5fksqrl" path="res://Sounds/control2.mp3" id="7_8erm5"]
-[ext_resource type="Texture2D" uid="uid://dlpkvrjy1fpb1" path="res://Scenes/Ui_Controller/Ui_Interact.tres" id="7_f1ek2"]
-[ext_resource type="AudioStream" uid="uid://dbr1bkia48w5f" path="res://Sounds/uncontrol1.mp3" id="8_f1ek2"]
-[ext_resource type="Texture2D" uid="uid://cswpl2tlxvkhe" path="res://Sprites/player_6_animated-sheet.png" id="9_f1ek2"]
+[ext_resource type="Script" uid="uid://dr4elx8otc5ga" path="res://Components/Player/PlayerMovement.gd" id="1_lakyf"]
+[ext_resource type="PackedScene" uid="uid://cknlg04piy5rc" path="res://Components/UI/VFX/move_trail.tscn" id="2_1yt0s"]
+[ext_resource type="Texture2D" uid="uid://cswpl2tlxvkhe" path="res://Sprites/player_6_animated-sheet.png" id="3_l83wq"]
+[ext_resource type="AudioStream" uid="uid://damiurfwmb0mb" path="res://Sounds/step5.mp3" id="4_wh2kk"]
+[ext_resource type="PackedScene" uid="uid://g707rdr0ofwa" path="res://Components/UI/VFX/heart.tscn" id="5_4bli6"]
+[ext_resource type="FontFile" uid="uid://d3id6ewnchky" path="res://Fonts/GrapeSoda.ttf" id="6_3nu2b"]
+[ext_resource type="Texture2D" uid="uid://dlpkvrjy1fpb1" path="res://Scenes/Ui_Controller/Ui_Interact.tres" id="7_rt2b7"]
+[ext_resource type="AudioStream" uid="uid://cg110h5fksqrl" path="res://Sounds/control2.mp3" id="8_8jmue"]
+[ext_resource type="AudioStream" uid="uid://dbr1bkia48w5f" path="res://Sounds/uncontrol1.mp3" id="9_ble7g"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f1ek2"]
-atlas = ExtResource("9_f1ek2")
+atlas = ExtResource("3_l83wq")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tx1dd"]
-atlas = ExtResource("9_f1ek2")
+atlas = ExtResource("3_l83wq")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gymyn"]
-atlas = ExtResource("9_f1ek2")
+atlas = ExtResource("3_l83wq")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pu2lt"]
-atlas = ExtResource("9_f1ek2")
+atlas = ExtResource("3_l83wq")
 region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ukyrk"]
-atlas = ExtResource("9_f1ek2")
+atlas = ExtResource("3_l83wq")
 region = Rect2(384, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7dp3o"]
-atlas = ExtResource("9_f1ek2")
+atlas = ExtResource("3_l83wq")
 region = Rect2(416, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h4iuc"]
-atlas = ExtResource("9_f1ek2")
+atlas = ExtResource("3_l83wq")
 region = Rect2(448, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fd4e3"]
-atlas = ExtResource("9_f1ek2")
+atlas = ExtResource("3_l83wq")
 region = Rect2(480, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qqcod"]
-atlas = ExtResource("9_f1ek2")
+atlas = ExtResource("3_l83wq")
 region = Rect2(256, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_igrcy"]
-atlas = ExtResource("9_f1ek2")
+atlas = ExtResource("3_l83wq")
 region = Rect2(288, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fs7ks"]
-atlas = ExtResource("9_f1ek2")
+atlas = ExtResource("3_l83wq")
 region = Rect2(320, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l6n3p"]
-atlas = ExtResource("9_f1ek2")
+atlas = ExtResource("3_l83wq")
 region = Rect2(352, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_olqyp"]
-atlas = ExtResource("9_f1ek2")
+atlas = ExtResource("3_l83wq")
 region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wpjfl"]
-atlas = ExtResource("9_f1ek2")
+atlas = ExtResource("3_l83wq")
 region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bi64h"]
-atlas = ExtResource("9_f1ek2")
+atlas = ExtResource("3_l83wq")
 region = Rect2(192, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2ijsl"]
-atlas = ExtResource("9_f1ek2")
+atlas = ExtResource("3_l83wq")
 region = Rect2(224, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7dp3o"]
@@ -340,45 +340,6 @@ size = Vector2(64, 64)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cvnsp"]
 size = Vector2(64, 64)
 
-[sub_resource type="Animation" id="Animation_kor7d"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_idm37"]
-resource_name = "pulse"
-length = 0.8
-loop_mode = 1
-step = 0.025
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.45, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(1.2, 1.2), Vector2(0.9, 0.9), Vector2(1.3, 1.3), Vector2(1.2, 1.2)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_jkbom"]
-_data = {
-&"RESET": SubResource("Animation_kor7d"),
-&"pulse": SubResource("Animation_idm37")
-}
-
 [sub_resource type="Animation" id="Animation_x3wgy"]
 resource_name = "Float"
 loop_mode = 1
@@ -455,10 +416,11 @@ _data = {
 &"RESET": SubResource("Animation_gymyn")
 }
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("hearts")]
 collision_mask = 47
-script = ExtResource("1_cvnsp")
-trail_scene = ExtResource("3_6t5aa")
+script = ExtResource("1_lakyf")
+trail_scene = ExtResource("2_1yt0s")
+hearts = [NodePath("HeartTop"), NodePath("HeartBottom"), NodePath("HeartLeft"), NodePath("HeartRight")]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.8)
@@ -489,26 +451,21 @@ visible = false
 shape = SubResource("RectangleShape2D_cvnsp")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_x3wgy")
-volume_db = 3.0
+stream = ExtResource("4_wh2kk")
+volume_db = 8.0
 bus = &"sfx"
 
-[node name="Heart" type="Sprite2D" parent="."]
-visible = false
-top_level = true
+[node name="HeartTop" parent="." instance=ExtResource("5_4bli6")]
 position = Vector2(32, 0)
-texture = ExtResource("5_fkybt")
 
-[node name="Heart2" type="Sprite2D" parent="Heart"]
-modulate = Color(1, 0.427451, 0.352941, 1)
-scale = Vector2(0.8, 0.8)
-texture = ExtResource("5_fkybt")
+[node name="HeartBottom" parent="." instance=ExtResource("5_4bli6")]
+position = Vector2(32, 0)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Heart"]
-libraries = {
-&"": SubResource("AnimationLibrary_jkbom")
-}
-autoplay = "pulse"
+[node name="HeartLeft" parent="." instance=ExtResource("5_4bli6")]
+position = Vector2(32, 0)
+
+[node name="HeartRight" parent="." instance=ExtResource("5_4bli6")]
+position = Vector2(32, 0)
 
 [node name="LabelPressFToControl" type="Label" parent="."]
 visible = false
@@ -520,13 +477,13 @@ pivot_offset = Vector2(38.5, 8)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0.45, 0.297, 0.3225, 0.992157)
 theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("6_x3wgy")
+theme_override_fonts/font = ExtResource("6_3nu2b")
 text = " to control"
 
 [node name="UiInteract" type="Sprite2D" parent="LabelPressFToControl"]
 position = Vector2(-10, 8)
 scale = Vector2(0.75, 0.75)
-texture = ExtResource("7_f1ek2")
+texture = ExtResource("7_rt2b7")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="LabelPressFToControl"]
 libraries = {
@@ -550,14 +507,14 @@ pivot_offset = Vector2(38.5, 8)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0.45, 0.297, 0.3225, 0.992157)
 theme_override_constants/outline_size = 14
-theme_override_fonts/font = ExtResource("6_x3wgy")
+theme_override_fonts/font = ExtResource("6_3nu2b")
 theme_override_font_sizes/font_size = 32
 text = "  to stop control"
 metadata/_edit_use_anchors_ = true
 
 [node name="UiInteract" type="Sprite2D" parent="LabelPressFToStopControl"]
 position = Vector2(-8, 16)
-texture = ExtResource("7_f1ek2")
+texture = ExtResource("7_rt2b7")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="LabelPressFToStopControl"]
 libraries = {
@@ -566,14 +523,21 @@ libraries = {
 autoplay = "Float"
 
 [node name="AudioControl" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("7_8erm5")
+stream = ExtResource("8_8jmue")
+volume_db = 5.0
 pitch_scale = 0.6
 bus = &"sfx"
 
 [node name="AudioUncontrol" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("8_f1ek2")
+stream = ExtResource("9_ble7g")
+volume_db = 5.0
 pitch_scale = 0.6
 bus = &"sfx"
 
+[node name="StepTimer" type="Timer" parent="."]
+wait_time = 0.125
+one_shot = true
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_creature_detected"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_creature_undetected"]
+[connection signal="timeout" from="StepTimer" to="." method="_on_step_timer_timeout"]

@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://p4or75rewkiv"]
+
+[ext_resource type="Script" uid="uid://d35s55ifxv0qv" path="res://Components/Mechanics/Winter Mechanics/icicle.gd" id="1_fm7fu"]
+[ext_resource type="Texture2D" uid="uid://dyyx6fhbd3eqx" path="res://Sprites/Icicle.png" id="2_wobqy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0d3l5"]
+size = Vector2(64, 64)
+
+[node name="Icicle" type="StaticBody2D"]
+collision_layer = 8
+collision_mask = 7
+script = ExtResource("1_fm7fu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_0d3l5")
+
+[node name="Icicle5" type="Sprite2D" parent="."]
+position = Vector2(-32, 0)
+scale = Vector2(2, 2)
+texture = ExtResource("2_wobqy")
+
+[node name="Icicle2" type="Sprite2D" parent="."]
+position = Vector2(8.34465e-07, 1.90735e-06)
+scale = Vector2(2, 2)
+texture = ExtResource("2_wobqy")
+
+[node name="Icicle6" type="Sprite2D" parent="."]
+position = Vector2(32, 0)
+scale = Vector2(2, 2)
+texture = ExtResource("2_wobqy")
+
+[node name="Icicle3" type="Sprite2D" parent="."]
+position = Vector2(-16, 16)
+texture = ExtResource("2_wobqy")
+
+[node name="Icicle4" type="Sprite2D" parent="."]
+position = Vector2(16, 16)
+texture = ExtResource("2_wobqy")

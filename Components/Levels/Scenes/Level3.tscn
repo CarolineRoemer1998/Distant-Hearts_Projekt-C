@@ -1,0 +1,73 @@
+[gd_scene load_steps=14 format=3 uid="uid://bds2jiuumsjsj"]
+
+[ext_resource type="Script" uid="uid://ddiwo6yyhfkuc" path="res://Components/Levels/level.gd" id="1_cp0jt"]
+[ext_resource type="PackedScene" uid="uid://cocjkjeb4n57" path="res://Components/Levels/Backgrounds/background_lvl_3.tscn" id="2_p6pjf"]
+[ext_resource type="PackedScene" uid="uid://lrodaawkgfob" path="res://Components/UI/VFX/undo_particles.tscn" id="2_r8tw2"]
+[ext_resource type="PackedScene" uid="uid://c6dmpno4s3103" path="res://Components/Mechanics/Doors/door.tscn" id="3_m7vvj"]
+[ext_resource type="PackedScene" uid="uid://g3u7bc1jo6gj" path="res://Components/Player/player.tscn" id="4_kg31f"]
+[ext_resource type="PackedScene" uid="uid://bt4pnhd7cx7xc" path="res://Components/Mechanics/Buttons/button.tscn" id="5_ncjpd"]
+[ext_resource type="PackedScene" uid="uid://ccncnjkm8w8ta" path="res://Components/Creatures/creature_blue.tscn" id="6_ffsx8"]
+[ext_resource type="PackedScene" uid="uid://be6k5yjppap8y" path="res://Components/Creatures/creature_yellow.tscn" id="7_dl4b5"]
+[ext_resource type="PackedScene" uid="uid://23u33yt4jga3" path="res://Components/Creatures/merged_creature.tscn" id="8_t5kwq"]
+[ext_resource type="PackedScene" uid="uid://pb5o008ihthl" path="res://Components/UI/Menues/win_screen.tscn" id="9_p6pjf"]
+[ext_resource type="PackedScene" uid="uid://bhgu3tj2dehs2" path="res://Components/UI/Controls/reset_bar.tscn" id="10_m7vvj"]
+[ext_resource type="PackedScene" uid="uid://dp2qf8g2kvpfa" path="res://Components/Mechanics/Walls/level_wall.tscn" id="11_wxy6n"]
+[ext_resource type="PackedScene" uid="uid://d3lpfscgajhb4" path="res://Components/UI/Controls/UndoMechanic.tscn" id="12_5o3oe"]
+
+[node name="Level3" type="Node2D"]
+script = ExtResource("1_cp0jt")
+undo_particles = ExtResource("2_r8tw2")
+level_number = 3
+
+[node name="Background_Lvl3" parent="." instance=ExtResource("2_p6pjf")]
+
+[node name="LevelWall" parent="Background_Lvl3" instance=ExtResource("11_wxy6n")]
+
+[node name="Doors" type="Node" parent="."]
+
+[node name="Door1" parent="Doors" instance=ExtResource("3_m7vvj")]
+position = Vector2(544, 352)
+buttons = Array[NodePath]([NodePath("../../Buttons/Button1_1"), NodePath("../../Buttons/Button1_2")])
+
+[node name="Buttons" type="Node" parent="."]
+
+[node name="Button1_1" parent="Buttons" instance=ExtResource("5_ncjpd")]
+position = Vector2(480, 416)
+
+[node name="Button1_2" parent="Buttons" instance=ExtResource("5_ncjpd")]
+position = Vector2(480, 288)
+
+[node name="Creatures" type="Node" parent="."]
+
+[node name="CreatureBlue" parent="Creatures" instance=ExtResource("6_ffsx8")]
+position = Vector2(544, 224)
+
+[node name="CreatureYellow" parent="Creatures" instance=ExtResource("7_dl4b5")]
+position = Vector2(544, 480)
+init_direction = Vector2(0, -1)
+
+[node name="AnimationTree" parent="Creatures/CreatureYellow" index="3"]
+parameters/Idle/BlendSpace2D/blend_position = Vector2(-0.0008968711, -0.75784755)
+
+[node name="Player" type="Node" parent="."]
+
+[node name="Player" parent="Player" instance=ExtResource("4_kg31f")]
+position = Vector2(224, 160)
+
+[node name="MergedCreatures" type="Node" parent="."]
+
+[node name="MergedCreature" parent="MergedCreatures" instance=ExtResource("8_t5kwq")]
+visible = false
+
+[node name="UI" type="Node" parent="."]
+
+[node name="ResetBar" parent="UI" instance=ExtResource("10_m7vvj")]
+offset_right = 0.0
+offset_bottom = 0.0
+
+[node name="WinScreen" parent="UI" instance=ExtResource("9_p6pjf")]
+
+[node name="UndoMechanic" parent="UI" instance=ExtResource("12_5o3oe")]
+
+[editable path="Creatures/CreatureYellow"]
+[editable path="UI/WinScreen"]

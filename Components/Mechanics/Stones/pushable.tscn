@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://oy61arlldjo3"]
+
+[ext_resource type="Script" uid="uid://dhfj4v7vt1ckb" path="res://Components/Mechanics/Stones/Pushable.gd" id="1_js75i"]
+[ext_resource type="Texture2D" uid="uid://b5vquel156cg" path="res://Sprites/stone.png" id="2_js75i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1l0tm"]
+size = Vector2(60, 60)
+
+[node name="Pushable" type="CharacterBody2D" groups=["pushable"]]
+collision_layer = 4
+collision_mask = 11
+script = ExtResource("1_js75i")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("2_js75i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_1l0tm")

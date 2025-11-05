@@ -1,0 +1,131 @@
+[gd_scene load_steps=15 format=3 uid="uid://i448npnkeckp"]
+
+[ext_resource type="Script" uid="uid://dgefssdtn30r1" path="res://Components/Mechanics/Winter Mechanics/ice_floor.gd" id="1_53oo4"]
+[ext_resource type="Texture2D" uid="uid://daocnama176b2" path="res://Sprites/Tile.png" id="1_ga12v"]
+[ext_resource type="Texture2D" uid="uid://dxnoeao04xwyf" path="res://Sprites/Tile_brown_.png" id="2_53oo4"]
+[ext_resource type="Texture2D" uid="uid://dlgbpysuafk0b" path="res://Sprites/Verworfen/wall-new.png" id="3_ytyg6"]
+[ext_resource type="Texture2D" uid="uid://c651rcsia4yvj" path="res://Sprites/wall-sprites-4-corners.png" id="4_krd10"]
+[ext_resource type="Texture2D" uid="uid://d0gndbeyxhfii" path="res://Sprites/grass-floor.png" id="5_1gd0n"]
+[ext_resource type="Texture2D" uid="uid://rgpuckkrwwj8" path="res://Sprites/IceFloor/Ice-floor.png" id="7_ytyg6"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ytyg6"]
+texture = ExtResource("1_ga12v")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+1:1/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_krd10"]
+texture = ExtResource("2_53oo4")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1gd0n"]
+texture = ExtResource("3_ytyg6")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q3duo"]
+texture = ExtResource("4_krd10")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+3:1/0 = 0
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+3:2/0 = 0
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+0:3/0 = 0
+0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+1:3/0 = 0
+2:3/0 = 0
+2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+3:3/0 = 0
+4:0/0 = 0
+4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+4:1/0 = 0
+4:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+4:2/0 = 0
+4:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+4:3/0 = 0
+4:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+0:4/0 = 0
+0:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+1:4/0 = 0
+1:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+2:4/0 = 0
+2:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+3:4/0 = 0
+3:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+4:4/0 = 0
+4:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nlnn1"]
+texture = ExtResource("5_1gd0n")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_765pb"]
+tile_size = Vector2i(64, 64)
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_ytyg6")
+sources/1 = SubResource("TileSetAtlasSource_krd10")
+sources/4 = SubResource("TileSetAtlasSource_1gd0n")
+sources/6 = SubResource("TileSetAtlasSource_q3duo")
+sources/8 = SubResource("TileSetAtlasSource_nlnn1")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_53oo4"]
+size = Vector2(64, 64)
+
+[node name="IceFloor" type="Node2D"]
+script = ExtResource("1_53oo4")
+
+[node name="Background_Lvl5" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_765pb")
+format = 2
+
+[node name="ground" type="TileMapLayer" parent="Background_Lvl5"]
+modulate = Color(0.601225, 0.96836, 0.946626, 1)
+use_parent_material = true
+position = Vector2(0, 256)
+tile_map_data = PackedByteArray(0, 0, 0, 0, 252, 255, 1, 0, 0, 0, 0, 0, 0, 0)
+tile_set = SubResource("TileSet_765pb")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
+position = Vector2(32, 32)
+shape = SubResource("RectangleShape2D_53oo4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(32, 32)
+scale = Vector2(2, 2)
+texture = ExtResource("7_ytyg6")
