@@ -1,7 +1,7 @@
 extends Button
 
-const HOVER_SOUND = "res://Sounds/step5.mp3"
-const PRESS_SOUND = "res://Sounds/Push Button 4.mp3"
+const HOVER_SOUND = Constants.SFX_PATH_STEP
+const PRESS_SOUND = Constants.SFX_PUSH_MENU_BUTTON
 
 func _ready():
 	# Delay hover sound until after the first frame

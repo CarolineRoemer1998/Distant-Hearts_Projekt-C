@@ -9,8 +9,8 @@ class_name Door
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var collider: CollisionShape2D = $CollisionShape2D
 
-var opened_door_sprite := preload("res://Sprites/fence-gate-open.png")
-var closed_door_sprite := preload("res://Sprites/fence-gate-closed.png")
+var opened_door_sprite := preload(Constants.SPRITE_PATH_DOOR_OPEN)
+var closed_door_sprite := preload(Constants.SPRITE_PATH_DOOR_CLOSED)
 
 var door_is_closed := true
 

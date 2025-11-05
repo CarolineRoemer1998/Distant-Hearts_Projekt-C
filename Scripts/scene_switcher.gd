@@ -1,10 +1,8 @@
 extends Node
 
-@onready var fade_scene = preload("res://Scenes/Menu/fade.tscn")
-
+@onready var fade_scene = preload(Constants.PATH_FADE)
 var fade_node = null
 var fade_animation = null
-var level_folder = "res://Scenes/Level/"
 
 var current_scene = null
 var current_level = 0
@@ -13,6 +11,7 @@ var paused_scene = null  # To store the paused scene
 var is_paused = false   # To track if we're in a paused state
 
 func _ready() -> void:
+	#fade_scene = preload(Constants.PATH_FADE)
 	var root = get_tree().root
 	current_scene = root.get_child(root.get_child_count() - 1)
 	levelCount = 10
@@ -49,15 +48,15 @@ func _deferred_switch_scene(res_path, pause_current=false):
 		fade_animation = fade_node.get_node("AnimationPlayer")
 		fade_animation.play("fade")
 
-func switch_to_level(levelID: int):
+func switch_to_level(id: int):
 	StateSaver.clear_states()
-	switch_scene(level_folder + "Level"+ str(levelID) +".tscn")
+	switch_scene(Constants.LEVELS.get(id))
 
 func go_to_next_level():
 	if current_level == levelCount:
 		current_level = 0
-		switch_scene("res://Scenes/Menu/credit_scene.tscn")
-		AudioManager.play_music("res://Sounds/Music/title-track.mp3")
+		switch_scene(Constants.PATH_CREDIT_SCENE)
+		AudioManager.play_music(Constants.BGM_PATH_TITLE_THEME)
 		return
 	var nextLevel = current_level + 1
 	if nextLevel <= levelCount:
@@ -83,14 +82,14 @@ func reload_level():
 
 
 func go_to_settings():
-	switch_scene("res://Scenes/Menu/InGameSettings.tscn", true)
+	switch_scene(Constants.PATH_IN_GAME_SETTINGS, true)
 
 func go_to_main_menu(ending_game: bool = false):
 	if ending_game:
 		current_scene.queue_free()
 	current_level = 0
-	AudioManager.play_music("res://Sounds/Music/title-track.mp3")
-	switch_scene("res://Scenes/Menu/MainMenu.tscn")
+	AudioManager.play_music(Constants.BGM_PATH_TITLE_THEME)
+	switch_scene(Constants.PATH_MAIN_MENU)
 
 
 func return_from_scene():

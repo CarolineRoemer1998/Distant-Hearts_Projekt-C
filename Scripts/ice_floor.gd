@@ -2,7 +2,7 @@ extends Node2D
 
 class_name IceFloor
 
-@export var texture: Texture2D = preload("res://Sprites/IceFloor/Ice-floor.png")
+@export var texture: Texture2D = preload(Constants.SPRITE_PATH_ICE_FLOOR)
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 

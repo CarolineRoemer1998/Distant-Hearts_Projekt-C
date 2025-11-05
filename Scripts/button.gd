@@ -16,12 +16,12 @@ enum BUTTON_TYPE {TOGGLE, STICKY, PRESSURE}
 @onready var audio_push_button: AudioStreamPlayer2D = $AudioPushButton
 @onready var audio_leave: AudioStreamPlayer2D = $AudioLeave
 
-var sprite_sticky_off := preload("res://Sprites/button_unpressed.png")
-var sprite_sticky_on := preload("res://Sprites/button_pressed.png")
-var sprite_pressure_off := preload("res://Sprites/pressure_plate_off.png")
-var sprite_pressure_on := preload("res://Sprites/pressure_plate_on.png")
-var sprite_toggle_orange := preload("res://Sprites/toggle-button-orange.png")
-var sprite_toggle_purple := preload("res://Sprites/toggle-button-purple.png")
+var sprite_sticky_off := preload(Constants.SPRITE_PATH_STICKY_BUTTON_UNPRESSED)
+var sprite_sticky_on := preload(Constants.SPRITE_PATH_STICKY_BUTTON_PRESSED)
+var sprite_pressure_off := preload(Constants.SPRITE_PATH_PRESSURE_PLATE_UNPRESSED)
+var sprite_pressure_on := preload(Constants.SPRITE_PATH_PRESSURE_PLATE_PRESSED)
+var sprite_toggle_on := preload(Constants.SPRITE_PATH_TOGGLE_BUTTON_PRESSED)
+var sprite_toggle_off := preload(Constants.SPRITE_PATH_TOGGLE_BUTTON_UNPRESSED)
 
 var active: bool = false
 var sticky_audio_played : bool = false
@@ -111,8 +111,8 @@ func pressure_button():
 func _set_button_sprites():
 	match type:
 		BUTTON_TYPE.TOGGLE:
-			button_green.texture = sprite_toggle_orange
-			button_red.texture = sprite_toggle_purple
+			button_green.texture = sprite_toggle_on
+			button_red.texture = sprite_toggle_off
 		BUTTON_TYPE.STICKY:
 			button_green.texture = sprite_sticky_on
 			button_red.texture = sprite_sticky_off

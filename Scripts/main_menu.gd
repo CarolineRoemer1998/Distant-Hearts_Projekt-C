@@ -4,7 +4,7 @@ var used_controller = false
 
 func _ready() -> void:
 	if not AudioManager.is_music_playing:
-		AudioManager.play_music("res://Sounds/Music/title-track.mp3")
+		AudioManager.play_music(Constants.BGM_PATH_TITLE_THEME)
 
 func _process(delta: float) -> void:
 	if (Input.is_action_just_pressed("Player_Down") or Input.is_action_just_pressed("Player_Up") or Input.is_action_just_pressed("Player_Left") or Input.is_action_just_pressed("Player_Right") )and not used_controller:
@@ -14,10 +14,10 @@ func _on_start_pressed() -> void:
 	SceneSwitcher.go_to_next_level()
 
 func _on_stettings_pressed() -> void:
-	SceneSwitcher.switch_scene("res://Scenes/Menu/Settings.tscn")
+	SceneSwitcher.switch_scene(Constants.PATH_SETTINGS)
 
 func _on_credits_pressed() -> void:
-	SceneSwitcher.switch_scene("res://Scenes/Menu/credit_scene.tscn")
+	SceneSwitcher.switch_scene(Constants.PATH_CREDIT_SCENE)
 
 func _on_exit_pressed() -> void:
 	if OS.has_feature("web"):
@@ -27,4 +27,4 @@ func _on_exit_pressed() -> void:
 		get_tree().quit()
 
 func _on_level_select_pressed() -> void:
-	SceneSwitcher.switch_scene("res://Scenes/Menu/Level_Select.tscn")
+	SceneSwitcher.switch_scene(Constants.PATH_LEVEL_SELECT)

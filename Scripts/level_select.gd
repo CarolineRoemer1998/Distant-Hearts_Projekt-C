@@ -11,7 +11,7 @@ func _process(delta: float) -> void:
 
 
 func _on_exit_pressed() -> void:
-	SceneSwitcher.switch_scene("res://Scenes/Menu/MainMenu.tscn")
+	SceneSwitcher.switch_scene(Constants.PATH_MAIN_MENU)
 
 
 func _on_level_1_pressed() -> void:

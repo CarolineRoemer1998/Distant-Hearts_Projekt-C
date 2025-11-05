@@ -10,4 +10,4 @@ func _process(delta: float) -> void:
 		used_controller = true
 		
 func _on_exit_pressed() -> void:
-	SceneSwitcher.switch_scene("res://Scenes/Menu/MainMenu.tscn")
+	SceneSwitcher.switch_scene(Constants.PATH_MAIN_MENU)

@@ -17,9 +17,9 @@ var is_undo_pressed := false
 func _ready() -> void:
 	SceneSwitcher.set_curent_level(level_number)
 	if level_number >= 6:
-		AudioManager.play_music("res://Sounds/Music/BGM-Winter.mp3")
+		AudioManager.play_music(Constants.BGM_PATH_WINTER_THEME)
 	else:
-		AudioManager.play_music("res://Sounds/Music/BGM-Summer.mp3")
+		AudioManager.play_music(Constants.BGM_PATH_SUMMER_THEME)
 	
 	if level_number == SceneSwitcher.current_level:
 		Signals.undo_timer_init_timeout.connect(_on_undo_timer_init_timeout)

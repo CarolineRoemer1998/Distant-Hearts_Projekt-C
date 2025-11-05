@@ -13,4 +13,4 @@ func _ready() -> void:
 func _on_value_changed(value: float) -> void:
 	AudioServer.set_bus_volume_db(bus_index, linear_to_db(value))
 	if bus_name == "sfx":
-		AudioManager.play_sfx("res://Sounds/step5.mp3")
+		AudioManager.play_sfx(Constants.SFX_PATH_STEP)
