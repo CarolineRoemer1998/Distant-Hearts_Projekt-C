@@ -2,11 +2,11 @@
 
 [ext_resource type="Texture2D" uid="uid://daocnama176b2" path="res://Sprites/Tile.png" id="1_u4dl3"]
 [ext_resource type="Texture2D" uid="uid://dxnoeao04xwyf" path="res://Sprites/Tile_brown_.png" id="2_jyk52"]
+[ext_resource type="Texture2D" uid="uid://dr27ipddcxbsn" path="res://Assets/Environments/grass-floor-winter.png" id="3_gbafo"]
 [ext_resource type="Texture2D" uid="uid://dlgbpysuafk0b" path="res://Assets/Presentation/Verworfen/wall-new.png" id="3_wd6jp"]
-[ext_resource type="Texture2D" uid="uid://df71efglawdx5" path="res://Sprites/grass-floor-winter.png" id="3_y1nr7"]
-[ext_resource type="Texture2D" uid="uid://b648wq1l4u8rq" path="res://Sprites/wall-sprites-4-corners-winter.png" id="4_35pwi"]
-[ext_resource type="Texture2D" uid="uid://c651rcsia4yvj" path="res://Sprites/wall-sprites-4-corners.png" id="4_y1nr7"]
-[ext_resource type="Texture2D" uid="uid://d0gndbeyxhfii" path="res://Sprites/grass-floor.png" id="5_35pwi"]
+[ext_resource type="Texture2D" uid="uid://djv18uaetd7qd" path="res://Assets/Environments/wall-sprites-4-corners-winter.png" id="4_gbafo"]
+[ext_resource type="Texture2D" uid="uid://23apv7mn2epf" path="res://Assets/Environments/wall-sprites-4-corners.png" id="6_gbafo"]
+[ext_resource type="Texture2D" uid="uid://dscxm31cepkc6" path="res://Assets/Environments/grass-floor.png" id="7_3khfg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u4dl3"]
 texture = ExtResource("1_u4dl3")
@@ -23,7 +23,7 @@ texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_awg27"]
-texture = ExtResource("3_y1nr7")
+texture = ExtResource("3_gbafo")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 1:0/0 = 0
@@ -36,7 +36,7 @@ texture_region_size = Vector2i(64, 64)
 2:2/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nnwf1"]
-texture = ExtResource("4_35pwi")
+texture = ExtResource("4_gbafo")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
@@ -88,7 +88,7 @@ texture_region_size = Vector2i(64, 64)
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y1nr7"]
-texture = ExtResource("4_y1nr7")
+texture = ExtResource("6_gbafo")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
@@ -137,7 +137,7 @@ texture_region_size = Vector2i(64, 64)
 4:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_35pwi"]
-texture = ExtResource("5_35pwi")
+texture = ExtResource("7_3khfg")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 1:0/0 = 0

@@ -18,11 +18,11 @@ config/windows_native_icon="res://Sprites/ItchSprites/IcoSprites/DistantHeartsIc
 
 [autoload]
 
+Constants="*res://GlobalScripts/Constants.gd"
 ControllerIcons="*res://addons/controller_icons/ControllerIcons.gd"
 AudioManager="*res://Components/UI/Controls/AudioManager.tscn"
-SceneSwitcher="*res://GlobalScripts/scene_switcher.gd"
-Constants="*res://GlobalScripts/Constants.gd"
 Globals="*res://GlobalScripts/globals.gd"
+SceneSwitcher="*res://GlobalScripts/scene_switcher.gd"
 StateSaver="*res://GlobalScripts/StateSaver.gd"
 Signals="*res://GlobalScripts/Signals.gd"
 FieldReservation="*res://GlobalScripts/FieldReservation.gd"

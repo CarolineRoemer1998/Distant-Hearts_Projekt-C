@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bhgu3tj2dehs2"]
 
 [ext_resource type="Script" uid="uid://ctmjtkcdjjiow" path="res://Components/UI/Controls/reset_bar.gd" id="1_t2yve"]
-[ext_resource type="Texture2D" uid="uid://ca50fts6eoamr" path="res://Sprites/circelBig.png" id="2_54yt7"]
+[ext_resource type="Texture2D" uid="uid://bexnadnbc5yd7" path="res://Assets/UI/ResetBar/CircleWhite.png" id="2_emyn1"]
 [ext_resource type="FontFile" uid="uid://d3id6ewnchky" path="res://Fonts/GrapeSoda.ttf" id="3_t2yve"]
 [ext_resource type="Texture2D" uid="uid://f3h20id5ioey" path="res://Scenes/Ui_Controller/Ui_Restart.tres" id="4_54yt7"]
 
@@ -21,7 +21,7 @@ max_value = 1.0
 step = 0.01
 value = 1.0
 fill_mode = 4
-texture_progress = ExtResource("2_54yt7")
+texture_progress = ExtResource("2_emyn1")
 tint_under = Color(0, 0, 0, 0.313726)
 tint_progress = Color(0.957092, 0.608527, 0.924495, 1)
 

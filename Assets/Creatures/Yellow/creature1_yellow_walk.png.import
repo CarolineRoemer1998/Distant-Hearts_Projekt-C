@@ -2,22 +2,24 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ca50fts6eoamr"
-path="res://.godot/imported/circelBig.png-8db059b882fb3c88be30358ac6f685f5.ctex"
+uid="uid://dwrjr3oadi0pe"
+path="res://.godot/imported/creature1_yellow_walk.png-e7af6e04c898e623b13eeb28942d9847.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/circelBig.png"
-dest_files=["res://.godot/imported/circelBig.png-8db059b882fb3c88be30358ac6f685f5.ctex"]
+source_file="res://Assets/Creatures/Yellow/creature1_yellow_walk.png"
+dest_files=["res://.godot/imported/creature1_yellow_walk.png-e7af6e04c898e623b13eeb28942d9847.ctex"]
 
 [params]
 
 compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
+compress/uastc_level=0
+compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
@@ -25,6 +27,10 @@ mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
+process/channel_remap/red=0
+process/channel_remap/green=1
+process/channel_remap/blue=2
+process/channel_remap/alpha=3
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false
