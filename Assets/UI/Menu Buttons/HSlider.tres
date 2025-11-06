@@ -1,0 +1,63 @@
+[gd_resource type="Theme" load_steps=11 format=3 uid="uid://dn5ts3pcaoad5"]
+
+[ext_resource type="Texture2D" uid="uid://crm2gp55wu0ec" path="res://Assets/UI/Menu Buttons/SliderIcon.png" id="1_744tr"]
+[ext_resource type="Texture2D" uid="uid://c8687cwjw43ae" path="res://Assets/UI/Menu Buttons/SliderIconSelcted.png" id="2_f0jll"]
+[ext_resource type="Texture2D" uid="uid://db2qd7q0i28ur" path="res://Assets/UI/Menu Buttons/MenuButtonHover.png" id="3_x6uk1"]
+[ext_resource type="Texture2D" uid="uid://ctnny438nun0" path="res://Assets/UI/Menu Buttons/MenuButton.png" id="4_r84qf"]
+[ext_resource type="Texture2D" uid="uid://yd1pnpmwhyt0" path="res://Assets/UI/Menu Buttons/MenuButtonPressed.png" id="5_5ai1n"]
+
+[sub_resource type="Image" id="Image_744tr"]
+data = {
+"data": PackedByteArray(0, 0, 0, 0, 255, 255, 255, 64, 255, 255, 255, 64, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 64, 255, 255, 255, 64, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 64, 255, 255, 255, 64, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 64, 255, 255, 255, 64, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 64, 255, 255, 255, 64, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 64, 255, 255, 255, 64, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 64, 255, 255, 255, 64, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 64, 255, 255, 255, 64, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 64, 255, 255, 255, 64, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 64, 255, 255, 255, 64, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 64, 255, 255, 255, 64, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 64, 255, 255, 255, 64, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 64, 255, 255, 255, 64, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 64, 255, 255, 255, 64, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 64, 255, 255, 255, 64, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 64, 255, 255, 255, 64, 0, 0, 0, 0),
+"format": "RGBA8",
+"height": 16,
+"mipmaps": false,
+"width": 4
+}
+
+[sub_resource type="ImageTexture" id="ImageTexture_apvx4"]
+image = SubResource("Image_744tr")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_akugf"]
+texture = ExtResource("4_r84qf")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+expand_margin_top = 8.0
+expand_margin_right = 4.0
+expand_margin_bottom = 8.0
+region_rect = Rect2(0, 4, 32, 25)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ybrxl"]
+texture = ExtResource("3_x6uk1")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+expand_margin_top = 8.0
+expand_margin_right = 4.0
+expand_margin_bottom = 8.0
+region_rect = Rect2(0, 4, 32, 25)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pqfwp"]
+texture = ExtResource("5_5ai1n")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+expand_margin_top = 8.0
+expand_margin_right = 4.0
+expand_margin_bottom = 8.0
+region_rect = Rect2(0, 4, 32, 25)
+
+[resource]
+HSlider/constants/center_grabber = 1
+HSlider/constants/grabber_offset = 0
+HSlider/icons/grabber = ExtResource("1_744tr")
+HSlider/icons/grabber_disabled = ExtResource("2_f0jll")
+HSlider/icons/grabber_highlight = ExtResource("2_f0jll")
+HSlider/icons/tick = SubResource("ImageTexture_apvx4")
+HSlider/styles/grabber_area = SubResource("StyleBoxTexture_akugf")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxTexture_ybrxl")
+HSlider/styles/slider = SubResource("StyleBoxTexture_pqfwp")

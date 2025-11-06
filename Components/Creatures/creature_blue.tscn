@@ -1,10 +1,10 @@
 [gd_scene load_steps=51 format=3 uid="uid://ccncnjkm8w8ta"]
 
 [ext_resource type="Script" uid="uid://kjtpy8vvpaku" path="res://Components/Creatures/Creature.gd" id="1_lgxpu"]
-[ext_resource type="Texture2D" uid="uid://bj7pm75smwnqp" path="res://Sprites/creature2_blue.png" id="2_ufwjw"]
-[ext_resource type="Texture2D" uid="uid://csubn0t1qpfow" path="res://Sprites/creature2_blue_white_border.png" id="3_xbm6y"]
-[ext_resource type="Texture2D" uid="uid://7rp7tk5tlb1m" path="res://Sprites/Creatures/creature2_blue.png" id="4_fr2fe"]
-[ext_resource type="Texture2D" uid="uid://hs5h70vwdnfj" path="res://Sprites/Creatures/creature2_white_border.png" id="5_v76sd"]
+[ext_resource type="Texture2D" uid="uid://bj7pm75smwnqp" path="res://Assets/Creatures/Blue/creature2_blue.png" id="2_ufwjw"]
+[ext_resource type="Texture2D" uid="uid://csubn0t1qpfow" path="res://Assets/Creatures/Blue/creature2_blue_white_border.png" id="3_xbm6y"]
+[ext_resource type="Texture2D" uid="uid://7rp7tk5tlb1m" path="res://Assets/Creatures/Blue/creature2_blue_single.png" id="4_fr2fe"]
+[ext_resource type="Texture2D" uid="uid://hs5h70vwdnfj" path="res://Assets/Creatures/Blue/creature2_white_border_single.png" id="5_v76sd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o5ekt"]
 atlas = ExtResource("2_ufwjw")

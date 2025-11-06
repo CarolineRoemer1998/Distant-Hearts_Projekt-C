@@ -5,10 +5,10 @@
 [ext_resource type="FontFile" uid="uid://d3id6ewnchky" path="res://Fonts/GrapeSoda.ttf" id="2_lnv33"]
 [ext_resource type="PackedScene" uid="uid://c782ktl2vx0tk" path="res://Components/UI/Controls/AudioManager.tscn" id="2_os8bt"]
 [ext_resource type="PackedScene" uid="uid://c7xbrqq8jp67b" path="res://Components/UI/Controls/VolumeSlider.tscn" id="3_lnv33"]
-[ext_resource type="Theme" uid="uid://i7fixmxgctx7" path="res://Sprites/MenuSprites/Button.tres" id="5_dps5m"]
+[ext_resource type="Theme" uid="uid://i7fixmxgctx7" path="res://Assets/UI/Menu Buttons/Button.tres" id="5_dps5m"]
 [ext_resource type="Script" uid="uid://bld4747e6bxrc" path="res://Components/UI/Controls/menu_button.gd" id="5_f2des"]
-[ext_resource type="Theme" uid="uid://dn5ts3pcaoad5" path="res://Sprites/MenuSprites/HSlider.tres" id="5_wi6js"]
-[ext_resource type="Theme" uid="uid://d0haimlpaexgt" path="res://Sprites/MenuSprites/ToggleSlider.tres" id="6_wi6js"]
+[ext_resource type="Theme" uid="uid://dn5ts3pcaoad5" path="res://Assets/UI/Menu Buttons/HSlider.tres" id="5_wi6js"]
+[ext_resource type="Theme" uid="uid://d0haimlpaexgt" path="res://Assets/UI/Menu Buttons/ToggleSlider.tres" id="6_wi6js"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ng16n"]
 texture = ExtResource("1_312i6")

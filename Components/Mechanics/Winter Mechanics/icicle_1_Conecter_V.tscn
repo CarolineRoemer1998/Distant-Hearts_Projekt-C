@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dflyfdm7ashwa"]
 
 [ext_resource type="Script" uid="uid://d35s55ifxv0qv" path="res://Components/Mechanics/Winter Mechanics/icicle.gd" id="1_alk6a"]
-[ext_resource type="Texture2D" uid="uid://dyyx6fhbd3eqx" path="res://Sprites/Icicle.png" id="2_s2f5l"]
+[ext_resource type="Texture2D" uid="uid://dyyx6fhbd3eqx" path="res://Assets/Winter Mechanics/Icicle/Icicle.png" id="2_s2f5l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0d3l5"]
 size = Vector2(64, 64)

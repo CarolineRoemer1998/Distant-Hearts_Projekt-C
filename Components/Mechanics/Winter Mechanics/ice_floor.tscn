@@ -1,12 +1,12 @@
 [gd_scene load_steps=15 format=3 uid="uid://i448npnkeckp"]
 
 [ext_resource type="Script" uid="uid://dgefssdtn30r1" path="res://Components/Mechanics/Winter Mechanics/ice_floor.gd" id="1_53oo4"]
-[ext_resource type="Texture2D" uid="uid://daocnama176b2" path="res://Sprites/Tile.png" id="1_ga12v"]
-[ext_resource type="Texture2D" uid="uid://dxnoeao04xwyf" path="res://Sprites/Tile_brown_.png" id="2_53oo4"]
+[ext_resource type="Texture2D" uid="uid://daocnama176b2" path="res://Assets/Presentation/Verworfen/Tile.png" id="1_ga12v"]
+[ext_resource type="Texture2D" uid="uid://dxnoeao04xwyf" path="res://Assets/Presentation/Verworfen/Tile_brown_.png" id="2_53oo4"]
 [ext_resource type="Texture2D" uid="uid://dlgbpysuafk0b" path="res://Assets/Presentation/Verworfen/wall-new.png" id="3_ytyg6"]
-[ext_resource type="Texture2D" uid="uid://c651rcsia4yvj" path="res://Sprites/wall-sprites-4-corners.png" id="4_krd10"]
-[ext_resource type="Texture2D" uid="uid://d0gndbeyxhfii" path="res://Sprites/grass-floor.png" id="5_1gd0n"]
-[ext_resource type="Texture2D" uid="uid://rgpuckkrwwj8" path="res://Sprites/IceFloor/Ice-floor.png" id="7_ytyg6"]
+[ext_resource type="Texture2D" uid="uid://c651rcsia4yvj" path="res://Assets/Environments/wall-sprites-4-corners.png" id="4_krd10"]
+[ext_resource type="Texture2D" uid="uid://d0gndbeyxhfii" path="res://Assets/Environments/grass-floor.png" id="5_1gd0n"]
+[ext_resource type="Texture2D" uid="uid://rgpuckkrwwj8" path="res://Assets/Winter Mechanics/Ice Floors/Ice-floor.png" id="7_ytyg6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ytyg6"]
 texture = ExtResource("1_ga12v")

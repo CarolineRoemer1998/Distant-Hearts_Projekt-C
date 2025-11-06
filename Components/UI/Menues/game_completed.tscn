@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://ckkosqi7rtbdb"]
 
 [ext_resource type="FontFile" uid="uid://d3id6ewnchky" path="res://Fonts/GrapeSoda.ttf" id="1_diuch"]
-[ext_resource type="Texture2D" uid="uid://dugdhrnqmujux" path="res://Sprites/heart.png" id="2_xh2fq"]
+[ext_resource type="Texture2D" uid="uid://dugdhrnqmujux" path="res://Assets/Particles/heart.png" id="2_xh2fq"]
 [ext_resource type="Texture2D" uid="uid://v56kyxx7qfib" path="res://Scenes/Ui_Controller/Ui_Acept.tres" id="3_oupf0"]
 
 [sub_resource type="Animation" id="Animation_2h8qs"]

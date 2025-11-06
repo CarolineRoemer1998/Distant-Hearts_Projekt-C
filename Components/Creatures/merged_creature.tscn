@@ -1,8 +1,8 @@
 [gd_scene load_steps=12 format=3 uid="uid://23u33yt4jga3"]
 
-[ext_resource type="Texture2D" uid="uid://dugdhrnqmujux" path="res://Sprites/heart.png" id="1_1mbql"]
+[ext_resource type="Texture2D" uid="uid://dugdhrnqmujux" path="res://Assets/Particles/heart.png" id="1_1mbql"]
 [ext_resource type="Script" uid="uid://dodwxfhbqq1o3" path="res://Components/Creatures/merged_creature.gd" id="1_ex32u"]
-[ext_resource type="Texture2D" uid="uid://ddhu75e372wk7" path="res://Sprites/Creatures/creature-merge-1-2_green.png" id="2_hlrf2"]
+[ext_resource type="Texture2D" uid="uid://ddhu75e372wk7" path="res://Assets/Creatures/Merged/creature-merge-1-2_green.png" id="2_hlrf2"]
 [ext_resource type="AudioStream" uid="uid://m8wr88pn02s5" path="res://Sounds/win2.mp3" id="4_hlrf2"]
 
 [sub_resource type="Curve" id="Curve_1mbql"]

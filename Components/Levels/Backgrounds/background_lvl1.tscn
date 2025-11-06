@@ -1,10 +1,10 @@
 [gd_scene load_steps=12 format=4 uid="uid://drl8fvb23s6aj"]
 
-[ext_resource type="Texture2D" uid="uid://daocnama176b2" path="res://Sprites/Tile.png" id="1_o6r82"]
-[ext_resource type="Texture2D" uid="uid://dxnoeao04xwyf" path="res://Sprites/Tile_brown_.png" id="2_o6r82"]
+[ext_resource type="Texture2D" uid="uid://daocnama176b2" path="res://Assets/Presentation/Verworfen/Tile.png" id="1_o6r82"]
+[ext_resource type="Texture2D" uid="uid://dxnoeao04xwyf" path="res://Assets/Presentation/Verworfen/Tile_brown_.png" id="2_o6r82"]
 [ext_resource type="Texture2D" uid="uid://dlgbpysuafk0b" path="res://Assets/Presentation/Verworfen/wall-new.png" id="4_a1bo6"]
-[ext_resource type="Texture2D" uid="uid://c651rcsia4yvj" path="res://Sprites/wall-sprites-4-corners.png" id="4_b3bi1"]
-[ext_resource type="Texture2D" uid="uid://d0gndbeyxhfii" path="res://Sprites/grass-floor.png" id="5_a1bo6"]
+[ext_resource type="Texture2D" uid="uid://c651rcsia4yvj" path="res://Assets/Environments/wall-sprites-4-corners.png" id="4_b3bi1"]
+[ext_resource type="Texture2D" uid="uid://d0gndbeyxhfii" path="res://Assets/Environments/grass-floor.png" id="5_a1bo6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3dryh"]
 texture = ExtResource("1_o6r82")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://g707rdr0ofwa"]
 
-[ext_resource type="Texture2D" uid="uid://dugdhrnqmujux" path="res://Sprites/heart.png" id="1_452e1"]
+[ext_resource type="Texture2D" uid="uid://dugdhrnqmujux" path="res://Assets/Particles/heart.png" id="1_452e1"]
 
 [sub_resource type="Animation" id="Animation_kor7d"]
 length = 0.001
