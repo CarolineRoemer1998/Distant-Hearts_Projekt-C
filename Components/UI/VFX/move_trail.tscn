@@ -24,6 +24,7 @@ scale_max = 1.5
 scale_curve = SubResource("CurveTexture_fkybt")
 
 [node name="MoveTrail" type="GPUParticles2D"]
+top_level = true
 emitting = false
 amount = 1
 texture = ExtResource("1_rg4su")

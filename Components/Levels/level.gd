@@ -109,12 +109,6 @@ func _on_undo_timer_continious_timeout() -> void:
 	_set_can_undo(true)
 	undo_timer_continious.start()
 
-func play_undo_particles(pos : Vector2):
-	var particles = undo_particles.instantiate()
-	get_tree().current_scene.add_child(particles)
-	particles.global_position = pos
-	particles.restart()
-
 func undo():
 	if can_undo and StateSaver.saved_states.size() > 0:
 		undo_sound.stop()
@@ -139,8 +133,5 @@ func set_state_of_component(component_name : String):
 		for component in get_tree().get_nodes_in_group(component_name):
 			if component != null:
 				if StateSaver.saved_states.size() > 0:
-					if component is Player: 
-						play_undo_particles(component.global_position)
-					
 					component.set_info(component_states[0])
 					component_states.remove_at(0)

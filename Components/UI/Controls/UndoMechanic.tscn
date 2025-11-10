@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://d3lpfscgajhb4"]
 
 [ext_resource type="Script" uid="uid://8xwuka4wglun" path="res://Components/UI/Controls/undo_mechanic.gd" id="1_5ujvo"]
-[ext_resource type="AudioStream" uid="uid://damiurfwmb0mb" path="res://Sounds/step5.mp3" id="2_xwuax"]
+[ext_resource type="AudioStream" uid="uid://xbmay22q6qy2" path="res://Sounds/SFX/step.mp3" id="2_mnpa4"]
 [ext_resource type="PackedScene" uid="uid://lrodaawkgfob" path="res://Components/UI/VFX/undo_particles.tscn" id="3_bf0nm"]
 
 [node name="UndoMechanic" type="Node"]
@@ -15,13 +15,11 @@ one_shot = true
 wait_time = 0.125
 
 [node name="UndoSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("2_xwuax")
+stream = ExtResource("2_mnpa4")
 pitch_scale = 1.5
 bus = &"sfx"
 
 [node name="UndoParticles" parent="." instance=ExtResource("3_bf0nm")]
-emitting = false
-one_shot = true
 
 [connection signal="timeout" from="UndoTimerInit" to="." method="_on_undo_timer_init_timeout"]
 [connection signal="timeout" from="UndoTimerContinious" to="." method="_on_undo_timer_continious_timeout"]

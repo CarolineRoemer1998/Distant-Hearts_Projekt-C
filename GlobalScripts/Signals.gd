@@ -11,7 +11,8 @@ signal undo_timer_init_timeout
 
 # Player Signals
 signal state_changed(direction : Vector2, possessed_creature : Creature)
-signal player_moved() #
+signal player_move_started #
+signal player_move_finished #
 signal player_possessed_creature() #
 signal player_unpossessed_creature() #
 

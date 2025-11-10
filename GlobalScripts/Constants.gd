@@ -63,11 +63,11 @@ const STEP_SOUND_VOLUME_CHANGE := [6.0, 6.5, 7.0, 7.5, 8.0]
 
 # SFX PATHS
 const SFX_PATH_STEP := 			"res://Sounds/SFX/step.mp3"
-const SFX_POSSESS := 			""
-const SFX_UNPOSSESS := 			""
-const SFX_BUTTON_PRESSED := 	""
-const SFX_BUTTON_UNPRESSED := 	""
-const SFX_PUSH_MENU_BUTTON := 	"res://Sounds/SFX/push_menu_button.mp3"
+const SFX_POSSESS := 			"res://Sounds/SFX/possess.mp3"
+const SFX_UNPOSSESS := 			"res://Sounds/SFX/unpossess.mp3"
+const SFX_BUTTON_PRESSED := 	"res://Sounds/SFX/button_on.mp3"
+const SFX_BUTTON_UNPRESSED := 	"res://Sounds/SFX/button_off.mp3"
+const SFX_PUSH_MENU_BUTTON := 	"res://Sounds/SFX/button_menu_click.mp3"
 
 # BGM PATHS
 const BGM_PATH_TITLE_THEME := 	"res://Sounds/BGM/title-track.mp3"

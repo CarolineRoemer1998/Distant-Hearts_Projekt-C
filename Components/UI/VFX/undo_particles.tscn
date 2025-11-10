@@ -1,7 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://lrodaawkgfob"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ni7pu"]
-load_path = "res://.godot/imported/dot1.png-3ecf9f7646c8f8bfafd765124aff8203.ctex"
+[ext_resource type="Texture2D" uid="uid://dgs8w1gfhjmem" path="res://Assets/Particles/dot1.png" id="1_xibwu"]
 
 [sub_resource type="Curve" id="Curve_ni7pu"]
 _limits = [0.0, 0.5, 0.0, 1.0]
@@ -13,7 +12,7 @@ curve = SubResource("Curve_ni7pu")
 
 [sub_resource type="Curve" id="Curve_vgqql"]
 _limits = [0.0, 1.0, 0.0, 1.5]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.18, 0.47191018), -0.02996254, -0.02996254, 0, 0, Vector2(0.71250004, 0), -3.2459433, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.1275, 0.34831464), 0.9987515, 0.9987515, 0, 0, Vector2(0.6075, 0), -2.2828605, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_fkybt"]
@@ -21,14 +20,15 @@ curve = SubResource("Curve_vgqql")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hium3"]
 particle_flag_disable_z = true
+emission_shape_scale = Vector3(0, 0, 0)
 emission_shape = 1
 emission_sphere_radius = 8.0
 angle_min = 4.000011
 angle_max = 4.000011
 direction = Vector3(0, 0, 0)
 spread = 0.0
-radial_velocity_min = 15.999977
-radial_velocity_max = 23.999977
+radial_velocity_min = 63.999977
+radial_velocity_max = 63.999977
 radial_velocity_curve = SubResource("CurveTexture_hium3")
 gravity = Vector3(0, 0, 0)
 scale_max = 2.0
@@ -38,8 +38,8 @@ scale_curve = SubResource("CurveTexture_fkybt")
 top_level = true
 emitting = false
 amount = 3
-texture = SubResource("CompressedTexture2D_ni7pu")
+texture = ExtResource("1_xibwu")
 lifetime = 0.5
 one_shot = true
-explosiveness = 0.8
+explosiveness = 0.9
 process_material = SubResource("ParticleProcessMaterial_hium3")

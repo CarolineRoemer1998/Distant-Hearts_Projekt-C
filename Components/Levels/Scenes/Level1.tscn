@@ -29,9 +29,6 @@ position = Vector2(288, 288)
 [node name="CreatureYellow" parent="Creature" instance=ExtResource("6_jdj0p")]
 position = Vector2(416, 288)
 
-[node name="CreatureYellow2" parent="Creature" instance=ExtResource("6_jdj0p")]
-position = Vector2(156, 288)
-
 [node name="Player" type="Node" parent="."]
 
 [node name="Player" parent="Player" instance=ExtResource("7_3n0l5")]

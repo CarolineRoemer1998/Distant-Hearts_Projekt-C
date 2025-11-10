@@ -3,6 +3,7 @@ class_name Player
 
 @export var trail_scene: PackedScene 
 @export var hearts: Array[Sprite2D]
+@export var undo_particles: PackedScene 
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var animation_tree: AnimationTree = $AnimationTree
@@ -44,6 +45,7 @@ func _ready():
 	
 	Signals.stone_reached_target.connect(set_is_not_pushing_stone_on_ice)
 	Signals.level_done.connect(set_not_is_active)
+	Signals.player_move_finished.connect(arrive_at_target_position)
 	
 	# Spieler korrekt auf Grid ausrichten
 	target_position = position.snapped(Constants.GRID_SIZE / 2)
@@ -113,6 +115,9 @@ func get_info() -> Dictionary:
 	}
 
 func set_info(info : Dictionary):
+	if global_position != info.get("global_position"):
+		play_undo_particles(global_position)
+	
 	global_position = info.get("global_position")
 	is_active = info.get("is_active")
 	
@@ -122,7 +127,7 @@ func set_info(info : Dictionary):
 	
 	target_position = global_position
 	
-	is_moving = false
+	set_is_moving(false)
 	is_on_ice = info.get("is_on_ice")
 	is_sliding = false
 	can_move = true
@@ -134,6 +139,16 @@ func set_info(info : Dictionary):
 		possess()
 	elif currently_possessed_creature and info.get("currently_possessed_creature") == null:
 		unpossess()
+
+func play_undo_particles(_pos: Vector2):
+	var particles = undo_particles.instantiate()
+	add_child(particles) #get_tree().current_scene.add_child(particles)
+	particles.z_index = 1000               # über Tiles/UI der Welt
+	particles.top_level = true            # erbt den Canvas-Kontext des Levels
+	particles.global_position = _pos
+	particles.restart()
+	particles.emitting = true
+	particles.finished.connect(particles.queue_free)
 
 func set_animation_direction(_direction: Vector2):
 	if _direction != Vector2.ZERO:
@@ -152,17 +167,19 @@ func move(delta):
 
 		if currently_possessed_creature:
 			currently_possessed_creature.position = currently_possessed_creature.position.move_toward(
-				target_position, Constants.PLAYER_MOVE_SPEED * delta
-			)
+				target_position, Constants.PLAYER_MOVE_SPEED * delta)
 		
 		if position == target_position:
-			is_sliding = false
-			is_pushing_stone_on_ice = false
-			set_is_moving(false)
-			is_moving_on_ice = false
-			if buffered_direction != Vector2.ZERO:
-				set_is_moving(evaluate_can_move_in_direction(position, direction))
-				buffered_direction = Vector2.ZERO
+			Signals.player_move_finished.emit()
+
+func arrive_at_target_position():
+	set_is_moving(false)
+	is_sliding = false
+	is_pushing_stone_on_ice = false
+	is_moving_on_ice = false
+	if buffered_direction != Vector2.ZERO:
+		set_is_moving(evaluate_can_move_in_direction(position, direction))
+		buffered_direction = Vector2.ZERO
 
 func evaluate_can_move_in_direction(_position: Vector2, _direction: Vector2) -> bool:
 	var new_pos = _position + _direction * Constants.GRID_SIZE
@@ -207,10 +224,10 @@ func set_is_not_pushing_stone_on_ice():
 func set_not_is_active():
 	is_active = false
 
-func set_is_moving(value: bool):
-	is_moving = value
+func set_is_moving(_is_moving: bool):
+	is_moving = _is_moving
 
-	if value:
+	if is_moving:
 		target_position = target_position + direction * Constants.GRID_SIZE
 		current_direction = direction
 		
@@ -224,13 +241,15 @@ func set_is_moving(value: bool):
 		
 		spawn_trail(position)
 		
-		# Sound abspielen
-		audio_stream_player_2d.pitch_scale = Constants.STEP_SOUND_PITCH_SCALES.pick_random()
-		audio_stream_player_2d.volume_db = Constants.STEP_SOUND_VOLUME_CHANGE.pick_random()
-		audio_stream_player_2d.stop()
-		audio_stream_player_2d.play()
+		play_sound_step()
 		
 		Signals.state_changed.emit(get_info())
+
+func play_sound_step():
+	audio_stream_player_2d.pitch_scale = Constants.STEP_SOUND_PITCH_SCALES.pick_random()
+	audio_stream_player_2d.volume_db = Constants.STEP_SOUND_VOLUME_CHANGE.pick_random()
+	audio_stream_player_2d.stop()
+	audio_stream_player_2d.play()
 
 func set_hovering_creature(is_hovering: bool, creature: Creature):
 	if is_hovering:

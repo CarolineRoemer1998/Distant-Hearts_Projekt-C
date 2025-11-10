@@ -1,14 +1,15 @@
-[gd_scene load_steps=49 format=3 uid="uid://g3u7bc1jo6gj"]
+[gd_scene load_steps=50 format=3 uid="uid://g3u7bc1jo6gj"]
 
 [ext_resource type="Script" uid="uid://dr4elx8otc5ga" path="res://Components/Player/PlayerMovement.gd" id="1_lakyf"]
 [ext_resource type="PackedScene" uid="uid://cknlg04piy5rc" path="res://Components/UI/VFX/move_trail.tscn" id="2_1yt0s"]
+[ext_resource type="PackedScene" uid="uid://lrodaawkgfob" path="res://Components/UI/VFX/undo_particles.tscn" id="3_1yt0s"]
 [ext_resource type="Texture2D" uid="uid://cswpl2tlxvkhe" path="res://Assets/Player/player_6_animated-sheet.png" id="3_l83wq"]
-[ext_resource type="AudioStream" uid="uid://damiurfwmb0mb" path="res://Sounds/step5.mp3" id="4_wh2kk"]
+[ext_resource type="AudioStream" uid="uid://xbmay22q6qy2" path="res://Sounds/SFX/step.mp3" id="4_lakyf"]
 [ext_resource type="PackedScene" uid="uid://g707rdr0ofwa" path="res://Components/UI/VFX/heart.tscn" id="5_4bli6"]
 [ext_resource type="FontFile" uid="uid://d3id6ewnchky" path="res://Fonts/GrapeSoda.ttf" id="6_3nu2b"]
 [ext_resource type="Texture2D" uid="uid://dlpkvrjy1fpb1" path="res://Scenes/Ui_Controller/Ui_Interact.tres" id="7_rt2b7"]
-[ext_resource type="AudioStream" uid="uid://cg110h5fksqrl" path="res://Sounds/control2.mp3" id="8_8jmue"]
-[ext_resource type="AudioStream" uid="uid://dbr1bkia48w5f" path="res://Sounds/uncontrol1.mp3" id="9_ble7g"]
+[ext_resource type="AudioStream" uid="uid://cg110h5fksqrl" path="res://Sounds/SFX/possess.mp3" id="8_8jmue"]
+[ext_resource type="AudioStream" uid="uid://dbr1bkia48w5f" path="res://Sounds/SFX/unpossess.mp3" id="9_ble7g"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f1ek2"]
 atlas = ExtResource("3_l83wq")
@@ -421,6 +422,7 @@ collision_mask = 47
 script = ExtResource("1_lakyf")
 trail_scene = ExtResource("2_1yt0s")
 hearts = [NodePath("HeartTop"), NodePath("HeartBottom"), NodePath("HeartLeft"), NodePath("HeartRight")]
+undo_particles = ExtResource("3_1yt0s")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.8)
@@ -451,7 +453,7 @@ visible = false
 shape = SubResource("RectangleShape2D_cvnsp")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_wh2kk")
+stream = ExtResource("4_lakyf")
 volume_db = 8.0
 bus = &"sfx"
 

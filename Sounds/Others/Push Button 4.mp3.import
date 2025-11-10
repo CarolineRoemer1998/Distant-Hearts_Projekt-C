@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dxn3mcdwl3qj4"
+path="res://.godot/imported/Push Button 4.mp3-2392848d926fb3981ff3e8c8f4813f25.mp3str"
+
+[deps]
+
+source_file="res://Sounds/Others/Push Button 4.mp3"
+dest_files=["res://.godot/imported/Push Button 4.mp3-2392848d926fb3981ff3e8c8f4813f25.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
