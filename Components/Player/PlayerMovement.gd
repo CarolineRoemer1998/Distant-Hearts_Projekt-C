@@ -75,6 +75,7 @@ func handle_input():
 				direction = Vector2.RIGHT
 			
 			can_move = false
+			pushable_stone_in_direction = null
 			step_timer.start()
 			
 			if is_moving:

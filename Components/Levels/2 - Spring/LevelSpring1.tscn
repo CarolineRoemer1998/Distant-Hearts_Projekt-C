@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cyr4xpwmfgqkh"]
+
+[ext_resource type="PackedScene" uid="uid://bhj1sl3soy5oq" path="res://Components/Levels/LevelBase.tscn" id="1_t5nw4"]
+
+[node name="LevelSpring1" instance=ExtResource("1_t5nw4")]
+
+[editable path="UI/UndoMechanic"]

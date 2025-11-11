@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://ihdvu1wqfcub"]
+[gd_scene load_steps=16 format=4 uid="uid://ihdvu1wqfcub"]
 
 [ext_resource type="Texture2D" uid="uid://bq853ey8admm0" path="res://Assets/Environments/floor-normal.png" id="1_l428f"]
 [ext_resource type="Texture2D" uid="uid://bdwufuit7l4f6" path="res://Assets/Environments/floor-spring.png" id="2_t4ijq"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dx33x2lw2op16" path="res://Assets/Environments/walls-spring.png" id="5_4c2wo"]
 [ext_resource type="Texture2D" uid="uid://hci1s7h7ibqt" path="res://Assets/Environments/walls-winter.png" id="6_fnqt6"]
 [ext_resource type="PackedScene" uid="uid://dp2qf8g2kvpfa" path="res://Components/Mechanics/Walls/level_wall.tscn" id="7_2rufq"]
+[ext_resource type="TileSet" uid="uid://b27d63bpsa4u5" path="res://Components/Levels/bg-tileset.tres" id="7_lyyqj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_obkj7"]
 texture = ExtResource("1_l428f")
@@ -202,7 +203,7 @@ tile_set = SubResource("TileSet_hb4gg")
 [node name="walls" type="TileMapLayer" parent="."]
 scale = Vector2(2, 2)
 tile_map_data = PackedByteArray("AAAAAAAABAAAAAAAAAAKAAAABAAEAAAAAAAKAAoABAAEAAQAAAAAAAoABAAAAAQAAAAAAAEABAAAAAEAAAAAAAMABAAAAAEAAAAAAAUABAAAAAEAAAAAAAcABAAAAAEAAAAAAAkABAAAAAEAAAAKAAEABAAEAAEAAAAKAAMABAAEAAEAAAAKAAUABAAEAAEAAAAKAAcABAAEAAEAAAAKAAkABAAEAAEAAAAKAAIABAAEAAMAAAAKAAQABAAEAAMAAAAKAAYABAAEAAMAAAAKAAgABAAEAAMAAAAAAAgABAAAAAMAAAAAAAYABAAAAAMAAAAAAAQABAAAAAMAAAAAAAIABAAAAAMAAAABAAAABAADAAAAAAADAAAABAADAAAAAAAFAAAABAADAAAAAAAHAAAABAADAAAAAAAJAAAABAADAAAAAAACAAAABAABAAAAAAAEAAAABAABAAAAAAAGAAAABAABAAAAAAAIAAAABAABAAAAAAABAAoABAADAAQAAAADAAoABAADAAQAAAAFAAoABAADAAQAAAAHAAoABAADAAQAAAAJAAoABAADAAQAAAACAAoABAABAAQAAAAEAAoABAABAAQAAAAGAAoABAABAAQAAAAIAAoABAABAAQAAAA=")
-tile_set = SubResource("TileSet_hb4gg")
+tile_set = ExtResource("7_lyyqj")
 
 [node name="LevelWall" parent="." instance=ExtResource("7_2rufq")]
 visible = false
