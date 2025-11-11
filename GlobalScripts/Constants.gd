@@ -34,16 +34,16 @@ const PLAYER_MODULATE_INVISIBLE := Color(1, 1, 1, 0)
 
 # LEVELS
 const LEVELS = {
-	1:  "res://Components/Levels/Scenes/Level1.tscn",
-	2:  "res://Components/Levels/Scenes/Level2.tscn",
-	3:  "res://Components/Levels/Scenes/Level3.tscn",
-	4:  "res://Components/Levels/Scenes/Level4.tscn",
-	5:  "res://Components/Levels/Scenes/Level5.tscn",
-	6:  "res://Components/Levels/Scenes/Level6.tscn",
-	7:  "res://Components/Levels/Scenes/Level7.tscn",
-	8:  "res://Components/Levels/Scenes/Level8.tscn",
-	9:  "res://Components/Levels/Scenes/Level9.tscn",
-	10: "res://Components/Levels/Scenes/Level10.tscn"
+	1:  "res://Components/Levels/1 - Intro/LevelIntro1.tscn",
+	2:  "res://Components/Levels/1 - Intro/LevelIntro2.tscn",
+	3:  "res://Components/Levels/1 - Intro/LevelIntro3.tscn",
+	4:  "res://Components/Levels/1 - Intro/LevelIntro4.tscn",
+	5:  "res://Components/Levels/1 - Intro/LevelIntro5.tscn",
+	6:  "res://Components/Levels/5 - Winter/LevelWinter1.tscn",
+	7:  "res://Components/Levels/5 - Winter/LevelWinter2.tscn",
+	8:  "res://Components/Levels/5 - Winter/LevelWinter3.tscn",
+	9:  "res://Components/Levels/5 - Winter/LevelWinter4.tscn",
+	10: "res://Components/Levels/5 - Winter/LevelWinter5.tscn"
 }
 
 # MENUES
