@@ -1,9 +1,9 @@
 [gd_scene load_steps=15 format=3 uid="uid://rhm2shese577"]
 
-[ext_resource type="PackedScene" uid="uid://bx0wg3htkk2o8" path="res://Components/Levels/Backgrounds/background_lvl_4.tscn" id="1_kqyep"]
 [ext_resource type="Script" uid="uid://ddiwo6yyhfkuc" path="res://Components/Levels/level.gd" id="1_qxjbv"]
 [ext_resource type="PackedScene" uid="uid://be6k5yjppap8y" path="res://Components/Creatures/creature_yellow.tscn" id="2_1ktle"]
 [ext_resource type="PackedScene" uid="uid://lrodaawkgfob" path="res://Components/UI/VFX/undo_particles.tscn" id="2_cgw8n"]
+[ext_resource type="PackedScene" uid="uid://jqkog6pefsp8" path="res://Components/Levels/Backgrounds/bg-normal-4.tscn" id="3_i4guu"]
 [ext_resource type="PackedScene" uid="uid://ccncnjkm8w8ta" path="res://Components/Creatures/creature_blue.tscn" id="3_rgu2x"]
 [ext_resource type="PackedScene" uid="uid://g3u7bc1jo6gj" path="res://Components/Player/player.tscn" id="4_6lrky"]
 [ext_resource type="PackedScene" uid="uid://oy61arlldjo3" path="res://Components/Mechanics/Stones/pushable.tscn" id="4_rgu2x"]
@@ -13,16 +13,14 @@
 [ext_resource type="PackedScene" uid="uid://bhgu3tj2dehs2" path="res://Components/UI/Controls/reset_bar.tscn" id="10_nv5kp"]
 [ext_resource type="PackedScene" uid="uid://pb5o008ihthl" path="res://Components/UI/Menues/win_screen.tscn" id="12_iv3jq"]
 [ext_resource type="PackedScene" uid="uid://d3lpfscgajhb4" path="res://Components/UI/Controls/UndoMechanic.tscn" id="13_cgw8n"]
-[ext_resource type="PackedScene" uid="uid://dp2qf8g2kvpfa" path="res://Components/Mechanics/Walls/level_wall.tscn" id="13_e6e8p"]
+[ext_resource type="PackedScene" uid="uid://ckkosqi7rtbdb" path="res://Components/UI/Menues/game_completed.tscn" id="15_ool1w"]
 
 [node name="Level4" type="Node2D"]
 script = ExtResource("1_qxjbv")
 undo_particles = ExtResource("2_cgw8n")
 level_number = 4
 
-[node name="Background_Lvl1" parent="." instance=ExtResource("1_kqyep")]
-
-[node name="LevelWall" parent="Background_Lvl1" instance=ExtResource("13_e6e8p")]
+[node name="BackgroundNormal4" parent="." instance=ExtResource("3_i4guu")]
 
 [node name="Doors" type="Node" parent="."]
 
@@ -89,5 +87,7 @@ offset_right = 0.0
 offset_bottom = 0.0
 
 [node name="UndoMechanic" parent="UI" instance=ExtResource("13_cgw8n")]
+
+[node name="GameCompleted" parent="UI" instance=ExtResource("15_ool1w")]
 
 [editable path="Doors/Door1"]

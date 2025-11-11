@@ -2,8 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ddiwo6yyhfkuc" path="res://Components/Levels/level.gd" id="1_l3jbk"]
 [ext_resource type="PackedScene" uid="uid://lrodaawkgfob" path="res://Components/UI/VFX/undo_particles.tscn" id="2_v3rhw"]
-[ext_resource type="PackedScene" uid="uid://drl8fvb23s6aj" path="res://Components/Levels/Backgrounds/background_lvl1.tscn" id="3_gt2ft"]
-[ext_resource type="PackedScene" uid="uid://dp2qf8g2kvpfa" path="res://Components/Mechanics/Walls/level_wall.tscn" id="4_vntbo"]
+[ext_resource type="PackedScene" uid="uid://ddpx53m5n63yb" path="res://Components/Levels/Backgrounds/bg-normal-1.tscn" id="3_l3jbk"]
 [ext_resource type="PackedScene" uid="uid://ccncnjkm8w8ta" path="res://Components/Creatures/creature_blue.tscn" id="5_ud11g"]
 [ext_resource type="PackedScene" uid="uid://be6k5yjppap8y" path="res://Components/Creatures/creature_yellow.tscn" id="6_jdj0p"]
 [ext_resource type="PackedScene" uid="uid://g3u7bc1jo6gj" path="res://Components/Player/player.tscn" id="7_3n0l5"]
@@ -11,15 +10,14 @@
 [ext_resource type="PackedScene" uid="uid://bhgu3tj2dehs2" path="res://Components/UI/Controls/reset_bar.tscn" id="9_7k6bh"]
 [ext_resource type="PackedScene" uid="uid://pb5o008ihthl" path="res://Components/UI/Menues/win_screen.tscn" id="10_rl3gn"]
 [ext_resource type="PackedScene" uid="uid://d3lpfscgajhb4" path="res://Components/UI/Controls/UndoMechanic.tscn" id="11_55wtx"]
+[ext_resource type="PackedScene" uid="uid://ckkosqi7rtbdb" path="res://Components/UI/Menues/game_completed.tscn" id="12_v3rhw"]
 
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_l3jbk")
 undo_particles = ExtResource("2_v3rhw")
 level_number = 1
 
-[node name="Background_Lvl1" parent="." instance=ExtResource("3_gt2ft")]
-
-[node name="LevelWall" parent="Background_Lvl1" instance=ExtResource("4_vntbo")]
+[node name="BackgroundNormal1" parent="." instance=ExtResource("3_l3jbk")]
 
 [node name="Creature" type="Node" parent="."]
 
@@ -48,6 +46,8 @@ offset_bottom = 0.0
 [node name="WinScreen" parent="UI" instance=ExtResource("10_rl3gn")]
 
 [node name="UndoMechanic" parent="UI" instance=ExtResource("11_55wtx")]
+
+[node name="GameCompleted" parent="UI" instance=ExtResource("12_v3rhw")]
 
 [editable path="Creature/CreatureBlue"]
 [editable path="MergedCreatures/MergedCreature"]

@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://ddiwo6yyhfkuc" path="res://Components/Levels/level.gd" id="1_mehec"]
 [ext_resource type="PackedScene" uid="uid://lrodaawkgfob" path="res://Components/UI/VFX/undo_particles.tscn" id="2_11ccv"]
-[ext_resource type="PackedScene" uid="uid://de75tdyuyniof" path="res://Components/Levels/Backgrounds/background_lvl_9.tscn" id="2_qf8l7"]
 [ext_resource type="PackedScene" uid="uid://i448npnkeckp" path="res://Components/Mechanics/Winter Mechanics/ice_floor.tscn" id="3_jskqn"]
+[ext_resource type="PackedScene" uid="uid://eetnkwksse75" path="res://Components/Levels/Backgrounds/bg-winter-4.tscn" id="3_ojqvu"]
 [ext_resource type="PackedScene" uid="uid://be6k5yjppap8y" path="res://Components/Creatures/creature_yellow.tscn" id="4_ba60x"]
 [ext_resource type="PackedScene" uid="uid://c6dmpno4s3103" path="res://Components/Mechanics/Doors/door.tscn" id="4_fy58k"]
 [ext_resource type="PackedScene" uid="uid://bu7a5geiluu3r" path="res://Components/Mechanics/Winter Mechanics/icicle.tscn" id="4_rew0p"]
@@ -23,19 +23,17 @@
 [ext_resource type="Texture2D" uid="uid://dis43boq1dnwi" path="res://Assets/Winter Mechanics/Ice Floors/Ice-floor-L-R-B.png" id="11_11ccv"]
 [ext_resource type="PackedScene" uid="uid://g3u7bc1jo6gj" path="res://Components/Player/player.tscn" id="14_7agio"]
 [ext_resource type="PackedScene" uid="uid://pb5o008ihthl" path="res://Components/UI/Menues/win_screen.tscn" id="14_qf8l7"]
-[ext_resource type="PackedScene" uid="uid://dp2qf8g2kvpfa" path="res://Components/Mechanics/Walls/level_wall.tscn" id="15_dtgac"]
 [ext_resource type="PackedScene" uid="uid://ccncnjkm8w8ta" path="res://Components/Creatures/creature_blue.tscn" id="22_ojqvu"]
 [ext_resource type="PackedScene" uid="uid://23u33yt4jga3" path="res://Components/Creatures/merged_creature.tscn" id="24_u732r"]
 [ext_resource type="PackedScene" uid="uid://d3lpfscgajhb4" path="res://Components/UI/Controls/UndoMechanic.tscn" id="26_s20ic"]
+[ext_resource type="PackedScene" uid="uid://ckkosqi7rtbdb" path="res://Components/UI/Menues/game_completed.tscn" id="28_u732r"]
 
 [node name="Level9" type="Node2D"]
 script = ExtResource("1_mehec")
 undo_particles = ExtResource("2_11ccv")
 level_number = 9
 
-[node name="Background_Lvl8" parent="." instance=ExtResource("2_qf8l7")]
-
-[node name="LevelWall" parent="Background_Lvl8" instance=ExtResource("15_dtgac")]
+[node name="BackgroundWinter4" parent="." instance=ExtResource("3_ojqvu")]
 
 [node name="IceTiles" type="Node2D" parent="."]
 
@@ -383,5 +381,7 @@ visible = false
 [node name="WinScreen" parent="UI" instance=ExtResource("14_qf8l7")]
 
 [node name="UndoMechanic" parent="UI" instance=ExtResource("26_s20ic")]
+
+[node name="GameCompleted" parent="UI" instance=ExtResource("28_u732r")]
 
 [editable path="UI/UndoMechanic"]

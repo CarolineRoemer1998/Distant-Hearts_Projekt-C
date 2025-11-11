@@ -70,7 +70,7 @@ const SFX_BUTTON_UNPRESSED := 	"res://Sounds/SFX/button_off.mp3"
 const SFX_PUSH_MENU_BUTTON := 	"res://Sounds/SFX/button_menu_click.mp3"
 
 # BGM PATHS
-const BGM_PATH_TITLE_THEME := 	"res://Sounds/BGM/title-track.mp3"
+const BGM_PATH_TITLE_THEME := 	"res://Sounds/BGM/title-theme.mp3"
 const BGM_PATH_WINTER_THEME := 	"res://Sounds/BGM/BGM-Winter.mp3"
 const BGM_PATH_SUMMER_THEME := 	"res://Sounds/BGM/BGM-Summer.mp3"
 

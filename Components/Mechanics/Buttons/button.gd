@@ -32,8 +32,10 @@ func _ready() -> void:
 	add_to_group(str(Constants.GROUP_NAME_BUTTONS))
 	
 	_set_button_sprites()
-	area.body_entered.connect(_on_body_entered)
-	area.body_exited.connect(_on_body_exited)
+	if not area.body_entered.is_connected(_on_body_entered):
+		area.body_entered.connect(_on_body_entered)
+	if not area.body_exited.is_connected(_on_body_exited):
+		area.body_exited.connect(_on_body_exited)
 	set_active(start_active)
 
 func get_info() -> Dictionary:

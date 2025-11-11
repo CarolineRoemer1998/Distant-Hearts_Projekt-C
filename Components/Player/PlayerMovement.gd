@@ -10,10 +10,10 @@ class_name Player
 
 @onready var label_press_f_to_control: Label = $LabelPressFToControl
 @onready var label_press_f_to_stop_control: Label = $LabelPressFToStopControl
-@onready var heart_TOP: Sprite2D = $Heart
-@onready var heart_BOTTOM: Sprite2D = $Heart2
-@onready var heart_LEFT: Sprite2D = $Heart3
-@onready var heart_RIGHT: Sprite2D = $Heart4
+#@onready var heart_TOP: Sprite2D = $Heart
+#@onready var heart_BOTTOM: Sprite2D = $Heart2
+#@onready var heart_LEFT: Sprite2D = $Heart3
+#@onready var heart_RIGHT: Sprite2D = $Heart4
 
 @onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var audio_control: AudioStreamPlayer2D = $AudioControl
