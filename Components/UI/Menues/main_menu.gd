@@ -6,7 +6,7 @@ func _ready() -> void:
 	if not AudioManager.is_music_playing:
 		AudioManager.play_music(Constants.BGM_PATH_TITLE_THEME)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if (Input.is_action_just_pressed("Player_Down") or Input.is_action_just_pressed("Player_Up") or Input.is_action_just_pressed("Player_Left") or Input.is_action_just_pressed("Player_Right") )and not used_controller:
 		$VBoxContainer/Start.grab_focus()
 		used_controller = true

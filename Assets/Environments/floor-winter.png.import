@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cxkb2aidghp1"
-path.s3tc="res://.godot/imported/floor-winter.png-7bb83121072b48b03e4779c8ceea24bb.s3tc.ctex"
+path="res://.godot/imported/floor-winter.png-7bb83121072b48b03e4779c8ceea24bb.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://Assets/Environments/floor-winter.png"
-dest_files=["res://.godot/imported/floor-winter.png-7bb83121072b48b03e4779c8ceea24bb.s3tc.ctex"]
+dest_files=["res://.godot/imported/floor-winter.png-7bb83121072b48b03e4779c8ceea24bb.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

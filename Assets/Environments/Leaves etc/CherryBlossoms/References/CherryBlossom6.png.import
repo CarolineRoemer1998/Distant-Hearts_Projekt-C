@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dx33x2lw2op16"
-path="res://.godot/imported/walls-spring.png-13137977a25ba7ae0b89979122d5ecfd.ctex"
+uid="uid://devdugff1rq1l"
+path="res://.godot/imported/CherryBlossom6.png-301a39ceba6f1feca80ebdfac088234d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Environments/walls-spring.png"
-dest_files=["res://.godot/imported/walls-spring.png-13137977a25ba7ae0b89979122d5ecfd.ctex"]
+source_file="res://Assets/Environments/Leaves etc/CherryBlossoms/References/CherryBlossom6.png"
+dest_files=["res://.godot/imported/CherryBlossom6.png-301a39ceba6f1feca80ebdfac088234d.ctex"]
 
 [params]
 

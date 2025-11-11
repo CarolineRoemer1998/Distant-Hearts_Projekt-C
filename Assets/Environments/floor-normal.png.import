@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bq853ey8admm0"
-path.s3tc="res://.godot/imported/floor-normal.png-0352110fcd65c3d7f8944650d30f7b7b.s3tc.ctex"
+path="res://.godot/imported/floor-normal.png-0352110fcd65c3d7f8944650d30f7b7b.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://Assets/Environments/floor-normal.png"
-dest_files=["res://.godot/imported/floor-normal.png-0352110fcd65c3d7f8944650d30f7b7b.s3tc.ctex"]
+dest_files=["res://.godot/imported/floor-normal.png-0352110fcd65c3d7f8944650d30f7b7b.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
