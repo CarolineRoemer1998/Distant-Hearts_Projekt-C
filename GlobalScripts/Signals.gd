@@ -28,3 +28,6 @@ signal stone_reached_target
 # Button Signals
 
 # Door Signals
+
+# Teleporter
+signal teleporter_entered(target_pos: Vector2)

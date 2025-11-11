@@ -46,6 +46,7 @@ func _ready():
 	Signals.stone_reached_target.connect(set_is_not_pushing_stone_on_ice)
 	Signals.level_done.connect(set_not_is_active)
 	Signals.player_move_finished.connect(arrive_at_target_position)
+	Signals.teleporter_entered.connect(teleport_to)
 	
 	# Spieler korrekt auf Grid ausrichten
 	target_position = position.snapped(Constants.GRID_SIZE / 2)
@@ -285,6 +286,10 @@ func possess():
 		# Position sofort synchronisieren
 		currently_possessed_creature.position = target_position
 		currently_possessed_creature.target_position = target_position
+
+func teleport_to(pos: Vector2):
+	global_position = pos
+	target_position = global_position
 
 func change_visibility(make_visible : bool):
 	if make_visible:

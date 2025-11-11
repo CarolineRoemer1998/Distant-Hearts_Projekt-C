@@ -20,6 +20,7 @@ const LAYER_BIT_STONE 				:= 2
 const LAYER_BIT_DOOR    			:= 3
 const LAYER_BIT_ICE     			:= 5
 const LAYER_BIT_LEVEL_WALL	 		:= 6
+const LAYER_BIT_TELEPORTER	 		:= 7
 const LAYER_MASK_BLOCKING_OBJECTS 	:= (1 << Constants.LAYER_BIT_STONE) | (1 << Constants.LAYER_BIT_DOOR) | (1 << Constants.LAYER_BIT_WALL_AND_PLAYER) | (1 << Constants.LAYER_BIT_CREATURE) | (1 << Constants.LAYER_BIT_LEVEL_WALL)
 
 # FIELD POSITIONS

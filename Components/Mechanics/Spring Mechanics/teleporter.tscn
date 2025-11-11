@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://du8atysfonorv"]
+
+[ext_resource type="Script" uid="uid://dpiixqybat0xw" path="res://teleporter.gd" id="1_lx5l8"]
+[ext_resource type="PackedScene" uid="uid://bkxul46ipnuj7" path="res://Components/Mechanics/Spring Mechanics/TeleporterFlower.tscn" id="2_elxxw"]
+
+[node name="Teleporter" type="Node2D"]
+script = ExtResource("1_lx5l8")
+
+[node name="Flower1" parent="." instance=ExtResource("2_elxxw")]
+position = Vector2(-64, 0)
+
+[node name="Area2D" parent="Flower1" index="1"]
+collision_layer = 128
+collision_mask = 3
+
+[node name="Flower2" parent="." instance=ExtResource("2_elxxw")]
+position = Vector2(64, 0)
+
+[connection signal="body_entered" from="Flower1/Area2D" to="." method="_on_flower_1_entered"]
+[connection signal="body_exited" from="Flower1/Area2D" to="." method="_on_flower_1_exited"]
+[connection signal="body_entered" from="Flower2/Area2D" to="." method="_on_flower_2_entered"]
+[connection signal="body_exited" from="Flower2/Area2D" to="." method="_on_flower_2_exited"]
+
+[editable path="Flower1"]
+[editable path="Flower2"]
