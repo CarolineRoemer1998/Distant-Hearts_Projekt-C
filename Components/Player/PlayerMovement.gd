@@ -193,8 +193,6 @@ func evaluate_can_move_in_direction(_position: Vector2, _direction: Vector2) -> 
 	var result_wall_outside = Helper.get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_LEVEL_WALL), world)
 	var result_wall_inside = Helper.get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_WALL_AND_PLAYER), world)
 	
-	print(result_wall_inside)
-	
 	if (result_stones.is_empty() and result_doors.is_empty() and result_wall_outside.is_empty() and result_wall_inside.is_empty()) or (currently_possessed_creature == null and result_wall_outside.is_empty()):
 		return true
 	
@@ -289,11 +287,9 @@ func possess():
 		currently_possessed_creature.position = target_position
 		currently_possessed_creature.target_position = target_position
 
-func teleport_to(pos: Vector2):
+func teleport_to(pos: Vector2, teleporter: Node2D):
 	if currently_possessed_creature:
-		currently_possessed_creature.is_teleporting = true
-		currently_possessed_creature.target_position = pos
-		currently_possessed_creature.animation_player.play("Shrink_Teleport")
+		currently_possessed_creature.start_teleport(pos, teleporter)
 		global_position = pos
 		target_position = global_position
 		
@@ -317,7 +313,6 @@ func _on_creature_undetected(body: Node) -> void:
 		set_hovering_creature(false, body)
 
 func spawn_trail(input_position: Vector2):
-	#if !currently_possessed_creature or (currently_possessed_creature and not currently_possessed_creature.is_teleporting):
 	var trail : GPUParticles2D = trail_scene.instantiate()
 	get_tree().current_scene.add_child(trail)
 	trail.global_position = input_position
