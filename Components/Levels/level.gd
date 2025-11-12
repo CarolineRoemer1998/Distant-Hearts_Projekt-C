@@ -45,8 +45,8 @@ func _process(delta: float) -> void:
 		_set_can_undo(true)
 
 func set_leaves():
-	#if season == Constants.SEASON.Spring:
-	cherry_blossoms.visible = true
+	if season == Constants.SEASON.Spring:
+		cherry_blossoms.visible = true
 
 func show_win_screen():
 	if final_level:

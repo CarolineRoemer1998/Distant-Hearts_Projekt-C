@@ -103,6 +103,7 @@ sources/8 = SubResource("TileSetAtlasSource_nlnn1")
 size = Vector2(64, 64)
 
 [node name="IceFloor" type="Node2D"]
+modulate = Color(1.05, 1.05, 1.05, 1)
 script = ExtResource("1_53oo4")
 
 [node name="Background_Lvl5" type="TileMap" parent="."]

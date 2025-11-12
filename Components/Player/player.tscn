@@ -425,7 +425,7 @@ hearts = [NodePath("HeartTop"), NodePath("HeartBottom"), NodePath("HeartLeft"), 
 undo_particles = ExtResource("3_1yt0s")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-modulate = Color(1, 1, 1, 0.8)
+modulate = Color(1.1, 1.1, 1.1, 0.8)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_7dp3o")
 animation = &"idle_down"

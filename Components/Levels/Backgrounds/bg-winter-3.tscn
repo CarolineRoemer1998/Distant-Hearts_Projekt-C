@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dp2qf8g2kvpfa" path="res://Components/Mechanics/Walls/level_wall.tscn" id="7_r2ugl"]
 
 [node name="BackgroundWinter3" type="Node2D"]
+modulate = Color(1.025, 1.025, 1.025, 1)
 texture_filter = 1
 
 [node name="floor" type="TileMapLayer" parent="."]

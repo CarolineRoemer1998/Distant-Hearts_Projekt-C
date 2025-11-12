@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=4 uid="uid://cglpr8l7nytcg"]
+[gd_scene load_steps=47 format=4 uid="uid://cglpr8l7nytcg"]
 
 [ext_resource type="Script" uid="uid://bnbypousm8hex" path="res://Components/UI/Menues/main_menu.gd" id="1_35riq"]
 [ext_resource type="PackedScene" uid="uid://c782ktl2vx0tk" path="res://Components/UI/Controls/AudioManager.tscn" id="2_828jk"]
@@ -13,6 +13,11 @@
 [ext_resource type="Texture2D" uid="uid://cvaa3r5fe6x78" path="res://Assets/Creatures/Blue/creature2_blue_walk.png" id="10_828jk"]
 [ext_resource type="Theme" uid="uid://i7fixmxgctx7" path="res://Assets/UI/Menu Buttons/Button.tres" id="10_syprg"]
 [ext_resource type="Texture2D" uid="uid://dugdhrnqmujux" path="res://Assets/Particles/heart.png" id="11_lplmr"]
+
+[sub_resource type="Environment" id="Environment_r43q0"]
+background_mode = 3
+glow_enabled = true
+glow_hdr_threshold = 0.25
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0nor7"]
 texture = ExtResource("2_p4pvn")
@@ -481,6 +486,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_35riq")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_r43q0")
 
 [node name="Hover_sound" parent="." instance=ExtResource("2_828jk")]
 

@@ -36,7 +36,7 @@ const FIELD_POSITION_LEFT := Vector2(-32,0)
 const FIELD_POSITION_TOP := Vector2(0,-32)
 
 # COLORS
-const PLAYER_MODULATE_VISIBLE := Color(1, 1, 1, 0.8)
+const PLAYER_MODULATE_VISIBLE := Color(1.15, 1.15, 1.15, 0.8)
 const PLAYER_MODULATE_INVISIBLE := Color(1, 1, 1, 0)
 
 # LEVELS

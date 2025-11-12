@@ -661,6 +661,7 @@ shape = SubResource("RectangleShape2D_01bph")
 [node name="Visuals" type="Node2D" parent="."]
 
 [node name="AnimatedSpriteCreature" type="AnimatedSprite2D" parent="Visuals"]
+modulate = Color(1.1, 1.1, 1.1, 1)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_hyqeq")
 animation = &"idle-down"
