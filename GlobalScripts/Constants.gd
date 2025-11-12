@@ -2,8 +2,6 @@ extends Node
 
 enum SEASON {Intro, Spring, Summer, Fall, Winter}
 
-
-
 # GENERAL
 const GRID_SIZE := Vector2(64, 64)
 const MOVE_SPEED := 500.0
@@ -26,6 +24,10 @@ const LAYER_BIT_ICE     			:= 5
 const LAYER_BIT_LEVEL_WALL	 		:= 6
 const LAYER_BIT_TELEPORTER	 		:= 7
 const LAYER_MASK_BLOCKING_OBJECTS 	:= (1 << Constants.LAYER_BIT_STONE) | (1 << Constants.LAYER_BIT_DOOR) | (1 << Constants.LAYER_BIT_WALL_AND_PLAYER) | (1 << Constants.LAYER_BIT_CREATURE) | (1 << Constants.LAYER_BIT_LEVEL_WALL)
+
+# Y SORT
+const Y_UI := 10
+const Y_TELEPORTER_WOOSH := 9
 
 # FIELD POSITIONS
 const FIELD_POSITION_RIGHT := Vector2(32,0)
@@ -89,5 +91,7 @@ const SPRITE_PATH_PRESSURE_PLATE_UNPRESSED := 	"res://Assets/Buttons/pressure_pl
 const SPRITE_PATH_PRESSURE_PLATE_PRESSED := 	"res://Assets/Buttons/pressure_plate_on.png"
 const SPRITE_PATH_TOGGLE_BUTTON_UNPRESSED := 	"res://Assets/Buttons/toggle-button-purple.png"
 const SPRITE_PATH_TOGGLE_BUTTON_PRESSED := 		"res://Assets/Buttons/toggle-button-orange.png"
+
+const ANIMATED_SPRITE_CHERRY_BLOSSOM := "res://Components/UI/VFX/CherryBlossomSprite.tscn"
 
 const trails := ["res://Assets/Particles/dot1.png", "res://Assets/Particles/dot2.png", "res://Assets/Particles/dot3.png"]

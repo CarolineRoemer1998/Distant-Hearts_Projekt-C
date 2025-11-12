@@ -1,6 +1,9 @@
 extends AnimatedSprite2D
 
+class_name Leaf
+
 var rnd = RandomNumberGenerator.new()
+var init_falling_speed := 50
 var falling_speed := 50
 
 var min_x := 	32
@@ -25,7 +28,7 @@ func _process(delta: float) -> void:
 func set_new_starting_pos(is_first: bool):
 	speed_scale = 1 + rnd.randf_range(-0.05, 0.05)
 	frame = rnd.randi_range(0,7)
-	falling_speed = 50+rnd.randi_range(-25,25)
+	falling_speed = init_falling_speed+rnd.randi_range(-25,25)
 	start_pos = get_new_start_pos()
 	if not is_first:
 		while start_pos[0] <= 672 and start_pos[1] >= -32:

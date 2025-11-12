@@ -1,0 +1,145 @@
+[gd_scene load_steps=22 format=3 uid="uid://3tix0gxp073h"]
+
+[ext_resource type="Texture2D" uid="uid://dvp0n3migqutl" path="res://Assets/Environments/Leaves etc/CherryBlossoms/CherryBlossom-SpriteSheet.png" id="1_gvnyd"]
+[ext_resource type="Script" uid="uid://b0b1b0g3scg8c" path="res://Assets/Environments/Leaves etc/Leaf.gd" id="2_j576l"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ira88"]
+atlas = ExtResource("1_gvnyd")
+region = Rect2(0, 0, 56, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tl1sg"]
+atlas = ExtResource("1_gvnyd")
+region = Rect2(56, 0, 56, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vv4ey"]
+atlas = ExtResource("1_gvnyd")
+region = Rect2(112, 0, 56, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lij7x"]
+atlas = ExtResource("1_gvnyd")
+region = Rect2(168, 0, 56, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_il6fr"]
+atlas = ExtResource("1_gvnyd")
+region = Rect2(224, 0, 56, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ubtj2"]
+atlas = ExtResource("1_gvnyd")
+region = Rect2(280, 0, 56, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4wcb1"]
+atlas = ExtResource("1_gvnyd")
+region = Rect2(336, 0, 56, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a100h"]
+atlas = ExtResource("1_gvnyd")
+region = Rect2(392, 0, 56, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_60kjh"]
+atlas = ExtResource("1_gvnyd")
+region = Rect2(448, 0, 56, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vgj6m"]
+atlas = ExtResource("1_gvnyd")
+region = Rect2(448, 0, 56, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_btyv5"]
+atlas = ExtResource("1_gvnyd")
+region = Rect2(392, 0, 56, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_obedc"]
+atlas = ExtResource("1_gvnyd")
+region = Rect2(336, 0, 56, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_emp38"]
+atlas = ExtResource("1_gvnyd")
+region = Rect2(280, 0, 56, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1bqdg"]
+atlas = ExtResource("1_gvnyd")
+region = Rect2(224, 0, 56, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uk2py"]
+atlas = ExtResource("1_gvnyd")
+region = Rect2(168, 0, 56, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ngm7n"]
+atlas = ExtResource("1_gvnyd")
+region = Rect2(112, 0, 56, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xh52p"]
+atlas = ExtResource("1_gvnyd")
+region = Rect2(56, 0, 56, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_78t50"]
+atlas = ExtResource("1_gvnyd")
+region = Rect2(0, 0, 56, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xh52p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ira88")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tl1sg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vv4ey")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lij7x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_il6fr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ubtj2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4wcb1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a100h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_60kjh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vgj6m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_btyv5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_obedc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_emp38")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1bqdg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uk2py")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ngm7n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xh52p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_78t50")
+}],
+"loop": true,
+"name": &"blossom-falling",
+"speed": 10.0
+}]
+
+[node name="CherryBlossomSprite" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("2_j576l")
