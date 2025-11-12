@@ -1,12 +1,13 @@
-[gd_scene load_steps=50 format=3 uid="uid://be6k5yjppap8y"]
+[gd_scene load_steps=48 format=3 uid="uid://be6k5yjppap8y"]
 
 [ext_resource type="Script" uid="uid://kjtpy8vvpaku" path="res://Components/Creatures/Creature.gd" id="1_aoml0"]
 [ext_resource type="Texture2D" uid="uid://bggggslmjgoyi" path="res://Assets/Creatures/Yellow/creature1_yellow.png" id="2_ovmof"]
 [ext_resource type="Texture2D" uid="uid://qjav2ihmnlm5" path="res://Assets/Creatures/Yellow/creature1_yellow_border.png" id="3_y0ys5"]
+[ext_resource type="PackedScene" uid="uid://mghbvp3knkqw" path="res://Components/Creatures/Creature_AnimationPlayer.tscn" id="4_aoml0"]
 [ext_resource type="PackedScene" uid="uid://23u33yt4jga3" path="res://Components/Creatures/merged_creature.tscn" id="4_eqse5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ulpcw"]
-size = Vector2(60, 60)
+size = Vector2(2, 2)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_01bph"]
 size = Vector2(32, 32)
@@ -539,81 +540,6 @@ states/Start/position = Vector2(208, 100)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_ap3gg")]
 graph_offset = Vector2(9, -9)
 
-[sub_resource type="Animation" id="Animation_ktm42"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Visuals/AnimatedSpriteCreature:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(2, 2)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Visuals/AnimatedSpriteBorder:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(2, 2)]
-}
-
-[sub_resource type="Animation" id="Animation_ulpcw"]
-resource_name = "Shrink"
-length = 0.5
-tracks/0/type = "method"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.3),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"disappear"
-}]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Visuals/AnimatedSpriteCreature:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(2, 2), Vector2(1e-05, 1e-05)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Visuals/AnimatedSpriteBorder:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(2, 2), Vector2(1e-05, 1e-05)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_idm37"]
-_data = {
-&"RESET": SubResource("Animation_ktm42"),
-&"Shrink": SubResource("Animation_ulpcw")
-}
-
 [node name="CreatureYellow" type="CharacterBody2D" groups=["creature"]]
 collision_layer = 2
 collision_mask = 6
@@ -685,11 +611,7 @@ tree_root = SubResource("AnimationNodeStateMachine_4gk32")
 anim_player = NodePath("../AnimationPlayerMovement")
 parameters/Idle/BlendSpace2D/blend_position = Vector2(-0.00303954, 0.35426)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Visuals"]
-root_node = NodePath("../..")
-libraries = {
-&"": SubResource("AnimationLibrary_idm37")
-}
+[node name="AnimationPlayer" parent="Visuals" instance=ExtResource("4_aoml0")]
 
 [node name="MergedCreature" parent="." instance=ExtResource("4_eqse5")]
 visible = false

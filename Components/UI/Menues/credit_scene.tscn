@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://d2q7tvh62427v"]
+[gd_scene load_steps=18 format=4 uid="uid://d2q7tvh62427v"]
 
 [ext_resource type="Script" uid="uid://djjmttkmi8agm" path="res://Components/UI/Menues/credit_scene.gd" id="1_skr61"]
 [ext_resource type="Texture2D" uid="uid://daocnama176b2" path="res://Assets/Presentation/Verworfen/Tile.png" id="2_pu1wf"]
@@ -10,6 +10,11 @@
 [ext_resource type="Texture2D" uid="uid://d0gndbeyxhfii" path="res://Assets/Environments/grass-floor.png" id="6_74pdu"]
 [ext_resource type="Theme" uid="uid://i7fixmxgctx7" path="res://Assets/UI/Menu Buttons/Button.tres" id="9_7ocua"]
 [ext_resource type="PackedScene" uid="uid://c782ktl2vx0tk" path="res://Components/UI/Controls/AudioManager.tscn" id="9_fh0pi"]
+
+[sub_resource type="Environment" id="Environment_luhq7"]
+background_mode = 3
+glow_enabled = true
+glow_hdr_threshold = 0.25
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_japxf"]
 texture = ExtResource("2_pu1wf")
@@ -110,6 +115,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_skr61")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_luhq7")
 
 [node name="Hover_sound" parent="." instance=ExtResource("9_fh0pi")]
 

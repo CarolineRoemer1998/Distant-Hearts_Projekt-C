@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bjggi6b1cbue8"]
+[gd_scene load_steps=11 format=3 uid="uid://bjggi6b1cbue8"]
 
 [ext_resource type="Script" uid="uid://cjwotyxepuimk" path="res://Components/UI/Menues/in_game_settings.gd" id="1_r2836"]
 [ext_resource type="Texture2D" uid="uid://bch4qo0v7oudb" path="res://Assets/Presentation/Verworfen/Wall.png" id="2_3v052"]
@@ -8,6 +8,11 @@
 [ext_resource type="Theme" uid="uid://dn5ts3pcaoad5" path="res://Assets/UI/Menu Buttons/HSlider.tres" id="5_klyfr"]
 [ext_resource type="Script" uid="uid://bld4747e6bxrc" path="res://Components/UI/Controls/menu_button.gd" id="5_oubub"]
 [ext_resource type="Theme" uid="uid://d0haimlpaexgt" path="res://Assets/UI/Menu Buttons/ToggleSlider.tres" id="6_klyfr"]
+
+[sub_resource type="Environment" id="Environment_m3me8"]
+background_mode = 3
+glow_enabled = true
+glow_hdr_threshold = 0.25
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ng16n"]
 texture = ExtResource("2_3v052")
@@ -21,6 +26,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_r2836")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_m3me8")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1

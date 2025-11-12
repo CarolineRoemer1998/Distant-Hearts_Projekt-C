@@ -62,7 +62,7 @@ func handle_input():
 	if Input.is_action_just_pressed("ui_cancel"):
 		SceneSwitcher.go_to_settings()
 	
-	elif is_active:
+	elif is_active and (!currently_possessed_creature or (currently_possessed_creature and not currently_possessed_creature.is_teleporting)):
 		# Wenn Input Bewegung ist
 		if can_move and (Input.is_action_pressed("Player_Up") or Input.is_action_pressed("Player_Down") or Input.is_action_pressed("Player_Left") or Input.is_action_pressed("Player_Right")):
 			# Bewegungsrichtungen
@@ -161,7 +161,7 @@ func set_animation_direction(_direction: Vector2):
 			currently_possessed_creature.animation_tree.set("parameters/Idle/BlendSpace2D/blend_position", _direction)
 
 func move(delta):
-	if is_moving:
+	if is_moving and (currently_possessed_creature == null or not currently_possessed_creature.is_teleporting):
 		if is_on_ice and currently_possessed_creature and not is_moving_on_ice:
 			move_on_ice()
 			
@@ -290,11 +290,13 @@ func possess():
 		currently_possessed_creature.target_position = target_position
 
 func teleport_to(pos: Vector2):
-	global_position = pos
-	target_position = global_position
 	if currently_possessed_creature:
-		currently_possessed_creature.position = pos
-		currently_possessed_creature.target_position = currently_possessed_creature.position
+		currently_possessed_creature.is_teleporting = true
+		currently_possessed_creature.target_position = pos
+		currently_possessed_creature.animation_player.play("Shrink_Teleport")
+		global_position = pos
+		target_position = global_position
+		
 
 func change_visibility(make_visible : bool):
 	if make_visible:
@@ -315,6 +317,7 @@ func _on_creature_undetected(body: Node) -> void:
 		set_hovering_creature(false, body)
 
 func spawn_trail(input_position: Vector2):
+	#if !currently_possessed_creature or (currently_possessed_creature and not currently_possessed_creature.is_teleporting):
 	var trail : GPUParticles2D = trail_scene.instantiate()
 	get_tree().current_scene.add_child(trail)
 	trail.global_position = input_position

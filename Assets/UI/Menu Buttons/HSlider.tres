@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://ctnny438nun0" path="res://Assets/UI/Menu Buttons/MenuButton.png" id="4_r84qf"]
 [ext_resource type="Texture2D" uid="uid://yd1pnpmwhyt0" path="res://Assets/UI/Menu Buttons/MenuButtonPressed.png" id="5_5ai1n"]
 
-[sub_resource type="Image" id="Image_744tr"]
+[sub_resource type="Image" id="Image_5at5y"]
 data = {
 "data": PackedByteArray(0, 0, 0, 0, 255, 255, 255, 64, 255, 255, 255, 64, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 64, 255, 255, 255, 64, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 64, 255, 255, 255, 64, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 64, 255, 255, 255, 64, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 64, 255, 255, 255, 64, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 64, 255, 255, 255, 64, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 64, 255, 255, 255, 64, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 64, 255, 255, 255, 64, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 64, 255, 255, 255, 64, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 64, 255, 255, 255, 64, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 64, 255, 255, 255, 64, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 64, 255, 255, 255, 64, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 64, 255, 255, 255, 64, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 64, 255, 255, 255, 64, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 64, 255, 255, 255, 64, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 64, 255, 255, 255, 64, 0, 0, 0, 0),
 "format": "RGBA8",
@@ -16,7 +16,7 @@ data = {
 }
 
 [sub_resource type="ImageTexture" id="ImageTexture_apvx4"]
-image = SubResource("Image_744tr")
+image = SubResource("Image_5at5y")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_akugf"]
 texture = ExtResource("4_r84qf")

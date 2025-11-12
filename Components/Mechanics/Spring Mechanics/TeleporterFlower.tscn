@@ -20,7 +20,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_afsdi"]
-size = Vector2(60, 60)
+size = Vector2(2, 2)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dejtt"]
 atlas = ExtResource("2_ruatl")
@@ -362,9 +362,10 @@ scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_dejtt")
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 128
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-visible = false
 shape = SubResource("RectangleShape2D_afsdi")
 
 [node name="Woosh" type="AnimatedSprite2D" parent="."]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=4 uid="uid://bjlb842jvvq0k"]
+[gd_scene load_steps=37 format=4 uid="uid://bjlb842jvvq0k"]
 
 [ext_resource type="Script" uid="uid://ckji0el187dht" path="res://Components/UI/Menues/level_select.gd" id="1_6aqvj"]
 [ext_resource type="Texture2D" uid="uid://daocnama176b2" path="res://Assets/Presentation/Verworfen/Tile.png" id="3_31xks"]
@@ -19,6 +19,11 @@
 [ext_resource type="Texture2D" uid="uid://dej8o3atobn7n" path="res://Assets/Presentation/ScreenShots/lvl7.png" id="16_a3n8b"]
 [ext_resource type="Texture2D" uid="uid://b5awbje32ckt8" path="res://Assets/Presentation/ScreenShots/lvl8.png" id="17_fphvl"]
 [ext_resource type="Texture2D" uid="uid://ou3xgtnpdcjp" path="res://Assets/Presentation/ScreenShots/lvl9.png" id="18_xsmqa"]
+
+[sub_resource type="Environment" id="Environment_ok3ky"]
+background_mode = 3
+glow_enabled = true
+glow_hdr_threshold = 0.25
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_japxf"]
 texture = ExtResource("3_31xks")
@@ -149,6 +154,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_6aqvj")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ok3ky")
 
 [node name="Background_Lvl1" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_cqlev")

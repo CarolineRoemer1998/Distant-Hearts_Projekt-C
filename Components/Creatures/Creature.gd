@@ -25,6 +25,7 @@ var neighbor_left : Creature = null
 var neighbor_top : Creature = null
 
 var has_not_moved := true
+var is_teleporting := false
 
 func _ready():
 	animated_sprite_creature.frame = 0
@@ -81,8 +82,6 @@ func get_neighbor_in_direction_is_mergable(_direction : Vector2) -> Creature:
 
 func merge(_direction : Vector2, neighbor : Creature) -> bool:
 	if neighbor != null:
-		#var merged_creature = get_tree().get_first_node_in_group("MergedCreature")
-		#if merged_creature is MergedCreature:
 		merged_creature.reparent(get_parent())
 		merged_creature.position = position + _direction
 		await get_tree().create_timer(0.1).timeout # creatures verschwinden, merged_creature taucht nach 0.1 sec auf
@@ -95,8 +94,20 @@ func merge(_direction : Vector2, neighbor : Creature) -> bool:
 		return true
 	return false
 
+func teleport():
+	if is_teleporting:
+		position = target_position
+		visible = true
+		appear()
+
+func set_not_teleporting():
+	is_teleporting = false
+
 func shrink():
 	animation_player.play("Shrink")
+	
+func appear():
+	animation_player.play("Appear_Teleport")
 
 func disappear():
 	queue_free()

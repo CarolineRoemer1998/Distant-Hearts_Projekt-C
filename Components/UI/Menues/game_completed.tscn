@@ -1,8 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://ckkosqi7rtbdb"]
+[gd_scene load_steps=11 format=3 uid="uid://ckkosqi7rtbdb"]
 
 [ext_resource type="FontFile" uid="uid://d3id6ewnchky" path="res://Fonts/GrapeSoda.ttf" id="1_diuch"]
 [ext_resource type="Texture2D" uid="uid://dugdhrnqmujux" path="res://Assets/Particles/heart.png" id="2_xh2fq"]
 [ext_resource type="Texture2D" uid="uid://v56kyxx7qfib" path="res://Scenes/Ui_Controller/Ui_Acept.tres" id="3_oupf0"]
+
+[sub_resource type="Environment" id="Environment_8rd8o"]
+background_mode = 3
+glow_enabled = true
+glow_hdr_threshold = 0.25
 
 [sub_resource type="Animation" id="Animation_2h8qs"]
 length = 0.001
@@ -163,6 +168,9 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 704.0
 offset_bottom = 704.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_8rd8o")
 
 [node name="WinAnimation" type="AnimationPlayer" parent="."]
 libraries = {
