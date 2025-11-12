@@ -13,6 +13,8 @@ class_name TeleporterFlower
 @export var value_alpha_boost_max: float = 0.3
 @export var scale_boost_max: float = 0.2
 
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+
 var is_teleporting: bool = false
 enum Phase { IDLE, UP, DOWN }
 var phase: int = Phase.IDLE
@@ -71,6 +73,7 @@ func start_teleport() -> void:
 	phase_len = up_duration
 	logged_phase = -1
 	_set_all_to_level(0.0)
+	animation_player.play("Teleport")
 
 func end_teleport() -> void:
 	is_teleporting = false

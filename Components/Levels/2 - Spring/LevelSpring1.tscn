@@ -36,7 +36,7 @@ position = Vector2(352, 416)
 position = Vector2(-256, 128)
 
 [node name="Flower2" parent="Teleporter" index="1"]
-position = Vector2(0, 128)
+position = Vector2(256, 128)
 
 [node name="LevelUI" parent="." instance=ExtResource("8_igtey")]
 

@@ -75,6 +75,10 @@ const SFX_UNPOSSESS := 			"res://Sounds/SFX/unpossess.mp3"
 const SFX_BUTTON_PRESSED := 	"res://Sounds/SFX/button_on.mp3"
 const SFX_BUTTON_UNPRESSED := 	"res://Sounds/SFX/button_off.mp3"
 const SFX_PUSH_MENU_BUTTON := 	"res://Sounds/SFX/button_menu_click.mp3"
+#const SFX_TELEPORT :=			"res://Sounds/SFX/teleport_test/teleport-game-sound-effect-379236.mp3"
+const SFX_TELEPORT :=			"res://Sounds/SFX/teleport_test/scifi-anime-whoosh-59-205276.mp3"
+#const SFX_TELEPORT :=			"res://Sounds/SFX/teleport_test/scifi-anime-whoosh-52-205271.mp3"
+#const SFX_TELEPORT :=			"res://Sounds/SFX/teleport-1.mp3"
 
 # BGM PATHS
 const BGM_PATH_TITLE_THEME := 	"res://Sounds/BGM/title-theme.mp3"

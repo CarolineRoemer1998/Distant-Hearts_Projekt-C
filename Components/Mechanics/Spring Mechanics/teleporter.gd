@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var flower_1: TeleporterFlower = $Flower1
 @onready var flower_2: TeleporterFlower = $Flower2
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 var is_active := true
 
@@ -12,6 +13,7 @@ func _on_flower_1_entered(body: Node2D) -> void:
 		is_active = false
 		flower_1.start_teleport()
 		flower_2.start_teleport()
+		audio_stream_player_2d.play()
 
 
 func _on_flower_2_entered(body: Node2D) -> void:
@@ -20,6 +22,7 @@ func _on_flower_2_entered(body: Node2D) -> void:
 		is_active = false
 		flower_1.start_teleport()
 		flower_2.start_teleport()
+		audio_stream_player_2d.play()
 
 
 func _on_flower_1_exited(body: Node2D) -> void:
