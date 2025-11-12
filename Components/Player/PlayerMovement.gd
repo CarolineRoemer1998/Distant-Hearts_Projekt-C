@@ -292,6 +292,9 @@ func possess():
 func teleport_to(pos: Vector2):
 	global_position = pos
 	target_position = global_position
+	if currently_possessed_creature:
+		currently_possessed_creature.position = pos
+		currently_possessed_creature.target_position = currently_possessed_creature.position
 
 func change_visibility(make_visible : bool):
 	if make_visible:

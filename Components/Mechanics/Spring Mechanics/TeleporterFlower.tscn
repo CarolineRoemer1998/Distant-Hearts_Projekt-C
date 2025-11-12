@@ -343,7 +343,14 @@ animations = [{
 
 [node name="Flower1" type="Node2D"]
 
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+self_modulate = Color(0.13228932, 0.11185775, 0.1309272, 0.3647059)
+position = Vector2(0, 4)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_dejtt")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+self_modulate = Color(1.551, 1.363, 1.54, 1)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_dejtt")
 
