@@ -90,6 +90,7 @@ _data = {
 [node name="WinScreen" type="Control"]
 visible = false
 top_level = true
+z_index = 1000
 custom_minimum_size = Vector2(704, 704)
 layout_mode = 3
 anchors_preset = 0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://brxp384v6eu7w"]
+[gd_scene load_steps=12 format=3 uid="uid://brxp384v6eu7w"]
 
 [ext_resource type="Script" uid="uid://ddiwo6yyhfkuc" path="res://Components/Levels/level.gd" id="1_nonkr"]
 [ext_resource type="PackedScene" uid="uid://lrodaawkgfob" path="res://Components/UI/VFX/undo_particles.tscn" id="2_tebux"]
@@ -6,15 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://cdt5m2v6xjjuf" path="res://Components/Mechanics/Doors/inverted_door.tscn" id="4_f5ppv"]
 [ext_resource type="PackedScene" uid="uid://g3u7bc1jo6gj" path="res://Components/Player/player.tscn" id="4_to3se"]
 [ext_resource type="PackedScene" uid="uid://ccncnjkm8w8ta" path="res://Components/Creatures/creature_blue.tscn" id="5_213sf"]
-[ext_resource type="PackedScene" uid="uid://23u33yt4jga3" path="res://Components/Creatures/merged_creature.tscn" id="6_rbgxu"]
 [ext_resource type="PackedScene" uid="uid://be6k5yjppap8y" path="res://Components/Creatures/creature_yellow.tscn" id="7_ytef6"]
-[ext_resource type="PackedScene" uid="uid://bhgu3tj2dehs2" path="res://Components/UI/Controls/reset_bar.tscn" id="8_xnl3v"]
 [ext_resource type="PackedScene" uid="uid://oy61arlldjo3" path="res://Components/Mechanics/Stones/pushable.tscn" id="9_4kscp"]
 [ext_resource type="PackedScene" uid="uid://c6dmpno4s3103" path="res://Components/Mechanics/Doors/door.tscn" id="10_2xldr"]
+[ext_resource type="PackedScene" uid="uid://dtrjxhb3ayo1c" path="res://Components/Levels/LevelUI.tscn" id="11_v4x4v"]
 [ext_resource type="PackedScene" uid="uid://bt4pnhd7cx7xc" path="res://Components/Mechanics/Buttons/button.tscn" id="11_ytef6"]
-[ext_resource type="PackedScene" uid="uid://pb5o008ihthl" path="res://Components/UI/Menues/win_screen.tscn" id="12_61bxs"]
-[ext_resource type="PackedScene" uid="uid://d3lpfscgajhb4" path="res://Components/UI/Controls/UndoMechanic.tscn" id="14_gwimc"]
-[ext_resource type="PackedScene" uid="uid://ckkosqi7rtbdb" path="res://Components/UI/Menues/game_completed.tscn" id="16_2bgfo"]
 
 [node name="Level5" type="Node2D"]
 script = ExtResource("1_nonkr")
@@ -80,24 +76,6 @@ position = Vector2(481, 544)
 top_level = true
 position = Vector2(160, 288)
 
-[node name="MergedCreatures" type="Node" parent="."]
-
-[node name="MergedCreature" parent="MergedCreatures" instance=ExtResource("6_rbgxu")]
-visible = false
-top_level = true
-
-[node name="UI" type="Node" parent="."]
-
-[node name="WinScreen" parent="UI" instance=ExtResource("12_61bxs")]
-
-[node name="ResetBar" parent="UI" instance=ExtResource("8_xnl3v")]
-offset_right = 0.0
-offset_bottom = 0.0
-
-[node name="UndoMechanic" parent="UI" instance=ExtResource("14_gwimc")]
-
-[node name="GameCompleted" parent="UI" instance=ExtResource("16_2bgfo")]
+[node name="LevelUI" parent="." instance=ExtResource("11_v4x4v")]
 
 [editable path="Creatures/CreatureBlue"]
-[editable path="MergedCreatures/MergedCreature"]
-[editable path="UI/WinScreen"]

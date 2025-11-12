@@ -1,20 +1,25 @@
 extends Node2D
 
+@export var season : Constants.SEASON = Constants.SEASON.Intro
 @export var undo_particles: PackedScene 
 @export var final_level: bool = false
 @export var level_number: int = 0
 
-@onready var win_animation: AnimationPlayer = $UI/WinScreen/WinAnimation
-@onready var game_completed_animation: AnimationPlayer = $UI/GameCompleted/WinAnimation
+@onready var win_animation: AnimationPlayer = $LevelUI/WinScreen/WinAnimation
+@onready var game_completed_animation: AnimationPlayer = $LevelUI/GameCompleted/WinAnimation
 
-@onready var undo_timer_init: Timer = $UI/UndoMechanic/UndoTimerInit
-@onready var undo_timer_continious: Timer = $UI/UndoMechanic/UndoTimerContinious
-@onready var undo_sound: AudioStreamPlayer2D = $UI/UndoMechanic/UndoSound
+@onready var undo_timer_init: Timer = $LevelUI/UndoMechanic/UndoTimerInit
+@onready var undo_timer_continious: Timer = $LevelUI/UndoMechanic/UndoTimerContinious
+@onready var undo_sound: AudioStreamPlayer2D = $LevelUI/UndoMechanic/UndoSound
+
+# Leaves
+@onready var cherry_blossoms: Node2D = $LevelUI/Leaves/CherryBlossoms
 
 var can_undo := true
 var is_undo_pressed := false
 
 func _ready() -> void:
+	set_leaves()
 	SceneSwitcher.set_curent_level(level_number)
 	if level_number >= 6:
 		AudioManager.play_music(Constants.BGM_PATH_WINTER_THEME)
@@ -29,7 +34,6 @@ func _ready() -> void:
 	Signals.SHOW_WIN_SCREEN.connect(show_win_screen)
 
 
-@warning_ignore("unused_parameter")
 func _process(delta: float) -> void:
 	if Input.is_action_pressed("Undo"):
 		is_undo_pressed = true
@@ -40,6 +44,9 @@ func _process(delta: float) -> void:
 		undo_timer_continious.stop()
 		_set_can_undo(true)
 
+func set_leaves():
+	#if season == Constants.SEASON.Spring:
+	cherry_blossoms.visible = true
 
 func show_win_screen():
 	if final_level:

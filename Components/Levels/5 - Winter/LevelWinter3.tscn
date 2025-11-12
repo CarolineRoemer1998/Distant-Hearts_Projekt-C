@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://vge7wou5ewmh"]
+[gd_scene load_steps=24 format=3 uid="uid://vge7wou5ewmh"]
 
 [ext_resource type="Script" uid="uid://ddiwo6yyhfkuc" path="res://Components/Levels/level.gd" id="1_7ae7w"]
 [ext_resource type="PackedScene" uid="uid://i448npnkeckp" path="res://Components/Mechanics/Winter Mechanics/ice_floor.tscn" id="2_a03e5"]
@@ -20,13 +20,9 @@
 [ext_resource type="Texture2D" uid="uid://dkgld5dg1asp" path="res://Assets/Winter Mechanics/Ice Floors/Ice-floor-L-R.png" id="9_vu1yg"]
 [ext_resource type="PackedScene" uid="uid://bu7a5geiluu3r" path="res://Components/Mechanics/Winter Mechanics/icicle.tscn" id="10_xhsd0"]
 [ext_resource type="Texture2D" uid="uid://ce8efu0a3oy2r" path="res://Assets/Winter Mechanics/Ice Floors/Ice-floor-L-B.png" id="10_yviyk"]
-[ext_resource type="PackedScene" uid="uid://23u33yt4jga3" path="res://Components/Creatures/merged_creature.tscn" id="11_u7nce"]
 [ext_resource type="PackedScene" uid="uid://g3u7bc1jo6gj" path="res://Components/Player/player.tscn" id="12_1ewnr"]
 [ext_resource type="Texture2D" uid="uid://dis43boq1dnwi" path="res://Assets/Winter Mechanics/Ice Floors/Ice-floor-L-R-B.png" id="13_bs21i"]
-[ext_resource type="PackedScene" uid="uid://bhgu3tj2dehs2" path="res://Components/UI/Controls/reset_bar.tscn" id="13_efhq8"]
-[ext_resource type="PackedScene" uid="uid://pb5o008ihthl" path="res://Components/UI/Menues/win_screen.tscn" id="14_r8atn"]
-[ext_resource type="PackedScene" uid="uid://d3lpfscgajhb4" path="res://Components/UI/Controls/UndoMechanic.tscn" id="26_bs21i"]
-[ext_resource type="PackedScene" uid="uid://ckkosqi7rtbdb" path="res://Components/UI/Menues/game_completed.tscn" id="28_2sw60"]
+[ext_resource type="PackedScene" uid="uid://dtrjxhb3ayo1c" path="res://Components/Levels/LevelUI.tscn" id="23_tyvua"]
 
 [node name="Level8" type="Node2D"]
 script = ExtResource("1_7ae7w")
@@ -289,17 +285,4 @@ position = Vector2(160, 288)
 [node name="Player" parent="Player" instance=ExtResource("12_1ewnr")]
 position = Vector2(160, 608)
 
-[node name="MergedCreatures" type="Node" parent="."]
-
-[node name="MergedCreature" parent="MergedCreatures" instance=ExtResource("11_u7nce")]
-visible = false
-
-[node name="UI" type="Node" parent="."]
-
-[node name="ResetBar" parent="UI" instance=ExtResource("13_efhq8")]
-
-[node name="WinScreen" parent="UI" instance=ExtResource("14_r8atn")]
-
-[node name="UndoMechanic" parent="UI" instance=ExtResource("26_bs21i")]
-
-[node name="GameCompleted" parent="UI" instance=ExtResource("28_2sw60")]
+[node name="LevelUI" parent="." instance=ExtResource("23_tyvua")]

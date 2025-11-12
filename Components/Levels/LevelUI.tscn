@@ -1,0 +1,738 @@
+[gd_scene load_steps=26 format=3 uid="uid://dtrjxhb3ayo1c"]
+
+[ext_resource type="PackedScene" uid="uid://bhgu3tj2dehs2" path="res://Components/UI/Controls/reset_bar.tscn" id="1_1663l"]
+[ext_resource type="PackedScene" uid="uid://pb5o008ihthl" path="res://Components/UI/Menues/win_screen.tscn" id="2_73yj2"]
+[ext_resource type="PackedScene" uid="uid://d3lpfscgajhb4" path="res://Components/UI/Controls/UndoMechanic.tscn" id="3_m0pqk"]
+[ext_resource type="PackedScene" uid="uid://ckkosqi7rtbdb" path="res://Components/UI/Menues/game_completed.tscn" id="4_dnxhn"]
+[ext_resource type="Texture2D" uid="uid://dvp0n3migqutl" path="res://Assets/Environments/Leaves etc/CherryBlossoms/CherryBlossom-SpriteSheet.png" id="5_ojlv3"]
+[ext_resource type="Script" uid="uid://b0b1b0g3scg8c" path="res://Assets/Environments/Leaves etc/Leaf.gd" id="6_2v0q7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ira88"]
+atlas = ExtResource("5_ojlv3")
+region = Rect2(0, 0, 56, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tl1sg"]
+atlas = ExtResource("5_ojlv3")
+region = Rect2(56, 0, 56, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vv4ey"]
+atlas = ExtResource("5_ojlv3")
+region = Rect2(112, 0, 56, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lij7x"]
+atlas = ExtResource("5_ojlv3")
+region = Rect2(168, 0, 56, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_il6fr"]
+atlas = ExtResource("5_ojlv3")
+region = Rect2(224, 0, 56, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ubtj2"]
+atlas = ExtResource("5_ojlv3")
+region = Rect2(280, 0, 56, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4wcb1"]
+atlas = ExtResource("5_ojlv3")
+region = Rect2(336, 0, 56, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a100h"]
+atlas = ExtResource("5_ojlv3")
+region = Rect2(392, 0, 56, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_60kjh"]
+atlas = ExtResource("5_ojlv3")
+region = Rect2(448, 0, 56, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vgj6m"]
+atlas = ExtResource("5_ojlv3")
+region = Rect2(448, 0, 56, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_btyv5"]
+atlas = ExtResource("5_ojlv3")
+region = Rect2(392, 0, 56, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_obedc"]
+atlas = ExtResource("5_ojlv3")
+region = Rect2(336, 0, 56, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_emp38"]
+atlas = ExtResource("5_ojlv3")
+region = Rect2(280, 0, 56, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1bqdg"]
+atlas = ExtResource("5_ojlv3")
+region = Rect2(224, 0, 56, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uk2py"]
+atlas = ExtResource("5_ojlv3")
+region = Rect2(168, 0, 56, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ngm7n"]
+atlas = ExtResource("5_ojlv3")
+region = Rect2(112, 0, 56, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xh52p"]
+atlas = ExtResource("5_ojlv3")
+region = Rect2(56, 0, 56, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_78t50"]
+atlas = ExtResource("5_ojlv3")
+region = Rect2(0, 0, 56, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xh52p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ira88")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tl1sg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vv4ey")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lij7x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_il6fr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ubtj2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4wcb1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a100h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_60kjh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vgj6m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_btyv5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_obedc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_emp38")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1bqdg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uk2py")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ngm7n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xh52p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_78t50")
+}],
+"loop": true,
+"name": &"blossom-falling",
+"speed": 10.0
+}]
+
+[node name="LevelUI" type="Node"]
+
+[node name="ResetBar" parent="." instance=ExtResource("1_1663l")]
+offset_right = 0.0
+offset_bottom = 0.0
+metadata/_edit_use_anchors_ = true
+
+[node name="WinScreen" parent="." instance=ExtResource("2_73yj2")]
+
+[node name="UndoMechanic" parent="." instance=ExtResource("3_m0pqk")]
+
+[node name="GameCompleted" parent="." instance=ExtResource("4_dnxhn")]
+
+[node name="Leaves" type="Node2D" parent="."]
+
+[node name="CherryBlossoms" type="Node2D" parent="Leaves"]
+visible = false
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(34, 32)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(576, 160)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(448, 64)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(320, 128)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(160, 160)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D6" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(224, 32)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D7" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(352, 288)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D8" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(64, 320)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D9" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(192, 448)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D10" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(512, 352)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D11" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(608, 448)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D12" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(480, 576)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D13" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(384, 416)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D14" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(256, 608)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D15" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(96, 512)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D16" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(608, 640)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D17" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(64, 128)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D18" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(32, 640)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D19" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(32, -32)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D20" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(576, 160)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D21" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(448, 64)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D22" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(320, 128)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D23" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(160, 160)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D24" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(224, 32)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D25" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(352, 288)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D26" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(64, 320)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D27" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(192, 448)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D28" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(-512, 672)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D29" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(608, 448)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D30" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(480, 576)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D31" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(384, 416)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D32" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(256, 608)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D33" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(96, 512)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D34" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(608, 640)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D35" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(64, 128)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D36" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(32, 640)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D37" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(34, 32)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D38" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(576, 160)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D39" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(448, 64)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D40" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(320, 128)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D41" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(160, 160)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D42" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(224, 32)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D43" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(352, 288)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D44" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(64, 320)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D45" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(192, 448)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D46" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(512, 352)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D47" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(608, 448)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D48" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(480, 576)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D49" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(384, 416)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D50" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(256, 608)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D51" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(96, 512)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D52" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(608, 640)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D53" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(64, 128)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D54" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(32, 640)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D55" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(32, -32)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D56" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(576, 160)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D57" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(448, 64)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D58" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(320, 128)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D59" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(160, 160)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D60" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(224, 32)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D61" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(352, 288)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D62" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(64, 320)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D63" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(192, 448)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D64" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(-512, 672)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D65" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(608, 448)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D66" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(480, 576)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D67" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(384, 416)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D68" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(256, 608)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D69" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(96, 512)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D70" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(608, 640)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D71" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(64, 128)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[node name="AnimatedSprite2D72" type="AnimatedSprite2D" parent="Leaves/CherryBlossoms"]
+position = Vector2(32, 640)
+sprite_frames = SubResource("SpriteFrames_xh52p")
+animation = &"blossom-falling"
+autoplay = "blossom-falling"
+frame_progress = 0.41469255
+script = ExtResource("6_2v0q7")
+
+[editable path="UndoMechanic"]

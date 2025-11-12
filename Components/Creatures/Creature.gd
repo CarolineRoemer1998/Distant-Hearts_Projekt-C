@@ -2,11 +2,19 @@ extends CharacterBody2D
 
 class_name Creature
 
+enum COLOR {Blue, Yellow}
+
+@export var color : COLOR = COLOR.Blue
+
 @export var init_direction := Vector2.DOWN
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var border: AnimatedSprite2D = $AnimatedSpriteBorder
-@onready var animation_tree: AnimationTree = $AnimationTree
+
 @onready var init_position : Vector2
+@onready var merged_creature: MergedCreature = $MergedCreature
+
+@onready var animated_sprite_creature: AnimatedSprite2D = $Visuals/AnimatedSpriteCreature
+@onready var animation_player: AnimationPlayer = $Visuals/AnimationPlayer
+@onready var border: AnimatedSprite2D = $Visuals/AnimatedSpriteBorder
+@onready var animation_tree: AnimationTree = $Visuals/AnimationTree
 
 var current_direction := init_direction
 var target_position: Vector2
@@ -19,6 +27,8 @@ var neighbor_top : Creature = null
 var has_not_moved := true
 
 func _ready():
+	animated_sprite_creature.frame = 0
+	border.frame = 0
 	self.add_to_group(Constants.GROUP_NAME_CREATURE)
 	target_position = position.snapped(Constants.GRID_SIZE / 2)
 	init_position = global_position
@@ -71,17 +81,18 @@ func get_neighbor_in_direction_is_mergable(_direction : Vector2) -> Creature:
 
 func merge(_direction : Vector2, neighbor : Creature) -> bool:
 	if neighbor != null:
-		var merged_creature = get_tree().get_first_node_in_group("MergedCreature")
-		if merged_creature is MergedCreature:
-			merged_creature.position = position + _direction
-			await get_tree().create_timer(0.1).timeout # creatures verschwinden, merged_creature taucht nach 0.1 sec auf
-			shrink()
-			neighbor.shrink()
-			merged_creature.visible = true
-			merged_creature.appear()
-			#is_active = false
-			Signals.level_done.emit()
-			return true
+		#var merged_creature = get_tree().get_first_node_in_group("MergedCreature")
+		#if merged_creature is MergedCreature:
+		merged_creature.reparent(get_parent())
+		merged_creature.position = position + _direction
+		await get_tree().create_timer(0.1).timeout # creatures verschwinden, merged_creature taucht nach 0.1 sec auf
+		shrink()
+		neighbor.shrink()
+		merged_creature.visible = true
+		merged_creature.appear()
+		#is_active = false
+		Signals.level_done.emit()
+		return true
 	return false
 
 func shrink():

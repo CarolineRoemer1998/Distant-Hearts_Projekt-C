@@ -193,6 +193,8 @@ func evaluate_can_move_in_direction(_position: Vector2, _direction: Vector2) -> 
 	var result_wall_outside = Helper.get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_LEVEL_WALL), world)
 	var result_wall_inside = Helper.get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_WALL_AND_PLAYER), world)
 	
+	print(result_wall_inside)
+	
 	if (result_stones.is_empty() and result_doors.is_empty() and result_wall_outside.is_empty() and result_wall_inside.is_empty()) or (currently_possessed_creature == null and result_wall_outside.is_empty()):
 		return true
 	

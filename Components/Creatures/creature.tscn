@@ -1,0 +1,63 @@
+[gd_scene load_steps=4 format=3 uid="uid://dnourggnj0l7w"]
+
+[ext_resource type="Script" uid="uid://kjtpy8vvpaku" path="res://Components/Creatures/Creature.gd" id="1_67rdp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ulpcw"]
+size = Vector2(60, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_01bph"]
+size = Vector2(32, 32)
+
+[node name="Creature" type="CharacterBody2D" groups=["creature"]]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_67rdp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_ulpcw")
+
+[node name="Areas" type="Node2D" parent="."]
+
+[node name="Area2D_Right" type="Area2D" parent="Areas"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D_Right" type="CollisionShape2D" parent="Areas/Area2D_Right"]
+position = Vector2(64, 0)
+shape = SubResource("RectangleShape2D_01bph")
+
+[node name="Area2D_Bottom" type="Area2D" parent="Areas"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D_Bottom" type="CollisionShape2D" parent="Areas/Area2D_Bottom"]
+position = Vector2(0, 64)
+shape = SubResource("RectangleShape2D_01bph")
+
+[node name="Area2D_Left" type="Area2D" parent="Areas"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D_Left" type="CollisionShape2D" parent="Areas/Area2D_Left"]
+position = Vector2(-64, 0)
+shape = SubResource("RectangleShape2D_01bph")
+
+[node name="Area2D_Top" type="Area2D" parent="Areas"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D_Top" type="CollisionShape2D" parent="Areas/Area2D_Top"]
+position = Vector2(0, -64)
+shape = SubResource("RectangleShape2D_01bph")
+
+[node name="Visuals" type="Node2D" parent="."]
+
+[connection signal="body_entered" from="Areas/Area2D_Right" to="." method="on_creature_to_right"]
+[connection signal="body_exited" from="Areas/Area2D_Right" to="." method="_on_creature_right_gone"]
+[connection signal="body_entered" from="Areas/Area2D_Bottom" to="." method="on_creature_to_bottom"]
+[connection signal="body_exited" from="Areas/Area2D_Bottom" to="." method="_on_creature_bottom_gone"]
+[connection signal="body_entered" from="Areas/Area2D_Left" to="." method="on_creature_to_left"]
+[connection signal="body_exited" from="Areas/Area2D_Left" to="." method="_on_creature_left_gone"]
+[connection signal="body_entered" from="Areas/Area2D_Top" to="." method="on_creature_to_top"]
+[connection signal="body_exited" from="Areas/Area2D_Top" to="." method="_on_creature_top_gone"]

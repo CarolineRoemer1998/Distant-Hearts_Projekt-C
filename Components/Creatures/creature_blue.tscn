@@ -1,10 +1,15 @@
-[gd_scene load_steps=51 format=3 uid="uid://ccncnjkm8w8ta"]
+[gd_scene load_steps=50 format=3 uid="uid://ccncnjkm8w8ta"]
 
 [ext_resource type="Script" uid="uid://kjtpy8vvpaku" path="res://Components/Creatures/Creature.gd" id="1_lgxpu"]
 [ext_resource type="Texture2D" uid="uid://bj7pm75smwnqp" path="res://Assets/Creatures/Blue/creature2_blue.png" id="2_ufwjw"]
 [ext_resource type="Texture2D" uid="uid://csubn0t1qpfow" path="res://Assets/Creatures/Blue/creature2_blue_white_border.png" id="3_xbm6y"]
-[ext_resource type="Texture2D" uid="uid://7rp7tk5tlb1m" path="res://Assets/Creatures/Blue/creature2_blue_single.png" id="4_fr2fe"]
-[ext_resource type="Texture2D" uid="uid://hs5h70vwdnfj" path="res://Assets/Creatures/Blue/creature2_white_border_single.png" id="5_v76sd"]
+[ext_resource type="PackedScene" uid="uid://23u33yt4jga3" path="res://Components/Creatures/merged_creature.tscn" id="4_urr0o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ulpcw"]
+size = Vector2(60, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_01bph"]
+size = Vector2(32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o5ekt"]
 atlas = ExtResource("2_ufwjw")
@@ -228,7 +233,7 @@ step = 0.25
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSpriteCreature:frame")
+tracks/0/path = NodePath("Visuals/AnimatedSpriteCreature:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -240,7 +245,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSpriteCreature:animation")
+tracks/1/path = NodePath("Visuals/AnimatedSpriteCreature:animation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -252,7 +257,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("AnimatedSpriteBorder:animation")
+tracks/2/path = NodePath("Visuals/AnimatedSpriteBorder:animation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -264,7 +269,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("AnimatedSpriteBorder:frame")
+tracks/3/path = NodePath("Visuals/AnimatedSpriteBorder:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -282,7 +287,7 @@ step = 0.25
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSpriteCreature:frame")
+tracks/0/path = NodePath("Visuals/AnimatedSpriteCreature:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -294,7 +299,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSpriteCreature:animation")
+tracks/1/path = NodePath("Visuals/AnimatedSpriteCreature:animation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -306,7 +311,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("AnimatedSpriteBorder:animation")
+tracks/2/path = NodePath("Visuals/AnimatedSpriteBorder:animation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -318,7 +323,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("AnimatedSpriteBorder:frame")
+tracks/3/path = NodePath("Visuals/AnimatedSpriteBorder:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -336,7 +341,7 @@ step = 0.25
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSpriteCreature:frame")
+tracks/0/path = NodePath("Visuals/AnimatedSpriteCreature:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -348,7 +353,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSpriteCreature:animation")
+tracks/1/path = NodePath("Visuals/AnimatedSpriteCreature:animation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -360,7 +365,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("AnimatedSpriteBorder:animation")
+tracks/2/path = NodePath("Visuals/AnimatedSpriteBorder:animation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -372,7 +377,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("AnimatedSpriteBorder:frame")
+tracks/3/path = NodePath("Visuals/AnimatedSpriteBorder:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -390,7 +395,7 @@ step = 0.25
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSpriteCreature:frame")
+tracks/0/path = NodePath("Visuals/AnimatedSpriteCreature:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -402,7 +407,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSpriteCreature:animation")
+tracks/1/path = NodePath("Visuals/AnimatedSpriteCreature:animation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -414,7 +419,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("AnimatedSpriteBorder:animation")
+tracks/2/path = NodePath("Visuals/AnimatedSpriteBorder:animation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -426,7 +431,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("AnimatedSpriteBorder:frame")
+tracks/3/path = NodePath("Visuals/AnimatedSpriteBorder:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -441,7 +446,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSpriteCreature:animation")
+tracks/0/path = NodePath("Visuals/AnimatedSpriteCreature:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -453,7 +458,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSpriteCreature:frame")
+tracks/1/path = NodePath("Visuals/AnimatedSpriteCreature:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -465,7 +470,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("AnimatedSpriteBorder:animation")
+tracks/2/path = NodePath("Visuals/AnimatedSpriteBorder:animation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -477,7 +482,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("AnimatedSpriteBorder:frame")
+tracks/3/path = NodePath("Visuals/AnimatedSpriteBorder:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -496,30 +501,32 @@ _data = {
 &"RESET": SubResource("Animation_li2mp")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8verg"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6hr7e"]
 animation = &"IdleDown"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tp0to"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_txib7"]
 animation = &"IdleUp"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_daqc6"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vt68a"]
 animation = &"IdleLeft"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rq5n7"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pm2f3"]
 animation = &"IdleRight"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_0v2f6"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_8verg")
+blend_point_0/node = SubResource("AnimationNodeAnimation_6hr7e")
 blend_point_0/pos = Vector2(0, 1)
-blend_point_1/node = SubResource("AnimationNodeAnimation_tp0to")
+blend_point_1/node = SubResource("AnimationNodeAnimation_txib7")
 blend_point_1/pos = Vector2(0, -1)
-blend_point_2/node = SubResource("AnimationNodeAnimation_daqc6")
+blend_point_2/node = SubResource("AnimationNodeAnimation_vt68a")
 blend_point_2/pos = Vector2(-1, 0)
-blend_point_3/node = SubResource("AnimationNodeAnimation_rq5n7")
+blend_point_3/node = SubResource("AnimationNodeAnimation_pm2f3")
 blend_point_3/pos = Vector2(1, 0)
 blend_mode = 1
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_x8eks"]
+graph_offset = Vector2(-206, 30)
+nodes/output/position = Vector2(300, 140)
 nodes/BlendSpace2D/node = SubResource("AnimationNodeBlendSpace2D_0v2f6")
 nodes/BlendSpace2D/position = Vector2(60, 100)
 node_connections = [&"output", 0, &"BlendSpace2D"]
@@ -534,18 +541,12 @@ states/Start/position = Vector2(208, 100)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_ap3gg")]
 graph_offset = Vector2(9, -9)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ulpcw"]
-size = Vector2(60, 60)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_01bph"]
-size = Vector2(32, 32)
-
 [sub_resource type="Animation" id="Animation_ktm42"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/path = NodePath("Visuals/AnimatedSpriteCreature:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -557,34 +558,10 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Border:scale")
+tracks/1/path = NodePath("Visuals/AnimatedSpriteBorder:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(2, 2)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("AnimatedSpriteCreature:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(2, 2)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("AnimatedSpriteBorder:scale")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -594,22 +571,24 @@ tracks/3/keys = {
 [sub_resource type="Animation" id="Animation_ulpcw"]
 resource_name = "Shrink"
 length = 0.5
-tracks/0/type = "value"
+tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(2, 2), Vector2(1e-05, 1e-05)]
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"disappear"
+}]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Border:scale")
+tracks/1/path = NodePath("Visuals/AnimatedSpriteCreature:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -618,39 +597,13 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(2, 2), Vector2(1e-05, 1e-05)]
 }
-tracks/2/type = "method"
+tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath(".")
+tracks/2/path = NodePath("Visuals/AnimatedSpriteBorder:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.3),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"disappear"
-}]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("AnimatedSpriteCreature:scale")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(2, 2), Vector2(1e-05, 1e-05)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("AnimatedSpriteBorder:scale")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
@@ -668,84 +621,84 @@ collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_lgxpu")
 
-[node name="AnimatedSpriteCreature" type="AnimatedSprite2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_ulpcw")
+
+[node name="Areas" type="Node2D" parent="."]
+
+[node name="Area2D_Right" type="Area2D" parent="Areas"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D_Right" type="CollisionShape2D" parent="Areas/Area2D_Right"]
+position = Vector2(64, 0)
+shape = SubResource("RectangleShape2D_01bph")
+
+[node name="Area2D_Bottom" type="Area2D" parent="Areas"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D_Bottom" type="CollisionShape2D" parent="Areas/Area2D_Bottom"]
+position = Vector2(0, 64)
+shape = SubResource("RectangleShape2D_01bph")
+
+[node name="Area2D_Left" type="Area2D" parent="Areas"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D_Left" type="CollisionShape2D" parent="Areas/Area2D_Left"]
+position = Vector2(-64, 0)
+shape = SubResource("RectangleShape2D_01bph")
+
+[node name="Area2D_Top" type="Area2D" parent="Areas"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D_Top" type="CollisionShape2D" parent="Areas/Area2D_Top"]
+position = Vector2(0, -64)
+shape = SubResource("RectangleShape2D_01bph")
+
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="AnimatedSpriteCreature" type="AnimatedSprite2D" parent="Visuals"]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_pnt7b")
 animation = &"idle-down"
 
-[node name="AnimatedSpriteBorder" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSpriteBorder" type="AnimatedSprite2D" parent="Visuals"]
 visible = false
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_ujita")
 animation = &"idle-down"
 
-[node name="AnimationPlayerMovement" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayerMovement" type="AnimationPlayer" parent="Visuals"]
+root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_kl681")
 }
 autoplay = "IdleDown"
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
+[node name="AnimationTree" type="AnimationTree" parent="Visuals"]
+root_node = NodePath("../..")
 tree_root = SubResource("AnimationNodeStateMachine_6v06q")
 anim_player = NodePath("../AnimationPlayerMovement")
-parameters/Idle/BlendSpace2D/blend_position = Vector2(-0.00303954, 0.35426)
+parameters/Idle/BlendSpace2D/blend_position = Vector2(-0.008372068, 0.94618833)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
-scale = Vector2(2, 2)
-texture = ExtResource("4_fr2fe")
-
-[node name="Border" type="Sprite2D" parent="."]
-visible = false
-scale = Vector2(2, 2)
-texture = ExtResource("5_v76sd")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-shape = SubResource("RectangleShape2D_ulpcw")
-
-[node name="Area2D_Right" type="Area2D" parent="."]
-collision_layer = 2
-collision_mask = 2
-
-[node name="CollisionShape2D_Right" type="CollisionShape2D" parent="Area2D_Right"]
-position = Vector2(64, 0)
-shape = SubResource("RectangleShape2D_01bph")
-
-[node name="Area2D_Bottom" type="Area2D" parent="."]
-collision_layer = 2
-collision_mask = 2
-
-[node name="CollisionShape2D_Bottom" type="CollisionShape2D" parent="Area2D_Bottom"]
-position = Vector2(0, 64)
-shape = SubResource("RectangleShape2D_01bph")
-
-[node name="Area2D_Left" type="Area2D" parent="."]
-collision_layer = 2
-collision_mask = 2
-
-[node name="CollisionShape2D_Left" type="CollisionShape2D" parent="Area2D_Left"]
-position = Vector2(-64, 0)
-shape = SubResource("RectangleShape2D_01bph")
-
-[node name="Area2D_Top" type="Area2D" parent="."]
-collision_layer = 2
-collision_mask = 2
-
-[node name="CollisionShape2D_Top" type="CollisionShape2D" parent="Area2D_Top"]
-position = Vector2(0, -64)
-shape = SubResource("RectangleShape2D_01bph")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Visuals"]
+root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_idm37")
 }
 
-[connection signal="body_entered" from="Area2D_Right" to="." method="on_creature_to_right"]
-[connection signal="body_exited" from="Area2D_Right" to="." method="_on_creature_right_gone"]
-[connection signal="body_entered" from="Area2D_Bottom" to="." method="on_creature_to_bottom"]
-[connection signal="body_exited" from="Area2D_Bottom" to="." method="_on_creature_bottom_gone"]
-[connection signal="body_entered" from="Area2D_Left" to="." method="on_creature_to_left"]
-[connection signal="body_exited" from="Area2D_Left" to="." method="_on_creature_left_gone"]
-[connection signal="body_entered" from="Area2D_Top" to="." method="on_creature_to_top"]
-[connection signal="body_exited" from="Area2D_Top" to="." method="_on_creature_top_gone"]
+[node name="MergedCreature" parent="." instance=ExtResource("4_urr0o")]
+visible = false
+
+[connection signal="body_entered" from="Areas/Area2D_Right" to="." method="on_creature_to_right"]
+[connection signal="body_exited" from="Areas/Area2D_Right" to="." method="_on_creature_right_gone"]
+[connection signal="body_entered" from="Areas/Area2D_Bottom" to="." method="on_creature_to_bottom"]
+[connection signal="body_exited" from="Areas/Area2D_Bottom" to="." method="_on_creature_bottom_gone"]
+[connection signal="body_entered" from="Areas/Area2D_Left" to="." method="on_creature_to_left"]
+[connection signal="body_exited" from="Areas/Area2D_Left" to="." method="_on_creature_left_gone"]
+[connection signal="body_entered" from="Areas/Area2D_Top" to="." method="on_creature_to_top"]
+[connection signal="body_exited" from="Areas/Area2D_Top" to="." method="_on_creature_top_gone"]

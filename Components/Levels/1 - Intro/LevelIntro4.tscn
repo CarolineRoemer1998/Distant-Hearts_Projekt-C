@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://rhm2shese577"]
+[gd_scene load_steps=11 format=3 uid="uid://rhm2shese577"]
 
 [ext_resource type="Script" uid="uid://ddiwo6yyhfkuc" path="res://Components/Levels/level.gd" id="1_qxjbv"]
 [ext_resource type="PackedScene" uid="uid://be6k5yjppap8y" path="res://Components/Creatures/creature_yellow.tscn" id="2_1ktle"]
@@ -9,11 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://oy61arlldjo3" path="res://Components/Mechanics/Stones/pushable.tscn" id="4_rgu2x"]
 [ext_resource type="PackedScene" uid="uid://c6dmpno4s3103" path="res://Components/Mechanics/Doors/door.tscn" id="5_xgp81"]
 [ext_resource type="PackedScene" uid="uid://bt4pnhd7cx7xc" path="res://Components/Mechanics/Buttons/button.tscn" id="6_nv5kp"]
-[ext_resource type="PackedScene" uid="uid://23u33yt4jga3" path="res://Components/Creatures/merged_creature.tscn" id="8_6lrky"]
-[ext_resource type="PackedScene" uid="uid://bhgu3tj2dehs2" path="res://Components/UI/Controls/reset_bar.tscn" id="10_nv5kp"]
-[ext_resource type="PackedScene" uid="uid://pb5o008ihthl" path="res://Components/UI/Menues/win_screen.tscn" id="12_iv3jq"]
-[ext_resource type="PackedScene" uid="uid://d3lpfscgajhb4" path="res://Components/UI/Controls/UndoMechanic.tscn" id="13_cgw8n"]
-[ext_resource type="PackedScene" uid="uid://ckkosqi7rtbdb" path="res://Components/UI/Menues/game_completed.tscn" id="15_ool1w"]
+[ext_resource type="PackedScene" uid="uid://dtrjxhb3ayo1c" path="res://Components/Levels/LevelUI.tscn" id="10_wd6yv"]
 
 [node name="Level4" type="Node2D"]
 script = ExtResource("1_qxjbv")
@@ -73,21 +69,6 @@ position = Vector2(544, 480)
 [node name="Player" parent="Player" instance=ExtResource("4_6lrky")]
 position = Vector2(544, 160)
 
-[node name="MergedCreatures" type="Node" parent="."]
-
-[node name="MergedCreature" parent="MergedCreatures" instance=ExtResource("8_6lrky")]
-visible = false
-
-[node name="UI" type="Node" parent="."]
-
-[node name="WinScreen" parent="UI" instance=ExtResource("12_iv3jq")]
-
-[node name="ResetBar" parent="UI" instance=ExtResource("10_nv5kp")]
-offset_right = 0.0
-offset_bottom = 0.0
-
-[node name="UndoMechanic" parent="UI" instance=ExtResource("13_cgw8n")]
-
-[node name="GameCompleted" parent="UI" instance=ExtResource("15_ool1w")]
+[node name="LevelUI" parent="." instance=ExtResource("10_wd6yv")]
 
 [editable path="Doors/Door1"]

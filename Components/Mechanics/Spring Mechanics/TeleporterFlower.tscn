@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bkxul46ipnuj7"]
 
-[ext_resource type="Texture2D" uid="uid://c3wt84pt18625" path="res://Assets/Spring Mechanics/Teleporter/Teleporter-Protptype.png" id="1_tubqo"]
+[ext_resource type="Texture2D" uid="uid://dicgyt3dkctg3" path="res://Assets/Spring Mechanics/Teleporter/Teleporter_blender_prototype_blue.png" id="1_tubqo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ruatl"]
 atlas = ExtResource("1_tubqo")

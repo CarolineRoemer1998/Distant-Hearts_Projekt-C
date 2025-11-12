@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bvr06lubx5mid"]
+[gd_scene load_steps=23 format=3 uid="uid://bvr06lubx5mid"]
 
 [ext_resource type="Script" uid="uid://ddiwo6yyhfkuc" path="res://Components/Levels/level.gd" id="1_vb4or"]
 [ext_resource type="PackedScene" uid="uid://lrodaawkgfob" path="res://Components/UI/VFX/undo_particles.tscn" id="2_6iyt6"]
@@ -13,19 +13,15 @@
 [ext_resource type="Texture2D" uid="uid://bc7d4qmidqg4y" path="res://Assets/Winter Mechanics/Ice Floors/Ice-floor-L-T.png" id="5_dtgac"]
 [ext_resource type="PackedScene" uid="uid://bt4pnhd7cx7xc" path="res://Components/Mechanics/Buttons/button.tscn" id="5_mehec"]
 [ext_resource type="Texture2D" uid="uid://do6thefjlbd1q" path="res://Assets/Winter Mechanics/Ice Floors/Ice-floor-R-T.png" id="6_7suub"]
-[ext_resource type="PackedScene" uid="uid://23u33yt4jga3" path="res://Components/Creatures/merged_creature.tscn" id="6_c254e"]
 [ext_resource type="Texture2D" uid="uid://btwlvk2xprfh2" path="res://Assets/Winter Mechanics/Ice Floors/Ice-floor-R.png" id="7_8jfry"]
 [ext_resource type="Texture2D" uid="uid://ce8efu0a3oy2r" path="res://Assets/Winter Mechanics/Ice Floors/Ice-floor-L-B.png" id="8_6iyt6"]
 [ext_resource type="Texture2D" uid="uid://cmeverec805io" path="res://Assets/Winter Mechanics/Ice Floors/Ice-floor-T.png" id="8_dtgac"]
-[ext_resource type="PackedScene" uid="uid://bhgu3tj2dehs2" path="res://Components/UI/Controls/reset_bar.tscn" id="8_mehec"]
 [ext_resource type="Texture2D" uid="uid://dhgxskyq6mhsp" path="res://Assets/Winter Mechanics/Ice Floors/Ice-floor-B.png" id="9_gv0gm"]
 [ext_resource type="Texture2D" uid="uid://b45v4bjjuo8eb" path="res://Assets/Winter Mechanics/Ice Floors/Ice-floor-R-B.png" id="10_a2eh8"]
-[ext_resource type="PackedScene" uid="uid://pb5o008ihthl" path="res://Components/UI/Menues/win_screen.tscn" id="10_mehec"]
 [ext_resource type="PackedScene" uid="uid://bu7a5geiluu3r" path="res://Components/Mechanics/Winter Mechanics/icicle.tscn" id="11_fy58k"]
 [ext_resource type="Texture2D" uid="uid://dis43boq1dnwi" path="res://Assets/Winter Mechanics/Ice Floors/Ice-floor-L-R-B.png" id="12_7suub"]
 [ext_resource type="PackedScene" uid="uid://oy61arlldjo3" path="res://Components/Mechanics/Stones/pushable.tscn" id="12_mehec"]
-[ext_resource type="PackedScene" uid="uid://d3lpfscgajhb4" path="res://Components/UI/Controls/UndoMechanic.tscn" id="25_8jfry"]
-[ext_resource type="PackedScene" uid="uid://ckkosqi7rtbdb" path="res://Components/UI/Menues/game_completed.tscn" id="27_33gpu"]
+[ext_resource type="PackedScene" uid="uid://dtrjxhb3ayo1c" path="res://Components/Levels/LevelUI.tscn" id="22_g6d10"]
 
 [node name="Level6" type="Node2D"]
 script = ExtResource("1_vb4or")
@@ -231,19 +227,6 @@ position = Vector2(352, 160)
 [node name="Player" parent="Player" instance=ExtResource("5_4yqt1")]
 position = Vector2(352, 608)
 
-[node name="MergedCreatures" type="Node" parent="."]
-
-[node name="MergedCreature" parent="MergedCreatures" instance=ExtResource("6_c254e")]
-visible = false
-
-[node name="UI" type="Node" parent="."]
-
-[node name="ResetBar" parent="UI" instance=ExtResource("8_mehec")]
-
-[node name="WinScreen" parent="UI" instance=ExtResource("10_mehec")]
-
-[node name="UndoMechanic" parent="UI" instance=ExtResource("25_8jfry")]
-
-[node name="GameCompleted" parent="UI" instance=ExtResource("27_33gpu")]
+[node name="LevelUI" parent="." instance=ExtResource("22_g6d10")]
 
 [editable path="Creatures/CreatureBlue"]
