@@ -113,7 +113,6 @@ func _set_all_to_level(level: float) -> void:
 func _log_once(s: String) -> void:
 	var p: int = int(phase)
 	if logged_phase != p:
-		print(s)
 		logged_phase = p
 
 # ---------- HSV-Helper ----------
