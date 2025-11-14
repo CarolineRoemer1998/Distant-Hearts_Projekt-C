@@ -14,6 +14,9 @@ class_name TeleporterFlower
 @export var scale_boost_max: float = 0.2
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var animated_sprite_2d_flower: AnimatedSprite2D = $AnimatedSprites/AnimatedSprite2D_Flower
+@onready var animated_sprite_2d_bounce_light: AnimatedSprite2D = $AnimatedSprites/AnimatedSprite2D_BounceLight
+@onready var effects: Node2D = $Effects
 
 var is_teleporting: bool = false
 enum Phase { IDLE, UP, DOWN }
@@ -27,7 +30,10 @@ var _base_hsv: Array[Vector3] = []     # (h,s,v)
 var _base_alpha: Array[float] = []
 var _base_scales: Array[Vector2] = []
 
+var is_activated := false
+
 func _ready() -> void:
+	activate(true)
 	_base_hsv.clear()
 	_base_alpha.clear()
 	_base_scales.clear()
@@ -37,6 +43,16 @@ func _ready() -> void:
 		_base_alpha.append(w.modulate.a)
 		_base_scales.append(w.scale)
 	_set_all_to_level(0.0) # sicherstellen, dass Startzustand sauber ist
+
+func activate(_activate_val: bool):
+	if _activate_val == true:
+		animated_sprite_2d_flower.modulate = Constants.TELEPORTER_MODULATE_ACTIVE
+	else:
+		animated_sprite_2d_flower.modulate = Constants.TELEPORTER_MODULATE_INACTIVE
+	
+	is_activated = _activate_val
+	effects.visible = _activate_val
+	animated_sprite_2d_bounce_light.visible = _activate_val
 
 func _process(delta: float) -> void:
 	if phase == Phase.IDLE:

@@ -94,7 +94,7 @@ func merge(_direction : Vector2, neighbor : Creature) -> bool:
 		return true
 	return false
 
-func start_teleport(pos: Vector2, teleporter: Node2D):
+func start_teleport(pos: Vector2):
 	is_teleporting = true
 	target_position = pos
 	animation_player.play("Shrink_Teleport")

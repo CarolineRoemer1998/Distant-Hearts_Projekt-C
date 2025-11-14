@@ -287,9 +287,9 @@ func possess():
 		currently_possessed_creature.position = target_position
 		currently_possessed_creature.target_position = target_position
 
-func teleport_to(pos: Vector2, teleporter: Node2D):
+func teleport_to(pos: Vector2):
 	if currently_possessed_creature:
-		currently_possessed_creature.start_teleport(pos, teleporter)
+		currently_possessed_creature.start_teleport(pos)
 		global_position = pos
 		target_position = global_position
 		
