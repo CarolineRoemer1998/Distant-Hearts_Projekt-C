@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dog7uhmc4ioxc"]
+[gd_scene load_steps=21 format=3 uid="uid://dog7uhmc4ioxc"]
 
 [ext_resource type="Script" uid="uid://ddiwo6yyhfkuc" path="res://Components/Levels/level.gd" id="1_luhgi"]
 [ext_resource type="PackedScene" uid="uid://lrodaawkgfob" path="res://Components/UI/VFX/undo_particles.tscn" id="2_6ujdl"]
@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://bc7d4qmidqg4y" path="res://Assets/Winter Mechanics/Ice Floors/Ice-floor-L-T.png" id="4_f1nlr"]
 [ext_resource type="PackedScene" uid="uid://bu7a5geiluu3r" path="res://Components/Mechanics/Winter Mechanics/icicle.tscn" id="4_teeuy"]
 [ext_resource type="PackedScene" uid="uid://bt4pnhd7cx7xc" path="res://Components/Mechanics/Buttons/button.tscn" id="4_tf17e"]
-[ext_resource type="PackedScene" uid="uid://cdt5m2v6xjjuf" path="res://Components/Mechanics/Doors/inverted_door.tscn" id="5_teeuy"]
 [ext_resource type="PackedScene" uid="uid://be6k5yjppap8y" path="res://Components/Creatures/creature_yellow.tscn" id="5_tf17e"]
 [ext_resource type="Texture2D" uid="uid://do6thefjlbd1q" path="res://Assets/Winter Mechanics/Ice Floors/Ice-floor-R-T.png" id="5_xpbdl"]
 [ext_resource type="Texture2D" uid="uid://btwlvk2xprfh2" path="res://Assets/Winter Mechanics/Ice Floors/Ice-floor-R.png" id="6_47ffa"]
@@ -117,8 +116,10 @@ position = Vector2(416, 544)
 rotation = -1.57079
 buttons = Array[NodePath]([NodePath("../../Buttons/ButtonToggle1&2")])
 
-[node name="Door2" parent="Doors" instance=ExtResource("5_teeuy")]
+[node name="Door2" parent="Doors" instance=ExtResource("3_us1oe")]
 position = Vector2(288, 416)
+mode = 1
+starts_closed = false
 buttons = Array[NodePath]([NodePath("../../Buttons/ButtonToggle1&2")])
 
 [node name="Door3" parent="Doors" instance=ExtResource("3_us1oe")]

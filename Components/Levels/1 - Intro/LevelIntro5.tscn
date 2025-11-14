@@ -1,9 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://brxp384v6eu7w"]
+[gd_scene load_steps=11 format=3 uid="uid://brxp384v6eu7w"]
 
 [ext_resource type="Script" uid="uid://ddiwo6yyhfkuc" path="res://Components/Levels/level.gd" id="1_nonkr"]
 [ext_resource type="PackedScene" uid="uid://lrodaawkgfob" path="res://Components/UI/VFX/undo_particles.tscn" id="2_tebux"]
 [ext_resource type="PackedScene" uid="uid://bm1bbrafqi084" path="res://Components/Levels/Backgrounds/bg-normal-5.tscn" id="3_txdnn"]
-[ext_resource type="PackedScene" uid="uid://cdt5m2v6xjjuf" path="res://Components/Mechanics/Doors/inverted_door.tscn" id="4_f5ppv"]
 [ext_resource type="PackedScene" uid="uid://g3u7bc1jo6gj" path="res://Components/Player/player.tscn" id="4_to3se"]
 [ext_resource type="PackedScene" uid="uid://ccncnjkm8w8ta" path="res://Components/Creatures/creature_blue.tscn" id="5_213sf"]
 [ext_resource type="PackedScene" uid="uid://be6k5yjppap8y" path="res://Components/Creatures/creature_yellow.tscn" id="7_ytef6"]
@@ -21,8 +20,10 @@ level_number = 5
 
 [node name="Doors" type="Node" parent="."]
 
-[node name="Door1" parent="Doors" instance=ExtResource("4_f5ppv")]
-position = Vector2(481, 288)
+[node name="Door1" parent="Doors" instance=ExtResource("10_2xldr")]
+position = Vector2(480, 288)
+mode = 1
+starts_closed = false
 buttons = Array[NodePath]([NodePath("../../Buttons/Button1&2")])
 
 [node name="Door2" parent="Doors" instance=ExtResource("10_2xldr")]
