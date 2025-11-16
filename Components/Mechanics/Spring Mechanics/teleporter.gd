@@ -73,11 +73,11 @@ func activate(_activate_val: bool):
 	
 	if _activate_val == true:
 		animated_sprite_2d_flower.modulate = Constants.TELEPORTER_MODULATE_ACTIVE
-		var all_teleporters = get_tree().get_nodes_in_group(Constants.GROUP_NAME_TELEPORTER)
-		var other_teleporter
-		for t in all_teleporters:
-			if t != self:
-				other_teleporter = t
+		#var all_teleporters = get_tree().get_nodes_in_group(Constants.GROUP_NAME_TELEPORTER)
+		#var other_teleporter
+		#for t in all_teleporters:
+			#if t != self:
+				#other_teleporter = t
 		Signals.teleporter_activated.emit(self)
 	else:
 		animated_sprite_2d_flower.modulate = Constants.TELEPORTER_MODULATE_INACTIVE

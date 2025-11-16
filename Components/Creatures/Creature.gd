@@ -36,7 +36,6 @@ var standing_on_teleporter : Teleporter = null
 func _ready():
 	Signals.level_done.connect(set_inactive)
 	Signals.teleporter_activated.connect(start_teleport)
-	Signals.teleporter_entered.connect(start_teleport)
 	animated_sprite_creature.frame = 0
 	border.frame = 0
 	self.add_to_group(Constants.GROUP_NAME_CREATURE)
@@ -45,10 +44,6 @@ func _ready():
 	position = target_position
 	animation_tree.get("parameters/playback").travel("Idle")
 	animation_tree.set("parameters/Idle/BlendSpace2D/blend_position", init_direction)
-
-#func _process(delta: float) -> void:
-	#if standing_on_teleporter:
-		#print(self.name, ": ", standing_on_teleporter.name)
 
 func get_info() -> Dictionary:
 	return {
@@ -78,7 +73,6 @@ func set_info(info : Dictionary):
 		set_animation_direction_by_val(init_direction)
 	has_not_moved = info.get("has_not_moved")
 
-
 func set_animation_direction():
 	animation_tree.set("parameters/Idle/BlendSpace2D/blend_position", current_direction)
 
@@ -97,7 +91,6 @@ func get_neighbor_in_direction_is_mergable(_direction : Vector2) -> Creature:
 	return null
 
 func merge(creature_to_merge_with : Creature) -> bool:
-	print("Merge")
 	is_merging = true
 	creature_to_merge_with.is_merging = true
 	if creature_to_merge_with != null and is_active:
@@ -108,20 +101,17 @@ func merge(creature_to_merge_with : Creature) -> bool:
 		creature_to_merge_with.shrink()
 		merged_creature.visible = true
 		merged_creature.appear()
-		#is_active = false
 		Signals.level_done.emit()
 		return true
 	return false
 
 func start_teleport( _teleporter: Teleporter):
 	print("Teleport")
-	#print("Creature: 			start_teleport")
 	var teleporter = check_is_on_teleporter()
 	if teleporter != null and not is_merging and not just_teleported:
-		#if global_position == starting_teleporter.global_position:
 		is_teleporting = true
 		target_position = _teleporter.global_position
-		#print("Target Pos: ", pos, "  Global Pos: ", global_position)
+		print(name, ": Shrink Animation")
 		animation_player.play("Shrink_Teleport")
 
 func teleport():
@@ -195,6 +185,3 @@ func _on_area_2d_self_body_entered(body: Node2D) -> void:
 	if body != self:
 		if body is Creature:
 			merge(body)
-		#if body is Teleporter:
-			#standing_on_teleporter = body
-			#print("standing_on_teleporter: ", standing_on_teleporter)
