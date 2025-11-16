@@ -298,11 +298,11 @@ func set_is_standing_on_teleporter(val: bool):
 	elif Signals.teleporter_entered.is_connected(teleport_to):
 		Signals.teleporter_entered.disconnect(teleport_to)
 
-func teleport_to(_teleporter: Vector2):
+func teleport_to(_teleporter: Teleporter):
 	#print("Player: 			teleport_to")
 	if currently_possessed_creature and is_active:# and currently_possessed_creature.check_is_on_teleporter():
 		currently_possessed_creature.start_teleport(_teleporter)
-		global_position = _teleporter
+		global_position = _teleporter.global_position
 		target_position = global_position
 		
 
@@ -333,7 +333,7 @@ func spawn_trail(input_position: Vector2):
 
 func update_heart_visibility():
 	# Wenn keine Kreatur gerade besessen ist → Herz aus
-	if currently_possessed_creature == null:
+	if currently_possessed_creature == null or currently_possessed_creature.is_teleporting:
 		for heart in hearts:
 			heart.visible = false
 		return

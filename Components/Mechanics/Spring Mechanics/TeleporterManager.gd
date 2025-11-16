@@ -49,7 +49,7 @@ func teleport_from(entered_teleporter: Teleporter):
 		teleport_to(flower_1)
 
 func teleport_to(target_teleporter: Teleporter):
-	Signals.teleporter_entered.emit(target_teleporter.global_position)
+	Signals.teleporter_entered.emit(target_teleporter)
 	flower_1.start_teleport()
 	flower_2.start_teleport()
 	audio_stream_player_2d.play()

@@ -113,14 +113,14 @@ func merge(creature_to_merge_with : Creature) -> bool:
 		return true
 	return false
 
-func start_teleport( pos: Vector2):
+func start_teleport( _teleporter: Teleporter):
 	print("Teleport")
 	#print("Creature: 			start_teleport")
 	var teleporter = check_is_on_teleporter()
 	if teleporter != null and not is_merging and not just_teleported:
 		#if global_position == starting_teleporter.global_position:
 		is_teleporting = true
-		target_position = pos
+		target_position = _teleporter.global_position
 		#print("Target Pos: ", pos, "  Global Pos: ", global_position)
 		animation_player.play("Shrink_Teleport")
 
