@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=3 uid="uid://c02bi0sc4lswo"]
+
+[ext_resource type="Script" uid="uid://dpiixqybat0xw" path="res://Components/Mechanics/Spring Mechanics/TeleporterManager.gd" id="1_lx5l8"]
+[ext_resource type="PackedScene" uid="uid://cd3vbp6goopg8" path="res://Components/Mechanics/Spring Mechanics/Teleporter.tscn" id="2_elxxw"]
+[ext_resource type="AudioStream" uid="uid://cdfjshef08l1t" path="res://Sounds/SFX/teleport_test/teleport.mp3" id="3_elxxw"]
+
+[node name="TeleporterManager" type="Node2D"]
+script = ExtResource("1_lx5l8")
+
+[node name="Flower1" parent="." node_paths=PackedStringArray("wooshes") instance=ExtResource("2_elxxw")]
+position = Vector2(-64, 0)
+wooshes = []
+
+[node name="Area2D" parent="Flower1" index="1"]
+collision_mask = 3
+
+[node name="Flower2" parent="." node_paths=PackedStringArray("wooshes") instance=ExtResource("2_elxxw")]
+position = Vector2(64, 0)
+wooshes = []
+
+[node name="Area2D" parent="Flower2" index="1"]
+collision_mask = 3
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_elxxw")
+bus = &"sfx"
+
+[connection signal="body_entered" from="Flower1/Area2D" to="." method="_on_flower_1_entered"]
+[connection signal="body_exited" from="Flower1/Area2D" to="." method="_on_flower_1_exited"]
+[connection signal="body_entered" from="Flower2/Area2D" to="." method="_on_flower_2_entered"]
+[connection signal="body_exited" from="Flower2/Area2D" to="." method="_on_flower_2_exited"]
+
+[editable path="Flower1"]
+[editable path="Flower2"]

@@ -31,3 +31,4 @@ signal stone_reached_target
 
 # Teleporter
 signal teleporter_entered(target_pos: Vector2)
+signal teleporter_activated(teleporter: Teleporter)

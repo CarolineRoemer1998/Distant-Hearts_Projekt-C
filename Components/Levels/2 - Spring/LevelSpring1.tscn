@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=4 uid="uid://cyr4xpwmfgqkh"]
+[gd_scene load_steps=10 format=4 uid="uid://cyr4xpwmfgqkh"]
 
 [ext_resource type="Script" uid="uid://ddiwo6yyhfkuc" path="res://Components/Levels/level.gd" id="1_kgfq4"]
 [ext_resource type="PackedScene" uid="uid://lrodaawkgfob" path="res://Components/UI/VFX/undo_particles.tscn" id="2_01u33"]
-[ext_resource type="PackedScene" uid="uid://du8atysfonorv" path="res://Components/Mechanics/Spring Mechanics/teleporter.tscn" id="2_t5nw4"]
+[ext_resource type="PackedScene" uid="uid://c02bi0sc4lswo" path="res://Components/Mechanics/Spring Mechanics/TeleporterManager.tscn" id="2_t5nw4"]
 [ext_resource type="PackedScene" uid="uid://ihdvu1wqfcub" path="res://Components/Levels/Backgrounds/bg-base-spring.tscn" id="3_q8c8q"]
+[ext_resource type="PackedScene" uid="uid://bt4pnhd7cx7xc" path="res://Components/Mechanics/Buttons/button.tscn" id="4_01u33"]
 [ext_resource type="PackedScene" uid="uid://ccncnjkm8w8ta" path="res://Components/Creatures/creature_blue.tscn" id="4_g5aro"]
 [ext_resource type="PackedScene" uid="uid://be6k5yjppap8y" path="res://Components/Creatures/creature_yellow.tscn" id="5_yi6q1"]
 [ext_resource type="PackedScene" uid="uid://g3u7bc1jo6gj" path="res://Components/Player/player.tscn" id="6_rjegf"]
@@ -19,6 +20,14 @@ undo_particles = ExtResource("2_01u33")
 [node name="walls" parent="BackgroundSpring" index="1"]
 tile_map_data = PackedByteArray("AAAAAAAABAAAAAAAAAAKAAAABAAEAAAAAAAKAAoABAAEAAQAAAAAAAoABAAAAAQAAAAAAAEABAAAAAEAAAAAAAMABAAAAAEAAAAAAAUABAAAAAIAAAAAAAcABAAAAAEAAAAAAAkABAAAAAEAAAAKAAEABAAEAAEAAAAKAAMABAAEAAEAAAAKAAUABAAEAAEAAAAKAAcABAAEAAEAAAAKAAkABAAEAAEAAAAKAAIABAAEAAMAAAAKAAQABAAEAAMAAAAKAAYABAAEAAMAAAAKAAgABAAEAAMAAAAAAAgABAAAAAMAAAAAAAYABAAAAAMAAAAAAAQABAAAAAMAAAAAAAIABAAAAAMAAAABAAAABAADAAAAAAADAAAABAADAAAAAAAFAAAABAADAAAAAAAHAAAABAADAAAAAAAJAAAABAADAAAAAAACAAAABAABAAAAAAAEAAAABAACAAAAAAAGAAAABAABAAAAAAAIAAAABAABAAAAAAABAAoABAADAAQAAAADAAoABAADAAQAAAAFAAoABAADAAQAAAAHAAoABAADAAQAAAAJAAoABAADAAQAAAACAAoABAABAAQAAAAEAAoABAACAAQAAAAGAAoABAABAAQAAAAIAAoABAABAAQAAAAEAAMABAACAAMAAAAEAAIABAACAAEAAAAEAAEABAACAAMAAAAEAAUABAAEAAIAAAAEAAYABAAEAAMAAAAEAAcABAAEAAEAAAAEAAgABAAEAAMAAAAEAAkABAAEAAEAAAABAAUABAABAAIAAAACAAUABAADAAIAAAADAAUABAABAAIAAAAEAAQABAAEAAEAAAA=")
 
+[node name="Buttons" type="Node" parent="."]
+
+[node name="Button1" parent="Buttons" instance=ExtResource("4_01u33")]
+position = Vector2(96, 480)
+
+[node name="Button2" parent="Buttons" instance=ExtResource("4_01u33")]
+position = Vector2(608, 480)
+
 [node name="Creatures" type="Node" parent="."]
 
 [node name="CreatureBlue" parent="Creatures" instance=ExtResource("4_g5aro")]
@@ -32,18 +41,20 @@ position = Vector2(416, 480)
 [node name="Player" parent="Player" instance=ExtResource("6_rjegf")]
 position = Vector2(352, 480)
 
-[node name="Teleporter" parent="." instance=ExtResource("2_t5nw4")]
-position = Vector2(352, 416)
-
-[node name="Flower1" parent="Teleporter" index="0"]
-position = Vector2(-256, 128)
-
-[node name="Flower2" parent="Teleporter" index="1"]
-position = Vector2(256, 128)
-
 [node name="LevelUI" parent="." instance=ExtResource("8_igtey")]
 
+[node name="TeleporterManager" parent="." instance=ExtResource("2_t5nw4")]
+position = Vector2(416, 416)
+
+[node name="Flower1" parent="TeleporterManager" index="0"]
+position = Vector2(-320, 128)
+buttons = Array[NodePath]([NodePath("../../Buttons/Button1")])
+
+[node name="Flower2" parent="TeleporterManager" index="1"]
+position = Vector2(192, 128)
+buttons = Array[NodePath]([NodePath("../../Buttons/Button2")])
+
 [editable path="BackgroundSpring"]
-[editable path="Teleporter"]
-[editable path="Teleporter/Flower1"]
-[editable path="Teleporter/Flower2"]
+[editable path="TeleporterManager"]
+[editable path="TeleporterManager/Flower1"]
+[editable path="TeleporterManager/Flower2"]

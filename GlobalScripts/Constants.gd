@@ -14,6 +14,7 @@ const GROUP_NAME_MERGED_CREATURE := "MergedCreature"
 const GROUP_NAME_DOORS := "Door"
 const GROUP_NAME_BUTTONS := "Button"
 const GROUP_NAME_STONES := "Stone"
+const GROUP_NAME_TELEPORTER := "Teleporter"
 
 # LAYER BITS
 const LAYER_BIT_WALL_AND_PLAYER		:= 0

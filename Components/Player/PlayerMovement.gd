@@ -39,6 +39,7 @@ var can_move := true
 var hovering_over: Creature = null
 var currently_possessed_creature: Creature = null
 var pushable_stone_in_direction : Stone = null
+var just_teleported := false
 
 func _ready():
 	self.add_to_group(Constants.GROUP_NAME_PLAYER)
@@ -46,7 +47,7 @@ func _ready():
 	Signals.stone_reached_target.connect(set_is_not_pushing_stone_on_ice)
 	Signals.level_done.connect(set_not_is_active)
 	Signals.player_move_finished.connect(arrive_at_target_position)
-	Signals.teleporter_entered.connect(teleport_to)
+	#Signals.teleporter_entered.connect(teleport_to)
 	
 	# Spieler korrekt auf Grid ausrichten
 	target_position = position.snapped(Constants.GRID_SIZE / 2)
@@ -172,6 +173,8 @@ func move(delta):
 				target_position, Constants.PLAYER_MOVE_SPEED * delta)
 		
 		if position == target_position:
+			if currently_possessed_creature and currently_possessed_creature.just_teleported:
+				currently_possessed_creature.just_teleported = false
 			Signals.player_move_finished.emit()
 
 func arrive_at_target_position():
@@ -237,7 +240,9 @@ func set_is_moving(_is_moving: bool):
 		
 		if currently_possessed_creature:
 			if currently_possessed_creature.get_neighbor_in_direction_is_mergable(direction) != null:
-				await currently_possessed_creature.merge(direction*Constants.GRID_SIZE, currently_possessed_creature.get_neighbor_in_direction_is_mergable(direction))
+				var merged = await currently_possessed_creature.merge(currently_possessed_creature.get_neighbor_in_direction_is_mergable(direction))
+				if merged:
+					set_not_is_active()
 			if pushable_stone_in_direction != null:
 				pushable_stone_in_direction.push()
 		
@@ -287,10 +292,17 @@ func possess():
 		currently_possessed_creature.position = target_position
 		currently_possessed_creature.target_position = target_position
 
-func teleport_to(pos: Vector2):
-	if currently_possessed_creature:
-		currently_possessed_creature.start_teleport(pos)
-		global_position = pos
+func set_is_standing_on_teleporter(val: bool):
+	if val == true:
+		Signals.teleporter_entered.connect(teleport_to)
+	elif Signals.teleporter_entered.is_connected(teleport_to):
+		Signals.teleporter_entered.disconnect(teleport_to)
+
+func teleport_to(_teleporter: Vector2):
+	#print("Player: 			teleport_to")
+	if currently_possessed_creature and is_active:# and currently_possessed_creature.check_is_on_teleporter():
+		currently_possessed_creature.start_teleport(_teleporter)
+		global_position = _teleporter
 		target_position = global_position
 		
 

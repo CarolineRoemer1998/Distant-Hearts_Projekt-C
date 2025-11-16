@@ -27,7 +27,6 @@ var active: bool = false
 var sticky_audio_played : bool = false
 var door_is_permanently_opened : bool = false
 
-
 func _ready() -> void:
 	add_to_group(str(Constants.GROUP_NAME_BUTTONS))
 	
@@ -58,11 +57,11 @@ func _on_body_entered(body: Node) -> void:
 	
 	match type:
 		BUTTON_TYPE.TOGGLE: 
-			toggle_button()
+			press_toggle_button()
 		BUTTON_TYPE.STICKY: 
-			sticky_button()
+			press_sticky_button()
 		BUTTON_TYPE.PRESSURE: 
-			pressure_button()
+			press_pressure_button()
 	
 func _on_body_exited(body: Node) -> void:
 	if door_is_permanently_opened:
@@ -76,7 +75,7 @@ func _on_body_exited(body: Node) -> void:
 	if area.get_overlapping_bodies().is_empty():
 		set_active(false)
 		audio_leave.play()
-		
+
 func _update_button_color() -> void:
 	button_green.visible = active
 	button_red.visible = not active
@@ -92,20 +91,20 @@ func set_active(value : bool):
 		emit_signal("deactivated")
 	_update_button_color()
 
-func toggle_button():
+func press_toggle_button():
 	set_active(!active)
 	if active:
 		audio_push_button.play()
 	else:
 		audio_leave.play()
-	
-func sticky_button():
+
+func press_sticky_button():
 	set_active(true)
 	if not sticky_audio_played:
 		audio_push_button.play()
 		sticky_audio_played = true
-	
-func pressure_button():
+
+func press_pressure_button():
 	if not active:
 		set_active(true)
 		audio_push_button.play()
@@ -121,6 +120,6 @@ func _set_button_sprites():
 		BUTTON_TYPE.PRESSURE:
 			button_green.texture = sprite_pressure_on
 			button_red.texture = sprite_pressure_off
-			
+
 func set_door_is_permanently_opened():
 	door_is_permanently_opened = true

@@ -552,6 +552,13 @@ shape = SubResource("RectangleShape2D_ulpcw")
 
 [node name="Areas" type="Node2D" parent="."]
 
+[node name="Area2D_Self" type="Area2D" parent="Areas"]
+collision_layer = 2
+collision_mask = 130
+
+[node name="CollisionShape2D_Right" type="CollisionShape2D" parent="Areas/Area2D_Self"]
+shape = SubResource("RectangleShape2D_01bph")
+
 [node name="Area2D_Right" type="Area2D" parent="Areas"]
 collision_layer = 2
 collision_mask = 2
@@ -616,6 +623,7 @@ parameters/Idle/BlendSpace2D/blend_position = Vector2(-0.008372068, 0.94618833)
 [node name="MergedCreature" parent="." instance=ExtResource("4_urr0o")]
 visible = false
 
+[connection signal="body_entered" from="Areas/Area2D_Self" to="." method="_on_area_2d_self_body_entered"]
 [connection signal="body_entered" from="Areas/Area2D_Right" to="." method="on_creature_to_right"]
 [connection signal="body_exited" from="Areas/Area2D_Right" to="." method="_on_creature_right_gone"]
 [connection signal="body_entered" from="Areas/Area2D_Bottom" to="." method="on_creature_to_bottom"]

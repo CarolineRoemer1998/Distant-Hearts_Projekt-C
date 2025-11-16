@@ -1,12 +1,12 @@
-[gd_scene load_steps=33 format=3 uid="uid://bkxul46ipnuj7"]
+[gd_scene load_steps=33 format=3 uid="uid://cd3vbp6goopg8"]
 
-[ext_resource type="Script" uid="uid://b288mfey855it" path="res://Components/Mechanics/Spring Mechanics/teleporter_flower.gd" id="1_afsdi"]
-[ext_resource type="Texture2D" uid="uid://dicgyt3dkctg3" path="res://Assets/Spring Mechanics/Teleporter/Teleporter_blender_prototype_blue.png" id="1_tubqo"]
-[ext_resource type="Texture2D" uid="uid://2m5wm06tiupv" path="res://Assets/Spring Mechanics/Teleporter/Effects/woosh.png" id="2_ruatl"]
-[ext_resource type="PackedScene" uid="uid://dlcw26eyb466m" path="res://Components/UI/VFX/glowy_sparkles.tscn" id="3_dejtt"]
+[ext_resource type="Script" path="res://Components/Mechanics/Spring Mechanics/teleporter.gd" id="1_ykg2g"]
+[ext_resource type="Texture2D" uid="uid://dicgyt3dkctg3" path="res://Assets/Spring Mechanics/Teleporter/Teleporter_blender_prototype_blue.png" id="2_m3c5n"]
+[ext_resource type="Texture2D" uid="uid://2m5wm06tiupv" path="res://Assets/Spring Mechanics/Teleporter/Effects/woosh.png" id="3_g4u34"]
+[ext_resource type="PackedScene" uid="uid://dlcw26eyb466m" path="res://Components/UI/VFX/glowy_sparkles.tscn" id="4_euxc0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ruatl"]
-atlas = ExtResource("1_tubqo")
+atlas = ExtResource("2_m3c5n")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_dejtt"]
@@ -24,75 +24,75 @@ animations = [{
 size = Vector2(2, 2)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dejtt"]
-atlas = ExtResource("2_ruatl")
+atlas = ExtResource("3_g4u34")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_afsdi"]
-atlas = ExtResource("2_ruatl")
+atlas = ExtResource("3_g4u34")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c6xwp"]
-atlas = ExtResource("2_ruatl")
+atlas = ExtResource("3_g4u34")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1ctjb"]
-atlas = ExtResource("2_ruatl")
+atlas = ExtResource("3_g4u34")
 region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w6tjc"]
-atlas = ExtResource("2_ruatl")
+atlas = ExtResource("3_g4u34")
 region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eu7p3"]
-atlas = ExtResource("2_ruatl")
+atlas = ExtResource("3_g4u34")
 region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hggbo"]
-atlas = ExtResource("2_ruatl")
+atlas = ExtResource("3_g4u34")
 region = Rect2(192, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eqn84"]
-atlas = ExtResource("2_ruatl")
+atlas = ExtResource("3_g4u34")
 region = Rect2(224, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q5h5r"]
-atlas = ExtResource("2_ruatl")
+atlas = ExtResource("3_g4u34")
 region = Rect2(256, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7bex7"]
-atlas = ExtResource("2_ruatl")
+atlas = ExtResource("3_g4u34")
 region = Rect2(288, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b330k"]
-atlas = ExtResource("2_ruatl")
+atlas = ExtResource("3_g4u34")
 region = Rect2(320, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6t7nd"]
-atlas = ExtResource("2_ruatl")
+atlas = ExtResource("3_g4u34")
 region = Rect2(352, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b6e4w"]
-atlas = ExtResource("2_ruatl")
+atlas = ExtResource("3_g4u34")
 region = Rect2(384, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jufmr"]
-atlas = ExtResource("2_ruatl")
+atlas = ExtResource("3_g4u34")
 region = Rect2(416, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_275ge"]
-atlas = ExtResource("2_ruatl")
+atlas = ExtResource("3_g4u34")
 region = Rect2(448, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xhywg"]
-atlas = ExtResource("2_ruatl")
+atlas = ExtResource("3_g4u34")
 region = Rect2(480, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i87x5"]
-atlas = ExtResource("2_ruatl")
+atlas = ExtResource("3_g4u34")
 region = Rect2(512, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ulim2"]
-atlas = ExtResource("2_ruatl")
+atlas = ExtResource("3_g4u34")
 region = Rect2(544, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qfsho"]
@@ -380,9 +380,9 @@ _data = {
 &"Teleport": SubResource("Animation_c6xwp")
 }
 
-[node name="Flower1" type="Node2D" node_paths=PackedStringArray("wooshes")]
-script = ExtResource("1_afsdi")
-wooshes = [NodePath("Effects/Woosh"), NodePath("Effects/Woosh2"), NodePath("Effects/Woosh3"), NodePath("Effects/Woosh4"), NodePath("Effects/Woosh5"), NodePath("Effects/Woosh6"), NodePath("Effects/Woosh7"), NodePath("Effects/Woosh8")]
+[node name="Teleporter" type="Node2D"]
+script = ExtResource("1_ykg2g")
+buttons = null
 
 [node name="AnimatedSprites" type="Node2D" parent="."]
 
@@ -411,7 +411,6 @@ collision_mask = 2
 shape = SubResource("RectangleShape2D_afsdi")
 
 [node name="Effects" type="Node2D" parent="."]
-visible = false
 
 [node name="Woosh" type="AnimatedSprite2D" parent="Effects"]
 modulate = Color(0, 1.2696971, 1.5795683, 0.21960784)
@@ -474,7 +473,7 @@ sprite_frames = SubResource("SpriteFrames_c6xwp")
 autoplay = "default"
 frame = 5
 
-[node name="GlowySparkles" parent="Effects" instance=ExtResource("3_dejtt")]
+[node name="GlowySparkles" parent="Effects" instance=ExtResource("4_euxc0")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
