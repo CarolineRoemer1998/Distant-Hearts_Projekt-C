@@ -12,10 +12,10 @@ var on_flower_1 : Node2D = null
 var on_flower_2 : Node2D = null
 
 func _ready() -> void:
-	add_to_group("TeleporterManager")
+	add_to_group(Constants.GROUP_NAME_TELEPORTER_MANAGER)
 	Signals.teleporter_activated.connect(_handle_teleporter_activated)
 
-func _handle_teleporter_activated(teleporter: Teleporter):
+func _handle_teleporter_activated(_teleporter: Teleporter):
 	if flower_1.is_activated and flower_2.is_activated:
 		if on_flower_1 != null and not on_flower_1.just_teleported and not on_flower_1.is_merging:
 			print(on_flower_1.name)

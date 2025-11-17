@@ -1,19 +1,16 @@
 extends CharacterBody2D
+
 class_name Player
 
-@export var trail_scene: PackedScene 
-@export var hearts: Array[Sprite2D]
-@export var undo_particles: PackedScene 
+@export var trail_scene: PackedScene ## Takes a GPUParticles2D Node which displays the trails the player leaves behind when moving.
+@export var hearts: Array[Sprite2D] ## Takes 4 Spite2Ds, to show a heart when a creature is nearby another creature.
+@export var undo_particles: PackedScene  ## GPUParticles2D shown where the player was before pressing undo-button.
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var animation_tree: AnimationTree = $AnimationTree
 
 @onready var label_press_f_to_control: Label = $LabelPressFToControl
 @onready var label_press_f_to_stop_control: Label = $LabelPressFToStopControl
-#@onready var heart_TOP: Sprite2D = $Heart
-#@onready var heart_BOTTOM: Sprite2D = $Heart2
-#@onready var heart_LEFT: Sprite2D = $Heart3
-#@onready var heart_RIGHT: Sprite2D = $Heart4
 
 @onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var audio_control: AudioStreamPlayer2D = $AudioControl
@@ -40,6 +37,7 @@ var hovering_over: Creature = null
 var currently_possessed_creature: Creature = null
 var pushable_stone_in_direction : Stone = null
 var just_teleported := false
+
 
 func _ready():
 	self.add_to_group(Constants.GROUP_NAME_PLAYER)

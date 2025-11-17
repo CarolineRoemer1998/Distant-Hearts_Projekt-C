@@ -73,11 +73,6 @@ func activate(_activate_val: bool):
 	
 	if _activate_val == true:
 		animated_sprite_2d_flower.modulate = Constants.TELEPORTER_MODULATE_ACTIVE
-		#var all_teleporters = get_tree().get_nodes_in_group(Constants.GROUP_NAME_TELEPORTER)
-		#var other_teleporter
-		#for t in all_teleporters:
-			#if t != self:
-				#other_teleporter = t
 		Signals.teleporter_activated.emit(self)
 	else:
 		animated_sprite_2d_flower.modulate = Constants.TELEPORTER_MODULATE_INACTIVE
@@ -96,7 +91,7 @@ func _process(delta: float) -> void:
 	var level: float = 0.0
 	match phase:
 		Phase.UP:
-			_log_once("Up")
+			_log_once()
 			level = t                               # 0 -> 1 in up_duration
 			_set_all_to_level(level)
 			if t >= 1.0:
@@ -105,7 +100,7 @@ func _process(delta: float) -> void:
 				phase_time = 0.0
 				phase_len = down_duration
 		Phase.DOWN:
-			_log_once("Down")
+			_log_once()
 			level = 1.0 - t                         # 1 -> 0 in down_duration
 			_set_all_to_level(level)
 			if t >= 1.0:
@@ -155,7 +150,7 @@ func _set_all_to_level(level: float) -> void:
 		# individueller Scale pro Sprite
 		w.scale = _base_scales[i] * sc_boost
 
-func _log_once(s: String) -> void:
+func _log_once() -> void:
 	var p: int = int(phase)
 	if logged_phase != p:
 		logged_phase = p

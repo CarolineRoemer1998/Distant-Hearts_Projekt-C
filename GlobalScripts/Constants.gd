@@ -15,6 +15,7 @@ const GROUP_NAME_DOORS := "Door"
 const GROUP_NAME_BUTTONS := "Button"
 const GROUP_NAME_STONES := "Stone"
 const GROUP_NAME_TELEPORTER := "Teleporter"
+const GROUP_NAME_TELEPORTER_MANAGER := "TeleporterManager"
 
 # LAYER BITS
 const LAYER_BIT_WALL_AND_PLAYER		:= 0

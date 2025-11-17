@@ -2,11 +2,13 @@ extends CharacterBody2D
 
 class_name Creature
 
-enum COLOR {Blue, Yellow}
+enum COLOR {
+	Blue, ## First color option
+	Yellow ## Second color option
+	}
 
-@export var color : COLOR = COLOR.Blue
-
-@export var init_direction := Vector2.DOWN
+@export var color : COLOR = COLOR.Blue ## Color of the Creature.
+@export var init_direction := Vector2.DOWN ## Direction the Creature looks at in the beginning of the level it is in.
 
 @onready var init_position : Vector2
 @onready var merged_creature: MergedCreature = $MergedCreature
@@ -91,9 +93,9 @@ func get_neighbor_in_direction_is_mergable(_direction : Vector2) -> Creature:
 	return null
 
 func merge(creature_to_merge_with : Creature) -> bool:
-	is_merging = true
-	creature_to_merge_with.is_merging = true
-	if creature_to_merge_with != null and is_active:
+	if creature_to_merge_with != null and is_active and not is_merging:
+		is_merging = true
+		creature_to_merge_with.is_merging = true
 		merged_creature.reparent(get_parent())
 		merged_creature.position = creature_to_merge_with.position #position + _direction
 		await get_tree().create_timer(0.1).timeout # creatures verschwinden, merged_creature taucht nach 0.1 sec auf

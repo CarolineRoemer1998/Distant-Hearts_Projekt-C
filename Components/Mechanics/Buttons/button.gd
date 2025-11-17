@@ -51,7 +51,7 @@ func set_info(info : Dictionary):
 	
 	set_active(active)
 
-func _on_body_entered(body: Node) -> void:
+func _on_body_entered(_body: Node) -> void:
 	if door_is_permanently_opened:
 		return
 	
@@ -63,7 +63,7 @@ func _on_body_entered(body: Node) -> void:
 		BUTTON_TYPE.PRESSURE: 
 			press_pressure_button()
 	
-func _on_body_exited(body: Node) -> void:
+func _on_body_exited(_body: Node) -> void:
 	if door_is_permanently_opened:
 		return
 	
