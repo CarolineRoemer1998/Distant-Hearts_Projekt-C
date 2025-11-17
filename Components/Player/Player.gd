@@ -1,5 +1,4 @@
 extends CharacterBody2D
-
 class_name Player
 
 @export var trail_scene: PackedScene ## Takes a GPUParticles2D Node which displays the trails the player leaves behind when moving.
@@ -20,24 +19,165 @@ class_name Player
 
 var is_active := true
 
-var direction := Vector2.ZERO
+var direction := Vector2.ZERO :
+	set(val):
+		direction = val
+		set_animation_direction(direction)
+
+#func set_direction_and_update_animation_direction(_direction: Vector2):
+	#direction = _direction
+	#set_animation_direction(direction)
+
 var current_direction := Vector2.ZERO
 var buffered_direction: Vector2 = Vector2.ZERO
 
 var target_position: Vector2
 
-var is_moving := false
+var is_moving := false :
+	set(val):
+		is_moving = val
+		
+		if is_moving:
+			target_position = target_position + direction * Constants.GRID_SIZE
+			current_direction = direction
+			
+			is_on_ice = Helper.check_is_ice(target_position, get_world_2d())
+			
+			if currently_possessed_creature:
+				if currently_possessed_creature.get_neighbor_in_direction_is_mergable(direction) != null:
+					var merged = await currently_possessed_creature.merge(currently_possessed_creature.get_neighbor_in_direction_is_mergable(direction))
+					if merged:
+						set_not_is_active()
+				if pushable_stone_in_direction != null:
+					pushable_stone_in_direction.push()
+			
+			spawn_trail(position)
+			
+			play_sound_step()
+			
+			Signals.state_changed.emit(get_info())
+
+#func try_start_move_step(val):
+	#is_moving = val
+#
+	#if is_moving:
+		#target_position = target_position + direction * Constants.GRID_SIZE
+		#current_direction = direction
+		#
+		#is_on_ice = Helper.check_is_ice(target_position, get_world_2d())
+		#
+		#if currently_possessed_creature:
+			#if currently_possessed_creature.get_neighbor_in_direction_is_mergable(direction) != null:
+				#var merged = await currently_possessed_creature.merge(currently_possessed_creature.get_neighbor_in_direction_is_mergable(direction))
+				#if merged:
+					#set_not_is_active()
+			#if pushable_stone_in_direction != null:
+				#pushable_stone_in_direction.push()
+		#
+		#spawn_trail(position)
+		#
+		#play_sound_step()
+		#
+		#Signals.state_changed.emit(get_info())
+
 var is_moving_on_ice := false
 var is_on_ice := false
 var is_sliding := false
 var is_pushing_stone_on_ice := false
 var can_move := true
 
-var hovering_over: Creature = null
-var currently_possessed_creature: Creature = null
-var pushable_stone_in_direction : Stone = null
-var just_teleported := false
+var hovering_over: Creature = null :
+	set(val):
+		hovering_over = val
+		label_press_f_to_control.visible = hovering_over and currently_possessed_creature == null
+		print("HOVER::")
+		print("Hovering Over:      ", hovering_over)
+		print("Possessed Creature: ", currently_possessed_creature)
+		print()
+		#if hovering_over and currently_possessed_creature == null:
+			#label_press_f_to_control.visible = true
+		#else:
+			#label_press_f_to_control.visible = false
 
+var currently_possessed_creature: Creature = null :
+	set(val):
+		if val != null:
+			hovering_over = null
+		else:
+			hovering_over = currently_possessed_creature
+		
+		if currently_possessed_creature == val:
+			return
+
+		# Besitz beenden
+		if val == null:
+			set_hovering_creature(currently_possessed_creature)
+			change_visibility(true)
+			currently_possessed_creature.border.visible = false
+			currently_possessed_creature.set_animation_direction()
+			audio_uncontrol.play()
+			
+		# neues Creature-Objekt setzen
+		currently_possessed_creature = val
+
+		# neuen Besitz starten (falls nicht null)
+		if currently_possessed_creature:
+			# Verhalten wie bisher in possess()
+			currently_possessed_creature.has_not_moved = false
+			currently_possessed_creature.border.visible = true
+			change_visibility(false)
+			audio_control.play()
+
+			# direction an Creature anpassen (bisher in possess())
+			direction = currently_possessed_creature.current_direction
+
+			# Position sofort synchronisieren
+			currently_possessed_creature.position = target_position
+			currently_possessed_creature.target_position = target_position
+		
+		# Hearts direkt aktualisieren (optional, aber praktisch)
+		update_heart_visibility()
+		print("POSSESSION:")
+		print("Hovering Over:      ", hovering_over)
+		print("Possessed Creature: ", currently_possessed_creature)
+		print()
+
+#func change_possession_to(new_creature: Creature):
+	## wenn sich nichts ändert → nichts tun
+	#if currently_possessed_creature == new_creature:
+		#return
+#
+	## alten Besitz beenden (falls vorhanden)
+	#if currently_possessed_creature and is_instance_valid(currently_possessed_creature):
+		## Verhalten wie bisher in unpossess()
+		#set_hovering_creature(true, currently_possessed_creature)
+		#change_visibility(true)
+		#currently_possessed_creature.border.visible = false
+		#currently_possessed_creature.set_animation_direction()
+		#audio_uncontrol.play()
+#
+	## neues Creature-Objekt setzen
+	#currently_possessed_creature = new_creature
+#
+	## neuen Besitz starten (falls nicht null)
+	#if currently_possessed_creature:
+		## Verhalten wie bisher in possess()
+		#currently_possessed_creature.has_not_moved = false
+		#currently_possessed_creature.border.visible = true
+		#change_visibility(false)
+		#audio_control.play()
+#
+		## direction an Creature anpassen (bisher in possess())
+		#direction = currently_possessed_creature.current_direction
+#
+		## Position sofort synchronisieren
+		#currently_possessed_creature.position = target_position
+		#currently_possessed_creature.target_position = target_position
+#
+	## Hearts direkt aktualisieren (optional, aber praktisch)
+	#update_heart_visibility()
+
+var pushable_stone_in_direction : Stone = null
 
 func _ready():
 	self.add_to_group(Constants.GROUP_NAME_PLAYER)
@@ -82,18 +222,18 @@ func handle_input():
 			else:
 				if evaluate_can_move_in_direction(position, direction):
 					set_is_moving(true)
-			
-			set_animation_direction(direction)
 		
 		# Interaktionsbutton
 		elif Input.is_action_just_pressed("Interact"):
 			if not is_moving:
-				if hovering_over and hovering_over is Creature:
-					Signals.state_changed.emit(get_info())
-					if currently_possessed_creature:
-						unpossess()
-					else:
-						possess()
+				change_possession_to(hovering_over)
+				#currently_possessed_creature = hovering_over
+				#if hovering_over and hovering_over is Creature:
+					#Signals.state_changed.emit(get_info())
+					#if currently_possessed_creature:
+						#unpossess()
+					#else:
+						#possess()
 	else:
 		# Szenewechsel durch Tastatur, Maus oder Gamepad
 		if Input.is_action_just_pressed("ui_accept"):
@@ -132,8 +272,6 @@ func set_info(info : Dictionary):
 	is_sliding = false
 	can_move = true
 	set_is_not_pushing_stone_on_ice()
-	
-	set_animation_direction(direction)
 	
 	if info.get("currently_possessed_creature") and currently_possessed_creature == null:
 		possess()
@@ -229,25 +367,25 @@ func set_not_is_active():
 func set_is_moving(_is_moving: bool):
 	is_moving = _is_moving
 
-	if is_moving:
-		target_position = target_position + direction * Constants.GRID_SIZE
-		current_direction = direction
-		
-		is_on_ice = Helper.check_is_ice(target_position, get_world_2d())
-		
-		if currently_possessed_creature:
-			if currently_possessed_creature.get_neighbor_in_direction_is_mergable(direction) != null:
-				var merged = await currently_possessed_creature.merge(currently_possessed_creature.get_neighbor_in_direction_is_mergable(direction))
-				if merged:
-					set_not_is_active()
-			if pushable_stone_in_direction != null:
-				pushable_stone_in_direction.push()
-		
-		spawn_trail(position)
-		
-		play_sound_step()
-		
-		Signals.state_changed.emit(get_info())
+	#if is_moving:
+		#target_position = target_position + direction * Constants.GRID_SIZE
+		#current_direction = direction
+		#
+		#is_on_ice = Helper.check_is_ice(target_position, get_world_2d())
+		#
+		#if currently_possessed_creature:
+			#if currently_possessed_creature.get_neighbor_in_direction_is_mergable(direction) != null:
+				#var merged = await currently_possessed_creature.merge(currently_possessed_creature.get_neighbor_in_direction_is_mergable(direction))
+				#if merged:
+					#set_not_is_active()
+			#if pushable_stone_in_direction != null:
+				#pushable_stone_in_direction.push()
+		#
+		#spawn_trail(position)
+		#
+		#play_sound_step()
+		#
+		#Signals.state_changed.emit(get_info())
 
 func play_sound_step():
 	audio_stream_player_2d.pitch_scale = Constants.STEP_SOUND_PITCH_SCALES.pick_random()
@@ -255,39 +393,47 @@ func play_sound_step():
 	audio_stream_player_2d.stop()
 	audio_stream_player_2d.play()
 
-func set_hovering_creature(is_hovering: bool, creature: Creature):
-	if is_hovering:
-		hovering_over = creature
-		if currently_possessed_creature == null:
-			label_press_f_to_control.visible = true
-	else:
-		hovering_over = null
-		label_press_f_to_control.visible = false
+func set_hovering_creature(creature: Creature):
+	hovering_over = creature
+	#if is_hovering:
+		#hovering_over = creature
+		#if currently_possessed_creature == null:
+			#label_press_f_to_control.visible = true
+	#else:
+		#hovering_over = null
+		#label_press_f_to_control.visible = false
 
 func unpossess():
-	if currently_possessed_creature and is_instance_valid(currently_possessed_creature):
-		set_hovering_creature(true, currently_possessed_creature)
-		change_visibility(true)
-		currently_possessed_creature.border.visible = false
-		currently_possessed_creature.set_animation_direction()
-		currently_possessed_creature = null
-		audio_uncontrol.play()
+	currently_possessed_creature = null
+	#if currently_possessed_creature and is_instance_valid(currently_possessed_creature):
+		#set_hovering_creature(true, currently_possessed_creature)
+		#change_visibility(true)
+		#currently_possessed_creature.border.visible = false
+		#currently_possessed_creature.set_animation_direction()
+		#currently_possessed_creature = null
+		#audio_uncontrol.play()
 
 func possess():
 	if hovering_over and hovering_over is Creature:
 		currently_possessed_creature = hovering_over
-		currently_possessed_creature.has_not_moved = false
-		currently_possessed_creature.border.visible = true
-		change_visibility(false)
-		audio_control.play()
+	#if hovering_over and hovering_over is Creature:
+		#currently_possessed_creature = hovering_over
+		#currently_possessed_creature.has_not_moved = false
+		#currently_possessed_creature.border.visible = true
+		#change_visibility(false)
+		#audio_control.play()
+		#
+		## direction an Creature anpassen
+		#direction = currently_possessed_creature.current_direction
+		#
+		## Position sofort synchronisieren
+		#currently_possessed_creature.position = target_position
+		#currently_possessed_creature.target_position = target_position
+
+func change_possession_to(creature: Creature):
+	#if hovering_over and hovering_over is Creature:
+	currently_possessed_creature = creature
 		
-		# direction an Creature anpassen
-		direction = currently_possessed_creature.current_direction
-		set_animation_direction(direction)
-		
-		# Position sofort synchronisieren
-		currently_possessed_creature.position = target_position
-		currently_possessed_creature.target_position = target_position
 
 func set_is_standing_on_teleporter(val: bool):
 	if val == true:
@@ -313,12 +459,12 @@ func change_visibility(make_visible : bool):
 		label_press_f_to_stop_control.visible = !make_visible
 
 func _on_creature_detected(body: Node) -> void:
-	if body is Creature:
-		set_hovering_creature(true, body)
+	if body is Creature and not currently_possessed_creature:
+		set_hovering_creature(body)
 
 func _on_creature_undetected(body: Node) -> void:
 	if body is Creature and hovering_over == body:
-		set_hovering_creature(false, body)
+		set_hovering_creature(null)
 
 func spawn_trail(input_position: Vector2):
 	var trail : GPUParticles2D = trail_scene.instantiate()

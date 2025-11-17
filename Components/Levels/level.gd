@@ -34,7 +34,7 @@ func _ready() -> void:
 	Signals.SHOW_WIN_SCREEN.connect(show_win_screen)
 
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	if Input.is_action_pressed("Undo"):
 		is_undo_pressed = true
 		undo()

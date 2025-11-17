@@ -64,6 +64,8 @@ func _on_body_entered(_body: Node) -> void:
 			press_pressure_button()
 	
 func _on_body_exited(_body: Node) -> void:
+	if Helper.check_if_collides(global_position, Constants.LAYER_BIT_CREATURE, get_world_2d()):
+		return
 	if door_is_permanently_opened:
 		return
 	
