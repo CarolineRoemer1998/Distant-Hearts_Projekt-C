@@ -8,3 +8,5 @@ func _on_bee_area_body_entered(player: Node2D) -> void:
 		player.direction = -player.direction
 		player.set_is_moving(true)
 		player.step_timer.start(Constants.TIMER_STEP*2)
+		StateSaver.remove_last_state()
+		StateSaver.remove_last_state()

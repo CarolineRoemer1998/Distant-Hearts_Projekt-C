@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dyv1bfpu6w2or"]
+
+[ext_resource type="Texture2D" uid="uid://c7cvntqtcro4k" path="res://Assets/Spring Mechanics/DirtPatch/DirtPatch2.png" id="1_xpf30"]
+
+[node name="DirtPatch" type="Node2D"]
+scale = Vector2(2, 2)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_xpf30")

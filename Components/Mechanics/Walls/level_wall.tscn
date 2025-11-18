@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://dp2qf8g2kvpfa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_key5o"]
-size = Vector2(704, 64)
+size = Vector2(1408, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t5vpw"]
-size = Vector2(64, 576)
+size = Vector2(64, 1280)
 
 [node name="LevelWall" type="StaticBody2D"]
 collision_layer = 64

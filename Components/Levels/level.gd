@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name Level
+
 @export var season : Constants.SEASON = Constants.SEASON.Intro
 @export var undo_particles: PackedScene 
 @export var final_level: bool = false
