@@ -32,3 +32,5 @@ signal stone_reached_target
 # Teleporter
 signal teleporter_entered(target_pos: Vector2)
 signal teleporter_activated(teleporter: Teleporter)
+signal creature_started_teleporting
+signal creature_finished_teleporting

@@ -108,12 +108,11 @@ func merge(creature_to_merge_with : Creature) -> bool:
 	return false
 
 func start_teleport( _teleporter: Teleporter):
-	print("Teleport")
 	var teleporter = check_is_on_teleporter()
 	if teleporter != null and not is_merging and not just_teleported:
+		Signals.creature_started_teleporting.emit()
 		is_teleporting = true
 		target_position = _teleporter.global_position
-		print(name, ": Shrink Animation")
 		animation_player.play("Shrink_Teleport")
 
 func teleport():
@@ -131,6 +130,7 @@ func check_is_on_teleporter() -> Teleporter:
 	return null
 
 func set_not_teleporting():
+	Signals.creature_finished_teleporting.emit()
 	is_teleporting = false
 
 func shrink():

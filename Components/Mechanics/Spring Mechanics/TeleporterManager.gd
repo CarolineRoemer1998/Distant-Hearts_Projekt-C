@@ -18,10 +18,8 @@ func _ready() -> void:
 func _handle_teleporter_activated(_teleporter: Teleporter):
 	if flower_1.is_activated and flower_2.is_activated:
 		if on_flower_1 != null and not on_flower_1.just_teleported and not on_flower_1.is_merging:
-			#print(on_flower_1.name)
 			teleport_to(flower_2)
 		if on_flower_2 != null and not on_flower_2.just_teleported and not on_flower_2.is_merging:
-			#print(on_flower_2.name)
 			teleport_to(flower_1)
 
 func _on_flower_1_entered(body: Node2D) -> void:
