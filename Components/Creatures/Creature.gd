@@ -1,11 +1,10 @@
 extends CharacterBody2D
-
 class_name Creature
 
 enum COLOR {
 	Blue, ## First color option
 	Yellow ## Second color option
-	}
+}
 
 @export var color : COLOR = COLOR.Blue ## Color of the Creature.
 @export var init_direction := Vector2.DOWN ## Direction the Creature looks at in the beginning of the level it is in.
@@ -33,19 +32,28 @@ var is_merging := false
 
 var is_teleporting := false
 var just_teleported := false
-var standing_on_teleporter : Teleporter = null
+
 
 func _ready():
-	Signals.level_done.connect(set_inactive)
+	Signals.level_done.connect(deactivate)
 	Signals.teleporter_activated.connect(start_teleport)
+	
 	animated_sprite_creature.frame = 0
 	border.frame = 0
-	self.add_to_group(Constants.GROUP_NAME_CREATURE)
+	
+	add_to_group(Constants.GROUP_NAME_CREATURE)
+	
 	target_position = position.snapped(Constants.GRID_SIZE / 2)
 	init_position = global_position
 	position = target_position
+	
 	animation_tree.get("parameters/playback").travel("Idle")
-	animation_tree.set("parameters/Idle/BlendSpace2D/blend_position", init_direction)
+	set_animation_direction(init_direction)
+
+
+# -----------------------------------------------------------
+# State Serialisation (Undo)
+# -----------------------------------------------------------
 
 func get_info() -> Dictionary:
 	return {
@@ -61,6 +69,7 @@ func get_info() -> Dictionary:
 		"has_not_moved": has_not_moved
 	}
 
+
 func set_info(info : Dictionary):
 	global_position = info.get("global_position")
 	current_direction = info.get("current_direction")
@@ -72,48 +81,75 @@ func set_info(info : Dictionary):
 	neighbor_top = info.get("neighbor_top")
 	
 	if info.get("has_not_moved"):
-		set_animation_direction_by_val(init_direction)
+		set_animation_direction(init_direction)
 	has_not_moved = info.get("has_not_moved")
 
-func set_animation_direction():
-	animation_tree.set("parameters/Idle/BlendSpace2D/blend_position", current_direction)
 
-func set_animation_direction_by_val(direction):
+# -----------------------------------------------------------
+# Animation
+# -----------------------------------------------------------
+
+func set_animation_direction(direction: Vector2 = current_direction) -> void:
+	current_direction = direction
 	animation_tree.set("parameters/Idle/BlendSpace2D/blend_position", direction)
 
-func set_inactive():
+
+# -----------------------------------------------------------
+# Aktivität / Merge
+# -----------------------------------------------------------
+
+func deactivate():
 	is_active = false
 
-func get_neighbor_in_direction_is_mergable(_direction : Vector2) -> Creature:
-	match _direction:
+
+func get_neighbor_in_direction_is_mergable(direction : Vector2) -> Creature:
+	match direction:
 		Vector2.RIGHT: return neighbor_right
-		Vector2.DOWN: return neighbor_bottom
-		Vector2.LEFT: return neighbor_left
-		Vector2.UP: return neighbor_top
+		Vector2.DOWN:  return neighbor_bottom
+		Vector2.LEFT:  return neighbor_left
+		Vector2.UP:    return neighbor_top
 	return null
 
-func merge(creature_to_merge_with : Creature) -> bool:
-	if creature_to_merge_with != null and is_active and not is_merging:
-		is_merging = true
-		creature_to_merge_with.is_merging = true
-		merged_creature.reparent(get_parent())
-		merged_creature.position = creature_to_merge_with.position #position + _direction
-		await get_tree().create_timer(0.1).timeout # creatures verschwinden, merged_creature taucht nach 0.1 sec auf
-		shrink()
-		creature_to_merge_with.shrink()
-		merged_creature.visible = true
-		merged_creature.appear()
-		Signals.level_done.emit()
-		return true
-	return false
 
-func start_teleport( _teleporter: Teleporter):
-	var teleporter = check_is_on_teleporter()
-	if teleporter != null and not is_merging and not just_teleported:
+func merge(creature_to_merge_with : Creature) -> bool:
+	if creature_to_merge_with == null:
+		return false
+	
+	if not is_active or is_merging:
+		return false
+	
+	is_merging = true
+	creature_to_merge_with.is_merging = true
+	
+	# MergedCreature in die gleiche Ebene wie die normalen Creatures ziehen
+	merged_creature.reparent(get_parent())
+	merged_creature.position = creature_to_merge_with.position
+	
+	# Creatures kurz anzeigen, dann "zusammenschrumpfen"
+	await get_tree().create_timer(0.1).timeout
+	
+	shrink()
+	creature_to_merge_with.shrink()
+	
+	merged_creature.visible = true
+	merged_creature.appear()
+	
+	Signals.level_done.emit()
+	return true
+
+
+# -----------------------------------------------------------
+# Teleport
+# -----------------------------------------------------------
+
+func start_teleport(teleporter: Teleporter):
+	var current_teleporter := get_current_teleporter()
+	if current_teleporter != null and not is_merging and not just_teleported:
 		Signals.creature_started_teleporting.emit()
 		is_teleporting = true
-		target_position = _teleporter.global_position
+		target_position = teleporter.global_position
 		animation_player.play("Shrink_Teleport")
+
 
 func teleport():
 	if is_teleporting:
@@ -121,69 +157,106 @@ func teleport():
 		visible = true
 		appear()
 
-func check_is_on_teleporter() -> Teleporter:
+
+func get_current_teleporter() -> Teleporter:
 	var teleporters = get_tree().get_nodes_in_group(Constants.GROUP_NAME_TELEPORTER)
-	
 	for t in teleporters:
 		if t.global_position == global_position and t.is_activated:
 			return t
 	return null
 
+
 func set_not_teleporting():
+	# Beibehaltung des alten Namens für Animation/Signals, aber klarere Logik hier bündeln
+	finish_teleport()
+
+
+func finish_teleport():
 	Signals.creature_finished_teleporting.emit()
 	is_teleporting = false
 
+
+# -----------------------------------------------------------
+# Simple Animation Wrappers
+# -----------------------------------------------------------
+
 func shrink():
 	animation_player.play("Shrink")
-	
+
+
 func appear():
 	animation_player.play("Appear_Teleport")
+
 
 func disappear():
 	queue_free()
 
+
 # -----------------------------------------------------------
-# Check if creature stands next to other creature
+# Neighbor Detection
 # -----------------------------------------------------------
 
+func _set_neighbor_for_direction(direction: Vector2, creature: Creature) -> void:
+	match direction:
+		Vector2.RIGHT:
+			neighbor_right = creature
+		Vector2.DOWN:
+			neighbor_bottom = creature
+		Vector2.LEFT:
+			neighbor_left = creature
+		Vector2.UP:
+			neighbor_top = creature
+
+
+# Creature steht neben einer anderen
 func on_creature_to_right(body: Node2D) -> void:
-	if body is Creature and body.name != self.name:
-		neighbor_right = body
+	if body is Creature and body.name != name:
+		_set_neighbor_for_direction(Vector2.RIGHT, body)
+
 
 func on_creature_to_bottom(body: Node2D) -> void:
-	if body is Creature and body.name != self.name:
-		neighbor_bottom = body
+	if body is Creature and body.name != name:
+		_set_neighbor_for_direction(Vector2.DOWN, body)
+
 
 func on_creature_to_left(body: Node2D) -> void:
-	if body is Creature and body.name != self.name:
-		neighbor_left = body
+	if body is Creature and body.name != name:
+		_set_neighbor_for_direction(Vector2.LEFT, body)
+
 
 func on_creature_to_top(body: Node2D) -> void:
-	if body is Creature and body.name != self.name:
-		neighbor_top = body
+	if body is Creature and body.name != name:
+		_set_neighbor_for_direction(Vector2.UP, body)
 
-# -----------------------------------------------------------
-# Check if creature no longer stands next to other creature
-# -----------------------------------------------------------
 
+# Creature steht nicht mehr neben einer anderen
 func _on_creature_right_gone(body: Node2D) -> void:
 	if body is Creature:
-		neighbor_right = null
+		_set_neighbor_for_direction(Vector2.RIGHT, null)
+
 
 func _on_creature_bottom_gone(body: Node2D) -> void:
 	if body is Creature:
-		neighbor_bottom = null
+		_set_neighbor_for_direction(Vector2.DOWN, null)
+
 
 func _on_creature_left_gone(body: Node2D) -> void:
 	if body is Creature:
-		neighbor_left = null
+		_set_neighbor_for_direction(Vector2.LEFT, null)
+
 
 func _on_creature_top_gone(body: Node2D) -> void:
 	if body is Creature:
-		neighbor_top = null
+		_set_neighbor_for_direction(Vector2.UP, null)
 
+
+# -----------------------------------------------------------
+# Collision für direktes Mergen bei Überlappung
+# -----------------------------------------------------------
 
 func _on_area_2d_self_body_entered(body: Node2D) -> void:
-	if body != self:
-		if body is Creature:
-			merge(body)
+	if body == self:
+		return
+	
+	if body is Creature:
+		merge(body)

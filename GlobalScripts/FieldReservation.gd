@@ -6,12 +6,12 @@ func _ready() -> void:
 	Signals.level_switched.connect(clear_all)
 
 func reserve(object, tiles: Array[Vector2]) -> void:
-	object.deactivate_layer()
+	object.disable_collision_layer()
 	fields[object] = tiles.duplicate()
 	
 
 func release(object) -> void:
-	object.activate_layer()
+	object.enable_collision_layer()
 	fields.erase(object)
 
 func clear_all() -> void:

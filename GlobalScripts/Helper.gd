@@ -41,9 +41,6 @@ func check_if_collides(_position, layer_mask, world : World2D) -> bool:
 		if result[0].collider is Door:
 			if not result[0].collider.door_is_closed:
 				return false
-		#if result[0].collider is Stone and is_pushing_stone_on_ice:
-			#if result[0].collider.is_sliding:
-				#return false
 	return not result.is_empty()
 
 func get_collision_on_tile(_position, layer_mask, world : World2D) -> Array[Dictionary]:
