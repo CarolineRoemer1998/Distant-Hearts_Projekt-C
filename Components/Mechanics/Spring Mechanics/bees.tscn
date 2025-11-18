@@ -1,22 +1,15 @@
-[gd_scene load_steps=10 format=3 uid="uid://0edfjrrf5011"]
+[gd_scene load_steps=12 format=3 uid="uid://0edfjrrf5011"]
 
-[ext_resource type="Texture2D" uid="uid://dytbdutqj8wvx" path="res://Assets/Spring Mechanics/Bees/Blender/Bee-Aseprite.png" id="1_7ab61"]
+[ext_resource type="Texture2D" uid="uid://bypu3mxifsd3a" path="res://Assets/Spring Mechanics/Bees/Blender/Bee-Aseprite-16x16.png" id="1_7ab61"]
+[ext_resource type="Texture2D" uid="uid://damd3v81dmwkc" path="res://Assets/Spring Mechanics/Bees/Blender/bee-shadow.png" id="1_lr6y7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lr6y7"]
 atlas = ExtResource("1_7ab61")
-region = Rect2(0, 0, 32, 32)
+region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_51wh5"]
 atlas = ExtResource("1_7ab61")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3e2b1"]
-atlas = ExtResource("1_7ab61")
-region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_j5cbk"]
-atlas = ExtResource("1_7ab61")
-region = Rect2(32, 0, 32, 32)
+region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qvual"]
 animations = [{
@@ -26,59 +19,11 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_51wh5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3e2b1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_j5cbk")
 }],
 "loop": true,
 "name": &"default",
 "speed": 5.0
 }]
-
-[sub_resource type="Animation" id="Animation_7ab61"]
-resource_name = "Fly"
-length = 18.0
-loop_mode = 1
-step = 0.25
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(-37, -29), Vector2(-37, 5), Vector2(-37, -29), Vector2(-37, 5), Vector2(-37, -29), Vector2(-37, 5), Vector2(-37, -29), Vector2(-37, 5), Vector2(-37, -29), Vector2(-37, 5), Vector2(-37, -29), Vector2(-37, 5), Vector2(-37, -29)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../AnimatedSprite2D2:position")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.75, 1.5, 2.25, 3, 3.75, 4.5, 5.25, 6, 6.75, 7.5, 8.25, 9, 9.75, 10.5, 11.25, 12),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(-10, 18), Vector2(-10, -6), Vector2(-10, 18), Vector2(-10, -6), Vector2(-10, 18), Vector2(-10, -6), Vector2(-10, 18), Vector2(-10, -6), Vector2(-10, 18), Vector2(-10, -6), Vector2(-10, 18), Vector2(-10, -6), Vector2(-10, 18), Vector2(-10, -6), Vector2(-10, 18), Vector2(-10, -6), Vector2(-10, 18)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../AnimatedSprite2D3:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 1.25, 2.5, 3.75, 5, 6.5, 7.75, 9, 10.25, 11.5, 12.75, 14, 15.25, 16.5, 17.75),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(24, -17), Vector2(24, -2), Vector2(24, -17), Vector2(24, -2), Vector2(24, -17), Vector2(24, -2), Vector2(24, -17), Vector2(24, -2), Vector2(24, -17), Vector2(24, -2), Vector2(24, -17), Vector2(24, -2), Vector2(24, -17), Vector2(24, -2), Vector2(24, -17)]
-}
 
 [sub_resource type="Animation" id="Animation_lr6y7"]
 length = 0.001
@@ -92,24 +37,24 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-37, -29)]
+"values": [Vector2(-14, -15)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../AnimatedSprite2D2:position")
+tracks/1/path = NodePath("../Bee2:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-10, 18)]
+"values": [Vector2(4, 10)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../AnimatedSprite2D3:position")
+tracks/2/path = NodePath("../Bee3:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -118,34 +63,155 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(24, -17)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Shadow:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.7, 1.7)]
+}
+
+[sub_resource type="Animation" id="Animation_51wh5"]
+resource_name = "Fly_2"
+length = 1.5
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Bee2:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.75, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(4, 10), Vector2(4, 5), Vector2(4, 10)]
+}
+
+[sub_resource type="Animation" id="Animation_3e2b1"]
+resource_name = "Fly_3"
+length = 2.5
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Bee3:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.25, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(24, -17), Vector2(24, -12), Vector2(24, -17)]
+}
+
+[sub_resource type="Animation" id="Animation_7ab61"]
+resource_name = "Fly_1"
+length = 2.0
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-14, -15), Vector2(-14, -10), Vector2(-14, -15)]
+}
+
+[sub_resource type="Animation" id="Animation_j5cbk"]
+resource_name = "shadow-pulsate"
+length = 2.0
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Shadow:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1.7, 1.7), Vector2(1.5, 1.5), Vector2(1.7, 1.7)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_51wh5"]
 _data = {
-&"Fly": SubResource("Animation_7ab61"),
-&"RESET": SubResource("Animation_lr6y7")
+&"Fly_1": SubResource("Animation_7ab61"),
+&"Fly_2": SubResource("Animation_51wh5"),
+&"Fly_3": SubResource("Animation_3e2b1"),
+&"RESET": SubResource("Animation_lr6y7"),
+&"shadow-pulsate": SubResource("Animation_j5cbk")
 }
 
 [node name="Bees" type="Node2D"]
-modulate = Color(1.1638972, 1.1638972, 1.1638972, 1)
+modulate = Color(1.0964829, 1.0964829, 1.0964829, 1)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-37, -29)
-sprite_frames = SubResource("SpriteFrames_qvual")
-frame_progress = 0.38441285
+[node name="Shadow" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(0.25, 0.194, 0.14500001, 0.21176471)
+position = Vector2(0, 24)
+scale = Vector2(1.7, 1.7)
+texture = ExtResource("1_lr6y7")
 
-[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
-position = Vector2(-10, 18)
+[node name="Bee1" type="AnimatedSprite2D" parent="."]
+position = Vector2(-14, -15)
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_qvual")
+autoplay = "default"
+frame_progress = 0.7606256
+
+[node name="Bee2" type="AnimatedSprite2D" parent="."]
+position = Vector2(4, 10)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_qvual")
+autoplay = "default"
 frame_progress = 0.5309246
 
-[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="."]
+[node name="Bee3" type="AnimatedSprite2D" parent="."]
 position = Vector2(24, -17)
-scale = Vector2(-1, 1)
+scale = Vector2(-2, 2)
 sprite_frames = SubResource("SpriteFrames_qvual")
+autoplay = "default"
 frame_progress = 0.40531987
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("../AnimatedSprite2D")
+[node name="AnimationPlayerBee1" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Bee1")
 libraries = {
 &"": SubResource("AnimationLibrary_51wh5")
 }
+autoplay = "Fly_1"
+
+[node name="AnimationPlayerBee2" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Bee1")
+libraries = {
+&"": SubResource("AnimationLibrary_51wh5")
+}
+autoplay = "Fly_2"
+
+[node name="AnimationPlayerBee3" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Bee1")
+libraries = {
+&"": SubResource("AnimationLibrary_51wh5")
+}
+autoplay = "Fly_3"
+
+[node name="AnimationPlayerShadow" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Bee1")
+libraries = {
+&"": SubResource("AnimationLibrary_51wh5")
+}
+autoplay = "shadow-pulsate"
