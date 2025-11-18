@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://0edfjrrf5011"]
+[gd_scene load_steps=14 format=3 uid="uid://0edfjrrf5011"]
 
 [ext_resource type="Texture2D" uid="uid://bypu3mxifsd3a" path="res://Assets/Spring Mechanics/Bees/Blender/Bee-Aseprite-16x16.png" id="1_7ab61"]
 [ext_resource type="Texture2D" uid="uid://damd3v81dmwkc" path="res://Assets/Spring Mechanics/Bees/Blender/bee-shadow.png" id="1_lr6y7"]
+[ext_resource type="Script" uid="uid://bxbu1g4pahb7t" path="res://Components/Mechanics/Spring Mechanics/BeeSwarm.gd" id="1_tbglw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lr6y7"]
 atlas = ExtResource("1_7ab61")
@@ -157,61 +158,77 @@ _data = {
 &"shadow-pulsate": SubResource("Animation_j5cbk")
 }
 
-[node name="Bees" type="Node2D"]
-modulate = Color(1.0964829, 1.0964829, 1.0964829, 1)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tbglw"]
+custom_solver_bias = 1.0
+size = Vector2(142, 142)
 
-[node name="Shadow" type="Sprite2D" parent="."]
-visible = false
+[node name="BeeSwarm" type="Node2D"]
+modulate = Color(1.0964829, 1.0964829, 1.0964829, 1)
+script = ExtResource("1_tbglw")
+
+[node name="Visuals" type="Node2D" parent="."]
+position = Vector2(-5, 0)
+
+[node name="Shadow" type="Sprite2D" parent="Visuals"]
 modulate = Color(0.25, 0.194, 0.14500001, 0.21176471)
-position = Vector2(0, 24)
+position = Vector2(3.0000005, 23.999996)
 scale = Vector2(1.7, 1.7)
 texture = ExtResource("1_lr6y7")
 
-[node name="Bee1" type="AnimatedSprite2D" parent="."]
+[node name="Bee1" type="AnimatedSprite2D" parent="Visuals"]
 position = Vector2(-14, -15)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_qvual")
 autoplay = "default"
-frame_progress = 0.7606256
+frame_progress = 0.8764309
 
-[node name="Bee2" type="AnimatedSprite2D" parent="."]
+[node name="Bee2" type="AnimatedSprite2D" parent="Visuals"]
 position = Vector2(4, 10)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_qvual")
 autoplay = "default"
 frame_progress = 0.5309246
 
-[node name="Bee3" type="AnimatedSprite2D" parent="."]
+[node name="Bee3" type="AnimatedSprite2D" parent="Visuals"]
 position = Vector2(24, -17)
-scale = Vector2(-2, 2)
+rotation = 3.1415925
+scale = Vector2(2, -2)
 sprite_frames = SubResource("SpriteFrames_qvual")
 autoplay = "default"
 frame_progress = 0.40531987
 
-[node name="AnimationPlayerBee1" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayerBee1" type="AnimationPlayer" parent="Visuals"]
 root_node = NodePath("../Bee1")
 libraries = {
 &"": SubResource("AnimationLibrary_51wh5")
 }
 autoplay = "Fly_1"
 
-[node name="AnimationPlayerBee2" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayerBee2" type="AnimationPlayer" parent="Visuals"]
 root_node = NodePath("../Bee1")
 libraries = {
 &"": SubResource("AnimationLibrary_51wh5")
 }
 autoplay = "Fly_2"
 
-[node name="AnimationPlayerBee3" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayerBee3" type="AnimationPlayer" parent="Visuals"]
 root_node = NodePath("../Bee1")
 libraries = {
 &"": SubResource("AnimationLibrary_51wh5")
 }
 autoplay = "Fly_3"
 
-[node name="AnimationPlayerShadow" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayerShadow" type="AnimationPlayer" parent="Visuals"]
 root_node = NodePath("../Bee1")
 libraries = {
 &"": SubResource("AnimationLibrary_51wh5")
 }
 autoplay = "shadow-pulsate"
+
+[node name="BeeArea" type="Area2D" parent="."]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BeeArea"]
+shape = SubResource("RectangleShape2D_tbglw")
+
+[connection signal="body_entered" from="BeeArea" to="." method="_on_bee_area_body_entered"]

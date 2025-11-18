@@ -100,7 +100,7 @@ func handle_movement_input():
 	
 	can_move = false
 	pushable_stone_in_direction = null
-	step_timer.start()
+	step_timer.start(Constants.TIMER_STEP)
 	
 	if is_moving:
 		buffered_direction = direction

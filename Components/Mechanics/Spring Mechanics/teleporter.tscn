@@ -410,6 +410,7 @@ collision_mask = 2
 shape = SubResource("RectangleShape2D_afsdi")
 
 [node name="Effects" type="Node2D" parent="."]
+visible = false
 
 [node name="Woosh" type="AnimatedSprite2D" parent="Effects"]
 modulate = Color(0, 1.2696971, 1.5795683, 0.21960784)

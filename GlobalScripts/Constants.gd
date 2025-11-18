@@ -27,6 +27,10 @@ const LAYER_BIT_LEVEL_WALL	 		:= 6
 const LAYER_BIT_TELEPORTER	 		:= 7
 const LAYER_MASK_BLOCKING_OBJECTS 	:= (1 << Constants.LAYER_BIT_STONE) | (1 << Constants.LAYER_BIT_DOOR) | (1 << Constants.LAYER_BIT_WALL_AND_PLAYER) | (1 << Constants.LAYER_BIT_CREATURE) | (1 << Constants.LAYER_BIT_LEVEL_WALL)
 
+# PLAYER
+const TIMER_STEP := 0.125
+
+
 # Y SORT
 const Y_UI := 10
 const Y_TELEPORTER_WOOSH := 9

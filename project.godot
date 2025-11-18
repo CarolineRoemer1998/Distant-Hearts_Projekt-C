@@ -145,6 +145,7 @@ Undo={
 2d_physics/layer_2="Creature"
 2d_physics/layer_3="Pushable"
 2d_physics/layer_4="Door"
+2d_physics/layer_5="BeeSwarm"
 2d_physics/layer_6="IceFloor"
 2d_physics/layer_7="LevelWall"
 2d_physics/layer_8="Teleporter"
