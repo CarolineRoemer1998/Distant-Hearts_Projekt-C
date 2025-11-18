@@ -103,7 +103,9 @@ func save_level_state(player_info : Dictionary):
 				
 				state[Constants.GROUP_NAME_STONES].append(stone.get_info())
 		
-		StateSaver.saved_states.append(state)
+		StateSaver.add(state)
+		#for i in StateSaver.saved_states:
+		#print(StateSaver.saved_states)
 
 func _set_can_undo(value : bool):
 	can_undo = value
@@ -124,6 +126,8 @@ func undo():
 		_set_can_undo(false)
 		undo_timer_init.start()
 		
+		print(StateSaver.get_last_state(),"\n")
+		
 		set_state_of_component(Constants.GROUP_NAME_PLAYER)
 		set_state_of_component(Constants.GROUP_NAME_CREATURE)
 		set_state_of_component(Constants.GROUP_NAME_DOORS)
@@ -136,6 +140,7 @@ func undo():
 func set_state_of_component(component_name : String):
 	if StateSaver.get_last_state().has(component_name):
 		var component_states : Array = StateSaver.get_last_state()[component_name]
+		
 		
 		for component in get_tree().get_nodes_in_group(component_name):
 			if component != null:

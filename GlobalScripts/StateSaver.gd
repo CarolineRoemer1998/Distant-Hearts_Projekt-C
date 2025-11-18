@@ -2,6 +2,10 @@ extends Node
 
 var saved_states := []
 
+func add(val):
+	saved_states.append(val)
+	#print(val.get("Player"),"\n")
+
 func get_last_state() -> Dictionary:
 	if saved_states.size() > 0:
 		var amount_states = saved_states.size()
