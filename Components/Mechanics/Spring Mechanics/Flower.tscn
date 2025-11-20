@@ -1,0 +1,98 @@
+[gd_scene load_steps=14 format=3 uid="uid://ba8q3gl8ussnm"]
+
+[ext_resource type="Script" uid="uid://dytdyife3qh6p" path="res://Components/Mechanics/Spring Mechanics/Flower.gd" id="1_rjnan"]
+[ext_resource type="Texture2D" uid="uid://c4bdewfthxc5h" path="res://Assets/Spring Mechanics/Flower/PinkFlowerBiggerBorderSpriteSheet.png" id="1_t7jgl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t7jgl"]
+atlas = ExtResource("1_t7jgl")
+region = Rect2(0, 0, 33, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rjnan"]
+atlas = ExtResource("1_t7jgl")
+region = Rect2(33, 0, 33, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8nooi"]
+atlas = ExtResource("1_t7jgl")
+region = Rect2(66, 0, 33, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tpjqu"]
+atlas = ExtResource("1_t7jgl")
+region = Rect2(99, 0, 33, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4205e"]
+atlas = ExtResource("1_t7jgl")
+region = Rect2(132, 0, 33, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jc4dh"]
+atlas = ExtResource("1_t7jgl")
+region = Rect2(99, 0, 33, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5n1um"]
+atlas = ExtResource("1_t7jgl")
+region = Rect2(66, 0, 33, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ppv5"]
+atlas = ExtResource("1_t7jgl")
+region = Rect2(33, 0, 33, 33)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p8ao0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t7jgl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rjnan")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8nooi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tpjqu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4205e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jc4dh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5n1um")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ppv5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_t7jgl"]
+load_path = "res://.godot/imported/Sparkle_big.png-894e93b1e99ef76f9cdd1cf0116bc198.ctex"
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rjnan"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(1.26, 0.945, 1)
+emission_shape = 1
+emission_sphere_radius = 24.0
+radial_velocity_min = -2.2351742e-05
+radial_velocity_max = 2.9999776
+gravity = Vector3(0, -3, 0)
+scale_min = 0.19999999
+scale_max = 0.29999998
+
+[node name="Flower" type="Node2D"]
+script = ExtResource("1_rjnan")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_p8ao0")
+autoplay = "default"
+frame_progress = 0.6787133
+
+[node name="GlowySparkles" type="GPUParticles2D" parent="."]
+self_modulate = Color(2.7562902, 2.491152, 0.42729023, 0.333)
+position = Vector2(0, -6)
+texture = SubResource("CompressedTexture2D_t7jgl")
+lifetime = 3.0
+process_material = SubResource("ParticleProcessMaterial_rjnan")

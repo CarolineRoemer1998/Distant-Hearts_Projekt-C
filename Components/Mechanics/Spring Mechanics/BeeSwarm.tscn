@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://0edfjrrf5011"]
+[gd_scene load_steps=15 format=3 uid="uid://0edfjrrf5011"]
 
 [ext_resource type="Texture2D" uid="uid://bypu3mxifsd3a" path="res://Assets/Spring Mechanics/Bees/Blender/Bee-Aseprite-16x16.png" id="1_7ab61"]
 [ext_resource type="Texture2D" uid="uid://damd3v81dmwkc" path="res://Assets/Spring Mechanics/Bees/Blender/bee-shadow.png" id="1_lr6y7"]
 [ext_resource type="Script" uid="uid://bxbu1g4pahb7t" path="res://Components/Mechanics/Spring Mechanics/BeeSwarm.gd" id="1_tbglw"]
+[ext_resource type="Script" uid="uid://b6khrunjcvna1" path="res://Components/Mechanics/Spring Mechanics/SingleBee.gd" id="3_0vp1r"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lr6y7"]
 atlas = ExtResource("1_7ab61")
@@ -25,6 +26,60 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }]
+
+[sub_resource type="Animation" id="Animation_7ab61"]
+resource_name = "Fly_1"
+length = 2.0
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-14, -15), Vector2(-14, -10), Vector2(-14, -15)]
+}
+
+[sub_resource type="Animation" id="Animation_51wh5"]
+resource_name = "Fly_2"
+length = 1.5
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Bee2:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.75, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(4, 10), Vector2(4, 5), Vector2(4, 10)]
+}
+
+[sub_resource type="Animation" id="Animation_3e2b1"]
+resource_name = "Fly_3"
+length = 2.5
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Bee3:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.25, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(24, -17), Vector2(24, -12), Vector2(24, -17)]
+}
 
 [sub_resource type="Animation" id="Animation_lr6y7"]
 length = 0.001
@@ -67,7 +122,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../Shadow:scale")
+tracks/3/path = NodePath("../../Shadow/ShadowSprite:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -75,60 +130,6 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(1.7, 1.7)]
-}
-
-[sub_resource type="Animation" id="Animation_51wh5"]
-resource_name = "Fly_2"
-length = 1.5
-loop_mode = 1
-step = 0.25
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Bee2:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.75, 1.5),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(4, 10), Vector2(4, 5), Vector2(4, 10)]
-}
-
-[sub_resource type="Animation" id="Animation_3e2b1"]
-resource_name = "Fly_3"
-length = 2.5
-loop_mode = 1
-step = 0.25
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Bee3:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.25, 2.5),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(24, -17), Vector2(24, -12), Vector2(24, -17)]
-}
-
-[sub_resource type="Animation" id="Animation_7ab61"]
-resource_name = "Fly_1"
-length = 2.0
-loop_mode = 1
-step = 0.25
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(-14, -15), Vector2(-14, -10), Vector2(-14, -15)]
 }
 
 [sub_resource type="Animation" id="Animation_j5cbk"]
@@ -139,7 +140,7 @@ step = 0.25
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Shadow:scale")
+tracks/0/path = NodePath("../../Shadow/ShadowSprite:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -162,18 +163,13 @@ _data = {
 custom_solver_bias = 1.0
 size = Vector2(142, 142)
 
-[node name="BeeSwarm" type="Node2D"]
+[node name="BeeSwarm" type="Node2D" node_paths=PackedStringArray("bee_sprites")]
 modulate = Color(1.0964829, 1.0964829, 1.0964829, 1)
 script = ExtResource("1_tbglw")
+bee_sprites = [NodePath("Visuals/Bee1"), NodePath("Visuals/Bee2"), NodePath("Visuals/Bee3")]
 
 [node name="Visuals" type="Node2D" parent="."]
-position = Vector2(-5, 0)
-
-[node name="Shadow" type="Sprite2D" parent="Visuals"]
-modulate = Color(0.25, 0.194, 0.14500001, 0.21176471)
-position = Vector2(3.0000005, 23.999996)
-scale = Vector2(1.7, 1.7)
-texture = ExtResource("1_lr6y7")
+position = Vector2(-3, -10)
 
 [node name="Bee1" type="AnimatedSprite2D" parent="Visuals"]
 position = Vector2(-14, -15)
@@ -181,6 +177,7 @@ scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_qvual")
 autoplay = "default"
 frame_progress = 0.8764309
+script = ExtResource("3_0vp1r")
 
 [node name="Bee2" type="AnimatedSprite2D" parent="Visuals"]
 position = Vector2(4, 10)
@@ -188,14 +185,16 @@ scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_qvual")
 autoplay = "default"
 frame_progress = 0.5309246
+script = ExtResource("3_0vp1r")
 
 [node name="Bee3" type="AnimatedSprite2D" parent="Visuals"]
 position = Vector2(24, -17)
-rotation = 3.1415925
-scale = Vector2(2, -2)
+scale = Vector2(-2, 2)
 sprite_frames = SubResource("SpriteFrames_qvual")
 autoplay = "default"
 frame_progress = 0.40531987
+script = ExtResource("3_0vp1r")
+init_scale = Vector2(-2, 2)
 
 [node name="AnimationPlayerBee1" type="AnimationPlayer" parent="Visuals"]
 root_node = NodePath("../Bee1")
@@ -218,14 +217,24 @@ libraries = {
 }
 autoplay = "Fly_3"
 
-[node name="AnimationPlayerShadow" type="AnimationPlayer" parent="Visuals"]
-root_node = NodePath("../Bee1")
+[node name="Shadow" type="Node2D" parent="."]
+
+[node name="ShadowSprite" type="Sprite2D" parent="Shadow"]
+visible = false
+modulate = Color(0.25, 0.194, 0.14500001, 0.21176471)
+position = Vector2(0, 24)
+scale = Vector2(1.7, 1.7)
+texture = ExtResource("1_lr6y7")
+
+[node name="AnimationPlayerShadow" type="AnimationPlayer" parent="Shadow"]
+root_node = NodePath("../../Visuals/Bee1")
 libraries = {
 &"": SubResource("AnimationLibrary_51wh5")
 }
 autoplay = "shadow-pulsate"
 
 [node name="BeeArea" type="Area2D" parent="."]
+visible = false
 collision_layer = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BeeArea"]

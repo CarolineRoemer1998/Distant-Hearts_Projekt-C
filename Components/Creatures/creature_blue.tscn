@@ -592,6 +592,7 @@ position = Vector2(0, -64)
 shape = SubResource("RectangleShape2D_01bph")
 
 [node name="Visuals" type="Node2D" parent="."]
+position = Vector2(0, -5)
 
 [node name="AnimatedSpriteCreature" type="AnimatedSprite2D" parent="Visuals"]
 modulate = Color(1.1, 1.1, 1.1, 1)
