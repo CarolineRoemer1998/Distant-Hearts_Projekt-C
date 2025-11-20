@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://cyr4xpwmfgqkh"]
+[gd_scene load_steps=14 format=4 uid="uid://cyr4xpwmfgqkh"]
 
 [ext_resource type="Script" uid="uid://ddiwo6yyhfkuc" path="res://Components/Levels/level.gd" id="1_kgfq4"]
 [ext_resource type="PackedScene" uid="uid://lrodaawkgfob" path="res://Components/UI/VFX/undo_particles.tscn" id="2_01u33"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bt4pnhd7cx7xc" path="res://Components/Mechanics/Buttons/button.tscn" id="4_01u33"]
 [ext_resource type="PackedScene" uid="uid://ccncnjkm8w8ta" path="res://Components/Creatures/creature_blue.tscn" id="4_g5aro"]
 [ext_resource type="PackedScene" uid="uid://be6k5yjppap8y" path="res://Components/Creatures/creature_yellow.tscn" id="5_yi6q1"]
+[ext_resource type="PackedScene" uid="uid://dlcw26eyb466m" path="res://Components/UI/VFX/glowy_sparkles.tscn" id="6_igtey"]
 [ext_resource type="PackedScene" uid="uid://g3u7bc1jo6gj" path="res://Components/Player/player.tscn" id="6_rjegf"]
 [ext_resource type="PackedScene" uid="uid://dtrjxhb3ayo1c" path="res://Components/Levels/LevelUI.tscn" id="8_igtey"]
 [ext_resource type="PackedScene" uid="uid://0edfjrrf5011" path="res://Components/Mechanics/Spring Mechanics/BeeSwarm.tscn" id="10_q8c8q"]
@@ -39,6 +40,8 @@ position = Vector2(608, 480)
 [node name="CreatureBlue" parent="Creatures" instance=ExtResource("4_g5aro")]
 position = Vector2(160, 480)
 
+[node name="GlowySparkles" parent="Creatures/CreatureBlue" instance=ExtResource("6_igtey")]
+
 [node name="CreatureYellow" parent="Creatures" instance=ExtResource("5_yi6q1")]
 position = Vector2(416, 480)
 
@@ -63,7 +66,7 @@ buttons = Array[NodePath]([NodePath("../../Buttons/Button2")])
 [node name="Bees" type="Node" parent="."]
 
 [node name="Bees" parent="Bees" instance=ExtResource("10_q8c8q")]
-position = Vector2(416, 352)
+position = Vector2(96, 544)
 
 [node name="DirtPatch" parent="." instance=ExtResource("11_g5aro")]
 position = Vector2(352, 96)
