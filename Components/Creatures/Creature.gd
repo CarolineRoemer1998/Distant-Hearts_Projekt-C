@@ -59,7 +59,7 @@ func _ready():
 
 func _process(delta: float) -> void:
 	if get_bee_position_if_nearby() != null and not is_avoiding_bees and not is_possessed:
-		avoid_bees(get_bee_position_if_nearby())
+		avoid_bees(get_bee_position_if_nearby(), Vector2.ZERO)
 	if target_position != global_position and is_avoiding_bees:
 		global_position = position.move_toward(target_position, Constants.MOVE_SPEED * delta)
 	if abs(position - target_position)[0] < 0.1 and abs(position - target_position)[1] < 0.1 and is_avoiding_bees:
@@ -312,7 +312,7 @@ func get_bee_position_if_nearby():
 	
 	return null
 
-func avoid_bees(bee_direction: Vector2):
+func avoid_bees(bee_direction: Vector2, try_direction):
 	var position_set = false
 	
 	print(target_position)
@@ -320,21 +320,21 @@ func avoid_bees(bee_direction: Vector2):
 	if not position_set:
 		match bee_direction:
 			Constants.UP:
-				position_set = try_directions([Constants.DOWN, Constants.LEFT, Constants.RIGHT])
+				position_set = try_directions([try_direction, Constants.DOWN, Constants.LEFT, Constants.RIGHT])
 			Constants.UP_RIGHT:
-				position_set = try_directions([Constants.UP_LEFT, Constants.DOWN, Constants.LEFT])
+				position_set = try_directions([try_direction, Constants.DOWN, Constants.LEFT])
 			Constants.RIGHT:
-				position_set = try_directions([Constants.LEFT, Constants.DOWN, Constants.UP])
+				position_set = try_directions([try_direction, Constants.LEFT, Constants.DOWN, Constants.UP])
 			Constants.DOWN_RIGHT:
-				position_set = try_directions([Constants.LEFT, Constants.UP])
+				position_set = try_directions([try_direction, Constants.LEFT, Constants.UP])
 			Constants.DOWN:
-				position_set = try_directions([Constants.LEFT, Constants.DOWN, Constants.UP])
+				position_set = try_directions([try_direction, Constants.LEFT, Constants.DOWN, Constants.UP])
 			Constants.DOWN_LEFT:
-				position_set = try_directions([Constants.UP, Constants.RIGHT])
+				position_set = try_directions([try_direction, Constants.UP, Constants.RIGHT])
 			Constants.LEFT:
-				position_set = try_directions([Constants.RIGHT, Constants.DOWN, Constants.UP])
+				position_set = try_directions([try_direction, Constants.RIGHT, Constants.DOWN, Constants.UP])
 			Constants.UP_LEFT:
-				position_set = try_directions([Constants.DOWN_RIGHT, Constants.RIGHT, Constants.DOWN])
+				position_set = try_directions([try_direction, Constants.RIGHT, Constants.DOWN])
 			Constants.MIDDLE:
 				position_set = try_directions([Constants.RIGHT, Constants.DOWN])
 	
@@ -344,7 +344,7 @@ func avoid_bees(bee_direction: Vector2):
 
 func try_directions(directions : Array[Vector2]):
 	for d in directions:
-		if Helper.can_move_in_direction(position, d, get_world_2d(), true):
+		if Helper.can_move_in_direction(position, d, get_world_2d(), true) and d != Vector2.ZERO:
 			target_position = position + (d * Constants.GRID_SIZE)
 			print("Position: ", global_position, "\nTarget: ", target_position, "\n")
 			return true

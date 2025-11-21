@@ -88,7 +88,7 @@ script = ExtResource("1_rjnan")
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_p8ao0")
 autoplay = "default"
-frame_progress = 0.6787133
+frame_progress = 0.6226339
 
 [node name="GlowySparkles" type="GPUParticles2D" parent="."]
 self_modulate = Color(2.7562902, 2.491152, 0.42729023, 0.333)
@@ -96,3 +96,9 @@ position = Vector2(0, -6)
 texture = SubResource("CompressedTexture2D_t7jgl")
 lifetime = 3.0
 process_material = SubResource("ParticleProcessMaterial_rjnan")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 256
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]

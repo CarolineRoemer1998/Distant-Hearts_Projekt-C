@@ -109,36 +109,8 @@ func handle_movement_input():
 	if is_moving:
 		buffered_direction = direction
 	else:
-		if can_move_in_direction(position, direction):
-			#if currently_possessed_creature:
-				#var bee_dir = currently_possessed_creature.get_bee_position_if_nearby()
-				#if bee_dir != null:
-					#currently_possessed_creature.avoid_bees(bee_dir)
-					## Player soll der Creature folgen:
-					#target_position = currently_possessed_creature.target_position
-					#global_position = target_position
-					#position = target_position
-					#return
+		if Helper.can_move_in_direction(position, direction, get_world_2d(), currently_possessed_creature!=null):
 			set_is_moving(true)
-
-#func set_moving_direction(_pos: Vector2, creature: Creature):
-	#if currently_possessed_creature == creature:
-		#global_position = _pos
-		#target_position = global_position
-		#print("Player Pos: ", global_position)
-	#
-##a	direction = dir
-	##set_animation_direction(direction)
-	#
-	##can_move = false
-	##pushable_stone_in_direction = null
-	##step_timer.start(Constants.TIMER_STEP)
-	##
-	##if is_moving:
-		##buffered_direction = direction
-	##else:
-		##if can_move_in_direction(position, direction):
-			##set_is_moving(true)
 
 ## Starts or stops controlling a Creature
 ## when the player is not currently moving.
@@ -260,7 +232,7 @@ func update_movement(delta):
 		if currently_possessed_creature:
 			var bee_dir = currently_possessed_creature.get_bee_position_if_nearby()
 			if bee_dir != null:
-				currently_possessed_creature.avoid_bees(bee_dir)
+				currently_possessed_creature.avoid_bees(bee_dir, -current_direction)
 				# Player soll der Creature folgen:
 				target_position = currently_possessed_creature.target_position
 				global_position = target_position
@@ -279,39 +251,9 @@ func on_move_step_finished():
 	is_moving_on_ice = false
 	
 	if buffered_direction != Vector2.ZERO:
-		set_is_moving(can_move_in_direction(position, direction))
+		set_is_moving(Helper.can_move_in_direction(position, direction, get_world_2d(), currently_possessed_creature!=null))
 		buffered_direction = Vector2.ZERO
 
-## Checks if the player (and the possessed creature) is allowed to move
-## in the given direction. Considers walls, doors and stones.
-## On success, sets pushable_stone_in_direction if a stone can be pushed.
-func can_move_in_direction(_position: Vector2, _direction: Vector2) -> bool:
-	var new_pos = _position + _direction * Constants.GRID_SIZE
-	var world = get_world_2d()
-	
-	# Queries für alle relevanten Bit Layers
-	var result_stones = Helper.get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_STONE), world)
-	var result_doors = Helper.get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_DOOR), world)
-	var result_wall_outside = Helper.get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_LEVEL_WALL), world)
-	var result_wall_inside = Helper.get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_WALL_AND_PLAYER), world)
-	
-	if (result_stones.is_empty() and result_doors.is_empty() and result_wall_outside.is_empty() and result_wall_inside.is_empty()) \
-	or (currently_possessed_creature == null and result_wall_outside.is_empty()):
-		return true
-	
-	if not result_wall_outside.is_empty() \
-	or (currently_possessed_creature != null and (not result_wall_inside.is_empty() and not result_stones.is_empty() and not result_doors.is_empty())):
-		return false
-	
-	if not result_doors.is_empty() and not result_doors[0].collider.door_is_closed and result_stones.is_empty():
-		return true
-	
-	if not result_stones.is_empty() and result_stones[0].collider.get_can_be_pushed(new_pos, _direction):
-		pushable_stone_in_direction = result_stones[0].collider
-		return true
-	
-	buffered_direction = Vector2.ZERO
-	return false
 
 ## Calculates the slide target on ice, updates target_position and sets
 ## flags related to ice movement. Also respects reserved tiles.

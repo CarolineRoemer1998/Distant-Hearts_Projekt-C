@@ -1,5 +1,8 @@
 extends Node
 
+## Checks if instance (and the possessed creature) is allowed to move
+## in the given direction. Considers walls, doors and stones.
+## On success, sets pushable_stone_in_direction if a stone can be pushed.
 func can_move_in_direction(_position: Vector2, _direction, world : World2D, is_physical_body : bool) -> bool:
 	if _direction == null:
 		return false
@@ -9,19 +12,24 @@ func can_move_in_direction(_position: Vector2, _direction, world : World2D, is_p
 	
 	# Queries für alle relevanten Bit Layers
 	var result_stones = Helper.get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_STONE), world)
+	var result_flowers = Helper.get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_FLOWER), world)
 	var result_doors = Helper.get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_DOOR), world)
 	var result_wall_outside = Helper.get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_LEVEL_WALL), world)
 	var result_wall_inside = Helper.get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_WALL_AND_PLAYER), world)
 	
-	if (result_stones.is_empty() and result_doors.is_empty() and result_wall_outside.is_empty() and result_wall_inside.is_empty()) \
-	or (is_physical_body == null and result_wall_outside.is_empty()):
+	## TODO: Collision mit Flower auslösen!!
+	
+	print(result_flowers)
+	
+	if (result_stones.is_empty() and result_flowers.is_empty() and result_doors.is_empty() and result_wall_outside.is_empty() and result_wall_inside.is_empty()) \
+	or (is_physical_body == false and result_wall_outside.is_empty()):
 		return true
 	
 	if not result_wall_outside.is_empty() \
-	or (is_physical_body != null and (not result_wall_inside.is_empty() and not result_stones.is_empty() and not result_doors.is_empty())):
+	or (is_physical_body != false and (not result_wall_inside.is_empty() and not result_stones.is_empty() and not result_flowers.is_empty() and not result_doors.is_empty())):
 		return false
 	
-	if not result_doors.is_empty() and not result_doors[0].collider.door_is_closed and result_stones.is_empty():
+	if not result_doors.is_empty() and not result_doors[0].collider.door_is_closed and result_stones.is_empty() and result_flowers.is_empty():
 		return true
 	
 	if not result_stones.is_empty() and result_stones[0].collider.get_can_be_pushed(new_pos, _direction):

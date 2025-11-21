@@ -40,7 +40,7 @@ position = Vector2(608, 480)
 position = Vector2(160, 480)
 
 [node name="CreatureYellow" parent="Creatures" instance=ExtResource("5_yi6q1")]
-position = Vector2(352, 288)
+position = Vector2(352, 224)
 
 [node name="Player" type="Node" parent="."]
 
