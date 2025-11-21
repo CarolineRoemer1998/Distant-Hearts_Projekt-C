@@ -37,3 +37,4 @@ signal creature_finished_teleporting
 
 # Bees & Flowers
 signal flower_grows(flower: Flower)
+#signal creature_avoided_bees(dir: Vector2, creature: Creature)

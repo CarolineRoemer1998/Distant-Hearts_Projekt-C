@@ -7,6 +7,17 @@ const GRID_SIZE := Vector2(64, 64)
 const MOVE_SPEED := 500.0
 const PLAYER_MOVE_SPEED := 500.0
 
+# DIRECTIONS
+const UP = 			Vector2( 0,-1)
+const UP_RIGHT = 	Vector2( 1,-1)
+const RIGHT = 		Vector2( 1, 0)
+const DOWN_RIGHT = 	Vector2( 1, 1)
+const DOWN = 		Vector2( 0, 1)
+const DOWN_LEFT = 	Vector2(-1, 1)
+const LEFT = 		Vector2(-1, 0)
+const UP_LEFT = 	Vector2(-1,-1)
+const MIDDLE = 		Vector2( 0, 0)
+
 # GROUPS
 const GROUP_NAME_PLAYER := "Player"
 const GROUP_NAME_CREATURE := "Creature"

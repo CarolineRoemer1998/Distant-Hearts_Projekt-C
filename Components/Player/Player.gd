@@ -23,7 +23,9 @@ var direction := Vector2.ZERO
 var current_direction := Vector2.ZERO
 var buffered_direction: Vector2 = Vector2.ZERO
 
-var target_position: Vector2
+var target_position: Vector2:
+	set(val):
+		target_position = val.snapped(Constants.GRID_SIZE / 2)
 
 var is_moving := false
 var is_moving_on_ice := false
@@ -45,6 +47,7 @@ func _ready():
 	Signals.player_move_finished.connect(on_move_step_finished)
 	Signals.creature_started_teleporting.connect(deactivate)
 	Signals.creature_finished_teleporting.connect(activate)
+	#Signals.creature_avoided_bees.connect(set_moving_direction)
 	
 	# Spieler korrekt auf Grid ausrichten
 	target_position = position.snapped(Constants.GRID_SIZE / 2)
@@ -95,6 +98,7 @@ func handle_movement_input():
 	if input_direction == Vector2.ZERO:
 		return
 	
+	#set_moving_direction(input_direction, currently_possessed_creature)
 	direction = input_direction
 	set_animation_direction(direction)
 	
@@ -106,7 +110,35 @@ func handle_movement_input():
 		buffered_direction = direction
 	else:
 		if can_move_in_direction(position, direction):
+			#if currently_possessed_creature:
+				#var bee_dir = currently_possessed_creature.get_bee_position_if_nearby()
+				#if bee_dir != null:
+					#currently_possessed_creature.avoid_bees(bee_dir)
+					## Player soll der Creature folgen:
+					#target_position = currently_possessed_creature.target_position
+					#global_position = target_position
+					#position = target_position
+					#return
 			set_is_moving(true)
+
+#func set_moving_direction(_pos: Vector2, creature: Creature):
+	#if currently_possessed_creature == creature:
+		#global_position = _pos
+		#target_position = global_position
+		#print("Player Pos: ", global_position)
+	#
+##a	direction = dir
+	##set_animation_direction(direction)
+	#
+	##can_move = false
+	##pushable_stone_in_direction = null
+	##step_timer.start(Constants.TIMER_STEP)
+	##
+	##if is_moving:
+		##buffered_direction = direction
+	##else:
+		##if can_move_in_direction(position, direction):
+			##set_is_moving(true)
 
 ## Starts or stops controlling a Creature
 ## when the player is not currently moving.
@@ -201,6 +233,14 @@ func set_animation_direction(_direction: Vector2):
 ## Updates the position of the player (and the possessed creature) each frame,
 ## including ice sliding and teleport-related edge cases.
 func update_movement(delta):
+	if currently_possessed_creature and currently_possessed_creature.is_avoiding_bees:
+		# Player folgt nur, bewegt aber weder sich noch die Creature aktiv
+		global_position = currently_possessed_creature.global_position
+		position = global_position
+		target_position = global_position
+		is_moving = false  # optional, aber aufgeräumter
+		return
+	
 	if not is_moving:
 		return
 	
@@ -217,6 +257,15 @@ func update_movement(delta):
 			target_position, Constants.PLAYER_MOVE_SPEED * delta)
 	
 	if position == target_position:
+		if currently_possessed_creature:
+			var bee_dir = currently_possessed_creature.get_bee_position_if_nearby()
+			if bee_dir != null:
+				currently_possessed_creature.avoid_bees(bee_dir)
+				# Player soll der Creature folgen:
+				target_position = currently_possessed_creature.target_position
+				global_position = target_position
+				position = target_position
+				return
 		if currently_possessed_creature and currently_possessed_creature.just_teleported:
 			currently_possessed_creature.just_teleported = false
 		Signals.player_move_finished.emit()
@@ -357,6 +406,7 @@ func unpossess():
 		update_visibility(true)
 		currently_possessed_creature.border.visible = false
 		currently_possessed_creature.set_animation_direction()
+		currently_possessed_creature.is_possessed = false
 		currently_possessed_creature = null
 		audio_uncontrol.play()
 
@@ -365,6 +415,7 @@ func unpossess():
 func possess():
 	if hovering_over and hovering_over is Creature:
 		currently_possessed_creature = hovering_over
+		currently_possessed_creature.is_possessed = true
 		currently_possessed_creature.has_not_moved = false
 		currently_possessed_creature.border.visible = true
 		update_visibility(false)

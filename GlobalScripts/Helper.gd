@@ -1,6 +1,9 @@
 extends Node
 
-func can_move_in_direction(_position: Vector2, _direction: Vector2, world : World2D, is_physical_body : bool) -> bool:
+func can_move_in_direction(_position: Vector2, _direction, world : World2D, is_physical_body : bool) -> bool:
+	if _direction == null:
+		return false
+	
 	var new_pos = _position + _direction * Constants.GRID_SIZE
 	#var world = get_world_2d()
 	

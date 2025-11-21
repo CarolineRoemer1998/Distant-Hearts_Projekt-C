@@ -27,6 +27,8 @@ var neighbor_bottom : Creature = null
 var neighbor_left : Creature = null
 var neighbor_top : Creature = null
 
+var is_possessed := false
+
 var is_active := true
 var has_not_moved := true
 
@@ -56,13 +58,14 @@ func _ready():
 	set_animation_direction(init_direction)
 
 func _process(delta: float) -> void:
-	if get_bee_position_if_nearby() != null and not is_avoiding_bees:
+	if get_bee_position_if_nearby() != null and not is_avoiding_bees and not is_possessed:
 		avoid_bees(get_bee_position_if_nearby())
 	if target_position != global_position and is_avoiding_bees:
 		global_position = position.move_toward(target_position, Constants.MOVE_SPEED * delta)
-	if abs(position - target_position)[0] < 0.1 and abs(position - target_position)[1] < 0.1:
+	if abs(position - target_position)[0] < 0.1 and abs(position - target_position)[1] < 0.1 and is_avoiding_bees:
 		position = target_position
 		is_avoiding_bees = false
+		print("Angekommen bei: ", global_position, " bzw. ", position)
 
 # -----------------------------------------------------------
 # State Serialisation (Undo)
@@ -258,63 +261,6 @@ func on_body_to_top_entered(body: Node2D) -> void:
 	if body is Creature and body.name != name:
 		_set_neighbor_for_direction(Vector2.UP, body)
 
-func on_bees_to_top_entered(area: Area2D) -> void:
-	pass
-	#if area.get_parent() is BeeSwarm:
-		#is_avoiding_bees = true
-		#if Helper.can_move_in_direction(position, Vector2.DOWN, get_world_2d(), true):
-			#target_position = position + (Vector2.DOWN * Constants.GRID_SIZE)
-		#elif Helper.can_move_in_direction(position, Vector2.LEFT, get_world_2d(), true):
-			#target_position = position + (Vector2.LEFT * Constants.GRID_SIZE)
-		#elif Helper.can_move_in_direction(position, Vector2.RIGHT, get_world_2d(), true):
-			#target_position = position + (Vector2.RIGHT * Constants.GRID_SIZE)
-		#else:
-			#return
-	#print(name, " Target Pos: ", target_position)
-		# TODO: Checken, ob die richtung überhaupt frei ist (wand), sonst andere richtung gehen oder nicht ausweichen
-
-func on_bees_to_left_entered(area: Area2D) -> void:
-	pass
-	#if area.get_parent() is BeeSwarm:
-		#is_avoiding_bees = true
-		#if Helper.can_move_in_direction(position, Vector2.RIGHT, get_world_2d(), true):
-			#target_position = position + (Vector2.RIGHT * Constants.GRID_SIZE)
-		#elif Helper.can_move_in_direction(position, Vector2.UP, get_world_2d(), true):
-			#target_position = position + (Vector2.UP * Constants.GRID_SIZE)
-		#elif Helper.can_move_in_direction(position, Vector2.LEFT, get_world_2d(), true):
-			#target_position = position + (Vector2.LEFT * Constants.GRID_SIZE)
-	#print(name, " Target Pos: ", target_position)
-		# TODO: Checken, ob die richtung überhaupt frei ist (wand), sonst andere richtung gehen oder nicht ausweichen
-		#target_position = position + (Vector2.RIGHT * Constants.GRID_SIZE)
-
-func on_bees_to_bottom_entered(area: Area2D) -> void:
-	pass
-	#if area.get_parent() is BeeSwarm:
-		#is_avoiding_bees = true
-		#if Helper.can_move_in_direction(position, Vector2.UP, get_world_2d(), true):
-			#target_position = position + (Vector2.UP * Constants.GRID_SIZE)
-		#elif Helper.can_move_in_direction(position, Vector2.LEFT, get_world_2d(), true):
-			#target_position = position + (Vector2.LEFT * Constants.GRID_SIZE)
-		#elif Helper.can_move_in_direction(position, Vector2.RIGHT, get_world_2d(), true):
-			#target_position = position + (Vector2.RIGHT * Constants.GRID_SIZE)
-	#print(name, " Target Pos: ", target_position)
-		# TODO: Checken, ob die richtung überhaupt frei ist (wand), sonst andere richtung gehen oder nicht ausweichen
-		#target_position = position + (Vector2.UP * Constants.GRID_SIZE)
-
-func on_bees_to_right_entered(area: Area2D) -> void:
-	pass
-	#if area.get_parent() is BeeSwarm:
-		#is_avoiding_bees = true
-		#if Helper.can_move_in_direction(position, Vector2.LEFT, get_world_2d(), true):
-			#target_position = position + (Vector2.LEFT * Constants.GRID_SIZE)
-		#elif Helper.can_move_in_direction(position, Vector2.UP, get_world_2d(), true):
-			#target_position = position + (Vector2.UP * Constants.GRID_SIZE)
-		#elif Helper.can_move_in_direction(position, Vector2.DOWN, get_world_2d(), true):
-			#target_position = position + (Vector2.DOWN * Constants.GRID_SIZE)
-	#print(name, " Target Pos: ", target_position)
-		# TODO: Checken, ob die richtung überhaupt frei ist (wand), sonst andere richtung gehen oder nicht ausweichen
-		#target_position = position + (Vector2.LEFT * Constants.GRID_SIZE)
-
 ## Called when the creature on the right side is no longer detected.
 ## Clears neighbor_right if the body was a creature.
 func _on_creature_right_gone(body: Node2D) -> void:
@@ -355,17 +301,12 @@ func _on_area_2d_self_body_entered(body: Node2D) -> void:
 
 func get_bee_position_if_nearby():
 	var positions = [
-		Vector2(-1,-1), Vector2( 0,-1), Vector2( 1,-1),
-		Vector2(-1, 0), Vector2( 0, 0), Vector2( 1, 0),
-		Vector2(-1, 1), Vector2( 0, 1), Vector2( 1, 1)
+		Constants.UP_LEFT, Constants.UP, Constants.UP_RIGHT, 
+		Constants.LEFT, Constants.MIDDLE, Constants.RIGHT,
+		Constants.DOWN_LEFT, Constants.DOWN, Constants.DOWN_RIGHT
 		]
 	
-	
-	
 	for p in positions:
-		#print("Creature Pos: ", global_position)
-		#print("Check Pos:    ", global_position+p*Constants.GRID_SIZE)
-		#print()
 		if Helper.check_if_collides(global_position+p*Constants.GRID_SIZE, Constants.LAYER_MASK_BEES, get_world_2d()):
 			return p
 	
@@ -373,109 +314,42 @@ func get_bee_position_if_nearby():
 
 func avoid_bees(bee_direction: Vector2):
 	var position_set = false
-	var dirs = {
-		"UpLeft": Vector2(-1,-1), 
-		"Up": Vector2( 0,-1), 
-		"UpRight": Vector2( 1,-1),
-		"Left": Vector2(-1, 0), 
-		"Middle": Vector2( 0, 0), 
-		"Right": Vector2( 1, 0),
-		"DownLeft": Vector2(-1, 1), 
-		"Down": Vector2( 0, 1), 
-		"DownRight": Vector2( 1, 1)
-	}
 	
-	if not position_set and (bee_direction == dirs.get("Up")):
-		position_set = try_directions(Vector2.DOWN, Vector2.LEFT, Vector2.RIGHT)
-		
-	if not position_set and (bee_direction == dirs.get("UpRight")):
-		position_set = try_directions(Vector2.DOWN, Vector2.LEFT, null)
-		
-	if not position_set and (bee_direction == dirs.get("Right")):
-		position_set = try_directions(Vector2.LEFT, Vector2.DOWN, Vector2.UP)
-		
-	if not position_set and (bee_direction == dirs.get("DownRight")):
-		position_set = try_directions(Vector2.LEFT, Vector2.UP, null)
-		
-	if not position_set and (bee_direction == dirs.get("Down")):
-		position_set = try_directions(Vector2.LEFT, Vector2.DOWN, Vector2.UP)
-		
-	if not position_set and (bee_direction == dirs.get("DownLeft")):
-		position_set = try_directions(Vector2.UP, Vector2.RIGHT, null)
-		
-	if not position_set and (bee_direction == dirs.get("Left")):
-		position_set = try_directions(Vector2.RIGHT, Vector2.DOWN, Vector2.UP)
-		
-	if not position_set and (bee_direction == dirs.get("UpLeft")):
-		position_set = try_directions(Vector2.RIGHT, Vector2.DOWN, null)
-		
+	print(target_position)
 	
-	#if bee_direction != Vector2.RIGHT and not position_set:
-		#if Helper.can_move_in_direction(position, Vector2.RIGHT, get_world_2d(), true):
-			#target_position = position + (Vector2.RIGHT * Constants.GRID_SIZE)
-			#position_set = true
-	#if current_direction != Vector2.LEFT and not position_set:
-		#if Helper.can_move_in_direction(position, Vector2.LEFT, get_world_2d(), true):
-			#target_position = position + (Vector2.LEFT * Constants.GRID_SIZE)
-			#position_set = true
-	#if current_direction != Vector2.UP and not position_set:
-		#if Helper.can_move_in_direction(position, Vector2.UP, get_world_2d(), true):
-			#target_position = position + (Vector2.UP * Constants.GRID_SIZE)
-			#position_set = true
-	#if current_direction != Vector2.DOWN and not position_set:
-		#if Helper.can_move_in_direction(position, Vector2.DOWN, get_world_2d(), true):
-			#target_position = position + (Vector2.DOWN * Constants.GRID_SIZE)
-			#position_set = true
-			
+	if not position_set:
+		match bee_direction:
+			Constants.UP:
+				position_set = try_directions([Constants.DOWN, Constants.LEFT, Constants.RIGHT])
+			Constants.UP_RIGHT:
+				position_set = try_directions([Constants.UP_LEFT, Constants.DOWN, Constants.LEFT])
+			Constants.RIGHT:
+				position_set = try_directions([Constants.LEFT, Constants.DOWN, Constants.UP])
+			Constants.DOWN_RIGHT:
+				position_set = try_directions([Constants.LEFT, Constants.UP])
+			Constants.DOWN:
+				position_set = try_directions([Constants.LEFT, Constants.DOWN, Constants.UP])
+			Constants.DOWN_LEFT:
+				position_set = try_directions([Constants.UP, Constants.RIGHT])
+			Constants.LEFT:
+				position_set = try_directions([Constants.RIGHT, Constants.DOWN, Constants.UP])
+			Constants.UP_LEFT:
+				position_set = try_directions([Constants.DOWN_RIGHT, Constants.RIGHT, Constants.DOWN])
+			Constants.MIDDLE:
+				position_set = try_directions([Constants.RIGHT, Constants.DOWN])
+	
 	if position_set:
 		is_avoiding_bees = true
+		#Signals.creature_avoided_bees.emit(target_position, self)
 
-func try_directions(first_direction: Vector2, second_direction: Vector2, third_direction):
-	if Helper.can_move_in_direction(position, first_direction, get_world_2d(), true):
-		target_position = position + (first_direction * Constants.GRID_SIZE)
-		return true
-	if Helper.can_move_in_direction(position, second_direction, get_world_2d(), true):
-		target_position = position + (second_direction * Constants.GRID_SIZE)
-		return true
-	if third_direction != null and Helper.can_move_in_direction(position, third_direction, get_world_2d(), true):
-		target_position = position + (third_direction * Constants.GRID_SIZE)
-		return true
+func try_directions(directions : Array[Vector2]):
+	for d in directions:
+		if Helper.can_move_in_direction(position, d, get_world_2d(), true):
+			target_position = position + (d * Constants.GRID_SIZE)
+			print("Position: ", global_position, "\nTarget: ", target_position, "\n")
+			return true
+
 	return false
 
 func _on_bees_entered(area):
 	pass
-	#var position_set = false
-	#if area.get_parent() is BeeSwarm:
-		#print(global_position-area.get_parent().global_position)
-		#print("Right: ", Vector2.RIGHT)
-		#print("Left: ", Vector2.LEFT)
-		#print("Top: ", Vector2.UP)
-		#print("Down: ", Vector2.DOWN)
-		##var direction_bees = 
-		#if current_direction != Vector2.RIGHT and not position_set:
-			#if Helper.can_move_in_direction(position, Vector2.RIGHT, get_world_2d(), true):
-				#target_position = position + (Vector2.RIGHT * Constants.GRID_SIZE)
-				#position_set = true
-		#if current_direction != Vector2.LEFT and not position_set:
-			#if Helper.can_move_in_direction(position, Vector2.LEFT, get_world_2d(), true):
-				#target_position = position + (Vector2.LEFT * Constants.GRID_SIZE)
-				#position_set = true
-		#if current_direction != Vector2.UP and not position_set:
-			#if Helper.can_move_in_direction(position, Vector2.UP, get_world_2d(), true):
-				#target_position = position + (Vector2.UP * Constants.GRID_SIZE)
-				#position_set = true
-		#if current_direction != Vector2.DOWN and not position_set:
-			#if Helper.can_move_in_direction(position, Vector2.DOWN, get_world_2d(), true):
-				#target_position = position + (Vector2.DOWN * Constants.GRID_SIZE)
-				#position_set = true
-		#if position_set:
-			#is_avoiding_bees = true
-			
-			
-	#print(name, " Target Pos: ", target_position)
-		#if Helper.can_move_in_direction(position, Vector2.LEFT, get_world_2d(), true):
-			#target_position = position + (Vector2.LEFT * Constants.GRID_SIZE)
-		#elif Helper.can_move_in_direction(position, Vector2.UP, get_world_2d(), true):
-			#target_position = position + (Vector2.UP * Constants.GRID_SIZE)
-		#elif Helper.can_move_in_direction(position, Vector2.DOWN, get_world_2d(), true):
-			#target_position = position + (Vector2.DOWN * Constants.GRID_SIZE)

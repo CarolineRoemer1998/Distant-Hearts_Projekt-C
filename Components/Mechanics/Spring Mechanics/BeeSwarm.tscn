@@ -1,6 +1,6 @@
-[gd_scene load_steps=15 format=3 uid="uid://0edfjrrf5011"]
+[gd_scene load_steps=17 format=3 uid="uid://0edfjrrf5011"]
 
-[ext_resource type="Texture2D" uid="uid://0ctr0pfs442m" path="res://Assets/Spring Mechanics/Bees/Blender/Bee-Aseprite-16x16.png" id="1_7ab61"]
+[ext_resource type="Texture2D" uid="uid://bypu3mxifsd3a" path="res://Assets/Spring Mechanics/Bees/Blender/Bee-Aseprite-16x16.png" id="1_7ab61"]
 [ext_resource type="Texture2D" uid="uid://damd3v81dmwkc" path="res://Assets/Spring Mechanics/Bees/Blender/bee-shadow.png" id="1_lr6y7"]
 [ext_resource type="Script" uid="uid://bxbu1g4pahb7t" path="res://Components/Mechanics/Spring Mechanics/BeeSwarm.gd" id="1_tbglw"]
 [ext_resource type="Script" uid="uid://b6khrunjcvna1" path="res://Components/Mechanics/Spring Mechanics/SingleBee.gd" id="3_0vp1r"]
@@ -161,7 +161,21 @@ _data = {
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tbglw"]
 custom_solver_bias = 1.0
-size = Vector2(128, 128)
+size = Vector2(64, 64)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0vp1r"]
+load_path = "res://.godot/imported/Sparkle_big.png-894e93b1e99ef76f9cdd1cf0116bc198.ctex"
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_x3nmx"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(1.25, 1.25, 1)
+emission_shape = 1
+emission_sphere_radius = 74.79
+radial_velocity_min = -2.2351742e-05
+radial_velocity_max = 15.999977
+gravity = Vector3(0, 0, 0)
+scale_min = 0.19999999
+scale_max = 0.29999998
 
 [node name="BeeSwarm" type="Node2D" node_paths=PackedStringArray("bee_sprites")]
 modulate = Color(1.0964829, 1.0964829, 1.0964829, 1)
@@ -239,5 +253,13 @@ collision_mask = 255
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BeeArea"]
 shape = SubResource("RectangleShape2D_tbglw")
+
+[node name="GlowySparkles" type="GPUParticles2D" parent="."]
+self_modulate = Color(2.7562902, 2.491152, 0.42729023, 0.333)
+position = Vector2(0, -6)
+amount = 36
+texture = SubResource("CompressedTexture2D_0vp1r")
+lifetime = 3.0
+process_material = SubResource("ParticleProcessMaterial_x3nmx")
 
 [connection signal="body_entered" from="BeeArea" to="." method="_on_bee_area_body_entered"]
