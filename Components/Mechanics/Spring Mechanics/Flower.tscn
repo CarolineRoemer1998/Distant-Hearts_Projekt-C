@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ba8q3gl8ussnm"]
+[gd_scene load_steps=15 format=3 uid="uid://ba8q3gl8ussnm"]
 
 [ext_resource type="Script" uid="uid://dytdyife3qh6p" path="res://Components/Mechanics/Spring Mechanics/Flower.gd" id="1_rjnan"]
 [ext_resource type="Texture2D" uid="uid://c4bdewfthxc5h" path="res://Assets/Spring Mechanics/Flower/PinkFlowerBiggerBorderSpriteSheet.png" id="1_t7jgl"]
@@ -81,6 +81,9 @@ gravity = Vector3(0, -3, 0)
 scale_min = 0.19999999
 scale_max = 0.29999998
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rjnan"]
+size = Vector2(64, 64)
+
 [node name="Flower" type="Node2D"]
 script = ExtResource("1_rjnan")
 
@@ -88,7 +91,7 @@ script = ExtResource("1_rjnan")
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_p8ao0")
 autoplay = "default"
-frame_progress = 0.6226339
+frame_progress = 0.6696231
 
 [node name="GlowySparkles" type="GPUParticles2D" parent="."]
 self_modulate = Color(2.7562902, 2.491152, 0.42729023, 0.333)
@@ -102,3 +105,4 @@ collision_layer = 256
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_rjnan")

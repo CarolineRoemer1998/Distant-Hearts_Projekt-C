@@ -11,14 +11,15 @@ func can_move_in_direction(_position: Vector2, _direction, world : World2D, is_p
 	#var world = get_world_2d()
 	
 	# Queries für alle relevanten Bit Layers
-	var result_stones = Helper.get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_STONE), world)
-	var result_flowers = Helper.get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_FLOWER), world)
-	var result_doors = Helper.get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_DOOR), world)
-	var result_wall_outside = Helper.get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_LEVEL_WALL), world)
-	var result_wall_inside = Helper.get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_WALL_AND_PLAYER), world)
+	var result_stones = get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_STONE), world)
+	var result_flowers = get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_FLOWER), world)
+	var result_doors = get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_DOOR), world)
+	var result_wall_outside = get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_LEVEL_WALL), world)
+	var result_wall_inside = get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_WALL_AND_PLAYER), world)
 	
 	## TODO: Collision mit Flower auslösen!!
 	
+	print(result_stones)
 	print(result_flowers)
 	
 	if (result_stones.is_empty() and result_flowers.is_empty() and result_doors.is_empty() and result_wall_outside.is_empty() and result_wall_inside.is_empty()) \
@@ -76,9 +77,6 @@ func check_if_collides(_position, layer_mask, world : World2D) -> bool:
 	query.collision_mask = layer_mask
 	query.collide_with_areas = true
 	var result = space.intersect_point(query, 1)
-	#print("Testing Position: ", _position)
-	#if not result.is_empty():
-		#print(result)
 	if not result.is_empty():
 		if result[0].collider is Door:
 			if not result[0].collider.door_is_closed:
@@ -90,4 +88,5 @@ func get_collision_on_tile(_position, layer_mask, world : World2D) -> Array[Dict
 	var query = PhysicsPointQueryParameters2D.new()
 	query.position = _position
 	query.collision_mask = layer_mask
+	query.collide_with_areas = true
 	return space.intersect_point(query, 1)

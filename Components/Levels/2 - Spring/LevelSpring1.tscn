@@ -40,12 +40,12 @@ position = Vector2(608, 480)
 position = Vector2(160, 480)
 
 [node name="CreatureYellow" parent="Creatures" instance=ExtResource("5_yi6q1")]
-position = Vector2(352, 224)
+position = Vector2(608, 288)
 
 [node name="Player" type="Node" parent="."]
 
 [node name="Player" parent="Player" instance=ExtResource("6_rjegf")]
-position = Vector2(416, 416)
+position = Vector2(608, 352)
 
 [node name="LevelUI" parent="." instance=ExtResource("8_igtey")]
 

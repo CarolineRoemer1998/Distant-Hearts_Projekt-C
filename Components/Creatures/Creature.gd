@@ -65,7 +65,6 @@ func _process(delta: float) -> void:
 	if abs(position - target_position)[0] < 0.1 and abs(position - target_position)[1] < 0.1 and is_avoiding_bees:
 		position = target_position
 		is_avoiding_bees = false
-		print("Angekommen bei: ", global_position, " bzw. ", position)
 
 # -----------------------------------------------------------
 # State Serialisation (Undo)
@@ -315,8 +314,6 @@ func get_bee_position_if_nearby():
 func avoid_bees(bee_direction: Vector2, try_direction):
 	var position_set = false
 	
-	print(target_position)
-	
 	if not position_set:
 		match bee_direction:
 			Constants.UP:
@@ -346,7 +343,6 @@ func try_directions(directions : Array[Vector2]):
 	for d in directions:
 		if Helper.can_move_in_direction(position, d, get_world_2d(), true) and d != Vector2.ZERO:
 			target_position = position + (d * Constants.GRID_SIZE)
-			print("Position: ", global_position, "\nTarget: ", target_position, "\n")
 			return true
 
 	return false
