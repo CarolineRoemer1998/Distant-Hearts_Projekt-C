@@ -4,12 +4,14 @@ class_name BeeSwarm
 
 @export var bee_sprites : Array[SingleBee] = []
 var bee_sprite_scale := 2.0
+@onready var bee_area = $BeeArea
 
 var is_flying_to_new_position := false
 var target_position := Vector2.ZERO
 var flying_speed := 100.0
 
 func _ready() -> void:
+	bee_area.set_collision_layer_value(Constants.LAYER_BIT_BEES, true)
 	Signals.flower_grows.connect(fly_to_flower)
 
 func _process(delta: float) -> void:

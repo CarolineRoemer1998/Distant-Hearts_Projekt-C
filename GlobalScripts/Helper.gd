@@ -1,5 +1,33 @@
 extends Node
 
+func can_move_in_direction(_position: Vector2, _direction: Vector2, world : World2D, is_physical_body : bool) -> bool:
+	var new_pos = _position + _direction * Constants.GRID_SIZE
+	#var world = get_world_2d()
+	
+	# Queries für alle relevanten Bit Layers
+	var result_stones = Helper.get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_STONE), world)
+	var result_doors = Helper.get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_DOOR), world)
+	var result_wall_outside = Helper.get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_LEVEL_WALL), world)
+	var result_wall_inside = Helper.get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_WALL_AND_PLAYER), world)
+	
+	if (result_stones.is_empty() and result_doors.is_empty() and result_wall_outside.is_empty() and result_wall_inside.is_empty()) \
+	or (is_physical_body == null and result_wall_outside.is_empty()):
+		return true
+	
+	if not result_wall_outside.is_empty() \
+	or (is_physical_body != null and (not result_wall_inside.is_empty() and not result_stones.is_empty() and not result_doors.is_empty())):
+		return false
+	
+	if not result_doors.is_empty() and not result_doors[0].collider.door_is_closed and result_stones.is_empty():
+		return true
+	
+	if not result_stones.is_empty() and result_stones[0].collider.get_can_be_pushed(new_pos, _direction):
+		result_stones[0].collider.push()
+		return true
+	
+	#buffered_direction = Vector2.ZERO
+	return false
+
 func get_slide_end(block_mask, _direction : Vector2, starting_position: Vector2, _is_pushing_stone_one_ice: bool, world: World2D) -> Vector2:
 	var slide_end = starting_position
 	
@@ -30,13 +58,16 @@ func check_is_ice(pos: Vector2, world : World2D) -> bool:
 	ice_query.collide_with_areas  = true
 	return not space_state.intersect_point(ice_query, 1).is_empty()
 
-
 func check_if_collides(_position, layer_mask, world : World2D) -> bool:
 	var space = world.direct_space_state
 	var query = PhysicsPointQueryParameters2D.new()
 	query.position = _position
 	query.collision_mask = layer_mask
+	query.collide_with_areas = true
 	var result = space.intersect_point(query, 1)
+	#print("Testing Position: ", _position)
+	#if not result.is_empty():
+		#print(result)
 	if not result.is_empty():
 		if result[0].collider is Door:
 			if not result[0].collider.door_is_closed:

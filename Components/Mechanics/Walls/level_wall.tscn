@@ -1,10 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://dp2qf8g2kvpfa"]
+[gd_scene load_steps=4 format=3 uid="uid://dp2qf8g2kvpfa"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lrsj5"]
+size = Vector2(704, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_key5o"]
-size = Vector2(1408, 64)
+size = Vector2(704, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t5vpw"]
-size = Vector2(64, 1280)
+size = Vector2(64, 640)
 
 [node name="LevelWall" type="StaticBody2D"]
 collision_layer = 64
@@ -12,7 +15,7 @@ collision_mask = 63
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(352, 32)
-shape = SubResource("RectangleShape2D_key5o")
+shape = SubResource("RectangleShape2D_lrsj5")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 position = Vector2(352, 672)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://be6k5yjppap8y"]
+[gd_scene load_steps=49 format=3 uid="uid://be6k5yjppap8y"]
 
 [ext_resource type="Script" uid="uid://kjtpy8vvpaku" path="res://Components/Creatures/Creature.gd" id="1_aoml0"]
 [ext_resource type="Texture2D" uid="uid://bggggslmjgoyi" path="res://Assets/Creatures/Yellow/creature1_yellow.png" id="2_ovmof"]
@@ -10,6 +10,9 @@
 size = Vector2(2, 2)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_01bph"]
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aoml0"]
 size = Vector2(32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hyqeq"]
@@ -584,6 +587,13 @@ collision_mask = 18
 position = Vector2(0, -64)
 shape = SubResource("RectangleShape2D_01bph")
 
+[node name="Area2D_Self" type="Area2D" parent="Areas"]
+collision_layer = 2
+collision_mask = 146
+
+[node name="CollisionShape2D_Right" type="CollisionShape2D" parent="Areas/Area2D_Self"]
+shape = SubResource("RectangleShape2D_aoml0")
+
 [node name="Visuals" type="Node2D" parent="."]
 position = Vector2(0, -5)
 
@@ -629,3 +639,4 @@ visible = false
 [connection signal="area_entered" from="Areas/Area2D_Top" to="." method="on_bees_to_top_entered"]
 [connection signal="body_entered" from="Areas/Area2D_Top" to="." method="on_body_to_top_entered"]
 [connection signal="body_exited" from="Areas/Area2D_Top" to="." method="_on_creature_top_gone"]
+[connection signal="area_entered" from="Areas/Area2D_Self" to="." method="_on_bees_entered"]
