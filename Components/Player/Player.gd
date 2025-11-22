@@ -1,9 +1,9 @@
 extends CharacterBody2D
 class_name Player
 
-@export var trail_scene: PackedScene ## Takes a GPUParticles2D Node which displays the trails the player leaves behind when moving.
-@export var hearts: Array[Sprite2D] ## Takes 4 Sprite2Ds, to show a heart when a creature is nearby another creature.
-@export var undo_particles: PackedScene  ## GPUParticles2D shown where the player was before pressing undo-button.
+@export var trail_scene: PackedScene
+@export var hearts: Array[Sprite2D]
+@export var undo_particles: PackedScene
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var animation_tree: AnimationTree = $AnimationTree
@@ -40,22 +40,26 @@ var currently_possessed_creature: Creature = null
 var pushable_stone_in_direction : Stone = null
 
 
+# ------------------------------------------------
+# READY
+# ------------------------------------------------
+
+## Initializes the player, connects signals, aligns to grid.
 func _ready():
-	self.add_to_group(Constants.GROUP_NAME_PLAYER)
-	
+	add_to_group(Constants.GROUP_NAME_PLAYER)
+
 	Signals.stone_reached_target.connect(reset_stone_push_state)
 	Signals.level_done.connect(deactivate)
 	Signals.player_move_finished.connect(on_move_step_finished)
 	Signals.creature_started_teleporting.connect(deactivate)
 	Signals.creature_finished_teleporting.connect(activate)
-	#Signals.creature_avoided_bees.connect(set_moving_direction)
-	
-	# Spieler korrekt auf Grid ausrichten
+
 	target_position = position.snapped(Constants.GRID_SIZE / 2)
 	position = target_position
+
 	animation_tree.get("parameters/playback").travel("Idle")
 
-
+## Main update loop: movement, UI, input.
 func _process(delta):
 	update_movement(delta)
 	update_heart_icons()
@@ -63,127 +67,126 @@ func _process(delta):
 
 
 # ------------------------------------------------
-# Input
+# INPUT
 # ------------------------------------------------
-## Handles input: escape/cancel for the settings menu,
-## movement and interaction while the player is active.
+
+## Handles cancel, movement, interaction and level switching.
 func handle_input():
 	if Input.is_action_just_pressed("ui_cancel"):
 		SceneSwitcher.go_to_settings()
 		return
-	
+
 	if is_active:
 		handle_movement_input(Vector2.ZERO)
 		handle_interaction_input()
 	else:
-		# Szenewechsel durch Tastatur, Maus oder Gamepad
 		if Input.is_action_just_pressed("ui_accept"):
 			SceneSwitcher.go_to_next_level()
 
-## Reads movement input (up/down/left/right), sets the direction
-## and optionally starts a new move step (including buffering for held input).
+## Returns raw directional input from arrow/WASD keys.
+func _read_input_direction() -> Vector2:
+	if Input.is_action_pressed("Player_Up"):
+		return Vector2.UP
+	if Input.is_action_pressed("Player_Down"):
+		return Vector2.DOWN
+	if Input.is_action_pressed("Player_Left"):
+		return Vector2.LEFT
+	if Input.is_action_pressed("Player_Right"):
+		return Vector2.RIGHT
+	return Vector2.ZERO
+
+## Handles movement requests, buffering and move validation.
 func handle_movement_input(_input_direction: Vector2):
 	if not can_move:
 		return
-	
+
 	input_direction = _input_direction
-		
-	if Input.is_action_pressed("Player_Up"):
-		input_direction = Vector2.UP
-	elif Input.is_action_pressed("Player_Down"):
-		input_direction = Vector2.DOWN
-	elif Input.is_action_pressed("Player_Left"):
-		input_direction = Vector2.LEFT
-	elif Input.is_action_pressed("Player_Right"):
-		input_direction = Vector2.RIGHT
-	
+	var read_dir = _read_input_direction()
+	if read_dir != Vector2.ZERO:
+		input_direction = read_dir
+
 	if input_direction == Vector2.ZERO:
 		return
-	
-	#set_moving_direction(input_direction, currently_possessed_creature)
+
 	direction = input_direction
 	if input_direction == _input_direction:
 		input_direction = Vector2.ZERO
-	
+
 	set_animation_direction(direction)
-	
+
 	can_move = false
 	pushable_stone_in_direction = null
 	step_timer.start(Constants.TIMER_STEP)
-	
+
 	if is_moving:
 		buffered_direction = direction
 	else:
 		if Helper.can_move_in_direction(position, direction, get_world_2d(), currently_possessed_creature!=null):
 			set_is_moving(true)
 
-## Starts or stops controlling a Creature
-## when the player is not currently moving.
+## Handles switching possession of creatures.
 func handle_interaction_input():
 	if Input.is_action_just_pressed("Interact") and not is_moving:
-		if hovering_over and hovering_over is Creature:
-			Signals.state_changed.emit(get_info())
-			if currently_possessed_creature:
-				unpossess()
-			else:
-				possess()
+		Signals.state_changed.emit(get_info())
+		if currently_possessed_creature:
+			unpossess()
+		else:
+			possess()
 
 
 # ------------------------------------------------
-# State serialisation (Undo)
+# STATE (UNDO)
 # ------------------------------------------------
-## Returns a Dictionary snapshot of the current player state
-## used for Undo/Redo.
+
+## Creates a snapshot of the player state for undo.
 func get_info() -> Dictionary:
 	return {
 		"global_position": global_position,
 		"is_active": is_active,
-		
+
 		"direction": direction,
 		"current_direction": current_direction,
 		"buffered_direction": buffered_direction,
-		
 		"is_on_ice": is_on_ice,
-		
+
 		"hovering_over": hovering_over,
 		"currently_possessed_creature": currently_possessed_creature
 	}
 
-## Restores the player state from a Dictionary snapshot.
-## Used for Undo, including undo particles and possession state.
+## Restores a previous player state from undo.
 func set_info(info : Dictionary):
 	if global_position != info.get("global_position"):
 		spawn_undo_particles(global_position)
-	
-	global_position = info.get("global_position")
-	is_active = info.get("is_active")
-	
-	direction = info.get("direction")
-	current_direction = info.get("current_direction")
-	buffered_direction = info.get("buffered_direction")
-	
+
+	global_position = info["global_position"]
+	is_active = info["is_active"]
+
+	direction = info["direction"]
+	current_direction = info["current_direction"]
+	buffered_direction = info["buffered_direction"]
+
 	target_position = global_position
-	
+
 	set_is_moving(false)
-	is_on_ice = info.get("is_on_ice")
+	is_on_ice = info["is_on_ice"]
 	is_sliding = false
 	can_move = true
 	reset_stone_push_state()
-	
+
 	set_animation_direction(direction)
-	
-	if info.get("currently_possessed_creature") and currently_possessed_creature == null:
+
+	var info_creature = info["currently_possessed_creature"]
+	if info_creature and currently_possessed_creature == null:
 		possess()
-	elif currently_possessed_creature and info.get("currently_possessed_creature") == null:
+	elif currently_possessed_creature and info_creature == null:
 		unpossess()
 
-## Spawns undo particles at world_pos, plays them once
-## and automatically frees them when finished.
+## Spawns undo particles at the given position.
 func spawn_undo_particles(world_pos: Vector2):
 	var particles = undo_particles.instantiate()
 	add_child(particles)
-	particles.z_index = 1000               # über Tiles/UI der Welt
-	particles.top_level = true             # erbt den Canvas-Kontext des Levels
+	particles.z_index = 1000
+	particles.top_level = true
 	particles.global_position = world_pos
 	particles.restart()
 	particles.emitting = true
@@ -191,81 +194,99 @@ func spawn_undo_particles(world_pos: Vector2):
 
 
 # ------------------------------------------------
-# Animation
+# ANIMATION
 # ------------------------------------------------
-## Updates the facing direction in the player's animation (and in the
-## possessed creature if present). Ignores Vector2.ZERO.
+
+## Updates direction for player and possessed creature animation.
 func set_animation_direction(_direction: Vector2):
 	if _direction != Vector2.ZERO:
 		animation_tree.set("parameters/Idle/BlendSpace2D/blend_position", _direction)
+
 	if currently_possessed_creature:
 		currently_possessed_creature.current_direction = direction
 		if _direction != Vector2.ZERO:
-			currently_possessed_creature.animation_tree.set("parameters/Idle/BlendSpace2D/blend_position", _direction)
+			currently_possessed_creature.animation_tree.set(
+				"parameters/Idle/BlendSpace2D/blend_position", _direction
+			)
 
 
 # ------------------------------------------------
-# Movement
+# MOVEMENT
 # ------------------------------------------------
-## Updates the position of the player (and the possessed creature) each frame,
-## including ice sliding and teleport-related edge cases.
+
+## Handles movement each frame, including bees and teleportation.
 func update_movement(delta):
 	if currently_possessed_creature and currently_possessed_creature.is_avoiding_bees:
-		# Player folgt nur, bewegt aber weder sich noch die Creature aktiv
-		global_position = currently_possessed_creature.global_position
-		position = global_position
-		target_position = global_position
-		is_moving = false  # optional, aber aufgeräumter
+		_sync_with_creature_during_bee_avoidance()
 		return
-	
+
 	if not is_moving:
 		return
-	
+
 	if currently_possessed_creature and currently_possessed_creature.is_teleporting:
 		return
-	
+
 	if is_on_ice and currently_possessed_creature and not is_moving_on_ice:
 		update_ice_slide_target()
-	
+
 	position = position.move_toward(target_position, Constants.PLAYER_MOVE_SPEED * delta)
 
 	if currently_possessed_creature:
 		currently_possessed_creature.position = currently_possessed_creature.position.move_toward(
-			target_position, Constants.PLAYER_MOVE_SPEED * delta)
-	
+			target_position, Constants.PLAYER_MOVE_SPEED * delta
+		)
+
 	if position == target_position:
-		if currently_possessed_creature:
-			var bee_dir = currently_possessed_creature.get_bee_position_if_nearby(currently_possessed_creature.global_position)
-			if bee_dir != null:
-				var dir = currently_possessed_creature.avoid_bees(bee_dir, -current_direction)
-				currently_possessed_creature.target_position = global_position + (dir * Constants.GRID_SIZE)
-				currently_possessed_creature.is_avoiding_bees = true
-				# Player soll der Creature folgen:
-				target_position = currently_possessed_creature.target_position
-				print("Target: ", target_position)
-				#global_position = target_position
-				#position = target_position
-				return
+		if _check_bee_avoidance_after_step():
+			return
+
 		if currently_possessed_creature and currently_possessed_creature.just_teleported:
 			currently_possessed_creature.just_teleported = false
-		#print("Reached Target: ", global_position)
+
 		Signals.player_move_finished.emit()
 
-## Called when a single move step (one tile) has finished.
-## Resets movement flags and processes buffered movement input.
+## Forces player to follow creature during bee avoidance.
+func _sync_with_creature_during_bee_avoidance():
+	var pos = currently_possessed_creature.global_position
+	global_position = pos
+	position = pos
+	target_position = pos
+	is_moving = false
+
+## Evaluates bee proximity and triggers avoidance steps.
+func _check_bee_avoidance_after_step() -> bool:
+	if not currently_possessed_creature:
+		return false
+
+	var bee_dir = currently_possessed_creature.get_bee_position_if_nearby(currently_possessed_creature.global_position)
+	if bee_dir == null:
+		return false
+
+	var dir = currently_possessed_creature.avoid_bees(bee_dir, -current_direction)
+	currently_possessed_creature.target_position = global_position + dir * Constants.GRID_SIZE
+	currently_possessed_creature.is_avoiding_bees = true
+	target_position = currently_possessed_creature.target_position
+	return true
+
+## Called when a movement step ends; handles buffering.
 func on_move_step_finished():
 	set_is_moving(false)
 	is_sliding = false
 	is_pushing_stone_on_ice = false
 	is_moving_on_ice = false
-	
+
 	if buffered_direction != Vector2.ZERO:
-		set_is_moving(Helper.can_move_in_direction(position, direction, get_world_2d(), currently_possessed_creature!=null))
+		set_is_moving(
+			Helper.can_move_in_direction(
+				position,
+				direction,
+				get_world_2d(),
+				currently_possessed_creature!=null
+			)
+		)
 		buffered_direction = Vector2.ZERO
 
-
-## Calculates the slide target on ice, updates target_position and sets
-## flags related to ice movement. Also respects reserved tiles.
+## Computes slide target and updates ice-related flags.
 func update_ice_slide_target():
 	target_position = Helper.get_slide_end(
 		Constants.LAYER_MASK_BLOCKING_OBJECTS,
@@ -274,60 +295,61 @@ func update_ice_slide_target():
 		is_pushing_stone_on_ice,
 		get_world_2d()
 	)
-	
+
 	if FieldReservation.is_reserved(target_position):
 		target_position -= current_direction * Constants.GRID_SIZE
-	
+
 	if not Helper.check_is_ice(target_position, get_world_2d()):
 		is_on_ice = false
-	
+
 	is_moving_on_ice = true
 
-## Resets the state that tracks whether a stone is currently being pushed
-## on ice by the player.
+## Resets stone push state after stone finishes moving.
 func reset_stone_push_state():
 	is_pushing_stone_on_ice = false
 
-## Deactivates the player so that no input is processed.
+## Disables player input.
 func deactivate():
 	is_active = false
 
-## Reactivates the player (for example after teleporting).
+## Enables player input.
 func activate():
 	is_active = true
 
-## Sets is_moving and, if true, immediately starts a new move step,
-## including merge, push, trail and sound logic.
-func set_is_moving(_is_moving: bool):
-	is_moving = _is_moving
+
+# ------------------------------------------------
+# MOVE START
+# ------------------------------------------------
+
+## Enables movement and starts a new move step.
+func set_is_moving(v: bool):
+	is_moving = v
 	if is_moving:
 		begin_move_step()
 
-## Initializes a new move step: computes the next target tile,
-## checks ice, tries to merge and pushes a prepared stone if present.
-## Also emits state_changed and spawns visual/audio feedback.
-func begin_move_step() -> void:
-	target_position = target_position + direction * Constants.GRID_SIZE
+## Calculates the next tile, handles merge/push/FX, and sends undo snapshot.
+func begin_move_step():
+	target_position += direction * Constants.GRID_SIZE
 	current_direction = direction
-	
+
 	is_on_ice = Helper.check_is_ice(target_position, get_world_2d())
-	
+
 	if currently_possessed_creature:
 		var merge_target = currently_possessed_creature.get_neighbor_in_direction_is_mergable(direction)
-		if merge_target != null:
+		if merge_target:
 			var merged = await currently_possessed_creature.merge(merge_target)
 			if merged:
 				deactivate()
-		if pushable_stone_in_direction != null:
+
+		if pushable_stone_in_direction:
 			pushable_stone_in_direction.push()
-	
+
 	spawn_trail(position)
 	play_step_sound()
-	
+
 	Signals.state_changed.emit(get_info())
 
-## Plays a step sound with random pitch and volume when the player
-## moves by one tile.
+## Plays randomised movement step sound.
 func play_step_sound():
 	audio_stream_player_2d.pitch_scale = Constants.STEP_SOUND_PITCH_SCALES.pick_random()
 	audio_stream_player_2d.volume_db = Constants.STEP_SOUND_VOLUME_CHANGE.pick_random()
@@ -336,34 +358,34 @@ func play_step_sound():
 
 
 # ------------------------------------------------
-# Hover / Possession
+# HOVER / POSSESSION
 # ------------------------------------------------
-## Updates whether the player is currently hovering over a creature
-## and controls the "Press F to control" label visibility.
+
+## Updates which creature the player is hovering over.
 func update_hovered_creature(is_hovering: bool, creature: Creature):
 	if is_hovering:
 		hovering_over = creature
-		if currently_possessed_creature == null:
+		if not currently_possessed_creature:
 			label_press_f_to_control.visible = true
 	else:
 		hovering_over = null
 		label_press_f_to_control.visible = false
 
-## Stops possessing the current creature: restores player visibility,
-## updates creature animation and plays the uncontrol sound.
+## Releases control of the currently possessed creature.
 func unpossess():
 	if currently_possessed_creature and is_instance_valid(currently_possessed_creature):
 		update_hovered_creature(true, currently_possessed_creature)
 		update_visibility(true)
+
 		currently_possessed_creature.border.visible = false
 		currently_possessed_creature.set_animation_direction()
 		currently_possessed_creature.is_possessed = false
 		currently_possessed_creature.player = null
 		currently_possessed_creature = null
+
 		audio_uncontrol.play()
 
-## Starts possessing the currently hovered creature: shows its border,
-## hides the player, syncs direction and position, and plays the control sound.
+## Takes control of a hovered creature.
 func possess():
 	if hovering_over and hovering_over is Creature:
 		currently_possessed_creature = hovering_over
@@ -371,31 +393,29 @@ func possess():
 		currently_possessed_creature.player = self
 		currently_possessed_creature.has_not_moved = false
 		currently_possessed_creature.border.visible = true
+
 		update_visibility(false)
 		audio_control.play()
-		
-		# direction an Creature anpassen
+
 		direction = currently_possessed_creature.current_direction
 		set_animation_direction(direction)
-		
-		# Position sofort synchronisieren
+
 		currently_possessed_creature.position = target_position
 		currently_possessed_creature.target_position = target_position
 
 
 # ------------------------------------------------
-# Teleporter
+# TELEPORTER
 # ------------------------------------------------
-## Registers or unregisters the player for teleporter events.
-## val = true: player reacts to teleporter_entered signal.
+
+## Connects or disconnects from teleporter-entered events.
 func set_is_standing_on_teleporter(val: bool):
 	if val:
 		Signals.teleporter_entered.connect(on_teleporter_entered)
 	elif Signals.teleporter_entered.is_connected(on_teleporter_entered):
 		Signals.teleporter_entered.disconnect(on_teleporter_entered)
 
-## Callback when a teleporter is triggered: starts teleporting
-## the possessed creature and moves the player to the new position.
+## Teleports player and possessed creature when triggered.
 func on_teleporter_entered(teleporter: Teleporter):
 	if currently_possessed_creature and is_active:
 		currently_possessed_creature.start_teleport(teleporter)
@@ -404,29 +424,27 @@ func on_teleporter_entered(teleporter: Teleporter):
 
 
 # ------------------------------------------------
-# Sichtbarkeit / UI
+# VISIBILITY
 # ------------------------------------------------
-## Sets whether the player sprite is visible and updates the interaction
-## labels depending on hover state.
+
+## Updates player visibility and UI hint visibility.
 func update_visibility(make_visible : bool):
-	if make_visible:
-		animated_sprite_2d.modulate = Constants.PLAYER_MODULATE_VISIBLE
-	else:
-		animated_sprite_2d.modulate = Constants.PLAYER_MODULATE_INVISIBLE
-		
+	animated_sprite_2d.modulate = (
+		Constants.PLAYER_MODULATE_VISIBLE if make_visible
+		else Constants.PLAYER_MODULATE_INVISIBLE
+	)
+
 	if hovering_over:
 		label_press_f_to_control.visible = make_visible
-		label_press_f_to_stop_control.visible = !make_visible
+		label_press_f_to_stop_control.visible = not make_visible
 
-## Called when the player enters a Creature's detection area.
-## Marks that creature as currently hovered.
-func _on_creature_detected(body: Node) -> void:
+## Triggered when entering a creature detection area.
+func _on_creature_detected(body: Node):
 	if body is Creature:
 		update_hovered_creature(true, body)
 
-## Called when the player exits a Creature's detection area.
-## Removes the hover state if it was the currently hovered Creature.
-func _on_creature_undetected(body: Node) -> void:
+## Triggered when leaving a creature detection area.
+func _on_creature_undetected(body: Node):
 	if body is Creature and hovering_over == body:
 		update_hovered_creature(false, body)
 
@@ -434,8 +452,8 @@ func _on_creature_undetected(body: Node) -> void:
 # ------------------------------------------------
 # VFX
 # ------------------------------------------------
-## Spawns a trail particle instance at input_position and plays it once.
-## Typically called when starting a move step.
+
+## Spawns a movement trail particle at the given position.
 func spawn_trail(input_position: Vector2):
 	var trail : GPUParticles2D = trail_scene.instantiate()
 	get_tree().current_scene.add_child(trail)
@@ -445,44 +463,30 @@ func spawn_trail(input_position: Vector2):
 
 
 # ------------------------------------------------
-# Herz-Anzeige
+# HEARTS
 # ------------------------------------------------
-## Updates the heart sprites around the player depending on whether
-## the possessed Creature has neighbors in the four cardinal directions.
+
+## Updates visibility and positions of heart indicators.
 func update_heart_icons():
-	# Wenn keine Kreatur gerade besessen ist → Herz aus
-	if currently_possessed_creature == null or currently_possessed_creature.is_teleporting:
-		for heart in hearts:
-			heart.visible = false
+	if not currently_possessed_creature or currently_possessed_creature.is_teleporting:
+		for h in hearts:
+			h.visible = false
 		return
 
-	var c := currently_possessed_creature
+	var c = currently_possessed_creature
 
-	if c.neighbor_right:
-		hearts[3].position = self.position + Constants.FIELD_POSITION_RIGHT
-		hearts[3].visible = true
-	else:
-		hearts[3].visible = false
+	hearts[3].visible = c.neighbor_right != null
+	hearts[3].position = position + Constants.FIELD_POSITION_RIGHT
 
-	if c.neighbor_bottom != null:
-		hearts[1].position = self.position + Constants.FIELD_POSITION_BOTTOM
-		hearts[1].visible = true
-	else:
-		hearts[1].visible = false
+	hearts[1].visible = c.neighbor_bottom != null
+	hearts[1].position = position + Constants.FIELD_POSITION_BOTTOM
 
-	if c.neighbor_left:
-		hearts[2].position = self.position + Constants.FIELD_POSITION_LEFT
-		hearts[2].visible = true
-	else:
-		hearts[2].visible = false
+	hearts[2].visible = c.neighbor_left != null
+	hearts[2].position = position + Constants.FIELD_POSITION_LEFT
 
-	if c.neighbor_top:
-		hearts[0].position = self.position + Constants.FIELD_POSITION_TOP
-		hearts[0].visible = true
-	else:
-		hearts[0].visible = false
+	hearts[0].visible = c.neighbor_top != null
+	hearts[0].position = position + Constants.FIELD_POSITION_TOP
 
-## Timer callback that re-enables movement input
-## by setting can_move to true after a short delay.
-func _on_step_timer_timeout() -> void:
+## Re-enables movement after step timer finishes.
+func _on_step_timer_timeout():
 	can_move = true

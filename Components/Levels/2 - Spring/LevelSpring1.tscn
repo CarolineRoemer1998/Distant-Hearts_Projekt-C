@@ -63,7 +63,7 @@ buttons = Array[NodePath]([NodePath("../../Buttons/Button2")])
 [node name="Bees" type="Node" parent="."]
 
 [node name="Bees" parent="Bees" instance=ExtResource("10_q8c8q")]
-position = Vector2(96, 224)
+position = Vector2(96, 608)
 
 [node name="DirtPatch" parent="." instance=ExtResource("11_g5aro")]
 position = Vector2(352, 96)
