@@ -28,6 +28,7 @@ var neighbor_left : Creature = null
 var neighbor_top : Creature = null
 
 var is_possessed := false
+var player : Player = null
 
 var is_active := true
 var has_not_moved := true
@@ -58,8 +59,16 @@ func _ready():
 	set_animation_direction(init_direction)
 
 func _process(delta: float) -> void:
+	if get_bee_position_if_nearby() != null and not is_avoiding_bees and is_possessed:
+		#print(player.global_position)
+		#print(avoid_bees(get_bee_position_if_nearby(), Vector2.ZERO))
+		player.handle_movement_input(avoid_bees(get_bee_position_if_nearby(), Vector2.ZERO))
+		is_avoiding_bees = false
+		#player.handle_movement_input(-get_bee_position_if_nearby())
 	if get_bee_position_if_nearby() != null and not is_avoiding_bees and not is_possessed:
-		avoid_bees(get_bee_position_if_nearby(), Vector2.ZERO)
+		var dir = avoid_bees(get_bee_position_if_nearby(), Vector2.ZERO)
+		target_position = global_position + (dir * Constants.GRID_SIZE)
+		is_avoiding_bees = true
 	if target_position != global_position and is_avoiding_bees:
 		global_position = position.move_toward(target_position, Constants.MOVE_SPEED * delta)
 	if abs(position - target_position)[0] < 0.1 and abs(position - target_position)[1] < 0.1 and is_avoiding_bees:
@@ -311,41 +320,48 @@ func get_bee_position_if_nearby():
 	
 	return null
 
-func avoid_bees(bee_direction: Vector2, try_direction):
-	var position_set = false
+func avoid_bees(bee_direction: Vector2, try_direction) -> Vector2:
+	var move_in_direction = Vector2.ZERO
 	
-	if not position_set:
+	if move_in_direction == Vector2.ZERO:
 		match bee_direction:
 			Constants.UP:
-				position_set = try_directions([try_direction, Constants.DOWN, Constants.LEFT, Constants.RIGHT])
+				move_in_direction = try_directions([try_direction, Constants.DOWN, Constants.LEFT, Constants.RIGHT])
 			Constants.UP_RIGHT:
-				position_set = try_directions([try_direction, Constants.DOWN, Constants.LEFT])
+				move_in_direction = try_directions([try_direction, Constants.DOWN, Constants.LEFT])
 			Constants.RIGHT:
-				position_set = try_directions([try_direction, Constants.LEFT, Constants.DOWN, Constants.UP])
+				move_in_direction = try_directions([try_direction, Constants.LEFT, Constants.DOWN, Constants.UP])
 			Constants.DOWN_RIGHT:
-				position_set = try_directions([try_direction, Constants.LEFT, Constants.UP])
+				move_in_direction = try_directions([try_direction, Constants.LEFT, Constants.UP])
 			Constants.DOWN:
-				position_set = try_directions([try_direction, Constants.LEFT, Constants.DOWN, Constants.UP])
+				move_in_direction = try_directions([try_direction, Constants.LEFT, Constants.DOWN, Constants.UP])
 			Constants.DOWN_LEFT:
-				position_set = try_directions([try_direction, Constants.UP, Constants.RIGHT])
+				move_in_direction = try_directions([try_direction, Constants.UP, Constants.RIGHT])
 			Constants.LEFT:
-				position_set = try_directions([try_direction, Constants.RIGHT, Constants.DOWN, Constants.UP])
+				move_in_direction = try_directions([try_direction, Constants.RIGHT, Constants.DOWN, Constants.UP])
 			Constants.UP_LEFT:
-				position_set = try_directions([try_direction, Constants.RIGHT, Constants.DOWN])
+				move_in_direction = try_directions([try_direction, Constants.RIGHT, Constants.DOWN])
 			Constants.MIDDLE:
-				position_set = try_directions([Constants.RIGHT, Constants.DOWN])
+				move_in_direction = try_directions([Constants.RIGHT, Constants.DOWN])
 	
-	if position_set:
-		is_avoiding_bees = true
+	return move_in_direction
+	#if position_set:
+		#is_avoiding_bees = true
 		#Signals.creature_avoided_bees.emit(target_position, self)
 
-func try_directions(directions : Array[Vector2]):
+func try_directions(directions : Array[Vector2]) -> Vector2:
+	var bee_layer_mask = (1 << Constants.LAYER_BIT_BEES)
+	
+	
 	for d in directions:
-		if Helper.can_move_in_direction(position, d, get_world_2d(), true) and d != Vector2.ZERO:
-			target_position = position + (d * Constants.GRID_SIZE)
-			return true
+		var new_pos = position + (d * Constants.GRID_SIZE)
+		var field_has_bees = Helper.check_if_collides(new_pos, bee_layer_mask, get_world_2d())
+		if not field_has_bees and Helper.can_move_in_direction(position, d, get_world_2d(), true) and d != Vector2.ZERO:
+			#target_position = position + (d * Constants.GRID_SIZE)
+			print(d)
+			return d
 
-	return false
+	return global_position
 
 func _on_bees_entered(area):
 	pass

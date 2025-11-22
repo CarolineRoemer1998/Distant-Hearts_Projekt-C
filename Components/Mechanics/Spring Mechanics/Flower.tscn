@@ -84,7 +84,9 @@ scale_max = 0.29999998
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rjnan"]
 size = Vector2(64, 64)
 
-[node name="Flower" type="Node2D"]
+[node name="Flower" type="StaticBody2D"]
+collision_layer = 256
+collision_mask = 3
 script = ExtResource("1_rjnan")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -100,9 +102,5 @@ texture = SubResource("CompressedTexture2D_t7jgl")
 lifetime = 3.0
 process_material = SubResource("ParticleProcessMaterial_rjnan")
 
-[node name="Area2D" type="Area2D" parent="."]
-collision_layer = 256
-collision_mask = 3
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_rjnan")

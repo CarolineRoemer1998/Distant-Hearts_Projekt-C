@@ -72,7 +72,7 @@ func handle_input():
 		return
 	
 	if is_active:
-		handle_movement_input()
+		handle_movement_input(Vector2.ZERO)
 		handle_interaction_input()
 	else:
 		# Szenewechsel durch Tastatur, Maus oder Gamepad
@@ -81,11 +81,11 @@ func handle_input():
 
 ## Reads movement input (up/down/left/right), sets the direction
 ## and optionally starts a new move step (including buffering for held input).
-func handle_movement_input():
+func handle_movement_input(_input_direction: Vector2):
 	if not can_move:
 		return
 	
-	var input_direction := Vector2.ZERO
+	var input_direction := _input_direction
 	if Input.is_action_pressed("Player_Up"):
 		input_direction = Vector2.UP
 	elif Input.is_action_pressed("Player_Down"):
@@ -232,7 +232,9 @@ func update_movement(delta):
 		if currently_possessed_creature:
 			var bee_dir = currently_possessed_creature.get_bee_position_if_nearby()
 			if bee_dir != null:
-				currently_possessed_creature.avoid_bees(bee_dir, -current_direction)
+				var dir = currently_possessed_creature.avoid_bees(bee_dir, -current_direction)
+				currently_possessed_creature.target_position = global_position + (dir * Constants.GRID_SIZE)
+				currently_possessed_creature.is_avoiding_bees = true
 				# Player soll der Creature folgen:
 				target_position = currently_possessed_creature.target_position
 				global_position = target_position
@@ -349,6 +351,7 @@ func unpossess():
 		currently_possessed_creature.border.visible = false
 		currently_possessed_creature.set_animation_direction()
 		currently_possessed_creature.is_possessed = false
+		currently_possessed_creature.player = null
 		currently_possessed_creature = null
 		audio_uncontrol.play()
 
@@ -358,6 +361,7 @@ func possess():
 	if hovering_over and hovering_over is Creature:
 		currently_possessed_creature = hovering_over
 		currently_possessed_creature.is_possessed = true
+		currently_possessed_creature.player = self
 		currently_possessed_creature.has_not_moved = false
 		currently_possessed_creature.border.visible = true
 		update_visibility(false)
