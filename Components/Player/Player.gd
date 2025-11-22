@@ -20,6 +20,7 @@ class_name Player
 var is_active := true
 
 var direction := Vector2.ZERO
+var input_direction := Vector2.ZERO
 var current_direction := Vector2.ZERO
 var buffered_direction: Vector2 = Vector2.ZERO
 
@@ -85,7 +86,8 @@ func handle_movement_input(_input_direction: Vector2):
 	if not can_move:
 		return
 	
-	var input_direction := _input_direction
+	input_direction = _input_direction
+		
 	if Input.is_action_pressed("Player_Up"):
 		input_direction = Vector2.UP
 	elif Input.is_action_pressed("Player_Down"):
@@ -100,6 +102,9 @@ func handle_movement_input(_input_direction: Vector2):
 	
 	#set_moving_direction(input_direction, currently_possessed_creature)
 	direction = input_direction
+	if input_direction == _input_direction:
+		input_direction = Vector2.ZERO
+	
 	set_animation_direction(direction)
 	
 	can_move = false
@@ -230,18 +235,20 @@ func update_movement(delta):
 	
 	if position == target_position:
 		if currently_possessed_creature:
-			var bee_dir = currently_possessed_creature.get_bee_position_if_nearby()
+			var bee_dir = currently_possessed_creature.get_bee_position_if_nearby(currently_possessed_creature.global_position)
 			if bee_dir != null:
 				var dir = currently_possessed_creature.avoid_bees(bee_dir, -current_direction)
 				currently_possessed_creature.target_position = global_position + (dir * Constants.GRID_SIZE)
 				currently_possessed_creature.is_avoiding_bees = true
 				# Player soll der Creature folgen:
 				target_position = currently_possessed_creature.target_position
-				global_position = target_position
-				position = target_position
+				print("Target: ", target_position)
+				#global_position = target_position
+				#position = target_position
 				return
 		if currently_possessed_creature and currently_possessed_creature.just_teleported:
 			currently_possessed_creature.just_teleported = false
+		#print("Reached Target: ", global_position)
 		Signals.player_move_finished.emit()
 
 ## Called when a single move step (one tile) has finished.

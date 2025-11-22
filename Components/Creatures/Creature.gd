@@ -39,6 +39,8 @@ var is_teleporting := false
 var just_teleported := false
 
 var is_avoiding_bees := false
+var last_escape_direction := Vector2.ZERO
+var hard_escape_lock := false
 
 ## Initializes the creature when the scene starts:
 ## connects signals, aligns to the grid, sets initial animation and direction.
@@ -59,21 +61,35 @@ func _ready():
 	set_animation_direction(init_direction)
 
 func _process(delta: float) -> void:
-	if get_bee_position_if_nearby() != null and not is_avoiding_bees and is_possessed:
-		#print(player.global_position)
-		#print(avoid_bees(get_bee_position_if_nearby(), Vector2.ZERO))
-		player.handle_movement_input(avoid_bees(get_bee_position_if_nearby(), Vector2.ZERO))
-		is_avoiding_bees = false
-		#player.handle_movement_input(-get_bee_position_if_nearby())
-	if get_bee_position_if_nearby() != null and not is_avoiding_bees and not is_possessed:
-		var dir = avoid_bees(get_bee_position_if_nearby(), Vector2.ZERO)
-		target_position = global_position + (dir * Constants.GRID_SIZE)
-		is_avoiding_bees = true
+	if get_bee_position_if_nearby(global_position) == null:
+		last_escape_direction = Vector2.ZERO
+		hard_escape_lock = false
+	if get_bee_position_if_nearby(global_position) != null and not is_avoiding_bees:
+		var bee_dir = get_bee_position_if_nearby(global_position)
+
+		if is_possessed:
+			var opposite = -1 * player.input_direction
+			player.handle_movement_input(avoid_bees(bee_dir, opposite))
+		else:
+			var dir = avoid_bees(bee_dir, Vector2.ZERO)
+			target_position = global_position + (dir * Constants.GRID_SIZE)
+			is_avoiding_bees = true
+
+	#if get_bee_position_if_nearby(global_position) != null and not is_avoiding_bees:
+		#if is_possessed:
+			#player.handle_movement_input(avoid_bees(get_bee_position_if_nearby(global_position), Vector2.ZERO))
+			##is_avoiding_bees = false
+		#else:
+			#var dir = avoid_bees(get_bee_position_if_nearby(global_position), Vector2.ZERO)
+			#target_position = global_position + (dir * Constants.GRID_SIZE)
+			#is_avoiding_bees = true
 	if target_position != global_position and is_avoiding_bees:
 		global_position = position.move_toward(target_position, Constants.MOVE_SPEED * delta)
 	if abs(position - target_position)[0] < 0.1 and abs(position - target_position)[1] < 0.1 and is_avoiding_bees:
 		position = target_position
 		is_avoiding_bees = false
+		last_escape_direction = Vector2.ZERO
+		hard_escape_lock = false
 
 # -----------------------------------------------------------
 # State Serialisation (Undo)
@@ -307,7 +323,7 @@ func _on_area_2d_self_body_entered(body: Node2D) -> void:
 		merge(body)
 
 
-func get_bee_position_if_nearby():
+func get_bee_position_if_nearby(check_pos: Vector2):
 	var positions = [
 		Constants.UP_LEFT, Constants.UP, Constants.UP_RIGHT, 
 		Constants.LEFT, Constants.MIDDLE, Constants.RIGHT,
@@ -315,7 +331,7 @@ func get_bee_position_if_nearby():
 		]
 	
 	for p in positions:
-		if Helper.check_if_collides(global_position+p*Constants.GRID_SIZE, Constants.LAYER_MASK_BEES, get_world_2d()):
+		if Helper.check_if_collides(check_pos+p*Constants.GRID_SIZE, Constants.LAYER_MASK_BEES, get_world_2d()):
 			return p
 	
 	return null
@@ -327,41 +343,63 @@ func avoid_bees(bee_direction: Vector2, try_direction) -> Vector2:
 		match bee_direction:
 			Constants.UP:
 				move_in_direction = try_directions([try_direction, Constants.DOWN, Constants.LEFT, Constants.RIGHT])
+				pass
 			Constants.UP_RIGHT:
 				move_in_direction = try_directions([try_direction, Constants.DOWN, Constants.LEFT])
+				pass
 			Constants.RIGHT:
 				move_in_direction = try_directions([try_direction, Constants.LEFT, Constants.DOWN, Constants.UP])
+				pass
 			Constants.DOWN_RIGHT:
 				move_in_direction = try_directions([try_direction, Constants.LEFT, Constants.UP])
+				pass
 			Constants.DOWN:
 				move_in_direction = try_directions([try_direction, Constants.LEFT, Constants.DOWN, Constants.UP])
+				pass
 			Constants.DOWN_LEFT:
 				move_in_direction = try_directions([try_direction, Constants.UP, Constants.RIGHT])
+				pass
 			Constants.LEFT:
 				move_in_direction = try_directions([try_direction, Constants.RIGHT, Constants.DOWN, Constants.UP])
+				pass
 			Constants.UP_LEFT:
 				move_in_direction = try_directions([try_direction, Constants.RIGHT, Constants.DOWN])
+				pass
 			Constants.MIDDLE:
-				move_in_direction = try_directions([Constants.RIGHT, Constants.DOWN])
+				move_in_direction = try_directions([Constants.RIGHT, Constants.DOWN, Constants.LEFT, Constants.UP])
+				pass
 	
 	return move_in_direction
-	#if position_set:
-		#is_avoiding_bees = true
-		#Signals.creature_avoided_bees.emit(target_position, self)
 
 func try_directions(directions : Array[Vector2]) -> Vector2:
-	var bee_layer_mask = (1 << Constants.LAYER_BIT_BEES)
-	
-	
+	if hard_escape_lock and last_escape_direction != Vector2.ZERO:
+		if Helper.can_move_in_direction(position, last_escape_direction, get_world_2d(), true):
+			return last_escape_direction
+		else:
+			# Richtung blockiert ⇒ Lock aufheben
+			hard_escape_lock = false
+			last_escape_direction = Vector2.ZERO
+
 	for d in directions:
-		var new_pos = position + (d * Constants.GRID_SIZE)
-		var field_has_bees = Helper.check_if_collides(new_pos, bee_layer_mask, get_world_2d())
-		if not field_has_bees and Helper.can_move_in_direction(position, d, get_world_2d(), true) and d != Vector2.ZERO:
-			#target_position = position + (d * Constants.GRID_SIZE)
-			print(d)
+		if d != Vector2.ZERO and Helper.can_move_in_direction(position, d, get_world_2d(), true):
+			# Diese Richtung wird zur neuen, harten Richtung
+			last_escape_direction = d
+			hard_escape_lock = true
 			return d
 
-	return global_position
+	last_escape_direction = Vector2.ZERO
+	hard_escape_lock = false
+	return Vector2.ZERO
 
-func _on_bees_entered(area):
-	pass
+	#if last_escape_direction != Vector2.ZERO and Helper.can_move_in_direction(position, last_escape_direction, get_world_2d(), true):
+		#var buffer_dir = last_escape_direction
+		#last_escape_direction = Vector2.ZERO
+		#return buffer_dir
+	#
+	#for d in directions:
+		#if Helper.can_move_in_direction(position, d, get_world_2d(), true) and d != Vector2.ZERO:
+			#last_escape_direction = d
+			#return d
+	#
+	#last_escape_direction = Vector2.ZERO
+	#return Vector2.ZERO
