@@ -178,7 +178,7 @@ scale_min = 0.19999999
 scale_max = 0.29999998
 
 [node name="BeeSwarm" type="StaticBody2D" node_paths=PackedStringArray("bee_sprites")]
-modulate = Color(1.0964829, 1.0964829, 1.0964829, 1)
+modulate = Color(1.096, 1.096, 1.096, 1)
 collision_layer = 16
 collision_mask = 3
 script = ExtResource("1_tbglw")
@@ -259,3 +259,8 @@ amount = 36
 texture = SubResource("CompressedTexture2D_0vp1r")
 lifetime = 3.0
 process_material = SubResource("ParticleProcessMaterial_x3nmx")
+
+[node name="TimerAggroCooldown" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="timeout" from="TimerAggroCooldown" to="." method="_on_timer_aggro_cooldown_timeout"]

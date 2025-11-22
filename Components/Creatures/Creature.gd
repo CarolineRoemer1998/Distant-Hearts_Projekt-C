@@ -70,7 +70,12 @@ func _ready():
 
 func _process(delta: float) -> void:
 	var bee_dir = get_bee_position_if_nearby(global_position)
-
+	
+	if bee_dir != null:
+		Signals.bees_near_creature.emit()
+	elif bee_dir == null:
+		Signals.bees_not_near_creature.emit()
+	
 	# Reset escape state when bees are gone
 	if bee_dir == null:
 		last_escape_direction = Vector2.ZERO

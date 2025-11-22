@@ -9,10 +9,23 @@ var is_flying_to_new_position := false
 var target_position := Vector2.ZERO
 var flying_speed := 100.0
 
+@onready var timer_aggro_cooldown: Timer = $TimerAggroCooldown
+var is_aggro := false
+const MODULATE_AGGRO := Color(1.096, 0.278, 0.278)
+const MODULATE_NORMAL := Color(1.096, 1.096, 1.096)
+
 func _ready() -> void:
 	Signals.flower_grows.connect(fly_to_flower)
+	Signals.bees_near_creature.connect(turn_red)
+	Signals.bees_not_near_creature.connect(turn_normal)
 
 func _process(delta: float) -> void:
+	if is_aggro:
+		modulate = lerp(modulate, MODULATE_AGGRO, delta*4.0)
+	else: 
+		modulate = lerp(modulate, MODULATE_NORMAL, delta*2.0)
+	
+	
 	if is_flying_to_new_position:
 		position = position.move_toward(target_position, flying_speed*delta)
 	
@@ -38,3 +51,15 @@ func _change_direction_of_bee_sprites():
 func reset_bee_sprite_direction():
 	for bee in bee_sprites:
 		bee.scale = bee.init_scale
+
+func turn_red():
+	is_aggro = true
+	#modulate = MODULATE_AGGRO
+
+func turn_normal():
+	if timer_aggro_cooldown.time_left == 0:
+		timer_aggro_cooldown.start()
+
+
+func _on_timer_aggro_cooldown_timeout() -> void:
+	is_aggro = false
