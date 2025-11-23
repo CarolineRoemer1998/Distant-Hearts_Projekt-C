@@ -177,12 +177,13 @@ gravity = Vector3(0, 0, 0)
 scale_min = 0.19999999
 scale_max = 0.29999998
 
-[node name="BeeSwarm" type="StaticBody2D" node_paths=PackedStringArray("bee_sprites")]
+[node name="BeeSwarm" type="StaticBody2D" node_paths=PackedStringArray("bee_sprites", "animation_players")]
 modulate = Color(1.096, 1.096, 1.096, 1)
 collision_layer = 16
 collision_mask = 3
 script = ExtResource("1_tbglw")
 bee_sprites = [NodePath("Visuals/Bee1"), NodePath("Visuals/Bee2"), NodePath("Visuals/Bee3")]
+animation_players = [NodePath("Visuals/AnimationPlayerBee1"), NodePath("Visuals/AnimationPlayerBee2"), NodePath("Visuals/AnimationPlayerBee3")]
 
 [node name="Visuals" type="Node2D" parent="."]
 position = Vector2(-3, -10)

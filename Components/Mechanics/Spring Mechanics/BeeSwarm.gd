@@ -2,17 +2,24 @@ extends StaticBody2D
 
 class_name BeeSwarm
 
+@onready var timer_aggro_cooldown: Timer = $TimerAggroCooldown
+
 @export var bee_sprites : Array[SingleBee] = []
+@export var animation_players : Array[AnimationPlayer] = []
+
+const MODULATE_AGGRO := Color(1.096, 0.278, 0.278)
+const MODULATE_NORMAL := Color(1.096, 1.096, 1.096)
+
+var is_aggro := false
+
 var bee_sprite_scale := 2.0
 
 var is_flying_to_new_position := false
 var target_position := Vector2.ZERO
 var flying_speed := 100.0
+var anim_speed_normal := 1.0
+var anim_speed_aggro := 8.0
 
-@onready var timer_aggro_cooldown: Timer = $TimerAggroCooldown
-var is_aggro := false
-const MODULATE_AGGRO := Color(1.096, 0.278, 0.278)
-const MODULATE_NORMAL := Color(1.096, 1.096, 1.096)
 
 func _ready() -> void:
 	Signals.flower_grows.connect(fly_to_flower)
@@ -22,8 +29,12 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if is_aggro:
 		modulate = lerp(modulate, MODULATE_AGGRO, delta*4.0)
+		for anim_player in animation_players:
+			anim_player.speed_scale = lerp(anim_player.speed_scale, anim_speed_aggro, delta*10.0)
 	else: 
 		modulate = lerp(modulate, MODULATE_NORMAL, delta*2.0)
+		for anim_player in animation_players:
+			anim_player.speed_scale = lerp(anim_player.speed_scale, anim_speed_normal, delta*8.0)
 	
 	
 	if is_flying_to_new_position:
