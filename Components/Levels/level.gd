@@ -21,6 +21,8 @@ var can_undo := true
 var is_undo_pressed := false
 
 func _ready() -> void:
+	Signals.level_loaded.emit(season)
+	
 	set_leaves()
 	SceneSwitcher.set_curent_level(level_number)
 	if level_number >= 6:

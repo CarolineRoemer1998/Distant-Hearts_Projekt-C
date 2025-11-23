@@ -25,6 +25,7 @@
 
 [node name="Level6" type="Node2D"]
 script = ExtResource("1_vb4or")
+season = 4
 undo_particles = ExtResource("2_6iyt6")
 level_number = 6
 

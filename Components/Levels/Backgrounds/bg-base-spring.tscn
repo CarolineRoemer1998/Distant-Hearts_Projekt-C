@@ -1,6 +1,7 @@
-[gd_scene load_steps=16 format=4 uid="uid://ihdvu1wqfcub"]
+[gd_scene load_steps=17 format=4 uid="uid://ihdvu1wqfcub"]
 
 [ext_resource type="Texture2D" uid="uid://bq853ey8admm0" path="res://Assets/Environments/floor-normal.png" id="1_l428f"]
+[ext_resource type="Script" uid="uid://ddgky1lwfhv75" path="res://Components/Levels/Backgrounds/LevelBackground.gd" id="1_pukl1"]
 [ext_resource type="Texture2D" uid="uid://bdwufuit7l4f6" path="res://Assets/Environments/floor-spring.png" id="2_t4ijq"]
 [ext_resource type="Texture2D" uid="uid://cxkb2aidghp1" path="res://Assets/Environments/floor-winter.png" id="3_vcycc"]
 [ext_resource type="Texture2D" uid="uid://cdmj8pohvwmfm" path="res://Assets/Environments/walls-normal.png" id="4_ahyif"]
@@ -194,6 +195,7 @@ sources/5 = SubResource("TileSetAtlasSource_s0hkv")
 
 [node name="BackgroundSpring" type="Node2D"]
 texture_filter = 1
+script = ExtResource("1_pukl1")
 
 [node name="floor" type="TileMapLayer" parent="."]
 scale = Vector2(2, 2)

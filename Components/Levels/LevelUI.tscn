@@ -1,20 +1,30 @@
-[gd_scene load_steps=7 format=3 uid="uid://dtrjxhb3ayo1c"]
+[gd_scene load_steps=9 format=3 uid="uid://dtrjxhb3ayo1c"]
 
+[ext_resource type="Script" uid="uid://5dd36xnbj06h" path="res://Components/Levels/world_environment.gd" id="1_73yj2"]
 [ext_resource type="PackedScene" uid="uid://bhgu3tj2dehs2" path="res://Components/UI/Controls/reset_bar.tscn" id="1_1663l"]
 [ext_resource type="PackedScene" uid="uid://pb5o008ihthl" path="res://Components/UI/Menues/win_screen.tscn" id="2_73yj2"]
 [ext_resource type="PackedScene" uid="uid://d3lpfscgajhb4" path="res://Components/UI/Controls/UndoMechanic.tscn" id="3_m0pqk"]
 [ext_resource type="PackedScene" uid="uid://ckkosqi7rtbdb" path="res://Components/UI/Menues/game_completed.tscn" id="4_dnxhn"]
 [ext_resource type="Script" uid="uid://4cpn4q7vm6em" path="res://Components/UI/VFX/LeafManager.gd" id="5_1663l"]
 
+[sub_resource type="Sky" id="Sky_pft4g"]
+
 [sub_resource type="Environment" id="Environment_pft4g"]
 background_mode = 3
+sky = SubResource("Sky_pft4g")
+ambient_light_color = Color(1, 0.4627451, 1, 1)
 glow_enabled = true
-glow_hdr_threshold = 0.25
+glow_normalized = true
+glow_intensity = 2.0
+glow_strength = 1.1
+glow_blend_mode = 0
+glow_hdr_scale = 1.0
 
 [node name="LevelUI" type="Node2D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_pft4g")
+script = ExtResource("1_73yj2")
 
 [node name="ResetBar" parent="." instance=ExtResource("1_1663l")]
 offset_right = 0.0

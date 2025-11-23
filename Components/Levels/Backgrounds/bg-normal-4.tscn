@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=4 uid="uid://jqkog6pefsp8"]
+[gd_scene load_steps=4 format=4 uid="uid://jqkog6pefsp8"]
 
+[ext_resource type="Script" uid="uid://ddgky1lwfhv75" path="res://Components/Levels/Backgrounds/LevelBackground.gd" id="1_0tl6u"]
 [ext_resource type="TileSet" uid="uid://b27d63bpsa4u5" path="res://Components/Levels/bg-tileset.tres" id="1_rqiwt"]
 [ext_resource type="PackedScene" uid="uid://dp2qf8g2kvpfa" path="res://Components/Mechanics/Walls/level_wall.tscn" id="7_by154"]
 
 [node name="BackgroundNormal4" type="Node2D"]
 modulate = Color(1.1, 1.1, 1.1, 1)
 texture_filter = 1
+script = ExtResource("1_0tl6u")
 
 [node name="floor" type="TileMapLayer" parent="."]
 scale = Vector2(2, 2)

@@ -82,6 +82,8 @@ position = Vector2(352, 608)
 position = Vector2(608, 224)
 
 [editable path="BackgroundSpring"]
+[editable path="LevelUI"]
+[editable path="LevelUI/UndoMechanic"]
 [editable path="TeleporterManager"]
 [editable path="TeleporterManager/Flower1"]
 [editable path="TeleporterManager/Flower2"]

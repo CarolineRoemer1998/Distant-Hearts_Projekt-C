@@ -5,6 +5,8 @@ signal SHOW_WIN_SCREEN
 signal level_switched
 signal level_done
 
+signal level_loaded(season: Constants.SEASON)
+
 # Input Signals
 signal undo_timer_continuous_timeout
 signal undo_timer_init_timeout

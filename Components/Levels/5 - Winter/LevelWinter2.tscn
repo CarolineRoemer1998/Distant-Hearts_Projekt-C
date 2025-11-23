@@ -23,6 +23,7 @@
 
 [node name="Level7" type="Node2D"]
 script = ExtResource("1_luhgi")
+season = 4
 undo_particles = ExtResource("2_6ujdl")
 level_number = 7
 

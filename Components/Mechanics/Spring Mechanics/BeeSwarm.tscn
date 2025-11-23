@@ -186,6 +186,7 @@ bee_sprites = [NodePath("Visuals/Bee1"), NodePath("Visuals/Bee2"), NodePath("Vis
 animation_players = [NodePath("Visuals/AnimationPlayerBee1"), NodePath("Visuals/AnimationPlayerBee2"), NodePath("Visuals/AnimationPlayerBee3")]
 
 [node name="Visuals" type="Node2D" parent="."]
+modulate = Color(1.15, 1.15, 1.15, 1)
 position = Vector2(-3, -10)
 
 [node name="Bee1" type="AnimatedSprite2D" parent="Visuals"]
@@ -254,7 +255,7 @@ autoplay = "shadow-pulsate"
 shape = SubResource("RectangleShape2D_tbglw")
 
 [node name="GlowySparkles" type="GPUParticles2D" parent="."]
-self_modulate = Color(2.7562902, 2.491152, 0.42729023, 0.333)
+self_modulate = Color(3.8653786, 3.8653786, 0, 0.07058824)
 position = Vector2(0, -6)
 amount = 36
 texture = SubResource("CompressedTexture2D_0vp1r")

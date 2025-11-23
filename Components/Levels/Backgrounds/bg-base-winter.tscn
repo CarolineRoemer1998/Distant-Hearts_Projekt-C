@@ -1,10 +1,12 @@
-[gd_scene load_steps=3 format=4 uid="uid://bwsn1fx0k3pvo"]
+[gd_scene load_steps=4 format=4 uid="uid://bwsn1fx0k3pvo"]
 
 [ext_resource type="TileSet" uid="uid://b27d63bpsa4u5" path="res://Components/Levels/bg-tileset.tres" id="1_3aorh"]
+[ext_resource type="Script" uid="uid://ddgky1lwfhv75" path="res://Components/Levels/Backgrounds/LevelBackground.gd" id="1_slcog"]
 [ext_resource type="PackedScene" uid="uid://dp2qf8g2kvpfa" path="res://Components/Mechanics/Walls/level_wall.tscn" id="7_jp4h3"]
 
 [node name="BackgroundWinter" type="Node2D"]
 texture_filter = 1
+script = ExtResource("1_slcog")
 
 [node name="floor" type="TileMapLayer" parent="."]
 scale = Vector2(2, 2)

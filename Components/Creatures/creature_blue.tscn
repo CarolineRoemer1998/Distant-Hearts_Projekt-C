@@ -602,6 +602,7 @@ animation = &"idle-down"
 
 [node name="AnimatedSpriteBorder" type="AnimatedSprite2D" parent="Visuals"]
 visible = false
+modulate = Color(1.25, 1.25, 1.25, 1)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_ujita")
 animation = &"idle-down"

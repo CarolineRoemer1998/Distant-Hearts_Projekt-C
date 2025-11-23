@@ -47,7 +47,7 @@ var pushable_stone_in_direction : Stone = null
 ## Initializes the player, connects signals, aligns to grid.
 func _ready():
 	add_to_group(Constants.GROUP_NAME_PLAYER)
-
+	animated_sprite_2d.modulate = Constants.PLAYER_MODULATE_VISIBLE
 	Signals.stone_reached_target.connect(reset_stone_push_state)
 	Signals.level_done.connect(deactivate)
 	Signals.player_move_finished.connect(on_move_step_finished)
@@ -380,6 +380,7 @@ func unpossess():
 		currently_possessed_creature.border.visible = false
 		currently_possessed_creature.set_animation_direction()
 		currently_possessed_creature.is_possessed = false
+		currently_possessed_creature.animated_sprite_creature.modulate = Constants.CREATURE_MODULATE_UNPOSSESSED
 		currently_possessed_creature.player = null
 		currently_possessed_creature = null
 
@@ -390,6 +391,7 @@ func possess():
 	if hovering_over and hovering_over is Creature:
 		currently_possessed_creature = hovering_over
 		currently_possessed_creature.is_possessed = true
+		currently_possessed_creature.animated_sprite_creature.modulate = Constants.CREATURE_MODULATE_POSSESSED
 		currently_possessed_creature.player = self
 		currently_possessed_creature.has_not_moved = false
 		currently_possessed_creature.border.visible = true

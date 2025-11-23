@@ -10,7 +10,7 @@
 size = Vector2(28, 24)
 
 [node name="Button" type="Node2D"]
-modulate = Color(1.1, 1.1, 1.1, 1)
+modulate = Color(1.25, 1.25, 1.25, 1)
 script = ExtResource("1_vxja4")
 
 [node name="Button_GREEN" type="Sprite2D" parent="."]

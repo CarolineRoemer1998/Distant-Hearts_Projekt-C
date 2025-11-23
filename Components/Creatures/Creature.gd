@@ -51,6 +51,7 @@ func _ready():
 	Signals.level_done.connect(deactivate)
 	Signals.teleporter_activated.connect(start_teleport)
 
+	animated_sprite_creature.modulate = Constants.CREATURE_MODULATE_UNPOSSESSED
 	animated_sprite_creature.frame = 0
 	border.frame = 0
 
