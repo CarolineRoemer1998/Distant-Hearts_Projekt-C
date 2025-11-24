@@ -41,3 +41,5 @@ signal creature_finished_teleporting
 signal flower_grows(flower: FlowerSeed)
 signal bees_near_creature
 signal bees_not_near_creature
+signal bees_start_flying
+signal bees_stop_flying

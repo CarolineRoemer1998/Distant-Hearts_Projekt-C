@@ -3,6 +3,7 @@ extends StaticBody2D
 class_name BeeSwarm
 
 @onready var timer_aggro_cooldown: Timer = $TimerAggroCooldown
+@onready var visuals: Node2D = $Visuals
 
 @export var bee_sprites : Array[SingleBee] = []
 @export var animation_players : Array[AnimationPlayer] = []
@@ -16,7 +17,7 @@ var bee_sprite_scale := 2.0
 
 var is_flying_to_new_position := false
 var target_position := Vector2.ZERO
-var flying_speed := 100.0
+var flying_speed := 200.0
 var anim_speed_normal := 1.0
 var anim_speed_aggro := 8.0
 
@@ -38,16 +39,19 @@ func _process(delta: float) -> void:
 	
 	
 	if is_flying_to_new_position:
+		visuals.position = lerp(visuals.position, Vector2(-5,-32), delta*5.0)
 		position = position.move_toward(target_position, flying_speed*delta)
 	
 	if abs(position - target_position)[0] < 0.1 and abs(position - target_position)[1] < 0.1:
 		position = target_position
 		reset_bee_sprite_direction()
+		Signals.bees_stop_flying.emit()
 
 func fly_to_flower(flower: FlowerSeed):
 	target_position = flower.global_position
 	_change_direction_of_bee_sprites()
 	is_flying_to_new_position = true
+	Signals.bees_start_flying.emit()
 
 func _change_direction_of_bee_sprites():
 	# Look Left

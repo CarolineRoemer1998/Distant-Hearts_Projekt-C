@@ -88,6 +88,7 @@ func _process(delta: float) -> void:
 		if is_possessed:
 			var opposite = -player.input_direction
 			player.handle_movement_input(avoid_bees(bee_dir, opposite))
+			player.deactivate()
 		else:
 			var dir = avoid_bees(bee_dir, Vector2.ZERO)
 			target_position = global_position + dir * Constants.GRID_SIZE

@@ -19,8 +19,8 @@ func can_move_in_direction(_position: Vector2, _direction, world : World2D, is_p
 	var result_wall_outside = get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_LEVEL_WALL), world)
 	var result_wall_inside = get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_WALL_AND_PLAYER), world)
 	
-	print(result_flowers)
-	print(result_stones)
+	#print(result_flowers)
+	print(is_avoiding)
 	
 	if is_avoiding and not result_buttons.is_empty():
 		return false

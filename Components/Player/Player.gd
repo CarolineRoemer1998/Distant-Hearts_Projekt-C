@@ -40,6 +40,9 @@ var currently_possessed_creature: Creature = null
 var pushable_stone_in_direction : Stone = null
 
 
+## TODO: Deaktivieren während Bienen fliegen
+
+
 # ------------------------------------------------
 # READY
 # ------------------------------------------------
@@ -53,6 +56,8 @@ func _ready():
 	Signals.player_move_finished.connect(on_move_step_finished)
 	Signals.creature_started_teleporting.connect(deactivate)
 	Signals.creature_finished_teleporting.connect(activate)
+	Signals.bees_start_flying.connect(deactivate)
+	Signals.bees_stop_flying.connect(activate)
 
 	target_position = position.snapped(Constants.GRID_SIZE / 2)
 	position = target_position

@@ -184,7 +184,7 @@ bee_sprites = [NodePath("Visuals/Bee1"), NodePath("Visuals/Bee2"), NodePath("Vis
 animation_players = [NodePath("Visuals/AnimationPlayerBee1"), NodePath("Visuals/AnimationPlayerBee2"), NodePath("Visuals/AnimationPlayerBee3")]
 
 [node name="Visuals" type="Node2D" parent="."]
-position = Vector2(-3, -10)
+position = Vector2(-5, 0)
 
 [node name="Bee1" type="AnimatedSprite2D" parent="Visuals"]
 position = Vector2(-14, -15)
@@ -256,6 +256,7 @@ wait_time = 0.5
 
 [node name="GlowySparkles" type="GPUParticles2D" parent="."]
 self_modulate = Color(4.29996, 3.4908872, 0.83250386, 0.1254902)
+position = Vector2(-1, -32)
 amount = 16
 texture = ExtResource("5_x3nmx")
 lifetime = 2.0

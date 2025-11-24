@@ -150,6 +150,7 @@ Undo={
 2d_physics/layer_7="LevelWall"
 2d_physics/layer_8="Teleporter"
 2d_physics/layer_9="Flower"
+2d_physics/layer_10="Soil"
 
 [rendering]
 
