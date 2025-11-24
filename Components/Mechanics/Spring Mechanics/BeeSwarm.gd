@@ -44,7 +44,7 @@ func _process(delta: float) -> void:
 		position = target_position
 		reset_bee_sprite_direction()
 
-func fly_to_flower(flower: Flower):
+func fly_to_flower(flower: FlowerSeed):
 	target_position = flower.global_position
 	_change_direction_of_bee_sprites()
 	is_flying_to_new_position = true

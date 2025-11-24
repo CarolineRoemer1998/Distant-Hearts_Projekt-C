@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://cyr4xpwmfgqkh"]
+[gd_scene load_steps=14 format=4 uid="uid://cyr4xpwmfgqkh"]
 
 [ext_resource type="Script" uid="uid://ddiwo6yyhfkuc" path="res://Components/Levels/level.gd" id="1_kgfq4"]
 [ext_resource type="PackedScene" uid="uid://lrodaawkgfob" path="res://Components/UI/VFX/undo_particles.tscn" id="2_01u33"]
@@ -10,8 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://g3u7bc1jo6gj" path="res://Components/Player/player.tscn" id="6_rjegf"]
 [ext_resource type="PackedScene" uid="uid://dtrjxhb3ayo1c" path="res://Components/Levels/LevelUI.tscn" id="8_igtey"]
 [ext_resource type="PackedScene" uid="uid://0edfjrrf5011" path="res://Components/Mechanics/Spring Mechanics/BeeSwarm.tscn" id="10_q8c8q"]
-[ext_resource type="PackedScene" uid="uid://dyv1bfpu6w2or" path="res://Components/Mechanics/Spring Mechanics/DirtPatch.tscn" id="11_g5aro"]
-[ext_resource type="PackedScene" uid="uid://ba8q3gl8ussnm" path="res://Components/Mechanics/Spring Mechanics/Flower.tscn" id="12_yi6q1"]
+[ext_resource type="PackedScene" uid="uid://dpemn8sewapip" path="res://Components/Mechanics/Spring Mechanics/soil.tscn" id="12_rjegf"]
+[ext_resource type="PackedScene" uid="uid://ba8q3gl8ussnm" path="res://Components/Mechanics/Spring Mechanics/FlowerSeed.tscn" id="12_yi6q1"]
+[ext_resource type="PackedScene" uid="uid://oy61arlldjo3" path="res://Components/Mechanics/Stones/Stone.tscn" id="13_rjegf"]
 
 [node name="LevelSpring1" type="Node2D"]
 script = ExtResource("1_kgfq4")
@@ -65,21 +66,15 @@ buttons = Array[NodePath]([NodePath("../../Buttons/Button2")])
 [node name="Bees" parent="Bees" instance=ExtResource("10_q8c8q")]
 position = Vector2(96, 608)
 
-[node name="DirtPatch" parent="." instance=ExtResource("11_g5aro")]
-position = Vector2(352, 96)
-
-[node name="DirtPatch2" parent="." instance=ExtResource("11_g5aro")]
-visible = false
+[node name="Soil" parent="." instance=ExtResource("12_rjegf")]
 position = Vector2(608, 224)
-
-[node name="DirtPatch3" parent="." instance=ExtResource("11_g5aro")]
-position = Vector2(96, 288)
-
-[node name="DirtPatch4" parent="." instance=ExtResource("11_g5aro")]
-position = Vector2(352, 608)
 
 [node name="Flower" parent="." instance=ExtResource("12_yi6q1")]
-position = Vector2(608, 224)
+position = Vector2(544, 224)
+collision_layer = 0
+
+[node name="Pushable" parent="." instance=ExtResource("13_rjegf")]
+position = Vector2(480, 288)
 
 [editable path="BackgroundSpring"]
 [editable path="LevelUI"]

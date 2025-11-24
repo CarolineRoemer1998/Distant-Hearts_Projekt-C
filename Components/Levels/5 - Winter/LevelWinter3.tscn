@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://ddiwo6yyhfkuc" path="res://Components/Levels/level.gd" id="1_7ae7w"]
 [ext_resource type="PackedScene" uid="uid://i448npnkeckp" path="res://Components/Mechanics/Winter Mechanics/ice_floor.tscn" id="2_a03e5"]
 [ext_resource type="PackedScene" uid="uid://lrodaawkgfob" path="res://Components/UI/VFX/undo_particles.tscn" id="2_sueau"]
-[ext_resource type="PackedScene" uid="uid://oy61arlldjo3" path="res://Components/Mechanics/Stones/pushable.tscn" id="3_mipja"]
+[ext_resource type="PackedScene" uid="uid://oy61arlldjo3" path="res://Components/Mechanics/Stones/Stone.tscn" id="3_mipja"]
 [ext_resource type="PackedScene" uid="uid://ci21v6yuqeqws" path="res://Components/Levels/Backgrounds/bg-winter-3.tscn" id="3_tborw"]
 [ext_resource type="PackedScene" uid="uid://bt4pnhd7cx7xc" path="res://Components/Mechanics/Buttons/button.tscn" id="3_xhsd0"]
 [ext_resource type="Texture2D" uid="uid://d2wcstlnxmknt" path="res://Assets/Winter Mechanics/Ice Floors/Ice-floor-L.png" id="4_0656e"]

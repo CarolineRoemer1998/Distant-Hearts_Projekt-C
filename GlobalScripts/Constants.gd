@@ -27,6 +27,7 @@ const GROUP_NAME_BUTTONS := "Button"
 const GROUP_NAME_STONES := "Stone"
 const GROUP_NAME_TELEPORTER := "Teleporter"
 const GROUP_NAME_TELEPORTER_MANAGER := "TeleporterManager"
+const GROUP_NAME_FLOWER_SEED := "FlowerSeed"
 
 # LAYER BITS
 const LAYER_BIT_WALL_AND_PLAYER		:= 0

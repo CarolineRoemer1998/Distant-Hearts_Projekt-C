@@ -20,6 +20,7 @@ func _ready():
 	enable_collision_layer()
 	target_position = position.snapped(Constants.GRID_SIZE / 2)
 	position = target_position
+	print(get_groups())
 
 
 # -----------------------------------------------------------
@@ -47,6 +48,11 @@ func set_info(info : Dictionary):
 	pending_target_position = Vector2.ZERO
 	pending_direction = Vector2.ZERO
 
+func enable_collision_layer():
+	set_collision_layer_value(Constants.LAYER_BIT_STONE, true)
+
+func disable_collision_layer():
+	set_collision_layer_value(Constants.LAYER_BIT_STONE, false)
 
 # -----------------------------------------------------------
 # Movement / Push / Slide
@@ -138,22 +144,6 @@ func _set_pending_push(new_pos: Vector2, direction: Vector2) -> void:
 func _reset_pending_push() -> void:
 	pending_target_position = Vector2.ZERO
 	pending_direction = Vector2.ZERO
-
-
-# -----------------------------------------------------------
-# Collision Layer
-# -----------------------------------------------------------
-
-## Enables the collision layer for stones so this stone participates
-## in collisions as a stone.
-func enable_collision_layer():
-	set_collision_layer_value(Constants.LAYER_BIT_STONE, true)
-
-
-## Disables the collision layer for stones so this stone no longer
-## participates in collisions as a stone.
-func disable_collision_layer():
-	set_collision_layer_value(Constants.LAYER_BIT_STONE, false)
 
 
 # -----------------------------------------------------------

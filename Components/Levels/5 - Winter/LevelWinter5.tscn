@@ -21,7 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://d2wcstlnxmknt" path="res://Assets/Winter Mechanics/Ice Floors/Ice-floor-L.png" id="11_odjst"]
 [ext_resource type="PackedScene" uid="uid://bu7a5geiluu3r" path="res://Components/Mechanics/Winter Mechanics/icicle.tscn" id="11_xhcyn"]
 [ext_resource type="Texture2D" uid="uid://dis43boq1dnwi" path="res://Assets/Winter Mechanics/Ice Floors/Ice-floor-L-R-B.png" id="13_h4308"]
-[ext_resource type="PackedScene" uid="uid://oy61arlldjo3" path="res://Components/Mechanics/Stones/pushable.tscn" id="13_xkg3g"]
+[ext_resource type="PackedScene" uid="uid://oy61arlldjo3" path="res://Components/Mechanics/Stones/Stone.tscn" id="13_xkg3g"]
 [ext_resource type="PackedScene" uid="uid://dtrjxhb3ayo1c" path="res://Components/Levels/LevelUI.tscn" id="23_2h7ko"]
 
 [node name="Level10" type="Node2D"]

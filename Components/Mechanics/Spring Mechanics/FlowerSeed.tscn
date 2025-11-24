@@ -1,9 +1,12 @@
 [gd_scene load_steps=17 format=3 uid="uid://ba8q3gl8ussnm"]
 
-[ext_resource type="Script" uid="uid://dytdyife3qh6p" path="res://Components/Mechanics/Spring Mechanics/Flower.gd" id="1_rjnan"]
+[ext_resource type="Script" uid="uid://dytdyife3qh6p" path="res://Components/Mechanics/Spring Mechanics/FlowerSeed.gd" id="1_rjnan"]
 [ext_resource type="Texture2D" uid="uid://c4bdewfthxc5h" path="res://Assets/Spring Mechanics/Flower/PinkFlowerBiggerBorderSpriteSheet.png" id="1_t7jgl"]
 [ext_resource type="Texture2D" uid="uid://deea1xcltq8ks" path="res://Assets/Spring Mechanics/Flower/Soil.png" id="2_8nooi"]
 [ext_resource type="Texture2D" uid="uid://dbtlkxrnci834" path="res://Assets/Spring Mechanics/Flower/Seed3.png" id="4_tpjqu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rjnan"]
+size = Vector2(64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tpjqu"]
 atlas = ExtResource("1_t7jgl")
@@ -83,36 +86,35 @@ gravity = Vector3(0, -3, 0)
 scale_min = 0.19999999
 scale_max = 0.29999998
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rjnan"]
-size = Vector2(64, 64)
-
-[node name="Flower" type="StaticBody2D"]
-collision_layer = 256
+[node name="FlowerSeed" type="CharacterBody2D"]
+collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_rjnan")
 
 [node name="Soil" type="Sprite2D" parent="."]
+visible = false
 scale = Vector2(2, 2)
 texture = ExtResource("2_8nooi")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_rjnan")
+
 [node name="Flower" type="AnimatedSprite2D" parent="."]
+visible = false
 position = Vector2(1, 0)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_p8ao0")
 autoplay = "default"
-frame_progress = 0.5193592
+frame_progress = 0.8824624
 
-[node name="GlowySparkles" type="GPUParticles2D" parent="."]
+[node name="Pollen" type="GPUParticles2D" parent="."]
+visible = false
 self_modulate = Color(2.7562902, 2.491152, 0.42729023, 0.333)
 position = Vector2(0, -24)
 texture = SubResource("CompressedTexture2D_t7jgl")
 lifetime = 3.0
 process_material = SubResource("ParticleProcessMaterial_rjnan")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_rjnan")
-
 [node name="Seed" type="Sprite2D" parent="."]
-position = Vector2(-64, 0)
 scale = Vector2(2, 2)
 texture = ExtResource("4_tpjqu")
