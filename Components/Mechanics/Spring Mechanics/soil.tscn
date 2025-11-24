@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dpemn8sewapip"]
+
+[ext_resource type="Texture2D" uid="uid://deea1xcltq8ks" path="res://Assets/Spring Mechanics/Flower/Soil.png" id="1_wxkm7"]
+
+[node name="Soil" type="Node2D"]
+
+[node name="Sprite2D_Soil" type="Sprite2D" parent="."]
+position = Vector2(1, -9)
+scale = Vector2(2, 2)
+texture = ExtResource("1_wxkm7")

@@ -1,52 +1,45 @@
-[gd_scene load_steps=15 format=3 uid="uid://ba8q3gl8ussnm"]
+[gd_scene load_steps=17 format=3 uid="uid://ba8q3gl8ussnm"]
 
 [ext_resource type="Script" uid="uid://dytdyife3qh6p" path="res://Components/Mechanics/Spring Mechanics/Flower.gd" id="1_rjnan"]
 [ext_resource type="Texture2D" uid="uid://c4bdewfthxc5h" path="res://Assets/Spring Mechanics/Flower/PinkFlowerBiggerBorderSpriteSheet.png" id="1_t7jgl"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_t7jgl"]
-atlas = ExtResource("1_t7jgl")
-region = Rect2(0, 0, 33, 33)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rjnan"]
-atlas = ExtResource("1_t7jgl")
-region = Rect2(33, 0, 33, 33)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8nooi"]
-atlas = ExtResource("1_t7jgl")
-region = Rect2(66, 0, 33, 33)
+[ext_resource type="Texture2D" uid="uid://deea1xcltq8ks" path="res://Assets/Spring Mechanics/Flower/Soil.png" id="2_8nooi"]
+[ext_resource type="Texture2D" uid="uid://dbtlkxrnci834" path="res://Assets/Spring Mechanics/Flower/Seed3.png" id="4_tpjqu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tpjqu"]
 atlas = ExtResource("1_t7jgl")
-region = Rect2(99, 0, 33, 33)
+region = Rect2(0, 0, 33, 46)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4205e"]
 atlas = ExtResource("1_t7jgl")
-region = Rect2(132, 0, 33, 33)
+region = Rect2(33, 0, 33, 46)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jc4dh"]
 atlas = ExtResource("1_t7jgl")
-region = Rect2(99, 0, 33, 33)
+region = Rect2(66, 0, 33, 46)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5n1um"]
 atlas = ExtResource("1_t7jgl")
-region = Rect2(66, 0, 33, 33)
+region = Rect2(99, 0, 33, 46)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2ppv5"]
 atlas = ExtResource("1_t7jgl")
-region = Rect2(33, 0, 33, 33)
+region = Rect2(132, 0, 33, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ps783"]
+atlas = ExtResource("1_t7jgl")
+region = Rect2(99, 0, 33, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p8ao0"]
+atlas = ExtResource("1_t7jgl")
+region = Rect2(66, 0, 33, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tbuk4"]
+atlas = ExtResource("1_t7jgl")
+region = Rect2(33, 0, 33, 46)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_p8ao0"]
 animations = [{
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_t7jgl")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rjnan")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8nooi")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_tpjqu")
 }, {
@@ -61,6 +54,15 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2ppv5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ps783")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p8ao0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tbuk4")
 }],
 "loop": true,
 "name": &"default",
@@ -89,18 +91,28 @@ collision_layer = 256
 collision_mask = 3
 script = ExtResource("1_rjnan")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Soil" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("2_8nooi")
+
+[node name="Flower" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, 0)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_p8ao0")
 autoplay = "default"
-frame_progress = 0.6696231
+frame_progress = 0.5193592
 
 [node name="GlowySparkles" type="GPUParticles2D" parent="."]
 self_modulate = Color(2.7562902, 2.491152, 0.42729023, 0.333)
-position = Vector2(0, -6)
+position = Vector2(0, -24)
 texture = SubResource("CompressedTexture2D_t7jgl")
 lifetime = 3.0
 process_material = SubResource("ParticleProcessMaterial_rjnan")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_rjnan")
+
+[node name="Seed" type="Sprite2D" parent="."]
+position = Vector2(-64, 0)
+scale = Vector2(2, 2)
+texture = ExtResource("4_tpjqu")
