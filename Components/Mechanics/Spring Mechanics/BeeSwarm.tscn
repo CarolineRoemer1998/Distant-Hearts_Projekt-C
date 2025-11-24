@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://damd3v81dmwkc" path="res://Assets/Spring Mechanics/Bees/Blender/bee-shadow.png" id="1_lr6y7"]
 [ext_resource type="Script" uid="uid://bxbu1g4pahb7t" path="res://Components/Mechanics/Spring Mechanics/BeeSwarm.gd" id="1_tbglw"]
 [ext_resource type="Script" uid="uid://b6khrunjcvna1" path="res://Components/Mechanics/Spring Mechanics/SingleBee.gd" id="3_0vp1r"]
+[ext_resource type="Texture2D" uid="uid://cixud3jff2kmj" path="res://Assets/Particles/dot2.png" id="5_x3nmx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lr6y7"]
 atlas = ExtResource("1_7ab61")
@@ -163,14 +164,11 @@ _data = {
 custom_solver_bias = 1.0
 size = Vector2(64, 64)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0vp1r"]
-load_path = "res://.godot/imported/Sparkle_big.png-894e93b1e99ef76f9cdd1cf0116bc198.ctex"
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_x3nmx"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dgfp4"]
 particle_flag_disable_z = true
-emission_shape_scale = Vector3(1.25, 1.25, 1)
-emission_shape = 1
-emission_sphere_radius = 74.79
+emission_shape_scale = Vector3(64, 64, 64)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
 radial_velocity_min = -2.2351742e-05
 radial_velocity_max = 15.999977
 gravity = Vector3(0, 0, 0)
@@ -186,7 +184,6 @@ bee_sprites = [NodePath("Visuals/Bee1"), NodePath("Visuals/Bee2"), NodePath("Vis
 animation_players = [NodePath("Visuals/AnimationPlayerBee1"), NodePath("Visuals/AnimationPlayerBee2"), NodePath("Visuals/AnimationPlayerBee3")]
 
 [node name="Visuals" type="Node2D" parent="."]
-modulate = Color(1.15, 1.15, 1.15, 1)
 position = Vector2(-3, -10)
 
 [node name="Bee1" type="AnimatedSprite2D" parent="Visuals"]
@@ -254,15 +251,14 @@ autoplay = "shadow-pulsate"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_tbglw")
 
-[node name="GlowySparkles" type="GPUParticles2D" parent="."]
-self_modulate = Color(3.8653786, 3.8653786, 0, 0.07058824)
-position = Vector2(0, -6)
-amount = 36
-texture = SubResource("CompressedTexture2D_0vp1r")
-lifetime = 3.0
-process_material = SubResource("ParticleProcessMaterial_x3nmx")
-
 [node name="TimerAggroCooldown" type="Timer" parent="."]
 wait_time = 0.5
+
+[node name="GlowySparkles" type="GPUParticles2D" parent="."]
+self_modulate = Color(4.29996, 3.4908872, 0.83250386, 0.1254902)
+amount = 16
+texture = ExtResource("5_x3nmx")
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_dgfp4")
 
 [connection signal="timeout" from="TimerAggroCooldown" to="." method="_on_timer_aggro_cooldown_timeout"]

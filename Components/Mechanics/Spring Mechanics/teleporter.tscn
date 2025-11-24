@@ -1,9 +1,10 @@
-[gd_scene load_steps=33 format=3 uid="uid://cd3vbp6goopg8"]
+[gd_scene load_steps=34 format=3 uid="uid://cd3vbp6goopg8"]
 
 [ext_resource type="Script" uid="uid://bny5bn84fdwj" path="res://Components/Mechanics/Spring Mechanics/teleporter.gd" id="1_ykg2g"]
 [ext_resource type="Texture2D" uid="uid://dicgyt3dkctg3" path="res://Assets/Spring Mechanics/Teleporter/Teleporter_blender_prototype_blue.png" id="2_m3c5n"]
 [ext_resource type="Texture2D" uid="uid://2m5wm06tiupv" path="res://Assets/Spring Mechanics/Teleporter/Effects/woosh.png" id="3_g4u34"]
 [ext_resource type="PackedScene" uid="uid://dlcw26eyb466m" path="res://Components/UI/VFX/glowy_sparkles.tscn" id="4_euxc0"]
+[ext_resource type="Script" uid="uid://e8px14dknwcc" path="res://Components/Mechanics/Spring Mechanics/TeleporterCirclingLight.gd" id="4_m3c5n"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ruatl"]
 atlas = ExtResource("2_m3c5n")
@@ -410,13 +411,14 @@ collision_mask = 2
 shape = SubResource("RectangleShape2D_afsdi")
 
 [node name="Effects" type="Node2D" parent="."]
-visible = false
+modulate = Color(0, 1.1228307, 1.8916494, 1)
 
 [node name="Woosh" type="AnimatedSprite2D" parent="Effects"]
-modulate = Color(0, 1.2696971, 1.5795683, 0.21960784)
+modulate = Color(0, 1.27, 1.58, 0.22)
 scale = Vector2(1.8, 1.8)
 sprite_frames = SubResource("SpriteFrames_qfsho")
 autoplay = "default"
+script = ExtResource("4_m3c5n")
 
 [node name="Woosh2" type="AnimatedSprite2D" parent="Effects"]
 modulate = Color(0, 1.2696971, 1.5795683, 0.21960784)
@@ -425,6 +427,7 @@ scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_ruatl")
 autoplay = "default"
 frame = 5
+script = ExtResource("4_m3c5n")
 
 [node name="Woosh3" type="AnimatedSprite2D" parent="Effects"]
 modulate = Color(0, 1.2696971, 1.5795683, 0.21960784)
@@ -433,6 +436,7 @@ scale = Vector2(1.2, 1.2)
 sprite_frames = SubResource("SpriteFrames_afsdi")
 autoplay = "default"
 frame = 10
+script = ExtResource("4_m3c5n")
 
 [node name="Woosh4" type="AnimatedSprite2D" parent="Effects"]
 modulate = Color(0, 1.2696971, 1.5795683, 0.21960784)
@@ -441,6 +445,7 @@ scale = Vector2(0.9, 0.9)
 sprite_frames = SubResource("SpriteFrames_c6xwp")
 autoplay = "default"
 frame = 15
+script = ExtResource("4_m3c5n")
 
 [node name="Woosh5" type="AnimatedSprite2D" parent="Effects"]
 modulate = Color(0, 1.2696971, 1.5795683, 0.21960784)
@@ -449,6 +454,7 @@ scale = Vector2(1.8, 1.8)
 sprite_frames = SubResource("SpriteFrames_qfsho")
 autoplay = "default"
 frame = 10
+script = ExtResource("4_m3c5n")
 
 [node name="Woosh6" type="AnimatedSprite2D" parent="Effects"]
 modulate = Color(0, 1.2696971, 1.5795683, 0.21960784)
@@ -457,6 +463,7 @@ scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_ruatl")
 autoplay = "default"
 frame = 15
+script = ExtResource("4_m3c5n")
 
 [node name="Woosh7" type="AnimatedSprite2D" parent="Effects"]
 modulate = Color(0, 1.2696971, 1.5795683, 0.21960784)
@@ -464,6 +471,7 @@ position = Vector2(0, -4)
 scale = Vector2(1.2, 1.2)
 sprite_frames = SubResource("SpriteFrames_afsdi")
 autoplay = "default"
+script = ExtResource("4_m3c5n")
 
 [node name="Woosh8" type="AnimatedSprite2D" parent="Effects"]
 modulate = Color(0, 1.2696971, 1.5795683, 0.21960784)
@@ -472,6 +480,7 @@ scale = Vector2(0.9, 0.9)
 sprite_frames = SubResource("SpriteFrames_c6xwp")
 autoplay = "default"
 frame = 5
+script = ExtResource("4_m3c5n")
 
 [node name="GlowySparkles" parent="Effects" instance=ExtResource("4_euxc0")]
 
