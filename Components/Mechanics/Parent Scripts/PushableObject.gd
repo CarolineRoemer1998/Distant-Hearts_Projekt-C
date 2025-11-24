@@ -4,7 +4,9 @@ class_name PushableObject
 
 const MOVE_SPEED := 500.0
 
-var target_position: Vector2
+var target_position: Vector2:
+	set(val):
+		target_position = val.snapped(Constants.GRID_SIZE / 2)
 var is_moving := false
 var is_sliding := false
 
@@ -134,9 +136,6 @@ func _reset_pending_push() -> void:
 ## Per-frame update: moves the stone towards its target_position if
 ## it is moving or sliding and finishes the move step when arriving.
 func _process(delta):
-	if not (is_moving or is_sliding):
-		return
-	
 	position = position.move_toward(target_position, MOVE_SPEED * delta)
 	
 	if position == target_position:

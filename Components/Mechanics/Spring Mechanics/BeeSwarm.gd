@@ -41,11 +41,12 @@ func _process(delta: float) -> void:
 	if is_flying_to_new_position:
 		visuals.position = lerp(visuals.position, Vector2(-5,-32), delta*5.0)
 		position = position.move_toward(target_position, flying_speed*delta)
-	
-	if abs(position - target_position)[0] < 0.1 and abs(position - target_position)[1] < 0.1:
-		position = target_position
-		reset_bee_sprite_direction()
-		Signals.bees_stop_flying.emit()
+		
+		if abs(position - target_position)[0] < 0.01 and abs(position - target_position)[1] < 0.01:
+			position = target_position
+			is_flying_to_new_position = false
+			reset_bee_sprite_direction()
+			Signals.bees_stop_flying.emit()
 
 func fly_to_flower(flower: FlowerSeed):
 	target_position = flower.global_position

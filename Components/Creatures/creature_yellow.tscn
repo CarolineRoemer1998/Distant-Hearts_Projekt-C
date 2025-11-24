@@ -1,10 +1,11 @@
-[gd_scene load_steps=49 format=3 uid="uid://be6k5yjppap8y"]
+[gd_scene load_steps=50 format=3 uid="uid://be6k5yjppap8y"]
 
 [ext_resource type="Script" uid="uid://kjtpy8vvpaku" path="res://Components/Creatures/Creature.gd" id="1_aoml0"]
 [ext_resource type="Texture2D" uid="uid://bggggslmjgoyi" path="res://Assets/Creatures/Yellow/creature1_yellow.png" id="2_ovmof"]
 [ext_resource type="Texture2D" uid="uid://qjav2ihmnlm5" path="res://Assets/Creatures/Yellow/creature1_yellow_border.png" id="3_y0ys5"]
 [ext_resource type="PackedScene" uid="uid://mghbvp3knkqw" path="res://Components/Creatures/Creature_AnimationPlayer.tscn" id="4_aoml0"]
 [ext_resource type="PackedScene" uid="uid://23u33yt4jga3" path="res://Components/Creatures/merged_creature.tscn" id="4_eqse5"]
+[ext_resource type="PackedScene" uid="uid://n5krahylrcfq" path="res://Components/UI/VFX/sweat_particles.tscn" id="6_ovmof"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ulpcw"]
 size = Vector2(2, 2)
@@ -627,6 +628,9 @@ parameters/Idle/BlendSpace2D/blend_position = Vector2(-0.00303954, 0.35426)
 
 [node name="MergedCreature" parent="." instance=ExtResource("4_eqse5")]
 visible = false
+
+[node name="SweatParticles" parent="." instance=ExtResource("6_ovmof")]
+amount = 2
 
 [connection signal="area_entered" from="Areas/Area2D_Right" to="." method="on_bees_to_right_entered"]
 [connection signal="body_entered" from="Areas/Area2D_Right" to="." method="on_body_to_right_entered"]

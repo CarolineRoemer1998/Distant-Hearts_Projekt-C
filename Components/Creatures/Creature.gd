@@ -17,6 +17,8 @@ enum COLOR {
 @onready var border: AnimatedSprite2D = $Visuals/AnimatedSpriteBorder
 @onready var animation_tree: AnimationTree = $Visuals/AnimationTree
 
+@onready var sweat_particles: GPUParticles2D = $SweatParticles
+
 var current_direction := init_direction
 
 var target_position: Vector2 :
@@ -50,6 +52,8 @@ var hard_escape_lock := false
 func _ready():
 	Signals.level_done.connect(deactivate)
 	Signals.teleporter_activated.connect(start_teleport)
+	Signals.bees_near_creature.connect(tremble)
+	Signals.bees_not_near_creature.connect(stop_tremble)
 
 	animated_sprite_creature.modulate = Constants.CREATURE_MODULATE_UNPOSSESSED
 	animated_sprite_creature.frame = 0
@@ -88,6 +92,7 @@ func _process(delta: float) -> void:
 		if is_possessed:
 			var opposite = -player.input_direction
 			player.handle_movement_input(avoid_bees(bee_dir, opposite))
+			player.can_move = false
 			player.deactivate()
 		else:
 			var dir = avoid_bees(bee_dir, Vector2.ZERO)
@@ -100,10 +105,14 @@ func _process(delta: float) -> void:
 
 	# Reached tile → stop avoiding
 	if is_avoiding_bees and position.distance_to(target_position) < 0.1:
+		if player:
+			#player.activate()
+			global_position = target_position
 		position = target_position
 		is_avoiding_bees = false
 		last_escape_direction = Vector2.ZERO
 		hard_escape_lock = false
+		bee_dir = null
 
 
 # -----------------------------------------------------------
@@ -233,6 +242,11 @@ func appear():
 func disappear():
 	queue_free()
 
+func tremble():
+	sweat_particles.emitting = true
+
+func stop_tremble():
+	sweat_particles.emitting = false
 
 # -----------------------------------------------------------
 # Neighbor Detection

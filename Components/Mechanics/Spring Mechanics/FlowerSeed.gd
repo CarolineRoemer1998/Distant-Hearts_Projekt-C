@@ -22,7 +22,7 @@ func disable_collision_layer():
 func grow():
 	remove_from_group(Constants.GROUP_NAME_STONES)
 	add_to_group(str(Constants.GROUP_NAME_FLOWER_SEED))
-	for i in range(0, 20):
+	for i in range(1, 20):
 		set_collision_layer_value(i, false)
 	set_collision_layer_value(Constants.LAYER_BIT_FLOWER+1, true)
 	flower_seed.visible = false

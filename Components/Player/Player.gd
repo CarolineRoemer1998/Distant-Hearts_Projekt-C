@@ -16,6 +16,7 @@ class_name Player
 @onready var audio_uncontrol: AudioStreamPlayer2D = $AudioUncontrol
 
 @onready var step_timer: Timer = $StepTimer
+@onready var avoid_timer: Timer = $AvoidTimer
 
 var is_active := true
 
@@ -39,6 +40,8 @@ var hovering_over: Creature = null
 var currently_possessed_creature: Creature = null
 var pushable_stone_in_direction : Stone = null
 
+var bees_are_flying = false
+
 
 ## TODO: Deaktivieren während Bienen fliegen
 
@@ -56,8 +59,8 @@ func _ready():
 	Signals.player_move_finished.connect(on_move_step_finished)
 	Signals.creature_started_teleporting.connect(deactivate)
 	Signals.creature_finished_teleporting.connect(activate)
-	Signals.bees_start_flying.connect(deactivate)
-	Signals.bees_stop_flying.connect(activate)
+	Signals.bees_start_flying.connect(handle_bees_start_flying)
+	Signals.bees_stop_flying.connect(handle_bees_stop_flying)
 
 	target_position = position.snapped(Constants.GRID_SIZE / 2)
 	position = target_position
@@ -221,14 +224,18 @@ func set_animation_direction(_direction: Vector2):
 
 ## Handles movement each frame, including bees and teleportation.
 func update_movement(delta):
+	if target_position != global_position:
+		deactivate()
 	if currently_possessed_creature and currently_possessed_creature.is_avoiding_bees:
 		_sync_with_creature_during_bee_avoidance()
 		return
 
-	if not is_moving:
-		return
-
 	if currently_possessed_creature and currently_possessed_creature.is_teleporting:
+		return
+		
+	if not is_moving:
+		if not bees_are_flying:
+			activate()
 		return
 
 	if is_on_ice and currently_possessed_creature and not is_moving_on_ice:
@@ -242,7 +249,9 @@ func update_movement(delta):
 		)
 
 	if position == target_position:
+		#activate()
 		if _check_bee_avoidance_after_step():
+			#activate()
 			return
 
 		if currently_possessed_creature and currently_possessed_creature.just_teleported:
@@ -321,6 +330,14 @@ func deactivate():
 func activate():
 	is_active = true
 
+func handle_bees_start_flying():
+	#deactivate()
+	can_move = false
+	bees_are_flying = true
+
+func handle_bees_stop_flying():
+	if avoid_timer.is_stopped():
+		avoid_timer.start(0.5)
 
 # ------------------------------------------------
 # MOVE START
@@ -424,7 +441,7 @@ func set_is_standing_on_teleporter(val: bool):
 
 ## Teleports player and possessed creature when triggered.
 func on_teleporter_entered(teleporter: Teleporter):
-	if currently_possessed_creature and is_active:
+	if currently_possessed_creature:
 		currently_possessed_creature.start_teleport(teleporter)
 		global_position = teleporter.global_position
 		target_position = global_position
@@ -497,3 +514,9 @@ func update_heart_icons():
 ## Re-enables movement after step timer finishes.
 func _on_step_timer_timeout():
 	can_move = true
+
+
+func _on_avoid_timer_timeout() -> void:
+	activate()
+	can_move = true
+	bees_are_flying = false
