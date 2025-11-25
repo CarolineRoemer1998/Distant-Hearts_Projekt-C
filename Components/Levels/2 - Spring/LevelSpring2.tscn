@@ -1,0 +1,55 @@
+[gd_scene load_steps=12 format=3 uid="uid://2yidpveskdj8"]
+
+[ext_resource type="Script" uid="uid://ddiwo6yyhfkuc" path="res://Components/Levels/level.gd" id="1_o25g3"]
+[ext_resource type="PackedScene" uid="uid://lrodaawkgfob" path="res://Components/UI/VFX/undo_particles.tscn" id="2_lnttf"]
+[ext_resource type="PackedScene" uid="uid://ihdvu1wqfcub" path="res://Components/Levels/Backgrounds/bg-base-spring.tscn" id="3_phjrt"]
+[ext_resource type="PackedScene" uid="uid://ccncnjkm8w8ta" path="res://Components/Creatures/creature_blue.tscn" id="4_ytva6"]
+[ext_resource type="PackedScene" uid="uid://be6k5yjppap8y" path="res://Components/Creatures/creature_yellow.tscn" id="5_ur3mc"]
+[ext_resource type="PackedScene" uid="uid://g3u7bc1jo6gj" path="res://Components/Player/player.tscn" id="6_0ecyo"]
+[ext_resource type="PackedScene" uid="uid://dtrjxhb3ayo1c" path="res://Components/Levels/LevelUI.tscn" id="8_j216h"]
+[ext_resource type="PackedScene" uid="uid://ba8q3gl8ussnm" path="res://Components/Mechanics/Spring Mechanics/FlowerSeed.tscn" id="9_5nyxd"]
+[ext_resource type="PackedScene" uid="uid://dpemn8sewapip" path="res://Components/Mechanics/Spring Mechanics/soil.tscn" id="10_bbxu2"]
+[ext_resource type="PackedScene" uid="uid://oy61arlldjo3" path="res://Components/Mechanics/Stones/Stone.tscn" id="10_o25g3"]
+[ext_resource type="PackedScene" uid="uid://0edfjrrf5011" path="res://Components/Mechanics/Spring Mechanics/BeeSwarm.tscn" id="11_bjrms"]
+
+[node name="LevelSpring2" type="Node2D"]
+script = ExtResource("1_o25g3")
+season = 1
+undo_particles = ExtResource("2_lnttf")
+level_number = 7
+
+[node name="BackgroundSpring" parent="." instance=ExtResource("3_phjrt")]
+
+[node name="LevelWall" parent="BackgroundSpring" index="2"]
+visible = true
+
+[node name="Creatures" type="Node" parent="."]
+
+[node name="CreatureBlue" parent="Creatures" instance=ExtResource("4_ytva6")]
+position = Vector2(480, 480)
+
+[node name="CreatureYellow" parent="Creatures" instance=ExtResource("5_ur3mc")]
+position = Vector2(224, 224)
+
+[node name="Player" type="Node" parent="."]
+
+[node name="Player" parent="Player" instance=ExtResource("6_0ecyo")]
+position = Vector2(416, 480)
+
+[node name="FlowerSeed" parent="." instance=ExtResource("9_5nyxd")]
+position = Vector2(480, 352)
+
+[node name="Soil" parent="." instance=ExtResource("10_bbxu2")]
+position = Vector2(480, 288)
+
+[node name="BeeSwarm" parent="." instance=ExtResource("11_bjrms")]
+position = Vector2(96, 288)
+
+[node name="Stone" parent="." instance=ExtResource("10_o25g3")]
+position = Vector2(544, 416)
+
+[node name="LevelUI" parent="." instance=ExtResource("8_j216h")]
+
+[editable path="BackgroundSpring"]
+[editable path="LevelUI"]
+[editable path="LevelUI/UndoMechanic"]

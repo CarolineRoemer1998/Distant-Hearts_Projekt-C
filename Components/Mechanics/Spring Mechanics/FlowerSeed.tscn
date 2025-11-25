@@ -1,8 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://ba8q3gl8ussnm"]
+[gd_scene load_steps=16 format=3 uid="uid://ba8q3gl8ussnm"]
 
 [ext_resource type="Script" uid="uid://dytdyife3qh6p" path="res://Components/Mechanics/Spring Mechanics/FlowerSeed.gd" id="1_rjnan"]
 [ext_resource type="Texture2D" uid="uid://c4bdewfthxc5h" path="res://Assets/Spring Mechanics/Flower/PinkFlowerBiggerBorderSpriteSheet.png" id="1_t7jgl"]
-[ext_resource type="Texture2D" uid="uid://deea1xcltq8ks" path="res://Assets/Spring Mechanics/Flower/Soil.png" id="2_8nooi"]
 [ext_resource type="Texture2D" uid="uid://dbtlkxrnci834" path="res://Assets/Spring Mechanics/Flower/Seed3.png" id="4_tpjqu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rjnan"]
@@ -97,11 +96,6 @@ texture = ExtResource("4_tpjqu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_rjnan")
-
-[node name="Soil" type="Sprite2D" parent="."]
-visible = false
-scale = Vector2(2, 2)
-texture = ExtResource("2_8nooi")
 
 [node name="Flower" type="AnimatedSprite2D" parent="."]
 visible = false

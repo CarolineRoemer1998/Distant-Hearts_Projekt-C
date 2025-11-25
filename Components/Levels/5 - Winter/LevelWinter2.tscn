@@ -21,11 +21,11 @@
 [ext_resource type="PackedScene" uid="uid://ccncnjkm8w8ta" path="res://Components/Creatures/creature_blue.tscn" id="20_cdw8v"]
 [ext_resource type="PackedScene" uid="uid://dtrjxhb3ayo1c" path="res://Components/Levels/LevelUI.tscn" id="21_6rx7j"]
 
-[node name="Level7" type="Node2D"]
+[node name="WinterLevel2" type="Node2D"]
 script = ExtResource("1_luhgi")
 season = 4
 undo_particles = ExtResource("2_6ujdl")
-level_number = 7
+level_number = 22
 
 [node name="BackgroundWinter2" parent="." instance=ExtResource("3_cdw8v")]
 

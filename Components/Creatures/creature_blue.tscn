@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://csubn0t1qpfow" path="res://Assets/Creatures/Blue/creature2_blue_white_border.png" id="3_xbm6y"]
 [ext_resource type="PackedScene" uid="uid://mghbvp3knkqw" path="res://Components/Creatures/Creature_AnimationPlayer.tscn" id="4_lgxpu"]
 [ext_resource type="PackedScene" uid="uid://23u33yt4jga3" path="res://Components/Creatures/merged_creature.tscn" id="4_urr0o"]
-[ext_resource type="PackedScene" uid="uid://n5krahylrcfq" path="res://Components/UI/VFX/sweat_particles.tscn" id="6_ufwjw"]
+[ext_resource type="PackedScene" uid="uid://cx5n1pmnky434" path="res://Components/UI/VFX/sweat_particles.tscn" id="6_ufwjw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ulpcw"]
 size = Vector2(2, 2)
@@ -552,6 +552,7 @@ script = ExtResource("1_lgxpu")
 shape = SubResource("RectangleShape2D_ulpcw")
 
 [node name="Areas" type="Node2D" parent="."]
+visible = false
 
 [node name="Area2D_Self" type="Area2D" parent="Areas"]
 collision_layer = 2

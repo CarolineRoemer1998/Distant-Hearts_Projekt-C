@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=4 uid="uid://bjlb842jvvq0k"]
+[gd_scene load_steps=105 format=4 uid="uid://bjlb842jvvq0k"]
 
 [ext_resource type="Script" uid="uid://ckji0el187dht" path="res://Components/UI/Menues/level_select.gd" id="1_6aqvj"]
 [ext_resource type="Texture2D" uid="uid://daocnama176b2" path="res://Assets/Presentation/Verworfen/Tile.png" id="3_31xks"]
@@ -8,17 +8,35 @@
 [ext_resource type="Texture2D" uid="uid://d0gndbeyxhfii" path="res://Assets/Environments/grass-floor.png" id="7_aivvh"]
 [ext_resource type="FontFile" uid="uid://d3id6ewnchky" path="res://Fonts/GrapeSoda.ttf" id="8_212me"]
 [ext_resource type="Theme" uid="uid://i7fixmxgctx7" path="res://Assets/UI/Menu Buttons/Button.tres" id="9_d7vdv"]
-[ext_resource type="Texture2D" uid="uid://c078bffof3yta" path="res://Assets/Presentation/ScreenShots/lvl10.png" id="10_6aqvj"]
-[ext_resource type="Texture2D" uid="uid://0o6mhfoic4yu" path="res://Assets/Presentation/ScreenShots/lvl1.png" id="10_h3e5b"]
+[ext_resource type="Texture2D" uid="uid://c078bffof3yta" path="res://Assets/Presentation/ScreenShots/preview_winter_5.png" id="10_6aqvj"]
+[ext_resource type="Texture2D" uid="uid://0o6mhfoic4yu" path="res://Assets/Presentation/ScreenShots/preview_intro_1.png" id="10_h3e5b"]
 [ext_resource type="Script" uid="uid://bld4747e6bxrc" path="res://Components/UI/Controls/menu_button.gd" id="10_sl6uc"]
-[ext_resource type="Texture2D" uid="uid://buc71108df6hf" path="res://Assets/Presentation/ScreenShots/lvl2.png" id="11_7qm35"]
-[ext_resource type="Texture2D" uid="uid://wfbwlhwpsoe8" path="res://Assets/Presentation/ScreenShots/lvl3.png" id="12_woyun"]
-[ext_resource type="Texture2D" uid="uid://cbn3utk3ut1s7" path="res://Assets/Presentation/ScreenShots/lvl4.png" id="13_ho1re"]
-[ext_resource type="Texture2D" uid="uid://c6thvpb8yi4tj" path="res://Assets/Presentation/ScreenShots/lvl5.png" id="14_gra6x"]
-[ext_resource type="Texture2D" uid="uid://dpwtjiplip8kd" path="res://Assets/Presentation/ScreenShots/lvl6.png" id="15_7vdvl"]
-[ext_resource type="Texture2D" uid="uid://dej8o3atobn7n" path="res://Assets/Presentation/ScreenShots/lvl7.png" id="16_a3n8b"]
-[ext_resource type="Texture2D" uid="uid://b5awbje32ckt8" path="res://Assets/Presentation/ScreenShots/lvl8.png" id="17_fphvl"]
-[ext_resource type="Texture2D" uid="uid://ou3xgtnpdcjp" path="res://Assets/Presentation/ScreenShots/lvl9.png" id="18_xsmqa"]
+[ext_resource type="Texture2D" uid="uid://buc71108df6hf" path="res://Assets/Presentation/ScreenShots/preview_intro_2.png" id="11_7qm35"]
+[ext_resource type="Texture2D" uid="uid://wfbwlhwpsoe8" path="res://Assets/Presentation/ScreenShots/preview_intro_3.png" id="12_woyun"]
+[ext_resource type="Texture2D" uid="uid://cbn3utk3ut1s7" path="res://Assets/Presentation/ScreenShots/preview_intro_4.png" id="13_ho1re"]
+[ext_resource type="Texture2D" uid="uid://c6thvpb8yi4tj" path="res://Assets/Presentation/ScreenShots/preview_intro_5.png" id="14_gra6x"]
+[ext_resource type="Texture2D" uid="uid://dpwtjiplip8kd" path="res://Assets/Presentation/ScreenShots/preview_winter_1.png" id="15_7vdvl"]
+[ext_resource type="Texture2D" uid="uid://db2qd7q0i28ur" path="res://Assets/UI/Menu Buttons/MenuButtonHover.png" id="15_hpvvb"]
+[ext_resource type="Texture2D" uid="uid://ctnny438nun0" path="res://Assets/UI/Menu Buttons/MenuButton.png" id="16_4ke28"]
+[ext_resource type="Texture2D" uid="uid://dej8o3atobn7n" path="res://Assets/Presentation/ScreenShots/preview_winter_2.png" id="16_a3n8b"]
+[ext_resource type="Texture2D" uid="uid://b5awbje32ckt8" path="res://Assets/Presentation/ScreenShots/preview_winter_3.png" id="17_fphvl"]
+[ext_resource type="Texture2D" uid="uid://yd1pnpmwhyt0" path="res://Assets/UI/Menu Buttons/MenuButtonPressed.png" id="17_n4c8e"]
+[ext_resource type="Texture2D" uid="uid://dykfjnxld0488" path="res://Assets/Presentation/ScreenShots/preview_spring_1.png" id="18_u6m3p"]
+[ext_resource type="Texture2D" uid="uid://ou3xgtnpdcjp" path="res://Assets/Presentation/ScreenShots/preview_winter_4.png" id="18_xsmqa"]
+[ext_resource type="Texture2D" uid="uid://gg43eyqtjwe6" path="res://Assets/Presentation/ScreenShots/preview_spring_2.png" id="19_qa4hw"]
+[ext_resource type="Texture2D" uid="uid://csmqyllxu3bb" path="res://Assets/Presentation/ScreenShots/preview_spring_3.png" id="20_tcepi"]
+[ext_resource type="Texture2D" uid="uid://crer01scdxvy0" path="res://Assets/Presentation/ScreenShots/preview_spring_4.png" id="21_s106q"]
+[ext_resource type="Texture2D" uid="uid://cnx2joneghtgq" path="res://Assets/Presentation/ScreenShots/preview_spring_5.png" id="22_t7h6r"]
+[ext_resource type="Texture2D" uid="uid://dotx8c6krx6ji" path="res://Assets/Presentation/ScreenShots/preview_summer_1.png" id="23_inc37"]
+[ext_resource type="Texture2D" uid="uid://bjhujvyqd78v8" path="res://Assets/Presentation/ScreenShots/preview_summer_2.png" id="24_01cdt"]
+[ext_resource type="Texture2D" uid="uid://cb1g2oqmdf1x1" path="res://Assets/Presentation/ScreenShots/preview_summer_3.png" id="25_xqy0b"]
+[ext_resource type="Texture2D" uid="uid://do16c6ecbe6jk" path="res://Assets/Presentation/ScreenShots/preview_summer_4.png" id="26_ij0n3"]
+[ext_resource type="Texture2D" uid="uid://b8eb8ae8atwq0" path="res://Assets/Presentation/ScreenShots/preview_summer_5.png" id="27_dcoc6"]
+[ext_resource type="Texture2D" uid="uid://be6hygya6acus" path="res://Assets/Presentation/ScreenShots/preview_fall_1.png" id="28_c4xeh"]
+[ext_resource type="Texture2D" uid="uid://cfslpypf80vjg" path="res://Assets/Presentation/ScreenShots/preview_fall_2.png" id="29_buiqr"]
+[ext_resource type="Texture2D" uid="uid://d33tote321at0" path="res://Assets/Presentation/ScreenShots/preview_fall_3.png" id="30_ugvoj"]
+[ext_resource type="Texture2D" uid="uid://bu5vsg07jry0d" path="res://Assets/Presentation/ScreenShots/preview_fall_4.png" id="31_y3rbo"]
+[ext_resource type="Texture2D" uid="uid://cp7qu4iwhh7m" path="res://Assets/Presentation/ScreenShots/preview_fall_5.png" id="32_kbtot"]
 
 [sub_resource type="Environment" id="Environment_ok3ky"]
 background_mode = 3
@@ -131,6 +149,799 @@ texture = ExtResource("13_ho1re")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4a1fg"]
 texture = ExtResource("14_gra6x")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gjdij"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.3)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1yp4h"]
+texture = ExtResource("15_hpvvb")
+texture_margin_left = 4.96708
+texture_margin_top = 5.0
+texture_margin_right = 4.97305
+texture_margin_bottom = 5.0
+region_rect = Rect2(0, 4, 32, 25)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_noj2f"]
+texture = ExtResource("15_hpvvb")
+texture_margin_left = 4.96708
+texture_margin_top = 5.0
+texture_margin_right = 4.97305
+texture_margin_bottom = 5.0
+region_rect = Rect2(0, 4, 32, 25)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_adw1g"]
+texture = ExtResource("16_4ke28")
+texture_margin_left = 5.06778
+texture_margin_top = 5.04315
+texture_margin_right = 4.97716
+texture_margin_bottom = 4.98011
+region_rect = Rect2(0, 4, 32, 25)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cahym"]
+texture = ExtResource("17_n4c8e")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.10046
+texture_margin_bottom = 5.0
+
+[sub_resource type="Theme" id="Theme_48hfm"]
+Button/colors/font_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+Button/colors/font_focus_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/font_hover_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/font_hover_pressed_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+Button/colors/icon_focus_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/constants/align_to_largest_stylebox = 0
+Button/constants/h_separation = 4
+Button/constants/icon_max_width = 0
+Button/constants/outline_size = 0
+Button/font_sizes/font_size = 30
+Button/fonts/font = ExtResource("8_212me")
+Button/styles/disabled = SubResource("StyleBoxFlat_gjdij")
+Button/styles/focus = SubResource("StyleBoxTexture_1yp4h")
+Button/styles/hover = SubResource("StyleBoxTexture_noj2f")
+Button/styles/normal = SubResource("StyleBoxTexture_adw1g")
+Button/styles/pressed = SubResource("StyleBoxTexture_cahym")
+
+[sub_resource type="GDScript" id="GDScript_uj47q"]
+script/source = "extends Button
+
+const HOVER_SOUND = Constants.SFX_PATH_STEP
+const PRESS_SOUND = Constants.SFX_PUSH_MENU_BUTTON
+
+func _ready():
+	# Delay hover sound until after the first frame
+	await get_tree().process_frame
+
+	focus_entered.connect(self._on_focus_entered)
+	mouse_entered.connect(self._on_focus_entered)
+	pressed.connect(self._on_button_pressed)
+	
+func _on_focus_entered():
+	AudioManager.play_sfx(HOVER_SOUND)	
+	
+func _on_button_pressed():
+	AudioManager.play_sfx(PRESS_SOUND)
+"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m7ufb"]
+texture = ExtResource("18_u6m3p")
+
+[sub_resource type="Theme" id="Theme_j7bxd"]
+Button/colors/font_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+Button/colors/font_focus_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/font_hover_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/font_hover_pressed_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+Button/colors/icon_focus_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/constants/align_to_largest_stylebox = 0
+Button/constants/h_separation = 4
+Button/constants/icon_max_width = 0
+Button/constants/outline_size = 0
+Button/font_sizes/font_size = 30
+Button/fonts/font = ExtResource("8_212me")
+Button/styles/disabled = SubResource("StyleBoxFlat_gjdij")
+Button/styles/focus = SubResource("StyleBoxTexture_1yp4h")
+Button/styles/hover = SubResource("StyleBoxTexture_noj2f")
+Button/styles/normal = SubResource("StyleBoxTexture_adw1g")
+Button/styles/pressed = SubResource("StyleBoxTexture_cahym")
+
+[sub_resource type="GDScript" id="GDScript_swl4m"]
+script/source = "extends Button
+
+const HOVER_SOUND = Constants.SFX_PATH_STEP
+const PRESS_SOUND = Constants.SFX_PUSH_MENU_BUTTON
+
+func _ready():
+	# Delay hover sound until after the first frame
+	await get_tree().process_frame
+
+	focus_entered.connect(self._on_focus_entered)
+	mouse_entered.connect(self._on_focus_entered)
+	pressed.connect(self._on_button_pressed)
+	
+func _on_focus_entered():
+	AudioManager.play_sfx(HOVER_SOUND)	
+	
+func _on_button_pressed():
+	AudioManager.play_sfx(PRESS_SOUND)
+"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jhly2"]
+texture = ExtResource("19_qa4hw")
+
+[sub_resource type="Theme" id="Theme_jc3gb"]
+Button/colors/font_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+Button/colors/font_focus_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/font_hover_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/font_hover_pressed_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+Button/colors/icon_focus_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/constants/align_to_largest_stylebox = 0
+Button/constants/h_separation = 4
+Button/constants/icon_max_width = 0
+Button/constants/outline_size = 0
+Button/font_sizes/font_size = 30
+Button/fonts/font = ExtResource("8_212me")
+Button/styles/disabled = SubResource("StyleBoxFlat_gjdij")
+Button/styles/focus = SubResource("StyleBoxTexture_1yp4h")
+Button/styles/hover = SubResource("StyleBoxTexture_noj2f")
+Button/styles/normal = SubResource("StyleBoxTexture_adw1g")
+Button/styles/pressed = SubResource("StyleBoxTexture_cahym")
+
+[sub_resource type="GDScript" id="GDScript_clp6r"]
+script/source = "extends Button
+
+const HOVER_SOUND = Constants.SFX_PATH_STEP
+const PRESS_SOUND = Constants.SFX_PUSH_MENU_BUTTON
+
+func _ready():
+	# Delay hover sound until after the first frame
+	await get_tree().process_frame
+
+	focus_entered.connect(self._on_focus_entered)
+	mouse_entered.connect(self._on_focus_entered)
+	pressed.connect(self._on_button_pressed)
+	
+func _on_focus_entered():
+	AudioManager.play_sfx(HOVER_SOUND)	
+	
+func _on_button_pressed():
+	AudioManager.play_sfx(PRESS_SOUND)
+"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_27veg"]
+texture = ExtResource("20_tcepi")
+
+[sub_resource type="Theme" id="Theme_14obh"]
+Button/colors/font_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+Button/colors/font_focus_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/font_hover_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/font_hover_pressed_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+Button/colors/icon_focus_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/constants/align_to_largest_stylebox = 0
+Button/constants/h_separation = 4
+Button/constants/icon_max_width = 0
+Button/constants/outline_size = 0
+Button/font_sizes/font_size = 30
+Button/fonts/font = ExtResource("8_212me")
+Button/styles/disabled = SubResource("StyleBoxFlat_gjdij")
+Button/styles/focus = SubResource("StyleBoxTexture_1yp4h")
+Button/styles/hover = SubResource("StyleBoxTexture_noj2f")
+Button/styles/normal = SubResource("StyleBoxTexture_adw1g")
+Button/styles/pressed = SubResource("StyleBoxTexture_cahym")
+
+[sub_resource type="GDScript" id="GDScript_qa4hw"]
+script/source = "extends Button
+
+const HOVER_SOUND = Constants.SFX_PATH_STEP
+const PRESS_SOUND = Constants.SFX_PUSH_MENU_BUTTON
+
+func _ready():
+	# Delay hover sound until after the first frame
+	await get_tree().process_frame
+
+	focus_entered.connect(self._on_focus_entered)
+	mouse_entered.connect(self._on_focus_entered)
+	pressed.connect(self._on_button_pressed)
+	
+func _on_focus_entered():
+	AudioManager.play_sfx(HOVER_SOUND)	
+	
+func _on_button_pressed():
+	AudioManager.play_sfx(PRESS_SOUND)
+"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tcepi"]
+texture = ExtResource("21_s106q")
+
+[sub_resource type="Theme" id="Theme_s106q"]
+Button/colors/font_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+Button/colors/font_focus_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/font_hover_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/font_hover_pressed_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+Button/colors/icon_focus_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/constants/align_to_largest_stylebox = 0
+Button/constants/h_separation = 4
+Button/constants/icon_max_width = 0
+Button/constants/outline_size = 0
+Button/font_sizes/font_size = 30
+Button/fonts/font = ExtResource("8_212me")
+Button/styles/disabled = SubResource("StyleBoxFlat_gjdij")
+Button/styles/focus = SubResource("StyleBoxTexture_1yp4h")
+Button/styles/hover = SubResource("StyleBoxTexture_noj2f")
+Button/styles/normal = SubResource("StyleBoxTexture_adw1g")
+Button/styles/pressed = SubResource("StyleBoxTexture_cahym")
+
+[sub_resource type="GDScript" id="GDScript_t7h6r"]
+script/source = "extends Button
+
+const HOVER_SOUND = Constants.SFX_PATH_STEP
+const PRESS_SOUND = Constants.SFX_PUSH_MENU_BUTTON
+
+func _ready():
+	# Delay hover sound until after the first frame
+	await get_tree().process_frame
+
+	focus_entered.connect(self._on_focus_entered)
+	mouse_entered.connect(self._on_focus_entered)
+	pressed.connect(self._on_button_pressed)
+	
+func _on_focus_entered():
+	AudioManager.play_sfx(HOVER_SOUND)	
+	
+func _on_button_pressed():
+	AudioManager.play_sfx(PRESS_SOUND)
+"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_inc37"]
+texture = ExtResource("22_t7h6r")
+
+[sub_resource type="Theme" id="Theme_01cdt"]
+Button/colors/font_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+Button/colors/font_focus_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/font_hover_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/font_hover_pressed_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+Button/colors/icon_focus_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/constants/align_to_largest_stylebox = 0
+Button/constants/h_separation = 4
+Button/constants/icon_max_width = 0
+Button/constants/outline_size = 0
+Button/font_sizes/font_size = 30
+Button/fonts/font = ExtResource("8_212me")
+Button/styles/disabled = SubResource("StyleBoxFlat_gjdij")
+Button/styles/focus = SubResource("StyleBoxTexture_1yp4h")
+Button/styles/hover = SubResource("StyleBoxTexture_noj2f")
+Button/styles/normal = SubResource("StyleBoxTexture_adw1g")
+Button/styles/pressed = SubResource("StyleBoxTexture_cahym")
+
+[sub_resource type="GDScript" id="GDScript_xqy0b"]
+script/source = "extends Button
+
+const HOVER_SOUND = Constants.SFX_PATH_STEP
+const PRESS_SOUND = Constants.SFX_PUSH_MENU_BUTTON
+
+func _ready():
+	# Delay hover sound until after the first frame
+	await get_tree().process_frame
+
+	focus_entered.connect(self._on_focus_entered)
+	mouse_entered.connect(self._on_focus_entered)
+	pressed.connect(self._on_button_pressed)
+	
+func _on_focus_entered():
+	AudioManager.play_sfx(HOVER_SOUND)	
+	
+func _on_button_pressed():
+	AudioManager.play_sfx(PRESS_SOUND)
+"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ij0n3"]
+texture = ExtResource("23_inc37")
+
+[sub_resource type="Theme" id="Theme_dcoc6"]
+Button/colors/font_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+Button/colors/font_focus_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/font_hover_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/font_hover_pressed_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+Button/colors/icon_focus_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/constants/align_to_largest_stylebox = 0
+Button/constants/h_separation = 4
+Button/constants/icon_max_width = 0
+Button/constants/outline_size = 0
+Button/font_sizes/font_size = 30
+Button/fonts/font = ExtResource("8_212me")
+Button/styles/disabled = SubResource("StyleBoxFlat_gjdij")
+Button/styles/focus = SubResource("StyleBoxTexture_1yp4h")
+Button/styles/hover = SubResource("StyleBoxTexture_noj2f")
+Button/styles/normal = SubResource("StyleBoxTexture_adw1g")
+Button/styles/pressed = SubResource("StyleBoxTexture_cahym")
+
+[sub_resource type="GDScript" id="GDScript_c4xeh"]
+script/source = "extends Button
+
+const HOVER_SOUND = Constants.SFX_PATH_STEP
+const PRESS_SOUND = Constants.SFX_PUSH_MENU_BUTTON
+
+func _ready():
+	# Delay hover sound until after the first frame
+	await get_tree().process_frame
+
+	focus_entered.connect(self._on_focus_entered)
+	mouse_entered.connect(self._on_focus_entered)
+	pressed.connect(self._on_button_pressed)
+	
+func _on_focus_entered():
+	AudioManager.play_sfx(HOVER_SOUND)	
+	
+func _on_button_pressed():
+	AudioManager.play_sfx(PRESS_SOUND)
+"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_buiqr"]
+texture = ExtResource("24_01cdt")
+
+[sub_resource type="Theme" id="Theme_ugvoj"]
+Button/colors/font_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+Button/colors/font_focus_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/font_hover_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/font_hover_pressed_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+Button/colors/icon_focus_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/constants/align_to_largest_stylebox = 0
+Button/constants/h_separation = 4
+Button/constants/icon_max_width = 0
+Button/constants/outline_size = 0
+Button/font_sizes/font_size = 30
+Button/fonts/font = ExtResource("8_212me")
+Button/styles/disabled = SubResource("StyleBoxFlat_gjdij")
+Button/styles/focus = SubResource("StyleBoxTexture_1yp4h")
+Button/styles/hover = SubResource("StyleBoxTexture_noj2f")
+Button/styles/normal = SubResource("StyleBoxTexture_adw1g")
+Button/styles/pressed = SubResource("StyleBoxTexture_cahym")
+
+[sub_resource type="GDScript" id="GDScript_y3rbo"]
+script/source = "extends Button
+
+const HOVER_SOUND = Constants.SFX_PATH_STEP
+const PRESS_SOUND = Constants.SFX_PUSH_MENU_BUTTON
+
+func _ready():
+	# Delay hover sound until after the first frame
+	await get_tree().process_frame
+
+	focus_entered.connect(self._on_focus_entered)
+	mouse_entered.connect(self._on_focus_entered)
+	pressed.connect(self._on_button_pressed)
+	
+func _on_focus_entered():
+	AudioManager.play_sfx(HOVER_SOUND)	
+	
+func _on_button_pressed():
+	AudioManager.play_sfx(PRESS_SOUND)
+"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kbtot"]
+texture = ExtResource("25_xqy0b")
+
+[sub_resource type="Theme" id="Theme_a8440"]
+Button/colors/font_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+Button/colors/font_focus_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/font_hover_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/font_hover_pressed_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+Button/colors/icon_focus_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/constants/align_to_largest_stylebox = 0
+Button/constants/h_separation = 4
+Button/constants/icon_max_width = 0
+Button/constants/outline_size = 0
+Button/font_sizes/font_size = 30
+Button/fonts/font = ExtResource("8_212me")
+Button/styles/disabled = SubResource("StyleBoxFlat_gjdij")
+Button/styles/focus = SubResource("StyleBoxTexture_1yp4h")
+Button/styles/hover = SubResource("StyleBoxTexture_noj2f")
+Button/styles/normal = SubResource("StyleBoxTexture_adw1g")
+Button/styles/pressed = SubResource("StyleBoxTexture_cahym")
+
+[sub_resource type="GDScript" id="GDScript_eeavd"]
+script/source = "extends Button
+
+const HOVER_SOUND = Constants.SFX_PATH_STEP
+const PRESS_SOUND = Constants.SFX_PUSH_MENU_BUTTON
+
+func _ready():
+	# Delay hover sound until after the first frame
+	await get_tree().process_frame
+
+	focus_entered.connect(self._on_focus_entered)
+	mouse_entered.connect(self._on_focus_entered)
+	pressed.connect(self._on_button_pressed)
+	
+func _on_focus_entered():
+	AudioManager.play_sfx(HOVER_SOUND)	
+	
+func _on_button_pressed():
+	AudioManager.play_sfx(PRESS_SOUND)
+"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ktc0q"]
+texture = ExtResource("26_ij0n3")
+
+[sub_resource type="Theme" id="Theme_v13r8"]
+Button/colors/font_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+Button/colors/font_focus_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/font_hover_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/font_hover_pressed_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+Button/colors/icon_focus_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/constants/align_to_largest_stylebox = 0
+Button/constants/h_separation = 4
+Button/constants/icon_max_width = 0
+Button/constants/outline_size = 0
+Button/font_sizes/font_size = 30
+Button/fonts/font = ExtResource("8_212me")
+Button/styles/disabled = SubResource("StyleBoxFlat_gjdij")
+Button/styles/focus = SubResource("StyleBoxTexture_1yp4h")
+Button/styles/hover = SubResource("StyleBoxTexture_noj2f")
+Button/styles/normal = SubResource("StyleBoxTexture_adw1g")
+Button/styles/pressed = SubResource("StyleBoxTexture_cahym")
+
+[sub_resource type="GDScript" id="GDScript_bfm0r"]
+script/source = "extends Button
+
+const HOVER_SOUND = Constants.SFX_PATH_STEP
+const PRESS_SOUND = Constants.SFX_PUSH_MENU_BUTTON
+
+func _ready():
+	# Delay hover sound until after the first frame
+	await get_tree().process_frame
+
+	focus_entered.connect(self._on_focus_entered)
+	mouse_entered.connect(self._on_focus_entered)
+	pressed.connect(self._on_button_pressed)
+	
+func _on_focus_entered():
+	AudioManager.play_sfx(HOVER_SOUND)	
+	
+func _on_button_pressed():
+	AudioManager.play_sfx(PRESS_SOUND)
+"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_em1dp"]
+texture = ExtResource("27_dcoc6")
+
+[sub_resource type="Theme" id="Theme_v1t6f"]
+Button/colors/font_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+Button/colors/font_focus_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/font_hover_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/font_hover_pressed_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+Button/colors/icon_focus_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/constants/align_to_largest_stylebox = 0
+Button/constants/h_separation = 4
+Button/constants/icon_max_width = 0
+Button/constants/outline_size = 0
+Button/font_sizes/font_size = 30
+Button/fonts/font = ExtResource("8_212me")
+Button/styles/disabled = SubResource("StyleBoxFlat_gjdij")
+Button/styles/focus = SubResource("StyleBoxTexture_1yp4h")
+Button/styles/hover = SubResource("StyleBoxTexture_noj2f")
+Button/styles/normal = SubResource("StyleBoxTexture_adw1g")
+Button/styles/pressed = SubResource("StyleBoxTexture_cahym")
+
+[sub_resource type="GDScript" id="GDScript_bv3dd"]
+script/source = "extends Button
+
+const HOVER_SOUND = Constants.SFX_PATH_STEP
+const PRESS_SOUND = Constants.SFX_PUSH_MENU_BUTTON
+
+func _ready():
+	# Delay hover sound until after the first frame
+	await get_tree().process_frame
+
+	focus_entered.connect(self._on_focus_entered)
+	mouse_entered.connect(self._on_focus_entered)
+	pressed.connect(self._on_button_pressed)
+	
+func _on_focus_entered():
+	AudioManager.play_sfx(HOVER_SOUND)	
+	
+func _on_button_pressed():
+	AudioManager.play_sfx(PRESS_SOUND)
+"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_iu7bd"]
+texture = ExtResource("28_c4xeh")
+
+[sub_resource type="Theme" id="Theme_w53em"]
+Button/colors/font_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+Button/colors/font_focus_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/font_hover_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/font_hover_pressed_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+Button/colors/icon_focus_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/constants/align_to_largest_stylebox = 0
+Button/constants/h_separation = 4
+Button/constants/icon_max_width = 0
+Button/constants/outline_size = 0
+Button/font_sizes/font_size = 30
+Button/fonts/font = ExtResource("8_212me")
+Button/styles/disabled = SubResource("StyleBoxFlat_gjdij")
+Button/styles/focus = SubResource("StyleBoxTexture_1yp4h")
+Button/styles/hover = SubResource("StyleBoxTexture_noj2f")
+Button/styles/normal = SubResource("StyleBoxTexture_adw1g")
+Button/styles/pressed = SubResource("StyleBoxTexture_cahym")
+
+[sub_resource type="GDScript" id="GDScript_sltyv"]
+script/source = "extends Button
+
+const HOVER_SOUND = Constants.SFX_PATH_STEP
+const PRESS_SOUND = Constants.SFX_PUSH_MENU_BUTTON
+
+func _ready():
+	# Delay hover sound until after the first frame
+	await get_tree().process_frame
+
+	focus_entered.connect(self._on_focus_entered)
+	mouse_entered.connect(self._on_focus_entered)
+	pressed.connect(self._on_button_pressed)
+	
+func _on_focus_entered():
+	AudioManager.play_sfx(HOVER_SOUND)	
+	
+func _on_button_pressed():
+	AudioManager.play_sfx(PRESS_SOUND)
+"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rrwkc"]
+texture = ExtResource("29_buiqr")
+
+[sub_resource type="Theme" id="Theme_4cjrq"]
+Button/colors/font_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+Button/colors/font_focus_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/font_hover_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/font_hover_pressed_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+Button/colors/icon_focus_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/constants/align_to_largest_stylebox = 0
+Button/constants/h_separation = 4
+Button/constants/icon_max_width = 0
+Button/constants/outline_size = 0
+Button/font_sizes/font_size = 30
+Button/fonts/font = ExtResource("8_212me")
+Button/styles/disabled = SubResource("StyleBoxFlat_gjdij")
+Button/styles/focus = SubResource("StyleBoxTexture_1yp4h")
+Button/styles/hover = SubResource("StyleBoxTexture_noj2f")
+Button/styles/normal = SubResource("StyleBoxTexture_adw1g")
+Button/styles/pressed = SubResource("StyleBoxTexture_cahym")
+
+[sub_resource type="GDScript" id="GDScript_neh6n"]
+script/source = "extends Button
+
+const HOVER_SOUND = Constants.SFX_PATH_STEP
+const PRESS_SOUND = Constants.SFX_PUSH_MENU_BUTTON
+
+func _ready():
+	# Delay hover sound until after the first frame
+	await get_tree().process_frame
+
+	focus_entered.connect(self._on_focus_entered)
+	mouse_entered.connect(self._on_focus_entered)
+	pressed.connect(self._on_button_pressed)
+	
+func _on_focus_entered():
+	AudioManager.play_sfx(HOVER_SOUND)	
+	
+func _on_button_pressed():
+	AudioManager.play_sfx(PRESS_SOUND)
+"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rusfx"]
+texture = ExtResource("30_ugvoj")
+
+[sub_resource type="Theme" id="Theme_k4475"]
+Button/colors/font_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+Button/colors/font_focus_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/font_hover_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/font_hover_pressed_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+Button/colors/icon_focus_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/constants/align_to_largest_stylebox = 0
+Button/constants/h_separation = 4
+Button/constants/icon_max_width = 0
+Button/constants/outline_size = 0
+Button/font_sizes/font_size = 30
+Button/fonts/font = ExtResource("8_212me")
+Button/styles/disabled = SubResource("StyleBoxFlat_gjdij")
+Button/styles/focus = SubResource("StyleBoxTexture_1yp4h")
+Button/styles/hover = SubResource("StyleBoxTexture_noj2f")
+Button/styles/normal = SubResource("StyleBoxTexture_adw1g")
+Button/styles/pressed = SubResource("StyleBoxTexture_cahym")
+
+[sub_resource type="GDScript" id="GDScript_aftk8"]
+script/source = "extends Button
+
+const HOVER_SOUND = Constants.SFX_PATH_STEP
+const PRESS_SOUND = Constants.SFX_PUSH_MENU_BUTTON
+
+func _ready():
+	# Delay hover sound until after the first frame
+	await get_tree().process_frame
+
+	focus_entered.connect(self._on_focus_entered)
+	mouse_entered.connect(self._on_focus_entered)
+	pressed.connect(self._on_button_pressed)
+	
+func _on_focus_entered():
+	AudioManager.play_sfx(HOVER_SOUND)	
+	
+func _on_button_pressed():
+	AudioManager.play_sfx(PRESS_SOUND)
+"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s6xov"]
+texture = ExtResource("31_y3rbo")
+
+[sub_resource type="Theme" id="Theme_57e3v"]
+Button/colors/font_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+Button/colors/font_focus_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/font_hover_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/font_hover_pressed_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(0.458824, 0.305882, 0.329412, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+Button/colors/icon_focus_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/constants/align_to_largest_stylebox = 0
+Button/constants/h_separation = 4
+Button/constants/icon_max_width = 0
+Button/constants/outline_size = 0
+Button/font_sizes/font_size = 30
+Button/fonts/font = ExtResource("8_212me")
+Button/styles/disabled = SubResource("StyleBoxFlat_gjdij")
+Button/styles/focus = SubResource("StyleBoxTexture_1yp4h")
+Button/styles/hover = SubResource("StyleBoxTexture_noj2f")
+Button/styles/normal = SubResource("StyleBoxTexture_adw1g")
+Button/styles/pressed = SubResource("StyleBoxTexture_cahym")
+
+[sub_resource type="GDScript" id="GDScript_7ey0e"]
+script/source = "extends Button
+
+const HOVER_SOUND = Constants.SFX_PATH_STEP
+const PRESS_SOUND = Constants.SFX_PUSH_MENU_BUTTON
+
+func _ready():
+	# Delay hover sound until after the first frame
+	await get_tree().process_frame
+
+	focus_entered.connect(self._on_focus_entered)
+	mouse_entered.connect(self._on_focus_entered)
+	pressed.connect(self._on_button_pressed)
+	
+func _on_focus_entered():
+	AudioManager.play_sfx(HOVER_SOUND)	
+	
+func _on_button_pressed():
+	AudioManager.play_sfx(PRESS_SOUND)
+"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qh2v7"]
+texture = ExtResource("32_kbtot")
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dcjyr"]
 texture = ExtResource("15_7vdvl")
 
@@ -192,25 +1003,25 @@ tile_set = SubResource("TileSet_cqlev")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -258.0
-offset_top = -114.0
-offset_right = 258.0
-offset_bottom = 114.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 10
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -540.0
+offset_top = -567.0
+offset_bottom = 24.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.72, 0.72)
+theme_override_constants/separation = -30
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="LevelsIntro" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 10
 
-[node name="Level1" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="Intro1" type="Button" parent="VBoxContainer/LevelsIntro"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -218,7 +1029,7 @@ size_flags_vertical = 4
 theme = ExtResource("9_d7vdv")
 script = ExtResource("10_sl6uc")
 
-[node name="Panel" type="Panel" parent="VBoxContainer/HBoxContainer/Level1"]
+[node name="Panel" type="Panel" parent="VBoxContainer/LevelsIntro/Intro1"]
 layout_mode = 0
 offset_left = 7.0
 offset_top = 6.0
@@ -227,7 +1038,7 @@ offset_bottom = 94.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_y3omd")
 
-[node name="Level2" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="Intro2" type="Button" parent="VBoxContainer/LevelsIntro"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -235,7 +1046,7 @@ size_flags_vertical = 4
 theme = ExtResource("9_d7vdv")
 script = ExtResource("10_sl6uc")
 
-[node name="Panel" type="Panel" parent="VBoxContainer/HBoxContainer/Level2"]
+[node name="Panel" type="Panel" parent="VBoxContainer/LevelsIntro/Intro2"]
 layout_mode = 0
 offset_left = 7.0
 offset_top = 6.0
@@ -244,7 +1055,7 @@ offset_bottom = 94.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_ot0e4")
 
-[node name="Level3" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="Intro3" type="Button" parent="VBoxContainer/LevelsIntro"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -252,7 +1063,7 @@ size_flags_vertical = 4
 theme = ExtResource("9_d7vdv")
 script = ExtResource("10_sl6uc")
 
-[node name="Panel" type="Panel" parent="VBoxContainer/HBoxContainer/Level3"]
+[node name="Panel" type="Panel" parent="VBoxContainer/LevelsIntro/Intro3"]
 layout_mode = 0
 offset_left = 7.0
 offset_top = 6.0
@@ -261,7 +1072,7 @@ offset_bottom = 94.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_bjjtt")
 
-[node name="Level4" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="Intro4" type="Button" parent="VBoxContainer/LevelsIntro"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -269,7 +1080,7 @@ size_flags_vertical = 4
 theme = ExtResource("9_d7vdv")
 script = ExtResource("10_sl6uc")
 
-[node name="Panel" type="Panel" parent="VBoxContainer/HBoxContainer/Level4"]
+[node name="Panel" type="Panel" parent="VBoxContainer/LevelsIntro/Intro4"]
 layout_mode = 0
 offset_left = 7.0
 offset_top = 6.0
@@ -278,7 +1089,7 @@ offset_bottom = 94.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_n5dxd")
 
-[node name="Level5" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="Intro5" type="Button" parent="VBoxContainer/LevelsIntro"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -286,7 +1097,7 @@ size_flags_vertical = 4
 theme = ExtResource("9_d7vdv")
 script = ExtResource("10_sl6uc")
 
-[node name="Panel" type="Panel" parent="VBoxContainer/HBoxContainer/Level5"]
+[node name="Panel" type="Panel" parent="VBoxContainer/LevelsIntro/Intro5"]
 layout_mode = 0
 offset_left = 7.0
 offset_top = 6.0
@@ -295,12 +1106,284 @@ offset_bottom = 94.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_4a1fg")
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+[node name="LevelsSpring" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 10
 
-[node name="Level6" type="Button" parent="VBoxContainer/HBoxContainer2"]
+[node name="Spring1" type="Button" parent="VBoxContainer/LevelsSpring"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_48hfm")
+script = SubResource("GDScript_uj47q")
+
+[node name="Panel" type="Panel" parent="VBoxContainer/LevelsSpring/Spring1"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 6.0
+offset_right = 94.0
+offset_bottom = 94.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_m7ufb")
+
+[node name="Spring2" type="Button" parent="VBoxContainer/LevelsSpring"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_j7bxd")
+script = SubResource("GDScript_swl4m")
+
+[node name="Panel" type="Panel" parent="VBoxContainer/LevelsSpring/Spring2"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 6.0
+offset_right = 94.0
+offset_bottom = 94.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_jhly2")
+
+[node name="Spring3" type="Button" parent="VBoxContainer/LevelsSpring"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_jc3gb")
+script = SubResource("GDScript_clp6r")
+
+[node name="Panel" type="Panel" parent="VBoxContainer/LevelsSpring/Spring3"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 6.0
+offset_right = 94.0
+offset_bottom = 94.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_27veg")
+
+[node name="Spring4" type="Button" parent="VBoxContainer/LevelsSpring"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_14obh")
+script = SubResource("GDScript_qa4hw")
+
+[node name="Panel" type="Panel" parent="VBoxContainer/LevelsSpring/Spring4"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 6.0
+offset_right = 94.0
+offset_bottom = 94.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_tcepi")
+
+[node name="Spring5" type="Button" parent="VBoxContainer/LevelsSpring"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_s106q")
+script = SubResource("GDScript_t7h6r")
+
+[node name="Panel" type="Panel" parent="VBoxContainer/LevelsSpring/Spring5"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 6.0
+offset_right = 94.0
+offset_bottom = 94.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_inc37")
+
+[node name="LevelsSummer" type="HBoxContainer" parent="VBoxContainer"]
+modulate = Color(0.964, 1, 0.64, 1)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Summer1" type="Button" parent="VBoxContainer/LevelsSummer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_01cdt")
+script = SubResource("GDScript_xqy0b")
+
+[node name="Panel" type="Panel" parent="VBoxContainer/LevelsSummer/Summer1"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 6.0
+offset_right = 94.0
+offset_bottom = 94.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ij0n3")
+
+[node name="Summer2" type="Button" parent="VBoxContainer/LevelsSummer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_dcoc6")
+script = SubResource("GDScript_c4xeh")
+
+[node name="Panel" type="Panel" parent="VBoxContainer/LevelsSummer/Summer2"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 6.0
+offset_right = 94.0
+offset_bottom = 94.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_buiqr")
+
+[node name="Summer3" type="Button" parent="VBoxContainer/LevelsSummer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_ugvoj")
+script = SubResource("GDScript_y3rbo")
+
+[node name="Panel" type="Panel" parent="VBoxContainer/LevelsSummer/Summer3"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 6.0
+offset_right = 94.0
+offset_bottom = 94.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_kbtot")
+
+[node name="Summer4" type="Button" parent="VBoxContainer/LevelsSummer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_a8440")
+script = SubResource("GDScript_eeavd")
+
+[node name="Panel" type="Panel" parent="VBoxContainer/LevelsSummer/Summer4"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 6.0
+offset_right = 94.0
+offset_bottom = 94.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ktc0q")
+
+[node name="Summer5" type="Button" parent="VBoxContainer/LevelsSummer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_v13r8")
+script = SubResource("GDScript_bfm0r")
+
+[node name="Panel" type="Panel" parent="VBoxContainer/LevelsSummer/Summer5"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 6.0
+offset_right = 94.0
+offset_bottom = 94.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_em1dp")
+
+[node name="LevelsFall" type="HBoxContainer" parent="VBoxContainer"]
+modulate = Color(1, 0.78, 0.66999996, 1)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Fall1" type="Button" parent="VBoxContainer/LevelsFall"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_v1t6f")
+script = SubResource("GDScript_bv3dd")
+
+[node name="Panel" type="Panel" parent="VBoxContainer/LevelsFall/Fall1"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 6.0
+offset_right = 94.0
+offset_bottom = 94.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_iu7bd")
+
+[node name="Fall2" type="Button" parent="VBoxContainer/LevelsFall"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_w53em")
+script = SubResource("GDScript_sltyv")
+
+[node name="Panel" type="Panel" parent="VBoxContainer/LevelsFall/Fall2"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 6.0
+offset_right = 94.0
+offset_bottom = 94.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_rrwkc")
+
+[node name="Fall3" type="Button" parent="VBoxContainer/LevelsFall"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_4cjrq")
+script = SubResource("GDScript_neh6n")
+
+[node name="Panel" type="Panel" parent="VBoxContainer/LevelsFall/Fall3"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 6.0
+offset_right = 94.0
+offset_bottom = 94.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_rusfx")
+
+[node name="Fall4" type="Button" parent="VBoxContainer/LevelsFall"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_k4475")
+script = SubResource("GDScript_aftk8")
+
+[node name="Panel" type="Panel" parent="VBoxContainer/LevelsFall/Fall4"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 6.0
+offset_right = 94.0
+offset_bottom = 94.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_s6xov")
+
+[node name="Fall5" type="Button" parent="VBoxContainer/LevelsFall"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_57e3v")
+script = SubResource("GDScript_7ey0e")
+
+[node name="Panel" type="Panel" parent="VBoxContainer/LevelsFall/Fall5"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 6.0
+offset_right = 94.0
+offset_bottom = 94.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_qh2v7")
+
+[node name="LevelsWinter" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Winter1" type="Button" parent="VBoxContainer/LevelsWinter"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -308,7 +1391,7 @@ size_flags_vertical = 4
 theme = ExtResource("9_d7vdv")
 script = ExtResource("10_sl6uc")
 
-[node name="Panel" type="Panel" parent="VBoxContainer/HBoxContainer2/Level6"]
+[node name="Panel" type="Panel" parent="VBoxContainer/LevelsWinter/Winter1"]
 layout_mode = 0
 offset_left = 7.0
 offset_top = 6.0
@@ -317,7 +1400,7 @@ offset_bottom = 94.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_dcjyr")
 
-[node name="Level7" type="Button" parent="VBoxContainer/HBoxContainer2"]
+[node name="Winter2" type="Button" parent="VBoxContainer/LevelsWinter"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -325,7 +1408,7 @@ size_flags_vertical = 4
 theme = ExtResource("9_d7vdv")
 script = ExtResource("10_sl6uc")
 
-[node name="Panel" type="Panel" parent="VBoxContainer/HBoxContainer2/Level7"]
+[node name="Panel" type="Panel" parent="VBoxContainer/LevelsWinter/Winter2"]
 layout_mode = 0
 offset_left = 7.0
 offset_top = 6.0
@@ -334,7 +1417,7 @@ offset_bottom = 94.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_6or0m")
 
-[node name="Level8" type="Button" parent="VBoxContainer/HBoxContainer2"]
+[node name="Winter3" type="Button" parent="VBoxContainer/LevelsWinter"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -342,7 +1425,7 @@ size_flags_vertical = 4
 theme = ExtResource("9_d7vdv")
 script = ExtResource("10_sl6uc")
 
-[node name="Panel" type="Panel" parent="VBoxContainer/HBoxContainer2/Level8"]
+[node name="Panel" type="Panel" parent="VBoxContainer/LevelsWinter/Winter3"]
 layout_mode = 0
 offset_left = 7.0
 offset_top = 6.0
@@ -351,7 +1434,7 @@ offset_bottom = 94.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_xgi3s")
 
-[node name="level9" type="Button" parent="VBoxContainer/HBoxContainer2"]
+[node name="Winter4" type="Button" parent="VBoxContainer/LevelsWinter"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -359,7 +1442,7 @@ size_flags_vertical = 4
 theme = ExtResource("9_d7vdv")
 script = ExtResource("10_sl6uc")
 
-[node name="Panel" type="Panel" parent="VBoxContainer/HBoxContainer2/level9"]
+[node name="Panel" type="Panel" parent="VBoxContainer/LevelsWinter/Winter4"]
 layout_mode = 0
 offset_left = 7.0
 offset_top = 6.0
@@ -368,7 +1451,7 @@ offset_bottom = 94.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_u01vx")
 
-[node name="Level10" type="Button" parent="VBoxContainer/HBoxContainer2"]
+[node name="Winter5" type="Button" parent="VBoxContainer/LevelsWinter"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -376,7 +1459,7 @@ size_flags_vertical = 4
 theme = ExtResource("9_d7vdv")
 script = ExtResource("10_sl6uc")
 
-[node name="Panel" type="Panel" parent="VBoxContainer/HBoxContainer2/Level10"]
+[node name="Panel" type="Panel" parent="VBoxContainer/LevelsWinter/Winter5"]
 layout_mode = 0
 offset_left = 7.0
 offset_top = 6.0
@@ -385,9 +1468,20 @@ offset_bottom = 94.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_ne220")
 
-[node name="Back" type="Button" parent="VBoxContainer"]
+[node name="Back" type="Button" parent="."]
 custom_minimum_size = Vector2(250, 0)
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = 208.0
+offset_right = 125.00012
+offset_bottom = 249.02325
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_stretch_ratio = 0.0
 theme = ExtResource("9_d7vdv")
@@ -400,9 +1494,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -240.0
-offset_top = 128.0
+offset_top = 76.0
 offset_right = 240.0
-offset_bottom = 208.0
+offset_bottom = 156.00002
 grow_horizontal = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("8_212me")
@@ -411,14 +1505,29 @@ text = "Select a Level"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/Level1" to="." method="_on_level_1_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/Level2" to="." method="_on_level_2_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/Level3" to="." method="_on_level_3_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/Level4" to="." method="_on_level_4_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/Level5" to="." method="_on_level_5_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer2/Level6" to="." method="_on_level_6_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer2/Level7" to="." method="_on_level_7_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer2/Level8" to="." method="_on_level_8_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer2/level9" to="." method="_on_level_9_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer2/Level10" to="." method="_on_level_10_pressed"]
-[connection signal="pressed" from="VBoxContainer/Back" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="VBoxContainer/LevelsIntro/Intro1" to="." method="_on_level_1_pressed"]
+[connection signal="pressed" from="VBoxContainer/LevelsIntro/Intro2" to="." method="_on_level_2_pressed"]
+[connection signal="pressed" from="VBoxContainer/LevelsIntro/Intro3" to="." method="_on_level_3_pressed"]
+[connection signal="pressed" from="VBoxContainer/LevelsIntro/Intro4" to="." method="_on_level_4_pressed"]
+[connection signal="pressed" from="VBoxContainer/LevelsIntro/Intro5" to="." method="_on_level_5_pressed"]
+[connection signal="pressed" from="VBoxContainer/LevelsSpring/Spring1" to="." method="_on_level_1_pressed"]
+[connection signal="pressed" from="VBoxContainer/LevelsSpring/Spring2" to="." method="_on_level_2_pressed"]
+[connection signal="pressed" from="VBoxContainer/LevelsSpring/Spring3" to="." method="_on_level_3_pressed"]
+[connection signal="pressed" from="VBoxContainer/LevelsSpring/Spring4" to="." method="_on_level_4_pressed"]
+[connection signal="pressed" from="VBoxContainer/LevelsSpring/Spring5" to="." method="_on_level_5_pressed"]
+[connection signal="pressed" from="VBoxContainer/LevelsSummer/Summer1" to="." method="_on_level_1_pressed"]
+[connection signal="pressed" from="VBoxContainer/LevelsSummer/Summer2" to="." method="_on_level_2_pressed"]
+[connection signal="pressed" from="VBoxContainer/LevelsSummer/Summer3" to="." method="_on_level_3_pressed"]
+[connection signal="pressed" from="VBoxContainer/LevelsSummer/Summer4" to="." method="_on_level_4_pressed"]
+[connection signal="pressed" from="VBoxContainer/LevelsSummer/Summer5" to="." method="_on_level_5_pressed"]
+[connection signal="pressed" from="VBoxContainer/LevelsFall/Fall1" to="." method="_on_level_1_pressed"]
+[connection signal="pressed" from="VBoxContainer/LevelsFall/Fall2" to="." method="_on_level_2_pressed"]
+[connection signal="pressed" from="VBoxContainer/LevelsFall/Fall3" to="." method="_on_level_3_pressed"]
+[connection signal="pressed" from="VBoxContainer/LevelsFall/Fall4" to="." method="_on_level_4_pressed"]
+[connection signal="pressed" from="VBoxContainer/LevelsFall/Fall5" to="." method="_on_level_5_pressed"]
+[connection signal="pressed" from="VBoxContainer/LevelsWinter/Winter1" to="." method="_on_level_6_pressed"]
+[connection signal="pressed" from="VBoxContainer/LevelsWinter/Winter2" to="." method="_on_level_7_pressed"]
+[connection signal="pressed" from="VBoxContainer/LevelsWinter/Winter3" to="." method="_on_level_8_pressed"]
+[connection signal="pressed" from="VBoxContainer/LevelsWinter/Winter4" to="." method="_on_level_9_pressed"]
+[connection signal="pressed" from="VBoxContainer/LevelsWinter/Winter5" to="." method="_on_level_10_pressed"]
+[connection signal="pressed" from="Back" to="." method="_on_exit_pressed"]

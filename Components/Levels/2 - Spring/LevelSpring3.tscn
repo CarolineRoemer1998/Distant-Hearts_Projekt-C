@@ -1,0 +1,40 @@
+[gd_scene load_steps=8 format=3 uid="uid://hsjxb6q1umxa"]
+
+[ext_resource type="Script" uid="uid://ddiwo6yyhfkuc" path="res://Components/Levels/level.gd" id="1_bdi6g"]
+[ext_resource type="PackedScene" uid="uid://lrodaawkgfob" path="res://Components/UI/VFX/undo_particles.tscn" id="2_tbohh"]
+[ext_resource type="PackedScene" uid="uid://ihdvu1wqfcub" path="res://Components/Levels/Backgrounds/bg-base-spring.tscn" id="3_p7fd6"]
+[ext_resource type="PackedScene" uid="uid://ccncnjkm8w8ta" path="res://Components/Creatures/creature_blue.tscn" id="4_8e410"]
+[ext_resource type="PackedScene" uid="uid://be6k5yjppap8y" path="res://Components/Creatures/creature_yellow.tscn" id="5_xqibo"]
+[ext_resource type="PackedScene" uid="uid://g3u7bc1jo6gj" path="res://Components/Player/player.tscn" id="6_pbmrh"]
+[ext_resource type="PackedScene" uid="uid://dtrjxhb3ayo1c" path="res://Components/Levels/LevelUI.tscn" id="11_mxbof"]
+
+[node name="LevelSpring3" type="Node2D"]
+script = ExtResource("1_bdi6g")
+season = 1
+undo_particles = ExtResource("2_tbohh")
+level_number = 8
+
+[node name="BackgroundSpring" parent="." instance=ExtResource("3_p7fd6")]
+
+[node name="LevelWall" parent="BackgroundSpring" index="2"]
+visible = true
+
+[node name="Creatures" type="Node" parent="."]
+
+[node name="CreatureBlue" parent="Creatures" instance=ExtResource("4_8e410")]
+position = Vector2(224, 416)
+
+[node name="CreatureYellow" parent="Creatures" instance=ExtResource("5_xqibo")]
+position = Vector2(480, 416)
+
+[node name="Player" type="Node" parent="."]
+
+[node name="Player" parent="Player" instance=ExtResource("6_pbmrh")]
+position = Vector2(352, 224)
+
+[node name="LevelUI" parent="." instance=ExtResource("11_mxbof")]
+visible = false
+
+[editable path="BackgroundSpring"]
+[editable path="LevelUI"]
+[editable path="LevelUI/UndoMechanic"]

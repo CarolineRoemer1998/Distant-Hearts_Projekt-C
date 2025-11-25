@@ -106,7 +106,6 @@ func _process(delta: float) -> void:
 	# Reached tile → stop avoiding
 	if is_avoiding_bees and position.distance_to(target_position) < 0.1:
 		if player:
-			#player.activate()
 			global_position = target_position
 		position = target_position
 		is_avoiding_bees = false

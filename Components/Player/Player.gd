@@ -40,9 +40,9 @@ var hovering_over: Creature = null
 var currently_possessed_creature: Creature = null
 var pushable_stone_in_direction : Stone = null
 
-var bees_are_flying = false
+var bees_are_flying := false
 
-
+var is_level_finished := false
 ## TODO: Deaktivieren während Bienen fliegen
 
 
@@ -55,7 +55,7 @@ func _ready():
 	add_to_group(Constants.GROUP_NAME_PLAYER)
 	animated_sprite_2d.modulate = Constants.PLAYER_MODULATE_VISIBLE
 	Signals.stone_reached_target.connect(reset_stone_push_state)
-	Signals.level_done.connect(deactivate)
+	Signals.level_done.connect(set_level_finished)
 	Signals.player_move_finished.connect(on_move_step_finished)
 	Signals.creature_started_teleporting.connect(deactivate)
 	Signals.creature_finished_teleporting.connect(activate)
@@ -83,8 +83,11 @@ func handle_input():
 	if Input.is_action_just_pressed("ui_cancel"):
 		SceneSwitcher.go_to_settings()
 		return
-
-	if is_active:
+	
+	if is_level_finished:
+		if Input.is_action_just_pressed("ui_accept"):
+			SceneSwitcher.go_to_next_level()
+	elif is_active:
 		handle_movement_input(Vector2.ZERO)
 		handle_interaction_input()
 	else:
@@ -249,9 +252,7 @@ func update_movement(delta):
 		)
 
 	if position == target_position:
-		#activate()
 		if _check_bee_avoidance_after_step():
-			#activate()
 			return
 
 		if currently_possessed_creature and currently_possessed_creature.just_teleported:
@@ -330,8 +331,11 @@ func deactivate():
 func activate():
 	is_active = true
 
+func set_level_finished():
+	deactivate()
+	is_level_finished = true
+
 func handle_bees_start_flying():
-	#deactivate()
 	can_move = false
 	bees_are_flying = true
 
@@ -517,6 +521,6 @@ func _on_step_timer_timeout():
 
 
 func _on_avoid_timer_timeout() -> void:
-	activate()
+	#activate()
 	can_move = true
 	bees_are_flying = false

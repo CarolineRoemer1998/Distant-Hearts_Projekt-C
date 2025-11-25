@@ -71,16 +71,36 @@ const TELEPORTER_MODULATE_ACTIVE :=		Color(1.551, 1.363, 1.54)
 
 # LEVELS
 const LEVELS = {
-	1:  "res://Components/Levels/1 - Intro/LevelIntro1.tscn",
-	2:  "res://Components/Levels/1 - Intro/LevelIntro2.tscn",
-	3:  "res://Components/Levels/1 - Intro/LevelIntro3.tscn",
-	4:  "res://Components/Levels/1 - Intro/LevelIntro4.tscn",
-	5:  "res://Components/Levels/1 - Intro/LevelIntro5.tscn",
-	6:  "res://Components/Levels/5 - Winter/LevelWinter1.tscn",
-	7:  "res://Components/Levels/5 - Winter/LevelWinter2.tscn",
-	8:  "res://Components/Levels/5 - Winter/LevelWinter3.tscn",
-	9:  "res://Components/Levels/5 - Winter/LevelWinter4.tscn",
-	10: "res://Components/Levels/5 - Winter/LevelWinter5.tscn"
+		 # INTRO
+	1:   "res://Components/Levels/1 - Intro/LevelIntro1.tscn",
+	2:   "res://Components/Levels/1 - Intro/LevelIntro2.tscn",
+	3:   "res://Components/Levels/1 - Intro/LevelIntro3.tscn",
+	4:   "res://Components/Levels/1 - Intro/LevelIntro4.tscn",
+	5:   "res://Components/Levels/1 - Intro/LevelIntro5.tscn",
+		 # SPRING
+	6:   "res://Components/Levels/2 - Spring/LevelSpring1.tscn",
+	7:   "res://Components/Levels/2 - Spring/LevelSpring2.tscn",
+	8:   "res://Components/Levels/2 - Spring/LevelSpring3.tscn",
+	9:   "res://Components/Levels/2 - Spring/LevelSpring4.tscn",
+	10:  "res://Components/Levels/2 - Spring/LevelSpring5.tscn",
+		 # SUMMER
+	11:  "res://Components/Levels/3 - Summer/LevelSummer1.tscn",
+	12:  "res://Components/Levels/3 - Summer/LevelSummer2.tscn",
+	13:  "res://Components/Levels/3 - Summer/LevelSummer3.tscn",
+	14:  "res://Components/Levels/3 - Summer/LevelSummer4.tscn",
+	15:  "res://Components/Levels/3 - Summer/LevelSummer5.tscn",
+		 # FALL
+	16:  "res://Components/Levels/4 - Fall/LevelFall1.tscn",
+	17:  "res://Components/Levels/4 - Fall/LevelFall2.tscn",
+	18:  "res://Components/Levels/4 - Fall/LevelFall3.tscn",
+	19:  "res://Components/Levels/4 - Fall/LevelFall4.tscn",
+	20:  "res://Components/Levels/4 - Fall/LevelFall5.tscn",
+		 # WINTER
+	21:  "res://Components/Levels/5 - Winter/LevelWinter1.tscn",
+	22:  "res://Components/Levels/5 - Winter/LevelWinter2.tscn",
+	23:  "res://Components/Levels/5 - Winter/LevelWinter3.tscn",
+	24:  "res://Components/Levels/5 - Winter/LevelWinter4.tscn",
+	25: "res://Components/Levels/5 - Winter/LevelWinter5.tscn"
 }
 
 # MENUES

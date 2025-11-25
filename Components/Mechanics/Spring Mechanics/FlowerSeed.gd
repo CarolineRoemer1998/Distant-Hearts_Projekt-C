@@ -2,8 +2,8 @@ extends PushableObject
 
 class_name FlowerSeed
 
-@onready var flower: AnimatedSprite2D = $SpriteFlower
-@onready var flower_seed: Sprite2D = $SpriteSeed
+@onready var flower: AnimatedSprite2D = $Flower
+@onready var flower_seed: Sprite2D = $Seed
 @onready var pollen: GPUParticles2D = $Pollen
 @onready var collider: CollisionShape2D = $CollisionShape2D
 

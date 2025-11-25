@@ -249,6 +249,7 @@ libraries = {
 autoplay = "shadow-pulsate"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("RectangleShape2D_tbglw")
 
 [node name="TimerAggroCooldown" type="Timer" parent="."]
