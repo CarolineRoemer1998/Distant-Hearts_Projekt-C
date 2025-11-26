@@ -23,20 +23,9 @@ var groups_to_save := [
 	Constants.GROUP_NAME_DOORS, 
 	Constants.GROUP_NAME_BUTTONS, 
 	Constants.GROUP_NAME_STONES, 
-	Constants.GROUP_NAME_FLOWER_SEEDS
+	Constants.GROUP_NAME_FLOWER_SEEDS,
+	Constants.GROUP_NAME_BEES
 	]
-
-const GROUP_NAME_PLAYER := "Player"
-const GROUP_NAME_CREATURE := "Creature"
-const GROUP_NAME_MERGED_CREATURE := "MergedCreature"
-const GROUP_NAME_DOORS := "Door"
-const GROUP_NAME_BUTTONS := "Button"
-const GROUP_NAME_PUSHABLES := "Pushable"
-const GROUP_NAME_STONES := "Stone"
-const GROUP_NAME_FLOWER_SEEDS := "FlowerSeed"
-const GROUP_NAME_FLOWERS := "Flower"
-const GROUP_NAME_TELEPORTERS := "Teleporter"
-const GROUP_NAME_TELEPORTER_MANAGERS := "TeleporterManager"
 
 var can_undo := true
 var is_undo_pressed := false
@@ -117,6 +106,7 @@ func undo():
 		set_state_of_component(Constants.GROUP_NAME_BUTTONS)
 		set_state_of_component(Constants.GROUP_NAME_STONES)
 		set_state_of_component(Constants.GROUP_NAME_FLOWER_SEEDS)
+		set_state_of_component(Constants.GROUP_NAME_BEES)
 		
 		FieldReservation.clear_all()
 		StateSaver.remove_last_state()

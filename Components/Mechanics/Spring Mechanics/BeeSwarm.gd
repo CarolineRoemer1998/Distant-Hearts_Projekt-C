@@ -11,21 +11,26 @@ class_name BeeSwarm
 const MODULATE_AGGRO := Color(1.096, 0.278, 0.278)
 const MODULATE_NORMAL := Color(1.096, 1.096, 1.096)
 
+var init_position := Vector2.ZERO
+var target_position := Vector2.ZERO
 var is_aggro := false
 
 var bee_sprite_scale := 2.0
-
-var is_flying_to_new_position := false
-var target_position := Vector2.ZERO
 var flying_speed := 200.0
 var anim_speed_normal := 1.0
 var anim_speed_aggro := 8.0
+
+var is_flying_to_new_position := false
 
 
 func _ready() -> void:
 	Signals.flower_grows.connect(fly_to_flower)
 	Signals.bees_near_creature.connect(turn_red)
 	Signals.bees_not_near_creature.connect(turn_normal)
+	
+	add_to_group(Constants.GROUP_NAME_BEES)
+	init_position = global_position
+	target_position = init_position
 
 func _process(delta: float) -> void:
 	if is_aggro:
@@ -47,6 +52,31 @@ func _process(delta: float) -> void:
 			is_flying_to_new_position = false
 			reset_bee_sprite_direction()
 			Signals.bees_stop_flying.emit()
+
+# -----------------------------------------------------------
+# State (e.g. for Undo)
+# -----------------------------------------------------------
+## Returns a Dictionary snapshot of the FlowerSeed state
+## used for Undo/Redo (position + target position).
+func get_info() -> Dictionary:
+	return {
+		#"global_position": global_position,
+		"global_position": 				target_position,
+		"is_flying_to_new_position": 	is_flying_to_new_position,
+		"is_aggro": 					is_aggro
+		#"current_state": current_state
+	}
+
+## Restores the FlowerSeed state from a Dictionary snapshot.
+## Resets movement and pending push data.
+func set_info(info : Dictionary):
+	global_position = info.get("global_position")
+	target_position = global_position
+	
+	is_flying_to_new_position = info.get("is_flying_to_new_position")
+	is_aggro = info.get("is_aggro")
+
+
 
 func fly_to_flower(flower: FlowerSeed):
 	target_position = flower.global_position

@@ -49,19 +49,8 @@ func set_info(info : Dictionary):
 	pending_target_position = Vector2.ZERO
 	pending_direction = Vector2.ZERO
 
-func enable_collision_layer():
-	if is_in_group(Constants.GROUP_NAME_PUSHABLES):
-		set_collision_layer_value(Constants.LAYER_BIT_PUSHABLE+1, true)
-	if is_in_group(Constants.GROUP_NAME_FLOWERS):
-		set_collision_layer_value(Constants.LAYER_BIT_FLOWER+1, true)
-
-func disable_collision_layer():
-	if is_in_group(Constants.GROUP_NAME_PUSHABLES):
-		set_collision_layer_value(Constants.LAYER_BIT_PUSHABLE+1, false)
-	if is_in_group(Constants.GROUP_NAME_FLOWERS):
-		set_collision_layer_value(Constants.LAYER_BIT_FLOWER+1, false)
-
 func turn_back_into_seed():
+	current_state = STATE.Seed
 	remove_from_group(str(Constants.GROUP_NAME_FLOWERS))
 	for i in range(1, 20):
 		set_collision_layer_value(i, false)
@@ -80,3 +69,22 @@ func grow():
 	sprite_flower.visible = true
 	pollen.visible = true
 	Signals.flower_grows.emit(self)
+
+## TODO: Wenn Blume wächst und Bienen kommen, springt creature nicht mehr weg, 
+## 		weil in player update_movement nicht mehr deactivate bei target_position != global_position ist
+
+## TODO: Bei undo wo flower zu seed werden soll, wird sie erst beim zweiten undo zu seed
+
+
+
+func enable_collision_layer():
+	if is_in_group(Constants.GROUP_NAME_PUSHABLES):
+		set_collision_layer_value(Constants.LAYER_BIT_PUSHABLE+1, true)
+	if is_in_group(Constants.GROUP_NAME_FLOWERS):
+		set_collision_layer_value(Constants.LAYER_BIT_FLOWER+1, true)
+
+func disable_collision_layer():
+	if is_in_group(Constants.GROUP_NAME_PUSHABLES):
+		set_collision_layer_value(Constants.LAYER_BIT_PUSHABLE+1, false)
+	if is_in_group(Constants.GROUP_NAME_FLOWERS):
+		set_collision_layer_value(Constants.LAYER_BIT_FLOWER+1, false)

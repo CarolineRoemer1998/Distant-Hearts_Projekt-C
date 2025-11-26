@@ -69,6 +69,10 @@ func _ready():
 
 ## Main update loop: movement, UI, input.
 func _process(delta):
+	if not can_move:
+		print("Can't move")
+	if not is_active:
+		print("Isn't activated")
 	update_movement(delta)
 	update_heart_icons()
 	handle_input()
@@ -90,7 +94,7 @@ func handle_input():
 	elif is_active:
 		handle_movement_input(Vector2.ZERO)
 		handle_interaction_input()
-	else:
+	elif is_level_finished:
 		if Input.is_action_just_pressed("ui_accept"):
 			SceneSwitcher.go_to_next_level()
 
@@ -170,13 +174,13 @@ func set_info(info : Dictionary):
 		spawn_undo_particles(global_position)
 
 	global_position = info["global_position"]
+	target_position = global_position
 	is_active = info["is_active"]
 
 	direction = info["direction"]
 	current_direction = info["current_direction"]
 	buffered_direction = info["buffered_direction"]
 
-	target_position = global_position
 
 	set_is_moving(false)
 	is_on_ice = info["is_on_ice"]
@@ -227,8 +231,8 @@ func set_animation_direction(_direction: Vector2):
 
 ## Handles movement each frame, including bees and teleportation.
 func update_movement(delta):
-	if target_position != global_position:
-		deactivate()
+	#if target_position != global_position:
+		#deactivate()
 	if currently_possessed_creature and currently_possessed_creature.is_avoiding_bees:
 		_sync_with_creature_during_bee_avoidance()
 		return

@@ -28,6 +28,7 @@ const GROUP_NAME_PUSHABLES := "Pushable"
 const GROUP_NAME_STONES := "Stone"
 const GROUP_NAME_FLOWER_SEEDS := "FlowerSeed"
 const GROUP_NAME_FLOWERS := "Flower"
+const GROUP_NAME_BEES := "Bees"
 const GROUP_NAME_TELEPORTERS := "Teleporter"
 const GROUP_NAME_TELEPORTER_MANAGERS := "TeleporterManager"
 
