@@ -11,7 +11,7 @@ func can_move_in_direction(_position: Vector2, _direction, world : World2D, is_p
 	#var world = get_world_2d()
 	
 	# Queries für alle relevanten Bit Layers
-	var result_stones = get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_STONE), world)
+	var result_stones = get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_PUSHABLE), world)
 	var result_flowers = get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_FLOWER), world)
 	var result_bees = get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_BEES), world)
 	var result_doors = get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_DOOR), world)

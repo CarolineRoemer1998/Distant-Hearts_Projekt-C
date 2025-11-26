@@ -17,6 +17,27 @@ class_name Level
 # Leaves
 @onready var cherry_blossoms: Node2D = $LevelUI/Leaves/CherryBlossoms
 
+var groups_to_save := [
+	Constants.GROUP_NAME_PLAYER,
+	Constants.GROUP_NAME_CREATURE, 
+	Constants.GROUP_NAME_DOORS, 
+	Constants.GROUP_NAME_BUTTONS, 
+	Constants.GROUP_NAME_STONES, 
+	Constants.GROUP_NAME_FLOWER_SEEDS
+	]
+
+const GROUP_NAME_PLAYER := "Player"
+const GROUP_NAME_CREATURE := "Creature"
+const GROUP_NAME_MERGED_CREATURE := "MergedCreature"
+const GROUP_NAME_DOORS := "Door"
+const GROUP_NAME_BUTTONS := "Button"
+const GROUP_NAME_PUSHABLES := "Pushable"
+const GROUP_NAME_STONES := "Stone"
+const GROUP_NAME_FLOWER_SEEDS := "FlowerSeed"
+const GROUP_NAME_FLOWERS := "Flower"
+const GROUP_NAME_TELEPORTERS := "Teleporter"
+const GROUP_NAME_TELEPORTER_MANAGERS := "TeleporterManager"
+
 var can_undo := true
 var is_undo_pressed := false
 
@@ -38,7 +59,7 @@ func _ready() -> void:
 	Signals.SHOW_WIN_SCREEN.connect(show_win_screen)
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_pressed("Undo"):
 		is_undo_pressed = true
 		undo()
@@ -58,54 +79,16 @@ func show_win_screen():
 		return
 	win_animation.play("You win")
 
-func save_level_state(player_info : Dictionary):
+func save_level_state(_player_info : Dictionary):
 	if level_number == SceneSwitcher.current_level:
-		var state = {
-		}
-		
-		#var portal : Portal = null
-		#var bee_swarm : BeeSwarm = null
-		#var seeds : Array[Seed] = []
-		#var water_lilies : Array[WaterLily] = []
-		#var pile_of_leaves : Array[PileOfLeaves] = []
-		#var icicles : Icicle = null
-		
-		# Player speichern
-		var player : Player = get_tree().get_first_node_in_group(str(Constants.GROUP_NAME_PLAYER))
-		if player != null:
-			state[Constants.GROUP_NAME_PLAYER] = [player_info]
-		
-		# Creatures speichern
-		for creature in get_tree().get_nodes_in_group(str(Constants.GROUP_NAME_CREATURE)):
-			if creature != null:
-				if not state.has(Constants.GROUP_NAME_CREATURE): 
-					state[Constants.GROUP_NAME_CREATURE] = []
-				
-				state[Constants.GROUP_NAME_CREATURE].append(creature.get_info())
-		
-		# Doors speichern
-		for door in get_tree().get_nodes_in_group(str(Constants.GROUP_NAME_DOORS)):
-			if door != null:
-				if not state.has(Constants.GROUP_NAME_DOORS): 
-					state[Constants.GROUP_NAME_DOORS] = []
-				
-				state[Constants.GROUP_NAME_DOORS].append(door.get_info())
-		
-		# Buttons speichern
-		for button in get_tree().get_nodes_in_group(str(Constants.GROUP_NAME_BUTTONS)):
-			if button != null:
-				if not state.has(Constants.GROUP_NAME_BUTTONS): 
-					state[Constants.GROUP_NAME_BUTTONS] = []
-				
-				state[Constants.GROUP_NAME_BUTTONS].append(button.get_info())
-		
-		# Stones speichern
-		for stone in get_tree().get_nodes_in_group(str(Constants.GROUP_NAME_STONES)):
-			if stone != null:
-				if not state.has(Constants.GROUP_NAME_STONES): 
-					state[Constants.GROUP_NAME_STONES] = []
-				
-				state[Constants.GROUP_NAME_STONES].append(stone.get_info())
+		var state = {}
+		for group_name in groups_to_save:
+			for object in get_tree().get_nodes_in_group(str(group_name)):
+				if object != null:
+					if not state.has(group_name): 
+						state[group_name] = []
+					
+					state[group_name].append(object.get_info())
 		
 		StateSaver.add(state)
 
@@ -133,6 +116,7 @@ func undo():
 		set_state_of_component(Constants.GROUP_NAME_DOORS)
 		set_state_of_component(Constants.GROUP_NAME_BUTTONS)
 		set_state_of_component(Constants.GROUP_NAME_STONES)
+		set_state_of_component(Constants.GROUP_NAME_FLOWER_SEEDS)
 		
 		FieldReservation.clear_all()
 		StateSaver.remove_last_state()

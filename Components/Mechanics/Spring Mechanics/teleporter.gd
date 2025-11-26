@@ -37,7 +37,7 @@ var is_activated := false
 var button_refs: Array = []
 
 func _ready() -> void:
-	add_to_group(Constants.GROUP_NAME_TELEPORTER)
+	add_to_group(Constants.GROUP_NAME_TELEPORTERS)
 	activate(false)
 	
 	for path in buttons:

@@ -12,7 +12,7 @@ var on_flower_1 : Creature = null
 var on_flower_2 : Creature = null
 
 func _ready() -> void:
-	add_to_group(Constants.GROUP_NAME_TELEPORTER_MANAGER)
+	add_to_group(Constants.GROUP_NAME_TELEPORTER_MANAGERS)
 	Signals.teleporter_activated.connect(_handle_teleporter_activated)
 
 

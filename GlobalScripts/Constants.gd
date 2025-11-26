@@ -24,25 +24,29 @@ const GROUP_NAME_CREATURE := "Creature"
 const GROUP_NAME_MERGED_CREATURE := "MergedCreature"
 const GROUP_NAME_DOORS := "Door"
 const GROUP_NAME_BUTTONS := "Button"
+const GROUP_NAME_PUSHABLES := "Pushable"
 const GROUP_NAME_STONES := "Stone"
-const GROUP_NAME_TELEPORTER := "Teleporter"
-const GROUP_NAME_TELEPORTER_MANAGER := "TeleporterManager"
-const GROUP_NAME_FLOWER_SEED := "FlowerSeed"
+const GROUP_NAME_FLOWER_SEEDS := "FlowerSeed"
+const GROUP_NAME_FLOWERS := "Flower"
+const GROUP_NAME_TELEPORTERS := "Teleporter"
+const GROUP_NAME_TELEPORTER_MANAGERS := "TeleporterManager"
 
 # LAYER BITS
 const LAYER_BIT_WALL_AND_PLAYER		:= 0
 const LAYER_BIT_CREATURE 			:= 1
-const LAYER_BIT_STONE 				:= 2
+const LAYER_BIT_PUSHABLE 			:= 2
 const LAYER_BIT_DOOR    			:= 3
 const LAYER_BIT_BEES				:= 4
 const LAYER_BIT_ICE     			:= 5
 const LAYER_BIT_LEVEL_WALL	 		:= 6
 const LAYER_BIT_TELEPORTER	 		:= 7
 const LAYER_BIT_FLOWER				:= 8
-const LAYER_BIT_BUTTONS				:= 9
+const LAYER_BIT_SOIL				:= 9
+const LAYER_BIT_BUTTONS				:= 10
+const LAYER_BIT_STONES				:= 11
 
 const LAYER_MASK_BEES				:= (1 << Constants.LAYER_BIT_BEES)
-const LAYER_MASK_BLOCKING_OBJECTS 	:= (1 << Constants.LAYER_BIT_STONE) | (1 << Constants.LAYER_BIT_DOOR) | (1 << Constants.LAYER_BIT_WALL_AND_PLAYER) | (1 << Constants.LAYER_BIT_CREATURE) | (1 << Constants.LAYER_BIT_LEVEL_WALL)
+const LAYER_MASK_BLOCKING_OBJECTS 	:= (1 << Constants.LAYER_BIT_PUSHABLE) | (1 << Constants.LAYER_BIT_DOOR) | (1 << Constants.LAYER_BIT_WALL_AND_PLAYER) | (1 << Constants.LAYER_BIT_CREATURE) | (1 << Constants.LAYER_BIT_LEVEL_WALL)
 
 # PLAYER
 const TIMER_STEP := 0.125

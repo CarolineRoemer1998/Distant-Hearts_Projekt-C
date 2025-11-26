@@ -215,7 +215,7 @@ func teleport():
 		appear()
 
 func get_current_teleporter() -> Teleporter:
-	for t in get_tree().get_nodes_in_group(Constants.GROUP_NAME_TELEPORTER):
+	for t in get_tree().get_nodes_in_group(Constants.GROUP_NAME_TELEPORTERS):
 		if t.global_position == global_position and t.is_activated:
 			return t
 	return null

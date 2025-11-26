@@ -21,29 +21,6 @@ func _ready():
 	position = target_position
 
 # -----------------------------------------------------------
-# State (e.g. for Undo)
-# -----------------------------------------------------------
-## Returns a Dictionary snapshot of the stone state
-## used for Undo/Redo (position + target position).
-func get_info() -> Dictionary:
-	return {
-		"global_position": global_position,
-		"target_position": target_position
-	}
-
-## Restores the stone state from a Dictionary snapshot.
-## Resets movement and pending push data.
-func set_info(info : Dictionary):
-	global_position = info.get("global_position")
-	target_position = global_position
-	
-	is_moving = false
-	is_sliding = false
-	
-	pending_target_position = Vector2.ZERO
-	pending_direction = Vector2.ZERO
-
-# -----------------------------------------------------------
 # Movement / Push / Slide
 # -----------------------------------------------------------
 ## Starts a slide movement towards slide_target if the stone is not already sliding.
@@ -136,6 +113,8 @@ func _reset_pending_push() -> void:
 ## Per-frame update: moves the stone towards its target_position if
 ## it is moving or sliding and finishes the move step when arriving.
 func _process(delta):
+	if target_position != position and self is Stone:
+		print("Target: ", target_position, "\nPosition: ", position, "\n")
 	position = position.move_toward(target_position, MOVE_SPEED * delta)
 	
 	if position == target_position:
