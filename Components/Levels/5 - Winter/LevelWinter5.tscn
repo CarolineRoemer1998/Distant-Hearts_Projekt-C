@@ -292,3 +292,6 @@ position = Vector2(160, 288)
 position = Vector2(160, 608)
 
 [node name="LevelUI" parent="." instance=ExtResource("23_2h7ko")]
+
+[editable path="LevelUI"]
+[editable path="LevelUI/UndoMechanic"]

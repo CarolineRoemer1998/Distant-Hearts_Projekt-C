@@ -1137,6 +1137,7 @@ theme = SubResource("Theme_j7bxd")
 script = SubResource("GDScript_swl4m")
 
 [node name="Panel" type="Panel" parent="VBoxContainer/LevelsSpring/Spring2"]
+self_modulate = Color(0.62, 0.62, 0.62, 1)
 layout_mode = 0
 offset_left = 7.0
 offset_top = 6.0
@@ -1154,6 +1155,7 @@ theme = SubResource("Theme_jc3gb")
 script = SubResource("GDScript_clp6r")
 
 [node name="Panel" type="Panel" parent="VBoxContainer/LevelsSpring/Spring3"]
+self_modulate = Color(0.62, 0.62, 0.62, 1)
 layout_mode = 0
 offset_left = 7.0
 offset_top = 6.0
@@ -1171,6 +1173,7 @@ theme = SubResource("Theme_14obh")
 script = SubResource("GDScript_qa4hw")
 
 [node name="Panel" type="Panel" parent="VBoxContainer/LevelsSpring/Spring4"]
+self_modulate = Color(0.62, 0.62, 0.62, 1)
 layout_mode = 0
 offset_left = 7.0
 offset_top = 6.0
@@ -1188,6 +1191,7 @@ theme = SubResource("Theme_s106q")
 script = SubResource("GDScript_t7h6r")
 
 [node name="Panel" type="Panel" parent="VBoxContainer/LevelsSpring/Spring5"]
+self_modulate = Color(0.62, 0.62, 0.62, 1)
 layout_mode = 0
 offset_left = 7.0
 offset_top = 6.0
@@ -1211,6 +1215,7 @@ theme = SubResource("Theme_01cdt")
 script = SubResource("GDScript_xqy0b")
 
 [node name="Panel" type="Panel" parent="VBoxContainer/LevelsSummer/Summer1"]
+self_modulate = Color(0.62, 0.62, 0.62, 1)
 layout_mode = 0
 offset_left = 7.0
 offset_top = 6.0
@@ -1228,6 +1233,7 @@ theme = SubResource("Theme_dcoc6")
 script = SubResource("GDScript_c4xeh")
 
 [node name="Panel" type="Panel" parent="VBoxContainer/LevelsSummer/Summer2"]
+self_modulate = Color(0.62, 0.62, 0.62, 1)
 layout_mode = 0
 offset_left = 7.0
 offset_top = 6.0
@@ -1245,6 +1251,7 @@ theme = SubResource("Theme_ugvoj")
 script = SubResource("GDScript_y3rbo")
 
 [node name="Panel" type="Panel" parent="VBoxContainer/LevelsSummer/Summer3"]
+self_modulate = Color(0.62, 0.62, 0.62, 1)
 layout_mode = 0
 offset_left = 7.0
 offset_top = 6.0
@@ -1262,6 +1269,7 @@ theme = SubResource("Theme_a8440")
 script = SubResource("GDScript_eeavd")
 
 [node name="Panel" type="Panel" parent="VBoxContainer/LevelsSummer/Summer4"]
+self_modulate = Color(0.62, 0.62, 0.62, 1)
 layout_mode = 0
 offset_left = 7.0
 offset_top = 6.0
@@ -1279,6 +1287,7 @@ theme = SubResource("Theme_v13r8")
 script = SubResource("GDScript_bfm0r")
 
 [node name="Panel" type="Panel" parent="VBoxContainer/LevelsSummer/Summer5"]
+self_modulate = Color(0.62, 0.62, 0.62, 1)
 layout_mode = 0
 offset_left = 7.0
 offset_top = 6.0
@@ -1302,6 +1311,7 @@ theme = SubResource("Theme_v1t6f")
 script = SubResource("GDScript_bv3dd")
 
 [node name="Panel" type="Panel" parent="VBoxContainer/LevelsFall/Fall1"]
+self_modulate = Color(0.62, 0.62, 0.62, 1)
 layout_mode = 0
 offset_left = 7.0
 offset_top = 6.0
@@ -1319,6 +1329,7 @@ theme = SubResource("Theme_w53em")
 script = SubResource("GDScript_sltyv")
 
 [node name="Panel" type="Panel" parent="VBoxContainer/LevelsFall/Fall2"]
+self_modulate = Color(0.62, 0.62, 0.62, 1)
 layout_mode = 0
 offset_left = 7.0
 offset_top = 6.0
@@ -1336,6 +1347,7 @@ theme = SubResource("Theme_4cjrq")
 script = SubResource("GDScript_neh6n")
 
 [node name="Panel" type="Panel" parent="VBoxContainer/LevelsFall/Fall3"]
+self_modulate = Color(0.62, 0.62, 0.62, 1)
 layout_mode = 0
 offset_left = 7.0
 offset_top = 6.0
@@ -1353,6 +1365,7 @@ theme = SubResource("Theme_k4475")
 script = SubResource("GDScript_aftk8")
 
 [node name="Panel" type="Panel" parent="VBoxContainer/LevelsFall/Fall4"]
+self_modulate = Color(0.62, 0.62, 0.62, 1)
 layout_mode = 0
 offset_left = 7.0
 offset_top = 6.0
@@ -1370,6 +1383,7 @@ theme = SubResource("Theme_57e3v")
 script = SubResource("GDScript_7ey0e")
 
 [node name="Panel" type="Panel" parent="VBoxContainer/LevelsFall/Fall5"]
+self_modulate = Color(0.62, 0.62, 0.62, 1)
 layout_mode = 0
 offset_left = 7.0
 offset_top = 6.0
@@ -1505,29 +1519,29 @@ text = "Select a Level"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="pressed" from="VBoxContainer/LevelsIntro/Intro1" to="." method="_on_level_1_pressed"]
-[connection signal="pressed" from="VBoxContainer/LevelsIntro/Intro2" to="." method="_on_level_2_pressed"]
-[connection signal="pressed" from="VBoxContainer/LevelsIntro/Intro3" to="." method="_on_level_3_pressed"]
-[connection signal="pressed" from="VBoxContainer/LevelsIntro/Intro4" to="." method="_on_level_4_pressed"]
-[connection signal="pressed" from="VBoxContainer/LevelsIntro/Intro5" to="." method="_on_level_5_pressed"]
-[connection signal="pressed" from="VBoxContainer/LevelsSpring/Spring1" to="." method="_on_level_1_pressed"]
-[connection signal="pressed" from="VBoxContainer/LevelsSpring/Spring2" to="." method="_on_level_2_pressed"]
-[connection signal="pressed" from="VBoxContainer/LevelsSpring/Spring3" to="." method="_on_level_3_pressed"]
-[connection signal="pressed" from="VBoxContainer/LevelsSpring/Spring4" to="." method="_on_level_4_pressed"]
-[connection signal="pressed" from="VBoxContainer/LevelsSpring/Spring5" to="." method="_on_level_5_pressed"]
-[connection signal="pressed" from="VBoxContainer/LevelsSummer/Summer1" to="." method="_on_level_1_pressed"]
-[connection signal="pressed" from="VBoxContainer/LevelsSummer/Summer2" to="." method="_on_level_2_pressed"]
-[connection signal="pressed" from="VBoxContainer/LevelsSummer/Summer3" to="." method="_on_level_3_pressed"]
-[connection signal="pressed" from="VBoxContainer/LevelsSummer/Summer4" to="." method="_on_level_4_pressed"]
-[connection signal="pressed" from="VBoxContainer/LevelsSummer/Summer5" to="." method="_on_level_5_pressed"]
-[connection signal="pressed" from="VBoxContainer/LevelsFall/Fall1" to="." method="_on_level_1_pressed"]
-[connection signal="pressed" from="VBoxContainer/LevelsFall/Fall2" to="." method="_on_level_2_pressed"]
-[connection signal="pressed" from="VBoxContainer/LevelsFall/Fall3" to="." method="_on_level_3_pressed"]
-[connection signal="pressed" from="VBoxContainer/LevelsFall/Fall4" to="." method="_on_level_4_pressed"]
-[connection signal="pressed" from="VBoxContainer/LevelsFall/Fall5" to="." method="_on_level_5_pressed"]
-[connection signal="pressed" from="VBoxContainer/LevelsWinter/Winter1" to="." method="_on_level_6_pressed"]
-[connection signal="pressed" from="VBoxContainer/LevelsWinter/Winter2" to="." method="_on_level_7_pressed"]
-[connection signal="pressed" from="VBoxContainer/LevelsWinter/Winter3" to="." method="_on_level_8_pressed"]
-[connection signal="pressed" from="VBoxContainer/LevelsWinter/Winter4" to="." method="_on_level_9_pressed"]
-[connection signal="pressed" from="VBoxContainer/LevelsWinter/Winter5" to="." method="_on_level_10_pressed"]
+[connection signal="pressed" from="VBoxContainer/LevelsIntro/Intro1" to="." method="_on_level_intro_1_pressed"]
+[connection signal="pressed" from="VBoxContainer/LevelsIntro/Intro2" to="." method="_on_level_intro_2_pressed"]
+[connection signal="pressed" from="VBoxContainer/LevelsIntro/Intro3" to="." method="_on_level_intro_3_pressed"]
+[connection signal="pressed" from="VBoxContainer/LevelsIntro/Intro4" to="." method="_on_level_intro_4_pressed"]
+[connection signal="pressed" from="VBoxContainer/LevelsIntro/Intro5" to="." method="_on_level_intro_5_pressed"]
+[connection signal="pressed" from="VBoxContainer/LevelsSpring/Spring1" to="." method="_on_level_spring_1_pressed"]
+[connection signal="pressed" from="VBoxContainer/LevelsSpring/Spring2" to="." method="_on_level_spring_2_pressed"]
+[connection signal="pressed" from="VBoxContainer/LevelsSpring/Spring3" to="." method="_on_level_spring_3_pressed"]
+[connection signal="pressed" from="VBoxContainer/LevelsSpring/Spring4" to="." method="_on_level_spring_4_pressed"]
+[connection signal="pressed" from="VBoxContainer/LevelsSpring/Spring5" to="." method="_on_level_spring_5_pressed"]
+[connection signal="pressed" from="VBoxContainer/LevelsSummer/Summer1" to="." method="_on_level_summer_1_pressed"]
+[connection signal="pressed" from="VBoxContainer/LevelsSummer/Summer2" to="." method="_on_level_summer_2_pressed"]
+[connection signal="pressed" from="VBoxContainer/LevelsSummer/Summer3" to="." method="_on_level_summer_3_pressed"]
+[connection signal="pressed" from="VBoxContainer/LevelsSummer/Summer4" to="." method="_on_level_summer_4_pressed"]
+[connection signal="pressed" from="VBoxContainer/LevelsSummer/Summer5" to="." method="_on_level_summer_5_pressed"]
+[connection signal="pressed" from="VBoxContainer/LevelsFall/Fall1" to="." method="_on_level_fall_1_pressed"]
+[connection signal="pressed" from="VBoxContainer/LevelsFall/Fall2" to="." method="_on_level_fall_2_pressed"]
+[connection signal="pressed" from="VBoxContainer/LevelsFall/Fall3" to="." method="_on_level_fall_3_pressed"]
+[connection signal="pressed" from="VBoxContainer/LevelsFall/Fall4" to="." method="_on_level_fall_4_pressed"]
+[connection signal="pressed" from="VBoxContainer/LevelsFall/Fall5" to="." method="_on_level_fall_5_pressed"]
+[connection signal="pressed" from="VBoxContainer/LevelsWinter/Winter1" to="." method="_on_level_winter_1_pressed"]
+[connection signal="pressed" from="VBoxContainer/LevelsWinter/Winter2" to="." method="_on_level_winter_2_pressed"]
+[connection signal="pressed" from="VBoxContainer/LevelsWinter/Winter3" to="." method="_on_level_winter_3_pressed"]
+[connection signal="pressed" from="VBoxContainer/LevelsWinter/Winter4" to="." method="_on_level_winter_4_pressed"]
+[connection signal="pressed" from="VBoxContainer/LevelsWinter/Winter5" to="." method="_on_level_winter_5_pressed"]
 [connection signal="pressed" from="Back" to="." method="_on_exit_pressed"]

@@ -6,7 +6,7 @@ var fade_animation = null
 
 var current_scene = null
 var current_level = 0
-var levelCount = 10
+var levelCount = 0
 var paused_scene = null  # To store the paused scene
 var is_paused = false   # To track if we're in a paused state
 
@@ -14,7 +14,7 @@ func _ready() -> void:
 	#fade_scene = preload(Constants.PATH_FADE)
 	var root = get_tree().root
 	current_scene = root.get_child(root.get_child_count() - 1)
-	levelCount = 10
+	levelCount = Constants.LEVELS.size()
 	
 func switch_scene(res_path, pause_current=false):
 	call_deferred("_deferred_switch_scene", res_path, pause_current)
