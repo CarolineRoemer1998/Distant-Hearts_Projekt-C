@@ -41,6 +41,8 @@ var currently_possessed_creature: Creature = null
 var pushable_stone_in_direction : Stone = null
 
 var bees_are_flying := false
+var is_avoiding := false
+var planted_flower_last_step := false
 
 var is_level_finished := false
 ## TODO: Deaktivieren während Bienen fliegen
@@ -69,10 +71,6 @@ func _ready():
 
 ## Main update loop: movement, UI, input.
 func _process(delta):
-	if not can_move:
-		print("Can't move")
-	if not is_active:
-		print("Isn't activated")
 	update_movement(delta)
 	update_heart_icons()
 	handle_input()
@@ -91,7 +89,9 @@ func handle_input():
 	if is_level_finished:
 		if Input.is_action_just_pressed("ui_accept"):
 			SceneSwitcher.go_to_next_level()
-	elif is_active:
+	elif bees_are_flying or is_avoiding:
+		return
+	elif is_active and not is_avoiding:
 		handle_movement_input(Vector2.ZERO)
 		handle_interaction_input()
 	elif is_level_finished:
@@ -111,13 +111,25 @@ func _read_input_direction() -> Vector2:
 	return Vector2.ZERO
 
 ## Handles movement requests, buffering and move validation.
-func handle_movement_input(_input_direction: Vector2):
-	if not can_move:
+func handle_movement_input(_input_direction: Vector2, step_timer_time := Constants.TIMER_STEP):
+	if currently_possessed_creature:
+		var bee_area = Helper.get_collision_on_area(
+			currently_possessed_creature.global_position,
+			1 << Constants.LAYER_BIT_BEE_AREA,
+			get_world_2d()
+		)
+		if not bee_area.is_empty():
+			return
+		
+	if is_avoiding or bees_are_flying:
+		return
+	
+	if not can_move or is_avoiding:
 		return
 
 	input_direction = _input_direction
 	var read_dir = _read_input_direction()
-	if read_dir != Vector2.ZERO:
+	if read_dir != Vector2.ZERO and _input_direction == Vector2.ZERO:
 		input_direction = read_dir
 
 	if input_direction == Vector2.ZERO:
@@ -126,17 +138,21 @@ func handle_movement_input(_input_direction: Vector2):
 	direction = input_direction
 	if input_direction == _input_direction:
 		input_direction = Vector2.ZERO
+	
+	prepare_movement(direction, direction, step_timer_time)
 
-	set_animation_direction(direction)
-
+## Prepares a normal (input-based) movement step.
+func prepare_movement(_direction: Vector2, animation_direction: Vector2, step_timer_time := Constants.TIMER_STEP):
+	direction = _direction
+	set_animation_direction(animation_direction)
 	can_move = false
 	pushable_stone_in_direction = null
-	step_timer.start(Constants.TIMER_STEP)
+	step_timer.start(step_timer_time)
 
 	if is_moving:
-		buffered_direction = direction
+		buffered_direction = _direction
 	else:
-		if Helper.can_move_in_direction(position, direction, get_world_2d(), currently_possessed_creature!=null):
+		if Helper.can_move_in_direction(position, _direction, get_world_2d(), currently_possessed_creature!=null):
 			set_is_moving(true)
 
 ## Handles switching possession of creatures.
@@ -165,7 +181,12 @@ func get_info() -> Dictionary:
 		"is_on_ice": is_on_ice,
 
 		"hovering_over": hovering_over,
-		"currently_possessed_creature": currently_possessed_creature
+		"currently_possessed_creature": currently_possessed_creature,
+		
+		#"can_move": can_move,
+		"bees_are_flying": bees_are_flying,
+		"is_avoiding": is_avoiding,
+		"planted_flower_last_step": planted_flower_last_step
 	}
 
 ## Restores a previous player state from undo.
@@ -181,12 +202,20 @@ func set_info(info : Dictionary):
 	current_direction = info["current_direction"]
 	buffered_direction = info["buffered_direction"]
 
-
+	# Bewegung komplett stoppen
 	set_is_moving(false)
 	is_on_ice = info["is_on_ice"]
 	is_sliding = false
-	can_move = true
 	reset_stone_push_state()
+
+	bees_are_flying = info["bees_are_flying"]
+	is_avoiding = info["is_avoiding"]
+	
+	planted_flower_last_step = info["planted_flower_last_step"]
+	can_move = true
+
+	step_timer.stop()
+	avoid_timer.stop()
 
 	set_animation_direction(direction)
 
@@ -195,6 +224,7 @@ func set_info(info : Dictionary):
 		possess()
 	elif currently_possessed_creature and info_creature == null:
 		unpossess()
+	
 
 ## Spawns undo particles at the given position.
 func spawn_undo_particles(world_pos: Vector2):
@@ -231,12 +261,6 @@ func set_animation_direction(_direction: Vector2):
 
 ## Handles movement each frame, including bees and teleportation.
 func update_movement(delta):
-	#if target_position != global_position:
-		#deactivate()
-	if currently_possessed_creature and currently_possessed_creature.is_avoiding_bees:
-		_sync_with_creature_during_bee_avoidance()
-		return
-
 	if currently_possessed_creature and currently_possessed_creature.is_teleporting:
 		return
 		
@@ -256,36 +280,20 @@ func update_movement(delta):
 		)
 
 	if position == target_position:
-		if _check_bee_avoidance_after_step():
-			return
-
 		if currently_possessed_creature and currently_possessed_creature.just_teleported:
 			currently_possessed_creature.just_teleported = false
-
+		
+		if currently_possessed_creature:
+			var result_bee_area = Helper.get_collision_on_area(
+				currently_possessed_creature.global_position,
+				1 << Constants.LAYER_BIT_BEE_AREA,
+				get_world_2d()
+			)
+			if not result_bee_area.is_empty():
+				handle_bees_near_creature(currently_possessed_creature)
+				return
+			
 		Signals.player_move_finished.emit()
-
-## Forces player to follow creature during bee avoidance.
-func _sync_with_creature_during_bee_avoidance():
-	var pos = currently_possessed_creature.global_position
-	global_position = pos
-	position = pos
-	target_position = pos
-	is_moving = false
-
-## Evaluates bee proximity and triggers avoidance steps.
-func _check_bee_avoidance_after_step() -> bool:
-	if not currently_possessed_creature:
-		return false
-
-	var bee_dir = currently_possessed_creature.get_bee_position_if_nearby(currently_possessed_creature.global_position)
-	if bee_dir == null:
-		return false
-
-	var dir = currently_possessed_creature.avoid_bees(bee_dir, -current_direction)
-	currently_possessed_creature.target_position = global_position + dir * Constants.GRID_SIZE
-	currently_possessed_creature.is_avoiding_bees = true
-	target_position = currently_possessed_creature.target_position
-	return true
 
 ## Called when a movement step ends; handles buffering.
 func on_move_step_finished():
@@ -304,6 +312,11 @@ func on_move_step_finished():
 			)
 		)
 		buffered_direction = Vector2.ZERO
+	
+	if is_avoiding:
+		is_avoiding = false
+		can_move = false
+		avoid_timer.start(Constants.TIMER_STEP_AFTER_AVOIDING)
 
 ## Computes slide target and updates ice-related flags.
 func update_ice_slide_target():
@@ -339,13 +352,76 @@ func set_level_finished():
 	deactivate()
 	is_level_finished = true
 
+
+# ------------------------------------------------
+# BEES
+# ------------------------------------------------
+
 func handle_bees_start_flying():
+	buffered_direction = Vector2.ZERO
 	can_move = false
 	bees_are_flying = true
 
 func handle_bees_stop_flying():
-	if avoid_timer.is_stopped():
-		avoid_timer.start(0.5)
+	bees_are_flying = false
+	planted_flower_last_step = true
+	
+	if currently_possessed_creature:
+		var result_bee_area = Helper.get_collision_on_area(
+			currently_possessed_creature.global_position,
+			1 << Constants.LAYER_BIT_BEE_AREA,
+			get_world_2d()
+		)
+		if not result_bee_area.is_empty():
+			handle_bees_near_creature(currently_possessed_creature)
+
+## Wird ausgelöst, wenn Bienen in der Nähe einer Creature sind (nur noch Player-intern).
+func handle_bees_near_creature(creature: Creature):
+	if creature == null:
+		return
+	if creature != currently_possessed_creature:
+		return
+		
+	is_avoiding = true
+	buffered_direction = Vector2.ZERO
+	can_move = false
+	_start_bee_avoid_step()
+
+## Startet einen einzelnen Ausweichschritt rückwärts von den Bienen weg.
+func _start_bee_avoid_step():	
+	# Vorwärtsrichtung (zur Biene) merken
+	var forward_dir = direction
+	if forward_dir == Vector2.ZERO:
+		forward_dir = current_direction
+	
+	if forward_dir == Vector2.ZERO:
+		is_avoiding = false
+		can_move = true
+		return
+	
+	var move_dir = -forward_dir  # Bewegung weg von den Bienen
+	
+	# Animation: zur Biene hin schauen (rückwärts wegspringen)
+	set_animation_direction(forward_dir)
+	
+	# Bewegung: tatsächlich rückwärts gehen
+	direction = move_dir
+	pushable_stone_in_direction = null
+	buffered_direction = Vector2.ZERO
+	
+	if Helper.can_move_in_direction(
+		position,
+		move_dir,
+		get_world_2d(),
+		currently_possessed_creature != null,
+		true
+	):
+		set_is_moving(true)
+	else:
+		# Kein Platz zum Ausweichen
+		is_avoiding = false
+		can_move = true
+
 
 # ------------------------------------------------
 # MOVE START
@@ -359,6 +435,8 @@ func set_is_moving(v: bool):
 
 ## Calculates the next tile, handles merge/push/FX, and sends undo snapshot.
 func begin_move_step():
+	print("Begin Move")
+	print("is_avoiding: ", is_avoiding)
 	target_position += direction * Constants.GRID_SIZE
 	current_direction = direction
 
@@ -376,8 +454,8 @@ func begin_move_step():
 
 	spawn_trail(position)
 	play_step_sound()
-
-	Signals.state_changed.emit(get_info())
+	if not is_avoiding:
+		Signals.state_changed.emit(get_info())
 
 ## Plays randomised movement step sound.
 func play_step_sound():
@@ -521,10 +599,13 @@ func update_heart_icons():
 
 ## Re-enables movement after step timer finishes.
 func _on_step_timer_timeout():
+	if is_avoiding or bees_are_flying:
+		return
 	can_move = true
 
 
 func _on_avoid_timer_timeout() -> void:
-	#activate()
+	if not planted_flower_last_step:
+		StateSaver.remove_last_state()
 	can_move = true
-	bees_are_flying = false
+	planted_flower_last_step = false

@@ -39,7 +39,7 @@ signal creature_finished_teleporting
 
 # Bees & Flowers
 signal flower_grows(flower: FlowerSeed)
-signal bees_near_creature
+signal bees_near_creature(creature: Creature)
 signal bees_not_near_creature
 signal bees_start_flying
 signal bees_stop_flying

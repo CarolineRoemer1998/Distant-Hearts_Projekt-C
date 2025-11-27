@@ -70,13 +70,6 @@ func grow():
 	pollen.visible = true
 	Signals.flower_grows.emit(self)
 
-## TODO: Wenn Blume wächst und Bienen kommen, springt creature nicht mehr weg, 
-## 		weil in player update_movement nicht mehr deactivate bei target_position != global_position ist
-
-## TODO: Bei undo wo flower zu seed werden soll, wird sie erst beim zweiten undo zu seed
-
-
-
 func enable_collision_layer():
 	if is_in_group(Constants.GROUP_NAME_PUSHABLES):
 		set_collision_layer_value(Constants.LAYER_BIT_PUSHABLE+1, true)

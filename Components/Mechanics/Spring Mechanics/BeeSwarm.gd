@@ -8,6 +8,8 @@ class_name BeeSwarm
 @export var bee_sprites : Array[SingleBee] = []
 @export var animation_players : Array[AnimationPlayer] = []
 
+@onready var area_check_for_creatures: Area2D = $AreaCheckForCreatures
+
 const MODULATE_AGGRO := Color(1.096, 0.278, 0.278)
 const MODULATE_NORMAL := Color(1.096, 1.096, 1.096)
 
@@ -21,6 +23,9 @@ var anim_speed_normal := 1.0
 var anim_speed_aggro := 8.0
 
 var is_flying_to_new_position := false
+var reached_flower_last_step := false
+var position_before_flower := Vector2.ZERO
+var target_flower : FlowerSeed = null
 
 
 func _ready() -> void:
@@ -31,8 +36,10 @@ func _ready() -> void:
 	add_to_group(Constants.GROUP_NAME_BEES)
 	init_position = global_position
 	target_position = init_position
+	position_before_flower = init_position
 
 func _process(delta: float) -> void:
+	check_creature_is_close()
 	if is_aggro:
 		modulate = lerp(modulate, MODULATE_AGGRO, delta*4.0)
 		for anim_player in animation_players:
@@ -44,12 +51,13 @@ func _process(delta: float) -> void:
 	
 	
 	if is_flying_to_new_position:
-		visuals.position = lerp(visuals.position, Vector2(-5,-32), delta*5.0)
+		visuals.position = lerp(visuals.position, Vector2(0,-16), delta*5.0)
 		position = position.move_toward(target_position, flying_speed*delta)
 		
 		if abs(position - target_position)[0] < 0.01 and abs(position - target_position)[1] < 0.01:
 			position = target_position
 			is_flying_to_new_position = false
+			reached_flower_last_step = true
 			reset_bee_sprite_direction()
 			Signals.bees_stop_flying.emit()
 
@@ -59,13 +67,13 @@ func _process(delta: float) -> void:
 ## Returns a Dictionary snapshot of the FlowerSeed state
 ## used for Undo/Redo (position + target position).
 func get_info() -> Dictionary:
-	return {
-		#"global_position": global_position,
-		"global_position": 				target_position,
-		"is_flying_to_new_position": 	is_flying_to_new_position,
-		"is_aggro": 					is_aggro
-		#"current_state": current_state
-	}
+	var save_dict = {}
+	save_dict["global_position"] = target_position
+	save_dict["is_flying_to_new_position"] = is_flying_to_new_position
+	save_dict["is_aggro"] = is_aggro
+	save_dict["target_flower"] = target_flower
+	
+	return save_dict
 
 ## Restores the FlowerSeed state from a Dictionary snapshot.
 ## Resets movement and pending push data.
@@ -76,11 +84,11 @@ func set_info(info : Dictionary):
 	is_flying_to_new_position = info.get("is_flying_to_new_position")
 	is_aggro = info.get("is_aggro")
 
-
-
 func fly_to_flower(flower: FlowerSeed):
-	target_position = flower.global_position
+	target_flower = flower
+	target_position = flower.target_position
 	_change_direction_of_bee_sprites()
+	position_before_flower = global_position
 	is_flying_to_new_position = true
 	Signals.bees_start_flying.emit()
 
@@ -100,12 +108,20 @@ func reset_bee_sprite_direction():
 
 func turn_red():
 	is_aggro = true
-	#modulate = MODULATE_AGGRO
 
 func turn_normal():
 	if timer_aggro_cooldown.time_left == 0:
 		timer_aggro_cooldown.start()
 
-
 func _on_timer_aggro_cooldown_timeout() -> void:
 	is_aggro = false
+
+func check_creature_is_close() -> void:
+	for creature in area_check_for_creatures.get_overlapping_bodies():
+		if creature is Creature:
+			if not is_aggro and creature.is_possessed:
+				creature.tremble()
+				Signals.bees_near_creature.emit(creature)
+			turn_red()
+			return
+	turn_normal()

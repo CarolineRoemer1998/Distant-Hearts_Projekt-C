@@ -1,26 +1,16 @@
-[gd_scene load_steps=23 format=3 uid="uid://2yidpveskdj8"]
+[gd_scene load_steps=13 format=3 uid="uid://2yidpveskdj8"]
 
 [ext_resource type="Script" uid="uid://ddiwo6yyhfkuc" path="res://Components/Levels/level.gd" id="1_o25g3"]
 [ext_resource type="PackedScene" uid="uid://lrodaawkgfob" path="res://Components/UI/VFX/undo_particles.tscn" id="2_lnttf"]
 [ext_resource type="PackedScene" uid="uid://ihdvu1wqfcub" path="res://Components/Levels/Backgrounds/bg-base-spring.tscn" id="3_phjrt"]
-[ext_resource type="PackedScene" uid="uid://i448npnkeckp" path="res://Components/Mechanics/Winter Mechanics/ice_floor.tscn" id="4_bjrms"]
 [ext_resource type="PackedScene" uid="uid://ccncnjkm8w8ta" path="res://Components/Creatures/creature_blue.tscn" id="4_ytva6"]
-[ext_resource type="Texture2D" uid="uid://d2wcstlnxmknt" path="res://Assets/Winter Mechanics/Ice Floors/Ice-floor-L.png" id="5_snu2d"]
 [ext_resource type="PackedScene" uid="uid://be6k5yjppap8y" path="res://Components/Creatures/creature_yellow.tscn" id="5_ur3mc"]
 [ext_resource type="PackedScene" uid="uid://g3u7bc1jo6gj" path="res://Components/Player/player.tscn" id="6_0ecyo"]
-[ext_resource type="Texture2D" uid="uid://bc7d4qmidqg4y" path="res://Assets/Winter Mechanics/Ice Floors/Ice-floor-L-T.png" id="6_e31ls"]
-[ext_resource type="Texture2D" uid="uid://do6thefjlbd1q" path="res://Assets/Winter Mechanics/Ice Floors/Ice-floor-R-T.png" id="7_8rpdv"]
-[ext_resource type="Texture2D" uid="uid://btwlvk2xprfh2" path="res://Assets/Winter Mechanics/Ice Floors/Ice-floor-R.png" id="8_5yohv"]
 [ext_resource type="PackedScene" uid="uid://dtrjxhb3ayo1c" path="res://Components/Levels/LevelUI.tscn" id="8_j216h"]
 [ext_resource type="PackedScene" uid="uid://ba8q3gl8ussnm" path="res://Components/Mechanics/Spring Mechanics/FlowerSeed.tscn" id="9_5nyxd"]
-[ext_resource type="Texture2D" uid="uid://cmeverec805io" path="res://Assets/Winter Mechanics/Ice Floors/Ice-floor-T.png" id="9_s5k77"]
 [ext_resource type="PackedScene" uid="uid://dpemn8sewapip" path="res://Components/Mechanics/Spring Mechanics/soil.tscn" id="10_bbxu2"]
 [ext_resource type="PackedScene" uid="uid://oy61arlldjo3" path="res://Components/Mechanics/Stones/Stone.tscn" id="10_o25g3"]
-[ext_resource type="Texture2D" uid="uid://dhgxskyq6mhsp" path="res://Assets/Winter Mechanics/Ice Floors/Ice-floor-B.png" id="10_r5wh2"]
 [ext_resource type="PackedScene" uid="uid://0edfjrrf5011" path="res://Components/Mechanics/Spring Mechanics/BeeSwarm.tscn" id="11_bjrms"]
-[ext_resource type="Texture2D" uid="uid://ce8efu0a3oy2r" path="res://Assets/Winter Mechanics/Ice Floors/Ice-floor-L-B.png" id="11_kj030"]
-[ext_resource type="Texture2D" uid="uid://b45v4bjjuo8eb" path="res://Assets/Winter Mechanics/Ice Floors/Ice-floor-R-B.png" id="12_8ck1s"]
-[ext_resource type="Texture2D" uid="uid://dis43boq1dnwi" path="res://Assets/Winter Mechanics/Ice Floors/Ice-floor-L-R-B.png" id="13_f6kq6"]
 [ext_resource type="PackedScene" uid="uid://bt4pnhd7cx7xc" path="res://Components/Mechanics/Buttons/button.tscn" id="14_snu2d"]
 
 [node name="LevelSpring2" type="Node2D"]
@@ -33,148 +23,6 @@ level_number = 7
 
 [node name="LevelWall" parent="BackgroundSpring" index="2"]
 visible = true
-
-[node name="IceTiles" type="Node2D" parent="."]
-
-[node name="IceFloor" parent="IceTiles" instance=ExtResource("4_bjrms")]
-position = Vector2(64, 256)
-texture = ExtResource("5_snu2d")
-
-[node name="IceFloor26" parent="IceTiles" instance=ExtResource("4_bjrms")]
-position = Vector2(64, 192)
-texture = ExtResource("5_snu2d")
-
-[node name="IceFloor27" parent="IceTiles" instance=ExtResource("4_bjrms")]
-position = Vector2(64, 128)
-texture = ExtResource("5_snu2d")
-
-[node name="IceFloor28" parent="IceTiles" instance=ExtResource("4_bjrms")]
-position = Vector2(64, 64)
-texture = ExtResource("6_e31ls")
-
-[node name="IceFloor29" parent="IceTiles" instance=ExtResource("4_bjrms")]
-position = Vector2(128, 64)
-texture = ExtResource("7_8rpdv")
-
-[node name="IceFloor30" parent="IceTiles" instance=ExtResource("4_bjrms")]
-position = Vector2(128, 128)
-
-[node name="IceFloor31" parent="IceTiles" instance=ExtResource("4_bjrms")]
-position = Vector2(128, 192)
-texture = ExtResource("8_5yohv")
-
-[node name="IceFloor32" parent="IceTiles" instance=ExtResource("4_bjrms")]
-position = Vector2(512, 192)
-texture = ExtResource("5_snu2d")
-
-[node name="IceFloor33" parent="IceTiles" instance=ExtResource("4_bjrms")]
-position = Vector2(576, 192)
-texture = ExtResource("8_5yohv")
-
-[node name="IceFloor34" parent="IceTiles" instance=ExtResource("4_bjrms")]
-position = Vector2(576, 128)
-texture = ExtResource("8_5yohv")
-
-[node name="IceFloor35" parent="IceTiles" instance=ExtResource("4_bjrms")]
-position = Vector2(576, 64)
-texture = ExtResource("7_8rpdv")
-
-[node name="IceFloor36" parent="IceTiles" instance=ExtResource("4_bjrms")]
-position = Vector2(512, 64)
-texture = ExtResource("6_e31ls")
-
-[node name="IceFloor37" parent="IceTiles" instance=ExtResource("4_bjrms")]
-position = Vector2(512, 128)
-texture = ExtResource("5_snu2d")
-
-[node name="IceFloor2" parent="IceTiles" instance=ExtResource("4_bjrms")]
-position = Vector2(128, 256)
-
-[node name="IceFloor3" parent="IceTiles" instance=ExtResource("4_bjrms")]
-position = Vector2(192, 256)
-texture = ExtResource("9_s5k77")
-
-[node name="IceFloor4" parent="IceTiles" instance=ExtResource("4_bjrms")]
-position = Vector2(256, 256)
-texture = ExtResource("9_s5k77")
-
-[node name="IceFloor5" parent="IceTiles" instance=ExtResource("4_bjrms")]
-position = Vector2(320, 256)
-texture = ExtResource("9_s5k77")
-
-[node name="IceFloor6" parent="IceTiles" instance=ExtResource("4_bjrms")]
-position = Vector2(384, 256)
-texture = ExtResource("9_s5k77")
-
-[node name="IceFloor7" parent="IceTiles" instance=ExtResource("4_bjrms")]
-position = Vector2(448, 256)
-texture = ExtResource("9_s5k77")
-
-[node name="IceFloor8" parent="IceTiles" instance=ExtResource("4_bjrms")]
-position = Vector2(512, 256)
-
-[node name="IceFloor9" parent="IceTiles" instance=ExtResource("4_bjrms")]
-position = Vector2(576, 256)
-texture = ExtResource("8_5yohv")
-
-[node name="IceFloor10" parent="IceTiles" instance=ExtResource("4_bjrms")]
-position = Vector2(64, 320)
-texture = ExtResource("5_snu2d")
-
-[node name="IceFloor11" parent="IceTiles" instance=ExtResource("4_bjrms")]
-position = Vector2(128, 320)
-
-[node name="IceFloor12" parent="IceTiles" instance=ExtResource("4_bjrms")]
-position = Vector2(192, 320)
-
-[node name="IceFloor13" parent="IceTiles" instance=ExtResource("4_bjrms")]
-position = Vector2(256, 320)
-texture = ExtResource("10_r5wh2")
-
-[node name="IceFloor14" parent="IceTiles" instance=ExtResource("4_bjrms")]
-position = Vector2(320, 320)
-
-[node name="IceFloor15" parent="IceTiles" instance=ExtResource("4_bjrms")]
-position = Vector2(384, 320)
-texture = ExtResource("10_r5wh2")
-
-[node name="IceFloor16" parent="IceTiles" instance=ExtResource("4_bjrms")]
-position = Vector2(448, 320)
-
-[node name="IceFloor17" parent="IceTiles" instance=ExtResource("4_bjrms")]
-position = Vector2(512, 320)
-
-[node name="IceFloor18" parent="IceTiles" instance=ExtResource("4_bjrms")]
-position = Vector2(576, 320)
-texture = ExtResource("8_5yohv")
-
-[node name="IceFloor19" parent="IceTiles" instance=ExtResource("4_bjrms")]
-position = Vector2(64, 384)
-texture = ExtResource("11_kj030")
-
-[node name="IceFloor20" parent="IceTiles" instance=ExtResource("4_bjrms")]
-position = Vector2(128, 384)
-texture = ExtResource("10_r5wh2")
-
-[node name="IceFloor21" parent="IceTiles" instance=ExtResource("4_bjrms")]
-position = Vector2(192, 384)
-texture = ExtResource("12_8ck1s")
-
-[node name="IceFloor22" parent="IceTiles" instance=ExtResource("4_bjrms")]
-position = Vector2(320, 384)
-texture = ExtResource("13_f6kq6")
-
-[node name="IceFloor23" parent="IceTiles" instance=ExtResource("4_bjrms")]
-position = Vector2(448, 384)
-texture = ExtResource("11_kj030")
-
-[node name="IceFloor24" parent="IceTiles" instance=ExtResource("4_bjrms")]
-position = Vector2(512, 384)
-texture = ExtResource("10_r5wh2")
-
-[node name="IceFloor25" parent="IceTiles" instance=ExtResource("4_bjrms")]
-position = Vector2(576, 384)
-texture = ExtResource("12_8ck1s")
 
 [node name="Buttons" type="Node" parent="."]
 
@@ -190,7 +38,7 @@ position = Vector2(480, 544)
 position = Vector2(416, 544)
 
 [node name="BeeSwarm" parent="Soil, Flowers & Bees" instance=ExtResource("11_bjrms")]
-position = Vector2(96, 160)
+position = Vector2(416, 352)
 
 [node name="Creatures" type="Node" parent="."]
 
@@ -204,6 +52,7 @@ position = Vector2(224, 224)
 
 [node name="Player" parent="Player" instance=ExtResource("6_0ecyo")]
 position = Vector2(288, 544)
+collision_mask = 303
 
 [node name="Stone" parent="." instance=ExtResource("10_o25g3")]
 position = Vector2(544, 416)

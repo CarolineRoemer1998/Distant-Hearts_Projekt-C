@@ -68,52 +68,6 @@ func _ready():
 	animation_tree.get("parameters/playback").travel("Idle")
 	set_animation_direction(init_direction)
 
-
-# -----------------------------------------------------------
-# Process (Bee Avoidance)
-# -----------------------------------------------------------
-
-func _process(delta: float) -> void:
-	var bee_dir = get_bee_position_if_nearby(global_position)
-	
-	if bee_dir != null:
-		Signals.bees_near_creature.emit()
-	elif bee_dir == null:
-		Signals.bees_not_near_creature.emit()
-	
-	# Reset escape state when bees are gone
-	if bee_dir == null:
-		last_escape_direction = Vector2.ZERO
-		hard_escape_lock = false
-
-	# Bees nearby: decide avoidance (possessed vs. unpossessed)
-	if bee_dir != null and not is_avoiding_bees:
-
-		if is_possessed:
-			var opposite = -player.input_direction
-			player.handle_movement_input(avoid_bees(bee_dir, opposite))
-			player.can_move = false
-			player.deactivate()
-		else:
-			var dir = avoid_bees(bee_dir, Vector2.ZERO)
-			target_position = global_position + dir * Constants.GRID_SIZE
-			is_avoiding_bees = true
-
-	# Move while avoiding
-	if is_avoiding_bees and target_position != global_position:
-		global_position = position.move_toward(target_position, Constants.MOVE_SPEED * delta)
-
-	# Reached tile → stop avoiding
-	if is_avoiding_bees and position.distance_to(target_position) < 0.1:
-		if player:
-			global_position = target_position
-		position = target_position
-		is_avoiding_bees = false
-		last_escape_direction = Vector2.ZERO
-		hard_escape_lock = false
-		bee_dir = null
-
-
 # -----------------------------------------------------------
 # Undo State
 # -----------------------------------------------------------
@@ -147,7 +101,6 @@ func set_info(info : Dictionary):
 
 	has_not_moved = info.get("has_not_moved")
 
-
 # -----------------------------------------------------------
 # Animation
 # -----------------------------------------------------------
@@ -155,7 +108,6 @@ func set_info(info : Dictionary):
 func set_animation_direction(direction: Vector2 = current_direction) -> void:
 	current_direction = direction
 	animation_tree.set("parameters/Idle/BlendSpace2D/blend_position", direction)
-
 
 # -----------------------------------------------------------
 # Activity / Merge

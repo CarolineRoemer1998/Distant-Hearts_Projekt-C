@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://n5krahylrcfq"]
 
-[ext_resource type="Texture2D" uid="uid://booeg5vwpvo4e" path="res://Assets/Particles/Drop.png" id="1_f4ioc"]
+[ext_resource type="Texture2D" uid="uid://cwavrgs0h3iq3" path="res://Assets/Particles/Drop.png" id="1_f4ioc"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rrtcc"]
 particle_flag_disable_z = true
@@ -15,9 +15,8 @@ scale_max = 0.5
 modulate = Color(1.1658615, 1.6530987, 1.697393, 1)
 position = Vector2(0, -24)
 emitting = false
-amount = 4
+amount = 6
 texture = ExtResource("1_f4ioc")
-lifetime = 0.5
 one_shot = true
 speed_scale = 2.0
 use_fixed_seed = true

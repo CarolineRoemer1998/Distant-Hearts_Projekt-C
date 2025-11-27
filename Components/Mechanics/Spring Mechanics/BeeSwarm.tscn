@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://0edfjrrf5011"]
+[gd_scene load_steps=18 format=3 uid="uid://0edfjrrf5011"]
 
 [ext_resource type="Texture2D" uid="uid://bypu3mxifsd3a" path="res://Assets/Spring Mechanics/Bees/Blender/Bee-Aseprite-16x16.png" id="1_7ab61"]
 [ext_resource type="Texture2D" uid="uid://damd3v81dmwkc" path="res://Assets/Spring Mechanics/Bees/Blender/bee-shadow.png" id="1_lr6y7"]
@@ -175,6 +175,9 @@ gravity = Vector3(0, 0, 0)
 scale_min = 0.19999999
 scale_max = 0.29999998
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_x3nmx"]
+radius = 96.0
+
 [node name="BeeSwarm" type="StaticBody2D" node_paths=PackedStringArray("bee_sprites", "animation_players")]
 modulate = Color(1.096, 1.096, 1.096, 1)
 collision_layer = 16
@@ -262,5 +265,12 @@ amount = 16
 texture = ExtResource("5_x3nmx")
 lifetime = 2.0
 process_material = SubResource("ParticleProcessMaterial_dgfp4")
+
+[node name="AreaCheckForCreatures" type="Area2D" parent="."]
+collision_layer = 4096
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaCheckForCreatures"]
+shape = SubResource("CircleShape2D_x3nmx")
 
 [connection signal="timeout" from="TimerAggroCooldown" to="." method="_on_timer_aggro_cooldown_timeout"]

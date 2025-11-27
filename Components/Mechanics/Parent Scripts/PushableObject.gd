@@ -113,8 +113,6 @@ func _reset_pending_push() -> void:
 ## Per-frame update: moves the stone towards its target_position if
 ## it is moving or sliding and finishes the move step when arriving.
 func _process(delta):
-	if target_position != position and self is Stone:
-		print("Target: ", target_position, "\nPosition: ", position, "\n")
 	position = position.move_toward(target_position, MOVE_SPEED * delta)
 	
 	if position == target_position:
