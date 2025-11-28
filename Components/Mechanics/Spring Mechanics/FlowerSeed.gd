@@ -10,6 +10,8 @@ enum STATE {
 @onready var sprite_seed: Sprite2D = $Seed
 @onready var pollen: GPUParticles2D = $Pollen
 @onready var collider: CollisionShape2D = $CollisionShape2D
+@onready var animation_player = $AnimationPlayer
+@onready var twinkle = $Twinkle
 
 var current_state := STATE.Seed
 
@@ -67,8 +69,13 @@ func grow():
 	set_collision_layer_value(Constants.LAYER_BIT_FLOWER+1, true)
 	sprite_seed.visible = false
 	sprite_flower.visible = true
+	animation_player.play("Flower_Grow")
+	#twinkle.emitting = true
 	pollen.visible = true
 	Signals.flower_grows.emit(self)
+
+func emit_twinkle():
+	twinkle.emitting = true
 
 func enable_collision_layer():
 	if is_in_group(Constants.GROUP_NAME_PUSHABLES):

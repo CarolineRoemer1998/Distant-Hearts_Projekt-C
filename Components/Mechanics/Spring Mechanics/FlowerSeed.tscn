@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://ba8q3gl8ussnm"]
+[gd_scene load_steps=23 format=3 uid="uid://ba8q3gl8ussnm"]
 
 [ext_resource type="Script" uid="uid://dytdyife3qh6p" path="res://Components/Mechanics/Spring Mechanics/FlowerSeed.gd" id="1_rjnan"]
-[ext_resource type="Texture2D" uid="uid://c4bdewfthxc5h" path="res://Assets/Spring Mechanics/Flower/PinkFlowerBiggerBorderSpriteSheet.png" id="1_t7jgl"]
-[ext_resource type="Texture2D" uid="uid://dbtlkxrnci834" path="res://Assets/Spring Mechanics/Flower/Seed3.png" id="4_tpjqu"]
+[ext_resource type="Texture2D" uid="uid://r5o2i256f0th" path="res://Assets/Spring Mechanics/Flower/PinkFlowerBiggerBorderSpriteSheet.png" id="1_t7jgl"]
+[ext_resource type="Texture2D" uid="uid://c20w74uuv2bar" path="res://Assets/Particles/twinkle.png" id="4_2yydt"]
+[ext_resource type="Texture2D" uid="uid://ghev15ox6j24" path="res://Assets/Spring Mechanics/Flower/Seed3.png" id="4_tpjqu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rjnan"]
 size = Vector2(64, 64)
@@ -85,6 +86,74 @@ gravity = Vector3(0, -3, 0)
 scale_min = 0.19999999
 scale_max = 0.29999998
 
+[sub_resource type="Animation" id="Animation_yvxw1"]
+resource_name = "Flower_Grow"
+length = 0.3
+step = 0.025
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Flower:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.225, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(3, 3), Vector2(2, 2)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.05),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"emit_twinkle"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_2yydt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Flower:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.1, 0.1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q3upb"]
+_data = {
+&"Flower_Grow": SubResource("Animation_yvxw1"),
+&"RESET": SubResource("Animation_2yydt")
+}
+
+[sub_resource type="Curve" id="Curve_2yydt"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5636364, 0.78427136), 0.0, 0.0, 0, 0, Vector2(0.7848485, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_q3upb"]
+curve = SubResource("Curve_2yydt")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_q3upb"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 48.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_q3upb")
+
 [node name="FlowerSeed" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 8
@@ -98,9 +167,8 @@ texture = ExtResource("4_tpjqu")
 shape = SubResource("RectangleShape2D_rjnan")
 
 [node name="Flower" type="AnimatedSprite2D" parent="."]
-visible = false
 position = Vector2(1, 0)
-scale = Vector2(2, 2)
+scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_p8ao0")
 autoplay = "default"
 frame_progress = 0.8824624
@@ -112,3 +180,21 @@ position = Vector2(0, -24)
 texture = SubResource("CompressedTexture2D_t7jgl")
 lifetime = 3.0
 process_material = SubResource("ParticleProcessMaterial_rjnan")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_q3upb")
+}
+
+[node name="Twinkle" type="GPUParticles2D" parent="."]
+modulate = Color(1.7172428, 1.7172428, 1.7172428, 0.38431373)
+position = Vector2(0, -24)
+emitting = false
+texture = ExtResource("4_2yydt")
+lifetime = 0.25
+one_shot = true
+speed_scale = 0.5
+explosiveness = 0.35
+use_fixed_seed = true
+seed = 8
+process_material = SubResource("ParticleProcessMaterial_q3upb")
