@@ -20,6 +20,7 @@ func _ready():
 	add_to_group(str(Constants.GROUP_NAME_PUSHABLES))
 	add_to_group(str(Constants.GROUP_NAME_FLOWER_SEEDS))
 	enable_collision_layer()
+	layer_mask_obstacles = (1 << Constants.LAYER_BIT_PUSHABLE) | (1 << Constants.LAYER_BIT_DOOR) | (1 << Constants.LAYER_BIT_WALL_AND_PLAYER) | (1 << Constants.LAYER_BIT_CREATURE) | (1 << Constants.LAYER_BIT_LEVEL_WALL)
 
 # -----------------------------------------------------------
 # State (e.g. for Undo)
@@ -47,7 +48,6 @@ func set_info(info : Dictionary):
 	if turns_back_into_seed:
 		turn_back_into_seed()
 		# TODO: Play Animation for turning into Seed
-	
 	pending_target_position = Vector2.ZERO
 	pending_direction = Vector2.ZERO
 

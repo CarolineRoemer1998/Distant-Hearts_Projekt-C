@@ -34,6 +34,7 @@ func can_move_in_direction(_position: Vector2, _direction, world : World2D, is_p
 		return true
 	
 	if not is_avoiding and not result_pushables.is_empty() and result_flowers.is_empty() and result_pushables[0].collider.get_can_be_pushed(new_pos, _direction):
+		print("Stone can be pushed")
 		result_pushables[0].collider.push()
 		return true
 	

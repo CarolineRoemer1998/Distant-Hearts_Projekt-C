@@ -1,38 +1,72 @@
-[gd_scene load_steps=8 format=3 uid="uid://2g6gyq3v3fk3"]
+[gd_scene load_steps=12 format=4 uid="uid://2g6gyq3v3fk3"]
 
-[ext_resource type="Script" uid="uid://ddiwo6yyhfkuc" path="res://Components/Levels/level.gd" id="1_b46is"]
-[ext_resource type="PackedScene" uid="uid://lrodaawkgfob" path="res://Components/UI/VFX/undo_particles.tscn" id="2_30xo8"]
-[ext_resource type="PackedScene" uid="uid://ihdvu1wqfcub" path="res://Components/Levels/Backgrounds/bg-base-spring.tscn" id="3_b8lau"]
-[ext_resource type="PackedScene" uid="uid://ccncnjkm8w8ta" path="res://Components/Creatures/creature_blue.tscn" id="4_35bp8"]
-[ext_resource type="PackedScene" uid="uid://be6k5yjppap8y" path="res://Components/Creatures/creature_yellow.tscn" id="5_u52qd"]
-[ext_resource type="PackedScene" uid="uid://g3u7bc1jo6gj" path="res://Components/Player/player.tscn" id="6_eekib"]
-[ext_resource type="PackedScene" uid="uid://dtrjxhb3ayo1c" path="res://Components/Levels/LevelUI.tscn" id="7_gearq"]
+[ext_resource type="Script" uid="uid://ddiwo6yyhfkuc" path="res://Components/Levels/level.gd" id="1_u52qd"]
+[ext_resource type="PackedScene" uid="uid://lrodaawkgfob" path="res://Components/UI/VFX/undo_particles.tscn" id="2_eekib"]
+[ext_resource type="PackedScene" uid="uid://ihdvu1wqfcub" path="res://Components/Levels/Backgrounds/bg-base-spring.tscn" id="3_gearq"]
+[ext_resource type="PackedScene" uid="uid://oy61arlldjo3" path="res://Components/Mechanics/Stones/Stone.tscn" id="4_0jmy0"]
+[ext_resource type="PackedScene" uid="uid://dpemn8sewapip" path="res://Components/Mechanics/Spring Mechanics/soil.tscn" id="5_l51bn"]
+[ext_resource type="PackedScene" uid="uid://ba8q3gl8ussnm" path="res://Components/Mechanics/Spring Mechanics/FlowerSeed.tscn" id="6_urw8e"]
+[ext_resource type="PackedScene" uid="uid://0edfjrrf5011" path="res://Components/Mechanics/Spring Mechanics/BeeSwarm.tscn" id="7_pkbaf"]
+[ext_resource type="PackedScene" uid="uid://ccncnjkm8w8ta" path="res://Components/Creatures/creature_blue.tscn" id="8_c2ytx"]
+[ext_resource type="PackedScene" uid="uid://be6k5yjppap8y" path="res://Components/Creatures/creature_yellow.tscn" id="9_k42lt"]
+[ext_resource type="PackedScene" uid="uid://g3u7bc1jo6gj" path="res://Components/Player/player.tscn" id="10_kcrjp"]
+[ext_resource type="PackedScene" uid="uid://dtrjxhb3ayo1c" path="res://Components/Levels/LevelUI.tscn" id="11_4n8x5"]
 
-[node name="LevelSpring4" type="Node2D"]
-script = ExtResource("1_b46is")
+[node name="LevelSpring2" type="Node2D"]
+script = ExtResource("1_u52qd")
 season = 1
-undo_particles = ExtResource("2_30xo8")
+undo_particles = ExtResource("2_eekib")
 level_number = 9
 
-[node name="BackgroundSpring" parent="." instance=ExtResource("3_b8lau")]
+[node name="BackgroundSpring" parent="." instance=ExtResource("3_gearq")]
+
+[node name="walls" parent="BackgroundSpring" index="1"]
+tile_map_data = PackedByteArray("AAAAAAAABAAAAAAAAAAKAAAABAAEAAAAAAAKAAoABAAEAAQAAAAAAAoABAAAAAQAAAAAAAEABAAAAAEAAAAAAAMABAAAAAEAAAAAAAUABAAAAAEAAAAAAAcABAAAAAEAAAAAAAkABAAAAAEAAAAKAAEABAAEAAEAAAAKAAMABAAEAAEAAAAKAAUABAAEAAEAAAAKAAcABAAEAAEAAAAKAAkABAAEAAEAAAAKAAIABAAEAAMAAAAKAAQABAAEAAMAAAAKAAYABAAEAAMAAAAKAAgABAAEAAMAAAAAAAgABAAAAAMAAAAAAAYABAAAAAMAAAAAAAQABAAAAAIAAAAAAAIABAAAAAMAAAABAAAABAADAAAAAAADAAAABAADAAAAAAAFAAAABAADAAAAAAAHAAAABAADAAAAAAAJAAAABAADAAAAAAACAAAABAABAAAAAAAEAAAABAABAAAAAAAGAAAABAACAAAAAAAIAAAABAABAAAAAAABAAoABAADAAQAAAADAAoABAADAAQAAAAFAAoABAADAAQAAAAHAAoABAADAAQAAAAJAAoABAADAAQAAAACAAoABAABAAQAAAAEAAoABAABAAQAAAAGAAoABAABAAQAAAAIAAoABAABAAQAAAABAAQABAADAAIAAAAGAAEABAAEAAEAAAAGAAIABAAEAAMAAAAGAAMABAAEAAEAAAAGAAQABAAEAAQAAAAFAAQABAADAAQAAAA=")
 
 [node name="LevelWall" parent="BackgroundSpring" index="2"]
 visible = true
 
+[node name="Stones" type="Node" parent="."]
+
+[node name="Stone" parent="Stones" instance=ExtResource("4_0jmy0")]
+position = Vector2(608, 416)
+
+[node name="Stone2" parent="Stones" instance=ExtResource("4_0jmy0")]
+position = Vector2(160, 608)
+
+[node name="Stone3" parent="Stones" instance=ExtResource("4_0jmy0")]
+position = Vector2(416, 352)
+
+[node name="Stone4" parent="Stones" instance=ExtResource("4_0jmy0")]
+position = Vector2(96, 224)
+
+[node name="Soil, Flowers & Bees" type="Node" parent="."]
+
+[node name="Soil" parent="Soil, Flowers & Bees" instance=ExtResource("5_l51bn")]
+position = Vector2(544, 160)
+
+[node name="FlowerSeed" parent="Soil, Flowers & Bees" instance=ExtResource("6_urw8e")]
+position = Vector2(544, 288)
+
+[node name="BeeSwarm" parent="Soil, Flowers & Bees" instance=ExtResource("7_pkbaf")]
+position = Vector2(224, 288)
+
 [node name="Creatures" type="Node" parent="."]
 
-[node name="CreatureBlue" parent="Creatures" instance=ExtResource("4_35bp8")]
-position = Vector2(224, 416)
+[node name="CreatureBlue" parent="Creatures" instance=ExtResource("8_c2ytx")]
+position = Vector2(224, 480)
+init_direction = Vector2(0, -1)
 
-[node name="CreatureYellow" parent="Creatures" instance=ExtResource("5_u52qd")]
-position = Vector2(480, 416)
+[node name="CreatureYellow" parent="Creatures" instance=ExtResource("9_k42lt")]
+position = Vector2(224, 160)
 
 [node name="Player" type="Node" parent="."]
 
-[node name="Player" parent="Player" instance=ExtResource("6_eekib")]
-position = Vector2(352, 224)
+[node name="Player" parent="Player" instance=ExtResource("10_kcrjp")]
+position = Vector2(288, 544)
+collision_mask = 303
 
-[node name="LevelUI" parent="." instance=ExtResource("7_gearq")]
+[node name="LevelUI" parent="." instance=ExtResource("11_4n8x5")]
 
 [editable path="BackgroundSpring"]
 [editable path="LevelUI"]

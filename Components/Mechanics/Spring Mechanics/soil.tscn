@@ -1,11 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://dpemn8sewapip"]
+[gd_scene load_steps=5 format=3 uid="uid://dpemn8sewapip"]
 
 [ext_resource type="Script" uid="uid://blo5el47kon8s" path="res://Components/Mechanics/Spring Mechanics/Soil.gd" id="1_d47jh"]
 [ext_resource type="Texture2D" uid="uid://deea1xcltq8ks" path="res://Assets/Spring Mechanics/Flower/Soil.png" id="1_wxkm7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wxkm7"]
 
-[node name="Soil" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d47jh"]
+
+[node name="Soil" type="StaticBody2D"]
+collision_layer = 512
+collision_mask = 2055
 script = ExtResource("1_d47jh")
 
 [node name="Sprite2D_Soil" type="Sprite2D" parent="."]
@@ -19,5 +23,8 @@ collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_wxkm7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_d47jh")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_seed_entered"]

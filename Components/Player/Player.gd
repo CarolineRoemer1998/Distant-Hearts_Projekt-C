@@ -435,8 +435,6 @@ func set_is_moving(v: bool):
 
 ## Calculates the next tile, handles merge/push/FX, and sends undo snapshot.
 func begin_move_step():
-	print("Begin Move")
-	print("is_avoiding: ", is_avoiding)
 	target_position += direction * Constants.GRID_SIZE
 	current_direction = direction
 

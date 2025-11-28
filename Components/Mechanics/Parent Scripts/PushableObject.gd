@@ -14,6 +14,8 @@ var is_sliding := false
 var pending_target_position: Vector2 = Vector2.ZERO
 var pending_direction: Vector2 = Vector2.ZERO
 
+var layer_mask_obstacles := (1 << Constants.LAYER_BIT_PUSHABLE) | (1 << Constants.LAYER_BIT_DOOR) | (1 << Constants.LAYER_BIT_WALL_AND_PLAYER) | (1 << Constants.LAYER_BIT_CREATURE) | (1 << Constants.LAYER_BIT_LEVEL_WALL) | (1 << Constants.LAYER_BIT_SOIL)
+
 ## Initializes the stone when the scene starts:
 ## adds it to the stone group, enables collision and snaps to the grid.
 func _ready():
@@ -49,23 +51,41 @@ func get_can_be_pushed(new_pos : Vector2, direction : Vector2) -> bool:
 	var behind_stone_pos = new_pos + direction * Constants.GRID_SIZE
 	var push_collision = Helper.get_collision_on_tile(
 		behind_stone_pos,
-		Constants.LAYER_MASK_BLOCKING_OBJECTS,
+		layer_mask_obstacles,
 		world
 	)
+	
+	var open_door = false
+	
+	var stone_on_next_field = null
 	
 	# If there is a door behind the stone, check if it is open
 	for hit in push_collision:
 		if hit.collider is Door:
-			if not hit.collider.door_is_closed:
-				_set_pending_push(new_pos, direction)
-				return true
-			else:
+			#if not hit.collider.door_is_closed:
+				#open_door = true
+				#_set_pending_push(new_pos, direction)
+				#if stone_on_next_field != null:
+					#stone_on_next_field.push()
+				#return true
+			if hit.collider.door_is_closed:
 				_reset_pending_push()
 				return false
+			else:
+				open_door = true
+	
+	for hit in push_collision:
+		if hit.collider is PushableObject:
+			if hit.collider.get_can_be_pushed(new_pos + (1*direction * Constants.GRID_SIZE), direction):
+				stone_on_next_field = hit.collider
+				_set_pending_push(new_pos, direction)
+				hit.collider.push()
+				#return true
 	
 	# If nothing is behind the stone, it can be pushed
-	if push_collision.is_empty():
+	if push_collision.is_empty() or open_door or stone_on_next_field:
 		_set_pending_push(new_pos, direction)
+		
 		return true
 	
 	# Otherwise the stone is blocked
@@ -77,16 +97,18 @@ func get_can_be_pushed(new_pos : Vector2, direction : Vector2) -> bool:
 ## Also starts a slide if the new position is on ice.
 func push():
 	# Expects get_can_be_pushed to have been called successfully before
+	#print("Try push Stone: ", self)
 	if pending_target_position == Vector2.ZERO and pending_direction == Vector2.ZERO:
 		return
 	
 	target_position = pending_target_position + (pending_direction * Constants.GRID_SIZE)
+	#print("new Stone target position: ", target_position)
 	is_moving = true
 	
 	# On ice → calculate slide end position directly
 	if Helper.check_is_ice(target_position, get_world_2d()):
 		var slide_end = Helper.get_slide_end(
-			Constants.LAYER_MASK_BLOCKING_OBJECTS,
+			layer_mask_obstacles,
 			pending_direction,
 			target_position,
 			false,
@@ -104,6 +126,7 @@ func _set_pending_push(new_pos: Vector2, direction: Vector2) -> void:
 
 ## Clears the pending push buffer, indicating that no push is currently prepared.
 func _reset_pending_push() -> void:
+	print("Reset: ", self)
 	pending_target_position = Vector2.ZERO
 	pending_direction = Vector2.ZERO
 

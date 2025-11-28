@@ -1,9 +1,9 @@
 [gd_scene load_steps=23 format=3 uid="uid://ba8q3gl8ussnm"]
 
 [ext_resource type="Script" uid="uid://dytdyife3qh6p" path="res://Components/Mechanics/Spring Mechanics/FlowerSeed.gd" id="1_rjnan"]
-[ext_resource type="Texture2D" uid="uid://r5o2i256f0th" path="res://Assets/Spring Mechanics/Flower/PinkFlowerBiggerBorderSpriteSheet.png" id="1_t7jgl"]
+[ext_resource type="Texture2D" uid="uid://c4bdewfthxc5h" path="res://Assets/Spring Mechanics/Flower/PinkFlowerBiggerBorderSpriteSheet.png" id="1_t7jgl"]
 [ext_resource type="Texture2D" uid="uid://c20w74uuv2bar" path="res://Assets/Particles/twinkle.png" id="4_2yydt"]
-[ext_resource type="Texture2D" uid="uid://ghev15ox6j24" path="res://Assets/Spring Mechanics/Flower/Seed3.png" id="4_tpjqu"]
+[ext_resource type="Texture2D" uid="uid://dbtlkxrnci834" path="res://Assets/Spring Mechanics/Flower/Seed3.png" id="4_tpjqu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rjnan"]
 size = Vector2(64, 64)
