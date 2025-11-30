@@ -34,11 +34,9 @@ func can_move_in_direction(_position: Vector2, _direction, world : World2D, is_p
 		return true
 	
 	if not is_avoiding and not result_pushables.is_empty() and result_flowers.is_empty() and result_pushables[0].collider.get_can_be_pushed(new_pos, _direction):
-		print("Stone can be pushed")
 		result_pushables[0].collider.push()
 		return true
 	
-	#buffered_direction = Vector2.ZERO
 	return false
 
 func get_slide_end(block_mask, _direction : Vector2, starting_position: Vector2, _is_pushing_stone_one_ice: bool, world: World2D) -> Vector2:
@@ -76,7 +74,6 @@ func check_if_collides(_position, layer_mask, world : World2D) -> bool:
 	var query = PhysicsPointQueryParameters2D.new()
 	query.position = _position
 	query.collision_mask = layer_mask
-	#query.collide_with_areas = true
 	var result = space.intersect_point(query, 1)
 	if not result.is_empty():
 		if result[0].collider is Door:
@@ -89,8 +86,7 @@ func get_collision_on_tile(_position, layer_mask, world : World2D) -> Array[Dict
 	var query = PhysicsPointQueryParameters2D.new()
 	query.position = _position
 	query.collision_mask = layer_mask
-	#query.collide_with_areas = true
-	return space.intersect_point(query, 1)
+	return space.intersect_point(query, 5)
 
 func get_collision_on_area(_position, layer_mask, world : World2D) -> Array[Dictionary]:
 	var space = world.direct_space_state

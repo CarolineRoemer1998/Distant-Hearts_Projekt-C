@@ -55,35 +55,27 @@ func get_can_be_pushed(new_pos : Vector2, direction : Vector2) -> bool:
 		world
 	)
 	
-	var open_door = false
-	
 	var stone_on_next_field = null
 	
-	# If there is a door behind the stone, check if it is open
+	# If there is a door behind pushable, check if it is open
+	# If it is open, remove from push_collision Array
 	for hit in push_collision:
 		if hit.collider is Door:
-			#if not hit.collider.door_is_closed:
-				#open_door = true
-				#_set_pending_push(new_pos, direction)
-				#if stone_on_next_field != null:
-					#stone_on_next_field.push()
-				#return true
 			if hit.collider.door_is_closed:
 				_reset_pending_push()
 				return false
 			else:
-				open_door = true
+				push_collision.erase(hit)
 	
+	# If another pushable is behind pushable
 	for hit in push_collision:
 		if hit.collider is PushableObject:
-			if hit.collider.get_can_be_pushed(new_pos + (1*direction * Constants.GRID_SIZE), direction):
+			if hit.collider.get_can_be_pushed(new_pos + (direction * Constants.GRID_SIZE), direction):
 				stone_on_next_field = hit.collider
-				_set_pending_push(new_pos, direction)
 				hit.collider.push()
-				#return true
 	
 	# If nothing is behind the stone, it can be pushed
-	if push_collision.is_empty() or open_door or stone_on_next_field:
+	if push_collision.is_empty() or stone_on_next_field:
 		_set_pending_push(new_pos, direction)
 		
 		return true
@@ -97,12 +89,10 @@ func get_can_be_pushed(new_pos : Vector2, direction : Vector2) -> bool:
 ## Also starts a slide if the new position is on ice.
 func push():
 	# Expects get_can_be_pushed to have been called successfully before
-	#print("Try push Stone: ", self)
 	if pending_target_position == Vector2.ZERO and pending_direction == Vector2.ZERO:
 		return
 	
 	target_position = pending_target_position + (pending_direction * Constants.GRID_SIZE)
-	#print("new Stone target position: ", target_position)
 	is_moving = true
 	
 	# On ice → calculate slide end position directly
@@ -126,7 +116,6 @@ func _set_pending_push(new_pos: Vector2, direction: Vector2) -> void:
 
 ## Clears the pending push buffer, indicating that no push is currently prepared.
 func _reset_pending_push() -> void:
-	print("Reset: ", self)
 	pending_target_position = Vector2.ZERO
 	pending_direction = Vector2.ZERO
 
