@@ -57,6 +57,12 @@ func _process(_delta: float) -> void:
 		undo_timer_init.stop()
 		undo_timer_continious.stop()
 		_set_can_undo(true)
+	elif Input.is_action_just_pressed("Load Last Level"):
+		var load_level = max(level_number-1, 1)
+		SceneSwitcher.switch_to_level(load_level)
+	elif Input.is_action_just_pressed("Load Next Level"):
+		var load_level = min(level_number+1, Constants.LEVELS.size())
+		SceneSwitcher.switch_to_level(load_level)
 
 func set_leaves():
 	if season == Constants.SEASON.Spring:

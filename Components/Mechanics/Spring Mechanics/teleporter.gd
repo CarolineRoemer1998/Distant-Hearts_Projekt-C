@@ -3,6 +3,7 @@ class_name Teleporter
 
 @export var buttons: Array[NodePath] = []
 @export var wooshes: Array[AnimatedSprite2D] = []
+@export var other_teleporter : Teleporter
 
 @onready var init_spinning_speed: float = 1.0
 @onready var max_spinning_speed: float = 5.0
@@ -58,7 +59,8 @@ func _ready() -> void:
 	_set_all_to_level(0.0) # sicherstellen, dass Startzustand sauber ist
 
 func _check_buttons():
-	#if not is_activated:
+	#if is_activated and other_teleporter.is_activated:
+		#return
 	var all_pressed := true
 	for button in button_refs:
 		if not button.is_pressed():
@@ -67,6 +69,8 @@ func _check_buttons():
 	activate(all_pressed)
 
 func activate(_activate_val: bool):
+	if other_teleporter.is_activated and is_activated and _activate_val==true:
+		return
 	is_activated = _activate_val
 	effects.visible = _activate_val
 	animated_sprite_2d_bounce_light.visible = _activate_val
@@ -76,6 +80,7 @@ func activate(_activate_val: bool):
 		Signals.teleporter_activated.emit(self)
 	else:
 		animated_sprite_2d_flower.modulate = Constants.TELEPORTER_MODULATE_INACTIVE
+		Signals.teleporter_deactivated.emit(self)
 
 #func deactivate()
 

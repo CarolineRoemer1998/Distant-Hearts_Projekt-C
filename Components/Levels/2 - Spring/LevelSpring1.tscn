@@ -20,7 +20,7 @@ level_number = 6
 [node name="BackgroundSpring" parent="." instance=ExtResource("3_q8c8q")]
 
 [node name="walls" parent="BackgroundSpring" index="1"]
-tile_map_data = PackedByteArray("AAAAAAAABAAAAAAAAAAKAAAABAAEAAAAAAAKAAoABAAEAAQAAAAAAAoABAAAAAQAAAAAAAEABAAAAAEAAAAAAAMABAAAAAEAAAAAAAUABAAAAAEAAAAAAAcABAAAAAMAAAAAAAkABAAAAAEAAAAKAAEABAAEAAEAAAAKAAMABAAEAAEAAAAKAAUABAAEAAEAAAAKAAcABAAEAAMAAAAKAAkABAAEAAEAAAAKAAIABAAEAAMAAAAKAAQABAAEAAMAAAAKAAYABAAEAAIAAAAKAAgABAAEAAMAAAAAAAgABAAAAAMAAAAAAAYABAAAAAIAAAAAAAQABAAAAAMAAAAAAAIABAAAAAMAAAABAAAABAADAAAAAAADAAAABAADAAAAAAAFAAAABAACAAAAAAAHAAAABAADAAAAAAAJAAAABAADAAAAAAACAAAABAABAAAAAAAEAAAABAABAAAAAAAGAAAABAADAAAAAAAIAAAABAABAAAAAAABAAoABAADAAQAAAADAAoABAADAAQAAAAFAAoABAACAAQAAAAHAAoABAADAAQAAAAJAAoABAADAAQAAAACAAoABAABAAQAAAAEAAoABAABAAQAAAAGAAoABAADAAQAAAAIAAoABAABAAQAAAAFAAEABAACAAMAAAAFAAIABAACAAEAAAAFAAMABAACAAMAAAAFAAQABAAEAAEAAAAFAAgABAAEAAMAAAAFAAkABAAEAAEAAAAFAAUABAAEAAEAAAAFAAcABAAEAAMAAAABAAYABAABAAIAAAADAAYABAABAAIAAAAEAAYABAADAAIAAAAFAAYABAAEAAIAAAAGAAYABAABAAIAAAAHAAYABAADAAIAAAAJAAYABAADAAIAAAA=")
+tile_map_data = PackedByteArray("AAAAAAAABAAAAAAAAAAKAAAABAAEAAAAAAAKAAoABAAEAAQAAAAAAAoABAAAAAQAAAAAAAEABAAAAAEAAAAAAAMABAAAAAEAAAAAAAUABAAAAAEAAAAAAAcABAAAAAMAAAAAAAkABAAAAAEAAAAKAAEABAAEAAEAAAAKAAMABAAEAAEAAAAKAAUABAAEAAEAAAAKAAcABAAEAAMAAAAKAAkABAAEAAEAAAAKAAIABAAEAAMAAAAKAAQABAAEAAIAAAAKAAgABAAEAAMAAAAAAAgABAAAAAMAAAAAAAYABAAAAAIAAAAAAAQABAAAAAMAAAAAAAIABAAAAAMAAAABAAAABAADAAAAAAADAAAABAADAAAAAAAFAAAABAACAAAAAAAHAAAABAADAAAAAAAJAAAABAADAAAAAAACAAAABAABAAAAAAAEAAAABAABAAAAAAAGAAAABAADAAAAAAAIAAAABAABAAAAAAABAAoABAADAAQAAAADAAoABAADAAQAAAAFAAoABAACAAQAAAAHAAoABAADAAQAAAAJAAoABAADAAQAAAACAAoABAABAAQAAAAEAAoABAABAAQAAAAGAAoABAADAAQAAAAIAAoABAABAAQAAAAFAAEABAACAAMAAAAFAAIABAACAAEAAAAFAAMABAACAAMAAAAFAAQABAAEAAEAAAAFAAgABAAEAAMAAAAFAAkABAAEAAEAAAAFAAUABAAEAAEAAAAFAAcABAAEAAMAAAABAAYABAABAAIAAAADAAYABAABAAIAAAAEAAYABAADAAIAAAAFAAYABAAEAAIAAAAGAAQABAABAAIAAAAHAAQABAADAAIAAAAJAAQABAADAAIAAAAKAAYABAAEAAMAAAA=")
 
 [node name="LevelWall" parent="BackgroundSpring" index="2"]
 visible = true
@@ -32,22 +32,22 @@ position = Vector2(160, 416)
 buttons = Array[NodePath]([NodePath("../../Buttons/Button_Door1&2")])
 
 [node name="Door2" parent="Doors" instance=ExtResource("4_rjegf")]
-position = Vector2(544, 416)
+position = Vector2(544, 288)
 buttons = Array[NodePath]([NodePath("../../Buttons/Button_Door2&1")])
 
 [node name="Buttons" type="Node" parent="."]
 
 [node name="Button_Teleporter1" parent="Buttons" instance=ExtResource("4_01u33")]
-position = Vector2(288, 224)
+position = Vector2(160, 160)
 
 [node name="Button_Teleporter2" parent="Buttons" instance=ExtResource("4_01u33")]
-position = Vector2(416, 224)
+position = Vector2(544, 544)
 
 [node name="Button_Door1&2" parent="Buttons" instance=ExtResource("4_01u33")]
 position = Vector2(224, 480)
 
 [node name="Button_Door2&1" parent="Buttons" instance=ExtResource("4_01u33")]
-position = Vector2(480, 480)
+position = Vector2(480, 224)
 
 [node name="Creatures" type="Node" parent="."]
 
@@ -55,7 +55,7 @@ position = Vector2(480, 480)
 position = Vector2(160, 544)
 
 [node name="CreatureYellow" parent="Creatures" instance=ExtResource("5_yi6q1")]
-position = Vector2(544, 544)
+position = Vector2(544, 160)
 
 [node name="Player" type="Node" parent="."]
 
@@ -65,13 +65,15 @@ position = Vector2(160, 224)
 [node name="TeleporterManager" parent="." instance=ExtResource("2_t5nw4")]
 position = Vector2(352, 352)
 
-[node name="Flower1" parent="TeleporterManager" index="0"]
-position = Vector2(-64, -192)
+[node name="Flower1" parent="TeleporterManager" index="0" node_paths=PackedStringArray("other_teleporter")]
+position = Vector2(-128, -192)
 buttons = Array[NodePath]([NodePath("../../Buttons/Button_Teleporter1")])
+other_teleporter = NodePath("../Flower2")
 
-[node name="Flower2" parent="TeleporterManager" index="1"]
-position = Vector2(64, -192)
+[node name="Flower2" parent="TeleporterManager" index="1" node_paths=PackedStringArray("other_teleporter")]
+position = Vector2(128, 192)
 buttons = Array[NodePath]([NodePath("../../Buttons/Button_Teleporter2")])
+other_teleporter = NodePath("../Flower1")
 
 [node name="LevelUI" parent="." instance=ExtResource("8_igtey")]
 

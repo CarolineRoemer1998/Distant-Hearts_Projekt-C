@@ -4,7 +4,7 @@ class_name TeleporterManager
 
 @onready var flower_1: Teleporter = $Flower1
 @onready var flower_2: Teleporter = $Flower2
-@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
+#@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 var is_active := true
 
@@ -16,16 +16,32 @@ func _ready() -> void:
 	Signals.teleporter_activated.connect(_handle_teleporter_activated)
 
 
+func get_info():
+	return {
+		"on_flower_1": on_flower_1,
+		"on_flower_2": on_flower_2,
+	}
+
+func set_info(info : Dictionary):
+	on_flower_1 = info.get("on_flower_1")
+	on_flower_2 = info.get("on_flower_2")
+
 func _handle_teleporter_activated(_teleporter: Teleporter):
 	if not (flower_1.is_activated and flower_2.is_activated):
+		is_active = false
 		return
-
-	if on_flower_1 != null and not on_flower_1.just_teleported and not on_flower_1.is_merging:
+	
+	is_active = true
+	
+	if on_flower_1 != null and not on_flower_1.just_teleported and not on_flower_1.is_merging and on_flower_1.target_position != on_flower_1.global_position:
 		teleport_to(flower_2)
 
-	if on_flower_2 != null and not on_flower_2.just_teleported and not on_flower_2.is_merging:
+	if on_flower_2 != null and not on_flower_2.just_teleported and not on_flower_2.is_merging and on_flower_2.target_position != on_flower_2.global_position:
 		teleport_to(flower_1)
 
+func _handle_teleporter_deactivated(_teleporter: Teleporter):
+	if not (flower_1.is_activated and flower_2.is_activated):
+		is_active = false
 
 func _on_flower_1_entered(body: Node2D) -> void:
 	if not is_active:
@@ -64,7 +80,7 @@ func teleport_to(target_teleporter: Teleporter):
 	Signals.teleporter_entered.emit(target_teleporter)
 	flower_1.start_teleport()
 	flower_2.start_teleport()
-	audio_stream_player_2d.play()
+	#audio_stream_player_2d.play()
 
 
 func _on_flower_1_exited(body: Node2D) -> void:

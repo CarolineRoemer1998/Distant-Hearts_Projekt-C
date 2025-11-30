@@ -18,6 +18,7 @@ enum COLOR {
 @onready var animation_tree: AnimationTree = $Visuals/AnimationTree
 
 @onready var sweat_particles: GPUParticles2D = $SweatParticles
+@onready var audio_teleport: AudioStreamPlayer2D = $AudioTeleport
 
 var current_direction := init_direction
 
@@ -153,8 +154,11 @@ func merge(creature_to_merge_with : Creature) -> bool:
 # -----------------------------------------------------------
 
 func start_teleport(teleporter: Teleporter):
+	if teleporter.global_position == global_position:
+		return
 	var t := get_current_teleporter()
 	if t != null and not is_merging and not just_teleported:
+		audio_teleport.play()
 		Signals.creature_started_teleporting.emit()
 		is_teleporting = true
 		target_position = teleporter.global_position
