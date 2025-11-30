@@ -167,6 +167,7 @@ texture = ExtResource("4_tpjqu")
 shape = SubResource("RectangleShape2D_rjnan")
 
 [node name="Flower" type="AnimatedSprite2D" parent="."]
+visible = false
 position = Vector2(1, 0)
 scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_p8ao0")

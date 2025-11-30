@@ -28,8 +28,8 @@ func _ready():
 		var button = get_node_or_null(path)
 		if button:
 			button_refs.append(button)
-			button.activated.connect(_check_buttons)
-			button.deactivated.connect(_check_buttons)
+			button.button_activated.connect(_check_buttons)
+			button.button_deactivated.connect(_check_buttons)
 
 	door_is_closed = starts_closed
 	_apply_visual_state()

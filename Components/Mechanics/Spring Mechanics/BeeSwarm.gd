@@ -18,7 +18,7 @@ var target_position := Vector2.ZERO
 var is_aggro := false
 
 var bee_sprite_scale := 2.0
-var flying_speed := 200.0
+var flying_speed := 300.0
 var anim_speed_normal := 1.0
 var anim_speed_aggro := 8.0
 

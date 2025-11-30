@@ -44,8 +44,8 @@ func _ready() -> void:
 		var button = get_node_or_null(path)
 		if button:
 			button_refs.append(button)
-			button.activated.connect(_check_buttons)
-			button.deactivated.connect(_check_buttons)
+			button.button_activated.connect(_check_buttons)
+			button.button_deactivated.connect(_check_buttons)
 			
 	_base_hsv.clear()
 	_base_alpha.clear()
@@ -58,13 +58,13 @@ func _ready() -> void:
 	_set_all_to_level(0.0) # sicherstellen, dass Startzustand sauber ist
 
 func _check_buttons():
-	if not is_activated:
-		var all_pressed := true
-		for button in button_refs:
-			if not button.is_pressed():
-				all_pressed = false
-				break
-		activate(all_pressed)
+	#if not is_activated:
+	var all_pressed := true
+	for button in button_refs:
+		if not button.is_pressed():
+			all_pressed = false
+			break
+	activate(all_pressed)
 
 func activate(_activate_val: bool):
 	is_activated = _activate_val
@@ -76,7 +76,8 @@ func activate(_activate_val: bool):
 		Signals.teleporter_activated.emit(self)
 	else:
 		animated_sprite_2d_flower.modulate = Constants.TELEPORTER_MODULATE_INACTIVE
-	
+
+#func deactivate()
 
 func _process(delta: float) -> void:
 	if phase == Phase.IDLE:

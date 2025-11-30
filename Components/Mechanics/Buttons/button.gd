@@ -2,8 +2,8 @@ extends Node2D
 
 class_name GameButton
 
-signal activated
-signal deactivated
+signal button_activated
+signal button_deactivated
 
 enum BUTTON_TYPE {TOGGLE, STICKY, PRESSURE}
 
@@ -88,9 +88,9 @@ func is_pressed() -> bool:
 func set_active(value : bool):
 	active = value
 	if active:
-		emit_signal("activated")
+		emit_signal("button_activated")
 	else: 
-		emit_signal("deactivated")
+		emit_signal("button_deactivated")
 	_update_button_color()
 
 func press_toggle_button():
