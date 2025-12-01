@@ -27,6 +27,11 @@ var reached_flower_last_step := false
 var position_before_flower := Vector2.ZERO
 var target_flower : FlowerSeed = null
 
+@onready var audio_buzzing: AudioStreamPlayer2D = $AudioBuzzing
+var buzz_volume_init := 0.0
+var buzz_volume_aggro := 5.0
+var buzz_pitch_init := 1.0
+var buzz_pitch_aggro := 1.25
 
 func _ready() -> void:
 	Signals.flower_grows.connect(fly_to_flower)
@@ -42,16 +47,22 @@ func _process(delta: float) -> void:
 	check_creature_is_close()
 	if is_aggro:
 		modulate = lerp(modulate, MODULATE_AGGRO, delta*4.0)
+		audio_buzzing.pitch_scale = lerp(audio_buzzing.pitch_scale, buzz_pitch_aggro, delta*25.0)
+		audio_buzzing.volume_db = lerp(audio_buzzing.volume_db, buzz_volume_aggro, delta*25.0)
 		for anim_player in animation_players:
 			anim_player.speed_scale = lerp(anim_player.speed_scale, anim_speed_aggro, delta*10.0)
 	else: 
 		modulate = lerp(modulate, MODULATE_NORMAL, delta*2.0)
+		audio_buzzing.pitch_scale = lerp(audio_buzzing.pitch_scale, buzz_pitch_init, delta*2.0)
+		audio_buzzing.volume_db = lerp(audio_buzzing.volume_db, buzz_volume_init, delta*2.0)
 		for anim_player in animation_players:
 			anim_player.speed_scale = lerp(anim_player.speed_scale, anim_speed_normal, delta*8.0)
 	
 	
 	if is_flying_to_new_position:
 		visuals.position = lerp(visuals.position, Vector2(0,-16), delta*5.0)
+		audio_buzzing.pitch_scale = lerp(audio_buzzing.pitch_scale, buzz_pitch_aggro, delta*25.0)
+		audio_buzzing.volume_db = lerp(audio_buzzing.volume_db, buzz_volume_aggro, delta*25.0)
 		position = position.move_toward(target_position, flying_speed*delta)
 		
 		if abs(position - target_position)[0] < 0.01 and abs(position - target_position)[1] < 0.01:
@@ -60,7 +71,9 @@ func _process(delta: float) -> void:
 			reached_flower_last_step = true
 			reset_bee_sprite_direction()
 			Signals.bees_stop_flying.emit()
-
+	elif audio_buzzing.pitch_scale != buzz_pitch_init or audio_buzzing.volume_db != buzz_volume_init:
+		audio_buzzing.pitch_scale = lerp(audio_buzzing.pitch_scale, buzz_pitch_init, delta*5.0)
+		audio_buzzing.volume_db = lerp(audio_buzzing.volume_db, buzz_volume_init, delta*5.0)
 # -----------------------------------------------------------
 # State (e.g. for Undo)
 # -----------------------------------------------------------

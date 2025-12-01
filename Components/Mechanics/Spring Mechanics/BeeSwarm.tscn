@@ -1,10 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://0edfjrrf5011"]
+[gd_scene load_steps=27 format=3 uid="uid://0edfjrrf5011"]
 
 [ext_resource type="Texture2D" uid="uid://bypu3mxifsd3a" path="res://Assets/Spring Mechanics/Bees/Blender/Bee-Aseprite-16x16.png" id="1_7ab61"]
 [ext_resource type="Texture2D" uid="uid://damd3v81dmwkc" path="res://Assets/Spring Mechanics/Bees/Blender/bee-shadow.png" id="1_lr6y7"]
 [ext_resource type="Script" uid="uid://bxbu1g4pahb7t" path="res://Components/Mechanics/Spring Mechanics/BeeSwarm.gd" id="1_tbglw"]
 [ext_resource type="Script" uid="uid://b6khrunjcvna1" path="res://Components/Mechanics/Spring Mechanics/SingleBee.gd" id="3_0vp1r"]
 [ext_resource type="Texture2D" uid="uid://cixud3jff2kmj" path="res://Assets/Particles/dot2.png" id="5_x3nmx"]
+[ext_resource type="AudioStream" uid="uid://by0kgpsbqlbfr" path="res://Sounds/SFX/BeeSwarmBuzzingIdle.wav" id="6_dgfp4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lr6y7"]
 atlas = ExtResource("1_7ab61")
@@ -164,7 +165,32 @@ _data = {
 custom_solver_bias = 1.0
 size = Vector2(64, 64)
 
+[sub_resource type="Curve" id="Curve_dgfp4"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.45801526, 1), 0.0, 0.0, 0, 0, Vector2(0.5038168, 1), 0.18165329, 0.18165329, 0, 0, Vector2(0.7442748, 1), 0.0, 0.0, 0, 0, Vector2(0.8015267, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 6
+
+[sub_resource type="CurveTexture" id="CurveTexture_8gxw5"]
+curve = SubResource("Curve_dgfp4")
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dgfp4"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(64, 64, 64)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+radial_velocity_min = -2.2351742e-05
+radial_velocity_max = 15.999977
+gravity = Vector3(0, 0, 0)
+scale_min = 0.29999998
+scale_max = 0.39999998
+scale_curve = SubResource("CurveTexture_8gxw5")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dgfp4"]
+load_path = "res://.godot/imported/dot2.png-428e58481062f56bed764270fe86575b.ctex"
+
+[sub_resource type="CurveTexture" id="CurveTexture_y0afb"]
+curve = SubResource("Curve_dgfp4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8gxw5"]
 particle_flag_disable_z = true
 emission_shape_scale = Vector3(64, 64, 64)
 emission_shape = 3
@@ -174,9 +200,28 @@ radial_velocity_max = 15.999977
 gravity = Vector3(0, 0, 0)
 scale_min = 0.19999999
 scale_max = 0.29999998
+scale_curve = SubResource("CurveTexture_y0afb")
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_x3nmx"]
-radius = 96.0
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_y0afb"]
+load_path = "res://.godot/imported/dot2.png-428e58481062f56bed764270fe86575b.ctex"
+
+[sub_resource type="CurveTexture" id="CurveTexture_ukgcl"]
+curve = SubResource("Curve_dgfp4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ukgcl"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(64, 64, 64)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+radial_velocity_min = -2.2351742e-05
+radial_velocity_max = 15.999977
+gravity = Vector3(0, 0, 0)
+scale_min = 0.099999994
+scale_max = 0.19999999
+scale_curve = SubResource("CurveTexture_ukgcl")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dgfp4"]
+size = Vector2(192, 192)
 
 [node name="BeeSwarm" type="StaticBody2D" node_paths=PackedStringArray("bee_sprites", "animation_players")]
 modulate = Color(1.096, 1.096, 1.096, 1)
@@ -258,19 +303,40 @@ shape = SubResource("RectangleShape2D_tbglw")
 [node name="TimerAggroCooldown" type="Timer" parent="."]
 wait_time = 0.5
 
-[node name="GlowySparkles" type="GPUParticles2D" parent="."]
-self_modulate = Color(4.29996, 3.4908872, 0.83250386, 0.1254902)
-position = Vector2(-1, -32)
+[node name="Particles" type="Node2D" parent="."]
+
+[node name="GlowySparkles" type="GPUParticles2D" parent="Particles"]
+self_modulate = Color(5.5101075, 4.476211, 1.0791215, 0.1254902)
 amount = 16
 texture = ExtResource("5_x3nmx")
 lifetime = 2.0
 process_material = SubResource("ParticleProcessMaterial_dgfp4")
+
+[node name="GlowySparkles2" type="GPUParticles2D" parent="Particles"]
+self_modulate = Color(2.6744397, 0.7134023, 0, 1)
+amount = 16
+texture = SubResource("CompressedTexture2D_dgfp4")
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_8gxw5")
+
+[node name="GlowySparkles3" type="GPUParticles2D" parent="Particles"]
+self_modulate = Color(2.2366564, 0.5759461, 0.16067907, 1)
+amount = 16
+texture = SubResource("CompressedTexture2D_y0afb")
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_ukgcl")
 
 [node name="AreaCheckForCreatures" type="Area2D" parent="."]
 collision_layer = 4096
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaCheckForCreatures"]
-shape = SubResource("CircleShape2D_x3nmx")
+shape = SubResource("RectangleShape2D_dgfp4")
+
+[node name="AudioBuzzing" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_dgfp4")
+pitch_scale = 1.25
+autoplay = true
+bus = &"sfx"
 
 [connection signal="timeout" from="TimerAggroCooldown" to="." method="_on_timer_aggro_cooldown_timeout"]
