@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://n6aitd6xhp4u"]
+
+[ext_resource type="Script" uid="uid://bm7tx4pdu8b61" path="res://WaterTile.gd" id="1_kbmg1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kbmg1"]
+size = Vector2(60, 60)
+
+[node name="WaterTile" type="StaticBody2D"]
+collision_layer = 8192
+collision_mask = 2055
+script = ExtResource("1_kbmg1")
+
+[node name="CollisionWaterTile" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_kbmg1")

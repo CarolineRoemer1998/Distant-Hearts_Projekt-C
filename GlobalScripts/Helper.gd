@@ -18,6 +18,14 @@ func can_move_in_direction(_position: Vector2, _direction, world : World2D, is_p
 	var result_wall_outside = get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_LEVEL_WALL), world)
 	var result_wall_inside = get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_WALL_AND_PLAYER), world)
 	var result_water = get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_WATER), world)
+	var result_water_platform = get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_WATER_PLATFORM), world)
+	
+	if not result_pushables.is_empty() and not result_water_platform.is_empty():
+		result_pushables = sort_out_water_with_stones(result_water_platform, result_pushables)
+	
+	print(result_pushables)
+	print(result_water_platform)
+	print()
 	
 	if is_avoiding and not result_buttons.is_empty():
 		return false
@@ -30,6 +38,8 @@ func can_move_in_direction(_position: Vector2, _direction, world : World2D, is_p
 	or (is_physical_body == false and result_wall_outside.is_empty()):
 		return true
 	
+	if not result_water_platform.is_empty() and result_water[0].collider.stone_inside != null and result_pushables.is_empty():
+		return true
 	
 	if not result_doors.is_empty() and result_doors[0].collider is Door and not result_doors[0].collider.door_is_closed and result_pushables.is_empty() and result_flowers.is_empty():
 		return true
@@ -96,3 +106,12 @@ func get_collision_on_area(_position, layer_mask, world : World2D) -> Array[Dict
 	query.collision_mask = layer_mask
 	query.collide_with_areas = true
 	return space.intersect_point(query, 1)
+
+func sort_out_water_with_stones(_platforms: Array[Dictionary], _stones: Array[Dictionary]) -> Array[Dictionary]:
+	var result : Array[Dictionary] = _stones
+	for p in _platforms:
+		for s in result:
+			if p.collider.name == s.collider.name:
+				#print("Same found!!!")
+				result.erase(s)
+	return result

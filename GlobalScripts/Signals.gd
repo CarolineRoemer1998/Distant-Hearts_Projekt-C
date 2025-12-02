@@ -25,7 +25,7 @@ signal creatures_merged #
 #signal creatures_unmerged # für zurückspulen # doch nicht, aber funktion wird bei undo ausgelöst
 
 # Stone Signals
-signal stone_reached_target
+signal stone_reached_target(stone: PushableObject)
 
 # Button Signals
 

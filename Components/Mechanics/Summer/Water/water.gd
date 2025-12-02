@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name Water
+
 @onready var water_light: Node2D = $WaterLight
 @onready var water_dark: Node2D = $WaterDark
 @onready var timer: Timer = $Timer
@@ -20,8 +22,6 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	water_light.position[0] += -water_light_speed*delta
-	
-	print(water_light.position)
 	
 	if float_up:
 		water_light.position[1] += -5*delta

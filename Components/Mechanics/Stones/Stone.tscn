@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://oy61arlldjo3"]
 
 [ext_resource type="Script" uid="uid://dhfj4v7vt1ckb" path="res://Components/Mechanics/Stones/Stone.gd" id="1_js75i"]
-[ext_resource type="Texture2D" uid="uid://dw5nox71ln8yj" path="res://Assets/Stones/stone.png" id="2_itmc8"]
+[ext_resource type="Texture2D" uid="uid://b61hny3lf1gbq" path="res://Assets/Stones/stone-32x32.png" id="2_3mq7y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1l0tm"]
 size = Vector2(60, 60)
@@ -14,7 +14,7 @@ script = ExtResource("1_js75i")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(2, 2)
-texture = ExtResource("2_itmc8")
+texture = ExtResource("2_3mq7y")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
