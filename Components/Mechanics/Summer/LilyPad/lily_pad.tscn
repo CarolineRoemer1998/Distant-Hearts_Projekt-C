@@ -1,0 +1,68 @@
+[gd_scene load_steps=10 format=3 uid="uid://bwy1o5riueuq0"]
+
+[ext_resource type="Texture2D" uid="uid://deku0wq1yb8qg" path="res://Assets/Summer Mechanics/Lilly Pads/lilypad.png" id="1_tnfxb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l61re"]
+atlas = ExtResource("1_tnfxb")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h2cnq"]
+atlas = ExtResource("1_tnfxb")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hyog4"]
+atlas = ExtResource("1_tnfxb")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a1ifx"]
+atlas = ExtResource("1_tnfxb")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2m6kq"]
+atlas = ExtResource("1_tnfxb")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hekhk"]
+atlas = ExtResource("1_tnfxb")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2xa1l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l61re")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h2cnq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hyog4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a1ifx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2m6kq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hekhk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tnfxb"]
+size = Vector2(64, 64)
+
+[node name="LilyPad" type="StaticBody2D"]
+collision_layer = 32768
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_2xa1l")
+autoplay = "default"
+frame_progress = 0.5847722
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_tnfxb")

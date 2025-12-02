@@ -19,6 +19,10 @@ func can_move_in_direction(_position: Vector2, _direction, world : World2D, is_p
 	var result_wall_inside = get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_WALL_AND_PLAYER), world)
 	var result_water = get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_WATER), world)
 	var result_water_platform = get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_WATER_PLATFORM), world)
+	var result_lily_pads = get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_LILY_PAD), world)
+	
+	if not result_lily_pads.is_empty():
+		return true
 	
 	if not result_pushables.is_empty() and not result_water_platform.is_empty():
 		result_pushables = sort_out_water_with_stones(result_water_platform, result_pushables)
