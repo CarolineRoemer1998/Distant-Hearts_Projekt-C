@@ -22,7 +22,7 @@ func handle_stone_in_water(stone: Stone):
 	for col in collisions:
 		if col.collider is Stone and col.collider.name == stone.name and stone_inside == null:
 			var target_is_water = Helper.check_if_collides(col.collider.target_position, (1 << Constants.LAYER_BIT_WATER), get_world_2d())
-			if target_is_water:
+			if target_is_water and col.collider.target_position == global_position:
 				print("Stone in water!")
 				stone_inside = stone
 				stone.is_in_water = true

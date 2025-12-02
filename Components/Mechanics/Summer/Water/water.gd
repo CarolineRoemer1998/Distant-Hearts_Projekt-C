@@ -6,6 +6,16 @@ class_name Water
 @onready var water_dark: Node2D = $WaterDark
 @onready var timer: Timer = $Timer
 
+@onready var floor: TileMapLayer = $floor
+
+@onready var water_light_2: Sprite2D = $WaterLight/Water_light_2
+@onready var water_light_3: Sprite2D = $WaterLight/Water_light_3
+@onready var water_light_4: Sprite2D = $WaterLight/Water_light_4
+
+@onready var water_dark_2: Sprite2D = $WaterDark/Water_dark_2
+@onready var water_dark_3: Sprite2D = $WaterDark/Water_dark_3
+@onready var water_dark_4: Sprite2D = $WaterDark/Water_dark_4
+
 var init_position = Vector2(704,0)
 var last_position = Vector2(0,0)
 
@@ -16,6 +26,14 @@ var water_dark_speed_fast = 20
 var float_up := true
 
 func _ready() -> void:
+	floor.visible = true
+	water_light_2.visible = true
+	water_light_3.visible = true
+	water_light_4.visible = true
+	water_dark_2.visible = true
+	water_light_3.visible = true
+	water_light_4.visible = true
+	
 	water_light.position = init_position
 	water_dark.position = init_position
 	timer.start()
