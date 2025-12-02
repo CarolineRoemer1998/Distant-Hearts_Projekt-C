@@ -21,32 +21,20 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	water_light.position[0] += -water_light_speed*delta
 	
-	if water_light.position[0] <= last_position[0]:
-		water_light.position[0] = init_position[0]
+	print(water_light.position)
 	
 	if float_up:
 		water_light.position[1] += -5*delta
-		water_dark.position += Vector2(-water_dark_speed_slow*delta,5*delta)
-		
-		
-		#water_light.position[1] = lerp(0.0, 500.5, delta*10)
-		#water_dark.position[1] = lerp(0.0, 500.5, delta*10)
-		#water_dark.position[1] += 0.9999
-		#water_dark.scale = lerp(water_dark.scale, Vector2(1.005, 1.005), delta)
-		#water_light.scale = lerp(water_light.scale, Vector2(1.005, 1.005), delta)
-		#water_dark.scale *= 1+(delta*0.005)
-		
+		water_dark.position[0] += -water_dark_speed_slow*delta
+		#water_dark.position += Vector2(-water_dark_speed_slow*delta,5*delta)
 	else:
 		water_light.position[1] += 5*delta
-		water_dark.position += Vector2(-water_dark_speed_fast*delta,-5*delta)
-		
-		
-		#water_light.position[1] = lerp(0.0, -0.5, delta*0.5)
-		#water_dark.position[1] = lerp(0.0, -0.5, delta*0.5)
-		#water_light.scale = lerp(water_dark.scale,Vector2(0.995, 0.995), delta)
-		#water_dark.scale = lerp(water_light.scale, Vector2(0.995, 0.995), delta)
-		#water_dark.scale *= 1-(delta*0.005)
+		water_dark.position[0] += -water_dark_speed_slow*delta
+		#water_dark.position += Vector2(-water_dark_speed_fast*delta,-5*delta)
 	
+	if water_light.position[0] <= last_position[0]:
+		water_light.position[0] = init_position[0]
+		
 	if water_dark.position[0] <= last_position[0]:
 		water_dark.position[0] = init_position[0]
 

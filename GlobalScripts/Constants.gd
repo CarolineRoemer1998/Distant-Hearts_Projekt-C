@@ -48,6 +48,7 @@ const LAYER_BIT_SOIL				:= 9
 const LAYER_BIT_BUTTONS				:= 10
 const LAYER_BIT_STONES				:= 11
 const LAYER_BIT_BEE_AREA			:= 12
+const LAYER_BIT_WATER				:= 13
 
 const LAYER_MASK_BEES				:= (1 << Constants.LAYER_BIT_BEES)
 const LAYER_MASK_BLOCKING_OBJECTS 	:= (1 << Constants.LAYER_BIT_PUSHABLE) | (1 << Constants.LAYER_BIT_DOOR) | (1 << Constants.LAYER_BIT_WALL_AND_PLAYER) | (1 << Constants.LAYER_BIT_CREATURE) | (1 << Constants.LAYER_BIT_LEVEL_WALL) | (1 << Constants.LAYER_BIT_SOIL)

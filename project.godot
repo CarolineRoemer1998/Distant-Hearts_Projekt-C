@@ -164,6 +164,7 @@ Undo={
 2d_physics/layer_11="Button"
 2d_physics/layer_12="Stone"
 2d_physics/layer_13="BeeArea"
+2d_physics/layer_14="Water"
 
 [rendering]
 

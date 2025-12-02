@@ -17,18 +17,19 @@ func can_move_in_direction(_position: Vector2, _direction, world : World2D, is_p
 	var result_buttons = get_collision_on_area(new_pos, (1 << Constants.LAYER_BIT_BUTTONS), world)
 	var result_wall_outside = get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_LEVEL_WALL), world)
 	var result_wall_inside = get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_WALL_AND_PLAYER), world)
-	
+	var result_water = get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_WATER), world)
 	
 	if is_avoiding and not result_buttons.is_empty():
 		return false
 	
-	if (result_pushables.is_empty() and result_flowers.is_empty() and result_doors.is_empty() and result_wall_outside.is_empty() and result_wall_inside.is_empty() and result_bees.is_empty()) \
+	if not result_wall_outside.is_empty() \
+	or (is_physical_body != false and (not result_water.is_empty() and not result_wall_inside.is_empty() and not result_pushables.is_empty() and not result_flowers.is_empty() and not result_doors.is_empty() and result_bees.is_empty())):
+		return false
+		
+	if (result_pushables.is_empty() and result_flowers.is_empty() and result_water.is_empty() and result_doors.is_empty() and result_wall_outside.is_empty() and result_wall_inside.is_empty() and result_bees.is_empty()) \
 	or (is_physical_body == false and result_wall_outside.is_empty()):
 		return true
 	
-	if not result_wall_outside.is_empty() \
-	or (is_physical_body != false and (not result_wall_inside.is_empty() and not result_pushables.is_empty() and not result_flowers.is_empty() and not result_doors.is_empty() and result_bees.is_empty())):
-		return false
 	
 	if not result_doors.is_empty() and result_doors[0].collider is Door and not result_doors[0].collider.door_is_closed and result_pushables.is_empty() and result_flowers.is_empty():
 		return true
