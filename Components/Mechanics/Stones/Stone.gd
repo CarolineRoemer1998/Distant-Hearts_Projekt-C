@@ -2,6 +2,12 @@ extends PushableObject
 
 class_name Stone
 
+@onready var sprite_stone: Sprite2D = $SpriteStone
+@onready var animated_sprite_platform: AnimatedSprite2D = $AnimatedSpritePlatform
+
+const MODULATE_INIT := Color(1.0, 1.0, 1.0)
+const MODULATE_UNDER_WATER := Color(0.775, 1.288, 1.416)
+
 var is_in_water := false
 
 ## Initializes the stone when the scene starts:
@@ -50,6 +56,15 @@ func disable_collision_layer():
 	set_collision_layer_value(Constants.LAYER_BIT_PUSHABLE+1, false)
 	set_collision_layer_value(Constants.LAYER_BIT_STONES+1, false)
 
-func turn_into_platform():
+func turn_into_platform_in_water():
+	sprite_stone.modulate = MODULATE_UNDER_WATER
+	animated_sprite_platform.visible = true
+	z_index -= 2
 	disable_collision_layer()
 	set_collision_layer_value(Constants.LAYER_BIT_WATER_PLATFORM+1, true)
+
+func _process(delta):
+	super._process(delta)
+	if is_in_water and sprite_stone.position[1] < 18:
+		sprite_stone.position[1] = lerp(sprite_stone.position[1], 18.0, delta*25)
+		animated_sprite_platform.position[1] = lerp(animated_sprite_platform.position[1], 18.0, delta*25)

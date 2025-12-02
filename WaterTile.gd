@@ -15,4 +15,4 @@ func handle_stone_in_water(stone: Stone):
 			print("Stone in water!")
 			stone_inside = stone
 			stone.is_in_water = true
-			stone.turn_into_platform()
+			stone.turn_into_platform_in_water()

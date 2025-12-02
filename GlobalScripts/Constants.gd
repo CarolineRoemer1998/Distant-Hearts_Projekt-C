@@ -152,6 +152,7 @@ const SPRITE_PATH_PRESSURE_PLATE_UNPRESSED := 	"res://Assets/Buttons/pressure_pl
 const SPRITE_PATH_PRESSURE_PLATE_PRESSED := 	"res://Assets/Buttons/pressure_plate_on.png"
 const SPRITE_PATH_TOGGLE_BUTTON_UNPRESSED := 	"res://Assets/Buttons/toggle-button-purple.png"
 const SPRITE_PATH_TOGGLE_BUTTON_PRESSED := 		"res://Assets/Buttons/toggle-button-orange.png"
+const SPRITE_PATH_STONE_UNDER_WATER_SHEET :=	"res://Assets/Stones/stone-under-water.png"
 
 const ANIMATED_SPRITE_CHERRY_BLOSSOM := "res://Components/UI/VFX/CherryBlossomSprite.tscn"
 

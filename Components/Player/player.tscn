@@ -418,6 +418,7 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("hearts")]
+z_index = 6
 collision_mask = 8239
 script = ExtResource("1_lakyf")
 trail_scene = ExtResource("2_1yt0s")

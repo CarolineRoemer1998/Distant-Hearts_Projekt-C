@@ -545,6 +545,7 @@ transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition
 graph_offset = Vector2(9, -9)
 
 [node name="CreatureBlue" type="CharacterBody2D" groups=["creature"]]
+z_index = 5
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_lgxpu")
