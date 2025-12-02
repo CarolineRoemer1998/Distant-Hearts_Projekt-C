@@ -33,6 +33,7 @@ const GROUP_NAME_FLOWERS := "Flower"
 const GROUP_NAME_BEES := "Bees"
 const GROUP_NAME_TELEPORTERS := "Teleporter"
 const GROUP_NAME_TELEPORTER_MANAGERS := "TeleporterManager"
+const GROUP_NAME_WATER_TILE := "WaterTile"
 
 # LAYER BITS
 const LAYER_BIT_WALL_AND_PLAYER		:= 0

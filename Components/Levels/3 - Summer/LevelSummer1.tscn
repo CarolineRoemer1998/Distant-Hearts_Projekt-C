@@ -270,7 +270,7 @@ environment = SubResource("Environment_7ogri")
 [node name="FloorWater" type="TileMapLayer" parent="WaterElements"]
 modulate = Color(1.1, 1.1, 1.1, 1)
 scale = Vector2(2, 2)
-tile_map_data = PackedByteArray("AAABAAYAAQAGAAEAAAACAAYAAQAGAAEAAAADAAYAAQAGAAEAAAAEAAYAAQAGAAEAAAAFAAYAAQAGAAEAAAAGAAYAAQAGAAEAAAAHAAYAAQAGAAEAAAAIAAYAAQAGAAEAAAAJAAYAAQAGAAEAAAABAAcAAQAFAAMAAAACAAcAAQAFAAMAAAADAAcAAQAFAAMAAAAEAAcAAQAFAAMAAAAFAAcAAQAFAAMAAAAGAAcAAQAFAAMAAAAHAAcAAQAFAAMAAAAIAAcAAQAFAAMAAAAJAAcAAQAFAAMAAAA=")
+tile_map_data = PackedByteArray("AAABAAYAAQAFAAMAAAACAAYAAQAFAAMAAAADAAYAAQAFAAMAAAAEAAYAAQAFAAMAAAAFAAYAAQAFAAMAAAAGAAYAAQAFAAMAAAAHAAYAAQAFAAMAAAAIAAYAAQAFAAMAAAAJAAYAAQAFAAMAAAABAAcAAQAFAAMAAAACAAcAAQAFAAMAAAADAAcAAQAFAAMAAAAEAAcAAQAFAAMAAAAFAAcAAQAFAAMAAAAGAAcAAQAFAAMAAAAHAAcAAQAFAAMAAAAIAAcAAQAFAAMAAAAJAAcAAQAFAAMAAAABAAQAAQAGAAEAAAACAAQAAQAGAAEAAAADAAQAAQAGAAEAAAAEAAQAAQAGAAEAAAAFAAQAAQAGAAEAAAAGAAQAAQAGAAEAAAAHAAQAAQAGAAEAAAAIAAQAAQAGAAEAAAAJAAQAAQAGAAEAAAAEAAkAAQAGAAEAAAAFAAkAAQAGAAEAAAAGAAkAAQAGAAEAAAA=")
 tile_set = ExtResource("4_jwofj")
 
 [node name="Water" parent="WaterElements" instance=ExtResource("3_v8cy3")]
@@ -278,147 +278,249 @@ modulate = Color(1, 1, 1, 0.5647059)
 z_index = 0
 
 [node name="WallOverWater1" type="AnimatedSprite2D" parent="WaterElements"]
-position = Vector2(224, 416)
+position = Vector2(224, 288)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_krfp2")
 autoplay = "default"
 
 [node name="WallOverWater2" type="AnimatedSprite2D" parent="WaterElements"]
-position = Vector2(288, 416)
+position = Vector2(288, 288)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_krfp2")
 autoplay = "default"
 
 [node name="WallOverWater3" type="AnimatedSprite2D" parent="WaterElements"]
-position = Vector2(160, 416)
+position = Vector2(96, 288)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_krfp2")
 autoplay = "default"
 
 [node name="WallOverWater4" type="AnimatedSprite2D" parent="WaterElements"]
-position = Vector2(96, 416)
+position = Vector2(160, 288)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_krfp2")
+autoplay = "default"
+
+[node name="WallOverWater10" type="AnimatedSprite2D" parent="WaterElements"]
+position = Vector2(416, 608)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_krfp2")
+autoplay = "default"
+
+[node name="WallOverWater11" type="AnimatedSprite2D" parent="WaterElements"]
+position = Vector2(288, 608)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_krfp2")
+autoplay = "default"
+
+[node name="WallOverWater12" type="AnimatedSprite2D" parent="WaterElements"]
+position = Vector2(352, 608)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_krfp2")
 autoplay = "default"
 
 [node name="WallOverWater5" type="AnimatedSprite2D" parent="WaterElements"]
-position = Vector2(416, 416)
+position = Vector2(416, 288)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_krfp2")
 autoplay = "default"
 
 [node name="WallOverWater6" type="AnimatedSprite2D" parent="WaterElements"]
-position = Vector2(480, 416)
+position = Vector2(480, 288)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_krfp2")
 autoplay = "default"
 
 [node name="WallOverWater7" type="AnimatedSprite2D" parent="WaterElements"]
-position = Vector2(544, 416)
+position = Vector2(544, 288)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_krfp2")
 autoplay = "default"
 
 [node name="WallOverWater8" type="AnimatedSprite2D" parent="WaterElements"]
-position = Vector2(608, 416)
+position = Vector2(608, 288)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_krfp2")
 autoplay = "default"
 
 [node name="WallOverWater9" type="AnimatedSprite2D" parent="WaterElements"]
-position = Vector2(352, 416)
+position = Vector2(352, 288)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_krfp2")
 autoplay = "default"
 
-[node name="WaterTile" parent="WaterElements" instance=ExtResource("6_krfp2")]
-position = Vector2(96, 416)
-
-[node name="WaterTile2" parent="WaterElements" instance=ExtResource("6_krfp2")]
-position = Vector2(160, 416)
-
 [node name="WaterTile3" parent="WaterElements" instance=ExtResource("6_krfp2")]
-position = Vector2(224, 416)
+position = Vector2(224, 288)
 
 [node name="WaterTile4" parent="WaterElements" instance=ExtResource("6_krfp2")]
-position = Vector2(288, 416)
+position = Vector2(288, 288)
+
+[node name="WaterTile22" parent="WaterElements" instance=ExtResource("6_krfp2")]
+position = Vector2(96, 288)
+
+[node name="WaterTile23" parent="WaterElements" instance=ExtResource("6_krfp2")]
+position = Vector2(160, 288)
 
 [node name="WaterTile5" parent="WaterElements" instance=ExtResource("6_krfp2")]
-position = Vector2(352, 416)
+position = Vector2(352, 288)
 
 [node name="WaterTile6" parent="WaterElements" instance=ExtResource("6_krfp2")]
-position = Vector2(416, 416)
+position = Vector2(416, 288)
 
 [node name="WaterTile7" parent="WaterElements" instance=ExtResource("6_krfp2")]
-position = Vector2(480, 416)
+position = Vector2(480, 288)
 
 [node name="WaterTile8" parent="WaterElements" instance=ExtResource("6_krfp2")]
-position = Vector2(544, 416)
+position = Vector2(544, 288)
 
 [node name="WaterTile9" parent="WaterElements" instance=ExtResource("6_krfp2")]
-position = Vector2(608, 416)
+position = Vector2(608, 288)
 
 [node name="WaterTile10" parent="WaterElements" instance=ExtResource("6_krfp2")]
-position = Vector2(608, 480)
+position = Vector2(608, 352)
 
 [node name="WaterTile11" parent="WaterElements" instance=ExtResource("6_krfp2")]
-position = Vector2(544, 480)
+position = Vector2(544, 352)
 
 [node name="WaterTile12" parent="WaterElements" instance=ExtResource("6_krfp2")]
-position = Vector2(480, 480)
+position = Vector2(480, 352)
 
 [node name="WaterTile13" parent="WaterElements" instance=ExtResource("6_krfp2")]
-position = Vector2(416, 480)
+position = Vector2(416, 352)
 
 [node name="WaterTile14" parent="WaterElements" instance=ExtResource("6_krfp2")]
-position = Vector2(352, 480)
+position = Vector2(352, 352)
 
 [node name="WaterTile15" parent="WaterElements" instance=ExtResource("6_krfp2")]
-position = Vector2(288, 480)
+position = Vector2(288, 352)
 
 [node name="WaterTile16" parent="WaterElements" instance=ExtResource("6_krfp2")]
-position = Vector2(224, 480)
+position = Vector2(224, 352)
 
 [node name="WaterTile17" parent="WaterElements" instance=ExtResource("6_krfp2")]
-position = Vector2(160, 480)
+position = Vector2(160, 352)
 
 [node name="WaterTile18" parent="WaterElements" instance=ExtResource("6_krfp2")]
+position = Vector2(96, 352)
+
+[node name="WaterTile19" parent="WaterElements" instance=ExtResource("6_krfp2")]
+position = Vector2(608, 416)
+
+[node name="WaterTile20" parent="WaterElements" instance=ExtResource("6_krfp2")]
+position = Vector2(544, 416)
+
+[node name="WaterTile21" parent="WaterElements" instance=ExtResource("6_krfp2")]
+position = Vector2(480, 416)
+
+[node name="WaterTile25" parent="WaterElements" instance=ExtResource("6_krfp2")]
+position = Vector2(224, 416)
+
+[node name="WaterTile26" parent="WaterElements" instance=ExtResource("6_krfp2")]
+position = Vector2(160, 416)
+
+[node name="WaterTile27" parent="WaterElements" instance=ExtResource("6_krfp2")]
+position = Vector2(96, 416)
+
+[node name="WaterTile28" parent="WaterElements" instance=ExtResource("6_krfp2")]
+position = Vector2(608, 480)
+
+[node name="WaterTile29" parent="WaterElements" instance=ExtResource("6_krfp2")]
+position = Vector2(544, 480)
+
+[node name="WaterTile30" parent="WaterElements" instance=ExtResource("6_krfp2")]
+position = Vector2(480, 480)
+
+[node name="WaterTile34" parent="WaterElements" instance=ExtResource("6_krfp2")]
+position = Vector2(224, 480)
+
+[node name="WaterTile35" parent="WaterElements" instance=ExtResource("6_krfp2")]
+position = Vector2(160, 480)
+
+[node name="WaterTile36" parent="WaterElements" instance=ExtResource("6_krfp2")]
 position = Vector2(96, 480)
+
+[node name="WaterTile37" parent="WaterElements" instance=ExtResource("6_krfp2")]
+position = Vector2(608, 544)
+
+[node name="WaterTile38" parent="WaterElements" instance=ExtResource("6_krfp2")]
+position = Vector2(544, 544)
+
+[node name="WaterTile39" parent="WaterElements" instance=ExtResource("6_krfp2")]
+position = Vector2(480, 544)
+
+[node name="WaterTile43" parent="WaterElements" instance=ExtResource("6_krfp2")]
+position = Vector2(224, 544)
+
+[node name="WaterTile44" parent="WaterElements" instance=ExtResource("6_krfp2")]
+position = Vector2(160, 544)
+
+[node name="WaterTile45" parent="WaterElements" instance=ExtResource("6_krfp2")]
+position = Vector2(96, 544)
+
+[node name="WaterTile46" parent="WaterElements" instance=ExtResource("6_krfp2")]
+position = Vector2(608, 608)
+
+[node name="WaterTile47" parent="WaterElements" instance=ExtResource("6_krfp2")]
+position = Vector2(544, 608)
+
+[node name="WaterTile48" parent="WaterElements" instance=ExtResource("6_krfp2")]
+position = Vector2(480, 608)
+
+[node name="WaterTile49" parent="WaterElements" instance=ExtResource("6_krfp2")]
+position = Vector2(416, 608)
+
+[node name="WaterTile50" parent="WaterElements" instance=ExtResource("6_krfp2")]
+position = Vector2(352, 608)
+
+[node name="WaterTile51" parent="WaterElements" instance=ExtResource("6_krfp2")]
+position = Vector2(288, 608)
+
+[node name="WaterTile52" parent="WaterElements" instance=ExtResource("6_krfp2")]
+position = Vector2(224, 608)
+
+[node name="WaterTile53" parent="WaterElements" instance=ExtResource("6_krfp2")]
+position = Vector2(160, 608)
+
+[node name="WaterTile54" parent="WaterElements" instance=ExtResource("6_krfp2")]
+position = Vector2(96, 608)
 
 [node name="BackgroundSpring" parent="." instance=ExtResource("3_ma3sw")]
 
 [node name="floor" parent="BackgroundSpring" index="0"]
-tile_map_data = PackedByteArray("AAAAAAAAAQAAAAAAAAAAAAEAAQAAAAEAAAAAAAIAAQAAAAIAAAAAAAMAAQAAAAMAAAAAAAQAAQAAAAQAAAABAAAAAQABAAAAAAABAAEAAQABAAEAAAABAAIAAQABAAIAAAABAAMAAQABAAMAAAABAAQAAQABAAQAAAACAAAAAQACAAAAAAACAAEAAQACAAEAAAACAAIAAQACAAIAAAACAAMAAQACAAMAAAACAAQAAQACAAQAAAADAAAAAQADAAAAAAADAAEAAQADAAEAAAADAAIAAQADAAIAAAADAAMAAQADAAMAAAADAAQAAQADAAQAAAAEAAAAAQAEAAAAAAAEAAEAAQAEAAEAAAAEAAIAAQAEAAIAAAAEAAMAAQAEAAMAAAAEAAQAAQAEAAQAAAAFAAAAAQAAAAAAAAAFAAEAAQAAAAEAAAAFAAIAAQAAAAIAAAAFAAMAAQAAAAMAAAAFAAQAAQAAAAQAAAAGAAAAAQABAAAAAAAGAAEAAQABAAEAAAAGAAIAAQABAAIAAAAGAAMAAQABAAMAAAAGAAQAAQABAAQAAAAHAAAAAQACAAAAAAAHAAEAAQACAAEAAAAHAAIAAQACAAIAAAAHAAMAAQACAAMAAAAHAAQAAQACAAQAAAAIAAAAAQADAAAAAAAIAAEAAQADAAEAAAAIAAIAAQADAAIAAAAIAAMAAQADAAMAAAAIAAQAAQADAAQAAAAJAAAAAQAEAAAAAAAJAAEAAQAEAAEAAAAJAAIAAQAEAAIAAAAJAAMAAQAEAAMAAAAJAAQAAQAEAAQAAAAAAAUAAQAFAAAAAAAAAAYAAQAFAAEAAAAAAAcAAQAFAAEAAAAAAAgAAQAFAAIAAAAAAAkAAQAAAAQAAAABAAUAAQADAAIAAAABAAgAAQAGAAIAAAABAAkAAQABAAQAAAACAAUAAQAEAAIAAAACAAgAAQAGAAIAAAACAAkAAQACAAQAAAADAAUAAQAGAAAAAAADAAgAAQAGAAIAAAADAAkAAQADAAQAAAAEAAUAAQAGAAAAAAAEAAgAAQAGAAIAAAAEAAkAAQAEAAQAAAAFAAUAAQAGAAAAAAAFAAgAAQAGAAIAAAAFAAkAAQAAAAQAAAAGAAUAAQAGAAAAAAAGAAgAAQAGAAIAAAAGAAkAAQABAAQAAAAHAAUAAQAGAAAAAAAHAAgAAQAAAAIAAAAHAAkAAQACAAQAAAAIAAUAAQAGAAAAAAAIAAgAAQABAAIAAAAIAAkAAQADAAQAAAAJAAUAAQAGAAAAAAAJAAgAAQAGAAIAAAAJAAkAAQAEAAQAAAAAAAoAAQAAAAAAAAABAAoAAQABAAAAAAACAAoAAQACAAAAAAADAAoAAQADAAAAAAAEAAoAAQAEAAAAAAAFAAoAAQAAAAAAAAAGAAoAAQABAAAAAAAHAAoAAQACAAAAAAAIAAoAAQADAAAAAAAJAAoAAQAEAAAAAAAKAAoAAQAAAAAAAAAKAAAAAQAAAAAAAAAKAAEAAQAAAAEAAAAKAAIAAQAAAAIAAAAKAAMAAQAAAAMAAAAKAAQAAQAAAAQAAAAKAAUAAQAHAAAAAAAKAAYAAQAHAAEAAAAKAAcAAQAHAAEAAAAKAAgAAQAHAAIAAAAKAAkAAQAAAAQAAAAAAAsAAQAAAAEAAAAAAAwAAQAAAAIAAAAAAA0AAQAAAAMAAAAAAA4AAQAAAAQAAAABAAsAAQABAAEAAAABAAwAAQABAAIAAAABAA0AAQABAAMAAAABAA4AAQABAAQAAAACAAsAAQACAAEAAAACAAwAAQACAAIAAAACAA0AAQACAAMAAAACAA4AAQACAAQAAAADAAsAAQADAAEAAAADAAwAAQADAAIAAAADAA0AAQADAAMAAAADAA4AAQADAAQAAAAEAAsAAQAEAAEAAAAEAAwAAQAEAAIAAAAEAA0AAQAEAAMAAAAEAA4AAQAEAAQAAAAFAAsAAQAAAAEAAAAFAAwAAQAAAAIAAAAFAA0AAQAAAAMAAAAFAA4AAQAAAAQAAAAGAAsAAQABAAEAAAAGAAwAAQABAAIAAAAGAA0AAQABAAMAAAAGAA4AAQABAAQAAAAHAAsAAQACAAEAAAAHAAwAAQACAAIAAAAHAA0AAQACAAMAAAAHAA4AAQACAAQAAAAIAAsAAQADAAEAAAAIAAwAAQADAAIAAAAIAA0AAQADAAMAAAAIAA4AAQADAAQAAAAJAAsAAQAEAAEAAAAJAAwAAQAEAAIAAAAJAA0AAQAEAAMAAAAJAA4AAQAEAAQAAAAKAAsAAQAAAAEAAAAKAAwAAQAAAAIAAAAKAA0AAQAAAAMAAAAKAA4AAQAAAAQAAAALAAoAAQABAAAAAAALAAsAAQABAAEAAAALAAwAAQABAAIAAAALAA0AAQABAAMAAAALAA4AAQABAAQAAAAMAAoAAQACAAAAAAAMAAsAAQACAAEAAAAMAAwAAQACAAIAAAAMAA0AAQACAAMAAAAMAA4AAQACAAQAAAANAAoAAQADAAAAAAANAAsAAQADAAEAAAANAAwAAQADAAIAAAANAA0AAQADAAMAAAANAA4AAQADAAQAAAAOAAoAAQAEAAAAAAAOAAsAAQAEAAEAAAAOAAwAAQAEAAIAAAAOAA0AAQAEAAMAAAAOAA4AAQAEAAQAAAACAAYAAQAHAAMAAAABAAYAAQAGAAMAAAAHAAcAAQAGAAQAAAAIAAcAAQAHAAQAAAA=")
+tile_map_data = PackedByteArray("AAAAAAAAAQAAAAAAAAAAAAEAAQAAAAEAAAAAAAIAAQAAAAIAAAAAAAMAAQAAAAMAAAAAAAQAAQAFAAEAAAABAAAAAQABAAAAAAABAAEAAQABAAEAAAABAAIAAQABAAIAAAABAAMAAQAGAAAAAAABAAQAAQAFAAMAAAACAAAAAQACAAAAAAACAAEAAQACAAEAAAACAAIAAQACAAIAAAACAAMAAQAGAAAAAAACAAQAAQAFAAMAAAADAAAAAQADAAAAAAADAAEAAQADAAEAAAADAAIAAQADAAIAAAADAAMAAQAGAAAAAAAEAAAAAQAEAAAAAAAEAAEAAQAEAAEAAAAEAAIAAQAEAAIAAAAEAAMAAQAGAAAAAAAFAAAAAQAAAAAAAAAFAAEAAQAAAAEAAAAFAAIAAQAAAAIAAAAFAAMAAQAGAAAAAAAGAAAAAQABAAAAAAAGAAEAAQABAAEAAAAGAAIAAQABAAIAAAAGAAMAAQAGAAAAAAAHAAAAAQACAAAAAAAHAAEAAQACAAEAAAAHAAIAAQACAAIAAAAHAAMAAQAGAAAAAAAIAAAAAQADAAAAAAAIAAEAAQADAAEAAAAIAAIAAQADAAIAAAAIAAMAAQAGAAAAAAAJAAAAAQAEAAAAAAAJAAEAAQAEAAEAAAAJAAIAAQAEAAIAAAAJAAMAAQAGAAAAAAAAAAUAAQAFAAEAAAAAAAYAAQAFAAEAAAAAAAcAAQAFAAEAAAAAAAgAAQAFAAEAAAAAAAkAAQAFAAEAAAABAAYAAQAFAAMAAAABAAcAAQAFAAMAAAABAAgAAQAFAAMAAAABAAkAAQAFAAMAAAACAAcAAQAFAAMAAAACAAgAAQAFAAMAAAACAAkAAQAFAAMAAAADAAgAAQAFAAMAAAADAAkAAQAFAAMAAAAEAAgAAQAGAAQAAAAEAAkAAQAFAAMAAAAFAAYAAQAGAAIAAAAFAAcAAQAAAAEAAAAFAAgAAQAGAAAAAAAFAAkAAQAFAAMAAAAGAAYAAQAHAAMAAAAGAAcAAQAFAAEAAAAGAAgAAQAHAAQAAAAGAAkAAQAFAAMAAAAHAAUAAQAFAAMAAAAHAAYAAQAFAAMAAAAHAAcAAQAFAAMAAAAHAAgAAQAFAAMAAAAHAAkAAQAFAAMAAAAIAAUAAQAFAAMAAAAIAAYAAQAFAAMAAAAIAAcAAQAFAAMAAAAIAAgAAQAFAAMAAAAIAAkAAQAFAAMAAAAJAAYAAQAFAAMAAAAJAAcAAQAFAAMAAAAJAAgAAQAFAAMAAAAJAAkAAQAFAAMAAAAAAAoAAQAAAAAAAAABAAoAAQABAAAAAAACAAoAAQACAAAAAAADAAoAAQADAAAAAAAEAAoAAQAEAAAAAAAFAAoAAQAAAAAAAAAGAAoAAQABAAAAAAAHAAoAAQACAAAAAAAIAAoAAQADAAAAAAAJAAoAAQAEAAAAAAAKAAoAAQAAAAAAAAAKAAAAAQAAAAAAAAAKAAEAAQAAAAEAAAAKAAIAAQAAAAIAAAAKAAMAAQAAAAMAAAAKAAQAAQAHAAEAAAAKAAUAAQAHAAEAAAAKAAYAAQAHAAEAAAAKAAcAAQAHAAEAAAAKAAgAAQAHAAEAAAAKAAkAAQAHAAEAAAACAAYAAQAFAAMAAAAAAAsAAQAAAAEAAAAAAAwAAQAAAAIAAAAAAA0AAQAAAAMAAAAAAA4AAQAAAAQAAAABAAsAAQABAAEAAAABAAwAAQABAAIAAAABAA0AAQABAAMAAAABAA4AAQABAAQAAAACAAsAAQACAAEAAAACAAwAAQACAAIAAAACAA0AAQACAAMAAAACAA4AAQACAAQAAAADAAsAAQADAAEAAAADAAwAAQADAAIAAAADAA0AAQADAAMAAAADAA4AAQADAAQAAAAEAAsAAQAEAAEAAAAEAAwAAQAEAAIAAAAEAA0AAQAEAAMAAAAEAA4AAQAEAAQAAAAFAAsAAQAAAAEAAAAFAAwAAQAAAAIAAAAFAA0AAQAAAAMAAAAFAA4AAQAAAAQAAAAGAAsAAQABAAEAAAAGAAwAAQABAAIAAAAGAA0AAQABAAMAAAAGAA4AAQABAAQAAAAHAAsAAQACAAEAAAAHAAwAAQACAAIAAAAHAA0AAQACAAMAAAAHAA4AAQACAAQAAAAIAAsAAQADAAEAAAAIAAwAAQADAAIAAAAIAA0AAQADAAMAAAAIAA4AAQADAAQAAAAJAAsAAQAEAAEAAAAJAAwAAQAEAAIAAAAJAA0AAQAEAAMAAAAJAA4AAQAEAAQAAAAKAAsAAQAAAAEAAAAKAAwAAQAAAAIAAAAKAA0AAQAAAAMAAAAKAA4AAQAAAAQAAAALAAoAAQABAAAAAAALAAsAAQABAAEAAAALAAwAAQABAAIAAAALAA0AAQABAAMAAAALAA4AAQABAAQAAAAMAAoAAQACAAAAAAAMAAsAAQACAAEAAAAMAAwAAQACAAIAAAAMAA0AAQACAAMAAAAMAA4AAQACAAQAAAANAAoAAQADAAAAAAANAAsAAQADAAEAAAANAAwAAQADAAIAAAANAA0AAQADAAMAAAANAA4AAQADAAQAAAAOAAoAAQAEAAAAAAAOAAsAAQAEAAEAAAAOAAwAAQAEAAIAAAAOAA0AAQAEAAMAAAAOAA4AAQAEAAQAAAADAAYAAQAFAAMAAAAEAAYAAQAGAAMAAAADAAcAAQAFAAMAAAAEAAcAAQAHAAEAAAA=")
+
+[node name="walls" parent="BackgroundSpring" index="1"]
+z_index = 1
 
 [node name="Stones" type="Node" parent="."]
 
-[node name="Stone" parent="Stones" instance=ExtResource("7_jwofj")]
-position = Vector2(224, 352)
+[node name="Stone1" parent="Stones" instance=ExtResource("7_jwofj")]
+position = Vector2(224, 224)
 
 [node name="Stone2" parent="Stones" instance=ExtResource("7_jwofj")]
-position = Vector2(288, 352)
+position = Vector2(288, 224)
 
 [node name="Stone3" parent="Stones" instance=ExtResource("7_jwofj")]
-position = Vector2(352, 352)
+position = Vector2(352, 224)
 
 [node name="Stone4" parent="Stones" instance=ExtResource("7_jwofj")]
-position = Vector2(416, 352)
+position = Vector2(416, 224)
 
 [node name="Stone5" parent="Stones" instance=ExtResource("7_jwofj")]
-position = Vector2(480, 352)
+position = Vector2(480, 224)
 
 [node name="Creatures" type="Node" parent="."]
 
 [node name="CreatureBlue" parent="Creatures" instance=ExtResource("4_igkys")]
-position = Vector2(288, 288)
+position = Vector2(288, 160)
 
 [node name="CreatureYellow" parent="Creatures" instance=ExtResource("5_jwofj")]
-position = Vector2(416, 288)
+position = Vector2(416, 160)
 
 [node name="Player" type="Node" parent="."]
 
 [node name="Player" parent="Player" instance=ExtResource("6_rop03")]
-position = Vector2(288, 224)
+position = Vector2(288, 96)
 
 [node name="LevelUI" parent="." instance=ExtResource("7_yexyi")]
 

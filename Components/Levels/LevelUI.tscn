@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://4cpn4q7vm6em" path="res://Components/UI/VFX/LeafManager.gd" id="5_1663l"]
 
 [node name="LevelUI" type="Node2D"]
+z_index = 1
 
 [node name="WorldEnvironment" parent="." instance=ExtResource("1_73yj2")]
 

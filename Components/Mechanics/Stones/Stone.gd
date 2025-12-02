@@ -16,8 +16,6 @@ func _ready():
 	super._ready()
 	add_to_group(str(Constants.GROUP_NAME_STONES))
 	enable_collision_layer()
-	
-	Signals.stone_reached_target.connect(handle_stone_reached_target)
 
 # -----------------------------------------------------------
 # State (e.g. for Undo)
@@ -25,14 +23,30 @@ func _ready():
 ## Returns a Dictionary snapshot of the stone state
 ## used for Undo/Redo (position + target position).
 func get_info() -> Dictionary:
-	return {
-		"global_position": global_position,
-		"target_position": target_position
-	}
+	var info = {}
+	info["global_position"] = global_position.snapped(Constants.GRID_SIZE / 2)
+	info["target_position"] = target_position.snapped(Constants.GRID_SIZE / 2)
+	info["is_in_water"] = is_in_water
+	if not is_in_water:
+		info["position"] = Vector2(0.0, 0.0)
+	else:
+		info["position"] = Vector2(0.0, 18.0)
+	return info
+	#info["global_position"] = global_position.snapped(Constants.GRID_SIZE / 2)
+	#return {
+		#"global_position": global_position.snapped(Constants.GRID_SIZE / 2),
+		#"target_position": target_position.snapped(Constants.GRID_SIZE / 2),
+		#"position": position.snapped(Vector2(18.0,18.0)),
+		#"is_in_water": is_in_water
+	#}
 
 ## Restores the stone state from a Dictionary snapshot.
 ## Resets movement and pending push data.
 func set_info(info : Dictionary):
+	if is_in_water:
+		print("Global Position: ", info.get("global_position"))
+		print("Target Position: ", info.get("target_position"))
+		print("Position: ", info.get("position"))
 	global_position = info.get("global_position")
 	target_position = global_position
 	
@@ -41,12 +55,18 @@ func set_info(info : Dictionary):
 	
 	pending_target_position = Vector2.ZERO
 	pending_direction = Vector2.ZERO
-
-func handle_stone_reached_target(stone: Stone):
-	pass
-	#if stone.name == name:
-		#if Helper.check_if_collides(global_position, ( 1 << Constants.LAYER_BIT_WATER), get_world_2d()):
-			#pass
+	
+	if is_in_water != info.get("is_in_water"):
+		sprite_stone.position = info.get("position")
+		animated_sprite_platform.position = info.get("position")
+	
+	#if is_in_water:
+	print(info.get("is_in_water"))
+		#print("Is in water", is_in_water)
+	
+	is_in_water = info.get("is_in_water")
+	if not is_in_water and sprite_stone.modulate == MODULATE_UNDER_WATER:
+		turn_from_platform_back_into_stone()
 
 func enable_collision_layer():
 	set_collision_layer_value(Constants.LAYER_BIT_PUSHABLE+1, true)
@@ -57,14 +77,36 @@ func disable_collision_layer():
 	set_collision_layer_value(Constants.LAYER_BIT_STONES+1, false)
 
 func turn_into_platform_in_water():
-	sprite_stone.modulate = MODULATE_UNDER_WATER
-	animated_sprite_platform.visible = true
-	z_index -= 2
-	disable_collision_layer()
-	set_collision_layer_value(Constants.LAYER_BIT_WATER_PLATFORM+1, true)
+	if is_in_water:
+		print("BECOME PLATFORM")
+		sprite_stone.modulate = MODULATE_UNDER_WATER
+		animated_sprite_platform.visible = true
+		z_index -= 2
+		disable_collision_layer()
+		set_collision_layer_value(Constants.LAYER_BIT_WATER_PLATFORM+1, true)
+
+func turn_from_platform_back_into_stone():
+	print("BECOME STONE")
+	sprite_stone.modulate = MODULATE_INIT
+	animated_sprite_platform.visible = false
+	z_index += 2
+	enable_collision_layer()
+	set_collision_layer_value(Constants.LAYER_BIT_WATER_PLATFORM+1, false)
 
 func _process(delta):
 	super._process(delta)
-	if is_in_water and sprite_stone.position[1] < 18:
-		sprite_stone.position[1] = lerp(sprite_stone.position[1], 18.0, delta*25)
-		animated_sprite_platform.position[1] = lerp(animated_sprite_platform.position[1], 18.0, delta*25)
+	if is_in_water:
+		if roundf(sprite_stone.position[1]*100)/100 < 18:
+			sprite_stone.position[1] = lerp(sprite_stone.position[1], 18.0, delta*25)
+			animated_sprite_platform.position[1] = lerp(animated_sprite_platform.position[1], 18.0, delta*25)
+		else:
+			sprite_stone.position[1] = 18
+			animated_sprite_platform.position[1] = 18
+	elif not is_in_water:
+		if round(sprite_stone.position[1]*100)/100 > 0:
+			#print(sprite_stone.position[1])
+			sprite_stone.position[1] = lerp(sprite_stone.position[1], 0.0, delta*25)
+			animated_sprite_platform.position[1] = lerp(animated_sprite_platform.position[1], 0.0, delta*25)
+		else:
+			sprite_stone.position[1] = 0
+			animated_sprite_platform.position[1] = 0

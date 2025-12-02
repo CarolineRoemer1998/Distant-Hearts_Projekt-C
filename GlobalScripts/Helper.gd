@@ -23,9 +23,9 @@ func can_move_in_direction(_position: Vector2, _direction, world : World2D, is_p
 	if not result_pushables.is_empty() and not result_water_platform.is_empty():
 		result_pushables = sort_out_water_with_stones(result_water_platform, result_pushables)
 	
-	print(result_pushables)
-	print(result_water_platform)
-	print()
+	#print(result_pushables)
+	#print(result_water_platform)
+	#print()
 	
 	if is_avoiding and not result_buttons.is_empty():
 		return false

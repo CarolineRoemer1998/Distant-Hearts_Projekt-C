@@ -265,4 +265,4 @@ visible = false
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_kgeh7")
 autoplay = "default"
-frame_progress = 0.9499861
+frame_progress = 0.73087656

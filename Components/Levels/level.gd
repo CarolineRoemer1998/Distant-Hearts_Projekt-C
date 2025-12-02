@@ -24,7 +24,8 @@ var groups_to_save := [
 	Constants.GROUP_NAME_BUTTONS, 
 	Constants.GROUP_NAME_STONES, 
 	Constants.GROUP_NAME_FLOWER_SEEDS,
-	Constants.GROUP_NAME_BEES
+	Constants.GROUP_NAME_BEES,
+	Constants.GROUP_NAME_WATER_TILE
 	]
 
 var can_undo := true
@@ -78,6 +79,7 @@ func save_level_state(_player_info : Dictionary):
 	if level_number == SceneSwitcher.current_level:
 		var state = {}
 		for group_name in groups_to_save:
+			#print(group_name)
 			for object in get_tree().get_nodes_in_group(str(group_name)):
 				if object != null:
 					if not state.has(group_name): 
@@ -113,6 +115,7 @@ func undo():
 		set_state_of_component(Constants.GROUP_NAME_STONES)
 		set_state_of_component(Constants.GROUP_NAME_FLOWER_SEEDS)
 		set_state_of_component(Constants.GROUP_NAME_BEES)
+		set_state_of_component(Constants.GROUP_NAME_WATER_TILE)
 		
 		FieldReservation.clear_all()
 		StateSaver.remove_last_state()
