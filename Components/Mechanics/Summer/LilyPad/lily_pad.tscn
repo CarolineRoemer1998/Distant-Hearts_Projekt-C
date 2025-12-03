@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://bwy1o5riueuq0"]
+[gd_scene load_steps=12 format=3 uid="uid://bwy1o5riueuq0"]
 
+[ext_resource type="Script" uid="uid://cklj55tpco6fp" path="res://Components/Mechanics/Summer/LilyPad/LilyPad.gd" id="1_l61re"]
 [ext_resource type="Texture2D" uid="uid://deku0wq1yb8qg" path="res://Assets/Summer Mechanics/Lilly Pads/lilypad.png" id="1_tnfxb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l61re"]
@@ -55,14 +56,26 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tnfxb"]
 size = Vector2(64, 64)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l61re"]
+
 [node name="LilyPad" type="StaticBody2D"]
 collision_layer = 32768
+script = ExtResource("1_l61re")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_2xa1l")
 autoplay = "default"
-frame_progress = 0.5847722
+frame = 4
+frame_progress = 0.5577794
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_tnfxb")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_l61re")
+
+[connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

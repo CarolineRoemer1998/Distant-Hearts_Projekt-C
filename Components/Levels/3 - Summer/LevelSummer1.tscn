@@ -258,7 +258,7 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="LevelBase" type="Node2D"]
+[node name="LevelSummer1" type="Node2D"]
 script = ExtResource("1_ma3sw")
 undo_particles = ExtResource("2_v8cy3")
 level_number = 11
@@ -514,9 +514,13 @@ position = Vector2(480, 224)
 
 [node name="CreatureBlue" parent="Creatures" instance=ExtResource("4_igkys")]
 position = Vector2(288, 160)
+color = null
+init_direction = null
 
 [node name="CreatureYellow" parent="Creatures" instance=ExtResource("5_jwofj")]
 position = Vector2(416, 160)
+color = null
+init_direction = null
 
 [node name="Player" type="Node" parent="."]
 

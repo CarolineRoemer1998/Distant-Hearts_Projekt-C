@@ -16,6 +16,7 @@ enum COLOR {
 @onready var animation_player: AnimationPlayer = $Visuals/AnimationPlayer
 @onready var border: AnimatedSprite2D = $Visuals/AnimatedSpriteBorder
 @onready var animation_tree: AnimationTree = $Visuals/AnimationTree
+@onready var visuals: Node2D = $Visuals
 
 @onready var sweat_particles: GPUParticles2D = $SweatParticles
 @onready var audio_teleport: AudioStreamPlayer2D = $AudioTeleport
@@ -281,13 +282,13 @@ func avoid_bees(bee_direction: Vector2, try_direction) -> Vector2:
 
 func try_directions(directions : Array[Vector2]) -> Vector2:
 	if hard_escape_lock and last_escape_direction != Vector2.ZERO:
-		if Helper.can_move_in_direction(position, last_escape_direction, get_world_2d(), true, true):
+		if Helper.can_move_in_direction(position, last_escape_direction, get_world_2d(), true, self, true):
 			return last_escape_direction
 		hard_escape_lock = false
 		last_escape_direction = Vector2.ZERO
 
 	for d in directions:
-		if d != Vector2.ZERO and Helper.can_move_in_direction(position, d, get_world_2d(), true, true):
+		if d != Vector2.ZERO and Helper.can_move_in_direction(position, d, get_world_2d(), true, self, true):
 			last_escape_direction = d
 			hard_escape_lock = true
 			return d

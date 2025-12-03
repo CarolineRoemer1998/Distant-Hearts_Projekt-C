@@ -3,7 +3,7 @@ extends Node
 ## Checks if instance (and the possessed creature) is allowed to move
 ## in the given direction. Considers walls, doors and stones.
 ## On success, sets pushable_stone_in_direction if a stone can be pushed.
-func can_move_in_direction(_position: Vector2, _direction, world : World2D, is_physical_body : bool, is_avoiding := false) -> bool:
+func can_move_in_direction(_position: Vector2, _direction, world : World2D, is_physical_body : bool, body : CharacterBody2D, is_avoiding := false) -> bool:
 	if _direction == null:
 		return false
 	
@@ -21,15 +21,14 @@ func can_move_in_direction(_position: Vector2, _direction, world : World2D, is_p
 	var result_water_platform = get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_WATER_PLATFORM), world)
 	var result_lily_pads = get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_LILY_PAD), world)
 	
+	# TODO: Muss noch richtig implementiert werden
 	if not result_lily_pads.is_empty():
+		if body is Player:
+			result_lily_pads[0].collider.object_sprites_on_lily_pad = body.get_sprites()
 		return true
 	
 	if not result_pushables.is_empty() and not result_water_platform.is_empty():
 		result_pushables = sort_out_water_with_stones(result_water_platform, result_pushables)
-	
-	#print(result_pushables)
-	#print(result_water_platform)
-	#print()
 	
 	if is_avoiding and not result_buttons.is_empty():
 		return false
@@ -116,6 +115,5 @@ func sort_out_water_with_stones(_platforms: Array[Dictionary], _stones: Array[Di
 	for p in _platforms:
 		for s in result:
 			if p.collider.name == s.collider.name:
-				#print("Same found!!!")
 				result.erase(s)
 	return result

@@ -152,7 +152,7 @@ func prepare_movement(_direction: Vector2, animation_direction: Vector2, step_ti
 	if is_moving:
 		buffered_direction = _direction
 	else:
-		if Helper.can_move_in_direction(position, _direction, get_world_2d(), currently_possessed_creature!=null):
+		if Helper.can_move_in_direction(position, _direction, get_world_2d(), currently_possessed_creature!=null, self):
 			set_is_moving(true)
 
 ## Handles switching possession of creatures.
@@ -224,7 +224,13 @@ func set_info(info : Dictionary):
 		possess()
 	elif currently_possessed_creature and info_creature == null:
 		unpossess()
-	
+
+func get_sprites() -> Array[Node2D]:
+	var result : Array[Node2D]= []
+	result.append(animated_sprite_2d)
+	if currently_possessed_creature != null:
+		result.append(currently_possessed_creature.visuals)
+	return result
 
 ## Spawns undo particles at the given position.
 func spawn_undo_particles(world_pos: Vector2):
@@ -308,7 +314,8 @@ func on_move_step_finished():
 				position,
 				direction,
 				get_world_2d(),
-				currently_possessed_creature!=null
+				currently_possessed_creature!=null,
+				self
 			)
 		)
 		buffered_direction = Vector2.ZERO
@@ -414,6 +421,7 @@ func _start_bee_avoid_step():
 		move_dir,
 		get_world_2d(),
 		currently_possessed_creature != null,
+		self,
 		true
 	):
 		set_is_moving(true)

@@ -79,7 +79,6 @@ func save_level_state(_player_info : Dictionary):
 	if level_number == SceneSwitcher.current_level:
 		var state = {}
 		for group_name in groups_to_save:
-			#print(group_name)
 			for object in get_tree().get_nodes_in_group(str(group_name)):
 				if object != null:
 					if not state.has(group_name): 
