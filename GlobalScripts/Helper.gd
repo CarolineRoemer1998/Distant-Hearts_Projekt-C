@@ -22,7 +22,7 @@ func can_move_in_direction(_position: Vector2, _direction, world : World2D, is_p
 	var result_lily_pads = get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_LILY_PAD), world)
 	
 	# TODO: Muss noch richtig implementiert werden
-	if not result_lily_pads.is_empty():
+	if not result_lily_pads.is_empty() and result_pushables.is_empty():
 		if body is Player:
 			result_lily_pads[0].collider.object_sprites_on_lily_pad = body.get_sprites()
 		return true
@@ -41,7 +41,7 @@ func can_move_in_direction(_position: Vector2, _direction, world : World2D, is_p
 	or (is_physical_body == false and result_wall_outside.is_empty()):
 		return true
 	
-	if not result_water_platform.is_empty() and result_water[0].collider.stone_inside != null and result_pushables.is_empty():
+	if not result_water_platform.is_empty() and result_water[0].collider.object_under_water_tile != null and result_pushables.is_empty():
 		return true
 	
 	if not result_doors.is_empty() and result_doors[0].collider is Door and not result_doors[0].collider.door_is_closed and result_pushables.is_empty() and result_flowers.is_empty():

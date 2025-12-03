@@ -32,13 +32,6 @@ func get_info() -> Dictionary:
 	else:
 		info["position"] = Vector2(0.0, 18.0)
 	return info
-	#info["global_position"] = global_position.snapped(Constants.GRID_SIZE / 2)
-	#return {
-		#"global_position": global_position.snapped(Constants.GRID_SIZE / 2),
-		#"target_position": target_position.snapped(Constants.GRID_SIZE / 2),
-		#"position": position.snapped(Vector2(18.0,18.0)),
-		#"is_in_water": is_in_water
-	#}
 
 ## Restores the stone state from a Dictionary snapshot.
 ## Resets movement and pending push data.

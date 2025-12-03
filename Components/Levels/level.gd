@@ -25,7 +25,8 @@ var groups_to_save := [
 	Constants.GROUP_NAME_STONES, 
 	Constants.GROUP_NAME_FLOWER_SEEDS,
 	Constants.GROUP_NAME_BEES,
-	Constants.GROUP_NAME_WATER_TILE
+	Constants.GROUP_NAME_WATER_TILE,
+	Constants.GROUP_NAME_LILY_PAD
 	]
 
 var can_undo := true
@@ -115,6 +116,7 @@ func undo():
 		set_state_of_component(Constants.GROUP_NAME_FLOWER_SEEDS)
 		set_state_of_component(Constants.GROUP_NAME_BEES)
 		set_state_of_component(Constants.GROUP_NAME_WATER_TILE)
+		set_state_of_component(Constants.GROUP_NAME_LILY_PAD)
 		
 		FieldReservation.clear_all()
 		StateSaver.remove_last_state()

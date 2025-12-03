@@ -14,7 +14,7 @@ var is_sliding := false
 var pending_target_position: Vector2 = Vector2.ZERO
 var pending_direction: Vector2 = Vector2.ZERO
 
-var layer_mask_obstacles := (1 << Constants.LAYER_BIT_PUSHABLE) | (1 << Constants.LAYER_BIT_DOOR) | (1 << Constants.LAYER_BIT_WALL_AND_PLAYER) | (1 << Constants.LAYER_BIT_CREATURE) | (1 << Constants.LAYER_BIT_LEVEL_WALL) | (1 << Constants.LAYER_BIT_SOIL) 
+var layer_mask_obstacles := (1 << Constants.LAYER_BIT_PUSHABLE) | (1 << Constants.LAYER_BIT_DOOR) | (1 << Constants.LAYER_BIT_WALL_AND_PLAYER) | (1 << Constants.LAYER_BIT_CREATURE) | (1 << Constants.LAYER_BIT_LEVEL_WALL) | (1 << Constants.LAYER_BIT_SOIL)# | (1 << Constants.LAYER_BIT_LILY_PAD)
 
 ## Initializes the stone when the scene starts:
 ## adds it to the stone group, enables collision and snaps to the grid.
@@ -67,21 +67,16 @@ func get_can_be_pushed(new_pos : Vector2, direction : Vector2) -> bool:
 			else:
 				push_collision.erase(hit)
 	
-	var stone_behind_in_water : Stone = null
-	var stone_behind_on_water : Stone = null
 	# If another pushable is behind pushable
 	for hit in push_collision:
 		if hit.collider is PushableObject:
 			if hit.collider.get_can_be_pushed(new_pos + (direction * Constants.GRID_SIZE), direction):
-				#if hit.collider is Stone and not hit.collider.is_in_water:
-					#stone_behind_on_water = hit.collider
-				#if hit.collider is Stone and hit.collider.is_in_water:
-					#stone_behind_in_water = hit.collider
 				if hit.collider is Stone and hit.collider.is_in_water:
 					push_collision.erase(hit)
 					break
 				stone_on_next_field = hit.collider
 				hit.collider.push()
+	
 	
 	# If nothing is behind the stone, it can be pushed
 	if push_collision.is_empty() or stone_on_next_field:
