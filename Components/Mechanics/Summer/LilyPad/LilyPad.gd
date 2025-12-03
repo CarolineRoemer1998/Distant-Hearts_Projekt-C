@@ -12,6 +12,7 @@ var has_sunk := false
 func _ready() -> void:
 	add_to_group(Constants.GROUP_NAME_LILY_PAD)
 	Signals.set_lily_pad_on_water_tile.emit(self)
+	Signals.player_left_lily_pad.connect(handle_player_left_lilypad)
 
 func get_info() -> Dictionary:
 	return {
@@ -62,3 +63,10 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 	for sprite in object_sprites_on_lily_pad:
 		sprite.position[0] = 0.0
 	object_sprites_on_lily_pad = []
+	
+	#if body is Player:
+		#sink()
+
+func handle_player_left_lilypad(pos: Vector2):
+	if global_position == pos:
+		sink()

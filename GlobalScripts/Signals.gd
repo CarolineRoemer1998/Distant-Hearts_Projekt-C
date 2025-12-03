@@ -47,3 +47,4 @@ signal bees_stop_flying
 
 # Summer
 signal set_lily_pad_on_water_tile(lilypad: LilyPad)
+signal player_left_lily_pad(pos: Vector2)

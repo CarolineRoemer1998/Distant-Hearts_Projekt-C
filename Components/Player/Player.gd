@@ -25,6 +25,7 @@ var input_direction := Vector2.ZERO
 var current_direction := Vector2.ZERO
 var buffered_direction: Vector2 = Vector2.ZERO
 
+var last_position: Vector2 = Vector2.ZERO
 var target_position: Vector2:
 	set(val):
 		target_position = val.snapped(Constants.GRID_SIZE / 2)
@@ -143,6 +144,7 @@ func handle_movement_input(_input_direction: Vector2, step_timer_time := Constan
 
 ## Prepares a normal (input-based) movement step.
 func prepare_movement(_direction: Vector2, animation_direction: Vector2, step_timer_time := Constants.TIMER_STEP):
+	last_position = global_position
 	direction = _direction
 	set_animation_direction(animation_direction)
 	can_move = false
@@ -174,6 +176,7 @@ func get_info() -> Dictionary:
 	return {
 		"global_position": global_position,
 		"is_active": is_active,
+		"last_position": last_position,
 
 		"direction": direction,
 		"current_direction": current_direction,
@@ -196,6 +199,7 @@ func set_info(info : Dictionary):
 
 	global_position = info["global_position"]
 	target_position = global_position
+	last_position = info["last_position"]
 	is_active = info["is_active"]
 
 	direction = info["direction"]
@@ -462,6 +466,10 @@ func begin_move_step():
 	play_step_sound()
 	if not is_avoiding:
 		Signals.state_changed.emit(get_info())
+		
+		var collider_lily_pads = Helper.get_collision_on_tile(last_position, (1 << Constants.LAYER_BIT_LILY_PAD), get_world_2d())
+		if not collider_lily_pads.is_empty():
+			Signals.player_left_lily_pad.emit(last_position)
 
 ## Plays randomised movement step sound.
 func play_step_sound():

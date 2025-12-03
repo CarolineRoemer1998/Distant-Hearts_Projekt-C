@@ -534,4 +534,13 @@ position = Vector2(160, 96)
 [node name="LilyPad" parent="LilyPads" instance=ExtResource("13_yexyi")]
 position = Vector2(160, 288)
 
+[node name="LilyPad2" parent="LilyPads" instance=ExtResource("13_yexyi")]
+position = Vector2(160, 352)
+
+[node name="LilyPad3" parent="LilyPads" instance=ExtResource("13_yexyi")]
+position = Vector2(160, 416)
+
+[node name="LilyPad4" parent="LilyPads" instance=ExtResource("13_yexyi")]
+position = Vector2(224, 416)
+
 [editable path="BackgroundSpring"]
