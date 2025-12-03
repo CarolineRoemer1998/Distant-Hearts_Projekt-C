@@ -5,6 +5,8 @@ class_name Stone
 @onready var sprite_stone: Sprite2D = $SpriteStone
 @onready var animated_sprite_platform: AnimatedSprite2D = $AnimatedSpritePlatform
 @onready var splash_animated_sprites: AnimatedSprite2D = $SplashAnimatedSprites
+@onready var sound_stone_in_water: AudioStreamPlayer2D = $SoundStoneInWater
+@onready var sound_water: AudioStreamPlayer2D = $SoundWater
 
 const MODULATE_INIT := Color(1.0, 1.0, 1.0)
 const MODULATE_UNDER_WATER := Color(0.775, 1.288, 1.416)
@@ -89,6 +91,8 @@ func _process(delta):
 			if roundf(sprite_stone.position[1]*100)/100 > 9 and not splash_animated_sprites.visible:
 				splash_animated_sprites.visible = true
 				splash_animated_sprites.play("Splash")
+				sound_stone_in_water.play()
+				sound_water.play()
 		elif animated_sprite_platform.position[1] != 18:
 			sprite_stone.position[1] = 18
 			animated_sprite_platform.position[1] = 18

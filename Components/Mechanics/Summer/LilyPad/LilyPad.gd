@@ -5,6 +5,8 @@ class_name LilyPad
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var animated_sprite_splash: AnimatedSprite2D = $AnimatedSpriteSplash
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var audio_splash: AudioStreamPlayer2D = $AudioSplash
+@onready var sound_water: AudioStreamPlayer2D = $SoundWater
 
 var object_sprites_on_lily_pad : Array[Node2D] = []
 var has_sunk := false
@@ -56,6 +58,8 @@ func sink(by_stone := false):
 	has_sunk = true
 	if not by_stone:
 		animation_player.play("ShrinkWhileSinking")
+		audio_splash.play()
+		sound_water.play()
 	else:
 		animated_sprite_2d.visible = false
 

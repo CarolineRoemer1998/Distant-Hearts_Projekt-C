@@ -1,8 +1,15 @@
-[gd_scene load_steps=27 format=3 uid="uid://bwy1o5riueuq0"]
+[gd_scene load_steps=36 format=3 uid="uid://bwy1o5riueuq0"]
 
 [ext_resource type="Script" uid="uid://cklj55tpco6fp" path="res://Components/Mechanics/Summer/LilyPad/LilyPad.gd" id="1_l61re"]
 [ext_resource type="Texture2D" uid="uid://deku0wq1yb8qg" path="res://Assets/Summer Mechanics/Lilly Pads/lilypad.png" id="1_tnfxb"]
 [ext_resource type="Texture2D" uid="uid://da3cpnc58funx" path="res://Assets/Summer Mechanics/Water/splash-animation.png" id="3_h2cnq"]
+[ext_resource type="AudioStream" uid="uid://bg2ixw74k6dls" path="res://Sounds/SFX/WaterSplashing/Drop1.mp3" id="4_2m6kq"]
+[ext_resource type="AudioStream" uid="uid://c2j040aw3wnp" path="res://Sounds/SFX/WaterSplashing/Drop2.mp3" id="5_hekhk"]
+[ext_resource type="AudioStream" uid="uid://d1n7k4iitfd3e" path="res://Sounds/SFX/WaterSplashing/Drop3.mp3" id="6_2xa1l"]
+[ext_resource type="AudioStream" uid="uid://bgbryjrbg8x5u" path="res://Sounds/SFX/WaterSplashing/Splash1.mp3" id="7_46di6"]
+[ext_resource type="AudioStream" uid="uid://cukgvxvsq1jja" path="res://Sounds/SFX/WaterSplashing/Splash2.mp3" id="8_61n6l"]
+[ext_resource type="AudioStream" uid="uid://hkcsnd57oiqg" path="res://Sounds/SFX/WaterSplashing/Splash3.mp3" id="9_xp53p"]
+[ext_resource type="AudioStream" uid="uid://dywrg1pws18pm" path="res://Sounds/SFX/WaterSplashing/Splash4.mp3" id="10_fyeuh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l61re"]
 atlas = ExtResource("1_tnfxb")
@@ -137,6 +144,33 @@ animations = [{
 "speed": 18.0
 }]
 
+[sub_resource type="Animation" id="Animation_hyog4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, 2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_h2cnq"]
 resource_name = "ShrinkWhileSinking"
 length = 0.25
@@ -180,38 +214,24 @@ tracks/2/keys = {
 "values": [Vector2(0, 0), Vector2(0, 16)]
 }
 
-[sub_resource type="Animation" id="Animation_hyog4"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(2, 2)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a1ifx"]
 _data = {
 &"RESET": SubResource("Animation_hyog4"),
 &"ShrinkWhileSinking": SubResource("Animation_h2cnq")
 }
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_vy0d5"]
+streams_count = 3
+stream_0/stream = ExtResource("4_2m6kq")
+stream_1/stream = ExtResource("5_hekhk")
+stream_2/stream = ExtResource("6_2xa1l")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_bxell"]
+streams_count = 4
+stream_0/stream = ExtResource("7_46di6")
+stream_1/stream = ExtResource("8_61n6l")
+stream_2/stream = ExtResource("9_xp53p")
+stream_3/stream = ExtResource("10_fyeuh")
 
 [node name="LilyPad" type="StaticBody2D"]
 collision_layer = 32768
@@ -242,6 +262,13 @@ animation = &"splash"
 libraries = {
 &"": SubResource("AnimationLibrary_a1ifx")
 }
+
+[node name="AudioSplash" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_vy0d5")
+volume_db = -20.0
+
+[node name="SoundWater" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_bxell")
 
 [connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
