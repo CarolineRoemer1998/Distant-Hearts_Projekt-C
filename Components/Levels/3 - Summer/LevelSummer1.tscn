@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=4 uid="uid://df3vvwkd4nx5"]
+[gd_scene load_steps=50 format=4 uid="uid://df3vvwkd4nx5"]
 
 [ext_resource type="Script" uid="uid://ddiwo6yyhfkuc" path="res://Components/Levels/level.gd" id="1_ma3sw"]
 [ext_resource type="PackedScene" uid="uid://lrodaawkgfob" path="res://Components/UI/VFX/undo_particles.tscn" id="2_v8cy3"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://g3u7bc1jo6gj" path="res://Components/Player/player.tscn" id="6_rop03"]
 [ext_resource type="Texture2D" uid="uid://cjcbdthfv00rv" path="res://Assets/Environments/Wall-under-water.png" id="6_yexyi"]
 [ext_resource type="PackedScene" uid="uid://oy61arlldjo3" path="res://Components/Mechanics/Stones/Stone.tscn" id="7_jwofj"]
+[ext_resource type="AudioStream" uid="uid://bqsh6edu2l0uj" path="res://Sounds/SFX/WaterSplashing/water_flowing.mp3" id="7_krfp2"]
 [ext_resource type="PackedScene" uid="uid://dtrjxhb3ayo1c" path="res://Components/Levels/LevelUI.tscn" id="7_yexyi"]
 [ext_resource type="PackedScene" uid="uid://bwy1o5riueuq0" path="res://Components/Mechanics/Summer/LilyPad/lily_pad.tscn" id="13_yexyi"]
 
@@ -485,6 +486,10 @@ position = Vector2(160, 608)
 [node name="WaterTile54" parent="WaterElements" instance=ExtResource("6_krfp2")]
 position = Vector2(96, 608)
 
+[node name="AudioWaterFlowPlayer" type="AudioStreamPlayer2D" parent="WaterElements" groups=["AudioWaterFlowPlayer"]]
+stream = ExtResource("7_krfp2")
+bus = &"sfx"
+
 [node name="BackgroundSpring" parent="." instance=ExtResource("3_ma3sw")]
 
 [node name="floor" parent="BackgroundSpring" index="0"]
@@ -544,3 +549,5 @@ position = Vector2(160, 416)
 position = Vector2(224, 416)
 
 [editable path="BackgroundSpring"]
+[editable path="LevelUI"]
+[editable path="LevelUI/UndoMechanic"]

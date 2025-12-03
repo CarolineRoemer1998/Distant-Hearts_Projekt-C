@@ -82,8 +82,6 @@ func turn_from_platform_back_into_stone():
 
 func _process(delta):
 	super._process(delta)
-	if name == "Stone2":
-		print(sprite_stone.position[0])
 	if is_in_water:
 		if roundf(sprite_stone.position[1]*100)/100 < 18:
 			sprite_stone.position[1] = lerp(sprite_stone.position[1], 18.0, delta*25)

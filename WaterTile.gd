@@ -17,8 +17,6 @@ func get_info():
 
 func set_info(info: Dictionary):
 	object_under_water_tile = info.get("object_under_water_tile")
-	if object_under_water_tile != null:
-		print(self.name, "\nobject_under_water_tile: ", object_under_water_tile, "\n")
 
 func set_object_as_under_water_tile(object: Node2D):
 	var collisions = Helper.get_collision_on_tile(global_position, layer_bit_mask_objects_under_water , get_world_2d())

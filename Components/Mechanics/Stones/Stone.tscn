@@ -7,10 +7,10 @@
 [ext_resource type="AudioStream" uid="uid://bx3viidid0w0w" path="res://Sounds/SFX/WaterSplashing/Stone_in_water1.mp3" id="5_ufa7o"]
 [ext_resource type="AudioStream" uid="uid://p2x0wv6c0vh8" path="res://Sounds/SFX/WaterSplashing/Stone_in_water2.mp3" id="6_rssop"]
 [ext_resource type="AudioStream" uid="uid://bcb8yyay55okc" path="res://Sounds/SFX/WaterSplashing/Stone_in_water3.mp3" id="7_pxe5g"]
-[ext_resource type="AudioStream" uid="uid://bbyp554s8vy2f" path="res://Sounds/SFX/WaterSplashing/Splash1.mp3" id="8_wpstk"]
-[ext_resource type="AudioStream" uid="uid://sf13ucv2kd34" path="res://Sounds/SFX/WaterSplashing/Splash2.mp3" id="9_hnmft"]
-[ext_resource type="AudioStream" uid="uid://pqe5ccgb5pbb" path="res://Sounds/SFX/WaterSplashing/Splash3.mp3" id="10_aeon1"]
-[ext_resource type="AudioStream" uid="uid://n1nrjb6qpwar" path="res://Sounds/SFX/WaterSplashing/Splash4.mp3" id="11_wsrwl"]
+[ext_resource type="AudioStream" uid="uid://bgbryjrbg8x5u" path="res://Sounds/SFX/WaterSplashing/Splash1.mp3" id="8_wpstk"]
+[ext_resource type="AudioStream" uid="uid://cukgvxvsq1jja" path="res://Sounds/SFX/WaterSplashing/Splash2.mp3" id="9_hnmft"]
+[ext_resource type="AudioStream" uid="uid://hkcsnd57oiqg" path="res://Sounds/SFX/WaterSplashing/Splash3.mp3" id="10_aeon1"]
+[ext_resource type="AudioStream" uid="uid://dywrg1pws18pm" path="res://Sounds/SFX/WaterSplashing/Splash4.mp3" id="11_wsrwl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1l0tm"]
 size = Vector2(60, 60)

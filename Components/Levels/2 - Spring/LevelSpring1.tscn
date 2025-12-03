@@ -265,9 +265,6 @@ other_teleporter = NodePath("../Flower1")
 
 [node name="LevelUI" parent="." instance=ExtResource("8_igtey")]
 
-[node name="ResetBar" parent="LevelUI" index="1"]
-visible = false
-
 [editable path="BackgroundSpring"]
 [editable path="TeleporterManager"]
 [editable path="TeleporterManager/Flower1"]

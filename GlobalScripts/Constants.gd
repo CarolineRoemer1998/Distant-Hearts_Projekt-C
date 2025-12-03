@@ -139,6 +139,7 @@ const SFX_PUSH_MENU_BUTTON := 	"res://Sounds/SFX/button_menu_click.mp3"
 const SFX_TELEPORT :=			"res://Sounds/SFX/teleport_test/scifi-anime-whoosh-59-205276.mp3"
 #const SFX_TELEPORT :=			"res://Sounds/SFX/teleport_test/scifi-anime-whoosh-52-205271.mp3"
 #const SFX_TELEPORT :=			"res://Sounds/SFX/teleport-1.mp3"
+const SFX_WATER_FLOWING :=		"res://Sounds/SFX/WaterSplashing/water_flowing.wav"
 
 # BGM PATHS
 const BGM_PATH_TITLE_THEME := 	"res://Sounds/BGM/title-theme.mp3"

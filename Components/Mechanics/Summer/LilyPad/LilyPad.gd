@@ -17,6 +17,7 @@ func _ready() -> void:
 	add_to_group(Constants.GROUP_NAME_LILY_PAD)
 	Signals.set_lily_pad_on_water_tile.emit(self)
 	Signals.player_left_lily_pad.connect(handle_player_left_lilypad)
+	animated_sprite_splash.visible = false
 
 func get_info() -> Dictionary:
 	return {
@@ -69,7 +70,6 @@ func unsink():
 	animated_sprite_2d.visible = true
 	set_collision_layer_value(Constants.LAYER_BIT_LILY_PAD+1, true)
 	has_sunk = false
-	print("UNSINK!")
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	for sprite in object_sprites_on_lily_pad:

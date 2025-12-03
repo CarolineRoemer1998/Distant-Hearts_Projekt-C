@@ -45,7 +45,14 @@ func _ready() -> void:
 	if level_number == SceneSwitcher.current_level:
 		Signals.undo_timer_init_timeout.connect(_on_undo_timer_init_timeout)
 		Signals.undo_timer_continuous_timeout.connect(_on_undo_timer_continious_timeout)
+	
+	var level_has_water_tiles = get_tree().get_first_node_in_group(Constants.GROUP_NAME_WATER_TILE) != null
+	
+	if level_has_water_tiles:
+		var audio_player = get_tree().get_first_node_in_group("AudioWaterFlowPlayer") as AudioStreamPlayer2D
+		audio_player.play()
 		
+	
 	Signals.state_changed.connect(save_level_state)
 	Signals.SHOW_WIN_SCREEN.connect(show_win_screen)
 
