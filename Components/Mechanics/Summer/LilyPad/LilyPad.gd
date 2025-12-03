@@ -3,6 +3,8 @@ extends StaticBody2D
 class_name LilyPad
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var animated_sprite_splash: AnimatedSprite2D = $AnimatedSpriteSplash
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 var object_sprites_on_lily_pad : Array[Node2D] = []
 var has_sunk := false
@@ -47,13 +49,17 @@ func _on_animated_sprite_2d_frame_changed() -> void:
 				for sprite in object_sprites_on_lily_pad:
 					sprite.position[0] = -2.0
 
-func sink():
-	animated_sprite_2d.visible = false
+func sink(by_stone := false):
 	for col in range(24):
 		set_collision_layer_value(col, false)
 	has_sunk = true
+	if not by_stone:
+		animation_player.play("ShrinkWhileSinking")
+	else:
+		animated_sprite_2d.visible = false
 
 func unsink():
+	animated_sprite_2d.scale = Vector2(2.0, 2.0)
 	animated_sprite_2d.visible = true
 	set_collision_layer_value(Constants.LAYER_BIT_LILY_PAD+1, true)
 	has_sunk = false
@@ -63,10 +69,16 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 	for sprite in object_sprites_on_lily_pad:
 		sprite.position[0] = 0.0
 	object_sprites_on_lily_pad = []
-	
-	#if body is Player:
-		#sink()
 
 func handle_player_left_lilypad(pos: Vector2):
 	if global_position == pos:
 		sink()
+
+func play_splash_animation():
+	animated_sprite_2d.visible = false
+	animated_sprite_splash.visible = true
+	animated_sprite_splash.play("splash")
+
+func _on_animated_sprite_splash_animation_finished() -> void:
+	animated_sprite_splash.visible = false
+	animated_sprite_splash.stop()

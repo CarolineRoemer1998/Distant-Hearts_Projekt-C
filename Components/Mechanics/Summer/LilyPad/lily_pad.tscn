@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://bwy1o5riueuq0"]
+[gd_scene load_steps=27 format=3 uid="uid://bwy1o5riueuq0"]
 
 [ext_resource type="Script" uid="uid://cklj55tpco6fp" path="res://Components/Mechanics/Summer/LilyPad/LilyPad.gd" id="1_l61re"]
 [ext_resource type="Texture2D" uid="uid://deku0wq1yb8qg" path="res://Assets/Summer Mechanics/Lilly Pads/lilypad.png" id="1_tnfxb"]
+[ext_resource type="Texture2D" uid="uid://da3cpnc58funx" path="res://Assets/Summer Mechanics/Water/splash-animation.png" id="3_h2cnq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l61re"]
 atlas = ExtResource("1_tnfxb")
@@ -58,6 +59,160 @@ size = Vector2(64, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l61re"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_1t70l"]
+atlas = ExtResource("3_h2cnq")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nci8w"]
+atlas = ExtResource("3_h2cnq")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x62nv"]
+atlas = ExtResource("3_h2cnq")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_amvw2"]
+atlas = ExtResource("3_h2cnq")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2rdev"]
+atlas = ExtResource("3_h2cnq")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cqnqi"]
+atlas = ExtResource("3_h2cnq")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1gumy"]
+atlas = ExtResource("3_h2cnq")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xjd0s"]
+atlas = ExtResource("3_h2cnq")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4nbs7"]
+atlas = ExtResource("3_h2cnq")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ywyh"]
+atlas = ExtResource("3_h2cnq")
+region = Rect2(128, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hyog4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1t70l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nci8w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x62nv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_amvw2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2rdev")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cqnqi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1gumy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xjd0s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4nbs7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ywyh")
+}],
+"loop": false,
+"name": &"splash",
+"speed": 18.0
+}]
+
+[sub_resource type="Animation" id="Animation_h2cnq"]
+resource_name = "ShrinkWhileSinking"
+length = 0.25
+step = 0.025
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(1e-05, 1e-05)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.15),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_splash_animation"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 16)]
+}
+
+[sub_resource type="Animation" id="Animation_hyog4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, 2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a1ifx"]
+_data = {
+&"RESET": SubResource("Animation_hyog4"),
+&"ShrinkWhileSinking": SubResource("Animation_h2cnq")
+}
+
 [node name="LilyPad" type="StaticBody2D"]
 collision_layer = 32768
 script = ExtResource("1_l61re")
@@ -77,5 +232,18 @@ shape = SubResource("RectangleShape2D_tnfxb")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_l61re")
 
+[node name="AnimatedSpriteSplash" type="AnimatedSprite2D" parent="."]
+visible = false
+modulate = Color(0.8194279, 1.5695105, 1.6377, 1)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_hyog4")
+animation = &"splash"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_a1ifx")
+}
+
 [connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="animation_finished" from="AnimatedSpriteSplash" to="." method="_on_animated_sprite_splash_animation_finished"]

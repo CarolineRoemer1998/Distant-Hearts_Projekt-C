@@ -3,7 +3,6 @@ extends Node2D
 class_name WaterTile
 
 var object_under_water_tile : Node2D = null
-
 var layer_bit_mask_objects_under_water = (1 << Constants.LAYER_BIT_STONES) | (1 << Constants.LAYER_BIT_LILY_PAD)
 
 func _ready() -> void:
@@ -44,7 +43,7 @@ func set_object_as_under_water_tile(object: Node2D):
 					var target_is_water = Helper.check_if_collides(object.target_position, (1 << Constants.LAYER_BIT_WATER), get_world_2d())
 					if target_is_water and object.target_position == global_position:
 						# LilyPad geht unter
-						object_under_water_tile.sink()
+						object_under_water_tile.sink(true)
 						# Stein wird zu Plattform
 						object_under_water_tile = object
 						object.is_in_water = true
