@@ -4,6 +4,7 @@ class_name Stone
 
 @onready var sprite_stone: Sprite2D = $SpriteStone
 @onready var animated_sprite_platform: AnimatedSprite2D = $AnimatedSpritePlatform
+@onready var splash_animated_sprites: AnimatedSprite2D = $SplashAnimatedSprites
 
 const MODULATE_INIT := Color(1.0, 1.0, 1.0)
 const MODULATE_UNDER_WATER := Color(0.775, 1.288, 1.416)
@@ -46,8 +47,9 @@ func set_info(info : Dictionary):
 	pending_direction = Vector2.ZERO
 	
 	if is_in_water != info.get("is_in_water"):
-		sprite_stone.position = info.get("position")
-		animated_sprite_platform.position = info.get("position")
+		sprite_stone.position[1] = info.get("position")[1]
+		animated_sprite_platform.position[1] = info.get("position")[1]
+		splash_animated_sprites.visible = false
 	
 	is_in_water = info.get("is_in_water")
 	if not is_in_water and sprite_stone.modulate == MODULATE_UNDER_WATER:
@@ -78,11 +80,16 @@ func turn_from_platform_back_into_stone():
 
 func _process(delta):
 	super._process(delta)
+	if name == "Stone2":
+		print(sprite_stone.position[0])
 	if is_in_water:
 		if roundf(sprite_stone.position[1]*100)/100 < 18:
 			sprite_stone.position[1] = lerp(sprite_stone.position[1], 18.0, delta*25)
 			animated_sprite_platform.position[1] = lerp(animated_sprite_platform.position[1], 18.0, delta*25)
-		else:
+			if roundf(sprite_stone.position[1]*100)/100 > 9 and not splash_animated_sprites.visible:
+				splash_animated_sprites.visible = true
+				splash_animated_sprites.play("Splash")
+		elif animated_sprite_platform.position[1] != 18:
 			sprite_stone.position[1] = 18
 			animated_sprite_platform.position[1] = 18
 	elif not is_in_water:

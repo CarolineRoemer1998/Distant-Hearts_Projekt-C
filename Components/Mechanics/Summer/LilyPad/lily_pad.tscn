@@ -234,7 +234,6 @@ shape = SubResource("RectangleShape2D_l61re")
 
 [node name="AnimatedSpriteSplash" type="AnimatedSprite2D" parent="."]
 visible = false
-modulate = Color(0.8194279, 1.5695105, 1.6377, 1)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_hyog4")
 animation = &"splash"

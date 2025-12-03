@@ -26,6 +26,7 @@ func set_info(info: Dictionary):
 	object_sprites_on_lily_pad = info.get("object_sprites_on_lily_pad")
 	if has_sunk and not info.get("has_sunk"):
 		unsink()
+	
 
 func _on_animated_sprite_2d_frame_changed() -> void:
 	if object_sprites_on_lily_pad.size() > 0:
@@ -50,7 +51,7 @@ func _on_animated_sprite_2d_frame_changed() -> void:
 					sprite.position[0] = -2.0
 
 func sink(by_stone := false):
-	for col in range(24):
+	for col in range(1,24):
 		set_collision_layer_value(col, false)
 	has_sunk = true
 	if not by_stone:
@@ -59,6 +60,7 @@ func sink(by_stone := false):
 		animated_sprite_2d.visible = false
 
 func unsink():
+	animated_sprite_2d.position = Vector2(0.0, 0.0)
 	animated_sprite_2d.scale = Vector2(2.0, 2.0)
 	animated_sprite_2d.visible = true
 	set_collision_layer_value(Constants.LAYER_BIT_LILY_PAD+1, true)
