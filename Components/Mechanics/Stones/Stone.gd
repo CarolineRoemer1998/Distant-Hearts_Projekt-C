@@ -69,6 +69,10 @@ func turn_into_platform_in_water():
 	if is_in_water:
 		sprite_stone.modulate = MODULATE_UNDER_WATER
 		animated_sprite_platform.visible = true
+		var rnd : Array = [0,1,2,3,4,5,6,7,8,9,10,11,12]
+		rnd.shuffle()
+		animated_sprite_platform.frame = rnd[0]
+		animated_sprite_platform.play("default")
 		z_index -= 2
 		disable_collision_layer()
 		set_collision_layer_value(Constants.LAYER_BIT_WATER_PLATFORM+1, true)

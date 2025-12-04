@@ -468,7 +468,7 @@ func begin_move_step():
 		Signals.state_changed.emit(get_info())
 		
 		var collider_lily_pads = Helper.get_collision_on_tile(last_position, (1 << Constants.LAYER_BIT_LILY_PAD), get_world_2d())
-		if not collider_lily_pads.is_empty():
+		if not collider_lily_pads.is_empty() and currently_possessed_creature != null:
 			Signals.player_left_lily_pad.emit(last_position)
 
 ## Plays randomised movement step sound.

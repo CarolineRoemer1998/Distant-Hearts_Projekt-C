@@ -65,6 +65,7 @@ func sink(by_stone := false):
 		animated_sprite_2d.visible = false
 
 func unsink():
+	animated_sprite_2d.modulate = Color(1.0, 1.0, 1.0, 1.0)
 	animated_sprite_2d.position = Vector2(0.0, 0.0)
 	animated_sprite_2d.scale = Vector2(2.0, 2.0)
 	animated_sprite_2d.visible = true
@@ -81,7 +82,6 @@ func handle_player_left_lilypad(pos: Vector2):
 		sink()
 
 func play_splash_animation():
-	animated_sprite_2d.visible = false
 	animated_sprite_splash.visible = true
 	animated_sprite_splash.play("splash")
 
