@@ -72,7 +72,23 @@ func grow():
 	animation_player.play("Flower_Grow")
 	#twinkle.emitting = true
 	pollen.visible = true
-	Signals.flower_grows.emit(self)
+	var nearest_bee_swarm : BeeSwarm = get_nearest_bee_swarm()
+	Signals.flower_grows.emit(self, nearest_bee_swarm)
+
+func get_nearest_bee_swarm() -> BeeSwarm:
+	var bee_swarms = get_tree().get_nodes_in_group(Constants.GROUP_NAME_BEES) as Array[BeeSwarm]
+	
+	var nearest_bee : BeeSwarm = bee_swarms[0]
+	var nearest_distance = Helper.get_distance_between_two_vectors(global_position, nearest_bee.global_position)
+	
+	for bee_swarm in bee_swarms:
+		var next_distance = Helper.get_distance_between_two_vectors(global_position, bee_swarm.global_position)
+		if next_distance < nearest_distance:
+			nearest_bee = bee_swarm
+			nearest_distance = next_distance
+	
+	return nearest_bee
+
 
 func emit_twinkle():
 	twinkle.emitting = true

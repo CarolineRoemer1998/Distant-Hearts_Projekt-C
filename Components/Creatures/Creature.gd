@@ -53,9 +53,8 @@ var hard_escape_lock := false
 
 func _ready():
 	Signals.level_done.connect(deactivate)
-	Signals.teleporter_activated.connect(start_teleport)
-	Signals.bees_near_creature.connect(tremble)
-	Signals.bees_not_near_creature.connect(stop_tremble)
+	#Signals.teleporter_activated.connect(start_teleport)
+	#Signals.bees_not_near_creature.connect(stop_tremble)
 
 	animated_sprite_creature.modulate = Constants.CREATURE_MODULATE_UNPOSSESSED
 	animated_sprite_creature.frame = 0
@@ -235,64 +234,64 @@ func _on_area_2d_self_body_entered(body: Node2D) -> void:
 		merge(body)
 
 
-# -----------------------------------------------------------
-# Bee Detection / Avoidance
-# -----------------------------------------------------------
-
-func get_bee_position_if_nearby(check_pos: Vector2):
-	var positions = [
-		Constants.UP_LEFT, Constants.UP, Constants.UP_RIGHT,
-		Constants.LEFT,    Constants.MIDDLE, Constants.RIGHT,
-		Constants.DOWN_LEFT, Constants.DOWN, Constants.DOWN_RIGHT
-	]
-
-	for p in positions:
-		if Helper.check_if_collides(check_pos + p * Constants.GRID_SIZE, Constants.LAYER_MASK_BEES, get_world_2d()):
-			return p
-
-	return null
-
-func avoid_bees(bee_direction: Vector2, try_direction) -> Vector2:
-	var order: Array[Vector2]
-
-	match bee_direction:
-		Constants.UP:
-			order = [try_direction, Constants.DOWN, Constants.LEFT, Constants.RIGHT]
-		Constants.UP_RIGHT:
-			order = [try_direction, Constants.DOWN, Constants.LEFT]
-		Constants.RIGHT:
-			order = [try_direction, Constants.LEFT, Constants.DOWN, Constants.UP]
-		Constants.DOWN_RIGHT:
-			order = [try_direction, Constants.LEFT, Constants.UP]
-		Constants.DOWN:
-			order = [try_direction, Constants.LEFT, Constants.DOWN, Constants.UP]
-		Constants.DOWN_LEFT:
-			order = [try_direction, Constants.UP, Constants.RIGHT]
-		Constants.LEFT:
-			order = [try_direction, Constants.RIGHT, Constants.DOWN, Constants.UP]
-		Constants.UP_LEFT:
-			order = [try_direction, Constants.RIGHT, Constants.DOWN]
-		Constants.MIDDLE:
-			order = [Constants.RIGHT, Constants.DOWN, Constants.LEFT, Constants.UP]
-		_:
-			order = []
-
-	return try_directions(order)
-
-
-func try_directions(directions : Array[Vector2]) -> Vector2:
-	if hard_escape_lock and last_escape_direction != Vector2.ZERO:
-		if Helper.can_move_in_direction(position, last_escape_direction, get_world_2d(), true, self, true):
-			return last_escape_direction
-		hard_escape_lock = false
-		last_escape_direction = Vector2.ZERO
-
-	for d in directions:
-		if d != Vector2.ZERO and Helper.can_move_in_direction(position, d, get_world_2d(), true, self, true):
-			last_escape_direction = d
-			hard_escape_lock = true
-			return d
-
-	last_escape_direction = Vector2.ZERO
-	hard_escape_lock = false
-	return Vector2.ZERO
+## -----------------------------------------------------------
+## Bee Detection / Avoidance
+## -----------------------------------------------------------
+#
+#func get_bee_position_if_nearby(check_pos: Vector2):
+	#var positions = [
+		#Constants.UP_LEFT, Constants.UP, Constants.UP_RIGHT,
+		#Constants.LEFT,    Constants.MIDDLE, Constants.RIGHT,
+		#Constants.DOWN_LEFT, Constants.DOWN, Constants.DOWN_RIGHT
+	#]
+#
+	#for p in positions:
+		#if Helper.check_if_collides(check_pos + p * Constants.GRID_SIZE, Constants.LAYER_MASK_BEES, get_world_2d()):
+			#return p
+#
+	#return null
+#
+#func avoid_bees(bee_direction: Vector2, try_direction) -> Vector2:
+	#var order: Array[Vector2]
+#
+	#match bee_direction:
+		#Constants.UP:
+			#order = [try_direction, Constants.DOWN, Constants.LEFT, Constants.RIGHT]
+		#Constants.UP_RIGHT:
+			#order = [try_direction, Constants.DOWN, Constants.LEFT]
+		#Constants.RIGHT:
+			#order = [try_direction, Constants.LEFT, Constants.DOWN, Constants.UP]
+		#Constants.DOWN_RIGHT:
+			#order = [try_direction, Constants.LEFT, Constants.UP]
+		#Constants.DOWN:
+			#order = [try_direction, Constants.LEFT, Constants.DOWN, Constants.UP]
+		#Constants.DOWN_LEFT:
+			#order = [try_direction, Constants.UP, Constants.RIGHT]
+		#Constants.LEFT:
+			#order = [try_direction, Constants.RIGHT, Constants.DOWN, Constants.UP]
+		#Constants.UP_LEFT:
+			#order = [try_direction, Constants.RIGHT, Constants.DOWN]
+		#Constants.MIDDLE:
+			#order = [Constants.RIGHT, Constants.DOWN, Constants.LEFT, Constants.UP]
+		#_:
+			#order = []
+#
+	#return try_directions(order)
+#
+#
+#func try_directions(directions : Array[Vector2]) -> Vector2:
+	#if hard_escape_lock and last_escape_direction != Vector2.ZERO:
+		#if Helper.can_move_in_direction(position, last_escape_direction, get_world_2d(), true, self, true):
+			#return last_escape_direction
+		#hard_escape_lock = false
+		#last_escape_direction = Vector2.ZERO
+#
+	#for d in directions:
+		#if d != Vector2.ZERO and Helper.can_move_in_direction(position, d, get_world_2d(), true, self, true):
+			#last_escape_direction = d
+			#hard_escape_lock = true
+			#return d
+#
+	#last_escape_direction = Vector2.ZERO
+	#hard_escape_lock = false
+	#return Vector2.ZERO

@@ -33,6 +33,9 @@ var buzz_volume_aggro := 5.0
 var buzz_pitch_init := 1.0
 var buzz_pitch_aggro := 1.25
 
+var is_nearest_bee_swarm := false
+var volume_set := false
+
 func _ready() -> void:
 	Signals.flower_grows.connect(fly_to_flower)
 	Signals.bees_near_creature.connect(turn_red)
@@ -44,6 +47,9 @@ func _ready() -> void:
 	position_before_flower = init_position
 
 func _process(delta: float) -> void:
+	if not volume_set:
+		set_buzzing_volume()
+
 	check_creature_is_close()
 	if is_aggro:
 		modulate = lerp(modulate, MODULATE_AGGRO, delta*4.0)
@@ -52,9 +58,9 @@ func _process(delta: float) -> void:
 		for anim_player in animation_players:
 			anim_player.speed_scale = lerp(anim_player.speed_scale, anim_speed_aggro, delta*10.0)
 	else: 
-		modulate = lerp(modulate, MODULATE_NORMAL, delta*2.0)
-		audio_buzzing.pitch_scale = lerp(audio_buzzing.pitch_scale, buzz_pitch_init, delta*2.0)
-		audio_buzzing.volume_db = lerp(audio_buzzing.volume_db, buzz_volume_init, delta*2.0)
+		modulate = lerp(modulate, MODULATE_NORMAL, delta*1.0)
+		audio_buzzing.pitch_scale = lerp(audio_buzzing.pitch_scale, buzz_pitch_init, delta*1.0)
+		audio_buzzing.volume_db = lerp(audio_buzzing.volume_db, buzz_volume_init, delta*1.0)
 		for anim_player in animation_players:
 			anim_player.speed_scale = lerp(anim_player.speed_scale, anim_speed_normal, delta*8.0)
 	
@@ -97,13 +103,21 @@ func set_info(info : Dictionary):
 	is_flying_to_new_position = info.get("is_flying_to_new_position")
 	is_aggro = info.get("is_aggro")
 
-func fly_to_flower(flower: FlowerSeed):
-	target_flower = flower
-	target_position = flower.target_position
-	_change_direction_of_bee_sprites()
-	position_before_flower = global_position
-	is_flying_to_new_position = true
-	Signals.bees_start_flying.emit()
+func set_buzzing_volume():
+	var amount_bees_in_level = get_tree().get_nodes_in_group(Constants.GROUP_NAME_BEES).size()-1
+	audio_buzzing.volume_db = 5-amount_bees_in_level*5
+	buzz_volume_init = audio_buzzing.volume_db
+	buzz_volume_aggro = buzz_volume_init + buzz_volume_aggro*amount_bees_in_level
+	volume_set = true
+
+func fly_to_flower(flower: FlowerSeed, nearest_bee_swarm: BeeSwarm):
+	if nearest_bee_swarm == self:
+		target_flower = flower
+		target_position = flower.target_position
+		_change_direction_of_bee_sprites()
+		position_before_flower = global_position
+		is_flying_to_new_position = true
+		Signals.bees_start_flying.emit()
 
 func _change_direction_of_bee_sprites():
 	# Look Left

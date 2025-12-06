@@ -117,3 +117,8 @@ func sort_out_water_with_stones(_platforms: Array[Dictionary], _stones: Array[Di
 			if p.collider.name == s.collider.name:
 				result.erase(s)
 	return result
+
+func get_distance_between_two_vectors(v1 : Vector2, v2 : Vector2) -> float:
+	var result = abs(v1-v2)
+	result = sqrt(pow(result[0],2)+pow(result[1], 2))
+	return result

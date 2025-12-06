@@ -348,7 +348,7 @@ func update_ice_slide_target():
 	is_moving_on_ice = true
 
 ## Resets stone push state after stone finishes moving.
-func reset_stone_push_state(_stone: Stone = null):
+func reset_stone_push_state(_stone: PushableObject = null):
 	is_pushing_stone_on_ice = false
 
 ## Disables player input.
@@ -376,6 +376,7 @@ func handle_bees_start_flying():
 func handle_bees_stop_flying():
 	bees_are_flying = false
 	planted_flower_last_step = true
+	can_move = true
 	
 	if currently_possessed_creature:
 		var result_bee_area = Helper.get_collision_on_area(
