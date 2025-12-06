@@ -11,8 +11,6 @@ class_name LilyPad
 var object_sprites_on_lily_pad : Array[Node2D] = []
 var has_sunk := false
 
-## TODO: Ändern wenn es untergeht
-
 func _ready() -> void:
 	add_to_group(Constants.GROUP_NAME_LILY_PAD)
 	Signals.set_lily_pad_on_water_tile.emit(self)

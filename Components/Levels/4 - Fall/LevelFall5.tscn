@@ -10,7 +10,7 @@
 
 [node name="LevelFall5" type="Node2D"]
 script = ExtResource("1_0qx37")
-season = 1
+season = 3
 undo_particles = ExtResource("2_ib1yo")
 level_number = 20
 

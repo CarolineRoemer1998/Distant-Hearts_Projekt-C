@@ -9,6 +9,8 @@ enum BUTTON_TYPE {TOGGLE, STICKY, PRESSURE}
 
 @export var type : BUTTON_TYPE = BUTTON_TYPE.STICKY
 @export var start_active: bool = false
+@export var alternate_sprite_off : Texture = null
+@export var alternate_sprite_on : Texture = null
 
 @onready var button_green: Sprite2D = $Button_GREEN
 @onready var button_red: Sprite2D = $Button_RED
@@ -112,6 +114,11 @@ func press_pressure_button():
 		audio_push_button.play()
 
 func _set_button_sprites():
+	if alternate_sprite_off != null and alternate_sprite_on != null:
+		button_green.texture = alternate_sprite_on
+		button_red.texture = alternate_sprite_off
+		return
+	
 	match type:
 		BUTTON_TYPE.TOGGLE:
 			button_green.texture = sprite_toggle_on

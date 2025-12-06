@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://2g6gyq3v3fk3"]
+[gd_scene load_steps=12 format=4 uid="uid://2g6gyq3v3fk3"]
 
 [ext_resource type="Script" uid="uid://ddiwo6yyhfkuc" path="res://Components/Levels/level.gd" id="1_u52qd"]
 [ext_resource type="PackedScene" uid="uid://lrodaawkgfob" path="res://Components/UI/VFX/undo_particles.tscn" id="2_eekib"]
@@ -11,36 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://be6k5yjppap8y" path="res://Components/Creatures/creature_yellow.tscn" id="9_k42lt"]
 [ext_resource type="PackedScene" uid="uid://g3u7bc1jo6gj" path="res://Components/Player/player.tscn" id="10_kcrjp"]
 [ext_resource type="PackedScene" uid="uid://dtrjxhb3ayo1c" path="res://Components/Levels/LevelUI.tscn" id="11_4n8x5"]
-[ext_resource type="Texture2D" uid="uid://dcyyct6v1x76l" path="res://Assets/Environments/cherry-blossom-flower-animated.png" id="12_eekib"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gearq"]
-atlas = ExtResource("12_eekib")
-region = Rect2(0, 0, 22, 22)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0jmy0"]
-atlas = ExtResource("12_eekib")
-region = Rect2(22, 0, 22, 22)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_l51bn"]
-atlas = ExtResource("12_eekib")
-region = Rect2(44, 0, 22, 22)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_urw8e"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gearq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0jmy0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_l51bn")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
 
 [node name="LevelSpring2" type="Node2D"]
 script = ExtResource("1_u52qd")
@@ -97,12 +67,6 @@ position = Vector2(288, 544)
 collision_mask = 303
 
 [node name="LevelUI" parent="." instance=ExtResource("11_4n8x5")]
-
-[node name="SmallFlower" type="AnimatedSprite2D" parent="."]
-position = Vector2(448, 448)
-sprite_frames = SubResource("SpriteFrames_urw8e")
-autoplay = "default"
-frame_progress = 0.054037616
 
 [editable path="BackgroundSpring"]
 [editable path="LevelUI"]
