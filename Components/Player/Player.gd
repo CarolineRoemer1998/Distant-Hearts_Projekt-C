@@ -37,6 +37,8 @@ var is_sliding := false
 var is_pushing_stone_on_ice := false
 var can_move := true
 
+var next_tile_states : Array[Helper.TILE_CONTENT] = [Helper.TILE_CONTENT.empty]
+
 var hovering_over: Creature = null
 var currently_possessed_creature: Creature = null
 var pushable_stone_in_direction : Stone = null
@@ -288,7 +290,16 @@ func update_movement(delta):
 		currently_possessed_creature.position = currently_possessed_creature.position.move_toward(
 			target_position, Constants.PLAYER_MOVE_SPEED * delta
 		)
-
+		
+	#if currently_possessed_creature:
+			#var result_bee_area = Helper.get_collision_on_area(
+				#currently_possessed_creature.global_position,
+				#1 << Constants.LAYER_BIT_BEE_AREA,
+				#get_world_2d()
+			#)
+			#if not result_bee_area.is_empty():
+				#handle_bees_near_creature(currently_possessed_creature)
+	
 	if position == target_position:
 		if currently_possessed_creature and currently_possessed_creature.just_teleported:
 			currently_possessed_creature.just_teleported = false
@@ -300,7 +311,7 @@ func update_movement(delta):
 				get_world_2d()
 			)
 			if not result_bee_area.is_empty():
-				handle_bees_near_creature(currently_possessed_creature)
+				#handle_bees_near_creature(currently_possessed_creature)
 				return
 			
 		Signals.player_move_finished.emit()

@@ -1,17 +1,24 @@
 extends Node
 
 var fields : = {} # { Object : Vector2 }
+var reserved_fields := []
 
 func _ready() -> void:
 	Signals.level_switched.connect(clear_all)
 
 func reserve(object, tiles: Array[Vector2]) -> void:
-	object.disable_collision_layer()
+	for i in range(1,30):
+		if object.get_collision_layer_value(i) == true:
+			reserved_fields.append(i)
+			object.set_collision_layer_value(i, false)
+	#object.disable_collision_layer()
 	fields[object] = tiles.duplicate()
 	
 
 func release(object) -> void:
-	object.enable_collision_layer()
+	#object.enable_collision_layer()
+	for i in reserved_fields:
+		object.set_collision_layer_value(i, true)
 	fields.erase(object)
 
 func clear_all() -> void:

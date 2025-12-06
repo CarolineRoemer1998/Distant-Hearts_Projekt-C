@@ -1,57 +1,133 @@
 extends Node
 
+enum TILE_CONTENT {
+	empty, 
+	wall,
+	creature, 
+	pushable,
+	stone, 
+	button, 
+	door,
+	teleporter,
+	soil, 
+	seed, 
+	flower,
+	bees,
+	water,
+	lilypad,
+	stone_platform,
+	ice
+}
+
 ## Checks if instance (and the possessed creature) is allowed to move
 ## in the given direction. Considers walls, doors and stones.
 ## On success, sets pushable_stone_in_direction if a stone can be pushed.
+
+## TODO: ÄNDERN ZU: get_tile_states() und dann basierend darauf handeln
 func can_move_in_direction(_position: Vector2, _direction, world : World2D, is_physical_body : bool, body : CharacterBody2D, is_avoiding := false) -> bool:
 	if _direction == null:
 		return false
 	
 	var new_pos = _position + _direction * Constants.GRID_SIZE
 	
-	# Queries für alle relevanten Bit Layers
+	
+	#var result_creatures = get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_CREATURE), world)
+	#var result_flowers = get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_FLOWER), world)
 	var result_pushables = get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_PUSHABLE), world)
-	var result_flowers = get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_FLOWER), world)
 	var result_bees = get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_BEES), world)
 	var result_doors = get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_DOOR), world)
-	var result_buttons = get_collision_on_area(new_pos, (1 << Constants.LAYER_BIT_BUTTONS), world)
+	#var result_buttons = get_collision_on_area(new_pos, (1 << Constants.LAYER_BIT_BUTTONS), world)
 	var result_wall_outside = get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_LEVEL_WALL), world)
 	var result_wall_inside = get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_WALL_AND_PLAYER), world)
 	var result_water = get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_WATER), world)
 	var result_water_platform = get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_WATER_PLATFORM), world)
 	var result_lily_pads = get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_LILY_PAD), world)
 	
-	# TODO: Muss noch richtig implementiert werden
-	if not result_lily_pads.is_empty() and result_pushables.is_empty():
-		if body is Player:
-			result_lily_pads[0].collider.object_sprites_on_lily_pad = body.get_sprites()
-		return true
+	var tile_states = {}
 	
-	if not result_pushables.is_empty() and not result_water_platform.is_empty():
-		result_pushables = sort_out_water_with_stones(result_water_platform, result_pushables)
-	
-	if is_avoiding and not result_buttons.is_empty():
-		return false
-	
-	if not result_wall_outside.is_empty() \
-	or (is_physical_body != false and (not result_water.is_empty() and not result_wall_inside.is_empty() and not result_pushables.is_empty() and not result_flowers.is_empty() and not result_doors.is_empty() and result_bees.is_empty())):
-		return false
+	if not result_wall_outside.is_empty():
+		tile_states[TILE_CONTENT.wall] = result_wall_outside
 		
-	if (result_pushables.is_empty() and result_flowers.is_empty() and result_water.is_empty() and result_doors.is_empty() and result_wall_outside.is_empty() and result_wall_inside.is_empty() and result_bees.is_empty()) \
-	or (is_physical_body == false and result_wall_outside.is_empty()):
+	if is_physical_body:
+		#if not result_creatures.is_empty(): 
+			#tile_states[TILE_CONTENT.creature] = get_tile_states(result_creatures)
+		#if not result_flowers.is_empty(): 
+			#tile_states[TILE_CONTENT.flower] = get_tile_states(result_flowers)
+		#if not result_buttons.is_empty(): 
+			#tile_states[TILE_CONTENT.button] = get_tile_states(result_buttons)
+			
+		if not result_bees.is_empty(): 
+			tile_states[TILE_CONTENT.bees] = get_tile_states(result_bees)
+		if not result_doors.is_empty(): 
+			tile_states[TILE_CONTENT.door] = get_tile_states(result_doors)
+		if not result_wall_inside.is_empty(): 
+			tile_states[TILE_CONTENT.wall] = get_tile_states(result_wall_inside)
+		if not result_water.is_empty(): 
+			tile_states[TILE_CONTENT.water] = get_tile_states(result_water)
+		if not result_lily_pads.is_empty(): 
+			tile_states[TILE_CONTENT.lilypad] = get_tile_states(result_lily_pads)
+		if not result_water_platform.is_empty(): 
+			tile_states[TILE_CONTENT.stone_platform] = get_tile_states(result_water_platform)
+		if not result_pushables.is_empty(): 
+			tile_states[TILE_CONTENT.pushable] = get_tile_states(result_pushables)
+	
+	#for key in tile_states.keys():
+		#print(TILE_CONTENT.keys()[key])
+	#if not TILE_CONTENT.keys().is_empty():
+		#print()
+	
+	# State: NICHTS
+	if tile_states.is_empty():
+		tile_states[TILE_CONTENT.empty] = null
 		return true
 	
-	if not result_water_platform.is_empty() and result_water[0].collider.object_under_water_tile != null and result_pushables.is_empty():
-		return true
+	# State: WAND
+	if tile_states.has(TILE_CONTENT.wall):
+		return false
 	
-	if not result_doors.is_empty() and result_doors[0].collider is Door and not result_doors[0].collider.door_is_closed and result_pushables.is_empty() and result_flowers.is_empty():
-		return true
+	# State: PUSHABLE
+	if tile_states.has(TILE_CONTENT.pushable):
+		if tile_states[TILE_CONTENT.pushable][0].get_can_be_pushed(new_pos, _direction):
+			tile_states[TILE_CONTENT.pushable][0].push() # TODO: Später push() erst nachdem diese funktion aufgerufen wurde
+			return true
+		else:
+			return false
 	
-	if not is_avoiding and not result_pushables.is_empty() and result_flowers.is_empty() and result_pushables[0].collider.get_can_be_pushed(new_pos, _direction):
-		result_pushables[0].collider.push()
-		return true
+	# State: WASSER
+	if tile_states.has(TILE_CONTENT.water):
+		# State: LILY PAD
+		if tile_states.has(TILE_CONTENT.lilypad) or tile_states.has(TILE_CONTENT.stone_platform):
+			return true
+		# State: KEIN LILY PAD
+		else:
+			return false
+	
+	# State: TÜR
+	if tile_states.has(TILE_CONTENT.door):
+		# State: TÜR GESCHLOSSEN
+		if tile_states[TILE_CONTENT.door][0].door_is_closed:
+			return false
+		# State: TÜR OFFEN
+		else:
+			return true
+	
+	if tile_states.has(TILE_CONTENT.bees):
+		# TODO: Act accordingly
+		return false
 	
 	return false
+
+func get_tile_states(arr: Array):
+	var result = []
+	for i in arr:
+		result.append(i.collider)
+	return result
+
+
+func check_for_bee_area(target_pos, world):
+	var result_bee_area = Helper.get_collision_on_area(target_pos, 1 << Constants.LAYER_BIT_BEE_AREA,world)
+	print(result_bee_area)
+	return result_bee_area.is_empty()
 
 func get_slide_end(block_mask, _direction : Vector2, starting_position: Vector2, _is_pushing_stone_one_ice: bool, world: World2D) -> Vector2:
 	var slide_end = starting_position

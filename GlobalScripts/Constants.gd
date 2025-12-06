@@ -2,6 +2,8 @@ extends Node
 
 enum SEASON {Intro, Spring, Summer, Fall, Winter}
 
+
+
 # GENERAL
 const GRID_SIZE := Vector2(64, 64)
 const MOVE_SPEED := 500.0

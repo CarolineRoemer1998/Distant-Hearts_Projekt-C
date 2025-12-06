@@ -85,6 +85,8 @@ func turn_from_platform_back_into_stone():
 	set_collision_layer_value(Constants.LAYER_BIT_WATER_PLATFORM+1, false)
 
 func _process(delta):
+	#if name == "Stone3":
+		#print(get_collision_layer_value(Constants.LAYER_BIT_STONES+1))
 	super._process(delta)
 	if is_in_water:
 		if roundf(sprite_stone.position[1]*100)/100 < 18:
