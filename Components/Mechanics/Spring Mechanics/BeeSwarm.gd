@@ -38,7 +38,6 @@ var volume_set := false
 
 func _ready() -> void:
 	Signals.flower_grows.connect(fly_to_flower)
-	Signals.bees_near_creature.connect(turn_red)
 	Signals.bees_not_near_creature.connect(turn_normal)
 	
 	add_to_group(Constants.GROUP_NAME_BEES)
@@ -148,7 +147,7 @@ func check_creature_is_close() -> void:
 		if creature is Creature:
 			if not is_aggro and creature.is_possessed:
 				creature.tremble()
-				Signals.bees_near_creature.emit(creature)
+				#Signals.bees_near_creature.emit(creature)
 			turn_red()
 			return
 	turn_normal()
