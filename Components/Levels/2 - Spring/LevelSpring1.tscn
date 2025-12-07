@@ -240,10 +240,11 @@ position = Vector2(480, 224)
 [node name="Creatures" type="Node" parent="."]
 
 [node name="CreatureBlue" parent="Creatures" instance=ExtResource("4_g5aro")]
-position = Vector2(160, 224)
+position = Vector2(160, 544)
+init_direction = Vector2(0, -1)
 
 [node name="CreatureYellow" parent="Creatures" instance=ExtResource("5_yi6q1")]
-position = Vector2(544, 480)
+position = Vector2(544, 160)
 
 [node name="Player" type="Node" parent="."]
 

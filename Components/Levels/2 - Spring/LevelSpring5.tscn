@@ -23,10 +23,31 @@ level_number = 10
 [node name="BackgroundSpring" parent="." instance=ExtResource("3_rte2p")]
 
 [node name="walls" parent="BackgroundSpring" index="1"]
-tile_map_data = PackedByteArray("AAAAAAAABAAAAAAAAAAKAAAABAAEAAAAAAAKAAoABAAEAAQAAAAAAAoABAAAAAQAAAAAAAEABAAAAAEAAAAAAAMABAAAAAEAAAAAAAUABAAAAAIAAAAAAAcABAAAAAEAAAAAAAkABAAAAAEAAAAKAAEABAAEAAEAAAAKAAMABAAEAAEAAAAKAAUABAAEAAIAAAAKAAcABAAEAAEAAAAKAAkABAAEAAEAAAAKAAIABAAEAAMAAAAKAAQABAAEAAMAAAAKAAYABAAEAAMAAAAKAAgABAAEAAMAAAAAAAgABAAAAAMAAAAAAAYABAAAAAMAAAAAAAQABAAAAAEAABAAAAIABAAAAAMAAAABAAAABAADAAAAAAADAAAABAADAAAAAAAFAAAABAADAAAAAAAHAAAABAADAAAAAAAJAAAABAADAAAAAAACAAAABAABAAAAAAAEAAAABAABAAAAAAAGAAAABAADAAAAAAAIAAAABAABAAAAAAABAAoABAADAAQAAAADAAoABAADAAQAAAAFAAoABAADAAQAAAAHAAoABAADAAQAAAAJAAoABAADAAQAAAACAAoABAABAAQAAAAEAAoABAABAAQAAAAGAAoABAABAAQAAAAIAAoABAABAAQAAAABAAUABAABAAIAAAAEAAUABAADAAIAAAAGAAUABAADAAIAAAAJAAUABAADAAIAAAAFAAUABAABAAIAAAA=")
+tile_map_data = PackedByteArray("AAAAAAAABAAAAAAAAAAKAAAABAAEAAAAAAAKAAoABAAEAAQAAAAAAAoABAAAAAQAAAAAAAEABAAAAAEAAAAAAAMABAAAAAEAAAAAAAUABAAAAAIAAAAAAAcABAAAAAEAAAAAAAkABAAAAAEAAAAKAAEABAAEAAEAAAAKAAMABAAEAAEAAAAKAAUABAAEAAIAAAAKAAcABAAEAAEAAAAKAAkABAAEAAEAAAAKAAIABAAEAAMAAAAKAAQABAAEAAMAAAAKAAYABAAEAAMAAAAKAAgABAAEAAMAAAAAAAgABAAAAAMAAAAAAAYABAAAAAMAAAAAAAQABAAAAAEAABAAAAIABAAAAAMAAAABAAAABAADAAAAAAADAAAABAADAAAAAAAFAAAABAADAAAAAAAHAAAABAADAAAAAAAJAAAABAADAAAAAAACAAAABAABAAAAAAAEAAAABAABAAAAAAAGAAAABAADAAAAAAAIAAAABAABAAAAAAABAAoABAADAAQAAAADAAoABAADAAQAAAAFAAoABAADAAQAAAAHAAoABAADAAQAAAAJAAoABAADAAQAAAACAAoABAABAAQAAAAEAAoABAABAAQAAAAGAAoABAABAAQAAAAIAAoABAABAAQAAAABAAUABAABAAIAAAAEAAUABAADAAIAAAACAAUABAABAAIAAAADAAUABAADAAIAAAAFAAUABAADAAIAAAAIAAUABAADAAIAAAAJAAUABAABAAIAAAA=")
 
 [node name="LevelWall" parent="BackgroundSpring" index="2"]
 visible = true
+
+[node name="Buttons" type="Node" parent="."]
+
+[node name="Button_Teleporter1" parent="Buttons" instance=ExtResource("12_vo8cu")]
+position = Vector2(352, 416)
+
+[node name="Button_Teleporter2" parent="Buttons" instance=ExtResource("12_vo8cu")]
+position = Vector2(224, 288)
+
+[node name="TeleporterManager" parent="." instance=ExtResource("13_ymryu")]
+position = Vector2(288, 352)
+
+[node name="Flower1" parent="TeleporterManager" index="0" node_paths=PackedStringArray("other_teleporter")]
+position = Vector2(0, 64)
+buttons = Array[NodePath]([NodePath("../../Buttons/Button_Teleporter1")])
+other_teleporter = NodePath("../Flower2")
+
+[node name="Flower2" parent="TeleporterManager" index="1" node_paths=PackedStringArray("other_teleporter")]
+position = Vector2(0, -64)
+buttons = Array[NodePath]([NodePath("../../Buttons/Button_Teleporter2")])
+other_teleporter = NodePath("../Flower1")
 
 [node name="Stones" type="Node" parent="."]
 
@@ -38,67 +59,65 @@ position = Vector2(160, 96)
 
 [node name="Soil, Flowers & Bees" type="Node" parent="."]
 
-[node name="Soil" parent="Soil, Flowers & Bees" instance=ExtResource("4_m7mrw")]
-position = Vector2(160, 352)
-
 [node name="Soil2" parent="Soil, Flowers & Bees" instance=ExtResource("4_m7mrw")]
-position = Vector2(544, 352)
+position = Vector2(480, 352)
+
+[node name="Soil3" parent="Soil, Flowers & Bees" instance=ExtResource("4_m7mrw")]
+position = Vector2(608, 96)
+
+[node name="Soil4" parent="Soil, Flowers & Bees" instance=ExtResource("4_m7mrw")]
+position = Vector2(160, 288)
+
+[node name="Soil5" parent="Soil, Flowers & Bees" instance=ExtResource("4_m7mrw")]
+position = Vector2(224, 608)
+
+[node name="Soil6" parent="Soil, Flowers & Bees" instance=ExtResource("4_m7mrw")]
+position = Vector2(608, 224)
 
 [node name="FlowerSeed" parent="Soil, Flowers & Bees" instance=ExtResource("5_ym4tl")]
-position = Vector2(352, 224)
+position = Vector2(544, 224)
 
 [node name="FlowerSeed2" parent="Soil, Flowers & Bees" instance=ExtResource("5_ym4tl")]
-position = Vector2(352, 544)
+position = Vector2(160, 480)
 
-[node name="BeeSwarm" parent="Soil, Flowers & Bees" instance=ExtResource("6_vo8cu")]
-position = Vector2(224, 288)
+[node name="FlowerSeed3" parent="Soil, Flowers & Bees" instance=ExtResource("5_ym4tl")]
+position = Vector2(416, 224)
+
+[node name="FlowerSeed4" parent="Soil, Flowers & Bees" instance=ExtResource("5_ym4tl")]
+position = Vector2(544, 96)
+
+[node name="BeeSwarm1" parent="Soil, Flowers & Bees" instance=ExtResource("6_vo8cu")]
+position = Vector2(480, 416)
+
+[node name="BeeSwarm3" parent="Soil, Flowers & Bees" instance=ExtResource("6_vo8cu")]
+position = Vector2(96, 608)
+
+[node name="BeeSwarm4" parent="Soil, Flowers & Bees" instance=ExtResource("6_vo8cu")]
+position = Vector2(352, 96)
 
 [node name="BeeSwarm2" parent="Soil, Flowers & Bees" instance=ExtResource("6_vo8cu")]
-position = Vector2(480, 416)
+position = Vector2(416, 480)
 
 [node name="Creatures" type="Node" parent="."]
 
 [node name="CreatureBlue" parent="Creatures" instance=ExtResource("4_8o6yu")]
-position = Vector2(352, 160)
+position = Vector2(288, 544)
 init_direction = Vector2(0, -1)
 
 [node name="CreatureYellow" parent="Creatures" instance=ExtResource("5_m7mrw")]
-position = Vector2(352, 480)
+position = Vector2(480, 160)
 
 [node name="Player" type="Node" parent="."]
 
 [node name="Player" parent="Player" instance=ExtResource("6_ym4tl")]
-position = Vector2(288, 544)
+position = Vector2(288, 160)
 collision_mask = 303
 
 [node name="LevelUI" parent="." instance=ExtResource("7_vo8cu")]
 
-[node name="Buttons" type="Node" parent="."]
-
-[node name="Button_Teleporter1" parent="Buttons" instance=ExtResource("12_vo8cu")]
-position = Vector2(608, 352)
-type = 2
-
-[node name="Button_Teleporter2" parent="Buttons" instance=ExtResource("12_vo8cu")]
-position = Vector2(96, 352)
-type = 2
-
-[node name="TeleporterManager" parent="." instance=ExtResource("13_ymryu")]
-position = Vector2(352, 352)
-
-[node name="Flower1" parent="TeleporterManager" index="0" node_paths=PackedStringArray("other_teleporter")]
-position = Vector2(256, -128)
-buttons = Array[NodePath]([NodePath("../../Buttons/Button_Teleporter1")])
-other_teleporter = NodePath("../Flower2")
-
-[node name="Flower2" parent="TeleporterManager" index="1" node_paths=PackedStringArray("other_teleporter")]
-position = Vector2(-256, -128)
-buttons = Array[NodePath]([NodePath("../../Buttons/Button_Teleporter2")])
-other_teleporter = NodePath("../Flower1")
-
 [editable path="BackgroundSpring"]
-[editable path="LevelUI"]
-[editable path="LevelUI/UndoMechanic"]
 [editable path="TeleporterManager"]
 [editable path="TeleporterManager/Flower1"]
 [editable path="TeleporterManager/Flower2"]
+[editable path="LevelUI"]
+[editable path="LevelUI/UndoMechanic"]

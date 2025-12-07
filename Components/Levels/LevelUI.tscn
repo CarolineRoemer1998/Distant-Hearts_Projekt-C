@@ -14,6 +14,7 @@ z_index = 6
 [node name="WorldEnvironment" parent="." instance=ExtResource("1_73yj2")]
 
 [node name="ResetBar" parent="." instance=ExtResource("1_1663l")]
+visible = false
 offset_right = 0.0
 offset_bottom = 0.0
 metadata/_edit_use_anchors_ = true

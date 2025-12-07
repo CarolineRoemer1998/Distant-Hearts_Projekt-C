@@ -1137,7 +1137,6 @@ theme = SubResource("Theme_j7bxd")
 script = SubResource("GDScript_swl4m")
 
 [node name="Panel" type="Panel" parent="VBoxContainer/LevelsSpring/Spring2"]
-self_modulate = Color(0.62, 0.62, 0.62, 1)
 layout_mode = 0
 offset_left = 7.0
 offset_top = 6.0
@@ -1155,7 +1154,6 @@ theme = SubResource("Theme_jc3gb")
 script = SubResource("GDScript_clp6r")
 
 [node name="Panel" type="Panel" parent="VBoxContainer/LevelsSpring/Spring3"]
-self_modulate = Color(0.62, 0.62, 0.62, 1)
 layout_mode = 0
 offset_left = 7.0
 offset_top = 6.0
@@ -1173,7 +1171,6 @@ theme = SubResource("Theme_14obh")
 script = SubResource("GDScript_qa4hw")
 
 [node name="Panel" type="Panel" parent="VBoxContainer/LevelsSpring/Spring4"]
-self_modulate = Color(0.62, 0.62, 0.62, 1)
 layout_mode = 0
 offset_left = 7.0
 offset_top = 6.0
@@ -1191,7 +1188,6 @@ theme = SubResource("Theme_s106q")
 script = SubResource("GDScript_t7h6r")
 
 [node name="Panel" type="Panel" parent="VBoxContainer/LevelsSpring/Spring5"]
-self_modulate = Color(0.62, 0.62, 0.62, 1)
 layout_mode = 0
 offset_left = 7.0
 offset_top = 6.0
@@ -1201,7 +1197,7 @@ mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_inc37")
 
 [node name="LevelsSummer" type="HBoxContainer" parent="VBoxContainer"]
-modulate = Color(0.964, 1, 0.64, 1)
+modulate = Color(0.98399997, 1, 0.84000003, 1)
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 10
@@ -1215,7 +1211,6 @@ theme = SubResource("Theme_01cdt")
 script = SubResource("GDScript_xqy0b")
 
 [node name="Panel" type="Panel" parent="VBoxContainer/LevelsSummer/Summer1"]
-self_modulate = Color(0.62, 0.62, 0.62, 1)
 layout_mode = 0
 offset_left = 7.0
 offset_top = 6.0
@@ -1233,7 +1228,6 @@ theme = SubResource("Theme_dcoc6")
 script = SubResource("GDScript_c4xeh")
 
 [node name="Panel" type="Panel" parent="VBoxContainer/LevelsSummer/Summer2"]
-self_modulate = Color(0.62, 0.62, 0.62, 1)
 layout_mode = 0
 offset_left = 7.0
 offset_top = 6.0
@@ -1251,7 +1245,6 @@ theme = SubResource("Theme_ugvoj")
 script = SubResource("GDScript_y3rbo")
 
 [node name="Panel" type="Panel" parent="VBoxContainer/LevelsSummer/Summer3"]
-self_modulate = Color(0.62, 0.62, 0.62, 1)
 layout_mode = 0
 offset_left = 7.0
 offset_top = 6.0
