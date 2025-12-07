@@ -557,9 +557,9 @@ func set_is_standing_on_teleporter(val: bool):
 		Signals.teleporter_entered.disconnect(on_teleporter_entered)
 
 ## Teleports player and possessed creature when triggered.
-func on_teleporter_entered(teleporter: Teleporter):
+func on_teleporter_entered(teleporter: Teleporter, body: Node2D):
 	if currently_possessed_creature:
-		currently_possessed_creature.start_teleport(teleporter)
+		currently_possessed_creature.start_teleport(teleporter, body)
 		global_position = teleporter.global_position
 		target_position = global_position
 

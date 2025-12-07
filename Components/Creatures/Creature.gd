@@ -55,6 +55,7 @@ var steps_to_walk_back : Array[Vector2] = []
 func _ready():
 	Signals.level_done.connect(deactivate)
 	Signals.bees_stop_flying.connect(walk_to_free_tile_if_bees_nearby)
+	Signals.teleporter_entered.connect(start_teleport)
 	#Signals.teleporter_activated.connect(start_teleport)
 	#Signals.bees_not_near_creature.connect(stop_tremble)
 
@@ -72,6 +73,10 @@ func _ready():
 	set_animation_direction(init_direction)
 
 func _process(delta: float) -> void:
+	if name == "CreatureBlue" and global_position != target_position:
+		print("Global Pos: ", global_position)
+		print("Target Pos: ", target_position)
+		print()
 	if steps_to_walk_back.size() > 0:
 		position = position.move_toward(steps_to_walk_back[0], delta*Constants.MOVE_SPEED)
 		if abs(global_position[0]-steps_to_walk_back[0][0]) < 0.01 and abs(global_position[1]-steps_to_walk_back[0][1]) < 0.01:
@@ -94,7 +99,8 @@ func get_info() -> Dictionary:
 		"neighbor_left": neighbor_left,
 		"neighbor_top": neighbor_top,
 
-		"has_not_moved": has_not_moved
+		"has_not_moved": has_not_moved,
+		"just_teleported": just_teleported
 	}
 
 func set_info(info : Dictionary):
@@ -111,6 +117,7 @@ func set_info(info : Dictionary):
 		set_animation_direction(init_direction)
 
 	has_not_moved = info.get("has_not_moved")
+	just_teleported = info.get("just_teleported")
 
 # -----------------------------------------------------------
 # Animation
@@ -163,8 +170,8 @@ func merge(creature_to_merge_with : Creature) -> bool:
 # Teleport
 # -----------------------------------------------------------
 
-func start_teleport(teleporter: Teleporter):
-	if teleporter.global_position == global_position:
+func start_teleport(teleporter: Teleporter, body: Node2D):
+	if teleporter.global_position == global_position or body != self:
 		return
 	var t := get_current_teleporter()
 	if t != null and not is_merging and not just_teleported:

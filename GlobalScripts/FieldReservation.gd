@@ -7,11 +7,12 @@ func _ready() -> void:
 	Signals.level_switched.connect(clear_all)
 
 func reserve(object, tiles: Array[Vector2]) -> void:
-	for i in range(1,30):
-		if object.get_collision_layer_value(i) == true:
-			reserved_fields.append(i)
-			object.set_collision_layer_value(i, false)
+	#for i in range(1,30):
+		#if object.get_collision_layer_value(i) == true:
+			#reserved_fields.append(i)
+			#object.set_collision_layer_value(i, false)
 	#object.disable_collision_layer()
+	#object.set_collision_layer_value(Constants.LAYER_BIT_CREATURE, true)
 	fields[object] = tiles.duplicate()
 	
 

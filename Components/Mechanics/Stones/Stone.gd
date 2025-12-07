@@ -18,7 +18,7 @@ var is_in_water := false
 func _ready():
 	super._ready()
 	add_to_group(str(Constants.GROUP_NAME_STONES))
-	enable_collision_layer()
+	#enable_collision_layer()
 
 # -----------------------------------------------------------
 # State (e.g. for Undo)
@@ -85,6 +85,8 @@ func turn_from_platform_back_into_stone():
 	set_collision_layer_value(Constants.LAYER_BIT_WATER_PLATFORM+1, false)
 
 func _process(delta):
+	print(get_collision_layer_value(3))
+	print(get_collision_layer_value(12))
 	#if name == "Stone3":
 		#print(get_collision_layer_value(Constants.LAYER_BIT_STONES+1))
 	super._process(delta)

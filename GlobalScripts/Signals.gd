@@ -32,7 +32,7 @@ signal stone_reached_target(stone: PushableObject)
 # Door Signals
 
 # Teleporter
-signal teleporter_entered(target_pos: Vector2)
+signal teleporter_entered(target_pos: Vector2, body : Node2D)
 signal teleporter_activated(teleporter: Teleporter)
 signal teleporter_deactivated(teleporter: Teleporter)
 signal creature_started_teleporting
