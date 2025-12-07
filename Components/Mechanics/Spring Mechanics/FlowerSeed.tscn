@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dbtlkxrnci834" path="res://Assets/Spring Mechanics/Flower/Seed3.png" id="4_tpjqu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rjnan"]
-size = Vector2(64, 64)
+size = Vector2(16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tpjqu"]
 atlas = ExtResource("1_t7jgl")
