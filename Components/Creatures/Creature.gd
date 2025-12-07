@@ -46,6 +46,7 @@ var is_avoiding_bees := false
 var last_escape_direction := Vector2.ZERO
 var hard_escape_lock := false
 
+var steps_to_walk_back : Array[Vector2] = []
 
 # -----------------------------------------------------------
 # Init
@@ -53,6 +54,7 @@ var hard_escape_lock := false
 
 func _ready():
 	Signals.level_done.connect(deactivate)
+	Signals.bees_stop_flying.connect(walk_to_free_tile_if_bees_nearby)
 	#Signals.teleporter_activated.connect(start_teleport)
 	#Signals.bees_not_near_creature.connect(stop_tremble)
 
@@ -69,12 +71,20 @@ func _ready():
 	animation_tree.get("parameters/playback").travel("Idle")
 	set_animation_direction(init_direction)
 
+func _process(delta: float) -> void:
+	if steps_to_walk_back.size() > 0:
+		position = position.move_toward(steps_to_walk_back[0], delta*Constants.MOVE_SPEED)
+		if abs(global_position[0]-steps_to_walk_back[0][0]) < 0.01 and abs(global_position[1]-steps_to_walk_back[0][1]) < 0.01:
+			global_position = steps_to_walk_back[0]
+			steps_to_walk_back.erase(steps_to_walk_back[0])
+
 # -----------------------------------------------------------
 # Undo State
 # -----------------------------------------------------------
 
 func get_info() -> Dictionary:
 	return {
+		"name": name,
 		"global_position": global_position,
 		"current_direction": current_direction,
 		"target_position": target_position,
@@ -237,61 +247,35 @@ func _on_area_2d_self_body_entered(body: Node2D) -> void:
 ## -----------------------------------------------------------
 ## Bee Detection / Avoidance
 ## -----------------------------------------------------------
-#
-#func get_bee_position_if_nearby(check_pos: Vector2):
-	#var positions = [
-		#Constants.UP_LEFT, Constants.UP, Constants.UP_RIGHT,
-		#Constants.LEFT,    Constants.MIDDLE, Constants.RIGHT,
-		#Constants.DOWN_LEFT, Constants.DOWN, Constants.DOWN_RIGHT
-	#]
-#
-	#for p in positions:
-		#if Helper.check_if_collides(check_pos + p * Constants.GRID_SIZE, Constants.LAYER_MASK_BEES, get_world_2d()):
-			#return p
-#
-	#return null
-#
-#func avoid_bees(bee_direction: Vector2, try_direction) -> Vector2:
-	#var order: Array[Vector2]
-#
-	#match bee_direction:
-		#Constants.UP:
-			#order = [try_direction, Constants.DOWN, Constants.LEFT, Constants.RIGHT]
-		#Constants.UP_RIGHT:
-			#order = [try_direction, Constants.DOWN, Constants.LEFT]
-		#Constants.RIGHT:
-			#order = [try_direction, Constants.LEFT, Constants.DOWN, Constants.UP]
-		#Constants.DOWN_RIGHT:
-			#order = [try_direction, Constants.LEFT, Constants.UP]
-		#Constants.DOWN:
-			#order = [try_direction, Constants.LEFT, Constants.DOWN, Constants.UP]
-		#Constants.DOWN_LEFT:
-			#order = [try_direction, Constants.UP, Constants.RIGHT]
-		#Constants.LEFT:
-			#order = [try_direction, Constants.RIGHT, Constants.DOWN, Constants.UP]
-		#Constants.UP_LEFT:
-			#order = [try_direction, Constants.RIGHT, Constants.DOWN]
-		#Constants.MIDDLE:
-			#order = [Constants.RIGHT, Constants.DOWN, Constants.LEFT, Constants.UP]
-		#_:
-			#order = []
-#
-	#return try_directions(order)
-#
-#
-#func try_directions(directions : Array[Vector2]) -> Vector2:
-	#if hard_escape_lock and last_escape_direction != Vector2.ZERO:
-		#if Helper.can_move_in_direction(position, last_escape_direction, get_world_2d(), true, self, true):
-			#return last_escape_direction
-		#hard_escape_lock = false
-		#last_escape_direction = Vector2.ZERO
-#
-	#for d in directions:
-		#if d != Vector2.ZERO and Helper.can_move_in_direction(position, d, get_world_2d(), true, self, true):
-			#last_escape_direction = d
-			#hard_escape_lock = true
-			#return d
-#
-	#last_escape_direction = Vector2.ZERO
-	#hard_escape_lock = false
-	#return Vector2.ZERO
+
+func play_walk_on_bee_area_animation():
+	match current_direction:
+		Vector2.UP:
+			animation_player.play("bee_step_up")
+		Vector2.RIGHT:
+			animation_player.play("bee_step_right")
+		Vector2.DOWN:
+			animation_player.play("bee_step_down")
+		Vector2.LEFT:
+			animation_player.play("bee_step_left")
+
+func walk_to_free_tile_if_bees_nearby():
+	if is_possessed or Helper.get_collision_on_tile(global_position, (1 << Constants.LAYER_BIT_BEES), get_world_2d()).is_empty():
+		return
+	var i = 0
+	var result_bees = Helper.get_collision_on_tile(StateSaver.get_creature_pos_in_state_from_back(i, self), (1 << Constants.LAYER_BIT_BEES), get_world_2d())
+	var steps_back : Array[Vector2] = []
+	#print("Result Bees: ", result_bees)
+	while not result_bees.is_empty():
+		if StateSaver.get_creature_pos_in_state_from_back(i, self) != global_position and (steps_back.size() == 0 or StateSaver.get_creature_pos_in_state_from_back(i, self) != steps_back[steps_back.size()-1]):
+			steps_back.append(StateSaver.get_creature_pos_in_state_from_back(i, self))
+		#print(StateSaver.get_creature_pos_in_state_from_back(i, self))
+		#print()
+		i += 1
+		result_bees = Helper.get_collision_on_tile(StateSaver.get_creature_pos_in_state_from_back(i, self), (1 << Constants.LAYER_BIT_BEES), get_world_2d())
+	if StateSaver.get_creature_pos_in_state_from_back(i, self) != global_position and (steps_back.size() == 0 or StateSaver.get_creature_pos_in_state_from_back(i, self) != steps_back[steps_back.size()-1]):
+		steps_back.append(StateSaver.get_creature_pos_in_state_from_back(i, self))
+	print(steps_back)
+	steps_to_walk_back = steps_back
+	if steps_to_walk_back.size() > 0:
+		tremble()

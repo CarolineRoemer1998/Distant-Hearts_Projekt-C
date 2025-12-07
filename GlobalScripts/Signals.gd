@@ -44,6 +44,7 @@ signal bees_near_creature(creature: Creature)
 signal bees_not_near_creature
 signal bees_start_flying
 signal bees_stop_flying
+signal tried_walking_on_bee_area(bees: BeeSwarm)
 
 # Summer
 signal set_lily_pad_on_water_tile(lilypad: LilyPad)

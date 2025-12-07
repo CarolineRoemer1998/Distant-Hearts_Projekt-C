@@ -33,6 +33,12 @@ visible = true
 [node name="Stone" parent="Stones" instance=ExtResource("4_lxt42")]
 position = Vector2(480, 480)
 
+[node name="Stone2" parent="Stones" instance=ExtResource("4_lxt42")]
+position = Vector2(288, 608)
+
+[node name="Stone3" parent="Stones" instance=ExtResource("4_lxt42")]
+position = Vector2(160, 96)
+
 [node name="Soil, Flowers & Bees" type="Node" parent="."]
 
 [node name="Soil" parent="Soil, Flowers & Bees" instance=ExtResource("5_x4o0q")]
@@ -48,7 +54,7 @@ position = Vector2(352, 160)
 position = Vector2(480, 544)
 
 [node name="FlowerSeed2" parent="Soil, Flowers & Bees" instance=ExtResource("6_r4va8")]
-position = Vector2(160, 160)
+position = Vector2(160, 224)
 
 [node name="FlowerSeed3" parent="Soil, Flowers & Bees" instance=ExtResource("6_r4va8")]
 position = Vector2(160, 544)

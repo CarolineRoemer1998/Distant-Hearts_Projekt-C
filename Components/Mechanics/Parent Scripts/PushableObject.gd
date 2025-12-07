@@ -14,7 +14,7 @@ var is_sliding := false
 var pending_target_position: Vector2 = Vector2.ZERO
 var pending_direction: Vector2 = Vector2.ZERO
 
-var layer_mask_obstacles := (1 << Constants.LAYER_BIT_PUSHABLE) | (1 << Constants.LAYER_BIT_DOOR) | (1 << Constants.LAYER_BIT_WALL_AND_PLAYER) | (1 << Constants.LAYER_BIT_CREATURE) | (1 << Constants.LAYER_BIT_LEVEL_WALL) | (1 << Constants.LAYER_BIT_SOIL)# | (1 << Constants.LAYER_BIT_LILY_PAD)
+var layer_mask_obstacles := (1 << Constants.LAYER_BIT_PUSHABLE) | (1 << Constants.LAYER_BIT_DOOR) | (1 << Constants.LAYER_BIT_WALL_AND_PLAYER) | (1 << Constants.LAYER_BIT_CREATURE) | (1 << Constants.LAYER_BIT_LEVEL_WALL)# | (1 << Constants.LAYER_BIT_SOIL)# | (1 << Constants.LAYER_BIT_LILY_PAD)
 
 ## Initializes the stone when the scene starts:
 ## adds it to the stone group, enables collision and snaps to the grid.

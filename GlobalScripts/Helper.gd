@@ -24,7 +24,7 @@ enum TILE_CONTENT {
 ## On success, sets pushable_stone_in_direction if a stone can be pushed.
 
 ## TODO: ÄNDERN ZU: get_tile_states() und dann basierend darauf handeln
-func can_move_in_direction(_position: Vector2, _direction, world : World2D, is_physical_body : bool, body : CharacterBody2D, is_avoiding := false) -> bool:
+func can_move_in_direction(_position: Vector2, _direction, world : World2D, is_physical_body : bool, body : Player, is_avoiding := false) -> bool:
 	if _direction == null:
 		return false
 	
@@ -85,6 +85,12 @@ func can_move_in_direction(_position: Vector2, _direction, world : World2D, is_p
 	if tile_states.has(TILE_CONTENT.wall):
 		return false
 	
+	# State: BIENEN
+	if tile_states.has(TILE_CONTENT.bees):
+		#StateSaver.get_creature_pos_in_state_from_back(0, body.currently_possessed_creature)
+		Signals.tried_walking_on_bee_area.emit(result_bees[0].collider)
+		return false
+	
 	# State: PUSHABLE
 	if tile_states.has(TILE_CONTENT.pushable):
 		if tile_states[TILE_CONTENT.pushable][0].get_can_be_pushed(new_pos, _direction):
@@ -111,9 +117,6 @@ func can_move_in_direction(_position: Vector2, _direction, world : World2D, is_p
 		else:
 			return true
 	
-	if tile_states.has(TILE_CONTENT.bees):
-		# TODO: Act accordingly
-		return false
 	
 	return false
 

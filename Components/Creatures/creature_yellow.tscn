@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://be6k5yjppap8y"]
+[gd_scene load_steps=60 format=3 uid="uid://be6k5yjppap8y"]
 
 [ext_resource type="Script" uid="uid://kjtpy8vvpaku" path="res://Components/Creatures/Creature.gd" id="1_aoml0"]
 [ext_resource type="Texture2D" uid="uid://bggggslmjgoyi" path="res://Assets/Creatures/Yellow/creature1_yellow.png" id="2_ovmof"]
@@ -545,6 +545,253 @@ states/Start/position = Vector2(208, 100)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_ap3gg")]
 graph_offset = Vector2(9, -9)
 
+[sub_resource type="Animation" id="Animation_xbm6y"]
+resource_name = "Appear_Teleport"
+length = 0.8
+step = 0.025
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/AnimatedSpriteCreature:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.075, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(2.6, 2.6), Vector2(2, 2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/AnimatedSpriteBorder:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.075, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(2.6, 2.6), Vector2(2, 2)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.15),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"set_not_teleporting"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_fr2fe"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/AnimatedSpriteCreature:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, 2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/AnimatedSpriteBorder:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, 2)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -5)]
+}
+
+[sub_resource type="Animation" id="Animation_v76sd"]
+resource_name = "Shrink"
+length = 0.5
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"disappear"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/AnimatedSpriteCreature:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(1e-05, 1e-05)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals/AnimatedSpriteBorder:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(1e-05, 1e-05)]
+}
+
+[sub_resource type="Animation" id="Animation_hs62b"]
+resource_name = "Shrink_Teleport"
+length = 0.8
+step = 0.05
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"teleport"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/AnimatedSpriteCreature:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(1e-05, 1e-05)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals/AnimatedSpriteBorder:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(1e-05, 1e-05)]
+}
+
+[sub_resource type="Animation" id="Animation_xc3ak"]
+resource_name = "bee_step_up"
+length = 0.1563
+step = 0.0313
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0625, 0.15625),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -5), Vector2(0, -35), Vector2(0, -5)]
+}
+
+[sub_resource type="Animation" id="Animation_hiu6k"]
+resource_name = "bee_step_right"
+length = 0.1563
+step = 0.0313
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0625, 0.15625),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -5), Vector2(30, -5), Vector2(0, -5)]
+}
+
+[sub_resource type="Animation" id="Animation_hneb7"]
+resource_name = "bee_step_down"
+length = 0.1563
+step = 0.0313
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0625, 0.15625),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -5), Vector2(0, 25), Vector2(0, -5)]
+}
+
+[sub_resource type="Animation" id="Animation_j2o3v"]
+resource_name = "bee_step_left"
+length = 0.1563
+step = 0.0313
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0625, 0.15625),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -5), Vector2(-30, -5), Vector2(0, -5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_onfh8"]
+_data = {
+&"Appear_Teleport": SubResource("Animation_xbm6y"),
+&"RESET": SubResource("Animation_fr2fe"),
+&"Shrink": SubResource("Animation_v76sd"),
+&"Shrink_Teleport": SubResource("Animation_hs62b"),
+&"bee_step_down": SubResource("Animation_hneb7"),
+&"bee_step_left": SubResource("Animation_j2o3v"),
+&"bee_step_right": SubResource("Animation_hiu6k"),
+&"bee_step_up": SubResource("Animation_xc3ak")
+}
+
 [node name="CreatureYellow" type="CharacterBody2D" groups=["creature"]]
 z_index = 5
 collision_layer = 2
@@ -627,7 +874,12 @@ tree_root = SubResource("AnimationNodeStateMachine_4gk32")
 anim_player = NodePath("../AnimationPlayerMovement")
 parameters/Idle/BlendSpace2D/blend_position = Vector2(-0.00303954, 0.35426)
 
+[node name="AnimationPlayer1" parent="Visuals" instance=ExtResource("4_aoml0")]
+
 [node name="AnimationPlayer" parent="Visuals" instance=ExtResource("4_aoml0")]
+libraries = {
+&"": SubResource("AnimationLibrary_onfh8")
+}
 
 [node name="MergedCreature" parent="." instance=ExtResource("4_eqse5")]
 visible = false
@@ -652,3 +904,5 @@ bus = &"sfx"
 [connection signal="body_entered" from="Areas/Area2D_Top" to="." method="on_body_to_top_entered"]
 [connection signal="body_exited" from="Areas/Area2D_Top" to="." method="_on_creature_top_gone"]
 [connection signal="area_entered" from="Areas/Area2D_Self" to="." method="_on_bees_entered"]
+
+[editable path="Visuals/AnimationPlayer"]

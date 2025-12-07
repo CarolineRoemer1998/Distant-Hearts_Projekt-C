@@ -66,6 +66,7 @@ func _ready():
 	Signals.creature_finished_teleporting.connect(activate)
 	Signals.bees_start_flying.connect(handle_bees_start_flying)
 	Signals.bees_stop_flying.connect(handle_bees_stop_flying)
+	Signals.tried_walking_on_bee_area.connect(play_walk_on_bee_area_animation)
 
 	target_position = position.snapped(Constants.GRID_SIZE / 2)
 	position = target_position
@@ -446,6 +447,10 @@ func _start_bee_avoid_step():
 		is_avoiding = false
 		can_move = true
 
+func play_walk_on_bee_area_animation(_bees: BeeSwarm):
+	can_move = false
+	currently_possessed_creature.play_walk_on_bee_area_animation()
+	avoid_timer.start()
 
 # ------------------------------------------------
 # MOVE START
@@ -631,7 +636,7 @@ func _on_step_timer_timeout():
 
 
 func _on_avoid_timer_timeout() -> void:
-	if not planted_flower_last_step:
-		StateSaver.remove_last_state()
+	#if not planted_flower_last_step:
+		#StateSaver.remove_last_state()
 	can_move = true
 	planted_flower_last_step = false

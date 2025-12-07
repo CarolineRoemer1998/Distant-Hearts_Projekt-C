@@ -17,3 +17,14 @@ func remove_last_state():
 
 func clear_states():
 	saved_states = []
+
+func get_creature_pos_in_state_from_back(number: int, creature: Creature):
+	var creature_pos = Vector2.ZERO
+	if saved_states.size() > 0:
+		var amount_states = saved_states.size()
+		var creature_states_array = saved_states[amount_states-1-number].get(Constants.GROUP_NAME_CREATURE)
+		for creature_dict in creature_states_array:
+			if creature_dict.get("name") == creature.name:
+				creature_pos = creature_dict.get("global_position")
+	return creature_pos
+		

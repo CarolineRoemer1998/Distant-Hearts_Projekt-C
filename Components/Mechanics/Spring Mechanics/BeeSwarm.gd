@@ -39,6 +39,7 @@ var volume_set := false
 func _ready() -> void:
 	Signals.flower_grows.connect(fly_to_flower)
 	Signals.bees_not_near_creature.connect(turn_normal)
+	Signals.tried_walking_on_bee_area.connect(turn_red)
 	
 	add_to_group(Constants.GROUP_NAME_BEES)
 	init_position = global_position
@@ -132,8 +133,9 @@ func reset_bee_sprite_direction():
 	for bee in bee_sprites:
 		bee.scale = bee.init_scale
 
-func turn_red():
-	is_aggro = true
+func turn_red(bees: BeeSwarm):
+	if self == bees:
+		is_aggro = true
 
 func turn_normal():
 	if timer_aggro_cooldown.time_left == 0:
@@ -148,6 +150,6 @@ func check_creature_is_close() -> void:
 			if not is_aggro and creature.is_possessed:
 				creature.tremble()
 				#Signals.bees_near_creature.emit(creature)
-			turn_red()
+			turn_red(self)
 			return
 	turn_normal()

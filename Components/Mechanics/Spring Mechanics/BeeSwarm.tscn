@@ -301,7 +301,6 @@ autoplay = "shadow-pulsate"
 shape = SubResource("RectangleShape2D_tbglw")
 
 [node name="TimerAggroCooldown" type="Timer" parent="."]
-wait_time = 0.5
 
 [node name="Particles" type="Node2D" parent="."]
 
