@@ -1,6 +1,6 @@
 extends Control
 
-@onready var back: Button = $VBoxContainer/Back
+@onready var back: Button = $Back
 
 var used_controller = false
 

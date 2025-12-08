@@ -70,7 +70,7 @@ func unsink():
 	set_collision_layer_value(Constants.LAYER_BIT_LILY_PAD+1, true)
 	has_sunk = false
 
-func _on_area_2d_body_exited(body: Node2D) -> void:
+func _on_area_2d_body_exited(_body: Node2D) -> void:
 	for sprite in object_sprites_on_lily_pad:
 		sprite.position[0] = 0.0
 	object_sprites_on_lily_pad = []

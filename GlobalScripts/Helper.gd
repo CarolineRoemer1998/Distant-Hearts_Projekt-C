@@ -24,7 +24,7 @@ enum TILE_CONTENT {
 ## On success, sets pushable_stone_in_direction if a stone can be pushed.
 
 ## TODO: ÄNDERN ZU: get_tile_states() und dann basierend darauf handeln
-func can_move_in_direction(_position: Vector2, _direction, world : World2D, is_physical_body : bool, body : Player, is_avoiding := false) -> bool:
+func can_move_in_direction(_position: Vector2, _direction, world : World2D, is_physical_body : bool) -> bool:
 	if _direction == null:
 		return false
 	

@@ -310,7 +310,7 @@ z_index = -1
 z_as_relative = false
 script = ExtResource("1_y2uts")
 
-[node name="floor" type="TileMapLayer" parent="."]
+[node name="grass_floor" type="TileMapLayer" parent="."]
 visible = false
 modulate = Color(1.586667, 1.586667, 1.586667, 1)
 scale = Vector2(2, 2)

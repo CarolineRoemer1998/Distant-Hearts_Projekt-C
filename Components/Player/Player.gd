@@ -159,7 +159,7 @@ func prepare_movement(_direction: Vector2, animation_direction: Vector2, step_ti
 	if is_moving:
 		buffered_direction = _direction
 	else:
-		if Helper.can_move_in_direction(position, _direction, get_world_2d(), currently_possessed_creature!=null, self):
+		if Helper.can_move_in_direction(position, _direction, get_world_2d(), currently_possessed_creature!=null):
 			set_is_moving(true)
 
 ## Handles switching possession of creatures.
@@ -332,8 +332,7 @@ func on_move_step_finished():
 				position,
 				direction,
 				get_world_2d(),
-				currently_possessed_creature!=null,
-				self
+				currently_possessed_creature!=null
 			)
 		)
 		buffered_direction = Vector2.ZERO
@@ -439,9 +438,7 @@ func _start_bee_avoid_step():
 		position,
 		move_dir,
 		get_world_2d(),
-		currently_possessed_creature != null,
-		self,
-		true
+		currently_possessed_creature != null
 	):
 		set_is_moving(true)
 	else:
@@ -551,7 +548,7 @@ func possess():
 
 ## Connects or disconnects from teleporter-entered events.
 func set_is_standing_on_teleporter(val: bool):
-	if val:
+	if val and not Signals.teleporter_entered.is_connected(on_teleporter_entered):
 		Signals.teleporter_entered.connect(on_teleporter_entered)
 	elif Signals.teleporter_entered.is_connected(on_teleporter_entered):
 		Signals.teleporter_entered.disconnect(on_teleporter_entered)

@@ -28,6 +28,10 @@ Signals="*res://GlobalScripts/Signals.gd"
 FieldReservation="*res://GlobalScripts/FieldReservation.gd"
 Helper="*res://GlobalScripts/Helper.gd"
 
+[debug]
+
+gdscript/warnings/unused_signal=0
+
 [display]
 
 window/size/viewport_width=704

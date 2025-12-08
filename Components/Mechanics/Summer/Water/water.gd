@@ -6,7 +6,7 @@ class_name Water
 @onready var water_dark: Node2D = $WaterDark
 @onready var timer: Timer = $Timer
 
-@onready var floor: TileMapLayer = $floor
+@onready var grass_floor: TileMapLayer = $grass_floor
 
 @onready var water_light_2: Sprite2D = $WaterLight/Water_light_2
 @onready var water_light_3: Sprite2D = $WaterLight/Water_light_3
@@ -26,7 +26,7 @@ var water_dark_speed_fast = 20
 var float_up := true
 
 func _ready() -> void:
-	floor.visible = true
+	grass_floor.visible = true
 	water_light_2.visible = true
 	water_light_3.visible = true
 	water_light_4.visible = true

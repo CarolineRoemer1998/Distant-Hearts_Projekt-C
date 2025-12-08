@@ -38,7 +38,7 @@ var volume_set := false
 
 func _ready() -> void:
 	Signals.flower_grows.connect(fly_to_flower)
-	Signals.bees_not_near_creature.connect(turn_normal)
+	#Signals.bees_not_near_creature.connect(turn_normal)
 	Signals.tried_walking_on_bee_area.connect(turn_red)
 	
 	add_to_group(Constants.GROUP_NAME_BEES)

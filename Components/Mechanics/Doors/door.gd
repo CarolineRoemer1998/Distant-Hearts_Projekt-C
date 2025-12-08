@@ -67,7 +67,7 @@ func _check_buttons():
 func _open_door():
 	if door_is_closed:
 		door_is_closed = false
-		collider.disabled = true
+		set_deferred("collider.disabled", true)
 		sprite.texture = opened_door_sprite
 
 		if single_activation_open:

@@ -528,7 +528,7 @@ blend_point_3/pos = Vector2(1, 0)
 blend_mode = 1
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_x8eks"]
-graph_offset = Vector2(-206, 30)
+graph_offset = Vector2(-170, 82)
 nodes/output/position = Vector2(300, 140)
 nodes/BlendSpace2D/node = SubResource("AnimationNodeBlendSpace2D_0v2f6")
 nodes/BlendSpace2D/position = Vector2(60, 100)
@@ -544,41 +544,17 @@ states/Start/position = Vector2(208, 100)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_ap3gg")]
 graph_offset = Vector2(9, -9)
 
-[sub_resource type="Animation" id="Animation_xbm6y"]
+[sub_resource type="Animation" id="Animation_y0ys5"]
 resource_name = "Appear_Teleport"
 length = 0.8
 step = 0.025
-tracks/0/type = "value"
+tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Visuals/AnimatedSpriteCreature:scale")
+tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.075, 0.15),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(1e-05, 1e-05), Vector2(2.6, 2.6), Vector2(2, 2)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Visuals/AnimatedSpriteBorder:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.075, 0.15),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(1e-05, 1e-05), Vector2(2.6, 2.6), Vector2(2, 2)]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0.15),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -586,47 +562,47 @@ tracks/2/keys = {
 "method": &"set_not_teleporting"
 }]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.075, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1.3, 1.3), Vector2(1, 1)]
+}
 
-[sub_resource type="Animation" id="Animation_fr2fe"]
+[sub_resource type="Animation" id="Animation_kiahe"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Visuals/AnimatedSpriteCreature:scale")
+tracks/0/path = NodePath("Visuals:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(2, 2)]
+"values": [Vector2(0, -5)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Visuals/AnimatedSpriteBorder:scale")
+tracks/1/path = NodePath("Visuals:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(2, 2)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Visuals:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -5)]
+"values": [Vector2(1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_v76sd"]
+[sub_resource type="Animation" id="Animation_te1dm"]
 resource_name = "Shrink"
 length = 0.5
 tracks/0/type = "method"
@@ -646,29 +622,17 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Visuals/AnimatedSpriteCreature:scale")
+tracks/1/path = NodePath("Visuals:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(2, 2), Vector2(1e-05, 1e-05)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Visuals/AnimatedSpriteBorder:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(2, 2), Vector2(1e-05, 1e-05)]
+"values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
 }
 
-[sub_resource type="Animation" id="Animation_hs62b"]
+[sub_resource type="Animation" id="Animation_gbrl0"]
 resource_name = "Shrink_Teleport"
 length = 0.8
 step = 0.05
@@ -689,63 +653,17 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Visuals/AnimatedSpriteCreature:scale")
+tracks/1/path = NodePath("Visuals:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(2, 2), Vector2(1e-05, 1e-05)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Visuals/AnimatedSpriteBorder:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(2, 2), Vector2(1e-05, 1e-05)]
+"values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
 }
 
-[sub_resource type="Animation" id="Animation_xc3ak"]
-resource_name = "bee_step_up"
-length = 0.1563
-step = 0.0313
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Visuals:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0625, 0.15625),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(0, -5), Vector2(0, -35), Vector2(0, -5)]
-}
-
-[sub_resource type="Animation" id="Animation_hiu6k"]
-resource_name = "bee_step_right"
-length = 0.1563
-step = 0.0313
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Visuals:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0625, 0.15625),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(0, -5), Vector2(30, -5), Vector2(0, -5)]
-}
-
-[sub_resource type="Animation" id="Animation_hneb7"]
+[sub_resource type="Animation" id="Animation_7rcwi"]
 resource_name = "bee_step_down"
 length = 0.1563
 step = 0.0313
@@ -762,7 +680,7 @@ tracks/0/keys = {
 "values": [Vector2(0, -5), Vector2(0, 25), Vector2(0, -5)]
 }
 
-[sub_resource type="Animation" id="Animation_j2o3v"]
+[sub_resource type="Animation" id="Animation_bl4fn"]
 resource_name = "bee_step_left"
 length = 0.1563
 step = 0.0313
@@ -779,16 +697,50 @@ tracks/0/keys = {
 "values": [Vector2(0, -5), Vector2(-30, -5), Vector2(0, -5)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_onfh8"]
+[sub_resource type="Animation" id="Animation_qddge"]
+resource_name = "bee_step_right"
+length = 0.1563
+step = 0.0313
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0625, 0.15625),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -5), Vector2(30, -5), Vector2(0, -5)]
+}
+
+[sub_resource type="Animation" id="Animation_cule2"]
+resource_name = "bee_step_up"
+length = 0.1563
+step = 0.0313
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0625, 0.15625),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -5), Vector2(0, -35), Vector2(0, -5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ii28y"]
 _data = {
-&"Appear_Teleport": SubResource("Animation_xbm6y"),
-&"RESET": SubResource("Animation_fr2fe"),
-&"Shrink": SubResource("Animation_v76sd"),
-&"Shrink_Teleport": SubResource("Animation_hs62b"),
-&"bee_step_down": SubResource("Animation_hneb7"),
-&"bee_step_left": SubResource("Animation_j2o3v"),
-&"bee_step_right": SubResource("Animation_hiu6k"),
-&"bee_step_up": SubResource("Animation_xc3ak")
+&"Appear_Teleport": SubResource("Animation_y0ys5"),
+&"RESET": SubResource("Animation_kiahe"),
+&"Shrink": SubResource("Animation_te1dm"),
+&"Shrink_Teleport": SubResource("Animation_gbrl0"),
+&"bee_step_down": SubResource("Animation_7rcwi"),
+&"bee_step_left": SubResource("Animation_bl4fn"),
+&"bee_step_right": SubResource("Animation_qddge"),
+&"bee_step_up": SubResource("Animation_cule2")
 }
 
 [node name="CreatureBlue" type="CharacterBody2D" groups=["creature"]]
@@ -854,7 +806,7 @@ animation = &"idle-down"
 [node name="AnimatedSpriteBorder" type="AnimatedSprite2D" parent="Visuals"]
 visible = false
 modulate = Color(1.25, 1.25, 1.25, 1)
-scale = Vector2(2, 2)
+scale = Vector2(1.001358e-05, 1.001358e-05)
 sprite_frames = SubResource("SpriteFrames_ujita")
 animation = &"idle-down"
 
@@ -869,16 +821,11 @@ autoplay = "IdleDown"
 root_node = NodePath("../..")
 tree_root = SubResource("AnimationNodeStateMachine_6v06q")
 anim_player = NodePath("../AnimationPlayerMovement")
-parameters/Idle/BlendSpace2D/blend_position = Vector2(-0.008372068, 0.94618833)
-
-[node name="AnimationPlayer1" parent="Visuals" instance=ExtResource("4_lgxpu")]
-libraries = {
-&"": SubResource("AnimationLibrary_onfh8")
-}
+parameters/Idle/BlendSpace2D/blend_position = Vector2(0.07855976, 0.48878932)
 
 [node name="AnimationPlayer" parent="Visuals" instance=ExtResource("4_lgxpu")]
 libraries = {
-&"": SubResource("AnimationLibrary_onfh8")
+&"": SubResource("AnimationLibrary_ii28y")
 }
 
 [node name="MergedCreature" parent="." instance=ExtResource("4_urr0o")]
@@ -906,5 +853,4 @@ bus = &"sfx"
 [connection signal="body_entered" from="Areas/Area2D_Top" to="." method="on_body_to_top_entered"]
 [connection signal="body_exited" from="Areas/Area2D_Top" to="." method="_on_creature_top_gone"]
 
-[editable path="Visuals/AnimationPlayer1"]
 [editable path="Visuals/AnimationPlayer"]
