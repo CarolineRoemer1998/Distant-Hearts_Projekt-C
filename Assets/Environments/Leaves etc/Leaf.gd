@@ -27,7 +27,7 @@ func _process(delta: float) -> void:
 
 func set_new_starting_pos(is_first: bool):
 	speed_scale = 1 + rnd.randf_range(-0.05, 0.05)
-	frame = rnd.randi_range(0,7)
+	frame = rnd.randi_range(0,3)
 	falling_speed = init_falling_speed+rnd.randi_range(-25,25)
 	start_pos = get_new_start_pos()
 	if not is_first:
