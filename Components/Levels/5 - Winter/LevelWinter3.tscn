@@ -28,7 +28,7 @@
 script = ExtResource("1_7ae7w")
 season = 4
 undo_particles = ExtResource("2_sueau")
-level_number = 23
+level_number = 26
 
 [node name="BackgroundWinter3" parent="." instance=ExtResource("3_tborw")]
 

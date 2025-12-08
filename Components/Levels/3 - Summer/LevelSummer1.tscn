@@ -501,7 +501,7 @@ animations = [{
 script = ExtResource("1_ma3sw")
 season = 2
 undo_particles = ExtResource("2_v8cy3")
-level_number = 11
+level_number = 12
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_7ogri")

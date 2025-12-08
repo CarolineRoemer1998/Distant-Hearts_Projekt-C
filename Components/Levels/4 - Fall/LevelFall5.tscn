@@ -12,7 +12,7 @@
 script = ExtResource("1_0qx37")
 season = 3
 undo_particles = ExtResource("2_ib1yo")
-level_number = 20
+level_number = 22
 
 [node name="BackgroundSpring" parent="." instance=ExtResource("3_e1uvv")]
 

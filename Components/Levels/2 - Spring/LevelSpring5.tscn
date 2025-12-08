@@ -55,7 +55,7 @@ other_teleporter = NodePath("../Flower1")
 position = Vector2(608, 608)
 
 [node name="Stone3" parent="Stones" instance=ExtResource("4_ym4tl")]
-position = Vector2(96, 480)
+position = Vector2(96, 544)
 
 [node name="Stone2" parent="Stones" instance=ExtResource("4_ym4tl")]
 position = Vector2(160, 96)

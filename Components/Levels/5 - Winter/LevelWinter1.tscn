@@ -27,7 +27,7 @@
 script = ExtResource("1_vb4or")
 season = 4
 undo_particles = ExtResource("2_6iyt6")
-level_number = 21
+level_number = 24
 
 [node name="BackgroundWinter1" parent="." instance=ExtResource("3_gps5n")]
 
@@ -231,3 +231,4 @@ position = Vector2(352, 608)
 [node name="LevelUI" parent="." instance=ExtResource("22_g6d10")]
 
 [editable path="Creatures/CreatureBlue"]
+[editable path="Creatures/CreatureBlue/Visuals/AnimationPlayer"]

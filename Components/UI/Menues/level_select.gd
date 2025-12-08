@@ -47,97 +47,62 @@ func _on_level_spring_4_pressed() -> void:
 func _on_level_spring_5_pressed() -> void:
 	SceneSwitcher.switch_to_level(10)
 
+func _on_level_spring_6_pressed() -> void:
+	SceneSwitcher.switch_to_level(11)
+
 # ----------------- SUMMER -----------------
 
 func _on_level_summer_1_pressed() -> void:
-	SceneSwitcher.switch_to_level(11)
-
-func _on_level_summer_2_pressed() -> void:
 	SceneSwitcher.switch_to_level(12)
 
-func _on_level_summer_3_pressed() -> void:
+func _on_level_summer_2_pressed() -> void:
 	SceneSwitcher.switch_to_level(13)
 
-func _on_level_summer_4_pressed() -> void:
+func _on_level_summer_3_pressed() -> void:
 	SceneSwitcher.switch_to_level(14)
 
-func _on_level_summer_5_pressed() -> void:
+func _on_level_summer_4_pressed() -> void:
 	SceneSwitcher.switch_to_level(15)
+
+func _on_level_summer_5_pressed() -> void:
+	SceneSwitcher.switch_to_level(16)
+
+func _on_level_summer_6_pressed() -> void:
+	SceneSwitcher.switch_to_level(17)
 
 # ----------------- FALL -----------------
 
 func _on_level_fall_1_pressed() -> void:
-	SceneSwitcher.switch_to_level(16)
-
-func _on_level_fall_2_pressed() -> void:
-	SceneSwitcher.switch_to_level(17)
-
-func _on_level_fall_3_pressed() -> void:
 	SceneSwitcher.switch_to_level(18)
 
-func _on_level_fall_4_pressed() -> void:
+func _on_level_fall_2_pressed() -> void:
 	SceneSwitcher.switch_to_level(19)
 
-func _on_level_fall_5_pressed() -> void:
+func _on_level_fall_3_pressed() -> void:
 	SceneSwitcher.switch_to_level(20)
+
+func _on_level_fall_4_pressed() -> void:
+	SceneSwitcher.switch_to_level(21)
+
+func _on_level_fall_5_pressed() -> void:
+	SceneSwitcher.switch_to_level(22)
+
+func _on_level_fall_6_pressed() -> void:
+	SceneSwitcher.switch_to_level(23)
 
 # ----------------- WINTER -----------------
 
 func _on_level_winter_1_pressed() -> void:
-	SceneSwitcher.switch_to_level(21)
-
-func _on_level_winter_2_pressed() -> void:
-	SceneSwitcher.switch_to_level(22)
-
-func _on_level_winter_3_pressed() -> void:
-	SceneSwitcher.switch_to_level(23)
-
-func _on_level_winter_4_pressed() -> void:
 	SceneSwitcher.switch_to_level(24)
 
-func _on_level_winter_5_pressed() -> void:
+func _on_level_winter_2_pressed() -> void:
 	SceneSwitcher.switch_to_level(25)
 
+func _on_level_winter_3_pressed() -> void:
+	SceneSwitcher.switch_to_level(26)
 
+func _on_level_winter_4_pressed() -> void:
+	SceneSwitcher.switch_to_level(27)
 
-#
-#
-#
-#func _on_level_1_pressed() -> void:
-	#SceneSwitcher.switch_to_level(1)
-#
-#
-#func _on_level_2_pressed() -> void:
-	#SceneSwitcher.switch_to_level(2)
-#
-#
-#func _on_level_3_pressed() -> void:
-	#SceneSwitcher.switch_to_level(3)
-#
-#
-#func _on_level_4_pressed() -> void:
-	#SceneSwitcher.switch_to_level(4)
-#
-#
-#func _on_level_5_pressed() -> void:
-	#SceneSwitcher.switch_to_level(5)
-#
-#
-#func _on_level_6_pressed() -> void:
-	#SceneSwitcher.switch_to_level(6)
-#
-#
-#func _on_level_7_pressed() -> void:
-	#SceneSwitcher.switch_to_level(7)
-#
-#
-#func _on_level_8_pressed() -> void:
-	#SceneSwitcher.switch_to_level(8)
-#
-#
-#func _on_level_9_pressed() -> void:
-	#SceneSwitcher.switch_to_level(9)
-#
-#
-#func _on_level_10_pressed() -> void:
-	#SceneSwitcher.switch_to_level(10)
+func _on_level_winter_5_pressed() -> void:
+	SceneSwitcher.switch_to_level(28)

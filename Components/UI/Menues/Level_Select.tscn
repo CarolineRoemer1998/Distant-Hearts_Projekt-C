@@ -1,4 +1,4 @@
-[gd_scene load_steps=105 format=4 uid="uid://bjlb842jvvq0k"]
+[gd_scene load_steps=107 format=4 uid="uid://bjlb842jvvq0k"]
 
 [ext_resource type="Script" uid="uid://ckji0el187dht" path="res://Components/UI/Menues/level_select.gd" id="1_6aqvj"]
 [ext_resource type="Texture2D" uid="uid://daocnama176b2" path="res://Assets/Presentation/Verworfen/Tile.png" id="3_31xks"]
@@ -28,6 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://crer01scdxvy0" path="res://Assets/Presentation/ScreenShots/preview_spring_4.png" id="21_s106q"]
 [ext_resource type="Texture2D" uid="uid://cnx2joneghtgq" path="res://Assets/Presentation/ScreenShots/preview_spring_5.png" id="22_t7h6r"]
 [ext_resource type="Texture2D" uid="uid://dotx8c6krx6ji" path="res://Assets/Presentation/ScreenShots/preview_summer_1.png" id="23_inc37"]
+[ext_resource type="Texture2D" uid="uid://ddkw5row2nnlp" path="res://Assets/Presentation/ScreenShots/preview_spring_6.png" id="23_tcepi"]
 [ext_resource type="Texture2D" uid="uid://bjhujvyqd78v8" path="res://Assets/Presentation/ScreenShots/preview_summer_2.png" id="24_01cdt"]
 [ext_resource type="Texture2D" uid="uid://cb1g2oqmdf1x1" path="res://Assets/Presentation/ScreenShots/preview_summer_3.png" id="25_xqy0b"]
 [ext_resource type="Texture2D" uid="uid://do16c6ecbe6jk" path="res://Assets/Presentation/ScreenShots/preview_summer_4.png" id="26_ij0n3"]
@@ -441,6 +442,9 @@ func _on_button_pressed():
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_inc37"]
 texture = ExtResource("22_t7h6r")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qa4hw"]
+texture = ExtResource("23_tcepi")
 
 [sub_resource type="Theme" id="Theme_01cdt"]
 Button/colors/font_color = Color(0.458824, 0.305882, 0.329412, 1)
@@ -1008,8 +1012,9 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -540.0
+offset_left = -592.0
 offset_top = -567.0
+offset_right = 58.0
 offset_bottom = 24.0
 grow_horizontal = 0
 grow_vertical = 0
@@ -1196,6 +1201,23 @@ offset_bottom = 94.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_inc37")
 
+[node name="Spring6" type="Button" parent="VBoxContainer/LevelsSpring"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_s106q")
+script = SubResource("GDScript_t7h6r")
+
+[node name="Panel" type="Panel" parent="VBoxContainer/LevelsSpring/Spring6"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 6.0
+offset_right = 94.0
+offset_bottom = 94.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_qa4hw")
+
 [node name="LevelsSummer" type="HBoxContainer" parent="VBoxContainer"]
 modulate = Color(0.98399997, 1, 0.84000003, 1)
 layout_mode = 2
@@ -1280,6 +1302,24 @@ theme = SubResource("Theme_v13r8")
 script = SubResource("GDScript_bfm0r")
 
 [node name="Panel" type="Panel" parent="VBoxContainer/LevelsSummer/Summer5"]
+self_modulate = Color(0.62, 0.62, 0.62, 1)
+layout_mode = 0
+offset_left = 7.0
+offset_top = 6.0
+offset_right = 94.0
+offset_bottom = 94.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_em1dp")
+
+[node name="Summer6" type="Button" parent="VBoxContainer/LevelsSummer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_v13r8")
+script = SubResource("GDScript_bfm0r")
+
+[node name="Panel" type="Panel" parent="VBoxContainer/LevelsSummer/Summer6"]
 self_modulate = Color(0.62, 0.62, 0.62, 1)
 layout_mode = 0
 offset_left = 7.0
@@ -1376,6 +1416,24 @@ theme = SubResource("Theme_57e3v")
 script = SubResource("GDScript_7ey0e")
 
 [node name="Panel" type="Panel" parent="VBoxContainer/LevelsFall/Fall5"]
+self_modulate = Color(0.62, 0.62, 0.62, 1)
+layout_mode = 0
+offset_left = 7.0
+offset_top = 6.0
+offset_right = 94.0
+offset_bottom = 94.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_qh2v7")
+
+[node name="Fall6" type="Button" parent="VBoxContainer/LevelsFall"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_57e3v")
+script = SubResource("GDScript_7ey0e")
+
+[node name="Panel" type="Panel" parent="VBoxContainer/LevelsFall/Fall6"]
 self_modulate = Color(0.62, 0.62, 0.62, 1)
 layout_mode = 0
 offset_left = 7.0
@@ -1522,16 +1580,19 @@ vertical_alignment = 1
 [connection signal="pressed" from="VBoxContainer/LevelsSpring/Spring3" to="." method="_on_level_spring_3_pressed"]
 [connection signal="pressed" from="VBoxContainer/LevelsSpring/Spring4" to="." method="_on_level_spring_4_pressed"]
 [connection signal="pressed" from="VBoxContainer/LevelsSpring/Spring5" to="." method="_on_level_spring_5_pressed"]
+[connection signal="pressed" from="VBoxContainer/LevelsSpring/Spring6" to="." method="_on_level_spring_6_pressed"]
 [connection signal="pressed" from="VBoxContainer/LevelsSummer/Summer1" to="." method="_on_level_summer_1_pressed"]
 [connection signal="pressed" from="VBoxContainer/LevelsSummer/Summer2" to="." method="_on_level_summer_2_pressed"]
 [connection signal="pressed" from="VBoxContainer/LevelsSummer/Summer3" to="." method="_on_level_summer_3_pressed"]
 [connection signal="pressed" from="VBoxContainer/LevelsSummer/Summer4" to="." method="_on_level_summer_4_pressed"]
 [connection signal="pressed" from="VBoxContainer/LevelsSummer/Summer5" to="." method="_on_level_summer_5_pressed"]
+[connection signal="pressed" from="VBoxContainer/LevelsSummer/Summer6" to="." method="_on_level_summer_6_pressed"]
 [connection signal="pressed" from="VBoxContainer/LevelsFall/Fall1" to="." method="_on_level_fall_1_pressed"]
 [connection signal="pressed" from="VBoxContainer/LevelsFall/Fall2" to="." method="_on_level_fall_2_pressed"]
 [connection signal="pressed" from="VBoxContainer/LevelsFall/Fall3" to="." method="_on_level_fall_3_pressed"]
 [connection signal="pressed" from="VBoxContainer/LevelsFall/Fall4" to="." method="_on_level_fall_4_pressed"]
 [connection signal="pressed" from="VBoxContainer/LevelsFall/Fall5" to="." method="_on_level_fall_5_pressed"]
+[connection signal="pressed" from="VBoxContainer/LevelsFall/Fall6" to="." method="_on_level_fall_6_pressed"]
 [connection signal="pressed" from="VBoxContainer/LevelsWinter/Winter1" to="." method="_on_level_winter_1_pressed"]
 [connection signal="pressed" from="VBoxContainer/LevelsWinter/Winter2" to="." method="_on_level_winter_2_pressed"]
 [connection signal="pressed" from="VBoxContainer/LevelsWinter/Winter3" to="." method="_on_level_winter_3_pressed"]
