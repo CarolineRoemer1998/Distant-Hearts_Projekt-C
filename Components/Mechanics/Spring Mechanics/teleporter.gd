@@ -39,6 +39,11 @@ var button_refs: Array = []
 
 func _ready() -> void:
 	add_to_group(Constants.GROUP_NAME_TELEPORTERS)
+	var teleporters_in_scene = get_tree().get_nodes_in_group(Constants.GROUP_NAME_TELEPORTERS)
+	for teleporter in teleporters_in_scene:
+		if teleporter != self:
+			other_teleporter = teleporter
+	
 	activate(false)
 	
 	for path in buttons:
@@ -76,6 +81,7 @@ func activate(_activate_val: bool):
 	animated_sprite_2d_bounce_light.visible = _activate_val
 	
 	if _activate_val == true:
+		Globals.is_teleporting = true
 		animated_sprite_2d_flower.modulate = Constants.TELEPORTER_MODULATE_ACTIVE
 		Signals.teleporter_activated.emit(self)
 	else:

@@ -71,11 +71,6 @@ func can_move_in_direction(_position: Vector2, _direction, world : World2D, is_p
 		if not result_pushables.is_empty(): 
 			tile_states[TILE_CONTENT.pushable] = get_tile_states(result_pushables)
 	
-	#for key in tile_states.keys():
-		#print(TILE_CONTENT.keys()[key])
-	#if not TILE_CONTENT.keys().is_empty():
-		#print()
-	
 	# State: NICHTS
 	if tile_states.is_empty():
 		tile_states[TILE_CONTENT.empty] = null
@@ -129,7 +124,6 @@ func get_tile_states(arr: Array):
 
 func check_for_bee_area(target_pos, world):
 	var result_bee_area = Helper.get_collision_on_area(target_pos, 1 << Constants.LAYER_BIT_BEE_AREA,world)
-	print(result_bee_area)
 	return result_bee_area.is_empty()
 
 func get_slide_end(block_mask, _direction : Vector2, starting_position: Vector2, _is_pushing_stone_one_ice: bool, world: World2D) -> Vector2:

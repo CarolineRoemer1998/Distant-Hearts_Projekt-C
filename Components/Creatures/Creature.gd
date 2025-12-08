@@ -56,8 +56,6 @@ func _ready():
 	Signals.level_done.connect(deactivate)
 	Signals.bees_stop_flying.connect(walk_to_free_tile_if_bees_nearby)
 	Signals.teleporter_entered.connect(start_teleport)
-	#Signals.teleporter_activated.connect(start_teleport)
-	#Signals.bees_not_near_creature.connect(stop_tremble)
 
 	animated_sprite_creature.modulate = Constants.CREATURE_MODULATE_UNPOSSESSED
 	animated_sprite_creature.frame = 0
@@ -73,10 +71,9 @@ func _ready():
 	set_animation_direction(init_direction)
 
 func _process(delta: float) -> void:
-	if name == "CreatureBlue" and global_position != target_position:
-		print("Global Pos: ", global_position)
-		print("Target Pos: ", target_position)
-		print()
+	if player == null:
+		player = get_tree().get_first_node_in_group(Constants.GROUP_NAME_PLAYER)
+		
 	if steps_to_walk_back.size() > 0:
 		position = position.move_toward(steps_to_walk_back[0], delta*Constants.MOVE_SPEED)
 		if abs(global_position[0]-steps_to_walk_back[0][0]) < 0.01 and abs(global_position[1]-steps_to_walk_back[0][1]) < 0.01:
@@ -147,17 +144,18 @@ func merge(creature_to_merge_with : Creature) -> bool:
 		return false
 	if not is_active or is_merging:
 		return false
-
+		
 	is_merging = true
 	creature_to_merge_with.is_merging = true
 
 	merged_creature.reparent(get_parent())
 	merged_creature.position = creature_to_merge_with.position
+	Globals.is_level_finished = true
 
-	await get_tree().create_timer(0.1).timeout
+	await get_tree().create_timer(0.025).timeout
 
-	shrink()
 	creature_to_merge_with.shrink()
+	shrink()
 
 	merged_creature.visible = true
 	merged_creature.appear()
@@ -170,15 +168,32 @@ func merge(creature_to_merge_with : Creature) -> bool:
 # Teleport
 # -----------------------------------------------------------
 
-func start_teleport(teleporter: Teleporter, body: Node2D):
-	if teleporter.global_position == global_position or body != self:
+func start_teleport(teleporter_manager: TeleporterManager, body: Node2D):
+	if body != self:
 		return
-	var t := get_current_teleporter()
-	if t != null and not is_merging and not just_teleported:
+	
+	var creatures_on_tile = get_tree().get_nodes_in_group(Constants.GROUP_NAME_CREATURE)
+	for c in creatures_on_tile.duplicate():
+		if c.name == self.name:
+			creatures_on_tile.erase(c)
+		elif c.target_position != global_position.snapped(Constants.GRID_SIZE / 2):
+			creatures_on_tile.erase(c)
+	
+	if not creatures_on_tile.is_empty():
+		player.deactivate()
+		return
+	
+	if not is_merging and creatures_on_tile.is_empty():# and not just_teleported:
+		Globals.is_teleporting = true
+		just_teleported = true
 		audio_teleport.play()
 		Signals.creature_started_teleporting.emit()
 		is_teleporting = true
-		target_position = teleporter.global_position
+		match global_position:
+			teleporter_manager.flower_1.global_position:
+				target_position = teleporter_manager.flower_2.global_position
+			teleporter_manager.flower_2.global_position:
+				target_position = teleporter_manager.flower_1.global_position
 		animation_player.play("Shrink_Teleport")
 
 func teleport():
@@ -197,7 +212,8 @@ func set_not_teleporting():
 	finish_teleport()
 
 func finish_teleport():
-	Signals.creature_finished_teleporting.emit()
+	Globals.is_teleporting = false
+	Signals.creature_finished_teleporting.emit(self)
 	is_teleporting = false
 
 
@@ -235,7 +251,6 @@ func on_body_to_right_entered(body: Node2D):    if body is Creature and body != 
 func on_body_to_bottom_entered(body: Node2D):   if body is Creature and body != self: _set_neighbor_for_direction(Vector2.DOWN, body)
 func on_body_to_left_entered(body: Node2D):     if body is Creature and body != self: _set_neighbor_for_direction(Vector2.LEFT, body)
 func on_body_to_top_entered(body: Node2D):      if body is Creature and body != self: _set_neighbor_for_direction(Vector2.UP, body)
-
 func _on_creature_right_gone(body: Node2D):     if body is Creature: _set_neighbor_for_direction(Vector2.RIGHT, null)
 func _on_creature_bottom_gone(body: Node2D):    if body is Creature: _set_neighbor_for_direction(Vector2.DOWN, null)
 func _on_creature_left_gone(body: Node2D):      if body is Creature: _set_neighbor_for_direction(Vector2.LEFT, null)
@@ -272,17 +287,13 @@ func walk_to_free_tile_if_bees_nearby():
 	var i = 0
 	var result_bees = Helper.get_collision_on_tile(StateSaver.get_creature_pos_in_state_from_back(i, self), (1 << Constants.LAYER_BIT_BEES), get_world_2d())
 	var steps_back : Array[Vector2] = []
-	#print("Result Bees: ", result_bees)
 	while not result_bees.is_empty():
 		if StateSaver.get_creature_pos_in_state_from_back(i, self) != global_position and (steps_back.size() == 0 or StateSaver.get_creature_pos_in_state_from_back(i, self) != steps_back[steps_back.size()-1]):
 			steps_back.append(StateSaver.get_creature_pos_in_state_from_back(i, self))
-		#print(StateSaver.get_creature_pos_in_state_from_back(i, self))
-		#print()
 		i += 1
 		result_bees = Helper.get_collision_on_tile(StateSaver.get_creature_pos_in_state_from_back(i, self), (1 << Constants.LAYER_BIT_BEES), get_world_2d())
 	if StateSaver.get_creature_pos_in_state_from_back(i, self) != global_position and (steps_back.size() == 0 or StateSaver.get_creature_pos_in_state_from_back(i, self) != steps_back[steps_back.size()-1]):
 		steps_back.append(StateSaver.get_creature_pos_in_state_from_back(i, self))
-	print(steps_back)
 	steps_to_walk_back = steps_back
 	if steps_to_walk_back.size() > 0:
 		tremble()

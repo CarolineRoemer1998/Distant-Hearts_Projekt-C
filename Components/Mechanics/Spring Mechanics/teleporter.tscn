@@ -381,7 +381,7 @@ _data = {
 &"Teleport": SubResource("Animation_c6xwp")
 }
 
-[node name="Teleporter" type="Node2D"]
+[node name="Teleporter" type="Node2D" groups=["Teleporter"]]
 script = ExtResource("1_ykg2g")
 
 [node name="AnimatedSprites" type="Node2D" parent="."]

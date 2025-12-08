@@ -41,6 +41,7 @@ enabled=PackedStringArray("res://addons/controller_icons/plugin.cfg")
 [global_group]
 
 AudioWaterFlowPlayer=""
+Teleporter=""
 
 [input]
 

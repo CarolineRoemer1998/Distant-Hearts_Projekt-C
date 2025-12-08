@@ -19,6 +19,7 @@ texture = ExtResource("2_3v052")
 
 [node name="Settings" type="Control"]
 process_mode = 3
+z_index = 10
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

@@ -7,16 +7,14 @@
 [node name="TeleporterManager" type="Node2D"]
 script = ExtResource("1_lx5l8")
 
-[node name="Flower1" parent="." node_paths=PackedStringArray("wooshes") instance=ExtResource("2_elxxw")]
+[node name="Flower1" parent="." instance=ExtResource("2_elxxw")]
 position = Vector2(-64, 0)
-wooshes = []
 
 [node name="Area2D" parent="Flower1" index="1"]
 collision_mask = 3
 
-[node name="Flower2" parent="." node_paths=PackedStringArray("wooshes") instance=ExtResource("2_elxxw")]
+[node name="Flower2" parent="." instance=ExtResource("2_elxxw")]
 position = Vector2(64, 0)
-wooshes = []
 
 [node name="Area2D" parent="Flower2" index="1"]
 collision_mask = 3
@@ -25,10 +23,14 @@ collision_mask = 3
 stream = ExtResource("3_elxxw")
 bus = &"sfx"
 
+[node name="UndoTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="body_entered" from="Flower1/Area2D" to="." method="_on_flower_1_entered"]
 [connection signal="body_exited" from="Flower1/Area2D" to="." method="_on_flower_1_exited"]
 [connection signal="body_entered" from="Flower2/Area2D" to="." method="_on_flower_2_entered"]
 [connection signal="body_exited" from="Flower2/Area2D" to="." method="_on_flower_2_exited"]
+[connection signal="timeout" from="UndoTimer" to="." method="_on_undo_timer_timeout"]
 
 [editable path="Flower1"]
 [editable path="Flower2"]

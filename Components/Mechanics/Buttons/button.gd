@@ -54,7 +54,7 @@ func set_info(info : Dictionary):
 	set_active(active)
 
 func _on_body_entered(_body: Node) -> void:
-	if door_is_permanently_opened or not (_body.is_in_group(Constants.GROUP_NAME_CREATURE) or _body.is_in_group(Constants.GROUP_NAME_STONES)):
+	if door_is_permanently_opened or not (_body.is_in_group(Constants.GROUP_NAME_CREATURE) or _body.is_in_group(Constants.GROUP_NAME_STONES)) or Globals.is_undo_timer_buffer_running:
 		return
 	
 	match type:

@@ -50,6 +50,7 @@ func _deferred_switch_scene(res_path, pause_current=false):
 
 func switch_to_level(id: int):
 	StateSaver.clear_states()
+	Globals.is_level_finished = false
 	switch_scene(Constants.LEVELS.get(id))
 
 func go_to_next_level():

@@ -47,7 +47,7 @@ var bees_are_flying := false
 var is_avoiding := false
 var planted_flower_last_step := false
 
-var is_level_finished := false
+#var is_level_finished := false
 ## TODO: Deaktivieren während Bienen fliegen
 
 
@@ -62,11 +62,13 @@ func _ready():
 	Signals.stone_reached_target.connect(reset_stone_push_state)
 	Signals.level_done.connect(set_level_finished)
 	Signals.player_move_finished.connect(on_move_step_finished)
-	Signals.creature_started_teleporting.connect(deactivate)
-	Signals.creature_finished_teleporting.connect(activate)
+	#Signals.creature_started_teleporting.connect(deactivate)
+	#Signals.creature_finished_teleporting.connect(activate)
+	Signals.creature_finished_teleporting.connect(sync_position_with_possessed_creature)
 	Signals.bees_start_flying.connect(handle_bees_start_flying)
 	Signals.bees_stop_flying.connect(handle_bees_stop_flying)
 	Signals.tried_walking_on_bee_area.connect(play_walk_on_bee_area_animation)
+	#Signals.creature_finished_teleporting.connect(activate)
 
 	target_position = position.snapped(Constants.GRID_SIZE / 2)
 	position = target_position
@@ -90,15 +92,15 @@ func handle_input():
 		SceneSwitcher.go_to_settings()
 		return
 	
-	if is_level_finished:
+	if Globals.is_level_finished:
 		if Input.is_action_just_pressed("ui_accept"):
 			SceneSwitcher.go_to_next_level()
-	elif bees_are_flying or is_avoiding:
+	elif bees_are_flying or is_avoiding or Globals.is_level_finished or Globals.is_teleporting:
 		return
 	elif is_active and not is_avoiding:
 		handle_movement_input(Vector2.ZERO)
 		handle_interaction_input()
-	elif is_level_finished:
+	elif Globals.is_level_finished:
 		if Input.is_action_just_pressed("ui_accept"):
 			SceneSwitcher.go_to_next_level()
 
@@ -373,7 +375,7 @@ func activate():
 
 func set_level_finished():
 	deactivate()
-	is_level_finished = true
+	Globals.is_level_finished = true
 
 
 # ------------------------------------------------
@@ -520,7 +522,6 @@ func unpossess():
 		currently_possessed_creature.set_animation_direction()
 		currently_possessed_creature.is_possessed = false
 		currently_possessed_creature.animated_sprite_creature.modulate = Constants.CREATURE_MODULATE_UNPOSSESSED
-		currently_possessed_creature.player = null
 		currently_possessed_creature = null
 
 		audio_uncontrol.play()
@@ -531,7 +532,6 @@ func possess():
 		currently_possessed_creature = hovering_over
 		currently_possessed_creature.is_possessed = true
 		currently_possessed_creature.animated_sprite_creature.modulate = Constants.CREATURE_MODULATE_POSSESSED
-		currently_possessed_creature.player = self
 		currently_possessed_creature.has_not_moved = false
 		currently_possessed_creature.border.visible = true
 
@@ -557,12 +557,26 @@ func set_is_standing_on_teleporter(val: bool):
 		Signals.teleporter_entered.disconnect(on_teleporter_entered)
 
 ## Teleports player and possessed creature when triggered.
-func on_teleporter_entered(teleporter: Teleporter, body: Node2D):
+func on_teleporter_entered(teleporter_manager: TeleporterManager, body: Node2D):
 	if currently_possessed_creature:
-		currently_possessed_creature.start_teleport(teleporter, body)
-		global_position = teleporter.global_position
+		#activate()
+		match global_position:
+			teleporter_manager.flower_1:
+				currently_possessed_creature.start_teleport(teleporter_manager, body)
+				global_position = teleporter_manager.flower_2.global_position
+			teleporter_manager.flower_2:
+				currently_possessed_creature.start_teleport(teleporter_manager, body)
+				global_position = teleporter_manager.flower_1.global_position
+		#currently_possessed_creature.start_teleport(teleporter, body)
+		#global_position = teleporter.global_position
 		target_position = global_position
 
+func sync_position_with_possessed_creature(creature: Creature):
+	if currently_possessed_creature == creature:
+		global_position = currently_possessed_creature.global_position
+		target_position = global_position
+		#pass
+		#activate()
 
 # ------------------------------------------------
 # VISIBILITY

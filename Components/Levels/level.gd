@@ -12,7 +12,10 @@ class_name Level
 
 @onready var undo_timer_init: Timer = $LevelUI/UndoMechanic/UndoTimerInit
 @onready var undo_timer_continious: Timer = $LevelUI/UndoMechanic/UndoTimerContinious
+@onready var undo_timer_buffer: Timer = $LevelUI/UndoMechanic/UndoTimerBuffer
 @onready var undo_sound: AudioStreamPlayer2D = $LevelUI/UndoMechanic/UndoSound
+
+@onready var player: Player = $Player/Player
 
 # Leaves
 @onready var cherry_blossoms: Node2D = $LevelUI/Leaves/CherryBlossoms
@@ -45,6 +48,7 @@ func _ready() -> void:
 	if level_number == SceneSwitcher.current_level:
 		Signals.undo_timer_init_timeout.connect(_on_undo_timer_init_timeout)
 		Signals.undo_timer_continuous_timeout.connect(_on_undo_timer_continious_timeout)
+		Signals.undo_timer_buffer_timeout.connect(_on_undo_timer_buffer_timeout)
 	
 	var level_has_water_tiles = get_tree().get_first_node_in_group(Constants.GROUP_NAME_WATER_TILE) != null
 	
@@ -58,7 +62,7 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	if Input.is_action_pressed("Undo"):
+	if Input.is_action_pressed("Undo") and not Globals.is_level_finished:
 		is_undo_pressed = true
 		undo()
 	elif Input.is_action_just_released("Undo"):
@@ -107,7 +111,13 @@ func _on_undo_timer_continious_timeout() -> void:
 	_set_can_undo(true)
 	undo_timer_continious.start()
 
+func _on_undo_timer_buffer_timeout():
+	Globals.is_undo_timer_buffer_running = false
+
 func undo():
+	Globals.is_undo_timer_buffer_running = true
+	undo_timer_buffer.start()
+	
 	if can_undo and StateSaver.saved_states.size() > 0:
 		undo_sound.stop()
 		undo_sound.play()

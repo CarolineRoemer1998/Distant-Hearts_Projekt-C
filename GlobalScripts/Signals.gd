@@ -10,6 +10,7 @@ signal level_loaded(season: Constants.SEASON)
 # Input Signals
 signal undo_timer_continuous_timeout
 signal undo_timer_init_timeout
+signal undo_timer_buffer_timeout
 
 # Player Signals
 signal state_changed(direction : Vector2, possessed_creature : Creature)
@@ -36,7 +37,7 @@ signal teleporter_entered(target_pos: Vector2, body : Node2D)
 signal teleporter_activated(teleporter: Teleporter)
 signal teleporter_deactivated(teleporter: Teleporter)
 signal creature_started_teleporting
-signal creature_finished_teleporting
+signal creature_finished_teleporting(creature: Creature)
 
 # Bees & Flowers
 signal flower_grows(flower: FlowerSeed, nearest_bee_swarm: BeeSwarm)
