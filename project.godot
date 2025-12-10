@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Distant Hearts - Projekt C"
-run/main_scene="uid://df3vvwkd4nx5"
+run/main_scene="uid://cglpr8l7nytcg"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="uid://cqoxs6b5gg0vg"
 config/windows_native_icon="res://Assets/Presentation/ItchSprites/IcoSprites/DistantHeartsIcon.ico"

@@ -167,6 +167,6 @@ const SPRITE_PATH_STONE_UNDER_WATER_SHEET :=	"res://Assets/Stones/stone-under-wa
 const ANIMATED_SPRITE_CHERRY_BLOSSOM := "res://Components/UI/VFX/CherryBlossomSprite.tscn"
 const ANIMATED_SPRITE_POLLEN := 		"res://Components/UI/VFX/PollenSprite.tscn"
 const ANIMATED_SPRITE_FALL_LEAVES := 	"res://Components/UI/VFX/FallLeaf.tscn"
-const ANIMATED_SPRITE_SNOWFLAKE := 		"res://Components/UI/VFX/CherryBlossomSprite.tscn"
+const ANIMATED_SPRITE_SNOWFLAKE := 		"res://Components/UI/VFX/SnowflakeSprite.tscn"
 
 const trails := ["res://Assets/Particles/dot1.png", "res://Assets/Particles/dot2.png", "res://Assets/Particles/dot3.png"]

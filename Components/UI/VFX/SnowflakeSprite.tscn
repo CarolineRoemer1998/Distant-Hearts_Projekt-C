@@ -1,0 +1,106 @@
+[gd_scene load_steps=6 format=3 uid="uid://d5qvh7na6lod"]
+
+[ext_resource type="Texture2D" uid="uid://bqgquvhl4u4kq" path="res://Assets/Environments/Leaves etc/Snowflakes/Snowflake.png" id="1_c2i5w"]
+[ext_resource type="Script" uid="uid://cfjp62i2kgms5" path="res://Components/UI/VFX/Pollen.gd" id="2_c80rq"]
+
+[sub_resource type="Animation" id="Animation_c2i5w"]
+resource_name = "AppearAndDisappear"
+length = 10.0
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 6, 8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(2.1849911, 2.1849911, 2.1849911, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 6, 8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 3.1415927]
+}
+
+[sub_resource type="Animation" id="Animation_c80rq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, 2)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c80rq"]
+_data = {
+&"AppearAndDisappear": SubResource("Animation_c2i5w"),
+&"RESET": SubResource("Animation_c80rq")
+}
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Snowflake" type="Sprite2D" parent="."]
+texture_filter = 2
+position = Vector2(-1, -1)
+scale = Vector2(2, 2)
+texture = ExtResource("1_c2i5w")
+script = ExtResource("2_c80rq")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Snowflake"]
+libraries = {
+&"": SubResource("AnimationLibrary_c80rq")
+}
+autoplay = "AppearAndDisappear"

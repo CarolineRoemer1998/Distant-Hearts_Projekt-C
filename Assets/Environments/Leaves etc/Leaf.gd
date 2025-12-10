@@ -26,6 +26,8 @@ func _process(delta: float) -> void:
 		set_new_starting_pos(false)
 
 func set_new_starting_pos(is_first: bool):
+	var rnd_scale = rnd.randf_range(0.4,0.8)
+	scale = Vector2(rnd_scale, rnd_scale)
 	speed_scale = 1 + rnd.randf_range(-0.05, 0.05)
 	frame = rnd.randi_range(0,3)
 	falling_speed = init_falling_speed+rnd.randi_range(-25,25)

@@ -28,6 +28,11 @@ func _process(delta: float) -> void:
 		set_new_starting_pos(false)
 
 func set_new_starting_pos(is_first: bool):
+	if name.contains("Snowflake"):
+		var parent = get_parent()
+		if parent is Node2D:
+			var val = rnd.randf_range(0.5, 1.0)
+			parent.scale = Vector2(val, val)
 	animation_player.speed_scale = rnd.randf_range(0.5,1.5)
 	animation_player.seek(rnd.randi_range(0, 5))
 	falling_speed = init_falling_speed+rnd.randi_range(-10,10)

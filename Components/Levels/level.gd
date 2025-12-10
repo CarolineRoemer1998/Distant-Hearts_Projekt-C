@@ -18,7 +18,7 @@ class_name Level
 @onready var player: Player = $Player/Player
 
 # Leaves
-@onready var cherry_blossoms: Node2D = $LevelUI/Leaves/CherryBlossoms
+@onready var cherry_blossoms: Node2D = $LevelUI/Leaves/LeafManager
 
 var groups_to_save := [
 	Constants.GROUP_NAME_PLAYER,
@@ -78,7 +78,7 @@ func _process(_delta: float) -> void:
 		SceneSwitcher.switch_to_level(load_level)
 
 func set_leaves():
-	if season == Constants.SEASON.Spring or season == Constants.SEASON.Summer or season == Constants.SEASON.Fall:
+	if not season == Constants.SEASON.Intro:
 		cherry_blossoms.visible = true
 
 func show_win_screen():

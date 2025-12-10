@@ -27,10 +27,9 @@ metadata/_edit_use_anchors_ = true
 [node name="Leaves" type="Node2D" parent="."]
 z_index = 10
 
-[node name="CherryBlossoms" type="Node2D" parent="Leaves"]
+[node name="LeafManager" type="Node2D" parent="Leaves"]
 visible = false
 script = ExtResource("5_1663l")
-amount_leaves = 50
 
 [node name="AudioWaterFlowPlayer" type="AudioStreamPlayer2D" parent="." groups=["AudioWaterFlowPlayer"]]
 stream = ExtResource("7_73yj2")
