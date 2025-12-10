@@ -140,6 +140,7 @@ animations = [{
 [node name="CherryBlossomSprite" type="AnimatedSprite2D"]
 modulate = Color(1.5790963, 1.0834463, 1.0834463, 1)
 top_level = true
+z_index = 9
 sprite_frames = SubResource("SpriteFrames_xh52p")
 animation = &"blossom-falling"
 autoplay = "blossom-falling"

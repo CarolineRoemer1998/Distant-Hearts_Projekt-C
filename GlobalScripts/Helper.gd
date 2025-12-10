@@ -19,103 +19,98 @@ enum TILE_CONTENT {
 	ice
 }
 
-## Checks if instance (and the possessed creature) is allowed to move
-## in the given direction. Considers walls, doors and stones.
-## On success, sets pushable_stone_in_direction if a stone can be pushed.
-
-## TODO: ÄNDERN ZU: get_tile_states() und dann basierend darauf handeln
-func can_move_in_direction(_position: Vector2, _direction, world : World2D, is_physical_body : bool) -> bool:
-	if _direction == null:
-		return false
-	
-	var new_pos = _position + _direction * Constants.GRID_SIZE
-	
-	
-	#var result_creatures = get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_CREATURE), world)
-	#var result_flowers = get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_FLOWER), world)
-	var result_pushables = get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_PUSHABLE), world)
-	var result_bees = get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_BEES), world)
-	var result_doors = get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_DOOR), world)
-	#var result_buttons = get_collision_on_area(new_pos, (1 << Constants.LAYER_BIT_BUTTONS), world)
-	var result_wall_outside = get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_LEVEL_WALL), world)
-	var result_wall_inside = get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_WALL_AND_PLAYER), world)
-	var result_water = get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_WATER), world)
-	var result_water_platform = get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_WATER_PLATFORM), world)
-	var result_lily_pads = get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_LILY_PAD), world)
-	
+func get_tile_states(pos: Vector2, world: World2D, is_physical_body: bool):
 	var tile_states = {}
+	
+	var result_pushables = get_collision_on_tile(pos, (1 << Constants.LAYER_BIT_PUSHABLE), world)
+	var result_bees = get_collision_on_tile(pos, (1 << Constants.LAYER_BIT_BEES), world)
+	var result_doors = get_collision_on_tile(pos, (1 << Constants.LAYER_BIT_DOOR), world)
+	var result_wall_outside = get_collision_on_tile(pos, (1 << Constants.LAYER_BIT_LEVEL_WALL), world)
+	var result_wall_inside = get_collision_on_tile(pos, (1 << Constants.LAYER_BIT_WALL_AND_PLAYER), world)
+	var result_water = get_collision_on_tile(pos, (1 << Constants.LAYER_BIT_WATER), world)
+	var result_water_platform = get_collision_on_tile(pos, (1 << Constants.LAYER_BIT_WATER_PLATFORM), world)
+	var result_lily_pads = get_collision_on_tile(pos, (1 << Constants.LAYER_BIT_LILY_PAD), world)
 	
 	if not result_wall_outside.is_empty():
 		tile_states[TILE_CONTENT.wall] = result_wall_outside
 		
 	if is_physical_body:
-		#if not result_creatures.is_empty(): 
-			#tile_states[TILE_CONTENT.creature] = get_tile_states(result_creatures)
-		#if not result_flowers.is_empty(): 
-			#tile_states[TILE_CONTENT.flower] = get_tile_states(result_flowers)
-		#if not result_buttons.is_empty(): 
-			#tile_states[TILE_CONTENT.button] = get_tile_states(result_buttons)
-			
 		if not result_bees.is_empty(): 
-			tile_states[TILE_CONTENT.bees] = get_tile_states(result_bees)
+			tile_states[TILE_CONTENT.bees] = get_tile_contents_of_collider(result_bees)
 		if not result_doors.is_empty(): 
-			tile_states[TILE_CONTENT.door] = get_tile_states(result_doors)
+			tile_states[TILE_CONTENT.door] = get_tile_contents_of_collider(result_doors)
 		if not result_wall_inside.is_empty(): 
-			tile_states[TILE_CONTENT.wall] = get_tile_states(result_wall_inside)
+			tile_states[TILE_CONTENT.wall] = get_tile_contents_of_collider(result_wall_inside)
 		if not result_water.is_empty(): 
-			tile_states[TILE_CONTENT.water] = get_tile_states(result_water)
+			tile_states[TILE_CONTENT.water] = get_tile_contents_of_collider(result_water)
 		if not result_lily_pads.is_empty(): 
-			tile_states[TILE_CONTENT.lilypad] = get_tile_states(result_lily_pads)
+			tile_states[TILE_CONTENT.lilypad] = get_tile_contents_of_collider(result_lily_pads)
 		if not result_water_platform.is_empty(): 
-			tile_states[TILE_CONTENT.stone_platform] = get_tile_states(result_water_platform)
+			tile_states[TILE_CONTENT.stone_platform] = get_tile_contents_of_collider(result_water_platform)
 		if not result_pushables.is_empty(): 
-			tile_states[TILE_CONTENT.pushable] = get_tile_states(result_pushables)
+			tile_states[TILE_CONTENT.pushable] = get_tile_contents_of_collider(result_pushables)
+	
+	return tile_states
+
+## Checks if instance (and the possessed creature) is allowed to move
+## in the given direction. Considers walls, doors and stones.
+## On success, sets pushable_stone_in_direction if a stone can be pushed.
+
+## TODO: ÄNDERN ZU: get_tile_states() und dann basierend darauf handeln
+func can_move_in_direction(_position: Vector2, _direction, world : World2D, is_physical_body : bool, player: Player) -> bool:
+	if _direction == null:
+		return false
+	
+	var new_pos = _position + _direction * Constants.GRID_SIZE
+	var tile_states = get_tile_states(new_pos, world, is_physical_body)
+	var can_move_in_dir : bool = false
 	
 	# State: NICHTS
 	if tile_states.is_empty():
 		tile_states[TILE_CONTENT.empty] = null
-		return true
+		can_move_in_dir = true
 	
 	# State: WAND
-	if tile_states.has(TILE_CONTENT.wall):
-		return false
+	elif tile_states.has(TILE_CONTENT.wall):
+		can_move_in_dir = false
 	
 	# State: BIENEN
-	if tile_states.has(TILE_CONTENT.bees):
-		#StateSaver.get_creature_pos_in_state_from_back(0, body.currently_possessed_creature)
-		Signals.tried_walking_on_bee_area.emit(result_bees[0].collider)
-		return false
+	elif tile_states.has(TILE_CONTENT.bees):
+		var result_bees = get_collision_on_tile(new_pos, (1 << Constants.LAYER_BIT_BEES), world)[0].collider
+		Signals.tried_walking_on_bee_area.emit(result_bees)
+		can_move_in_dir = false
 	
 	# State: PUSHABLE
-	if tile_states.has(TILE_CONTENT.pushable):
+	elif tile_states.has(TILE_CONTENT.pushable):
 		if tile_states[TILE_CONTENT.pushable][0].get_can_be_pushed(new_pos, _direction):
 			tile_states[TILE_CONTENT.pushable][0].push() # TODO: Später push() erst nachdem diese funktion aufgerufen wurde
-			return true
+			can_move_in_dir = true
 		else:
-			return false
+			can_move_in_dir = false
 	
 	# State: WASSER
-	if tile_states.has(TILE_CONTENT.water):
+	elif tile_states.has(TILE_CONTENT.water):
 		# State: LILY PAD
 		if tile_states.has(TILE_CONTENT.lilypad) or tile_states.has(TILE_CONTENT.stone_platform):
-			return true
+			can_move_in_dir = true
 		# State: KEIN LILY PAD
 		else:
-			return false
+			can_move_in_dir = false
 	
 	# State: TÜR
-	if tile_states.has(TILE_CONTENT.door):
+	elif tile_states.has(TILE_CONTENT.door):
 		# State: TÜR GESCHLOSSEN
 		if tile_states[TILE_CONTENT.door][0].door_is_closed:
-			return false
+			can_move_in_dir = false
 		# State: TÜR OFFEN
 		else:
-			return true
+			can_move_in_dir = true
 	
-	
-	return false
+	if not can_move_in_dir and player.currently_possessed_creature != null:
+		player.currently_possessed_creature.play_failed_step_in_direction_animation()
+	return can_move_in_dir
 
-func get_tile_states(arr: Array):
+func get_tile_contents_of_collider(arr: Array):
 	var result = []
 	for i in arr:
 		result.append(i.collider)

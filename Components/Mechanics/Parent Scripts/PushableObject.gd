@@ -14,7 +14,7 @@ var is_sliding := false
 var pending_target_position: Vector2 = Vector2.ZERO
 var pending_direction: Vector2 = Vector2.ZERO
 
-var layer_mask_obstacles := (1 << Constants.LAYER_BIT_PUSHABLE) | (1 << Constants.LAYER_BIT_DOOR) | (1 << Constants.LAYER_BIT_WALL_AND_PLAYER) | (1 << Constants.LAYER_BIT_CREATURE) | (1 << Constants.LAYER_BIT_LEVEL_WALL)# | (1 << Constants.LAYER_BIT_SOIL)# | (1 << Constants.LAYER_BIT_LILY_PAD)
+var layer_mask_obstacles := (1 << Constants.LAYER_BIT_PUSHABLE) | (1 << Constants.LAYER_BIT_DOOR) | (1 << Constants.LAYER_BIT_WALL_AND_PLAYER) | (1 << Constants.LAYER_BIT_CREATURE) | (1 << Constants.LAYER_BIT_LEVEL_WALL) | (1 << Constants.LAYER_BIT_TELEPORTER)
 
 ## Initializes the stone when the scene starts:
 ## adds it to the stone group, enables collision and snaps to the grid.
@@ -55,6 +55,8 @@ func get_can_be_pushed(new_pos : Vector2, direction : Vector2) -> bool:
 		world
 	)
 	
+	print(push_collision)
+	
 	var stone_on_next_field = null
 	
 	# If there is a door behind pushable, check if it is open
@@ -77,6 +79,11 @@ func get_can_be_pushed(new_pos : Vector2, direction : Vector2) -> bool:
 				stone_on_next_field = hit.collider
 				hit.collider.push()
 	
+	for hit in push_collision:
+		if hit.collider is Teleporter:
+			var teleporter : Teleporter = hit.collider
+			if not teleporter.is_activated or not teleporter.other_teleporter.is_activated:
+				push_collision.erase(hit)
 	
 	# If nothing is behind the stone, it can be pushed
 	if push_collision.is_empty() or stone_on_next_field:

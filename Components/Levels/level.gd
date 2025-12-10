@@ -55,7 +55,7 @@ func _ready() -> void:
 	if level_has_water_tiles:
 		var audio_player = get_tree().get_first_node_in_group("AudioWaterFlowPlayer") as AudioStreamPlayer2D
 		audio_player.play()
-		
+	
 	
 	Signals.state_changed.connect(save_level_state)
 	Signals.SHOW_WIN_SCREEN.connect(show_win_screen)
@@ -78,7 +78,7 @@ func _process(_delta: float) -> void:
 		SceneSwitcher.switch_to_level(load_level)
 
 func set_leaves():
-	if season == Constants.SEASON.Spring:
+	if season == Constants.SEASON.Spring or season == Constants.SEASON.Summer or season == Constants.SEASON.Fall:
 		cherry_blossoms.visible = true
 
 func show_win_screen():

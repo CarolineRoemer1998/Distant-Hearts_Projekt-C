@@ -270,16 +270,16 @@ func _on_area_2d_self_body_entered(body: Node2D) -> void:
 ## Bee Detection / Avoidance
 ## -----------------------------------------------------------
 
-func play_walk_on_bee_area_animation():
+func play_failed_step_in_direction_animation():
 	match current_direction:
 		Vector2.UP:
-			animation_player.play("bee_step_up")
+			animation_player.play("failed_step_up")
 		Vector2.RIGHT:
-			animation_player.play("bee_step_right")
+			animation_player.play("failed_step_right")
 		Vector2.DOWN:
-			animation_player.play("bee_step_down")
+			animation_player.play("failed_step_down")
 		Vector2.LEFT:
-			animation_player.play("bee_step_left")
+			animation_player.play("failed_step_left")
 
 func walk_to_free_tile_if_bees_nearby():
 	if is_possessed or Helper.get_collision_on_tile(global_position, (1 << Constants.LAYER_BIT_BEES), get_world_2d()).is_empty():

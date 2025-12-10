@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://d1awc8cupcs2q"]
+[gd_scene load_steps=9 format=4 uid="uid://d1awc8cupcs2q"]
 
 [ext_resource type="Script" uid="uid://ddiwo6yyhfkuc" path="res://Components/Levels/level.gd" id="1_o5o66"]
 [ext_resource type="PackedScene" uid="uid://lrodaawkgfob" path="res://Components/UI/VFX/undo_particles.tscn" id="2_xkiiw"]
@@ -7,17 +7,21 @@
 [ext_resource type="PackedScene" uid="uid://be6k5yjppap8y" path="res://Components/Creatures/creature_yellow.tscn" id="5_5ll6x"]
 [ext_resource type="PackedScene" uid="uid://g3u7bc1jo6gj" path="res://Components/Player/player.tscn" id="6_iu8cn"]
 [ext_resource type="PackedScene" uid="uid://dtrjxhb3ayo1c" path="res://Components/Levels/LevelUI.tscn" id="7_64kpo"]
-[ext_resource type="PackedScene" uid="uid://c02bi0sc4lswo" path="res://Components/Mechanics/Spring Mechanics/TeleporterManager.tscn" id="8_5nith"]
-[ext_resource type="PackedScene" uid="uid://bt4pnhd7cx7xc" path="res://Components/Mechanics/Buttons/button.tscn" id="9_nnn2i"]
+[ext_resource type="Script" uid="uid://cliuml78fyqi" path="res://Components/Levels/4 - Fall/Wind.gd" id="10_nnn2i"]
 
 [node name="LevelFall1" type="Node2D"]
 script = ExtResource("1_o5o66")
 season = 3
 undo_particles = ExtResource("2_xkiiw")
-final_level = null
 level_number = 18
 
 [node name="BackgroundSpring" parent="." instance=ExtResource("3_5nith")]
+
+[node name="floor" parent="BackgroundSpring" index="0"]
+tile_map_data = PackedByteArray("AAAAAAAACQAAAAAAAAAAAAEACQAAAAEAAAAAAAIACQAAAAIAAAAAAAMACQAAAAMAAAAAAAQACQAAAAQAAAABAAAACQABAAAAAAABAAEACQABAAEAAAABAAIACQABAAIAAAABAAMACQABAAMAAAABAAQACQABAAQAAAACAAAACQACAAAAAAACAAEACQACAAEAAAACAAIACQACAAIAAAACAAMACQACAAMAAAACAAQACQACAAQAAAADAAAACQADAAAAAAADAAEACQADAAEAAAADAAIACQADAAIAAAADAAMACQADAAMAAAADAAQACQADAAQAAAAEAAAACQAEAAAAAAAEAAEACQAEAAEAAAAEAAIACQAEAAIAAAAEAAMACQAEAAMAAAAEAAQACQAEAAQAAAAFAAAACQAAAAAAAAAFAAEACQAAAAEAAAAFAAIACQAAAAIAAAAFAAMACQAAAAMAAAAFAAQACQAAAAQAAAAGAAAACQABAAAAAAAGAAEACQABAAEAAAAGAAIACQABAAIAAAAGAAMACQABAAMAAAAGAAQACQABAAQAAAAHAAAACQACAAAAAAAHAAEACQACAAEAAAAHAAIACQACAAIAAAAHAAMACQACAAMAAAAHAAQACQACAAQAAAAIAAAACQADAAAAAAAIAAEACQADAAEAAAAIAAIACQADAAIAAAAIAAMACQADAAMAAAAIAAQACQADAAQAAAAJAAAACQAEAAAAAAAJAAEACQAEAAEAAAAJAAIACQAEAAIAAAAJAAMACQAEAAMAAAAJAAQACQAEAAQAAAAAAAUACQAAAAAAAAAAAAYACQAAAAEAAAAAAAcACQAAAAIAAAAAAAgACQAAAAMAAAAAAAkACQAAAAQAAAABAAUACQABAAAAAAABAAYACQABAAEAAAABAAcACQABAAIAAAABAAgACQABAAMAAAABAAkACQABAAQAAAACAAUACQACAAAAAAACAAcACQACAAIAAAACAAgACQACAAMAAAACAAkACQACAAQAAAADAAUACQADAAAAAAADAAgACQADAAMAAAADAAkACQADAAQAAAAEAAUACQAEAAAAAAAEAAgACQAEAAMAAAAEAAkACQAEAAQAAAAFAAUACQAAAAAAAAAFAAYACQAAAAEAAAAFAAcACQAAAAIAAAAFAAgACQAAAAMAAAAFAAkACQAAAAQAAAAGAAUACQABAAAAAAAGAAYACQABAAEAAAAGAAcACQABAAIAAAAGAAgACQABAAMAAAAGAAkACQABAAQAAAAHAAUACQACAAAAAAAHAAYACQACAAEAAAAHAAcACQACAAIAAAAHAAgACQACAAMAAAAHAAkACQACAAQAAAAIAAUACQADAAAAAAAIAAYACQADAAEAAAAIAAcACQADAAIAAAAIAAgACQADAAMAAAAIAAkACQADAAQAAAAJAAUACQAEAAAAAAAJAAYACQAEAAEAAAAJAAcACQAEAAIAAAAJAAgACQAEAAMAAAAJAAkACQAEAAQAAAAAAAoACQAAAAAAAAABAAoACQABAAAAAAACAAoACQACAAAAAAADAAoACQADAAAAAAAEAAoACQAEAAAAAAAFAAoACQAAAAAAAAAGAAoACQABAAAAAAAHAAoACQACAAAAAAAIAAoACQADAAAAAAAJAAoACQAEAAAAAAAKAAoACQAAAAAAAAAKAAAACQAAAAAAAAAKAAEACQAAAAEAAAAKAAIACQAAAAIAAAAKAAMACQAAAAMAAAAKAAQACQAAAAQAAAAKAAUACQAAAAAAAAAKAAYACQAAAAEAAAAKAAcACQAAAAIAAAAKAAgACQAAAAMAAAAKAAkACQAAAAQAAAACAAYACQACAAEAAAADAAYACQADAAEAAAADAAcACQADAAIAAAAEAAYACQAEAAEAAAAEAAcACQAEAAIAAAA=")
+
+[node name="walls" parent="BackgroundSpring" index="1"]
+tile_map_data = PackedByteArray("AAAAAAAACAAAAAAAAAAKAAAACAAEAAAAAAAKAAoACAAEAAQAAAAAAAoACAAAAAQAAAAAAAEACAAAAAMAAAAAAAMACAAAAAMAAAAAAAUACAAAAAMAAAAAAAcACAAAAAMAAAAAAAkACAAAAAMAAAAKAAEACAAEAAEAAAAKAAMACAAEAAEAAAAKAAUACAAEAAEAAAAKAAcACAAEAAEAAAAKAAkACAAEAAEAAAAKAAIACAAAAAMAAAAKAAQACAAAAAMAAAAKAAYACAAAAAMAAAAKAAgACAAAAAMAAAAAAAgACAAEAAEAAAAAAAYACAAEAAEAAAAAAAQACAAEAAEAAAAAAAIACAAEAAEAAAABAAAACAABAAQAAAADAAAACAABAAQAAAAFAAAACAABAAQAAAAHAAAACAABAAQAAAAJAAAACAABAAQAAAACAAAACAABAAQAAAAEAAAACAABAAQAAAAGAAAACAABAAQAAAAIAAAACAABAAQAAAABAAoACAABAAQAAAADAAoACAABAAQAAAAFAAoACAABAAQAAAAHAAoACAABAAQAAAAJAAoACAABAAQAAAACAAoACAABAAQAAAAEAAoACAABAAQAAAAGAAoACAABAAQAAAAIAAoACAABAAQAAAA=")
 
 [node name="LevelWall" parent="BackgroundSpring" index="2"]
 visible = true
@@ -37,31 +41,13 @@ position = Vector2(352, 224)
 
 [node name="LevelUI" parent="." instance=ExtResource("7_64kpo")]
 
-[node name="Teleporters" type="Node" parent="."]
+[node name="Wind" type="Node2D" parent="."]
+script = ExtResource("10_nnn2i")
 
-[node name="TeleporterManager" parent="Teleporters" instance=ExtResource("8_5nith")]
+[node name="TimerBlowWindInterval" type="Timer" parent="Wind"]
 
-[node name="Flower1" parent="Teleporters/TeleporterManager" index="0"]
-position = Vector2(224, 288)
-buttons = Array[NodePath]([NodePath("../../../Buttons/Button")])
-
-[node name="Flower2" parent="Teleporters/TeleporterManager" index="1"]
-position = Vector2(480, 288)
-buttons = Array[NodePath]([NodePath("../../../Buttons/Button2")])
-
-[node name="Buttons" type="Node" parent="."]
-
-[node name="Button" parent="Buttons" instance=ExtResource("9_nnn2i")]
-position = Vector2(224, 352)
-type = 0
-
-[node name="Button2" parent="Buttons" instance=ExtResource("9_nnn2i")]
-position = Vector2(480, 352)
-type = 0
+[connection signal="timeout" from="Wind/TimerBlowWindInterval" to="Wind" method="_on_timer_blow_wind_interval_timeout"]
 
 [editable path="BackgroundSpring"]
 [editable path="LevelUI"]
 [editable path="LevelUI/UndoMechanic"]
-[editable path="Teleporters/TeleporterManager"]
-[editable path="Teleporters/TeleporterManager/Flower1"]
-[editable path="Teleporters/TeleporterManager/Flower2"]

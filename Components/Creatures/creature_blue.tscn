@@ -664,7 +664,7 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_7rcwi"]
-resource_name = "bee_step_down"
+resource_name = "failed_step_down"
 length = 0.1563
 step = 0.0313
 tracks/0/type = "value"
@@ -677,11 +677,11 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.0625, 0.15625),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0, -5), Vector2(0, 25), Vector2(0, -5)]
+"values": [Vector2(0, -5), Vector2(0, 15), Vector2(0, -5)]
 }
 
 [sub_resource type="Animation" id="Animation_bl4fn"]
-resource_name = "bee_step_left"
+resource_name = "failed_step_left"
 length = 0.1563
 step = 0.0313
 tracks/0/type = "value"
@@ -694,11 +694,11 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.0625, 0.15625),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0, -5), Vector2(-30, -5), Vector2(0, -5)]
+"values": [Vector2(0, -5), Vector2(-20, -5), Vector2(0, -5)]
 }
 
 [sub_resource type="Animation" id="Animation_qddge"]
-resource_name = "bee_step_right"
+resource_name = "failed_step_right"
 length = 0.1563
 step = 0.0313
 tracks/0/type = "value"
@@ -711,11 +711,11 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.0625, 0.15625),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0, -5), Vector2(30, -5), Vector2(0, -5)]
+"values": [Vector2(0, -5), Vector2(20, -5), Vector2(0, -5)]
 }
 
 [sub_resource type="Animation" id="Animation_cule2"]
-resource_name = "bee_step_up"
+resource_name = "failed_step_up"
 length = 0.1563
 step = 0.0313
 tracks/0/type = "value"
@@ -728,7 +728,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.0625, 0.15625),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0, -5), Vector2(0, -35), Vector2(0, -5)]
+"values": [Vector2(0, -5), Vector2(0, -25), Vector2(0, -5)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ii28y"]
@@ -737,10 +737,10 @@ _data = {
 &"RESET": SubResource("Animation_kiahe"),
 &"Shrink": SubResource("Animation_te1dm"),
 &"Shrink_Teleport": SubResource("Animation_gbrl0"),
-&"bee_step_down": SubResource("Animation_7rcwi"),
-&"bee_step_left": SubResource("Animation_bl4fn"),
-&"bee_step_right": SubResource("Animation_qddge"),
-&"bee_step_up": SubResource("Animation_cule2")
+&"failed_step_down": SubResource("Animation_7rcwi"),
+&"failed_step_left": SubResource("Animation_bl4fn"),
+&"failed_step_right": SubResource("Animation_qddge"),
+&"failed_step_up": SubResource("Animation_cule2")
 }
 
 [node name="CreatureBlue" type="CharacterBody2D" groups=["creature"]]

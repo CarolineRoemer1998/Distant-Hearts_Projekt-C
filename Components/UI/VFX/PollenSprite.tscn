@@ -1,0 +1,80 @@
+[gd_scene load_steps=6 format=3 uid="uid://endamrnfeyrr"]
+
+[ext_resource type="Texture2D" uid="uid://c0nwocu44hv3o" path="res://Assets/Environments/Leaves etc/Pollen/Pollen.png" id="1_en4jx"]
+[ext_resource type="Script" uid="uid://cfjp62i2kgms5" path="res://Components/UI/VFX/Pollen.gd" id="2_en4jx"]
+
+[sub_resource type="Animation" id="Animation_en4jx"]
+resource_name = "AppearAndDisappear"
+length = 10.0
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 4.25, 5, 5.75, 8, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1.0964829, 1.0137144, 0.7144743, 1), Color(1.199976, 1.1097683, 0.7836332, 1), Color(1.3167266, 1.2181271, 0.8616514, 0), Color(1.3167266, 1.2181271, 0.8616514, 0), Color(1.3167266, 1.2181271, 0.8616514, 0), Color(1.199976, 1.1097683, 0.7836332, 1), Color(1.0964829, 1.0137144, 0.7144743, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5, 10),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1e-05, 1e-05), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_4a5gu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1.3167266, 1.2181271, 0.8616514, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eckv8"]
+_data = {
+&"AppearAndDisappear": SubResource("Animation_en4jx"),
+&"RESET": SubResource("Animation_4a5gu")
+}
+
+[node name="Pollen" type="Sprite2D"]
+modulate = Color(1.3167266, 1.2181271, 0.8616514, 1)
+z_index = 9
+texture_filter = 2
+texture = ExtResource("1_en4jx")
+script = ExtResource("2_en4jx")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_eckv8")
+}
+autoplay = "AppearAndDisappear"

@@ -1,0 +1,118 @@
+[gd_scene load_steps=18 format=3 uid="uid://dtnvcbe6xjnqe"]
+
+[ext_resource type="Texture2D" uid="uid://b4pleq0dcp6tc" path="res://Assets/Environments/Leaves etc/Fall Leaves/FallLeaf-SpriteSheet.png" id="1_fr00s"]
+[ext_resource type="Script" uid="uid://b84374eipjk4b" path="res://FallLeaf.gd" id="2_37qvt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k5xnf"]
+atlas = ExtResource("1_fr00s")
+region = Rect2(56, 0, 56, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p7il6"]
+atlas = ExtResource("1_fr00s")
+region = Rect2(112, 0, 56, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_abpi2"]
+atlas = ExtResource("1_fr00s")
+region = Rect2(168, 0, 56, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w353c"]
+atlas = ExtResource("1_fr00s")
+region = Rect2(224, 0, 56, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4yp8e"]
+atlas = ExtResource("1_fr00s")
+region = Rect2(280, 0, 56, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mvwwh"]
+atlas = ExtResource("1_fr00s")
+region = Rect2(336, 0, 56, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jcxhk"]
+atlas = ExtResource("1_fr00s")
+region = Rect2(392, 0, 56, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mkso2"]
+atlas = ExtResource("1_fr00s")
+region = Rect2(392, 0, 56, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tkt28"]
+atlas = ExtResource("1_fr00s")
+region = Rect2(336, 0, 56, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nh55p"]
+atlas = ExtResource("1_fr00s")
+region = Rect2(280, 0, 56, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j0t53"]
+atlas = ExtResource("1_fr00s")
+region = Rect2(224, 0, 56, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i66qo"]
+atlas = ExtResource("1_fr00s")
+region = Rect2(168, 0, 56, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k13qh"]
+atlas = ExtResource("1_fr00s")
+region = Rect2(112, 0, 56, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oxecy"]
+atlas = ExtResource("1_fr00s")
+region = Rect2(56, 0, 56, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_maii3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k5xnf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p7il6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_abpi2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w353c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4yp8e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mvwwh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jcxhk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mkso2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tkt28")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nh55p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j0t53")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i66qo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k13qh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oxecy")
+}],
+"loop": true,
+"name": &"leaf-falling",
+"speed": 8.0
+}]
+
+[node name="FallLeaf" type="AnimatedSprite2D"]
+modulate = Color(1, 0.8, 0.5019608, 1)
+sprite_frames = SubResource("SpriteFrames_maii3")
+animation = &"leaf-falling"
+autoplay = "leaf-falling"
+frame_progress = 0.954808
+script = ExtResource("2_37qvt")

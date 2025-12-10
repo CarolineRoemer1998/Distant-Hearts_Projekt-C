@@ -55,6 +55,7 @@ const LAYER_BIT_BEE_AREA			:= 12
 const LAYER_BIT_WATER				:= 13
 const LAYER_BIT_WATER_PLATFORM		:= 14
 const LAYER_BIT_LILY_PAD			:= 15
+const LAYER_BIT_PILE_OF_LEAVES		:= 16
 
 const LAYER_MASK_BEES				:= (1 << Constants.LAYER_BIT_BEES)
 const LAYER_MASK_BLOCKING_OBJECTS 	:= (1 << Constants.LAYER_BIT_PUSHABLE) | (1 << Constants.LAYER_BIT_DOOR) | (1 << Constants.LAYER_BIT_WALL_AND_PLAYER) | (1 << Constants.LAYER_BIT_CREATURE) | (1 << Constants.LAYER_BIT_LEVEL_WALL) | (1 << Constants.LAYER_BIT_SOIL)
@@ -164,5 +165,8 @@ const SPRITE_PATH_TOGGLE_BUTTON_PRESSED := 		"res://Assets/Buttons/toggle-button
 const SPRITE_PATH_STONE_UNDER_WATER_SHEET :=	"res://Assets/Stones/stone-under-water.png"
 
 const ANIMATED_SPRITE_CHERRY_BLOSSOM := "res://Components/UI/VFX/CherryBlossomSprite.tscn"
+const ANIMATED_SPRITE_POLLEN := 		"res://Components/UI/VFX/PollenSprite.tscn"
+const ANIMATED_SPRITE_FALL_LEAVES := 	"res://Components/UI/VFX/FallLeaf.tscn"
+const ANIMATED_SPRITE_SNOWFLAKE := 		"res://Components/UI/VFX/CherryBlossomSprite.tscn"
 
 const trails := ["res://Assets/Particles/dot1.png", "res://Assets/Particles/dot2.png", "res://Assets/Particles/dot3.png"]

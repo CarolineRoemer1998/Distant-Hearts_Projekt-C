@@ -1,4 +1,4 @@
-[gd_scene load_steps=118 format=4 uid="uid://e4kxxq7u4h5w"]
+[gd_scene load_steps=119 format=4 uid="uid://e4kxxq7u4h5w"]
 
 [ext_resource type="Script" uid="uid://ddiwo6yyhfkuc" path="res://Components/Levels/level.gd" id="1_mjxvy"]
 [ext_resource type="PackedScene" uid="uid://lrodaawkgfob" path="res://Components/UI/VFX/undo_particles.tscn" id="2_oe8fo"]
@@ -9,11 +9,12 @@
 [ext_resource type="Texture2D" uid="uid://dwq2gfl7kbx1k" path="res://Assets/Environments/Wall-under-water-right-corner.png" id="7_0aiu3"]
 [ext_resource type="PackedScene" uid="uid://n6aitd6xhp4u" path="res://Components/Mechanics/Summer/Water/water_tile.tscn" id="8_rf0vv"]
 [ext_resource type="PackedScene" uid="uid://cuqhqdo1widk1" path="res://Components/Levels/Backgrounds/bg-base-summer.tscn" id="9_8jdpe"]
-[ext_resource type="PackedScene" uid="uid://bwy1o5riueuq0" path="res://Components/Mechanics/Summer/LilyPad/lily_pad.tscn" id="10_hwgrf"]
+[ext_resource type="TileSet" uid="uid://b27d63bpsa4u5" path="res://Components/Levels/bg-tileset.tres" id="10_oe8fo"]
 [ext_resource type="PackedScene" uid="uid://ccncnjkm8w8ta" path="res://Components/Creatures/creature_blue.tscn" id="11_figsl"]
 [ext_resource type="PackedScene" uid="uid://be6k5yjppap8y" path="res://Components/Creatures/creature_yellow.tscn" id="12_u37vv"]
 [ext_resource type="PackedScene" uid="uid://g3u7bc1jo6gj" path="res://Components/Player/player.tscn" id="13_yt4ye"]
 [ext_resource type="PackedScene" uid="uid://dtrjxhb3ayo1c" path="res://Components/Levels/LevelUI.tscn" id="14_omoit"]
+[ext_resource type="PackedScene" uid="uid://oy61arlldjo3" path="res://Components/Mechanics/Stones/Stone.tscn" id="15_8gsli"]
 
 [sub_resource type="Environment" id="Environment_7ogri"]
 background_mode = 3
@@ -751,7 +752,7 @@ environment = SubResource("Environment_7ogri")
 [node name="FloorWater" type="TileMapLayer" parent="WaterElements"]
 modulate = Color(1.1, 1.1, 1.1, 1)
 scale = Vector2(2, 2)
-tile_map_data = PackedByteArray("AAABAAYAAQAFAAMAAAACAAYAAQAFAAMAAAADAAYAAQAFAAMAAAAEAAYAAQAFAAMAAAAFAAYAAQAFAAMAAAAGAAYAAQAFAAMAAAAHAAYAAQAFAAMAAAAIAAYAAQAFAAMAAAAJAAYAAQAFAAMAAAABAAcAAQAFAAMAAAACAAcAAQAFAAMAAAADAAcAAQAFAAMAAAAEAAcAAQAFAAMAAAAFAAcAAQAFAAMAAAAGAAcAAQAFAAMAAAAHAAcAAQAFAAMAAAAIAAcAAQAFAAMAAAAJAAcAAQAFAAMAAAABAAQAAQAGAAEAAAACAAQAAQAGAAEAAAADAAQAAQAGAAEAAAAEAAQAAQAGAAEAAAAFAAQAAQAGAAEAAAAGAAQAAQAGAAEAAAAHAAQAAQAGAAEAAAAIAAQAAQAGAAEAAAAJAAQAAQAGAAEAAAAGAAkAAQAGAAEAAAAHAAkAAQAGAAEAAAAIAAkAAQAGAAEAAAA=")
+tile_map_data = PackedByteArray("AAABAAYAAQAFAAMAAAACAAYAAQAFAAMAAAADAAYAAQAFAAMAAAAEAAYAAQAFAAMAAAAFAAYAAQAFAAMAAAAGAAYAAQAFAAMAAAAHAAYAAQAFAAMAAAAIAAYAAQAFAAMAAAAJAAYAAQAFAAMAAAABAAcAAQAFAAMAAAACAAcAAQAFAAMAAAADAAcAAQAFAAMAAAAEAAcAAQAFAAMAAAAFAAcAAQAFAAMAAAAGAAcAAQAFAAMAAAAHAAcAAQAFAAMAAAAIAAcAAQAFAAMAAAAJAAcAAQAFAAMAAAABAAQAAQAGAAEAAAACAAQAAQAGAAEAAAADAAQAAQAGAAEAAAAEAAQAAQAGAAEAAAAFAAQAAQAGAAEAAAAGAAQAAQAGAAEAAAAHAAQAAQAGAAEAAAAIAAQAAQAGAAEAAAAJAAQAAQAGAAEAAAAGAAkAAQAGAAEAAAAEAAkAAQAGAAEAAAAFAAkAAQAGAAEAAAA=")
 tile_set = ExtResource("3_8gsli")
 
 [node name="Water" parent="WaterElements" instance=ExtResource("4_w4gsh")]
@@ -783,7 +784,7 @@ sprite_frames = SubResource("SpriteFrames_krfp2")
 autoplay = "default"
 
 [node name="WallOverWater11" type="AnimatedSprite2D" parent="WaterElements"]
-position = Vector2(416, 608)
+position = Vector2(288, 608)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_36kvf")
 autoplay = "default"
@@ -791,13 +792,13 @@ frame = 30
 frame_progress = 0.20031339
 
 [node name="WallOverWater12" type="AnimatedSprite2D" parent="WaterElements"]
-position = Vector2(480, 608)
+position = Vector2(352, 608)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_krfp2")
 autoplay = "default"
 
 [node name="WallOverWater10" type="AnimatedSprite2D" parent="WaterElements"]
-position = Vector2(544, 608)
+position = Vector2(416, 608)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_ewy0p")
 autoplay = "default"
@@ -890,10 +891,10 @@ position = Vector2(96, 352)
 position = Vector2(608, 416)
 
 [node name="WaterTile20" parent="WaterElements" instance=ExtResource("8_rf0vv")]
-position = Vector2(352, 416)
+position = Vector2(544, 416)
 
 [node name="WaterTile21" parent="WaterElements" instance=ExtResource("8_rf0vv")]
-position = Vector2(288, 416)
+position = Vector2(480, 416)
 
 [node name="WaterTile25" parent="WaterElements" instance=ExtResource("8_rf0vv")]
 position = Vector2(224, 416)
@@ -908,10 +909,10 @@ position = Vector2(96, 416)
 position = Vector2(608, 480)
 
 [node name="WaterTile29" parent="WaterElements" instance=ExtResource("8_rf0vv")]
-position = Vector2(352, 480)
+position = Vector2(544, 480)
 
 [node name="WaterTile30" parent="WaterElements" instance=ExtResource("8_rf0vv")]
-position = Vector2(288, 480)
+position = Vector2(480, 480)
 
 [node name="WaterTile34" parent="WaterElements" instance=ExtResource("8_rf0vv")]
 position = Vector2(224, 480)
@@ -926,10 +927,10 @@ position = Vector2(96, 480)
 position = Vector2(608, 544)
 
 [node name="WaterTile38" parent="WaterElements" instance=ExtResource("8_rf0vv")]
-position = Vector2(352, 544)
+position = Vector2(544, 544)
 
 [node name="WaterTile39" parent="WaterElements" instance=ExtResource("8_rf0vv")]
-position = Vector2(288, 544)
+position = Vector2(480, 544)
 
 [node name="WaterTile43" parent="WaterElements" instance=ExtResource("8_rf0vv")]
 position = Vector2(224, 544)
@@ -970,52 +971,60 @@ position = Vector2(96, 608)
 [node name="BackgroundSpring" parent="." instance=ExtResource("9_8jdpe")]
 
 [node name="floor" parent="BackgroundSpring" index="0"]
-tile_map_data = PackedByteArray("AAAAAAAAAQAAAAAAAAAAAAEAAQAAAAEAAAAAAAIAAQAAAAIAAAAAAAMAAQAFAAAAAAAAAAQAAQAFAAEAAAABAAAAAQABAAAAAAABAAEAAQABAAEAAAABAAIAAQABAAIAAAABAAMAAQAGAAAAAAABAAQAAQAFAAMAAAACAAAAAQACAAAAAAACAAEAAQACAAEAAAACAAIAAQACAAIAAAACAAMAAQAGAAAAAAACAAQAAQAFAAMAAAADAAAAAQADAAAAAAADAAEAAQADAAEAAAADAAIAAQADAAIAAAADAAMAAQAGAAAAAAAEAAAAAQAEAAAAAAAEAAEAAQAEAAEAAAAEAAIAAQAEAAIAAAAEAAMAAQAGAAAAAAAFAAAAAQAAAAAAAAAFAAEAAQAAAAEAAAAFAAIAAQAAAAIAAAAFAAMAAQAGAAAAAAAGAAAAAQABAAAAAAAGAAEAAQABAAEAAAAGAAIAAQABAAIAAAAGAAMAAQAGAAAAAAAHAAAAAQACAAAAAAAHAAEAAQACAAEAAAAHAAIAAQACAAIAAAAHAAMAAQAGAAAAAAAIAAAAAQADAAAAAAAIAAEAAQADAAEAAAAIAAIAAQADAAIAAAAIAAMAAQAGAAAAAAAJAAAAAQAEAAAAAAAJAAEAAQAEAAEAAAAJAAIAAQAEAAIAAAAJAAMAAQAGAAAAAAAAAAUAAQAFAAEAAAAAAAYAAQAFAAEAAAAAAAcAAQAFAAEAAAAAAAgAAQAFAAEAAAAAAAkAAQAFAAEAAAABAAYAAQAFAAMAAAABAAcAAQAFAAMAAAABAAgAAQAFAAMAAAABAAkAAQAFAAMAAAACAAcAAQAFAAMAAAACAAgAAQAFAAMAAAACAAkAAQAFAAMAAAADAAgAAQAFAAMAAAADAAkAAQAFAAMAAAAEAAkAAQAFAAMAAAAFAAkAAQAFAAMAAAAGAAYAAQAGAAMAAAAGAAcAAQAHAAEAAAAGAAgAAQAGAAQAAAAGAAkAAQAFAAMAAAAHAAUAAQAFAAMAAAAHAAYAAQAGAAIAAAAHAAcAAQAAAAEAAAAHAAgAAQAGAAAAAAAHAAkAAQAFAAMAAAAIAAUAAQAFAAMAAAAIAAYAAQAHAAMAAAAIAAcAAQAFAAEAAAAIAAgAAQAHAAQAAAAIAAkAAQAFAAMAAAAJAAYAAQAFAAMAAAAJAAcAAQAFAAMAAAAJAAgAAQAFAAMAAAAJAAkAAQAFAAMAAAAAAAoAAQAFAAIAAAABAAoAAQAGAAIAAAACAAoAAQAGAAIAAAADAAoAAQAGAAIAAAAEAAoAAQAGAAIAAAAFAAoAAQAGAAIAAAAGAAoAAQAGAAIAAAAHAAoAAQAGAAIAAAAIAAoAAQAGAAIAAAAJAAoAAQAGAAIAAAAKAAoAAQAHAAIAAAAKAAAAAQAAAAAAAAAKAAEAAQAAAAEAAAAKAAIAAQAAAAIAAAAKAAMAAQAHAAAAAAAKAAQAAQAHAAEAAAAKAAUAAQAHAAEAAAAKAAYAAQAHAAEAAAAKAAcAAQAHAAEAAAAKAAgAAQAHAAEAAAAKAAkAAQAHAAEAAAACAAYAAQAFAAMAAAADAAYAAQAFAAMAAAADAAcAAQAFAAMAAAA=")
+tile_map_data = PackedByteArray("AAAAAAAABwAAAAAAAAAAAAEABwAAAAEAAAAAAAIABwAAAAIAAAAAAAMABwAFAAAAAAAAAAQABwAFAAEAAAABAAAABwABAAAAAAABAAEABwABAAEAAAABAAIABwABAAIAAAABAAMABwAGAAAAAAABAAQAAQAFAAMAAAACAAAABwACAAAAAAACAAEABwACAAEAAAACAAIABwACAAIAAAACAAMABwAGAAAAAAACAAQAAQAFAAMAAAADAAAABwADAAAAAAADAAEABwADAAEAAAADAAIABwADAAIAAAADAAMABwAGAAAAAAAEAAAABwAEAAAAAAAEAAEABwAEAAEAAAAEAAIABwAEAAIAAAAEAAMABwAGAAAAAAAFAAAABwAAAAAAAAAFAAEABwAAAAEAAAAFAAIABwAAAAIAAAAFAAMABwAGAAAAAAAGAAAABwABAAAAAAAGAAEABwABAAEAAAAGAAIABwABAAIAAAAGAAMABwAGAAAAAAAHAAAABwACAAAAAAAHAAEABwACAAEAAAAHAAIABwACAAIAAAAHAAMABwAGAAAAAAAIAAAABwADAAAAAAAIAAEABwADAAEAAAAIAAIABwADAAIAAAAIAAMABwAGAAAAAAAJAAAABwAEAAAAAAAJAAEABwAEAAEAAAAJAAIABwAEAAIAAAAJAAMABwAGAAAAAAAAAAUABwAFAAEAAAAAAAYABwAFAAEAAAAAAAcABwAFAAEAAAAAAAgABwAFAAEAAAAAAAkABwAFAAEAAAABAAYAAQAFAAMAAAABAAcAAQAFAAMAAAABAAgAAQAFAAMAAAABAAkAAQAFAAMAAAACAAcAAQAFAAMAAAACAAgAAQAFAAMAAAACAAkAAQAFAAMAAAADAAgAAQAFAAMAAAADAAkAAQAFAAMAAAAEAAgABwAGAAQAAAAEAAkAAQAFAAMAAAAFAAYABwAGAAIAAAAFAAcABwADAAEAAAAFAAgABwAGAAAAAAAFAAkAAQAFAAMAAAAGAAYABwAHAAMAAAAGAAcABwAFAAEAAAAGAAgABwAHAAQAAAAGAAkAAQAFAAMAAAAHAAUAAQAFAAMAAAAHAAkAAQAFAAMAAAAIAAUAAQAFAAMAAAAIAAkAAQAFAAMAAAAJAAYAAQAFAAMAAAAJAAcAAQAFAAMAAAAJAAgAAQAFAAMAAAAJAAkAAQAFAAMAAAAAAAoABwAFAAIAAAABAAoABwAGAAIAAAACAAoABwAGAAIAAAADAAoABwAGAAIAAAAEAAoABwAGAAIAAAAFAAoABwAGAAIAAAAGAAoABwAGAAIAAAAHAAoABwAGAAIAAAAIAAoABwAGAAIAAAAJAAoABwAGAAIAAAAKAAoABwAHAAIAAAAKAAAABwAAAAAAAAAKAAEABwAAAAEAAAAKAAIABwAAAAIAAAAKAAMABwAHAAAAAAAKAAQABwAHAAEAAAAKAAUABwAHAAEAAAAKAAYABwAHAAEAAAAKAAcABwAHAAEAAAAKAAgABwAHAAEAAAAKAAkABwAHAAEAAAACAAYAAQAFAAMAAAADAAYAAQAFAAMAAAADAAcAAQAFAAMAAAAEAAYABwAGAAMAAAAEAAcABwAHAAEAAAA=")
+tile_set = ExtResource("10_oe8fo")
 
 [node name="walls" parent="BackgroundSpring" index="1"]
 z_index = 5
+tile_map_data = PackedByteArray("AAAAAAAABgAAAAAAAAAKAAAABgAEAAAAAAAKAAoABgAEAAQAAAAAAAoABgAAAAQAAAAAAAEABgAAAAEAAAAAAAMABgAAAAEAAAAAAAUABgAAAAEAAAAAAAcABgAAAAEAAAAAAAkABgAAAAEAAAAKAAEABgAAAAEAAAAKAAMABgAAAAEAAAAKAAUABgAAAAEAAAAKAAcABgAAAAEAAAAKAAkABgAAAAEAAAAKAAIABgAEAAMAAAAKAAQABgAEAAMAAAAKAAYABgAEAAMAAAAKAAgABgAEAAMAAAAAAAgABgAEAAMAAAAAAAYABgAEAAMAAAAAAAQABgAEAAMAAAAAAAIABgAEAAMAAAABAAAABgABAAAAAAADAAAABgABAAAAAAAFAAAABgABAAAAAAAHAAAABgABAAAAAAAJAAAABgABAAAAAAACAAAABgABAAAAAAAEAAAABgABAAAAAAAGAAAABgABAAAAAAAIAAAABgABAAAAAAABAAoABgABAAAAAAADAAoABgABAAAAAAAFAAoABgABAAAAAAAHAAoABgABAAAAAAAJAAoABgABAAAAAAACAAoABgABAAAAAAAEAAoABgABAAAAAAAGAAoABgABAAAAAAAIAAoABgABAAAAAAA=")
+tile_set = ExtResource("10_oe8fo")
 
 [node name="LevelWall" parent="BackgroundSpring" index="2"]
 visible = true
 
-[node name="LilyPads" type="Node" parent="."]
-
-[node name="LilyPad" parent="LilyPads" instance=ExtResource("10_hwgrf")]
-position = Vector2(224, 288)
-
-[node name="LilyPad2" parent="LilyPads" instance=ExtResource("10_hwgrf")]
-position = Vector2(224, 352)
-
-[node name="LilyPad3" parent="LilyPads" instance=ExtResource("10_hwgrf")]
-position = Vector2(224, 416)
-
-[node name="LilyPad4" parent="LilyPads" instance=ExtResource("10_hwgrf")]
-position = Vector2(224, 480)
-
-[node name="LilyPad5" parent="LilyPads" instance=ExtResource("10_hwgrf")]
-position = Vector2(288, 480)
-
-[node name="LilyPad6" parent="LilyPads" instance=ExtResource("10_hwgrf")]
-position = Vector2(352, 480)
-
 [node name="Creatures" type="Node" parent="."]
 
 [node name="CreatureBlue" parent="Creatures" instance=ExtResource("11_figsl")]
-position = Vector2(224, 160)
+position = Vector2(352, 480)
 color = null
-init_direction = null
+init_direction = Vector2(0, -1)
 
 [node name="CreatureYellow" parent="Creatures" instance=ExtResource("12_u37vv")]
-position = Vector2(480, 480)
+position = Vector2(352, 224)
 color = null
-init_direction = Vector2(-1, 0)
 
 [node name="Player" type="Node" parent="."]
 
 [node name="Player" parent="Player" instance=ExtResource("13_yt4ye")]
-position = Vector2(480, 160)
+position = Vector2(352, 160)
 
 [node name="LevelUI" parent="." instance=ExtResource("14_omoit")]
+
+[node name="Stones" type="Node" parent="."]
+
+[node name="Stone" parent="Stones" instance=ExtResource("15_8gsli")]
+position = Vector2(96, 224)
+
+[node name="Stone2" parent="Stones" instance=ExtResource("15_8gsli")]
+position = Vector2(160, 224)
+
+[node name="Stone3" parent="Stones" instance=ExtResource("15_8gsli")]
+position = Vector2(224, 224)
+
+[node name="Stone7" parent="Stones" instance=ExtResource("15_8gsli")]
+position = Vector2(480, 224)
+
+[node name="Stone8" parent="Stones" instance=ExtResource("15_8gsli")]
+position = Vector2(544, 224)
+
+[node name="Stone9" parent="Stones" instance=ExtResource("15_8gsli")]
+position = Vector2(608, 224)
+
+[node name="Stone10" parent="Stones" instance=ExtResource("15_8gsli")]
+position = Vector2(288, 544)
+
+[node name="Stone11" parent="Stones" instance=ExtResource("15_8gsli")]
+position = Vector2(544, 96)
 
 [editable path="BackgroundSpring"]
 [editable path="LevelUI"]

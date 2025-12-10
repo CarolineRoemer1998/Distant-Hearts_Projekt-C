@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://cd3vbp6goopg8"]
+[gd_scene load_steps=35 format=3 uid="uid://cd3vbp6goopg8"]
 
 [ext_resource type="Script" uid="uid://bny5bn84fdwj" path="res://Components/Mechanics/Spring Mechanics/teleporter.gd" id="1_ykg2g"]
 [ext_resource type="Texture2D" uid="uid://dicgyt3dkctg3" path="res://Assets/Spring Mechanics/Teleporter/Teleporter_blender_prototype_blue.png" id="2_m3c5n"]
@@ -381,7 +381,12 @@ _data = {
 &"Teleport": SubResource("Animation_c6xwp")
 }
 
-[node name="Teleporter" type="Node2D" groups=["Teleporter"]]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m3c5n"]
+size = Vector2(2, 2)
+
+[node name="Teleporter" type="StaticBody2D" groups=["Teleporter"]]
+collision_layer = 128
+collision_mask = 2
 script = ExtResource("1_ykg2g")
 
 [node name="AnimatedSprites" type="Node2D" parent="."]
@@ -488,3 +493,6 @@ script = ExtResource("4_m3c5n")
 libraries = {
 &"": SubResource("AnimationLibrary_1ctjb")
 }
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_m3c5n")

@@ -67,7 +67,7 @@ func _ready():
 	Signals.creature_finished_teleporting.connect(sync_position_with_possessed_creature)
 	Signals.bees_start_flying.connect(handle_bees_start_flying)
 	Signals.bees_stop_flying.connect(handle_bees_stop_flying)
-	Signals.tried_walking_on_bee_area.connect(play_walk_on_bee_area_animation)
+	Signals.tried_walking_on_bee_area.connect(play_failed_step_in_direction_animation)
 	#Signals.creature_finished_teleporting.connect(activate)
 
 	target_position = position.snapped(Constants.GRID_SIZE / 2)
@@ -159,7 +159,7 @@ func prepare_movement(_direction: Vector2, animation_direction: Vector2, step_ti
 	if is_moving:
 		buffered_direction = _direction
 	else:
-		if Helper.can_move_in_direction(position, _direction, get_world_2d(), currently_possessed_creature!=null):
+		if Helper.can_move_in_direction(position, _direction, get_world_2d(), currently_possessed_creature!=null, self):
 			set_is_moving(true)
 
 ## Handles switching possession of creatures.
@@ -332,7 +332,8 @@ func on_move_step_finished():
 				position,
 				direction,
 				get_world_2d(),
-				currently_possessed_creature!=null
+				currently_possessed_creature!=null,
+				self
 			)
 		)
 		buffered_direction = Vector2.ZERO
@@ -438,7 +439,8 @@ func _start_bee_avoid_step():
 		position,
 		move_dir,
 		get_world_2d(),
-		currently_possessed_creature != null
+		currently_possessed_creature != null,
+		self
 	):
 		set_is_moving(true)
 	else:
@@ -446,9 +448,9 @@ func _start_bee_avoid_step():
 		is_avoiding = false
 		can_move = true
 
-func play_walk_on_bee_area_animation(_bees: BeeSwarm):
+func play_failed_step_in_direction_animation(_bees: BeeSwarm):
 	can_move = false
-	currently_possessed_creature.play_walk_on_bee_area_animation()
+	currently_possessed_creature.play_failed_step_in_direction_animation()
 	avoid_timer.start()
 
 # ------------------------------------------------

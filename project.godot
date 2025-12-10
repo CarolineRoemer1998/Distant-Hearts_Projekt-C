@@ -182,6 +182,7 @@ Undo={
 2d_physics/layer_14="Water"
 2d_physics/layer_15="WaterPlatform"
 2d_physics/layer_16="LilyPad"
+2d_physics/layer_17="PileOfLeaves"
 
 [rendering]
 
