@@ -1,4 +1,4 @@
-[gd_scene load_steps=119 format=4 uid="uid://bfn4igjnaiw3i"]
+[gd_scene load_steps=118 format=4 uid="uid://bfn4igjnaiw3i"]
 
 [ext_resource type="Script" uid="uid://ddiwo6yyhfkuc" path="res://Components/Levels/level.gd" id="1_1fmnt"]
 [ext_resource type="PackedScene" uid="uid://lrodaawkgfob" path="res://Components/UI/VFX/undo_particles.tscn" id="2_yaoc5"]
@@ -14,7 +14,6 @@
 [ext_resource type="PackedScene" uid="uid://be6k5yjppap8y" path="res://Components/Creatures/creature_yellow.tscn" id="12_g5fib"]
 [ext_resource type="PackedScene" uid="uid://g3u7bc1jo6gj" path="res://Components/Player/player.tscn" id="13_kl8kn"]
 [ext_resource type="PackedScene" uid="uid://dtrjxhb3ayo1c" path="res://Components/Levels/LevelUI.tscn" id="14_0g5rg"]
-[ext_resource type="PackedScene" uid="uid://oy61arlldjo3" path="res://Components/Mechanics/Stones/Stone.tscn" id="15_yaoc5"]
 
 [sub_resource type="Environment" id="Environment_7ogri"]
 background_mode = 3
@@ -985,46 +984,21 @@ visible = true
 [node name="Creatures" type="Node" parent="."]
 
 [node name="CreatureBlue" parent="Creatures" instance=ExtResource("11_8o88g")]
-position = Vector2(352, 480)
+position = Vector2(224, 160)
 color = null
-init_direction = Vector2(0, -1)
 
 [node name="CreatureYellow" parent="Creatures" instance=ExtResource("12_g5fib")]
-position = Vector2(352, 224)
+position = Vector2(480, 160)
 color = null
 
 [node name="Player" type="Node" parent="."]
 
 [node name="Player" parent="Player" instance=ExtResource("13_kl8kn")]
-position = Vector2(352, 160)
+position = Vector2(352, 480)
 
 [node name="LevelUI" parent="." instance=ExtResource("14_0g5rg")]
 
 [node name="Stones" type="Node" parent="."]
-
-[node name="Stone" parent="Stones" instance=ExtResource("15_yaoc5")]
-position = Vector2(96, 224)
-
-[node name="Stone2" parent="Stones" instance=ExtResource("15_yaoc5")]
-position = Vector2(160, 224)
-
-[node name="Stone3" parent="Stones" instance=ExtResource("15_yaoc5")]
-position = Vector2(224, 224)
-
-[node name="Stone7" parent="Stones" instance=ExtResource("15_yaoc5")]
-position = Vector2(480, 224)
-
-[node name="Stone8" parent="Stones" instance=ExtResource("15_yaoc5")]
-position = Vector2(544, 224)
-
-[node name="Stone9" parent="Stones" instance=ExtResource("15_yaoc5")]
-position = Vector2(608, 224)
-
-[node name="Stone10" parent="Stones" instance=ExtResource("15_yaoc5")]
-position = Vector2(288, 544)
-
-[node name="Stone11" parent="Stones" instance=ExtResource("15_yaoc5")]
-position = Vector2(544, 96)
 
 [editable path="BackgroundSpring"]
 [editable path="LevelUI"]
