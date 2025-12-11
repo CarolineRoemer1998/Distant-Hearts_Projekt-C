@@ -47,6 +47,7 @@ var last_escape_direction := Vector2.ZERO
 var hard_escape_lock := false
 
 var steps_to_walk_back : Array[Vector2] = []
+var is_blown_by_wind := false
 
 # -----------------------------------------------------------
 # Init
@@ -56,6 +57,7 @@ func _ready():
 	Signals.level_done.connect(deactivate)
 	Signals.bees_stop_flying.connect(walk_to_free_tile_if_bees_nearby)
 	Signals.teleporter_entered.connect(start_teleport)
+	Signals.wind_blows.connect(get_blown_by_wind)
 
 	animated_sprite_creature.modulate = Constants.CREATURE_MODULATE_UNPOSSESSED
 	animated_sprite_creature.frame = 0
@@ -79,6 +81,12 @@ func _process(delta: float) -> void:
 		if abs(global_position[0]-steps_to_walk_back[0][0]) < 0.01 and abs(global_position[1]-steps_to_walk_back[0][1]) < 0.01:
 			global_position = steps_to_walk_back[0]
 			steps_to_walk_back.erase(steps_to_walk_back[0])
+	
+	if is_blown_by_wind:
+		position = position.move_toward(target_position, delta*Constants.MOVE_SPEED)
+		if abs(global_position[0]-target_position[0]) < 0.01 and abs(global_position[1]-target_position[1]) < 0.01:
+			global_position = target_position
+			is_blown_by_wind = false
 
 # -----------------------------------------------------------
 # Undo State
@@ -297,3 +305,15 @@ func walk_to_free_tile_if_bees_nearby():
 	steps_to_walk_back = steps_back
 	if steps_to_walk_back.size() > 0:
 		tremble()
+
+func get_blown_by_wind(list_of_blown_objects: Dictionary, blow_direction: Vector2):
+	if is_possessed:
+		## TODO: Player.get_blown_by_wind
+		pass
+	else:
+		for obj in list_of_blown_objects:
+			if list_of_blown_objects[obj].name == name:
+				target_position = global_position + (Constants.GRID_SIZE*blow_direction).snapped(Constants.GRID_SIZE / 2)
+				print(name, ": ", target_position)
+				is_blown_by_wind = true
+				

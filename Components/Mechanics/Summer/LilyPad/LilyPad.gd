@@ -31,8 +31,6 @@ func set_info(info: Dictionary):
 
 func _on_animated_sprite_2d_frame_changed() -> void:
 	if object_sprites_on_lily_pad.size() > 0:
-		if name == "LilyPad16":
-			print(object_sprites_on_lily_pad)
 		match animated_sprite_2d.frame:
 			0:
 				for sprite in object_sprites_on_lily_pad:
@@ -74,14 +72,12 @@ func unsink():
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is Creature:
-		print("ENTER")
 		object_sprites_on_lily_pad = [body.visuals]
 		_on_animated_sprite_2d_frame_changed()
 		
 
 func _on_area_2d_body_exited(_body: Node2D) -> void:
 	if _body is Creature:
-		print("EXIT")
 		for sprite in object_sprites_on_lily_pad:
 			sprite.position[0] = 0.0
 		object_sprites_on_lily_pad = []

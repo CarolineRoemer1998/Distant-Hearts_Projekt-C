@@ -16,7 +16,6 @@ func _ready() -> void:
 	if level.season == Constants.SEASON.Winter:
 		amount_leaves = 200
 		leaf = preload(Constants.ANIMATED_SPRITE_SNOWFLAKE)
-	print(amount_leaves)
 	for i in amount_leaves:
 		var new_leaf = leaf.instantiate()
 		add_child(new_leaf)

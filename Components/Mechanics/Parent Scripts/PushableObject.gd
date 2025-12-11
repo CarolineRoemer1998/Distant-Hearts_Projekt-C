@@ -55,8 +55,6 @@ func get_can_be_pushed(new_pos : Vector2, direction : Vector2) -> bool:
 		world
 	)
 	
-	print(push_collision)
-	
 	var stone_on_next_field = null
 	
 	# If there is a door behind pushable, check if it is open
