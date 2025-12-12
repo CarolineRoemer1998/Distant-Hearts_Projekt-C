@@ -121,15 +121,24 @@ func handle_input(delta: float):
 
 ## Returns raw directional input from arrow/WASD keys.
 func _read_input_direction() -> Vector2:
+	var dir = Vector2.ZERO
 	if Input.is_action_pressed("Player_Up"):
-		return Vector2.UP
-	if Input.is_action_pressed("Player_Down"):
-		return Vector2.DOWN
-	if Input.is_action_pressed("Player_Left"):
-		return Vector2.LEFT
-	if Input.is_action_pressed("Player_Right"):
-		return Vector2.RIGHT
-	return Vector2.ZERO
+		dir = Vector2.UP
+	elif Input.is_action_pressed("Player_Down"):
+		dir = Vector2.DOWN
+	elif Input.is_action_pressed("Player_Left"):
+		dir = Vector2.LEFT
+	elif Input.is_action_pressed("Player_Right"):
+		dir = Vector2.RIGHT
+	
+	
+	#if currently_possessed_creature and Wind.get_single_object_actually_hit_by_wind(global_position, {}, Wind.blow_direction * -1):
+		#print("Wind.blow_direction: ", Wind.blow_direction)
+		#print("Wind.blow_direction * -1: ", Wind.blow_direction * -1)
+		#print("Stop")
+		#pass
+	
+	return dir
 
 ## Handles movement requests, buffering and move validation.
 func handle_movement_input(_input_direction: Vector2):
@@ -343,6 +352,8 @@ func on_move_step_finished():
 	is_sliding = false
 	is_pushing_stone_on_ice = false
 	is_moving_on_ice = false
+	is_blown_by_wind = false
+	Wind.check_for_objects_to_blow({})
 
 	if buffered_direction != Vector2.ZERO:
 		set_is_moving(
@@ -566,8 +577,8 @@ func possess():
 # ------------------------------------------------
 
 func get_blown_by_wind(list_of_blown_objects: Dictionary, blow_direction: Vector2):
-	#if currently_possessed_creature == null:
-		#return
+	if currently_possessed_creature == null:
+		return
 	for obj in list_of_blown_objects:
 		if list_of_blown_objects[obj]["Object"] is Player:
 			is_blown_by_wind = true

@@ -1,6 +1,6 @@
 extends Node2D
 
-class_name Wind
+#class_name Wind
 
 @export var blow_direction : Vector2 = Vector2.LEFT
 
@@ -31,18 +31,28 @@ var level_height_in_tiles : float = 9.0  # Falls anders, von Level-Skript aus ä
 var all_level_tile_positions : Array[Vector2]= []
 var is_blowing := false
 
-var wind_strength := 4
+var wind_strength := 20
+
+var init_blow_done = false
+
+var is_active = false
 
 func _ready() -> void:
-	set_level_tile_positions()
-	timer_blow_wind_interval.start()
+	#Signals.state_changed.connect(check_for_objects_to_blow)
+	_set_level_tile_positions()
+	#timer_blow_wind_interval.start()
 
-## Füllt all_level_tile_positions Array mit Vectoren aller Positionen in diesem Level
-## -> [ Vector2(96, 96), Vector2(96, 160), Vector2(96, 224), ... )
-func set_level_tile_positions():
-	for x in level_width_in_tiles:
-		for y in level_height_in_tiles:
-			all_level_tile_positions.append(Vector2((tile_size/2)+(tile_size)+(x*64), 96+(y*64)))
+func _process(delta: float) -> void:
+	if is_active:
+		if not init_blow_done:
+			check_for_objects_to_blow({})
+			init_blow_done = true
+
+func check_for_objects_to_blow(_dict: Dictionary = {}):
+	if is_active:
+		var objects_to_blow = get_all_blowable_objects()
+		Signals.wind_blows.emit(objects_to_blow, blow_direction)
+
 
 # Wird von Level aufgerufen
 func blow():
@@ -154,3 +164,10 @@ func _on_timer_blow_wind_interval_timeout() -> void:
 
 func _on_timer_blow_duration_timeout() -> void:
 	Signals.wind_stopped_blowing.emit()
+
+## Füllt all_level_tile_positions Array mit Vectoren aller Positionen in diesem Level
+## -> [ Vector2(96, 96), Vector2(96, 160), Vector2(96, 224), ... )
+func _set_level_tile_positions():
+	for x in level_width_in_tiles:
+		for y in level_height_in_tiles:
+			all_level_tile_positions.append(Vector2((tile_size/2)+(tile_size)+(x*64), 96+(y*64)))

@@ -85,8 +85,9 @@ func set_leaves():
 
 func set_wind():
 	if season == Constants.SEASON.Fall:
-		var new_wind_node = wind.instantiate()
-		add_child(new_wind_node)
+		Wind.is_active = true
+		#var new_wind_node = wind.instantiate()
+		#add_child(new_wind_node)
 
 func show_win_screen():
 	if final_level:
