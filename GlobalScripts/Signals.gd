@@ -64,3 +64,4 @@ signal player_left_lily_pad(pos: Vector2)
 
 # Fall
 signal wind_blows(list_of_blown_objects: Dictionary, blow_direction: Vector2)
+signal wind_stopped_blowing

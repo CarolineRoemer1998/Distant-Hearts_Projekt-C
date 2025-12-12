@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://b78ohvunpuwc7"]
+[gd_scene load_steps=8 format=4 uid="uid://b78ohvunpuwc7"]
 
 [ext_resource type="Script" uid="uid://ddiwo6yyhfkuc" path="res://Components/Levels/level.gd" id="1_mcqwf"]
 [ext_resource type="PackedScene" uid="uid://lrodaawkgfob" path="res://Components/UI/VFX/undo_particles.tscn" id="2_uyff1"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://be6k5yjppap8y" path="res://Components/Creatures/creature_yellow.tscn" id="5_0eqyv"]
 [ext_resource type="PackedScene" uid="uid://g3u7bc1jo6gj" path="res://Components/Player/player.tscn" id="6_nb5m2"]
 [ext_resource type="PackedScene" uid="uid://dtrjxhb3ayo1c" path="res://Components/Levels/LevelUI.tscn" id="7_njdk8"]
-[ext_resource type="Script" uid="uid://cliuml78fyqi" path="res://Components/Levels/4 - Fall/Wind.gd" id="8_uyff1"]
 
 [node name="LevelFall3" type="Node2D"]
 script = ExtResource("1_mcqwf")
@@ -40,13 +39,6 @@ position = Vector2(480, 416)
 position = Vector2(352, 224)
 
 [node name="LevelUI" parent="." instance=ExtResource("7_njdk8")]
-
-[node name="Wind" type="Node2D" parent="."]
-script = ExtResource("8_uyff1")
-
-[node name="TimerBlowWindInterval" type="Timer" parent="Wind"]
-
-[connection signal="timeout" from="Wind/TimerBlowWindInterval" to="Wind" method="_on_timer_blow_wind_interval_timeout"]
 
 [editable path="BackgroundSpring"]
 [editable path="LevelUI"]

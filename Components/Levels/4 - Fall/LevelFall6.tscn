@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://b5jma2em83wwe"]
+[gd_scene load_steps=9 format=4 uid="uid://b5jma2em83wwe"]
 
 [ext_resource type="Script" uid="uid://ddiwo6yyhfkuc" path="res://Components/Levels/level.gd" id="1_d0pwk"]
 [ext_resource type="PackedScene" uid="uid://lrodaawkgfob" path="res://Components/UI/VFX/undo_particles.tscn" id="2_10d3k"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://be6k5yjppap8y" path="res://Components/Creatures/creature_yellow.tscn" id="5_j3fos"]
 [ext_resource type="PackedScene" uid="uid://g3u7bc1jo6gj" path="res://Components/Player/player.tscn" id="6_8dy5s"]
 [ext_resource type="PackedScene" uid="uid://dtrjxhb3ayo1c" path="res://Components/Levels/LevelUI.tscn" id="7_gcpkr"]
-[ext_resource type="Script" uid="uid://cliuml78fyqi" path="res://Components/Levels/4 - Fall/Wind.gd" id="8_10d3k"]
 [ext_resource type="PackedScene" uid="uid://oy61arlldjo3" path="res://Components/Mechanics/Stones/Stone.tscn" id="9_3crfi"]
 
 [node name="LevelFall6" type="Node2D"]
@@ -39,13 +38,9 @@ position = Vector2(480, 416)
 
 [node name="Player" parent="Player" instance=ExtResource("6_8dy5s")]
 position = Vector2(96, 162)
+collision_layer = 131072
 
 [node name="LevelUI" parent="." instance=ExtResource("7_gcpkr")]
-
-[node name="Wind" type="Node2D" parent="."]
-script = ExtResource("8_10d3k")
-
-[node name="TimerBlowWindInterval" type="Timer" parent="Wind"]
 
 [node name="Stones" type="Node" parent="."]
 
@@ -54,8 +49,6 @@ position = Vector2(288, 416)
 
 [node name="Stone2" parent="Stones" instance=ExtResource("9_3crfi")]
 position = Vector2(480, 544)
-
-[connection signal="timeout" from="Wind/TimerBlowWindInterval" to="Wind" method="_on_timer_blow_wind_interval_timeout"]
 
 [editable path="BackgroundSpring"]
 [editable path="LevelUI"]

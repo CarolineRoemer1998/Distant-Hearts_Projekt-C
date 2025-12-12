@@ -8,6 +8,7 @@ enum SEASON {Intro, Spring, Summer, Fall, Winter}
 const GRID_SIZE := Vector2(64, 64)
 const MOVE_SPEED := 500.0
 const PLAYER_MOVE_SPEED := 500.0
+const MOVE_BY_WIND_SPEED := 300.0
 
 
 # DIRECTIONS
@@ -55,6 +56,7 @@ const LAYER_BIT_WATER				:= 13
 const LAYER_BIT_WATER_PLATFORM		:= 14
 const LAYER_BIT_LILY_PAD			:= 15
 const LAYER_BIT_PILE_OF_LEAVES		:= 16
+const LAYER_BIT_PLAYER				:= 17
 
 const LAYER_MASK_BEES				:= (1 << Constants.LAYER_BIT_BEES)
 const LAYER_MASK_BLOCKING_OBJECTS 	:= (1 << Constants.LAYER_BIT_PUSHABLE) | (1 << Constants.LAYER_BIT_DOOR) | (1 << Constants.LAYER_BIT_WALL_AND_PLAYER) | (1 << Constants.LAYER_BIT_CREATURE) | (1 << Constants.LAYER_BIT_LEVEL_WALL) | (1 << Constants.LAYER_BIT_SOIL)
@@ -117,6 +119,9 @@ const LEVELS = {
 	27:  "res://Components/Levels/5 - Winter/LevelWinter4.tscn",
 	28:  "res://Components/Levels/5 - Winter/LevelWinter5.tscn"
 }
+
+# MECHANIC SCENES
+const MECHANIC_WIND := "res://Components/Mechanics/Fall Mechanics/Wind.tscn"
 
 # MENUES
 const PATH_CREDIT_SCENE := 		"res://Components/UI/Menues/credit_scene.tscn"

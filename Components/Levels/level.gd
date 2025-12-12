@@ -7,6 +7,7 @@ class_name Level
 @export var final_level: bool = false
 @export var level_number: int = 0
 
+@onready var wind = preload(Constants.MECHANIC_WIND)
 @onready var win_animation: AnimationPlayer = $LevelUI/WinScreen/WinAnimation
 @onready var game_completed_animation: AnimationPlayer = $LevelUI/GameCompleted/WinAnimation
 
@@ -39,6 +40,7 @@ func _ready() -> void:
 	Signals.level_loaded.emit(season)
 	
 	set_leaves()
+	set_wind()
 	SceneSwitcher.set_curent_level(level_number)
 	if level_number >= 6:
 		AudioManager.play_music(Constants.BGM_PATH_WINTER_THEME)
@@ -80,6 +82,11 @@ func _process(_delta: float) -> void:
 func set_leaves():
 	if not season == Constants.SEASON.Intro:
 		cherry_blossoms.visible = true
+
+func set_wind():
+	if season == Constants.SEASON.Fall:
+		var new_wind_node = wind.instantiate()
+		add_child(new_wind_node)
 
 func show_win_screen():
 	if final_level:

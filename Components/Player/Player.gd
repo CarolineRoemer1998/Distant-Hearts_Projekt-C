@@ -18,10 +18,7 @@ class_name Player
 @onready var step_timer: Timer = $StepTimer
 @onready var avoid_timer: Timer = $AvoidTimer
 
-var is_step_timer_triggered := false:
-	set(val):
-		print("is_step_timer_triggered set to: ", val)
-		is_step_timer_triggered = val
+var is_step_timer_triggered := false
 var is_active := true
 
 var direction := Vector2.ZERO
@@ -34,12 +31,9 @@ var target_position: Vector2:
 	set(val):
 		target_position = val.snapped(Constants.GRID_SIZE / 2)
 
-var timer_step := 0.2:
-	set(val):
-		print("timer_step set to: ", val)
-		timer_step = val
-var timer_step_init := 0.2
-var timer_step_short := 0.125
+var timer_step := 0.15
+var timer_step_init := 0.15
+var timer_step_short := 0.115
 var timer_step_after_avoiding := 0.125
 
 var is_moving := false
@@ -58,6 +52,8 @@ var pushable_stone_in_direction : Stone = null
 var bees_are_flying := false
 var is_avoiding := false
 var planted_flower_last_step := false
+
+var is_blown_by_wind := false
 
 #var is_level_finished := false
 ## TODO: Deaktivieren während Bienen fliegen
@@ -80,6 +76,8 @@ func _ready():
 	Signals.bees_start_flying.connect(handle_bees_start_flying)
 	Signals.bees_stop_flying.connect(handle_bees_stop_flying)
 	Signals.tried_walking_on_bee_area.connect(play_failed_step_in_direction_animation)
+	Signals.wind_blows.connect(get_blown_by_wind)
+	Signals.wind_stopped_blowing.connect(handle_wind_stopped_blowing)
 	#Signals.creature_finished_teleporting.connect(activate)
 
 	target_position = position.snapped(Constants.GRID_SIZE / 2)
@@ -91,7 +89,7 @@ func _ready():
 func _process(delta):
 	update_movement(delta)
 	update_heart_icons()
-	handle_input()
+	handle_input(delta)
 
 
 # ------------------------------------------------
@@ -99,9 +97,8 @@ func _process(delta):
 # ------------------------------------------------
 
 ## Handles cancel, movement, interaction and level switching.
-func handle_input():
+func handle_input(delta: float):
 	if Input.is_action_just_released("Player_Up") or Input.is_action_just_released("Player_Down") or Input.is_action_just_released("Player_Left") or Input.is_action_just_released("Player_Right"):
-		print("RELEASE")
 		is_step_timer_triggered = false
 		timer_step = timer_step_init
 	if Input.is_action_just_pressed("ui_cancel"):
@@ -111,7 +108,9 @@ func handle_input():
 	if Globals.is_level_finished:
 		if Input.is_action_just_pressed("ui_accept"):
 			SceneSwitcher.go_to_next_level()
-	elif bees_are_flying or is_avoiding or Globals.is_level_finished or Globals.is_teleporting:
+	elif bees_are_flying or is_avoiding or Globals.is_level_finished or Globals.is_teleporting or is_blown_by_wind:
+		if is_blown_by_wind:
+			update_movement(delta)
 		return
 	elif is_active and not is_avoiding:
 		handle_movement_input(Vector2.ZERO)
@@ -123,16 +122,12 @@ func handle_input():
 ## Returns raw directional input from arrow/WASD keys.
 func _read_input_direction() -> Vector2:
 	if Input.is_action_pressed("Player_Up"):
-		print("PRESSED")
 		return Vector2.UP
 	if Input.is_action_pressed("Player_Down"):
-		print("PRESSED")
 		return Vector2.DOWN
 	if Input.is_action_pressed("Player_Left"):
-		print("PRESSED")
 		return Vector2.LEFT
 	if Input.is_action_pressed("Player_Right"):
-		print("PRESSED")
 		return Vector2.RIGHT
 	return Vector2.ZERO
 
@@ -174,7 +169,6 @@ func prepare_movement(_direction: Vector2, animation_direction: Vector2):
 	set_animation_direction(animation_direction)
 	can_move = false
 	pushable_stone_in_direction = null
-	print("Start timer with duration: ", timer_step)
 	step_timer.start(timer_step)
 
 	if is_moving:
@@ -300,15 +294,18 @@ func update_movement(delta):
 	if currently_possessed_creature and currently_possessed_creature.is_teleporting:
 		return
 		
-	if not is_moving:
+	if not is_moving and not is_blown_by_wind:
 		if not bees_are_flying:
 			activate()
 		return
 
 	if is_on_ice and currently_possessed_creature and not is_moving_on_ice:
 		update_ice_slide_target()
-
-	position = position.move_toward(target_position, Constants.PLAYER_MOVE_SPEED * delta)
+	
+	if not is_blown_by_wind:
+		position = position.move_toward(target_position, Constants.PLAYER_MOVE_SPEED * delta)
+	else:
+		position = position.move_toward(target_position, Constants.MOVE_BY_WIND_SPEED * delta)
 
 	if currently_possessed_creature:
 		currently_possessed_creature.position = currently_possessed_creature.position.move_toward(
@@ -564,6 +561,20 @@ func possess():
 		currently_possessed_creature.position = target_position
 		currently_possessed_creature.target_position = target_position
 
+# ------------------------------------------------
+# FALL & WIND
+# ------------------------------------------------
+
+func get_blown_by_wind(list_of_blown_objects: Dictionary, blow_direction: Vector2):
+	#if currently_possessed_creature == null:
+		#return
+	for obj in list_of_blown_objects:
+		if list_of_blown_objects[obj]["Object"] is Player:
+			is_blown_by_wind = true
+			target_position = global_position + (Constants.GRID_SIZE*blow_direction*list_of_blown_objects[obj]["travel_distance"]).snapped(Constants.GRID_SIZE / 2)
+
+func handle_wind_stopped_blowing():
+	is_blown_by_wind = false
 
 # ------------------------------------------------
 # TELEPORTER

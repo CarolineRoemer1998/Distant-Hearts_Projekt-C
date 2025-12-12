@@ -49,6 +49,8 @@ var hard_escape_lock := false
 var steps_to_walk_back : Array[Vector2] = []
 var is_blown_by_wind := false
 
+var parent_node : Node = null
+
 # -----------------------------------------------------------
 # Init
 # -----------------------------------------------------------
@@ -62,6 +64,7 @@ func _ready():
 	animated_sprite_creature.modulate = Constants.CREATURE_MODULATE_UNPOSSESSED
 	animated_sprite_creature.frame = 0
 	border.frame = 0
+	parent_node = get_parent()
 
 	add_to_group(Constants.GROUP_NAME_CREATURE)
 
@@ -83,7 +86,7 @@ func _process(delta: float) -> void:
 			steps_to_walk_back.erase(steps_to_walk_back[0])
 	
 	if is_blown_by_wind:
-		position = position.move_toward(target_position, delta*Constants.MOVE_SPEED)
+		position = position.move_toward(target_position, delta*Constants.MOVE_BY_WIND_SPEED)
 		if abs(global_position[0]-target_position[0]) < 0.01 and abs(global_position[1]-target_position[1]) < 0.01:
 			global_position = target_position
 			is_blown_by_wind = false
@@ -155,8 +158,11 @@ func merge(creature_to_merge_with : Creature) -> bool:
 		
 	is_merging = true
 	creature_to_merge_with.is_merging = true
-
-	merged_creature.reparent(get_parent())
+	
+	#var parent = get_parent()
+	#merged_creature.call_deferred("reparent", [parent])
+	merged_creature.reparent(parent_node)
+	
 	merged_creature.position = creature_to_merge_with.position
 	Globals.is_level_finished = true
 
@@ -312,8 +318,8 @@ func get_blown_by_wind(list_of_blown_objects: Dictionary, blow_direction: Vector
 		pass
 	else:
 		for obj in list_of_blown_objects:
-			if list_of_blown_objects[obj].name == name:
-				target_position = global_position + (Constants.GRID_SIZE*blow_direction).snapped(Constants.GRID_SIZE / 2)
-				print(name, ": ", target_position)
+			if list_of_blown_objects[obj]["Object"].name == name:
+				target_position = global_position + (Constants.GRID_SIZE*blow_direction*list_of_blown_objects[obj]["travel_distance"]).snapped(Constants.GRID_SIZE / 2)
+				#print(name, ": ", target_position)
 				is_blown_by_wind = true
 				

@@ -5,11 +5,13 @@ class_name Wind
 @export var blow_direction : Vector2 = Vector2.LEFT
 
 @onready var timer_blow_wind_interval: Timer = $TimerBlowWindInterval
+@onready var timer_blow_duration: Timer = $TimerBlowDuration
 
 # Bewegliche Objekte: Creatures, Blätterhaufen
 
 var layer_mask_blowable_objects :=    (1 << Constants.LAYER_BIT_CREATURE) \
-									| (1 << Constants.LAYER_BIT_PILE_OF_LEAVES) 
+									| (1 << Constants.LAYER_BIT_PILE_OF_LEAVES) \
+									| (1 << Constants.LAYER_BIT_PLAYER) 
 
 var layer_mask_wind_blocking_objects :=   (1 << Constants.LAYER_BIT_DOOR) \
 										| (1 << Constants.LAYER_BIT_STONES) \
@@ -29,6 +31,8 @@ var level_height_in_tiles : float = 9.0  # Falls anders, von Level-Skript aus ä
 var all_level_tile_positions : Array[Vector2]= []
 var is_blowing := false
 
+var wind_strength := 4
+
 func _ready() -> void:
 	set_level_tile_positions()
 	timer_blow_wind_interval.start()
@@ -46,6 +50,7 @@ func blow():
 	
 	var objects_to_blow = get_all_blowable_objects()
 	#print(objects_to_blow, blow_direction)
+	print("--WIND BLOWS--")
 	Signals.wind_blows.emit(objects_to_blow, blow_direction)
 
 func get_all_blowable_objects() -> Dictionary:
@@ -53,9 +58,9 @@ func get_all_blowable_objects() -> Dictionary:
 	
 	for tile in all_level_tile_positions:
 		var result_blowable_objects = Helper.get_collision_on_tile(tile, layer_mask_blowable_objects, get_world_2d())
-		
+		#print(result_blowable_objects)
 		if not result_blowable_objects.is_empty():
-			blowable_objects_in_level[tile] = {"Object": null, "is_affected_by_wind": true}
+			blowable_objects_in_level[tile] = {"Object": null, "is_affected_by_wind": true, "amount_of_tiles_to_travel": 1}
 			for obj in result_blowable_objects:
 				blowable_objects_in_level[tile]["Object"] = obj.collider
 	
@@ -68,16 +73,28 @@ func get_all_objects_actually_hit_by_wind(blowable_objects: Dictionary) -> Dicti
 		match blow_direction:
 			Vector2.UP:
 				if get_single_object_actually_hit_by_wind(tile_with_object, blowable_objects, Vector2.DOWN):
+					var travel_distance = get_travel_distance(tile_with_object)
 					result[tile_with_object] = blowable_objects[tile_with_object]["Object"]
+					
+					print(get_travel_distance(tile_with_object))
 			Vector2.DOWN:
 				if get_single_object_actually_hit_by_wind(tile_with_object, blowable_objects, Vector2.UP):
+					var travel_distance = get_travel_distance(tile_with_object)
 					result[tile_with_object] = blowable_objects[tile_with_object]["Object"]
+					print(get_travel_distance(tile_with_object))
 			Vector2.LEFT:
 				if get_single_object_actually_hit_by_wind(tile_with_object, blowable_objects, Vector2.RIGHT):
-					result[tile_with_object] = blowable_objects[tile_with_object]["Object"]
+					var travel_distance = get_travel_distance(tile_with_object)
+					result[tile_with_object] = {
+						"Object": blowable_objects[tile_with_object]["Object"],
+						"travel_distance": travel_distance
+					}
+					print(get_travel_distance(tile_with_object))
 			Vector2.RIGHT:
 				if get_single_object_actually_hit_by_wind(tile_with_object, blowable_objects, Vector2.LEFT):
+					var travel_distance = get_travel_distance(tile_with_object)
 					result[tile_with_object] = blowable_objects[tile_with_object]["Object"]
+					print(get_travel_distance(tile_with_object))
 	
 	return result
 
@@ -115,11 +132,25 @@ func get_is_wind_blocking_object_on_tile(tile: Vector2) -> bool:
 
 func get_is_tile_next_to_object_empty(obj_tile: Vector2):
 	var result_blocking_objects = Helper.get_collision_on_tile(obj_tile+(tile_size*blow_direction), layer_mask_creature_blocking_objects, get_world_2d())
-	print("Blocker: ", result_blocking_objects)
+	#print("Blocker: ", result_blocking_objects)
 	if result_blocking_objects.is_empty():
 		return true
 	else:
 		return false
 
+func get_travel_distance(tile_with_object: Vector2) -> int:
+	var travel_distance = 0
+	var tile_to_check = tile_with_object
+	for i in wind_strength:
+		if get_is_tile_next_to_object_empty(tile_to_check):
+			tile_to_check += blow_direction*tile_size
+			travel_distance += 1
+	return travel_distance
+
 func _on_timer_blow_wind_interval_timeout() -> void:
+	timer_blow_duration.start()
 	blow()
+
+
+func _on_timer_blow_duration_timeout() -> void:
+	Signals.wind_stopped_blowing.emit()

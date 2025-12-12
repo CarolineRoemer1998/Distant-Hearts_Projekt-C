@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://brpyqrynlw7y2"]
+
+[ext_resource type="Script" uid="uid://cliuml78fyqi" path="res://Components/Levels/4 - Fall/Wind.gd" id="1_qn7r6"]
+
+[node name="Wind" type="Node2D"]
+script = ExtResource("1_qn7r6")
+
+[node name="TimerBlowWindInterval" type="Timer" parent="."]
+
+[node name="TimerBlowDuration" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="TimerBlowWindInterval" to="." method="_on_timer_blow_wind_interval_timeout"]
+[connection signal="timeout" from="TimerBlowDuration" to="." method="_on_timer_blow_duration_timeout"]
