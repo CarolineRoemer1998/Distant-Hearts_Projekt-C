@@ -18,6 +18,10 @@ class_name Player
 @onready var step_timer: Timer = $StepTimer
 @onready var avoid_timer: Timer = $AvoidTimer
 
+var is_step_timer_triggered := false:
+	set(val):
+		print("is_step_timer_triggered set to: ", val)
+		is_step_timer_triggered = val
 var is_active := true
 
 var direction := Vector2.ZERO
@@ -29,6 +33,14 @@ var last_position: Vector2 = Vector2.ZERO
 var target_position: Vector2:
 	set(val):
 		target_position = val.snapped(Constants.GRID_SIZE / 2)
+
+var timer_step := 0.2:
+	set(val):
+		print("timer_step set to: ", val)
+		timer_step = val
+var timer_step_init := 0.2
+var timer_step_short := 0.125
+var timer_step_after_avoiding := 0.125
 
 var is_moving := false
 var is_moving_on_ice := false
@@ -88,6 +100,10 @@ func _process(delta):
 
 ## Handles cancel, movement, interaction and level switching.
 func handle_input():
+	if Input.is_action_just_released("Player_Up") or Input.is_action_just_released("Player_Down") or Input.is_action_just_released("Player_Left") or Input.is_action_just_released("Player_Right"):
+		print("RELEASE")
+		is_step_timer_triggered = false
+		timer_step = timer_step_init
 	if Input.is_action_just_pressed("ui_cancel"):
 		SceneSwitcher.go_to_settings()
 		return
@@ -107,17 +123,21 @@ func handle_input():
 ## Returns raw directional input from arrow/WASD keys.
 func _read_input_direction() -> Vector2:
 	if Input.is_action_pressed("Player_Up"):
+		print("PRESSED")
 		return Vector2.UP
 	if Input.is_action_pressed("Player_Down"):
+		print("PRESSED")
 		return Vector2.DOWN
 	if Input.is_action_pressed("Player_Left"):
+		print("PRESSED")
 		return Vector2.LEFT
 	if Input.is_action_pressed("Player_Right"):
+		print("PRESSED")
 		return Vector2.RIGHT
 	return Vector2.ZERO
 
 ## Handles movement requests, buffering and move validation.
-func handle_movement_input(_input_direction: Vector2, step_timer_time := Constants.TIMER_STEP):
+func handle_movement_input(_input_direction: Vector2):
 	if currently_possessed_creature:
 		var bee_area = Helper.get_collision_on_area(
 			currently_possessed_creature.global_position,
@@ -145,16 +165,17 @@ func handle_movement_input(_input_direction: Vector2, step_timer_time := Constan
 	if input_direction == _input_direction:
 		input_direction = Vector2.ZERO
 	
-	prepare_movement(direction, direction, step_timer_time)
+	prepare_movement(direction, direction)
 
 ## Prepares a normal (input-based) movement step.
-func prepare_movement(_direction: Vector2, animation_direction: Vector2, step_timer_time := Constants.TIMER_STEP):
+func prepare_movement(_direction: Vector2, animation_direction: Vector2):
 	last_position = global_position
 	direction = _direction
 	set_animation_direction(animation_direction)
 	can_move = false
 	pushable_stone_in_direction = null
-	step_timer.start(step_timer_time)
+	print("Start timer with duration: ", timer_step)
+	step_timer.start(timer_step)
 
 	if is_moving:
 		buffered_direction = _direction
@@ -341,7 +362,7 @@ func on_move_step_finished():
 	if is_avoiding:
 		is_avoiding = false
 		can_move = false
-		avoid_timer.start(Constants.TIMER_STEP_AFTER_AVOIDING)
+		avoid_timer.start(timer_step_after_avoiding)
 
 ## Computes slide target and updates ice-related flags.
 func update_ice_slide_target():
@@ -645,6 +666,12 @@ func update_heart_icons():
 func _on_step_timer_timeout():
 	if is_avoiding or bees_are_flying:
 		return
+	#if is_step_timer_triggered and (Input.is_action_pressed("Player_Up") or Input.is_action_pressed("Player_Down") or Input.is_action_pressed("Player_Left") or Input.is_action_pressed("Player_Right")):
+		#timer_step = timer_step_short
+	if not is_step_timer_triggered and (Input.is_action_pressed("Player_Up") or Input.is_action_pressed("Player_Down") or Input.is_action_pressed("Player_Left") or Input.is_action_pressed("Player_Right")):
+		is_step_timer_triggered = true
+		timer_step = timer_step_short
+	
 	can_move = true
 
 

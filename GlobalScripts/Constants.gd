@@ -8,8 +8,7 @@ enum SEASON {Intro, Spring, Summer, Fall, Winter}
 const GRID_SIZE := Vector2(64, 64)
 const MOVE_SPEED := 500.0
 const PLAYER_MOVE_SPEED := 500.0
-const TIMER_STEP := 0.125
-const TIMER_STEP_AFTER_AVOIDING := 0.125
+
 
 # DIRECTIONS
 const UP = 			Vector2( 0,-1)

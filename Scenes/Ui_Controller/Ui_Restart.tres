@@ -7,6 +7,4 @@ resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("1_ixwbg")
 path = "Reload_Level"
-show_mode = 0
-force_type = 0
 metadata/_custom_type_script = "uid://q4mxuakxudlm"
