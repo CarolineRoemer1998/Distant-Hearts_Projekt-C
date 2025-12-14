@@ -5,8 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://pb5o008ihthl" path="res://Components/UI/Menues/win_screen.tscn" id="2_73yj2"]
 [ext_resource type="PackedScene" uid="uid://d3lpfscgajhb4" path="res://Components/UI/Controls/UndoMechanic.tscn" id="3_m0pqk"]
 [ext_resource type="PackedScene" uid="uid://ckkosqi7rtbdb" path="res://Components/UI/Menues/game_completed.tscn" id="4_dnxhn"]
-[ext_resource type="Script" uid="uid://4cpn4q7vm6em" path="res://Components/UI/VFX/LeafManager.gd" id="5_1663l"]
 [ext_resource type="AudioStream" uid="uid://bqsh6edu2l0uj" path="res://Sounds/SFX/WaterSplashing/water_flowing.mp3" id="7_73yj2"]
+[ext_resource type="PackedScene" uid="uid://ut3aeqkkru13" path="res://Components/UI/VFX/leaf_emitter.tscn" id="8_dnxhn"]
 [ext_resource type="PackedScene" uid="uid://djikxkoa5jv3m" path="res://Components/UI/Controls/undo_bar.tscn" id="8_m0pqk"]
 
 [node name="LevelUI" type="Node2D"]
@@ -35,16 +35,11 @@ scale = Vector2(1.46, 1.46)
 
 [node name="GameCompleted" parent="." instance=ExtResource("4_dnxhn")]
 
-[node name="Leaves" type="Node2D" parent="."]
-z_index = 10
-
-[node name="LeafManager" type="Node2D" parent="Leaves"]
-visible = false
-script = ExtResource("5_1663l")
-
 [node name="AudioWaterFlowPlayer" type="AudioStreamPlayer2D" parent="." groups=["AudioWaterFlowPlayer"]]
 stream = ExtResource("7_73yj2")
 volume_db = 5.0
 bus = &"sfx"
+
+[node name="LeafEmitter" parent="." instance=ExtResource("8_dnxhn")]
 
 [editable path="UndoMechanic"]

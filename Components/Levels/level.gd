@@ -39,7 +39,7 @@ var is_undo_pressed := false
 func _ready() -> void:
 	Signals.level_loaded.emit(season)
 	
-	set_leaves()
+	
 	set_wind()
 	SceneSwitcher.set_curent_level(level_number)
 	if level_number >= 6:
@@ -78,10 +78,6 @@ func _process(_delta: float) -> void:
 	elif Input.is_action_just_pressed("Load Next Level"):
 		var load_level = min(level_number+1, Constants.LEVELS.size())
 		SceneSwitcher.switch_to_level(load_level)
-
-func set_leaves():
-	if not season == Constants.SEASON.Intro:
-		cherry_blossoms.visible = true
 
 func set_wind():
 	if season == Constants.SEASON.Fall:

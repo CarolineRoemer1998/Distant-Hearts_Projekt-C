@@ -1,0 +1,284 @@
+[gd_scene load_steps=39 format=3 uid="uid://ut3aeqkkru13"]
+
+[ext_resource type="Texture2D" uid="uid://bfnfeayy6q4o6" path="res://Assets/Environments/Leaves etc/CherryBlossoms/Cherry Blossom Single Frames/CherryBlossom-1.png" id="1_0qi7a"]
+[ext_resource type="Script" uid="uid://c664f7icejj4r" path="res://Components/UI/VFX/LeafEmitter.gd" id="1_es5eh"]
+[ext_resource type="Texture2D" uid="uid://cao8lk2wpfenb" path="res://Assets/Environments/Leaves etc/CherryBlossoms/Cherry Blossom Single Frames/CherryBlossom-2.png" id="2_7h1c8"]
+[ext_resource type="Texture2D" uid="uid://b23ibfdss24gt" path="res://Assets/Environments/Leaves etc/CherryBlossoms/Cherry Blossom Single Frames/CherryBlossom-8.png" id="3_u52g6"]
+[ext_resource type="Texture2D" uid="uid://lit02h44akb6" path="res://Assets/Environments/Leaves etc/CherryBlossoms/Cherry Blossom Single Frames/CherryBlossom-7.png" id="4_ft5e3"]
+[ext_resource type="Texture2D" uid="uid://bwd0v7pt7fmlr" path="res://Assets/Environments/Leaves etc/CherryBlossoms/Cherry Blossom Single Frames/CherryBlossom-6.png" id="5_nubtl"]
+[ext_resource type="Texture2D" uid="uid://b1u4qrcjjlyg4" path="res://Assets/Environments/Leaves etc/CherryBlossoms/Cherry Blossom Single Frames/CherryBlossom-5.png" id="6_75hir"]
+[ext_resource type="Texture2D" uid="uid://chajji40cmunt" path="res://Assets/Environments/Leaves etc/CherryBlossoms/Cherry Blossom Single Frames/CherryBlossom-4.png" id="7_q0s6x"]
+[ext_resource type="Texture2D" uid="uid://d0h2nv7w5ppin" path="res://Assets/Environments/Leaves etc/CherryBlossoms/Cherry Blossom Single Frames/CherryBlossom-3.png" id="8_prqv5"]
+[ext_resource type="Texture2D" uid="uid://cfprshws4hrct" path="res://Assets/Environments/Leaves etc/CherryBlossoms/Cherry Blossom Single Frames/CherryBlossom-9.png" id="9_12qj6"]
+[ext_resource type="Texture2D" uid="uid://dwmhfsujifxb0" path="res://Assets/Environments/Leaves etc/Fall Leaves/Single Fall Leaves/FallLeaf-1.png" id="10_7taq7"]
+[ext_resource type="Texture2D" uid="uid://cbufoyoqkviwo" path="res://Assets/Environments/Leaves etc/Fall Leaves/Single Fall Leaves/FallLeaf-2.png" id="11_es5eh"]
+[ext_resource type="Texture2D" uid="uid://nq7ro1mraa6x" path="res://Assets/Environments/Leaves etc/Fall Leaves/Single Fall Leaves/FallLeaf-8.png" id="12_axqxg"]
+[ext_resource type="Texture2D" uid="uid://wagl7gul0stt" path="res://Assets/Environments/Leaves etc/Fall Leaves/Single Fall Leaves/FallLeaf-7.png" id="13_wypng"]
+[ext_resource type="Texture2D" uid="uid://cq87qc61a0fmr" path="res://Assets/Environments/Leaves etc/Fall Leaves/Single Fall Leaves/FallLeaf-6.png" id="14_h13xa"]
+[ext_resource type="Texture2D" uid="uid://td3jb3mpats1" path="res://Assets/Environments/Leaves etc/Fall Leaves/Single Fall Leaves/FallLeaf-5.png" id="15_4wle6"]
+[ext_resource type="Texture2D" uid="uid://bqyu5spoxuwfr" path="res://Assets/Environments/Leaves etc/Fall Leaves/Single Fall Leaves/FallLeaf-4.png" id="16_druy4"]
+[ext_resource type="Texture2D" uid="uid://c1rln50b5ch5o" path="res://Assets/Environments/Leaves etc/Fall Leaves/Single Fall Leaves/FallLeaf-3.png" id="17_oc41w"]
+[ext_resource type="Texture2D" uid="uid://dv0xt2pqw70p0" path="res://Assets/Environments/Leaves etc/Fall Leaves/Single Fall Leaves/FallLeaf-9.png" id="18_ysf04"]
+[ext_resource type="Texture2D" uid="uid://bqgquvhl4u4kq" path="res://Assets/Environments/Leaves etc/Snowflakes/Snowflake.png" id="20_axqxg"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_7taq7"]
+frames = 18
+speed_scale = 8.0
+frame_0/texture = ExtResource("1_0qi7a")
+frame_1/texture = ExtResource("2_7h1c8")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("8_prqv5")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("7_q0s6x")
+frame_3/duration = 1.0
+frame_4/texture = ExtResource("6_75hir")
+frame_4/duration = 1.0
+frame_5/texture = ExtResource("5_nubtl")
+frame_5/duration = 1.0
+frame_6/texture = ExtResource("4_ft5e3")
+frame_6/duration = 1.0
+frame_7/texture = ExtResource("3_u52g6")
+frame_7/duration = 1.0
+frame_8/texture = ExtResource("9_12qj6")
+frame_8/duration = 1.0
+frame_9/texture = ExtResource("9_12qj6")
+frame_9/duration = 1.0
+frame_10/texture = ExtResource("3_u52g6")
+frame_10/duration = 1.0
+frame_11/texture = ExtResource("4_ft5e3")
+frame_11/duration = 1.0
+frame_12/texture = ExtResource("5_nubtl")
+frame_12/duration = 1.0
+frame_13/texture = ExtResource("6_75hir")
+frame_13/duration = 1.0
+frame_14/texture = ExtResource("7_q0s6x")
+frame_14/duration = 1.0
+frame_15/texture = ExtResource("8_prqv5")
+frame_15/duration = 1.0
+frame_16/texture = ExtResource("2_7h1c8")
+frame_16/duration = 1.0
+frame_17/texture = ExtResource("1_0qi7a")
+frame_17/duration = 1.0
+
+[sub_resource type="Curve" id="Curve_axqxg"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_2r06k"]
+curve = SubResource("Curve_axqxg")
+
+[sub_resource type="Curve" id="Curve_wypng"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.8850575, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -4.053096, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_h13xa"]
+curve = SubResource("Curve_wypng")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4wle6"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(704, 32, 1)
+gravity = Vector3(-8, 12, 0)
+linear_accel_min = -2.2351742e-06
+linear_accel_max = 5.9999976
+damping_min = 4.0
+damping_max = 12.000001
+scale_min = 0.79999995
+scale_curve = SubResource("CurveTexture_h13xa")
+hue_variation_curve = SubResource("CurveTexture_2r06k")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_axqxg"]
+load_path = "res://.godot/imported/Pollen.png-dc360b19abe708b39bdee0fd62369fcc.ctex"
+
+[sub_resource type="Curve" id="Curve_h13xa"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 0.5088424), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_4wle6"]
+curve = SubResource("Curve_h13xa")
+
+[sub_resource type="Curve" id="Curve_4wle6"]
+_data = [Vector2(0.31034485, 0), 0.0, 0.0, 0, 0, Vector2(0.42145598, 1), 0.0, 0.0, 0, 0, Vector2(0.63601536, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_druy4"]
+curve = SubResource("Curve_4wle6")
+
+[sub_resource type="Curve" id="Curve_0qi7a"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.42528737, 1), 0.0, 0.0, 0, 0, Vector2(0.7432951, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -4.053096, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_7h1c8"]
+curve = SubResource("Curve_0qi7a")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_oc41w"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(704, 32, 1)
+gravity = Vector3(-2, 4, 0)
+damping_max = 8.0
+damping_curve = SubResource("CurveTexture_4wle6")
+scale_min = 0.5
+scale_max = 1.1999999
+scale_curve = SubResource("CurveTexture_7h1c8")
+color = Color(2.0331757, 1.9540031, 1.5581403, 0.13725491)
+emission_curve = SubResource("CurveTexture_druy4")
+hue_variation_curve = SubResource("CurveTexture_2r06k")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wypng"]
+load_path = "res://.godot/imported/Pollen.png-dc360b19abe708b39bdee0fd62369fcc.ctex"
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_h13xa"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(352, 352, 1)
+gravity = Vector3(-8, 8, 0)
+damping_curve = SubResource("CurveTexture_4wle6")
+scale_min = 0.79999995
+scale_curve = SubResource("CurveTexture_7h1c8")
+emission_curve = SubResource("CurveTexture_druy4")
+hue_variation_curve = SubResource("CurveTexture_2r06k")
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_l5rrp"]
+frames = 18
+speed_scale = 8.0
+frame_0/texture = ExtResource("10_7taq7")
+frame_1/texture = ExtResource("11_es5eh")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("17_oc41w")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("16_druy4")
+frame_3/duration = 1.0
+frame_4/texture = ExtResource("15_4wle6")
+frame_4/duration = 1.0
+frame_5/texture = ExtResource("14_h13xa")
+frame_5/duration = 1.0
+frame_6/texture = ExtResource("13_wypng")
+frame_6/duration = 1.0
+frame_7/texture = ExtResource("12_axqxg")
+frame_7/duration = 1.0
+frame_8/texture = ExtResource("18_ysf04")
+frame_8/duration = 1.0
+frame_9/texture = ExtResource("18_ysf04")
+frame_9/duration = 1.0
+frame_10/texture = ExtResource("12_axqxg")
+frame_10/duration = 1.0
+frame_11/texture = ExtResource("13_wypng")
+frame_11/duration = 1.0
+frame_12/texture = ExtResource("14_h13xa")
+frame_12/duration = 1.0
+frame_13/texture = ExtResource("15_4wle6")
+frame_13/duration = 1.0
+frame_14/texture = ExtResource("16_druy4")
+frame_14/duration = 1.0
+frame_15/texture = ExtResource("17_oc41w")
+frame_15/duration = 1.0
+frame_16/texture = ExtResource("11_es5eh")
+frame_16/duration = 1.0
+frame_17/texture = ExtResource("10_7taq7")
+frame_17/duration = 1.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_es5eh"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(704, 32, 1)
+gravity = Vector3(-8, 12, 0)
+linear_accel_min = -2.2351742e-06
+linear_accel_max = 1.9999977
+damping_min = 8.0
+damping_max = 12.000001
+scale_min = 0.79999995
+scale_max = 1.1999999
+scale_curve = SubResource("CurveTexture_7h1c8")
+hue_variation_curve = SubResource("CurveTexture_2r06k")
+
+[node name="LeafEmitter" type="Node2D"]
+script = ExtResource("1_es5eh")
+
+[node name="Spring" type="Node2D" parent="."]
+visible = false
+
+[node name="GPUParticlesCherryBlossoms" type="GPUParticles2D" parent="Spring"]
+position = Vector2(640, -32)
+amount = 32
+texture = SubResource("AnimatedTexture_7taq7")
+lifetime = 16.0
+preprocess = 12.0
+trail_sections = 4
+process_material = SubResource("ParticleProcessMaterial_4wle6")
+
+[node name="Summer" type="Node2D" parent="."]
+
+[node name="GPUParticlesPollen" type="GPUParticles2D" parent="Summer"]
+visible = false
+modulate = Color(1.4164544, 1.1096109, 0.5796083, 1)
+position = Vector2(640, -32)
+amount = 64
+texture = SubResource("CompressedTexture2D_axqxg")
+lifetime = 64.0
+preprocess = 64.0
+trail_sections = 4
+process_material = SubResource("ParticleProcessMaterial_oc41w")
+
+[node name="GPUParticlesPollen2" type="GPUParticles2D" parent="Summer"]
+modulate = Color(1.4164544, 1.1096109, 0.5796083, 1)
+position = Vector2(352, 352)
+amount = 16
+texture = SubResource("CompressedTexture2D_wypng")
+lifetime = 4.0
+preprocess = 64.0
+trail_sections = 4
+process_material = SubResource("ParticleProcessMaterial_h13xa")
+
+[node name="Fall" type="Node2D" parent="."]
+visible = false
+
+[node name="GPUParticlesFallLeaves1" type="GPUParticles2D" parent="Fall"]
+modulate = Color(1, 0.70133334, 0.44, 1)
+position = Vector2(640, -32)
+texture = SubResource("AnimatedTexture_l5rrp")
+lifetime = 16.0
+preprocess = 32.0
+trail_sections = 4
+process_material = SubResource("ParticleProcessMaterial_es5eh")
+
+[node name="GPUParticlesFallLeaves2" type="GPUParticles2D" parent="Fall"]
+modulate = Color(1, 0.48866665, 0.48000002, 1)
+position = Vector2(640, -32)
+texture = SubResource("AnimatedTexture_l5rrp")
+lifetime = 16.0
+preprocess = 32.0
+trail_sections = 4
+process_material = SubResource("ParticleProcessMaterial_es5eh")
+
+[node name="GPUParticlesFallLeaves3" type="GPUParticles2D" parent="Fall"]
+modulate = Color(1.1189815, 0.87565386, 0.20650297, 1)
+position = Vector2(640, -32)
+texture = SubResource("AnimatedTexture_l5rrp")
+lifetime = 24.0
+preprocess = 32.0
+trail_sections = 4
+process_material = SubResource("ParticleProcessMaterial_es5eh")
+
+[node name="GPUParticlesFallLeaves4" type="GPUParticles2D" parent="Fall"]
+modulate = Color(1, 0.6441667, 0.39, 1)
+position = Vector2(640, -32)
+texture = SubResource("AnimatedTexture_l5rrp")
+lifetime = 16.0
+preprocess = 32.0
+trail_sections = 4
+process_material = SubResource("ParticleProcessMaterial_es5eh")
+
+[node name="Winter" type="Node2D" parent="."]
+visible = false
+
+[node name="GPUParticlesSnowFlakes" type="GPUParticles2D" parent="Winter"]
+modulate = Color(1.8247963, 1.8247963, 1.8247963, 1)
+position = Vector2(640, -32)
+amount = 64
+texture = ExtResource("20_axqxg")
+lifetime = 16.0
+preprocess = 12.0
+trail_sections = 4
+process_material = SubResource("ParticleProcessMaterial_es5eh")

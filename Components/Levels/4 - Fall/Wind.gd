@@ -42,7 +42,7 @@ func _ready() -> void:
 	_set_level_tile_positions()
 	#timer_blow_wind_interval.start()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if is_active:
 		if not init_blow_done:
 			check_for_objects_to_blow({})

@@ -218,7 +218,8 @@ func get_info() -> Dictionary:
 		#"can_move": can_move,
 		"bees_are_flying": bees_are_flying,
 		"is_avoiding": is_avoiding,
-		"planted_flower_last_step": planted_flower_last_step
+		"planted_flower_last_step": planted_flower_last_step,
+		"is_blown_by_wind": is_blown_by_wind
 	}
 
 ## Restores a previous player state from undo.
@@ -243,6 +244,8 @@ func set_info(info : Dictionary):
 
 	bees_are_flying = info["bees_are_flying"]
 	is_avoiding = info["is_avoiding"]
+	
+	is_blown_by_wind = info["is_blown_by_wind"]
 	
 	planted_flower_last_step = info["planted_flower_last_step"]
 	can_move = true
@@ -313,22 +316,15 @@ func update_movement(delta):
 	
 	if not is_blown_by_wind:
 		position = position.move_toward(target_position, Constants.PLAYER_MOVE_SPEED * delta)
+		print("Move normally")
 	else:
 		position = position.move_toward(target_position, Constants.MOVE_BY_WIND_SPEED * delta)
+		print("Move by wind")
 
 	if currently_possessed_creature:
 		currently_possessed_creature.position = currently_possessed_creature.position.move_toward(
 			target_position, Constants.PLAYER_MOVE_SPEED * delta
 		)
-		
-	#if currently_possessed_creature:
-			#var result_bee_area = Helper.get_collision_on_area(
-				#currently_possessed_creature.global_position,
-				#1 << Constants.LAYER_BIT_BEE_AREA,
-				#get_world_2d()
-			#)
-			#if not result_bee_area.is_empty():
-				#handle_bees_near_creature(currently_possessed_creature)
 	
 	if position == target_position:
 		if currently_possessed_creature and currently_possessed_creature.just_teleported:
