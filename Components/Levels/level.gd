@@ -38,6 +38,7 @@ var is_undo_pressed := false
 
 func _ready() -> void:
 	Signals.level_loaded.emit(season)
+	Wind.is_active = false
 	
 	set_wind()
 	SceneSwitcher.set_curent_level(level_number)
