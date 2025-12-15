@@ -572,7 +572,7 @@ func possess():
 # FALL & WIND
 # ------------------------------------------------
 
-func get_blown_by_wind(list_of_blown_objects: Dictionary, blow_direction: Vector2):
+func get_blown_by_wind(list_of_blown_objects: Dictionary, blow_direction: Vector2, _wind_particles: GPUParticles2D):
 	if currently_possessed_creature == null:
 		return
 	for obj in list_of_blown_objects:

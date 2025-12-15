@@ -222,7 +222,7 @@ trail_sections = 4
 process_material = SubResource("ParticleProcessMaterial_oc41w")
 
 [node name="GPUParticlesPollen2" type="GPUParticles2D" parent="Summer"]
-modulate = Color(1.4164544, 1.1096109, 0.5796083, 1)
+modulate = Color(1.8247963, 1.4328008, 0.75571775, 0.28235295)
 position = Vector2(352, 352)
 amount = 16
 texture = SubResource("CompressedTexture2D_wypng")
@@ -237,6 +237,7 @@ visible = false
 [node name="GPUParticlesFallLeaves1" type="GPUParticles2D" parent="Fall"]
 modulate = Color(1, 0.70133334, 0.44, 1)
 position = Vector2(640, -32)
+amount = 10
 texture = SubResource("AnimatedTexture_l5rrp")
 lifetime = 16.0
 preprocess = 32.0
@@ -246,6 +247,7 @@ process_material = SubResource("ParticleProcessMaterial_es5eh")
 [node name="GPUParticlesFallLeaves2" type="GPUParticles2D" parent="Fall"]
 modulate = Color(1, 0.48866665, 0.48000002, 1)
 position = Vector2(640, -32)
+amount = 10
 texture = SubResource("AnimatedTexture_l5rrp")
 lifetime = 16.0
 preprocess = 32.0
@@ -255,6 +257,7 @@ process_material = SubResource("ParticleProcessMaterial_es5eh")
 [node name="GPUParticlesFallLeaves3" type="GPUParticles2D" parent="Fall"]
 modulate = Color(1.1189815, 0.87565386, 0.20650297, 1)
 position = Vector2(640, -32)
+amount = 10
 texture = SubResource("AnimatedTexture_l5rrp")
 lifetime = 24.0
 preprocess = 32.0
@@ -264,6 +267,7 @@ process_material = SubResource("ParticleProcessMaterial_es5eh")
 [node name="GPUParticlesFallLeaves4" type="GPUParticles2D" parent="Fall"]
 modulate = Color(1, 0.6441667, 0.39, 1)
 position = Vector2(640, -32)
+amount = 10
 texture = SubResource("AnimatedTexture_l5rrp")
 lifetime = 16.0
 preprocess = 32.0

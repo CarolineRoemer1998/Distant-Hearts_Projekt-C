@@ -6,8 +6,8 @@ class_name Level
 @export var undo_particles: PackedScene 
 @export var final_level: bool = false
 @export var level_number: int = 0
+@export var wind_direction_if_fall: Vector2 = Vector2.ZERO
 
-@onready var wind = preload(Constants.MECHANIC_WIND)
 @onready var win_animation: AnimationPlayer = $LevelUI/WinScreen/WinAnimation
 @onready var game_completed_animation: AnimationPlayer = $LevelUI/GameCompleted/WinAnimation
 
@@ -38,7 +38,6 @@ var is_undo_pressed := false
 
 func _ready() -> void:
 	Signals.level_loaded.emit(season)
-	
 	
 	set_wind()
 	SceneSwitcher.set_curent_level(level_number)
@@ -82,6 +81,13 @@ func _process(_delta: float) -> void:
 func set_wind():
 	if season == Constants.SEASON.Fall:
 		Wind.is_active = true
+		Wind.blow_direction = wind_direction_if_fall
+		var is_wind_visible = Wind.wind_particles.visible
+		print( Wind.wind_particles.visible)
+		var wind = Wind.wind_particles.duplicate()
+		add_child(wind)
+		wind.visible = is_wind_visible
+		
 		#var new_wind_node = wind.instantiate()
 		#add_child(new_wind_node)
 

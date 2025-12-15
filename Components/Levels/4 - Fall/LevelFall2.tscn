@@ -13,6 +13,7 @@ script = ExtResource("1_7fjwj")
 season = 3
 undo_particles = ExtResource("2_mfecm")
 level_number = 19
+wind_direction_if_fall = Vector2(1, 0)
 
 [node name="BackgroundSpring" parent="." instance=ExtResource("3_u4igg")]
 

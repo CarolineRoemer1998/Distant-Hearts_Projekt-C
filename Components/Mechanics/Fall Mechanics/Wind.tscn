@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://brpyqrynlw7y2"]
+[gd_scene load_steps=3 format=3 uid="uid://brpyqrynlw7y2"]
 
 [ext_resource type="Script" uid="uid://cliuml78fyqi" path="res://Components/Levels/4 - Fall/Wind.gd" id="1_qn7r6"]
+[ext_resource type="PackedScene" uid="uid://dxqr8n7w345bw" path="res://Components/Mechanics/Fall Mechanics/wind_particles.tscn" id="2_xxnaq"]
 
 [node name="Wind" type="Node2D"]
 script = ExtResource("1_qn7r6")
@@ -10,6 +11,9 @@ script = ExtResource("1_qn7r6")
 [node name="TimerBlowDuration" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
+
+[node name="WindParticles" parent="." instance=ExtResource("2_xxnaq")]
+visible = false
 
 [connection signal="timeout" from="TimerBlowWindInterval" to="." method="_on_timer_blow_wind_interval_timeout"]
 [connection signal="timeout" from="TimerBlowDuration" to="." method="_on_timer_blow_duration_timeout"]

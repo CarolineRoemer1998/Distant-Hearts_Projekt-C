@@ -2,10 +2,14 @@ extends Node2D
 
 #class_name Wind
 
-@export var blow_direction : Vector2 = Vector2.LEFT
+@export var blow_direction : Vector2 = Vector2.LEFT:
+	set(val):
+		set_wind_particle_direction(val)
 
 @onready var timer_blow_wind_interval: Timer = $TimerBlowWindInterval
 @onready var timer_blow_duration: Timer = $TimerBlowDuration
+
+@onready var wind_particles: GPUParticles2D = $WindParticles
 
 # Bewegliche Objekte: Creatures, Blätterhaufen
 
@@ -30,45 +34,58 @@ var level_width_in_tiles : float = 9.0   # Falls anders, von Level-Skript aus ä
 var level_height_in_tiles : float = 9.0  # Falls anders, von Level-Skript aus ändern
 var all_level_tile_positions : Array[Vector2]= []
 var is_blowing := false
-
 var wind_strength := 20
-
 var init_blow_done = false
-
 var is_active = false
 
 func _ready() -> void:
-	#Signals.state_changed.connect(check_for_objects_to_blow)
 	_set_level_tile_positions()
-	#timer_blow_wind_interval.start()
+	#set_wind_particle_direction(blow_direction)
+
+func set_wind_particle_direction(dir: Vector2):
+	match dir:
+		Vector2.UP:
+			wind_particles.process_material.gravity = Vector3(9, -98, 0)
+			wind_particles.visible = true
+			return
+		Vector2.DOWN:
+			wind_particles.process_material.gravity = Vector3(9, 98, 0)
+			wind_particles.visible = true
+			return
+		Vector2.LEFT:
+			wind_particles.process_material.gravity = Vector3(-98, 9, 0)
+			wind_particles.visible = true
+			return
+		Vector2.RIGHT:
+			wind_particles.process_material.gravity = Vector3(98, 9, 0)
+			wind_particles.visible = true
+			return
+	visible = false
 
 func _process(_delta: float) -> void:
 	if is_active:
 		if not init_blow_done:
+			
 			check_for_objects_to_blow({})
 			init_blow_done = true
 
 func check_for_objects_to_blow(_dict: Dictionary = {}):
 	if is_active:
 		var objects_to_blow = get_all_blowable_objects()
-		Signals.wind_blows.emit(objects_to_blow, blow_direction)
+		Signals.wind_blows.emit(objects_to_blow, blow_direction, wind_particles)
 
 
 # Wird von Level aufgerufen
 func blow():
-	# TODO: Visuals für Wind abspielen
-	
 	var objects_to_blow = get_all_blowable_objects()
-	#print(objects_to_blow, blow_direction)
 	print("--WIND BLOWS--")
-	Signals.wind_blows.emit(objects_to_blow, blow_direction)
+	Signals.wind_blows.emit(objects_to_blow, blow_direction, wind_particles)
 
 func get_all_blowable_objects() -> Dictionary:
 	var blowable_objects_in_level : Dictionary[Vector2, Dictionary] = {}
 	
 	for tile in all_level_tile_positions:
 		var result_blowable_objects = Helper.get_collision_on_tile(tile, layer_mask_blowable_objects, get_world_2d())
-		#print(result_blowable_objects)
 		if not result_blowable_objects.is_empty():
 			blowable_objects_in_level[tile] = {"Object": null, "is_affected_by_wind": true, "amount_of_tiles_to_travel": 1}
 			for obj in result_blowable_objects:
@@ -77,35 +94,23 @@ func get_all_blowable_objects() -> Dictionary:
 	return get_all_objects_actually_hit_by_wind(blowable_objects_in_level)
 
 func get_all_objects_actually_hit_by_wind(blowable_objects: Dictionary) -> Dictionary:
-	var result = {}
-	
+	var result := {}
+
 	for tile_with_object in blowable_objects:
+		var incoming_dir := Vector2.ZERO
 		match blow_direction:
-			Vector2.UP:
-				if get_single_object_actually_hit_by_wind(tile_with_object, blowable_objects, Vector2.DOWN):
-					var travel_distance = get_travel_distance(tile_with_object)
-					result[tile_with_object] = blowable_objects[tile_with_object]["Object"]
-					
-					print(get_travel_distance(tile_with_object))
-			Vector2.DOWN:
-				if get_single_object_actually_hit_by_wind(tile_with_object, blowable_objects, Vector2.UP):
-					var travel_distance = get_travel_distance(tile_with_object)
-					result[tile_with_object] = blowable_objects[tile_with_object]["Object"]
-					print(get_travel_distance(tile_with_object))
-			Vector2.LEFT:
-				if get_single_object_actually_hit_by_wind(tile_with_object, blowable_objects, Vector2.RIGHT):
-					var travel_distance = get_travel_distance(tile_with_object)
-					result[tile_with_object] = {
-						"Object": blowable_objects[tile_with_object]["Object"],
-						"travel_distance": travel_distance
-					}
-					print(get_travel_distance(tile_with_object))
-			Vector2.RIGHT:
-				if get_single_object_actually_hit_by_wind(tile_with_object, blowable_objects, Vector2.LEFT):
-					var travel_distance = get_travel_distance(tile_with_object)
-					result[tile_with_object] = blowable_objects[tile_with_object]["Object"]
-					print(get_travel_distance(tile_with_object))
-	
+			Vector2.UP:    incoming_dir = Vector2.DOWN
+			Vector2.DOWN:  incoming_dir = Vector2.UP
+			Vector2.LEFT:  incoming_dir = Vector2.RIGHT
+			Vector2.RIGHT: incoming_dir = Vector2.LEFT
+
+		if get_single_object_actually_hit_by_wind(tile_with_object, blowable_objects, incoming_dir):
+			var travel_distance := get_travel_distance(tile_with_object)
+			result[tile_with_object] = {
+				"Object": blowable_objects[tile_with_object]["Object"],
+				"travel_distance": travel_distance
+			}
+
 	return result
 
 func get_single_object_actually_hit_by_wind(tile_with_object: Vector2, blowable_objects: Dictionary, direction_wind_is_coming_from: Vector2):

@@ -63,5 +63,5 @@ signal set_lily_pad_on_water_tile(lilypad: LilyPad)
 signal player_left_lily_pad(pos: Vector2)
 
 # Fall
-signal wind_blows(list_of_blown_objects: Dictionary, blow_direction: Vector2)
+signal wind_blows(list_of_blown_objects: Dictionary, blow_direction: Vector2, wind_particles: GPUParticles2D)
 signal wind_stopped_blowing

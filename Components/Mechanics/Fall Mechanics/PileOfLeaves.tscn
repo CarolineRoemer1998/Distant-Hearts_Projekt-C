@@ -1,0 +1,40 @@
+[gd_scene load_steps=9 format=3 uid="uid://cmlnlah0e5vn3"]
+
+[ext_resource type="Texture2D" uid="uid://cwyuipnd32rsx" path="res://Assets/Fall Mechanics/Pile of Leaves/SingleLeafOfPile8.png" id="1_m5wur"]
+[ext_resource type="Texture2D" uid="uid://bm4dq6813vb6l" path="res://Assets/Fall Mechanics/Pile of Leaves/SingleLeafOfPile7.png" id="2_jtq23"]
+[ext_resource type="Texture2D" uid="uid://iaqpuklbmsux" path="res://Assets/Fall Mechanics/Pile of Leaves/SingleLeafOfPile6.png" id="3_rxhd1"]
+[ext_resource type="Texture2D" uid="uid://b1041p30vh78m" path="res://Assets/Fall Mechanics/Pile of Leaves/SingleLeafOfPile5.png" id="4_c0kej"]
+[ext_resource type="Texture2D" uid="uid://cootqy81aheck" path="res://Assets/Fall Mechanics/Pile of Leaves/SingleLeafOfPile4.png" id="5_gpl4j"]
+[ext_resource type="Texture2D" uid="uid://dwagfowyors2g" path="res://Assets/Fall Mechanics/Pile of Leaves/SingleLeafOfPile3.png" id="6_6707x"]
+[ext_resource type="Texture2D" uid="uid://7of0mp4rgf74" path="res://Assets/Fall Mechanics/Pile of Leaves/SingleLeafOfPile2.png" id="7_ju68o"]
+[ext_resource type="Texture2D" uid="uid://crnagft8f6ykr" path="res://Assets/Fall Mechanics/Pile of Leaves/SingleLeafOfPile1.png" id="8_vg7pk"]
+
+[node name="PileOfLeaves" type="Node2D"]
+
+[node name="Visuals" type="Node2D" parent="."]
+modulate = Color(1.0586369, 1.0586369, 1.0586369, 1)
+scale = Vector2(2, 2)
+
+[node name="SpriteLeaf1" type="Sprite2D" parent="Visuals"]
+texture = ExtResource("1_m5wur")
+
+[node name="SpriteLeaf2" type="Sprite2D" parent="Visuals"]
+texture = ExtResource("2_jtq23")
+
+[node name="SpriteLeaf3" type="Sprite2D" parent="Visuals"]
+texture = ExtResource("3_rxhd1")
+
+[node name="SpriteLeaf4" type="Sprite2D" parent="Visuals"]
+texture = ExtResource("4_c0kej")
+
+[node name="SpriteLeaf5" type="Sprite2D" parent="Visuals"]
+texture = ExtResource("5_gpl4j")
+
+[node name="SpriteLeaf6" type="Sprite2D" parent="Visuals"]
+texture = ExtResource("6_6707x")
+
+[node name="SpriteLeaf7" type="Sprite2D" parent="Visuals"]
+texture = ExtResource("7_ju68o")
+
+[node name="SpriteLeaf8" type="Sprite2D" parent="Visuals"]
+texture = ExtResource("8_vg7pk")
