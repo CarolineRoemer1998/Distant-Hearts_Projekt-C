@@ -18,6 +18,7 @@ class_name Level
 
 @onready var player: Player = $Player/Player
 
+var has_first_wind_blown := false
 
 var groups_to_save := [
 	Constants.GROUP_NAME_PLAYER,
@@ -62,6 +63,9 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
+	if not has_first_wind_blown and Wind.is_active:
+		Wind.check_for_objects_to_blow({})
+		has_first_wind_blown = true
 	if Input.is_action_pressed("Undo") and not Globals.is_level_finished:
 		is_undo_pressed = true
 		undo()
