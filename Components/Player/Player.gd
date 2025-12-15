@@ -53,11 +53,11 @@ var bees_are_flying := false
 var is_avoiding := false
 var planted_flower_last_step := false
 
-var is_blown_by_wind := false
-
-#var is_level_finished := false
-## TODO: Deaktivieren während Bienen fliegen
-
+var is_blown_by_wind := false:
+	set(val):
+		#if val == false:
+			#print("is_blown_by_wind was set to false")
+		is_blown_by_wind = val
 
 # ------------------------------------------------
 # READY
@@ -109,8 +109,8 @@ func handle_input(delta: float):
 		if Input.is_action_just_pressed("ui_accept"):
 			SceneSwitcher.go_to_next_level()
 	elif bees_are_flying or is_avoiding or Globals.is_level_finished or Globals.is_teleporting or is_blown_by_wind:
-		if is_blown_by_wind:
-			update_movement(delta)
+		#if is_blown_by_wind:
+			#update_movement(delta)
 		return
 	elif is_active and not is_avoiding:
 		handle_movement_input(Vector2.ZERO)
@@ -130,13 +130,6 @@ func _read_input_direction() -> Vector2:
 		dir = Vector2.LEFT
 	elif Input.is_action_pressed("Player_Right"):
 		dir = Vector2.RIGHT
-	
-	
-	#if currently_possessed_creature and Wind.get_single_object_actually_hit_by_wind(global_position, {}, Wind.blow_direction * -1):
-		#print("Wind.blow_direction: ", Wind.blow_direction)
-		#print("Wind.blow_direction * -1: ", Wind.blow_direction * -1)
-		#print("Stop")
-		#pass
 	
 	return dir
 
@@ -314,12 +307,27 @@ func update_movement(delta):
 	if is_on_ice and currently_possessed_creature and not is_moving_on_ice:
 		update_ice_slide_target()
 	
-	if not is_blown_by_wind:
-		position = position.move_toward(target_position, Constants.PLAYER_MOVE_SPEED * delta)
-		print("Move normally")
-	else:
+	if is_blown_by_wind:
 		position = position.move_toward(target_position, Constants.MOVE_BY_WIND_SPEED * delta)
-		print("Move by wind")
+		print("Position:   ", position)
+		print("Global Pos: ", global_position)
+		print("Target Pos: ", target_position)
+		print()
+
+		if position.distance_to(target_position) < 0.01:
+			position = target_position
+			if currently_possessed_creature:
+				currently_possessed_creature.position = target_position
+				currently_possessed_creature.target_position = target_position  # wichtig für Konsistenz
+			
+			is_blown_by_wind = false
+			can_move = true          # fühlt sich direkt responsive an
+			step_timer.stop()        # optional, verhindert “Rest-Wartezeit”
+			buffered_direction = Vector2.ZERO
+
+		
+	else:
+		position = position.move_toward(target_position, Constants.PLAYER_MOVE_SPEED * delta)
 
 	if currently_possessed_creature:
 		currently_possessed_creature.position = currently_possessed_creature.position.move_toward(
@@ -577,8 +585,9 @@ func get_blown_by_wind(list_of_blown_objects: Dictionary, blow_direction: Vector
 		return
 	for obj in list_of_blown_objects:
 		if list_of_blown_objects[obj]["Object"] is Player:
-			is_blown_by_wind = true
 			target_position = global_position + (Constants.GRID_SIZE*blow_direction*list_of_blown_objects[obj]["travel_distance"]).snapped(Constants.GRID_SIZE / 2)
+			if target_position != global_position:
+				is_blown_by_wind = true
 
 func handle_wind_stopped_blowing():
 	is_blown_by_wind = false

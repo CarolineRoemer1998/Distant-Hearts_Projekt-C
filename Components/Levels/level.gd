@@ -18,8 +18,6 @@ class_name Level
 
 @onready var player: Player = $Player/Player
 
-# Leaves
-@onready var cherry_blossoms: Node2D = $LevelUI/Leaves/LeafManager
 
 var groups_to_save := [
 	Constants.GROUP_NAME_PLAYER,
@@ -30,7 +28,8 @@ var groups_to_save := [
 	Constants.GROUP_NAME_FLOWER_SEEDS,
 	Constants.GROUP_NAME_BEES,
 	Constants.GROUP_NAME_WATER_TILE,
-	Constants.GROUP_NAME_LILY_PAD
+	Constants.GROUP_NAME_LILY_PAD,
+	Constants.GROUP_NAME_PILE_OF_LEAVES
 	]
 
 var can_undo := true
@@ -83,7 +82,6 @@ func set_wind():
 		Wind.is_active = true
 		Wind.blow_direction = wind_direction_if_fall
 		var is_wind_visible = Wind.wind_particles.visible
-		print( Wind.wind_particles.visible)
 		var wind = Wind.wind_particles.duplicate()
 		add_child(wind)
 		wind.visible = is_wind_visible
@@ -144,6 +142,7 @@ func undo():
 		set_state_of_component(Constants.GROUP_NAME_BEES)
 		set_state_of_component(Constants.GROUP_NAME_WATER_TILE)
 		set_state_of_component(Constants.GROUP_NAME_LILY_PAD)
+		set_state_of_component(Constants.GROUP_NAME_PILE_OF_LEAVES)
 		
 		FieldReservation.clear_all()
 		StateSaver.remove_last_state()

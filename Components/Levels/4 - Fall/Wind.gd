@@ -4,6 +4,7 @@ extends Node2D
 
 @export var blow_direction : Vector2 = Vector2.LEFT:
 	set(val):
+		blow_direction = val
 		set_wind_particle_direction(val)
 
 @onready var timer_blow_wind_interval: Timer = $TimerBlowWindInterval
@@ -78,7 +79,6 @@ func check_for_objects_to_blow(_dict: Dictionary = {}):
 # Wird von Level aufgerufen
 func blow():
 	var objects_to_blow = get_all_blowable_objects()
-	print("--WIND BLOWS--")
 	Signals.wind_blows.emit(objects_to_blow, blow_direction, wind_particles)
 
 func get_all_blowable_objects() -> Dictionary:
@@ -103,14 +103,12 @@ func get_all_objects_actually_hit_by_wind(blowable_objects: Dictionary) -> Dicti
 			Vector2.DOWN:  incoming_dir = Vector2.UP
 			Vector2.LEFT:  incoming_dir = Vector2.RIGHT
 			Vector2.RIGHT: incoming_dir = Vector2.LEFT
-
 		if get_single_object_actually_hit_by_wind(tile_with_object, blowable_objects, incoming_dir):
 			var travel_distance := get_travel_distance(tile_with_object)
 			result[tile_with_object] = {
 				"Object": blowable_objects[tile_with_object]["Object"],
 				"travel_distance": travel_distance
 			}
-
 	return result
 
 func get_single_object_actually_hit_by_wind(tile_with_object: Vector2, blowable_objects: Dictionary, direction_wind_is_coming_from: Vector2):
@@ -147,7 +145,7 @@ func get_is_wind_blocking_object_on_tile(tile: Vector2) -> bool:
 
 func get_is_tile_next_to_object_empty(obj_tile: Vector2):
 	var result_blocking_objects = Helper.get_collision_on_tile(obj_tile+(tile_size*blow_direction), layer_mask_creature_blocking_objects, get_world_2d())
-	#print("Blocker: ", result_blocking_objects)
+	print(result_blocking_objects)
 	if result_blocking_objects.is_empty():
 		return true
 	else:

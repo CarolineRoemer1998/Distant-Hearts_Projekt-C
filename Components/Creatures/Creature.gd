@@ -86,8 +86,10 @@ func _process(delta: float) -> void:
 			steps_to_walk_back.erase(steps_to_walk_back[0])
 	
 	if is_blown_by_wind:
+		if name == "CreatureYellow":
+			print(position)
 		position = position.move_toward(target_position, delta*Constants.MOVE_BY_WIND_SPEED)
-		if abs(global_position[0]-target_position[0]) < 0.01 and abs(global_position[1]-target_position[1]) < 0.01:
+		if global_position.distance_to(target_position) < 0.01:
 			global_position = target_position
 			is_blown_by_wind = false
 
@@ -320,6 +322,5 @@ func get_blown_by_wind(list_of_blown_objects: Dictionary, blow_direction: Vector
 		for obj in list_of_blown_objects:
 			if list_of_blown_objects[obj]["Object"].name == name:
 				target_position = global_position + (Constants.GRID_SIZE*blow_direction*list_of_blown_objects[obj]["travel_distance"]).snapped(Constants.GRID_SIZE / 2)
-				#print(name, ": ", target_position)
 				is_blown_by_wind = true
 				

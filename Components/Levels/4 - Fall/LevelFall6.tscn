@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://b5jma2em83wwe"]
+[gd_scene load_steps=10 format=4 uid="uid://b5jma2em83wwe"]
 
 [ext_resource type="Script" uid="uid://ddiwo6yyhfkuc" path="res://Components/Levels/level.gd" id="1_d0pwk"]
 [ext_resource type="PackedScene" uid="uid://lrodaawkgfob" path="res://Components/UI/VFX/undo_particles.tscn" id="2_10d3k"]
@@ -8,12 +8,14 @@
 [ext_resource type="PackedScene" uid="uid://g3u7bc1jo6gj" path="res://Components/Player/player.tscn" id="6_8dy5s"]
 [ext_resource type="PackedScene" uid="uid://dtrjxhb3ayo1c" path="res://Components/Levels/LevelUI.tscn" id="7_gcpkr"]
 [ext_resource type="PackedScene" uid="uid://oy61arlldjo3" path="res://Components/Mechanics/Stones/Stone.tscn" id="9_3crfi"]
+[ext_resource type="PackedScene" uid="uid://cmlnlah0e5vn3" path="res://Components/Mechanics/Fall Mechanics/PileOfLeaves.tscn" id="9_slw7h"]
 
 [node name="LevelFall6" type="Node2D"]
 script = ExtResource("1_d0pwk")
 season = 3
 undo_particles = ExtResource("2_10d3k")
 level_number = 23
+wind_direction_if_fall = Vector2(-1, 0)
 
 [node name="BackgroundSpring" parent="." instance=ExtResource("3_3crfi")]
 
@@ -29,15 +31,15 @@ visible = true
 [node name="Creatures" type="Node" parent="."]
 
 [node name="CreatureBlue" parent="Creatures" instance=ExtResource("4_slw7h")]
-position = Vector2(224, 160)
+position = Vector2(288, 160)
 
 [node name="CreatureYellow" parent="Creatures" instance=ExtResource("5_j3fos")]
-position = Vector2(480, 416)
+position = Vector2(544, 480)
 
 [node name="Player" type="Node" parent="."]
 
 [node name="Player" parent="Player" instance=ExtResource("6_8dy5s")]
-position = Vector2(96, 162)
+position = Vector2(544, 288)
 collision_layer = 131072
 
 [node name="LevelUI" parent="." instance=ExtResource("7_gcpkr")]
@@ -45,10 +47,13 @@ collision_layer = 131072
 [node name="Stones" type="Node" parent="."]
 
 [node name="Stone" parent="Stones" instance=ExtResource("9_3crfi")]
-position = Vector2(288, 416)
+position = Vector2(608, 480)
 
 [node name="Stone2" parent="Stones" instance=ExtResource("9_3crfi")]
-position = Vector2(480, 544)
+position = Vector2(544, 544)
+
+[node name="PileOfLeaves" parent="." instance=ExtResource("9_slw7h")]
+position = Vector2(352, 544)
 
 [editable path="BackgroundSpring"]
 [editable path="LevelUI"]

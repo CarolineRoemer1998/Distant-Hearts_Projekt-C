@@ -8,7 +8,7 @@ enum SEASON {Intro, Spring, Summer, Fall, Winter}
 const GRID_SIZE := Vector2(64, 64)
 const MOVE_SPEED := 500.0
 const PLAYER_MOVE_SPEED := 500.0
-const MOVE_BY_WIND_SPEED := 100.0
+const MOVE_BY_WIND_SPEED := 500.0
 
 
 # DIRECTIONS
@@ -37,6 +37,7 @@ const GROUP_NAME_TELEPORTERS := "Teleporter"
 const GROUP_NAME_TELEPORTER_MANAGERS := "TeleporterManager"
 const GROUP_NAME_WATER_TILE := "WaterTile"
 const GROUP_NAME_LILY_PAD := "LilyPad"
+const GROUP_NAME_PILE_OF_LEAVES := "PileOfLeaves"
 
 # LAYER BITS
 const LAYER_BIT_WALL_AND_PLAYER		:= 0
