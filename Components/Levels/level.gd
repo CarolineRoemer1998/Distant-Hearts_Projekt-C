@@ -86,13 +86,11 @@ func set_wind():
 	if season == Constants.SEASON.Fall:
 		Wind.is_active = true
 		Wind.blow_direction = wind_direction_if_fall
-		var is_wind_visible = Wind.wind_particles.visible
-		var wind = Wind.wind_particles.duplicate()
+		var wind = Wind.duplicate()
 		add_child(wind)
-		wind.visible = is_wind_visible
-		
-		#var new_wind_node = wind.instantiate()
-		#add_child(new_wind_node)
+		wind.set_wind_particle_direction(Wind.blow_direction)
+		print("Blow Direction: ", Wind.blow_direction)
+		wind.visible = true
 
 func show_win_screen():
 	if final_level:

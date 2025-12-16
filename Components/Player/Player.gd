@@ -55,8 +55,6 @@ var planted_flower_last_step := false
 
 var is_blown_by_wind := false:
 	set(val):
-		#if val == false:
-			#print("is_blown_by_wind was set to false")
 		is_blown_by_wind = val
 
 # ------------------------------------------------
@@ -309,10 +307,6 @@ func update_movement(delta):
 	
 	if is_blown_by_wind:
 		position = position.move_toward(target_position, Constants.MOVE_BY_WIND_SPEED * delta)
-		print("Position:   ", position)
-		print("Global Pos: ", global_position)
-		print("Target Pos: ", target_position)
-		print()
 
 		if position.distance_to(target_position) < 0.01:
 			position = target_position

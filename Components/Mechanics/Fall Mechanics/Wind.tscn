@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dxqr8n7w345bw" path="res://Components/Mechanics/Fall Mechanics/wind_particles.tscn" id="2_xxnaq"]
 
 [node name="Wind" type="Node2D"]
+visible = false
 script = ExtResource("1_qn7r6")
 
 [node name="TimerBlowWindInterval" type="Timer" parent="."]
@@ -13,7 +14,6 @@ wait_time = 0.5
 one_shot = true
 
 [node name="WindParticles" parent="." instance=ExtResource("2_xxnaq")]
-visible = false
 
 [connection signal="timeout" from="TimerBlowWindInterval" to="." method="_on_timer_blow_wind_interval_timeout"]
 [connection signal="timeout" from="TimerBlowDuration" to="." method="_on_timer_blow_duration_timeout"]

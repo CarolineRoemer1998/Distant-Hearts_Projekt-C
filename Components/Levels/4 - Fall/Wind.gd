@@ -5,12 +5,11 @@ extends Node2D
 @export var blow_direction : Vector2 = Vector2.LEFT:
 	set(val):
 		blow_direction = val
-		set_wind_particle_direction(val)
 
 @onready var timer_blow_wind_interval: Timer = $TimerBlowWindInterval
 @onready var timer_blow_duration: Timer = $TimerBlowDuration
 
-@onready var wind_particles: GPUParticles2D = $WindParticles
+@onready var wind_particles: WindParticle = $WindParticles
 
 # Bewegliche Objekte: Creatures, Blätterhaufen
 
@@ -44,24 +43,8 @@ func _ready() -> void:
 	#set_wind_particle_direction(blow_direction)
 
 func set_wind_particle_direction(dir: Vector2):
-	match dir:
-		Vector2.UP:
-			wind_particles.process_material.gravity = Vector3(9, -98, 0)
-			wind_particles.visible = true
-			return
-		Vector2.DOWN:
-			wind_particles.process_material.gravity = Vector3(9, 98, 0)
-			wind_particles.visible = true
-			return
-		Vector2.LEFT:
-			wind_particles.process_material.gravity = Vector3(-98, 9, 0)
-			wind_particles.visible = true
-			return
-		Vector2.RIGHT:
-			wind_particles.process_material.gravity = Vector3(98, 9, 0)
-			wind_particles.visible = true
-			return
-	visible = false
+	if dir == Vector2.UP or dir == Vector2.DOWN or dir == Vector2.LEFT or dir == Vector2.RIGHT:
+		wind_particles.set_scale_gravity_and_position(dir)
 
 func _process(_delta: float) -> void:
 	if is_active:
@@ -145,7 +128,6 @@ func get_is_wind_blocking_object_on_tile(tile: Vector2) -> bool:
 
 func get_is_tile_next_to_object_empty(obj_tile: Vector2):
 	var result_blocking_objects = Helper.get_collision_on_tile(obj_tile+(tile_size*blow_direction), layer_mask_creature_blocking_objects, get_world_2d())
-	print(result_blocking_objects)
 	if result_blocking_objects.is_empty():
 		return true
 	else:

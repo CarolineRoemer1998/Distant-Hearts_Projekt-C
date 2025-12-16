@@ -1,4 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://dxqr8n7w345bw"]
+[gd_scene load_steps=17 format=3 uid="uid://dxqr8n7w345bw"]
+
+[ext_resource type="Script" uid="uid://cd7dsk8xpwobj" path="res://Components/Mechanics/Fall Mechanics/WindParticle.gd" id="1_byyk2"]
+[ext_resource type="Texture2D" uid="uid://dnsiymqk0cukm" path="res://Assets/Particles/dot3.png" id="2_o2v05"]
 
 [sub_resource type="Gradient" id="Gradient_byyk2"]
 offsets = PackedFloat32Array(0, 0.47311828, 1)
@@ -10,17 +13,24 @@ width = 2
 height = 32
 fill_to = Vector2(0, 1)
 
+[sub_resource type="Curve" id="Curve_byyk2"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5440613, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_o2v05"]
+curve = SubResource("Curve_byyk2")
+
 [sub_resource type="Gradient" id="Gradient_ub5fb"]
-offsets = PackedFloat32Array(0, 0.48510638, 1)
-colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+offsets = PackedFloat32Array(0, 0.52340424, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.56078434, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_byyk2"]
 gradient = SubResource("Gradient_ub5fb")
 
 [sub_resource type="Curve" id="Curve_ub5fb"]
 _limits = [-20.0, 20.0, 0.0, 1.0]
-_data = [Vector2(0, -20), 0.0, 0.0, 0, 0, Vector2(0.11494252, 20), 0.0, 0.0, 0, 0, Vector2(0.24904212, -20), 0.0, 0.0, 0, 0, Vector2(0.3716475, 20), 0.0, 0.0, 0, 0, Vector2(0.49808425, -20), 0.0, 0.0, 0, 0, Vector2(0.61685824, 20), 0.0, 0.0, 0, 0, Vector2(0.75478923, -20), 0.0, 0.0, 0, 0, Vector2(0.8735632, 20), 0.0, 0.0, 0, 0, Vector2(0.9923371, -20), 0.0, 0.0, 0, 0]
-point_count = 9
+_data = [Vector2(0, -20), 0.0, 0.0, 0, 0, Vector2(0.061302677, 20), 0.0, 0.0, 0, 0, Vector2(0.13793103, -20), 0.0, 0.0, 0, 0, Vector2(0.24904212, 20), 0.0, 0.0, 0, 0, Vector2(0.32567048, -20), 0.0, 0.0, 0, 0, Vector2(0.42145592, 20), 0.0, 0.0, 0, 0, Vector2(0.5019157, -20), 0.0, 0.0, 0, 0, Vector2(0.59770113, 20), 0.0, 0.0, 0, 0, Vector2(0.6781609, -20), 0.0, 0.0, 0, 0, Vector2(0.75478923, 20), 0.0, 0.0, 0, 0, Vector2(0.8237548, -20), 0.0, 0.0, 0, 0, Vector2(0.9118774, 20), 0.0, 0.0, 0, 0, Vector2(0.9923371, -20), 0.0, 0.0, 0, 0]
+point_count = 13
 
 [sub_resource type="CurveTexture" id="CurveTexture_byyk2"]
 curve = SubResource("Curve_ub5fb")
@@ -30,24 +40,65 @@ particle_flag_disable_z = true
 emission_shape_scale = Vector3(352, 352, 1)
 emission_shape = 3
 emission_box_extents = Vector3(1, 1, 1)
-gravity = Vector3(-98, 9, 0)
+gravity = Vector3(-98, 0, 0)
 tangential_accel_min = -2.2351742e-06
-tangential_accel_max = 11.999997
+tangential_accel_max = 3.9999976
 tangential_accel_curve = SubResource("CurveTexture_byyk2")
 damping_max = 100.00001
-scale_min = 1.5
-scale_max = 1.8
-color = Color(1, 1, 1, 0.49803922)
+scale_min = 2.0
+scale_max = 4.0
+color = Color(1, 1, 1, 0.5176471)
 color_ramp = SubResource("GradientTexture1D_byyk2")
+alpha_curve = SubResource("CurveTexture_o2v05")
+collision_mode = 2
+sub_emitter_mode = 3
+sub_emitter_amount_at_collision = 32
+
+[sub_resource type="Curve" id="Curve_upkob"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.11877395, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_prmb2"]
+curve = SubResource("Curve_upkob")
+
+[sub_resource type="Curve" id="Curve_ailvk"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.08812261, 1), 0.0, 0.0, 0, 0, Vector2(0.2375479, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_q0mtf"]
+curve = SubResource("Curve_ailvk")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1lg08"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(8, 8, 8)
+emission_shape = 1
+emission_sphere_radius = 1.0
+radial_velocity_min = 4.9999776
+radial_velocity_max = 9.999977
+gravity = Vector3(0, 0, 0)
+scale_min = 0.29999998
+scale_max = 0.79999995
+scale_curve = SubResource("CurveTexture_q0mtf")
+color = Color(1, 1, 1, 0.40392157)
+alpha_curve = SubResource("CurveTexture_prmb2")
 
 [node name="WindParticles" type="GPUParticles2D"]
+z_index = 9
 texture_filter = 6
 position = Vector2(352, 352)
-amount = 32
+amount = 64
+sub_emitter = NodePath("Poof")
 texture = SubResource("GradientTexture2D_o2v05")
-lifetime = 5.0
-preprocess = 2.0
+lifetime = 10.0
+preprocess = 10.0
 randomness = 1.0
 trail_enabled = true
-trail_lifetime = 0.6
+trail_lifetime = 1.0
 process_material = SubResource("ParticleProcessMaterial_ub5fb")
+script = ExtResource("1_byyk2")
+
+[node name="Poof" type="GPUParticles2D" parent="."]
+amount = 3
+texture = ExtResource("2_o2v05")
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_1lg08")

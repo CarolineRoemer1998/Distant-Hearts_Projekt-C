@@ -86,8 +86,6 @@ func _process(delta: float) -> void:
 			steps_to_walk_back.erase(steps_to_walk_back[0])
 	
 	if is_blown_by_wind:
-		if name == "CreatureYellow":
-			print(position)
 		position = position.move_toward(target_position, delta*Constants.MOVE_BY_WIND_SPEED)
 		if global_position.distance_to(target_position) < 0.01:
 			global_position = target_position
