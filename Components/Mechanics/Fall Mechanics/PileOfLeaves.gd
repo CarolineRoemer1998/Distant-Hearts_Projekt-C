@@ -3,6 +3,7 @@ extends StaticBody2D
 class_name PileOfLeaves
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@export var rustling_leaf_particles: PackedScene
 
 var is_active := true
 
@@ -40,3 +41,25 @@ func fly_away(list_of_blown_objects: Dictionary, _blow_direction: Vector2, _wind
 						animation_player.play("FlyAway_Right")
 						is_active = false
 	
+
+
+func _on_creature_detector_body_entered(body: Node2D) -> void:
+	if body is Creature:
+		var leaf_particles : GPUParticles2D = rustling_leaf_particles.instantiate() as GPUParticles2D
+		$ParticleSlot.add_child(leaf_particles)
+		leaf_particles.emitting = true
+		#rustling_leaf_particles.emitting = false
+		animation_player.speed_scale = 1
+		animation_player.play("Rustle")
+		#rustling_leaf_particles.emitting = true
+
+func change_animation_speed():
+	var new_speed_scale = animation_player.speed_scale + RandomNumberGenerator.new().randf_range(-0.2, 0.2)
+	if new_speed_scale > 1.2: new_speed_scale = 1.2
+	if new_speed_scale < 0.5: new_speed_scale = 0.5
+	if name == "PileOfLeaves":
+		print(new_speed_scale)
+	animation_player.speed_scale = new_speed_scale
+
+func play_idle_animation():
+	animation_player.play("Idle")

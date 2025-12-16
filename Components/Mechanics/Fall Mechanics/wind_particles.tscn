@@ -98,7 +98,7 @@ process_material = SubResource("ParticleProcessMaterial_ub5fb")
 script = ExtResource("1_byyk2")
 
 [node name="Poof" type="GPUParticles2D" parent="."]
-amount = 1
+amount = 3
 texture = ExtResource("2_o2v05")
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_1lg08")

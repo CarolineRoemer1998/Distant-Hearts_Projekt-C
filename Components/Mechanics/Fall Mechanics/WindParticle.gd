@@ -15,6 +15,9 @@ var position_wind_direction_down := 	Vector2(352,   0-64)
 var position_wind_direction_left := 	Vector2(  0-64, 352)
 var position_wind_direction_right := 	Vector2(704+64, 352)
 
+func _ready():
+	process_material.set_sub_emitter_amount_at_collision(500)
+	print(process_material.get_sub_emitter_amount_at_collision())
 
 func set_scale_gravity_and_position(direction: Vector2):
 	match direction:

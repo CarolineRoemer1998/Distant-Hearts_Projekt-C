@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://dgamg2dl65qsv"]
+
+[ext_resource type="Texture2D" uid="uid://7of0mp4rgf74" path="res://Assets/Fall Mechanics/Pile of Leaves/SingleLeafOfPile2.png" id="1_1s3eq"]
+[ext_resource type="Script" uid="uid://dopybatd7mxu5" path="res://Components/Mechanics/Fall Mechanics/RustlingLeafParticles.gd" id="2_seg3g"]
+
+[sub_resource type="Curve" id="Curve_c0kej"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.2988506, 1), 0.0, 0.0, 0, 0, Vector2(0.41379315, 1), 0.0, 0.0, 0, 0, Vector2(0.82375485, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_gpl4j"]
+curve = SubResource("Curve_c0kej")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6707x"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(8, 8, 1)
+emission_shape = 1
+emission_sphere_radius = 1.0
+angular_velocity_min = -50.000015
+angular_velocity_max = 49.99998
+radial_velocity_min = 19.999977
+radial_velocity_max = 29.999977
+gravity = Vector3(0, 200, 0)
+radial_accel_min = 99.99999
+radial_accel_max = 99.99999
+damping_min = 85.827
+damping_max = 100.00001
+scale_min = 0.79999995
+scale_curve = SubResource("CurveTexture_gpl4j")
+
+[node name="RustlingLeafParticles" type="GPUParticles2D"]
+z_index = 9
+emitting = false
+amount = 4
+texture = ExtResource("1_1s3eq")
+lifetime = 0.8
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_6707x")
+script = ExtResource("2_seg3g")
+
+[connection signal="finished" from="." to="." method="_on_finished"]
