@@ -1,4 +1,4 @@
-[gd_scene load_steps=92 format=3 uid="uid://oy61arlldjo3"]
+[gd_scene load_steps=93 format=3 uid="uid://oy61arlldjo3"]
 
 [ext_resource type="Script" uid="uid://dhfj4v7vt1ckb" path="res://Components/Mechanics/Stones/Stone.gd" id="1_js75i"]
 [ext_resource type="Texture2D" uid="uid://b61hny3lf1gbq" path="res://Assets/Stones/stone-32x32.png" id="2_3mq7y"]
@@ -569,6 +569,9 @@ stream_1/stream = ExtResource("9_hnmft")
 stream_2/stream = ExtResource("10_aeon1")
 stream_3/stream = ExtResource("11_wsrwl")
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ufa7o"]
+polygon = PackedVector2Array(20, -30, 20, 20, -25, 20, -25, -30)
+
 [node name="Stone" type="CharacterBody2D" groups=["pushable"]]
 z_index = 3
 collision_layer = 2052
@@ -604,3 +607,6 @@ stream = SubResource("AudioStreamRandomizer_b2c63")
 
 [node name="SoundWater" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_hvmso")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_ufa7o")

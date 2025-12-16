@@ -19,7 +19,7 @@ var layer_mask_blowable_objects :=    (1 << Constants.LAYER_BIT_CREATURE) \
 
 var layer_mask_wind_blocking_objects :=   (1 << Constants.LAYER_BIT_DOOR) \
 										| (1 << Constants.LAYER_BIT_STONES) \
-										| (1 << Constants.LAYER_BIT_LEVEL_WALL)
+										| (1 << Constants.LAYER_BIT_WALL_AND_PLAYER)
 
 var layer_mask_creature_blocking_objects := (1 << Constants.LAYER_BIT_BEES) \
 										| (1 << Constants.LAYER_BIT_DOOR) \

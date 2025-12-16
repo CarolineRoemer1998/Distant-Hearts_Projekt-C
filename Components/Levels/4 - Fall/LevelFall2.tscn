@@ -1,45 +1,76 @@
-[gd_scene load_steps=8 format=4 uid="uid://lcjwsq0fh30v"]
+[gd_scene load_steps=12 format=4 uid="uid://lcjwsq0fh30v"]
 
-[ext_resource type="Script" uid="uid://ddiwo6yyhfkuc" path="res://Components/Levels/level.gd" id="1_7fjwj"]
-[ext_resource type="PackedScene" uid="uid://lrodaawkgfob" path="res://Components/UI/VFX/undo_particles.tscn" id="2_mfecm"]
-[ext_resource type="PackedScene" uid="uid://ihdvu1wqfcub" path="res://Components/Levels/Backgrounds/bg-base-spring.tscn" id="3_u4igg"]
-[ext_resource type="PackedScene" uid="uid://ccncnjkm8w8ta" path="res://Components/Creatures/creature_blue.tscn" id="4_4sr01"]
-[ext_resource type="PackedScene" uid="uid://be6k5yjppap8y" path="res://Components/Creatures/creature_yellow.tscn" id="5_r6ykb"]
-[ext_resource type="PackedScene" uid="uid://g3u7bc1jo6gj" path="res://Components/Player/player.tscn" id="6_xyaef"]
-[ext_resource type="PackedScene" uid="uid://dtrjxhb3ayo1c" path="res://Components/Levels/LevelUI.tscn" id="7_w8f8g"]
+[ext_resource type="Script" uid="uid://ddiwo6yyhfkuc" path="res://Components/Levels/level.gd" id="1_mfecm"]
+[ext_resource type="PackedScene" uid="uid://lrodaawkgfob" path="res://Components/UI/VFX/undo_particles.tscn" id="2_u4igg"]
+[ext_resource type="PackedScene" uid="uid://ihdvu1wqfcub" path="res://Components/Levels/Backgrounds/bg-base-spring.tscn" id="3_4sr01"]
+[ext_resource type="PackedScene" uid="uid://ccncnjkm8w8ta" path="res://Components/Creatures/creature_blue.tscn" id="4_r6ykb"]
+[ext_resource type="PackedScene" uid="uid://be6k5yjppap8y" path="res://Components/Creatures/creature_yellow.tscn" id="5_xyaef"]
+[ext_resource type="PackedScene" uid="uid://g3u7bc1jo6gj" path="res://Components/Player/player.tscn" id="6_w8f8g"]
+[ext_resource type="PackedScene" uid="uid://dtrjxhb3ayo1c" path="res://Components/Levels/LevelUI.tscn" id="7_1buna"]
+[ext_resource type="PackedScene" uid="uid://oy61arlldjo3" path="res://Components/Mechanics/Stones/Stone.tscn" id="8_urrtj"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_mfecm"]
+polygon = PackedVector2Array(320, 63, 320, 253, 447, 256, 449, 194, 381, 193, 384, 59)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_u4igg"]
+polygon = PackedVector2Array(321, 324, 639, 324, 640, 383, 321, 383)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_4sr01"]
+polygon = PackedVector2Array(256, 577, 319, 580, 319, 643, 253, 644)
 
 [node name="LevelFall2" type="Node2D"]
-script = ExtResource("1_7fjwj")
+script = ExtResource("1_mfecm")
 season = 3
-undo_particles = ExtResource("2_mfecm")
+undo_particles = ExtResource("2_u4igg")
 level_number = 19
-wind_direction_if_fall = Vector2(1, 0)
+wind_direction_if_fall = Vector2(-1, 0)
 
-[node name="BackgroundSpring" parent="." instance=ExtResource("3_u4igg")]
+[node name="BackgroundSpring" parent="." instance=ExtResource("3_4sr01")]
 
 [node name="floor" parent="BackgroundSpring" index="0"]
 tile_map_data = PackedByteArray("AAAAAAAACQAAAAAAAAAAAAEACQAAAAEAAAAAAAIACQAAAAIAAAAAAAMACQAAAAMAAAAAAAQACQAAAAQAAAABAAAACQABAAAAAAABAAEACQABAAEAAAABAAIACQABAAIAAAABAAMACQABAAMAAAABAAQACQABAAQAAAACAAAACQACAAAAAAACAAEACQACAAEAAAACAAIACQACAAIAAAACAAMACQACAAMAAAACAAQACQACAAQAAAADAAAACQADAAAAAAADAAEACQADAAEAAAADAAIACQADAAIAAAADAAMACQADAAMAAAADAAQACQADAAQAAAAEAAAACQAEAAAAAAAEAAEACQAEAAEAAAAEAAIACQAEAAIAAAAEAAMACQAEAAMAAAAEAAQACQAEAAQAAAAFAAAACQAAAAAAAAAFAAEACQAAAAEAAAAFAAIACQAAAAIAAAAFAAMACQAAAAMAAAAFAAQACQAAAAQAAAAGAAAACQABAAAAAAAGAAEACQABAAEAAAAGAAIACQABAAIAAAAGAAMACQABAAMAAAAGAAQACQABAAQAAAAHAAAACQACAAAAAAAHAAEACQACAAEAAAAHAAIACQACAAIAAAAHAAMACQACAAMAAAAHAAQACQACAAQAAAAIAAAACQADAAAAAAAIAAEACQADAAEAAAAIAAIACQADAAIAAAAIAAMACQADAAMAAAAIAAQACQADAAQAAAAJAAAACQAEAAAAAAAJAAEACQAEAAEAAAAJAAIACQAEAAIAAAAJAAMACQAEAAMAAAAJAAQACQAEAAQAAAAAAAUACQAAAAAAAAAAAAYACQAAAAEAAAAAAAcACQAAAAIAAAAAAAgACQAAAAMAAAAAAAkACQAAAAQAAAABAAUACQABAAAAAAABAAYACQABAAEAAAABAAcACQABAAIAAAABAAgACQABAAMAAAABAAkACQABAAQAAAACAAUACQACAAAAAAACAAcACQACAAIAAAACAAgACQACAAMAAAACAAkACQACAAQAAAADAAUACQADAAAAAAADAAgACQADAAMAAAADAAkACQADAAQAAAAEAAUACQAEAAAAAAAEAAgACQAEAAMAAAAEAAkACQAEAAQAAAAFAAUACQAAAAAAAAAFAAYACQAAAAEAAAAFAAcACQAAAAIAAAAFAAgACQAAAAMAAAAFAAkACQAAAAQAAAAGAAUACQABAAAAAAAGAAYACQABAAEAAAAGAAcACQABAAIAAAAGAAgACQABAAMAAAAGAAkACQABAAQAAAAHAAUACQACAAAAAAAHAAYACQACAAEAAAAHAAcACQACAAIAAAAHAAgACQACAAMAAAAHAAkACQACAAQAAAAIAAUACQADAAAAAAAIAAYACQADAAEAAAAIAAcACQADAAIAAAAIAAgACQADAAMAAAAIAAkACQADAAQAAAAJAAUACQAEAAAAAAAJAAYACQAEAAEAAAAJAAcACQAEAAIAAAAJAAgACQAEAAMAAAAJAAkACQAEAAQAAAAAAAoACQAAAAAAAAABAAoACQABAAAAAAACAAoACQACAAAAAAADAAoACQADAAAAAAAEAAoACQAEAAAAAAAFAAoACQAAAAAAAAAGAAoACQABAAAAAAAHAAoACQACAAAAAAAIAAoACQADAAAAAAAJAAoACQAEAAAAAAAKAAoACQAAAAAAAAAKAAAACQAAAAAAAAAKAAEACQAAAAEAAAAKAAIACQAAAAIAAAAKAAMACQAAAAMAAAAKAAQACQAAAAQAAAAKAAUACQAAAAAAAAAKAAYACQAAAAEAAAAKAAcACQAAAAIAAAAKAAgACQAAAAMAAAAKAAkACQAAAAQAAAACAAYACQACAAEAAAADAAYACQADAAEAAAADAAcACQADAAIAAAAEAAYACQAEAAEAAAAEAAcACQAEAAIAAAA=")
 
 [node name="walls" parent="BackgroundSpring" index="1"]
-tile_map_data = PackedByteArray("AAAAAAAACAAAAAAAAAAKAAAACAAEAAAAAAAKAAoACAAEAAQAAAAAAAoACAAAAAQAAAAAAAEACAAAAAMAAAAAAAMACAAAAAMAAAAAAAUACAAAAAMAAAAAAAcACAAAAAMAAAAAAAkACAAAAAMAAAAKAAEACAAEAAEAAAAKAAMACAAEAAEAAAAKAAUACAAEAAEAAAAKAAcACAAEAAEAAAAKAAkACAAEAAEAAAAKAAIACAAAAAMAAAAKAAQACAAAAAMAAAAKAAYACAAAAAMAAAAKAAgACAAAAAMAAAAAAAgACAAEAAEAAAAAAAYACAAEAAEAAAAAAAQACAAEAAEAAAAAAAIACAAEAAEAAAABAAAACAABAAQAAAADAAAACAABAAQAAAAFAAAACAABAAQAAAAHAAAACAABAAQAAAAJAAAACAABAAQAAAACAAAACAABAAQAAAAEAAAACAABAAQAAAAGAAAACAABAAQAAAAIAAAACAABAAQAAAABAAoACAABAAQAAAADAAoACAABAAQAAAAFAAoACAABAAQAAAAHAAoACAABAAQAAAAJAAoACAABAAQAAAACAAoACAABAAQAAAAEAAoACAABAAQAAAAGAAoACAABAAQAAAAIAAoACAABAAQAAAA=")
+tile_map_data = PackedByteArray("AAAAAAAACAAAAAAAAAAKAAAACAAEAAAAAAAKAAoACAAEAAQAAAAAAAoACAAAAAQAAAAAAAEACAAAAAMAAAAAAAMACAAAAAMAAAAAAAUACAAAAAMAAAAAAAcACAAAAAMAAAAAAAkACAAAAAMAAAAKAAEACAAEAAEAAAAKAAMACAAEAAEAAAAKAAUACAAEAAIAAAAKAAcACAAEAAEAAAAKAAkACAAEAAEAAAAKAAIACAAAAAMAAAAKAAQACAAAAAMAAAAKAAYACAAAAAMAAAAKAAgACAAAAAMAAAAAAAgACAAEAAEAAAAAAAYACAAEAAEAAAAAAAQACAAEAAEAAAAAAAIACAAEAAEAAAABAAAACAABAAQAAAADAAAACAABAAQAAAAFAAAACAACAAAAAAAHAAAACAABAAQAAAAJAAAACAABAAQAAAACAAAACAABAAQAAAAEAAAACAABAAQAAAAGAAAACAABAAQAAAAIAAAACAABAAQAAAABAAoACAABAAQAAAADAAoACAABAAQAAAAFAAoACAABAAQAAAAHAAoACAABAAQAAAAJAAoACAABAAQAAAACAAoACAABAAQAAAAEAAoACAACAAQAAAAGAAoACAABAAQAAAAIAAoACAABAAQAAAAGAAUACAABAAQAAAAHAAUACAABAAQAAAAIAAUACAABAAQAAAAJAAUACAABAAQAAAAGAAMACAABAAQAAAAFAAEACAACAAEAAAAFAAIACAAAAAEAAAAFAAMACAAAAAQAAAAFAAUACAABAAIAAAAEAAkACAAAAAAAAAA=")
 
 [node name="LevelWall" parent="BackgroundSpring" index="2"]
 visible = true
 
+[node name="LightOccluder2D" type="LightOccluder2D" parent="BackgroundSpring"]
+occluder = SubResource("OccluderPolygon2D_mfecm")
+
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="BackgroundSpring"]
+occluder = SubResource("OccluderPolygon2D_u4igg")
+
+[node name="LightOccluder2D3" type="LightOccluder2D" parent="BackgroundSpring"]
+occluder = SubResource("OccluderPolygon2D_4sr01")
+
 [node name="Creatures" type="Node" parent="."]
 
-[node name="CreatureBlue" parent="Creatures" instance=ExtResource("4_4sr01")]
-position = Vector2(224, 416)
+[node name="CreatureBlue" parent="Creatures" instance=ExtResource("4_r6ykb")]
+position = Vector2(416, 160)
 
-[node name="CreatureYellow" parent="Creatures" instance=ExtResource("5_r6ykb")]
-position = Vector2(480, 416)
+[node name="CreatureYellow" parent="Creatures" instance=ExtResource("5_xyaef")]
+position = Vector2(352, 608)
+init_direction = Vector2(0, -1)
 
 [node name="Player" type="Node" parent="."]
 
-[node name="Player" parent="Player" instance=ExtResource("6_xyaef")]
-position = Vector2(352, 224)
+[node name="Player" parent="Player" instance=ExtResource("6_w8f8g")]
+position = Vector2(544, 224)
 
-[node name="LevelUI" parent="." instance=ExtResource("7_w8f8g")]
+[node name="LevelUI" parent="." instance=ExtResource("7_1buna")]
+
+[node name="Stones" type="Node" parent="."]
+
+[node name="Stone" parent="Stones" instance=ExtResource("8_urrtj")]
+position = Vector2(352, 416)
+
+[node name="Stone2" parent="Stones" instance=ExtResource("8_urrtj")]
+position = Vector2(480, 544)
+
+[node name="Stone4" parent="Stones" instance=ExtResource("8_urrtj")]
+position = Vector2(288, 160)
 
 [editable path="BackgroundSpring"]
 [editable path="LevelUI"]
