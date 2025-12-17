@@ -6,6 +6,7 @@ class_name PileOfLeaves
 @export var rustling_leaf_particles: PackedScene
 
 var is_active := true
+var hidden_button : GameButton = null
 
 func _ready() -> void:
 	set_collision_layer_value(Constants.LAYER_BIT_PILE_OF_LEAVES+1, true)
@@ -27,6 +28,8 @@ func fly_away(list_of_blown_objects: Dictionary, _blow_direction: Vector2, _wind
 	if is_active:
 		for obj in list_of_blown_objects:
 			if list_of_blown_objects[obj]["Object"].name == name:
+				if hidden_button != null:
+					hidden_button.reveal()
 				match Wind.blow_direction:
 					Vector2.UP:
 						animation_player.play("FlyAway_Up")
@@ -44,6 +47,8 @@ func fly_away(list_of_blown_objects: Dictionary, _blow_direction: Vector2, _wind
 
 
 func _on_creature_detector_body_entered(body: Node2D) -> void:
+	if not is_active:
+		return
 	if body is Creature:
 		var leaf_particles : GPUParticles2D = rustling_leaf_particles.instantiate() as GPUParticles2D
 		$ParticleSlot.add_child(leaf_particles)
@@ -54,12 +59,14 @@ func _on_creature_detector_body_entered(body: Node2D) -> void:
 		#rustling_leaf_particles.emitting = true
 
 func change_animation_speed():
+	if not is_active:
+		return
 	var new_speed_scale = animation_player.speed_scale + RandomNumberGenerator.new().randf_range(-0.2, 0.2)
 	if new_speed_scale > 1.2: new_speed_scale = 1.2
 	if new_speed_scale < 0.5: new_speed_scale = 0.5
-	if name == "PileOfLeaves":
-		print(new_speed_scale)
 	animation_player.speed_scale = new_speed_scale
 
 func play_idle_animation():
+	if not is_active:
+		return
 	animation_player.play("Idle")

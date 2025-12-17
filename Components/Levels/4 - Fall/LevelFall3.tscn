@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://b78ohvunpuwc7"]
+[gd_scene load_steps=11 format=4 uid="uid://b78ohvunpuwc7"]
 
 [ext_resource type="Script" uid="uid://ddiwo6yyhfkuc" path="res://Components/Levels/level.gd" id="1_mcqwf"]
 [ext_resource type="PackedScene" uid="uid://lrodaawkgfob" path="res://Components/UI/VFX/undo_particles.tscn" id="2_uyff1"]
@@ -7,13 +7,16 @@
 [ext_resource type="PackedScene" uid="uid://be6k5yjppap8y" path="res://Components/Creatures/creature_yellow.tscn" id="5_0eqyv"]
 [ext_resource type="PackedScene" uid="uid://g3u7bc1jo6gj" path="res://Components/Player/player.tscn" id="6_nb5m2"]
 [ext_resource type="PackedScene" uid="uid://dtrjxhb3ayo1c" path="res://Components/Levels/LevelUI.tscn" id="7_njdk8"]
+[ext_resource type="PackedScene" uid="uid://oy61arlldjo3" path="res://Components/Mechanics/Stones/Stone.tscn" id="8_q3oah"]
+[ext_resource type="PackedScene" uid="uid://cmlnlah0e5vn3" path="res://Components/Mechanics/Fall Mechanics/PileOfLeaves.tscn" id="9_0eqyv"]
+[ext_resource type="PackedScene" uid="uid://bt4pnhd7cx7xc" path="res://Components/Mechanics/Buttons/button.tscn" id="10_nb5m2"]
 
 [node name="LevelFall3" type="Node2D"]
 script = ExtResource("1_mcqwf")
 season = 3
 undo_particles = ExtResource("2_uyff1")
 level_number = 20
-wind_direction_if_fall = Vector2(0, -1)
+wind_direction_if_fall = Vector2(-1, 0)
 
 [node name="BackgroundSpring" parent="." instance=ExtResource("3_ajqse")]
 
@@ -40,6 +43,24 @@ position = Vector2(480, 416)
 position = Vector2(352, 224)
 
 [node name="LevelUI" parent="." instance=ExtResource("7_njdk8")]
+
+[node name="Stones" type="Node" parent="."]
+
+[node name="Stone" parent="Stones" instance=ExtResource("8_q3oah")]
+position = Vector2(416, 416)
+
+[node name="Stone2" parent="Stones" instance=ExtResource("8_q3oah")]
+position = Vector2(480, 480)
+
+[node name="PilesOfLeaves" type="Node" parent="."]
+
+[node name="PileOfLeaves" parent="PilesOfLeaves" instance=ExtResource("9_0eqyv")]
+position = Vector2(288, 480)
+
+[node name="Buttons" type="Node" parent="."]
+
+[node name="Button" parent="Buttons" instance=ExtResource("10_nb5m2")]
+position = Vector2(288, 480)
 
 [editable path="BackgroundSpring"]
 [editable path="LevelUI"]

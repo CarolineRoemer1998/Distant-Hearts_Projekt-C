@@ -89,7 +89,6 @@ func set_wind():
 		var wind = Wind.duplicate()
 		add_child(wind)
 		wind.set_wind_particle_direction(Wind.blow_direction)
-		print("Blow Direction: ", Wind.blow_direction)
 		wind.visible = true
 
 func show_win_screen():

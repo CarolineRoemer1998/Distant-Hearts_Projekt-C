@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://lcjwsq0fh30v"]
+[gd_scene load_steps=13 format=4 uid="uid://lcjwsq0fh30v"]
 
 [ext_resource type="Script" uid="uid://ddiwo6yyhfkuc" path="res://Components/Levels/level.gd" id="1_mfecm"]
 [ext_resource type="PackedScene" uid="uid://lrodaawkgfob" path="res://Components/UI/VFX/undo_particles.tscn" id="2_u4igg"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://g3u7bc1jo6gj" path="res://Components/Player/player.tscn" id="6_w8f8g"]
 [ext_resource type="PackedScene" uid="uid://dtrjxhb3ayo1c" path="res://Components/Levels/LevelUI.tscn" id="7_1buna"]
 [ext_resource type="PackedScene" uid="uid://oy61arlldjo3" path="res://Components/Mechanics/Stones/Stone.tscn" id="8_urrtj"]
+[ext_resource type="PackedScene" uid="uid://cmlnlah0e5vn3" path="res://Components/Mechanics/Fall Mechanics/PileOfLeaves.tscn" id="9_u4igg"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_mfecm"]
 polygon = PackedVector2Array(320, 63, 320, 253, 447, 256, 449, 194, 381, 193, 384, 59)
@@ -48,7 +49,7 @@ occluder = SubResource("OccluderPolygon2D_4sr01")
 [node name="Creatures" type="Node" parent="."]
 
 [node name="CreatureBlue" parent="Creatures" instance=ExtResource("4_r6ykb")]
-position = Vector2(416, 160)
+position = Vector2(416, 96)
 
 [node name="CreatureYellow" parent="Creatures" instance=ExtResource("5_xyaef")]
 position = Vector2(352, 608)
@@ -71,6 +72,17 @@ position = Vector2(480, 544)
 
 [node name="Stone4" parent="Stones" instance=ExtResource("8_urrtj")]
 position = Vector2(288, 160)
+
+[node name="PilesOfLeaves" type="Node" parent="."]
+
+[node name="PileOfLeaves" parent="PilesOfLeaves" instance=ExtResource("9_u4igg")]
+position = Vector2(96, 96)
+
+[node name="PileOfLeaves2" parent="PilesOfLeaves" instance=ExtResource("9_u4igg")]
+position = Vector2(224, 608)
+
+[node name="PileOfLeaves3" parent="PilesOfLeaves" instance=ExtResource("9_u4igg")]
+position = Vector2(416, 160)
 
 [editable path="BackgroundSpring"]
 [editable path="LevelUI"]

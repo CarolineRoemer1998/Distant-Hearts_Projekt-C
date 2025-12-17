@@ -17,30 +17,25 @@ var position_wind_direction_right := 	Vector2(704+64, 352)
 
 func _ready():
 	process_material.set_sub_emitter_amount_at_collision(500)
-	print(process_material.get_sub_emitter_amount_at_collision())
 
 func set_scale_gravity_and_position(direction: Vector2):
 	match direction:
 		Vector2.UP:
-			print("Set UP")
 			process_material.emission_shape_scale 	= scale_up_down
 			process_material.gravity 				= gravity_up
 			global_position 						= position_wind_direction_up
 			visible = true
 		Vector2.DOWN:
-			print("Set DOWN")
 			process_material.emission_shape_scale 	= scale_up_down
 			process_material.gravity 				= gravity_down
 			global_position 						= position_wind_direction_down
 			visible = true
 		Vector2.LEFT:
-			print("Set LEFT")
 			process_material.emission_shape_scale 	= scale_left_and_right
 			process_material.gravity 				= gravity_left
 			global_position 						= position_wind_direction_right
 			visible = true
 		Vector2.RIGHT:
-			print("Set RIGHT")
 			process_material.emission_shape_scale 	= scale_left_and_right
 			process_material.gravity 				= gravity_right
 			global_position 						= position_wind_direction_left

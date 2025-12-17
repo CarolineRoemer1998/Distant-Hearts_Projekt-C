@@ -17,6 +17,7 @@ enum BUTTON_TYPE {TOGGLE, STICKY, PRESSURE}
 @onready var area: Area2D = $Area2D
 @onready var audio_push_button: AudioStreamPlayer2D = $AudioPushButton
 @onready var audio_leave: AudioStreamPlayer2D = $AudioLeave
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 var sprite_sticky_off := preload(Constants.SPRITE_PATH_STICKY_BUTTON_UNPRESSED)
 var sprite_sticky_on := preload(Constants.SPRITE_PATH_STICKY_BUTTON_PRESSED)
@@ -29,6 +30,10 @@ var active: bool = false
 var sticky_audio_played : bool = false
 var door_is_permanently_opened : bool = false
 
+var is_hidden := false:
+	set(val):
+		is_hidden = val
+
 func _ready() -> void:
 	add_to_group(str(Constants.GROUP_NAME_BUTTONS))
 	
@@ -38,23 +43,46 @@ func _ready() -> void:
 	if not area.body_exited.is_connected(_on_body_exited):
 		area.body_exited.connect(_on_body_exited)
 	set_active(start_active)
+	check_is_hidden()
+
+func _process(delta: float) -> void:
+	print("is_hidden: ", is_hidden)
 
 func get_info() -> Dictionary:
 	return {
 		"active": active,
 		"sticky_audio_played": sticky_audio_played,
-		"door_is_permanently_opened": door_is_permanently_opened
+		"door_is_permanently_opened": door_is_permanently_opened,
+		"is_hidden": is_hidden
 	}
 
 func set_info(info : Dictionary):
 	active = info.get("active")
 	sticky_audio_played = info.get("sticky_audio_played")
 	door_is_permanently_opened = info.get("door_is_permanently_opened")
+	if info.get("is_hidden") == true and is_hidden == false:
+		visible = false
+	is_hidden = info.get("is_hidden")
 	
 	set_active(active)
 
+func check_is_hidden():
+		var result_pile_of_leaves = Helper.get_collision_on_tile(global_position, (1 << Constants.LAYER_BIT_PILE_OF_LEAVES), get_world_2d())
+		if not result_pile_of_leaves.is_empty() and result_pile_of_leaves[0].collider.is_active:
+			hide_self(result_pile_of_leaves[0].collider)
+
+func hide_self(pile_of_leaves: PileOfLeaves):
+	pile_of_leaves.hidden_button = self
+	is_hidden = true
+	visible = false
+
+func reveal():
+	visible = true
+	is_hidden = false
+	animation_player.play("Reveal")
+
 func _on_body_entered(_body: Node) -> void:
-	if door_is_permanently_opened or not (_body.is_in_group(Constants.GROUP_NAME_CREATURE) or _body.is_in_group(Constants.GROUP_NAME_STONES)) or Globals.is_undo_timer_buffer_running:
+	if is_hidden or  door_is_permanently_opened or not (_body.is_in_group(Constants.GROUP_NAME_CREATURE) or _body.is_in_group(Constants.GROUP_NAME_STONES)) or Globals.is_undo_timer_buffer_running:
 		return
 	
 	match type:
@@ -69,6 +97,8 @@ func _on_body_exited(_body: Node) -> void:
 	if Helper.check_if_collides(global_position, Constants.LAYER_BIT_CREATURE, get_world_2d()):
 		return
 	if door_is_permanently_opened:
+		return
+	if is_hidden:
 		return
 	
 	# Optional: only deactivate if no bodies are left

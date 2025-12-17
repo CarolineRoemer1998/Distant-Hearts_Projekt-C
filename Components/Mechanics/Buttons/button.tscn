@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bt4pnhd7cx7xc"]
+[gd_scene load_steps=10 format=3 uid="uid://bt4pnhd7cx7xc"]
 
 [ext_resource type="Script" uid="uid://uqtwv08m1ohx" path="res://Components/Mechanics/Buttons/button.gd" id="1_vxja4"]
 [ext_resource type="Texture2D" uid="uid://bmbckmn4ckn0o" path="res://Assets/Buttons/button_pressed.png" id="2_wla0f"]
@@ -8,6 +8,44 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2kp8h"]
 size = Vector2(28, 24)
+
+[sub_resource type="Animation" id="Animation_wla0f"]
+resource_name = "Reveal"
+length = 0.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1.2498733, 1.2498733, 1.2498733, 0), Color(1.2498733, 1.2498733, 1.2498733, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ldaxc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1.25, 1.25, 1.25, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_njwfk"]
+_data = {
+&"RESET": SubResource("Animation_ldaxc"),
+&"Reveal": SubResource("Animation_wla0f")
+}
 
 [node name="Button" type="Node2D"]
 modulate = Color(1.25, 1.25, 1.25, 1)
@@ -38,6 +76,11 @@ bus = &"sfx"
 stream = ExtResource("5_edukx")
 volume_db = 5.0
 bus = &"sfx"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_njwfk")
+}
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_body_exited"]
