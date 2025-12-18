@@ -90,6 +90,14 @@ func set_wind():
 		add_child(wind)
 		wind.set_wind_particle_direction(Wind.blow_direction)
 		wind.visible = true
+		wind.set_shadow_tiles()
+		Signals.player_move_finished.connect(wind.set_shadow_tiles)
+		Signals.undo_executed.connect(wind.set_shadow_tiles)
+
+#func set_shadows():
+	#var wind = get_tree().get_first_node_in_group(Constants.GROUP_NAME_WIND)
+	
+	
 
 func show_win_screen():
 	if final_level:
@@ -148,6 +156,7 @@ func undo():
 		
 		FieldReservation.clear_all()
 		StateSaver.remove_last_state()
+		Signals.undo_executed.emit()
 
 func set_state_of_component(component_name : String):
 	if StateSaver.get_last_state().has(component_name):

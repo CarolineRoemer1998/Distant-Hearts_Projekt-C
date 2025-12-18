@@ -36,6 +36,8 @@ const GROUP_NAME_TELEPORTER_MANAGERS := "TeleporterManager"
 const GROUP_NAME_WATER_TILE := "WaterTile"
 const GROUP_NAME_LILY_PAD := "LilyPad"
 const GROUP_NAME_PILE_OF_LEAVES := "PileOfLeaves"
+const GROUP_NAME_WIND := "Wind"
+const GROUP_NAME_SHADOW := "Shadow"
 
 # LAYER BITS
 const LAYER_BIT_WALL_AND_PLAYER		:= 0
@@ -56,6 +58,7 @@ const LAYER_BIT_WATER_PLATFORM		:= 14
 const LAYER_BIT_LILY_PAD			:= 15
 const LAYER_BIT_PILE_OF_LEAVES		:= 16
 const LAYER_BIT_PLAYER				:= 17
+const LAYER_BIT_SHADOW				:= 18
 
 const LAYER_MASK_BEES				:= (1 << Constants.LAYER_BIT_BEES)
 const LAYER_MASK_BLOCKING_OBJECTS 	:= (1 << Constants.LAYER_BIT_PUSHABLE) | (1 << Constants.LAYER_BIT_DOOR) | (1 << Constants.LAYER_BIT_WALL_AND_PLAYER) | (1 << Constants.LAYER_BIT_CREATURE) | (1 << Constants.LAYER_BIT_LEVEL_WALL) | (1 << Constants.LAYER_BIT_SOIL)
@@ -173,3 +176,4 @@ const ANIMATED_SPRITE_FALL_LEAVES := 	"res://Components/UI/VFX/FallLeaf.tscn"
 const ANIMATED_SPRITE_SNOWFLAKE := 		"res://Components/UI/VFX/SnowflakeSprite.tscn"
 
 const trails := ["res://Assets/Particles/dot1.png", "res://Assets/Particles/dot2.png", "res://Assets/Particles/dot3.png"]
+const SPRITE_2D_SHADOW := "res://Components/Mechanics/Fall Mechanics/shadow.tscn"

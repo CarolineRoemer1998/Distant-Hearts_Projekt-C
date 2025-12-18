@@ -186,6 +186,7 @@ Undo={
 2d_physics/layer_16="LilyPad"
 2d_physics/layer_17="PileOfLeaves"
 2d_physics/layer_18="Player"
+2d_physics/layer_19="Shadow"
 
 [rendering]
 

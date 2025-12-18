@@ -10,8 +10,9 @@ extends Node2D
 @onready var timer_blow_duration: Timer = $TimerBlowDuration
 
 @onready var wind_particles: WindParticle = $WindParticles
+var set_shadow_positions = []
 
-# Bewegliche Objekte: Creatures, Blätterhaufen
+var shadow := preload(Constants.SPRITE_2D_SHADOW)
 
 var layer_mask_blowable_objects :=    (1 << Constants.LAYER_BIT_CREATURE) \
 									| (1 << Constants.LAYER_BIT_PILE_OF_LEAVES) \
@@ -39,6 +40,7 @@ var init_blow_done = false
 var is_active = false
 
 func _ready() -> void:
+	add_to_group(Constants.GROUP_NAME_WIND)
 	_set_level_tile_positions()
 	#set_wind_particle_direction(blow_direction)
 
@@ -56,8 +58,56 @@ func _process(_delta: float) -> void:
 func check_for_objects_to_blow(_dict: Dictionary = {}):
 	if is_active:
 		var objects_to_blow = get_all_blowable_objects()
+		#set_shadow_tiles()
 		Signals.wind_blows.emit(objects_to_blow, blow_direction, wind_particles)
 
+func set_shadow_tiles():
+	#if not is_active:
+		#return
+	await get_tree().create_timer(0.025).timeout
+	var wind_blocking_objects = []
+	for tile in all_level_tile_positions:
+		var result_wind_blocking_obj = Helper.get_collision_on_tile(tile, layer_mask_wind_blocking_objects, get_world_2d())
+		if not result_wind_blocking_obj.is_empty():
+			if not result_wind_blocking_obj[0].collider is Door or result_wind_blocking_obj[0].collider.door_is_closed:
+				wind_blocking_objects.append(tile)
+	
+	var shadows_to_delete = all_level_tile_positions
+	
+	await get_tree().create_timer(0.25).timeout
+	
+	var new_shadow_tiles = []
+	
+	for tile in wind_blocking_objects:
+		var amount_tiles_to_check = get_amount_tiles_in_direction(tile, blow_direction)
+		for i in amount_tiles_to_check:
+			var shadow_position = tile+(blow_direction*tile_size*i)+(blow_direction*tile_size)
+			var result_tile_blocking_object = Helper.get_collision_on_tile(shadow_position, layer_mask_wind_blocking_objects, get_world_2d())
+			if not set_shadow_positions.has(shadow_position) and result_tile_blocking_object.is_empty():
+				
+				print("Erase: ", shadow_position)
+				shadows_to_delete.erase(tile)
+				
+				var new_shadow = shadow.instantiate()
+				add_child(new_shadow)
+				new_shadow.global_position = shadow_position
+				set_shadow_positions.append(shadow_position)
+				new_shadow.appear()
+				
+				#print("Placed Shadow at: ", new_shadow.global_position)
+	#for tile in shadows_to_delete:
+	await get_tree().create_timer(0.25).timeout
+
+	for tile in shadows_to_delete:
+		var s = Helper.get_collision_on_tile(tile, (1<<Constants.LAYER_BIT_SHADOW), get_world_2d())
+		if not s.is_empty() and s[0].collider is Shadow:
+			print(s[0].collider.global_position)
+			s[0].collider.delete_self()
+			
+		#print(Helper.get_collision_on_tile(tile, (1<<Constants.LAYER_BIT_SHADOW), get_world_2d()))
+		
+	
+	#print(wind_blocking_objects)
 
 # Wird von Level aufgerufen
 func blow():
@@ -80,6 +130,10 @@ func get_all_objects_actually_hit_by_wind(blowable_objects: Dictionary) -> Dicti
 	var result := {}
 
 	for tile_with_object in blowable_objects:
+		var n = blowable_objects[tile_with_object].get("Object").name
+		if n == "CreatureBlue":
+			print("Here")
+		#print(blowable_objects[tile_with_object].get("Object").name)
 		var incoming_dir := Vector2.ZERO
 		match blow_direction:
 			Vector2.UP:    incoming_dir = Vector2.DOWN
@@ -96,6 +150,7 @@ func get_all_objects_actually_hit_by_wind(blowable_objects: Dictionary) -> Dicti
 
 func get_single_object_actually_hit_by_wind(tile_with_object: Vector2, blowable_objects: Dictionary, direction_wind_is_coming_from: Vector2):
 	var check_tile = tile_with_object
+	#print(tile_with_object)
 	var amount_tiles_to_check = get_amount_tiles_in_direction(tile_with_object, direction_wind_is_coming_from)
 	for i in amount_tiles_to_check:
 		if get_is_wind_blocking_object_on_tile(get_tile_in_direction(check_tile, direction_wind_is_coming_from)) or not get_is_tile_next_to_object_empty(tile_with_object):
@@ -122,13 +177,14 @@ func get_tile_in_direction(tile: Vector2, direction: Vector2) -> Vector2:
 func get_is_wind_blocking_object_on_tile(tile: Vector2) -> bool:
 	var wind_blocking_object_results = Helper.get_collision_on_tile(tile, layer_mask_wind_blocking_objects, get_world_2d())
 	for obj in wind_blocking_object_results:
-		if obj.collider is Door and obj.collider.is_open:
+		#print(obj.collider)
+		if obj.collider is Door and obj.collider.door_is_closed:
 			wind_blocking_object_results.erase(obj)
 	return not wind_blocking_object_results.is_empty()
 
 func get_is_tile_next_to_object_empty(obj_tile: Vector2):
 	var result_blocking_objects = Helper.get_collision_on_tile(obj_tile+(tile_size*blow_direction), layer_mask_creature_blocking_objects, get_world_2d())
-	if result_blocking_objects.is_empty():
+	if result_blocking_objects.is_empty() or (result_blocking_objects[0].collider is Door and not result_blocking_objects[0].collider.door_is_closed):
 		return true
 	else:
 		return false

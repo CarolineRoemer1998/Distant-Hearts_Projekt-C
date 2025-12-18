@@ -45,9 +45,6 @@ func _ready() -> void:
 	set_active(start_active)
 	check_is_hidden()
 
-func _process(delta: float) -> void:
-	print("is_hidden: ", is_hidden)
-
 func get_info() -> Dictionary:
 	return {
 		"active": active,

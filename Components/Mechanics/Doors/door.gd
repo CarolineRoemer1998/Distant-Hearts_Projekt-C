@@ -14,6 +14,7 @@ enum Mode {
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var collider: CollisionShape2D = $CollisionShape2D
+@onready var light_occluder_2d: LightOccluder2D = $LightOccluder2D
 
 var opened_door_sprite := preload(Constants.SPRITE_PATH_DOOR_OPEN)
 var closed_door_sprite := preload(Constants.SPRITE_PATH_DOOR_CLOSED)
@@ -67,8 +68,11 @@ func _check_buttons():
 func _open_door():
 	if door_is_closed:
 		door_is_closed = false
+		Wind.check_for_objects_to_blow({})
 		set_deferred("collider.disabled", true)
 		sprite.texture = opened_door_sprite
+		light_occluder_2d.global_position[0] += 1000
+		print(light_occluder_2d.position)
 
 		if single_activation_open:
 			for b in button_refs:
@@ -77,6 +81,9 @@ func _open_door():
 func _close_door():
 	if not door_is_closed:
 		door_is_closed = true
+		Wind.check_for_objects_to_blow({})
+		light_occluder_2d.global_position[0] -= 1000
+		print(light_occluder_2d.position)
 		collider.set_deferred("disabled", false)
 		sprite.texture = closed_door_sprite
 
