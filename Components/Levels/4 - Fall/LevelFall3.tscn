@@ -77,22 +77,39 @@ position = Vector2(160, 480)
 [node name="Stone3" parent="Stones" instance=ExtResource("8_q3oah")]
 position = Vector2(160, 416)
 
+[node name="Stone4" parent="Stones" instance=ExtResource("8_q3oah")]
+position = Vector2(416, 544)
+
+[node name="Stone5" parent="Stones" instance=ExtResource("8_q3oah")]
+position = Vector2(224, 288)
+
 [node name="PilesOfLeaves" type="Node" parent="."]
 
 [node name="PileOfLeaves" parent="PilesOfLeaves" instance=ExtResource("9_0eqyv")]
 position = Vector2(160, 544)
 
+[node name="PileOfLeaves2" parent="PilesOfLeaves" instance=ExtResource("9_0eqyv")]
+position = Vector2(288, 288)
+
+[node name="PileOfLeaves3" parent="PilesOfLeaves" instance=ExtResource("9_0eqyv")]
+position = Vector2(544, 352)
+
+[node name="PileOfLeaves4" parent="PilesOfLeaves" instance=ExtResource("9_0eqyv")]
+position = Vector2(608, 608)
+
 [node name="Buttons" type="Node" parent="."]
 
 [node name="Button" parent="Buttons" instance=ExtResource("10_nb5m2")]
 position = Vector2(160, 544)
-type = 2
+
+[node name="Button2" parent="Buttons" instance=ExtResource("10_nb5m2")]
+position = Vector2(480, 288)
 
 [node name="Doors" type="Node" parent="."]
 
 [node name="Door" parent="Doors" instance=ExtResource("11_0eqyv")]
 position = Vector2(608, 288)
-buttons = Array[NodePath]([NodePath("../Button"), NodePath("../../Buttons/Button")])
+buttons = Array[NodePath]([NodePath("../Button"), NodePath("../../Buttons/Button"), NodePath("../../Buttons/Button2")])
 
 [editable path="BackgroundSpring"]
 [editable path="LevelUI"]

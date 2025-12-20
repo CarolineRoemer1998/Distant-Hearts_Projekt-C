@@ -24,5 +24,6 @@ func set_leaves_according_to_season(season: Constants.SEASON):
 			summer_particles.visible = true
 		Constants.SEASON.Fall:
 			fall_particles.visible = true
+			summer_particles.visible = true
 		Constants.SEASON.Winter:
 			winter_particles.visible = true

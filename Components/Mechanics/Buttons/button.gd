@@ -77,6 +77,14 @@ func reveal():
 	visible = true
 	is_hidden = false
 	animation_player.play("Reveal")
+	
+	await get_tree().process_frame
+
+	var bodies := area.get_overlapping_bodies()
+	for body in bodies:
+		if body != null and (body.is_in_group(Constants.GROUP_NAME_CREATURE) or body.is_in_group(Constants.GROUP_NAME_STONES)):
+			_on_body_entered(body) # nutzt deine vorhandene Logik (Typen, Sounds, Guards)
+			break
 
 func _on_body_entered(_body: Node) -> void:
 	if is_hidden or  door_is_permanently_opened or not (_body.is_in_group(Constants.GROUP_NAME_CREATURE) or _body.is_in_group(Constants.GROUP_NAME_STONES)) or Globals.is_undo_timer_buffer_running:

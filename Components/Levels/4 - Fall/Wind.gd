@@ -59,6 +59,7 @@ func check_for_objects_to_blow(_dict: Dictionary = {}):
 	if is_active:
 		var objects_to_blow = get_all_blowable_objects()
 		#set_shadow_tiles()
+		#await get_tree().create_timer(0.25).timeout
 		Signals.wind_blows.emit(objects_to_blow, blow_direction, wind_particles)
 
 func set_shadow_tiles():
@@ -81,9 +82,9 @@ func set_shadow_tiles():
 	for tile in wind_blocking_objects:
 		var amount_tiles_to_check = get_amount_tiles_in_direction(tile, blow_direction)
 		for i in amount_tiles_to_check:
-			var shadow_position = tile+(blow_direction*tile_size*i)+(blow_direction*tile_size)
+			var shadow_position = tile+(blow_direction*tile_size*(i))+(blow_direction*tile_size)
 			var result_tile_blocking_object = Helper.get_collision_on_tile(shadow_position, layer_mask_wind_blocking_objects, get_world_2d())
-			if not set_shadow_positions.has(shadow_position) and result_tile_blocking_object.is_empty():
+			if not set_shadow_positions.has(shadow_position): #and result_tile_blocking_object.is_empty():
 				
 				print("Erase: ", shadow_position)
 				shadows_to_delete.erase(tile)
@@ -153,7 +154,7 @@ func get_single_object_actually_hit_by_wind(tile_with_object: Vector2, blowable_
 	#print(tile_with_object)
 	var amount_tiles_to_check = get_amount_tiles_in_direction(tile_with_object, direction_wind_is_coming_from)
 	for i in amount_tiles_to_check:
-		if get_is_wind_blocking_object_on_tile(get_tile_in_direction(check_tile, direction_wind_is_coming_from)) or not get_is_tile_next_to_object_empty(tile_with_object):
+		if get_is_wind_blocking_object_on_tile(get_tile_in_direction(check_tile, direction_wind_is_coming_from)):# or not get_is_tile_next_to_object_empty(tile_with_object):
 			return false
 		else:
 			check_tile = get_tile_in_direction(check_tile, direction_wind_is_coming_from)
@@ -178,7 +179,7 @@ func get_is_wind_blocking_object_on_tile(tile: Vector2) -> bool:
 	var wind_blocking_object_results = Helper.get_collision_on_tile(tile, layer_mask_wind_blocking_objects, get_world_2d())
 	for obj in wind_blocking_object_results:
 		#print(obj.collider)
-		if obj.collider is Door and obj.collider.door_is_closed:
+		if obj.collider is Door and not obj.collider.door_is_closed:
 			wind_blocking_object_results.erase(obj)
 	return not wind_blocking_object_results.is_empty()
 

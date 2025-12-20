@@ -78,6 +78,9 @@ position = Vector2(288, 160)
 [node name="PileOfLeaves" parent="PilesOfLeaves" instance=ExtResource("9_u4igg")]
 position = Vector2(96, 96)
 
+[node name="PileOfLeaves4" parent="PilesOfLeaves" instance=ExtResource("9_u4igg")]
+position = Vector2(96, 288)
+
 [node name="PileOfLeaves2" parent="PilesOfLeaves" instance=ExtResource("9_u4igg")]
 position = Vector2(224, 608)
 
