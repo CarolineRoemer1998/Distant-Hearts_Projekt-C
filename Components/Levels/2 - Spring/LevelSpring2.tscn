@@ -43,7 +43,7 @@ position = Vector2(416, 224)
 
 [node name="Door1" parent="Doors" instance=ExtResource("5_o25g3")]
 position = Vector2(480, 288)
-buttons = Array[NodePath]([NodePath("../Button"), NodePath("../../Buttons/Button_Door1")])
+buttons = Array[NodePath]([NodePath("../../Buttons/Button_Door1")])
 
 [node name="Stones" type="Node" parent="."]
 

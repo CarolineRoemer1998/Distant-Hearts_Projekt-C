@@ -15,6 +15,7 @@ enum Mode {
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var collider: CollisionShape2D = $CollisionShape2D
 @onready var light_occluder_2d: LightOccluder2D = $LightOccluder2D
+@onready var button_lights: Sprite2D = $Sprite2DButtonLights
 
 var opened_door_sprite := preload(Constants.SPRITE_PATH_DOOR_OPEN)
 var closed_door_sprite := preload(Constants.SPRITE_PATH_DOOR_CLOSED)
@@ -24,6 +25,8 @@ var door_is_closed := true
 
 func _ready():
 	add_to_group(str(Constants.GROUP_NAME_DOORS))
+	
+	set_button_lights()
 
 	for path in buttons:
 		var button = get_node_or_null(path)
@@ -35,6 +38,50 @@ func _ready():
 	door_is_closed = starts_closed
 	_apply_visual_state()
 	_check_buttons()
+
+func set_button_lights():
+	var lights_on = 0
+	for path in buttons:
+		var b = get_node_or_null(path)
+		if b != null and b is GameButton:
+			if b.active and mode == Mode.ALL_PRESSED_OPENS:
+				lights_on += 1
+			elif not b.active and mode == Mode.ALL_PRESSED_CLOSES:
+				lights_on += 1
+	
+	var all_on = false
+	
+	match lights_on:
+		0: 
+			if buttons.size() == 1:
+				button_lights.texture = load(Constants.SPRITE_BUTTON_LIGHT_0_OF_1)
+			elif buttons.size() == 2:
+				button_lights.texture = load(Constants.SPRITE_BUTTON_LIGHT_0_OF_2)
+			elif buttons.size() == 3:
+				button_lights.texture = load(Constants.SPRITE_BUTTON_LIGHT_0_OF_3)
+		1: 
+			if buttons.size() == 1:
+				button_lights.texture = load(Constants.SPRITE_BUTTON_LIGHT_1_OF_1)
+				all_on = true
+			elif buttons.size() == 2:
+				button_lights.texture = load(Constants.SPRITE_BUTTON_LIGHT_1_OF_2)
+			elif buttons.size() == 3:
+				button_lights.texture = load(Constants.SPRITE_BUTTON_LIGHT_1_OF_3)
+		2: 
+			if buttons.size() == 2:
+				button_lights.texture = load(Constants.SPRITE_BUTTON_LIGHT_2_OF_2)
+				all_on = true
+			elif buttons.size() == 3:
+				button_lights.texture = load(Constants.SPRITE_BUTTON_LIGHT_2_OF_3)
+		3: 
+			if buttons.size() == 3:
+				button_lights.texture = load(Constants.SPRITE_BUTTON_LIGHT_3_OF_3)
+				all_on = true
+	
+	if all_on:
+		button_lights.modulate = Color(1.2, 1.2, 1.2)
+	else:
+		button_lights.modulate = Color(1, 1, 1)
 
 func get_info() -> Dictionary:
 	return {
@@ -59,7 +106,9 @@ func _check_buttons():
 	else:
 		# wie bei Inverted_Door: alle gedrückt -> zu
 		should_be_closed = all_pressed
-
+	
+	set_button_lights()
+	
 	if should_be_closed:
 		_close_door()
 	else:
@@ -72,7 +121,6 @@ func _open_door():
 		set_deferred("collider.disabled", true)
 		sprite.texture = opened_door_sprite
 		light_occluder_2d.global_position[0] += 1000
-		print(light_occluder_2d.position)
 
 		if single_activation_open:
 			for b in button_refs:
@@ -83,7 +131,6 @@ func _close_door():
 		door_is_closed = true
 		Wind.check_for_objects_to_blow({})
 		light_occluder_2d.global_position[0] -= 1000
-		print(light_occluder_2d.position)
 		collider.set_deferred("disabled", false)
 		sprite.texture = closed_door_sprite
 

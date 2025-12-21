@@ -177,3 +177,13 @@ const ANIMATED_SPRITE_SNOWFLAKE := 		"res://Components/UI/VFX/SnowflakeSprite.ts
 
 const trails := ["res://Assets/Particles/dot1.png", "res://Assets/Particles/dot2.png", "res://Assets/Particles/dot3.png"]
 const SPRITE_2D_SHADOW := "res://Components/Mechanics/Fall Mechanics/shadow.tscn"
+
+const SPRITE_BUTTON_LIGHT_0_OF_1 := "res://Assets/Buttons/ButtonCounterLights_1_1/ButtonCounterLights_0_of_1.png"
+const SPRITE_BUTTON_LIGHT_0_OF_2 := "res://Assets/Buttons/ButtonCounterLights_1_1/ButtonCounterLights_0_of_2.png"
+const SPRITE_BUTTON_LIGHT_0_OF_3 := "res://Assets/Buttons/ButtonCounterLights_1_1/ButtonCounterLights_0_of_3.png"
+const SPRITE_BUTTON_LIGHT_1_OF_1 := "res://Assets/Buttons/ButtonCounterLights_1_1/ButtonCounterLights_1_of_1.png"
+const SPRITE_BUTTON_LIGHT_1_OF_2 := "res://Assets/Buttons/ButtonCounterLights_1_1/ButtonCounterLights_1_of_2.png"
+const SPRITE_BUTTON_LIGHT_1_OF_3 := "res://Assets/Buttons/ButtonCounterLights_1_1/ButtonCounterLights_1_of_3.png"
+const SPRITE_BUTTON_LIGHT_2_OF_2 := "res://Assets/Buttons/ButtonCounterLights_1_1/ButtonCounterLights_2_of_2.png"
+const SPRITE_BUTTON_LIGHT_2_OF_3 := "res://Assets/Buttons/ButtonCounterLights_1_1/ButtonCounterLights_2_of_3.png"
+const SPRITE_BUTTON_LIGHT_3_OF_3 := "res://Assets/Buttons/ButtonCounterLights_1_1/ButtonCounterLights_3_of_3.png"

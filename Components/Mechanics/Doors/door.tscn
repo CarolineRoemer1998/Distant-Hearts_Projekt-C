@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://c6dmpno4s3103"]
+[gd_scene load_steps=6 format=3 uid="uid://c6dmpno4s3103"]
 
 [ext_resource type="Script" uid="uid://c3no2lx41nut1" path="res://Components/Mechanics/Doors/door.gd" id="1_yjehn"]
 [ext_resource type="Texture2D" uid="uid://dqhv15e6mha18" path="res://Assets/Doors/fence-gate-closed.png" id="2_6tx2j"]
+[ext_resource type="Texture2D" uid="uid://byfybmimjn30g" path="res://Assets/Buttons/ButtonCounterLights_1_1/ButtonCounterLights_3_of_3.png" id="3_msu8g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3spc7"]
 size = Vector2(60, 60)
@@ -28,3 +29,7 @@ region_rect = Rect2(0, 0, 32, 32)
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 occluder = SubResource("OccluderPolygon2D_6tx2j")
 sdf_collision = false
+
+[node name="Sprite2DButtonLights" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("3_msu8g")

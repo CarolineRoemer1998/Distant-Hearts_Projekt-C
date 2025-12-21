@@ -88,16 +88,6 @@ func _process(delta):
 	update_movement(delta)
 	update_heart_icons()
 	handle_input(delta)
-	
-	if not is_active:
-		print(Time.get_time_string_from_system(), ":")
-		print("is_active: ", is_active)
-		print()
-
-	if is_avoiding:
-		print(Time.get_time_string_from_system(), ":")
-		print("is_avoiding: ", is_avoiding)
-		print()
 
 
 # ------------------------------------------------
@@ -117,9 +107,6 @@ func handle_input(delta: float):
 		if Input.is_action_just_pressed("ui_accept"):
 			SceneSwitcher.go_to_next_level()
 	elif bees_are_flying or is_avoiding or Globals.is_level_finished or Globals.is_teleporting or is_blown_by_wind:
-		print("Globals.is_teleporting: ", Globals.is_teleporting)
-		#if is_blown_by_wind:
-			#update_movement(delta)
 		return
 	elif is_active and not is_avoiding:
 		handle_movement_input(Vector2.ZERO)

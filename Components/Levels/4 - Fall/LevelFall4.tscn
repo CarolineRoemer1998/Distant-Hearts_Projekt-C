@@ -70,15 +70,15 @@ position = Vector2(480, 160)
 [node name="Door" parent="Doors" instance=ExtResource("9_7tdwl")]
 position = Vector2(352, 160)
 rotation = 1.5707941
-buttons = Array[NodePath]([NodePath("../Button"), NodePath("../../Buttons/Button3")])
+buttons = Array[NodePath]([NodePath("../../Buttons/Button3")])
 
 [node name="Door2" parent="Doors" instance=ExtResource("9_7tdwl")]
 position = Vector2(544, 288)
-buttons = Array[NodePath]([NodePath("../Button"), NodePath("../../Buttons/Button3")])
+buttons = Array[NodePath]([NodePath("../../Buttons/Button3")])
 
 [node name="Door3" parent="Doors" instance=ExtResource("9_7tdwl")]
 position = Vector2(544, 480)
-buttons = Array[NodePath]([NodePath("../Button"), NodePath("../../Buttons/Button3"), NodePath("../../Buttons/Button3")])
+buttons = Array[NodePath]([NodePath("../../Buttons/Button3")])
 
 [node name="Buttons" type="Node" parent="."]
 

@@ -109,7 +109,7 @@ position = Vector2(480, 288)
 
 [node name="Door" parent="Doors" instance=ExtResource("11_0eqyv")]
 position = Vector2(608, 288)
-buttons = Array[NodePath]([NodePath("../Button"), NodePath("../../Buttons/Button"), NodePath("../../Buttons/Button2")])
+buttons = Array[NodePath]([NodePath("../../Buttons/Button"), NodePath("../../Buttons/Button2")])
 
 [editable path="BackgroundSpring"]
 [editable path="LevelUI"]

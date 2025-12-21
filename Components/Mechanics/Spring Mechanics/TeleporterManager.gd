@@ -113,7 +113,6 @@ func teleport_to(teleporter_manager: TeleporterManager, body: Node2D):
 
 
 func _on_flower_1_exited(body: Node2D) -> void:
-	print(body.name)
 	if body.is_in_group(Constants.GROUP_NAME_PLAYER):
 		body.set_is_standing_on_teleporter(false)
 	if (body.is_in_group(Constants.GROUP_NAME_PLAYER) and body.currently_possessed_creature) or body.is_in_group(Constants.GROUP_NAME_CREATURE):
