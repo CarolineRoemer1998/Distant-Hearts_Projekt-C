@@ -1,4 +1,4 @@
-[gd_scene load_steps=107 format=4 uid="uid://bjlb842jvvq0k"]
+[gd_scene load_steps=109 format=4 uid="uid://bjlb842jvvq0k"]
 
 [ext_resource type="Script" uid="uid://ckji0el187dht" path="res://Components/UI/Menues/level_select.gd" id="1_6aqvj"]
 [ext_resource type="Texture2D" uid="uid://daocnama176b2" path="res://Assets/Presentation/Verworfen/Tile.png" id="3_31xks"]
@@ -35,9 +35,10 @@
 [ext_resource type="Texture2D" uid="uid://b8eb8ae8atwq0" path="res://Assets/Presentation/ScreenShots/preview_summer_5.png" id="27_dcoc6"]
 [ext_resource type="Texture2D" uid="uid://be6hygya6acus" path="res://Assets/Presentation/ScreenShots/preview_fall_1.png" id="28_c4xeh"]
 [ext_resource type="Texture2D" uid="uid://cfslpypf80vjg" path="res://Assets/Presentation/ScreenShots/preview_fall_2.png" id="29_buiqr"]
+[ext_resource type="Texture2D" uid="uid://cjb75v4l4bhn8" path="res://Assets/Presentation/ScreenShots/preview_summer_6.png" id="29_s106q"]
 [ext_resource type="Texture2D" uid="uid://d33tote321at0" path="res://Assets/Presentation/ScreenShots/preview_fall_3.png" id="30_ugvoj"]
 [ext_resource type="Texture2D" uid="uid://bu5vsg07jry0d" path="res://Assets/Presentation/ScreenShots/preview_fall_4.png" id="31_y3rbo"]
-[ext_resource type="Texture2D" uid="uid://cp7qu4iwhh7m" path="res://Assets/Presentation/ScreenShots/preview_fall_5.png" id="32_kbtot"]
+[ext_resource type="Texture2D" uid="uid://dnqo5258h36wa" path="res://Assets/Presentation/ScreenShots/preview_fall_6.png" id="34_t7h6r"]
 
 [sub_resource type="Environment" id="Environment_ok3ky"]
 background_mode = 3
@@ -696,6 +697,9 @@ func _on_button_pressed():
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_em1dp"]
 texture = ExtResource("27_dcoc6")
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_01cdt"]
+texture = ExtResource("29_s106q")
+
 [sub_resource type="Theme" id="Theme_v1t6f"]
 Button/colors/font_color = Color(0.458824, 0.305882, 0.329412, 1)
 Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
@@ -944,7 +948,7 @@ func _on_button_pressed():
 "
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qh2v7"]
-texture = ExtResource("32_kbtot")
+texture = ExtResource("34_t7h6r")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dcjyr"]
 texture = ExtResource("15_7vdvl")
@@ -1324,7 +1328,7 @@ offset_top = 6.0
 offset_right = 94.0
 offset_bottom = 94.0
 mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_em1dp")
+theme_override_styles/panel = SubResource("StyleBoxTexture_01cdt")
 
 [node name="LevelsFall" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2

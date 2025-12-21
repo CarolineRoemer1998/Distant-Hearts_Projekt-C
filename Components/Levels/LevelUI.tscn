@@ -15,6 +15,7 @@ z_index = 6
 [node name="WorldEnvironment" parent="." instance=ExtResource("1_73yj2")]
 
 [node name="ResetBar" parent="." instance=ExtResource("1_1663l")]
+visible = false
 offset_left = -11.999999
 offset_top = -15.999999
 offset_right = -11.999999
@@ -23,6 +24,7 @@ scale = Vector2(1.205, 1.205)
 metadata/_edit_use_anchors_ = true
 
 [node name="UndoBar" parent="." instance=ExtResource("8_m0pqk")]
+visible = false
 offset_left = 442.00003
 offset_top = -5.0
 offset_right = 634.0005

@@ -62,10 +62,16 @@ func _ready() -> void:
 		_base_alpha.append(w.modulate.a)
 		_base_scales.append(w.scale)
 	_set_all_to_level(0.0) # sicherstellen, dass Startzustand sauber ist
+	
+	#if button_refs.size() == 0:
+		#activate(true)
+	_check_buttons()
 
 func _check_buttons():
 	#if is_activated and other_teleporter.is_activated:
 		#return
+	#if button_refs.size() == 0:
+		
 	var all_pressed := true
 	for button in button_refs:
 		if not button.is_pressed():

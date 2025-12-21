@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://k35l75rdqts1"]
+[gd_scene load_steps=12 format=4 uid="uid://k35l75rdqts1"]
 
 [ext_resource type="Script" uid="uid://ddiwo6yyhfkuc" path="res://Components/Levels/level.gd" id="1_2kowl"]
 [ext_resource type="PackedScene" uid="uid://lrodaawkgfob" path="res://Components/UI/VFX/undo_particles.tscn" id="2_57sc3"]
@@ -7,6 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://be6k5yjppap8y" path="res://Components/Creatures/creature_yellow.tscn" id="5_be6xw"]
 [ext_resource type="PackedScene" uid="uid://g3u7bc1jo6gj" path="res://Components/Player/player.tscn" id="6_7tdwl"]
 [ext_resource type="PackedScene" uid="uid://dtrjxhb3ayo1c" path="res://Components/Levels/LevelUI.tscn" id="7_gxeiy"]
+[ext_resource type="PackedScene" uid="uid://oy61arlldjo3" path="res://Components/Mechanics/Stones/Stone.tscn" id="8_2kw0a"]
+[ext_resource type="PackedScene" uid="uid://c6dmpno4s3103" path="res://Components/Mechanics/Doors/door.tscn" id="9_7tdwl"]
+[ext_resource type="PackedScene" uid="uid://bt4pnhd7cx7xc" path="res://Components/Mechanics/Buttons/button.tscn" id="9_be6xw"]
+[ext_resource type="PackedScene" uid="uid://c02bi0sc4lswo" path="res://Components/Mechanics/Spring Mechanics/TeleporterManager.tscn" id="9_fft38"]
 
 [node name="LevelFall4" type="Node2D"]
 script = ExtResource("1_2kowl")
@@ -21,7 +25,7 @@ wind_direction_if_fall = Vector2(0, 1)
 tile_map_data = PackedByteArray("AAAAAAAACQAAAAAAAAAAAAEACQAAAAEAAAAAAAIACQAAAAIAAAAAAAMACQAAAAMAAAAAAAQACQAAAAQAAAABAAAACQABAAAAAAABAAEACQABAAEAAAABAAIACQABAAIAAAABAAMACQABAAMAAAABAAQACQABAAQAAAACAAAACQACAAAAAAACAAEACQACAAEAAAACAAIACQACAAIAAAACAAMACQACAAMAAAACAAQACQACAAQAAAADAAAACQADAAAAAAADAAEACQADAAEAAAADAAIACQADAAIAAAADAAMACQADAAMAAAADAAQACQADAAQAAAAEAAAACQAEAAAAAAAEAAEACQAEAAEAAAAEAAIACQAEAAIAAAAEAAMACQAEAAMAAAAEAAQACQAEAAQAAAAFAAAACQAAAAAAAAAFAAEACQAAAAEAAAAFAAIACQAAAAIAAAAFAAMACQAAAAMAAAAFAAQACQAAAAQAAAAGAAAACQABAAAAAAAGAAEACQABAAEAAAAGAAIACQABAAIAAAAGAAMACQABAAMAAAAGAAQACQABAAQAAAAHAAAACQACAAAAAAAHAAEACQACAAEAAAAHAAIACQACAAIAAAAHAAMACQACAAMAAAAHAAQACQACAAQAAAAIAAAACQADAAAAAAAIAAEACQADAAEAAAAIAAIACQADAAIAAAAIAAMACQADAAMAAAAIAAQACQADAAQAAAAJAAAACQAEAAAAAAAJAAEACQAEAAEAAAAJAAIACQAEAAIAAAAJAAMACQAEAAMAAAAJAAQACQAEAAQAAAAAAAUACQAAAAAAAAAAAAYACQAAAAEAAAAAAAcACQAAAAIAAAAAAAgACQAAAAMAAAAAAAkACQAAAAQAAAABAAUACQABAAAAAAABAAYACQABAAEAAAABAAcACQABAAIAAAABAAgACQABAAMAAAABAAkACQABAAQAAAACAAUACQACAAAAAAACAAcACQACAAIAAAACAAgACQACAAMAAAACAAkACQACAAQAAAADAAUACQADAAAAAAADAAgACQADAAMAAAADAAkACQADAAQAAAAEAAUACQAEAAAAAAAEAAgACQAEAAMAAAAEAAkACQAEAAQAAAAFAAUACQAAAAAAAAAFAAYACQAAAAEAAAAFAAcACQAAAAIAAAAFAAgACQAAAAMAAAAFAAkACQAAAAQAAAAGAAUACQABAAAAAAAGAAYACQABAAEAAAAGAAcACQABAAIAAAAGAAgACQABAAMAAAAGAAkACQABAAQAAAAHAAUACQACAAAAAAAHAAYACQACAAEAAAAHAAcACQACAAIAAAAHAAgACQACAAMAAAAHAAkACQACAAQAAAAIAAUACQADAAAAAAAIAAYACQADAAEAAAAIAAcACQADAAIAAAAIAAgACQADAAMAAAAIAAkACQADAAQAAAAJAAUACQAEAAAAAAAJAAYACQAEAAEAAAAJAAcACQAEAAIAAAAJAAgACQAEAAMAAAAJAAkACQAEAAQAAAAAAAoACQAAAAAAAAABAAoACQABAAAAAAACAAoACQACAAAAAAADAAoACQADAAAAAAAEAAoACQAEAAAAAAAFAAoACQAAAAAAAAAGAAoACQABAAAAAAAHAAoACQACAAAAAAAIAAoACQADAAAAAAAJAAoACQAEAAAAAAAKAAoACQAAAAAAAAAKAAAACQAAAAAAAAAKAAEACQAAAAEAAAAKAAIACQAAAAIAAAAKAAMACQAAAAMAAAAKAAQACQAAAAQAAAAKAAUACQAAAAAAAAAKAAYACQAAAAEAAAAKAAcACQAAAAIAAAAKAAgACQAAAAMAAAAKAAkACQAAAAQAAAACAAYACQACAAEAAAADAAYACQADAAEAAAADAAcACQADAAIAAAAEAAYACQAEAAEAAAAEAAcACQAEAAIAAAA=")
 
 [node name="walls" parent="BackgroundSpring" index="1"]
-tile_map_data = PackedByteArray("AAAAAAAACAAAAAAAAAAKAAAACAAEAAAAAAAKAAoACAAEAAQAAAAAAAoACAAAAAQAAAAAAAEACAAAAAMAAAAAAAMACAAAAAMAAAAAAAUACAAAAAMAAAAAAAcACAAAAAMAAAAAAAkACAAAAAMAAAAKAAEACAAEAAEAAAAKAAMACAAEAAEAAAAKAAUACAAEAAEAAAAKAAcACAAEAAEAAAAKAAkACAAEAAEAAAAKAAIACAAAAAMAAAAKAAQACAAAAAMAAAAKAAYACAAAAAMAAAAKAAgACAAAAAMAAAAAAAgACAAEAAEAAAAAAAYACAAEAAEAAAAAAAQACAAEAAEAAAAAAAIACAAEAAEAAAABAAAACAABAAQAAAADAAAACAABAAQAAAAFAAAACAABAAQAAAAHAAAACAABAAQAAAAJAAAACAABAAQAAAACAAAACAABAAQAAAAEAAAACAABAAQAAAAGAAAACAABAAQAAAAIAAAACAABAAQAAAABAAoACAABAAQAAAADAAoACAABAAQAAAAFAAoACAABAAQAAAAHAAoACAABAAQAAAAJAAoACAABAAQAAAACAAoACAABAAQAAAAEAAoACAABAAQAAAAGAAoACAABAAQAAAAIAAoACAABAAQAAAA=")
+tile_map_data = PackedByteArray("AAAAAAAACAAAAAAAAAAKAAAACAAEAAAAAAAKAAoACAAEAAQAAAAAAAoACAAAAAQAAAAAAAEACAAAAAMAAAAAAAMACAAAAAMAAAAAAAUACAAAAAIAAAAAAAcACAAAAAMAAAAAAAkACAAAAAMAAAAKAAEACAAEAAEAAAAKAAMACAAEAAEAAAAKAAUACAAEAAEAAAAKAAcACAAEAAIAAAAKAAkACAAHAAEAAAAKAAIACAAAAAMAAAAKAAQACAAEAAIAAAAKAAYACAAAAAMAAAAKAAgACAAAAAMAAAAAAAgACAAEAAEAAAAAAAYACAAEAAEAAAAAAAQACAAEAAEAAAAAAAIACAAEAAEAAAABAAAACAABAAQAAAADAAAACAABAAQAAAAFAAAACAACAAAAAAAHAAAACAABAAQAAAAJAAAACAABAAQAAAACAAAACAABAAQAAAAEAAAACAABAAQAAAAGAAAACAABAAQAAAAIAAAACAABAAQAAAABAAoACAABAAQAAAADAAoACAABAAQAAAAFAAoACAABAAQAAAAHAAoACAABAAQAAAAJAAoACAAGAAIAAAACAAoACAABAAQAAAAEAAoACAACAAQAAAAGAAoACAABAAQAAAAIAAoACAAFAAIAAAAEAAQACAAAAAAAAAAGAAQACAACAAAAAAAEAAUACAAEAAIAAAAFAAQACAACAAQAAAAGAAUACAAEAAEAAAAEAAYACAACAAEAAAAGAAYACAAAAAEAAAAFAAcACAADAAQAAAAGAAcACAACAAIAAAAEAAcACAAAAAQAAAAFAAMACAAEAAAAAAAFAAEACAACAAQAAAAHAAQACAADAAAAAAAJAAQACAADAAAAAAABAAUACAABAAIAAAADAAUACAADAAIAAAAHAAcACAABAAAAAAAJAAcACAABAAAAAAAEAAkACAAEAAAAAAAGAAgACAAAAAQAAAAJAAkACAAGAAAAAAAIAAkACAAFAAAAAAA=")
 
 [node name="LevelWall" parent="BackgroundSpring" index="2"]
 visible = true
@@ -29,18 +33,78 @@ visible = true
 [node name="Creatures" type="Node" parent="."]
 
 [node name="CreatureBlue" parent="Creatures" instance=ExtResource("4_fft38")]
-position = Vector2(224, 416)
+position = Vector2(160, 160)
 
 [node name="CreatureYellow" parent="Creatures" instance=ExtResource("5_be6xw")]
-position = Vector2(480, 416)
+position = Vector2(544, 416)
 
 [node name="Player" type="Node" parent="."]
 
 [node name="Player" parent="Player" instance=ExtResource("6_7tdwl")]
-position = Vector2(352, 224)
+position = Vector2(224, 480)
 
 [node name="LevelUI" parent="." instance=ExtResource("7_gxeiy")]
+
+[node name="Stones" type="Node" parent="."]
+
+[node name="Stone" parent="Stones" instance=ExtResource("8_2kw0a")]
+position = Vector2(160, 544)
+
+[node name="Stone2" parent="Stones" instance=ExtResource("8_2kw0a")]
+position = Vector2(160, 480)
+
+[node name="Stone3" parent="Stones" instance=ExtResource("8_2kw0a")]
+position = Vector2(288, 96)
+
+[node name="Stone5" parent="Stones" instance=ExtResource("8_2kw0a")]
+position = Vector2(288, 544)
+
+[node name="Stone10" parent="Stones" instance=ExtResource("8_2kw0a")]
+position = Vector2(96, 96)
+
+[node name="Stone11" parent="Stones" instance=ExtResource("8_2kw0a")]
+position = Vector2(480, 160)
+
+[node name="Doors" type="Node" parent="."]
+
+[node name="Door" parent="Doors" instance=ExtResource("9_7tdwl")]
+position = Vector2(352, 160)
+rotation = 1.5707941
+buttons = Array[NodePath]([NodePath("../Button"), NodePath("../../Buttons/Button3")])
+
+[node name="Door2" parent="Doors" instance=ExtResource("9_7tdwl")]
+position = Vector2(544, 288)
+buttons = Array[NodePath]([NodePath("../Button"), NodePath("../../Buttons/Button3")])
+
+[node name="Door3" parent="Doors" instance=ExtResource("9_7tdwl")]
+position = Vector2(544, 480)
+buttons = Array[NodePath]([NodePath("../Button"), NodePath("../../Buttons/Button3"), NodePath("../../Buttons/Button3")])
+
+[node name="Buttons" type="Node" parent="."]
+
+[node name="Button" parent="Buttons" instance=ExtResource("9_be6xw")]
+position = Vector2(288, 224)
+
+[node name="Button2" parent="Buttons" instance=ExtResource("9_be6xw")]
+position = Vector2(480, 416)
+
+[node name="Button3" parent="Buttons" instance=ExtResource("9_be6xw")]
+position = Vector2(352, 416)
+type = 2
+
+[node name="TeleporterManager" parent="." instance=ExtResource("9_fft38")]
+
+[node name="Flower1" parent="TeleporterManager" index="0"]
+position = Vector2(352, 352)
+buttons = Array[NodePath]([NodePath("../../Buttons/Button")])
+
+[node name="Flower2" parent="TeleporterManager" index="1"]
+position = Vector2(480, 352)
+buttons = Array[NodePath]([NodePath("../../Buttons/Button2")])
 
 [editable path="BackgroundSpring"]
 [editable path="LevelUI"]
 [editable path="LevelUI/UndoMechanic"]
+[editable path="TeleporterManager"]
+[editable path="TeleporterManager/Flower1"]
+[editable path="TeleporterManager/Flower2"]
