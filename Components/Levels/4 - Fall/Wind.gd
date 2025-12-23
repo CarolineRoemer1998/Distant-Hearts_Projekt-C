@@ -138,6 +138,9 @@ func get_all_objects_actually_hit_by_wind(blowable_objects: Dictionary) -> Dicti
 
 func get_single_object_actually_hit_by_wind(tile_with_object: Vector2, blowable_objects: Dictionary, direction_wind_is_coming_from: Vector2):
 	var check_tile = tile_with_object
+	var obj = Helper.get_collision_on_tile(check_tile, (1 << Constants.LAYER_BIT_PILE_OF_LEAVES), get_world_2d())
+	if not obj.is_empty() and obj[0].collider.name == "PileOfLeaves7":
+		print(obj[0].collider.name)
 	var amount_tiles_to_check = get_amount_tiles_in_direction(tile_with_object, direction_wind_is_coming_from)
 	for i in amount_tiles_to_check:
 		if get_is_wind_blocking_object_on_tile(get_tile_in_direction(check_tile, direction_wind_is_coming_from)):# or not get_is_tile_next_to_object_empty(tile_with_object):
@@ -163,14 +166,20 @@ func get_tile_in_direction(tile: Vector2, direction: Vector2) -> Vector2:
 
 func get_is_wind_blocking_object_on_tile(tile: Vector2) -> bool:
 	var wind_blocking_object_results = Helper.get_collision_on_tile(tile, layer_mask_wind_blocking_objects, get_world_2d())
+	
 	for obj in wind_blocking_object_results:
 		if obj.collider is Door and not obj.collider.door_is_closed:
+			print(obj.collider.name)
 			wind_blocking_object_results.erase(obj)
 	return not wind_blocking_object_results.is_empty()
 
 func get_is_tile_next_to_object_empty(obj_tile: Vector2):
 	var result_blocking_objects = Helper.get_collision_on_tile(obj_tile+(tile_size*blow_direction), layer_mask_creature_blocking_objects, get_world_2d())
-	if result_blocking_objects.is_empty() or (result_blocking_objects[0].collider is Door and not result_blocking_objects[0].collider.door_is_closed):
+	var ignore_open_door = false
+	for obj in result_blocking_objects:
+		if obj.collider is Stone:
+			ignore_open_door = true
+	if result_blocking_objects.is_empty() or (result_blocking_objects[0].collider is Door and not result_blocking_objects[0].collider.door_is_closed and not ignore_open_door):
 		return true
 	else:
 		return false

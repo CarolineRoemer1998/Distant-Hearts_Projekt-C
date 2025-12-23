@@ -64,9 +64,9 @@ func set_info(info : Dictionary):
 	set_active(active)
 
 func check_is_hidden():
-		var result_pile_of_leaves = Helper.get_collision_on_tile(global_position, (1 << Constants.LAYER_BIT_PILE_OF_LEAVES), get_world_2d())
-		if not result_pile_of_leaves.is_empty() and result_pile_of_leaves[0].collider.is_active:
-			hide_self(result_pile_of_leaves[0].collider)
+	var result_pile_of_leaves = Helper.get_collision_on_tile(global_position, (1 << Constants.LAYER_BIT_PILE_OF_LEAVES), get_world_2d())
+	if not result_pile_of_leaves.is_empty() and result_pile_of_leaves[0].collider.is_active:
+		hide_self(result_pile_of_leaves[0].collider)
 
 func hide_self(pile_of_leaves: PileOfLeaves):
 	pile_of_leaves.hidden_button = self

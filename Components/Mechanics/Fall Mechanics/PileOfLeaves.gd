@@ -7,6 +7,7 @@ class_name PileOfLeaves
 
 var is_active := true
 var hidden_button : GameButton = null
+var hidden_stone : Stone = null
 
 func _ready() -> void:
 	set_collision_layer_value(Constants.LAYER_BIT_PILE_OF_LEAVES+1, true)
@@ -30,7 +31,9 @@ func fly_away(list_of_blown_objects: Dictionary, _blow_direction: Vector2, _wind
 			if list_of_blown_objects[obj]["Object"].name == name:
 				if hidden_button != null:
 					hidden_button.reveal()
-				match Wind.blow_direction:
+				if hidden_stone != null:
+					hidden_stone.reveal()
+				match _blow_direction:
 					Vector2.UP:
 						animation_player.play("FlyAway_Up")
 						is_active = false
@@ -41,6 +44,7 @@ func fly_away(list_of_blown_objects: Dictionary, _blow_direction: Vector2, _wind
 						animation_player.play("FlyAway_Left")
 						is_active = false
 					Vector2.RIGHT:
+						print("Animation FlyAway_Right Played for: ", name)
 						animation_player.play("FlyAway_Right")
 						is_active = false
 	

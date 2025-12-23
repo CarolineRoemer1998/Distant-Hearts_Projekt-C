@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c3no2lx41nut1" path="res://Components/Mechanics/Doors/door.gd" id="1_yjehn"]
 [ext_resource type="Texture2D" uid="uid://dqhv15e6mha18" path="res://Assets/Doors/fence-gate-closed.png" id="2_6tx2j"]
-[ext_resource type="Texture2D" uid="uid://byfybmimjn30g" path="res://Assets/Buttons/ButtonCounterLights_1_1/ButtonCounterLights_3_of_3.png" id="3_msu8g"]
+[ext_resource type="Texture2D" uid="uid://vdhghbtiqsy7" path="res://Assets/Buttons/ButtonCounterLights_1_1/ButtonCounterLights_0_of_1.png" id="3_msu8g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3spc7"]
 size = Vector2(60, 60)

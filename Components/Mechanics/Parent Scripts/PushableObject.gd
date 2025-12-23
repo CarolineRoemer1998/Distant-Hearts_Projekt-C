@@ -5,8 +5,7 @@ class_name PushableObject
 const MOVE_SPEED := 500.0
 
 var target_position: Vector2:
-	set(val):
-		target_position = val.snapped(Constants.GRID_SIZE / 2)
+	set = _set_target_position
 var is_moving := false
 var is_sliding := false
 
@@ -21,6 +20,9 @@ var layer_mask_obstacles := (1 << Constants.LAYER_BIT_PUSHABLE) | (1 << Constant
 func _ready():
 	target_position = position.snapped(Constants.GRID_SIZE / 2)
 	position = target_position
+
+func _set_target_position(val: Vector2):
+	target_position = val.snapped(Constants.GRID_SIZE / 2)
 
 # -----------------------------------------------------------
 # Movement / Push / Slide

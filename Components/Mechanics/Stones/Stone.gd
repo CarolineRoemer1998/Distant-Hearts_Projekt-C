@@ -7,18 +7,29 @@ class_name Stone
 @onready var splash_animated_sprites: AnimatedSprite2D = $SplashAnimatedSprites
 @onready var sound_stone_in_water: AudioStreamPlayer2D = $SoundStoneInWater
 @onready var sound_water: AudioStreamPlayer2D = $SoundWater
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 const MODULATE_INIT := Color(1.0, 1.0, 1.0)
 const MODULATE_UNDER_WATER := Color(0.775, 1.288, 1.416)
 
 var is_in_water := false
 
+var is_hidden := false
+
+
 ## Initializes the stone when the scene starts:
 ## adds it to the stone group, enables collision and snaps to the grid.
 func _ready():
 	super._ready()
 	add_to_group(str(Constants.GROUP_NAME_STONES))
+	check_is_hidden()
 	#enable_collision_layer()
+
+func _set_target_position(val: Vector2):
+	if not is_hidden:
+		super(val)
+	else:
+		return
 
 # -----------------------------------------------------------
 # State (e.g. for Undo)
@@ -57,6 +68,32 @@ func set_info(info : Dictionary):
 	if not is_in_water and sprite_stone.modulate == MODULATE_UNDER_WATER:
 		turn_from_platform_back_into_stone()
 
+func check_is_hidden():
+	if name == "Stone10":
+		print("stone10")
+	var result_pile_of_leaves = Helper.get_collision_on_tile(global_position, (1 << Constants.LAYER_BIT_PILE_OF_LEAVES), get_world_2d())
+	if not result_pile_of_leaves.is_empty() and result_pile_of_leaves[0].collider.is_active:
+		hide_self(result_pile_of_leaves[0].collider)
+
+func hide_self(pile_of_leaves: PileOfLeaves):
+	pile_of_leaves.hidden_stone = self
+	is_hidden = true
+	visible = false
+
+func reveal():
+	visible = true
+	is_hidden = false
+	animation_player.play("Reveal")
+	
+	await get_tree().process_frame
+
+	#var bodies := area.get_overlapping_bodies()
+	#for body in bodies:
+		#if body != null and (body.is_in_group(Constants.GROUP_NAME_CREATURE) or body.is_in_group(Constants.GROUP_NAME_STONES)):
+			#_on_body_entered(body) # nutzt deine vorhandene Logik (Typen, Sounds, Guards)
+			#break
+
+
 func enable_collision_layer():
 	set_collision_layer_value(Constants.LAYER_BIT_PUSHABLE+1, true)
 	set_collision_layer_value(Constants.LAYER_BIT_STONES+1, true)
@@ -85,6 +122,9 @@ func turn_from_platform_back_into_stone():
 	set_collision_layer_value(Constants.LAYER_BIT_WATER_PLATFORM+1, false)
 
 func _process(delta):
+	if is_hidden:
+		return
+		
 	super._process(delta)
 	if is_in_water:
 		if roundf(sprite_stone.position[1]*100)/100 < 18:
