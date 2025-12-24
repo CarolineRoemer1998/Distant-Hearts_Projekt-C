@@ -117,7 +117,12 @@ func _check_buttons():
 func _open_door():
 	if door_is_closed:
 		door_is_closed = false
-		Wind.check_for_objects_to_blow({})
+		
+		var wind = get_tree().get_first_node_in_group(Constants.GROUP_NAME_WIND) as Wind
+		if wind:
+			wind.check_for_objects_to_blow({})
+			wind.request_shadow_update()
+		
 		set_deferred("collider.disabled", true)
 		sprite.texture = opened_door_sprite
 		light_occluder_2d.global_position[0] += 1000
@@ -129,7 +134,12 @@ func _open_door():
 func _close_door():
 	if not door_is_closed:
 		door_is_closed = true
-		Wind.check_for_objects_to_blow({})
+
+		var wind = get_tree().get_first_node_in_group(Constants.GROUP_NAME_WIND) as Wind
+		if wind:
+			wind.check_for_objects_to_blow({})
+			wind.request_shadow_update()		
+		
 		light_occluder_2d.global_position[0] -= 1000
 		collider.set_deferred("disabled", false)
 		sprite.texture = closed_door_sprite

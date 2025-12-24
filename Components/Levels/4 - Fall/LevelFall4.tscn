@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://k35l75rdqts1"]
+[gd_scene load_steps=21 format=4 uid="uid://k35l75rdqts1"]
 
 [ext_resource type="Script" uid="uid://ddiwo6yyhfkuc" path="res://Components/Levels/level.gd" id="1_2kowl"]
 [ext_resource type="PackedScene" uid="uid://lrodaawkgfob" path="res://Components/UI/VFX/undo_particles.tscn" id="2_57sc3"]
@@ -12,6 +12,30 @@
 [ext_resource type="PackedScene" uid="uid://bt4pnhd7cx7xc" path="res://Components/Mechanics/Buttons/button.tscn" id="9_be6xw"]
 [ext_resource type="PackedScene" uid="uid://c02bi0sc4lswo" path="res://Components/Mechanics/Spring Mechanics/TeleporterManager.tscn" id="9_fft38"]
 [ext_resource type="PackedScene" uid="uid://cmlnlah0e5vn3" path="res://Components/Mechanics/Fall Mechanics/PileOfLeaves.tscn" id="12_7tdwl"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_7tdwl"]
+polygon = PackedVector2Array(320, 64, 384, 64, 384, 128, 320, 128)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_gxeiy"]
+polygon = PackedVector2Array(320, 192, 384, 192, 384, 256, 512, 256, 512, 320, 448, 320, 448, 448, 512, 448, 512, 512, 448, 512, 448, 576, 384, 576, 384, 320, 320, 320)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_1qi7j"]
+polygon = PackedVector2Array(256, 256, 320, 256, 320, 448, 384, 448, 384, 512, 256, 512, 256, 384, 192, 384, 192, 320, 256, 320)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_s0amj"]
+polygon = PackedVector2Array(64, 320, 128, 320, 128, 384, 64, 384)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ldlp8"]
+polygon = PackedVector2Array(576, 256, 640, 256, 640, 320, 576, 320)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_l62ib"]
+polygon = PackedVector2Array(576, 448, 640, 448, 640, 512, 576, 512)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_brtki"]
+polygon = PackedVector2Array(512, 576, 640, 576, 640, 640, 512, 640)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_unk7g"]
+polygon = PackedVector2Array(256, 576, 320, 576, 320, 640, 256, 640)
 
 [node name="LevelFall4" type="Node2D"]
 script = ExtResource("1_2kowl")
@@ -30,6 +54,30 @@ tile_map_data = PackedByteArray("AAAAAAAACAAAAAAAAAAKAAAACAAEAAAAAAAKAAoACAAEAAQ
 
 [node name="LevelWall" parent="BackgroundSpring" index="2"]
 visible = true
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="BackgroundSpring"]
+occluder = SubResource("OccluderPolygon2D_7tdwl")
+
+[node name="LightOccluder2D3" type="LightOccluder2D" parent="BackgroundSpring"]
+occluder = SubResource("OccluderPolygon2D_gxeiy")
+
+[node name="LightOccluder2D4" type="LightOccluder2D" parent="BackgroundSpring"]
+occluder = SubResource("OccluderPolygon2D_1qi7j")
+
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="BackgroundSpring"]
+occluder = SubResource("OccluderPolygon2D_s0amj")
+
+[node name="LightOccluder2D5" type="LightOccluder2D" parent="BackgroundSpring"]
+occluder = SubResource("OccluderPolygon2D_ldlp8")
+
+[node name="LightOccluder2D6" type="LightOccluder2D" parent="BackgroundSpring"]
+occluder = SubResource("OccluderPolygon2D_l62ib")
+
+[node name="LightOccluder2D7" type="LightOccluder2D" parent="BackgroundSpring"]
+occluder = SubResource("OccluderPolygon2D_brtki")
+
+[node name="LightOccluder2D8" type="LightOccluder2D" parent="BackgroundSpring"]
+occluder = SubResource("OccluderPolygon2D_unk7g")
 
 [node name="Creatures" type="Node" parent="."]
 

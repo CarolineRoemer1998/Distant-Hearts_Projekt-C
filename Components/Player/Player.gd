@@ -349,7 +349,10 @@ func on_move_step_finished():
 	is_pushing_stone_on_ice = false
 	is_moving_on_ice = false
 	is_blown_by_wind = false
-	Wind.check_for_objects_to_blow({})
+	var wind = get_tree().get_first_node_in_group(Constants.GROUP_NAME_WIND) as Wind
+	if wind:
+		wind.check_for_objects_to_blow({})
+		wind.request_shadow_update()
 
 	if buffered_direction != Vector2.ZERO:
 		set_is_moving(

@@ -123,7 +123,9 @@ const LEVELS = {
 }
 
 # MECHANIC SCENES
-const MECHANIC_WIND := "res://Components/Mechanics/Fall Mechanics/wind_particles.tscn"
+const SCENE_WIND := "res://Components/Mechanics/Fall Mechanics/Wind.tscn"
+#const SCENE_WIND_PARTICLES := "res://Components/Mechanics/Fall Mechanics/wind_particles.tscn"
+
 
 # MENUES
 const PATH_CREDIT_SCENE := 		"res://Components/UI/Menues/credit_scene.tscn"

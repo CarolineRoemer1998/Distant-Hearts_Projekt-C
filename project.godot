@@ -27,7 +27,6 @@ StateSaver="*res://GlobalScripts/StateSaver.gd"
 Signals="*res://GlobalScripts/Signals.gd"
 FieldReservation="*res://GlobalScripts/FieldReservation.gd"
 Helper="*res://GlobalScripts/Helper.gd"
-Wind="*res://Components/Mechanics/Fall Mechanics/Wind.tscn"
 
 [debug]
 

@@ -18,6 +18,7 @@ class_name Level
 
 @onready var player: Player = $Player/Player
 
+var wind_node : Wind = null 
 var has_first_wind_blown := false
 
 var groups_to_save := [
@@ -38,7 +39,7 @@ var is_undo_pressed := false
 
 func _ready() -> void:
 	Signals.level_loaded.emit(season)
-	Wind.is_active = false
+	#Wind.is_active = false
 	
 	set_wind()
 	SceneSwitcher.set_curent_level(level_number)
@@ -64,9 +65,9 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	if not has_first_wind_blown and Wind.is_active:
-		Wind.check_for_objects_to_blow({})
-		has_first_wind_blown = true
+	#if not has_first_wind_blown and Wind.is_active:
+		#Wind.check_for_objects_to_blow({})
+		#has_first_wind_blown = true
 	if Input.is_action_pressed("Undo") and not Globals.is_level_finished:
 		is_undo_pressed = true
 		undo()
@@ -81,18 +82,52 @@ func _process(_delta: float) -> void:
 	elif Input.is_action_just_pressed("Load Next Level"):
 		var load_level = min(level_number+1, Constants.LEVELS.size())
 		SceneSwitcher.switch_to_level(load_level)
-
+		
 func set_wind():
-	if season == Constants.SEASON.Fall:
-		Wind.is_active = true
-		Wind.blow_direction = wind_direction_if_fall
-		var wind = Wind.duplicate()
-		add_child(wind)
-		wind.set_wind_particle_direction(Wind.blow_direction)
-		wind.visible = true
-		wind.set_shadow_tiles()
-		Signals.player_move_finished.connect(wind.set_shadow_tiles)
-		Signals.undo_executed.connect(wind.set_shadow_tiles)
+	if season != Constants.SEASON.Fall:
+		return
+
+	var wind_scene := load(Constants.SCENE_WIND)
+	var wind: Wind = wind_scene.instantiate()
+	add_child(wind)
+
+	wind.is_active = true
+	wind.init_blow_done = false   # optional, damit _process einmal initial bläst
+
+	wind.blow_direction = wind_direction_if_fall
+	wind.set_wind_particle_direction(wind.blow_direction)
+	wind.visible = true
+
+	wind_node = wind
+
+	Signals.player_move_finished.connect(wind.request_shadow_update)
+	Signals.undo_executed.connect(wind.request_shadow_update)
+	Signals.stone_reached_target.connect(Callable(wind, "request_shadow_update").unbind(1))
+
+	# Initial: Schatten + erster Windstoß
+	wind.request_shadow_update()
+	wind.check_for_objects_to_blow({})
+	
+	_initial_wind_blow_after_physics_frame()
+
+
+func _initial_wind_blow_after_physics_frame() -> void:
+	await get_tree().physics_frame
+	if wind_node == null or not is_instance_valid(wind_node):
+		return
+	wind_node.request_shadow_update()
+	wind_node.check_for_objects_to_blow({})
+	has_first_wind_blown = true
+	
+
+func _exit_tree():
+	if Signals.stone_reached_target.is_connected(_on_stone_reached_target):
+		Signals.stone_reached_target.disconnect(_on_stone_reached_target)
+
+func _on_stone_reached_target(_s: PushableObject) -> void:
+	var wind = get_tree().get_first_node_in_group(Constants.GROUP_NAME_WIND) as Wind
+	if wind:
+		wind.request_shadow_update()
 
 #func set_shadows():
 	#var wind = get_tree().get_first_node_in_group(Constants.GROUP_NAME_WIND)
