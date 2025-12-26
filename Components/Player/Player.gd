@@ -33,7 +33,7 @@ var target_position: Vector2:
 
 var timer_step := 0.15
 var timer_step_init := 0.15
-var timer_step_short := 0.115
+var timer_step_short := 0.125
 var timer_step_after_avoiding := 0.125
 
 var is_moving := false

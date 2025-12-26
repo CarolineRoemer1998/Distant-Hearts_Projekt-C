@@ -54,10 +54,16 @@ func set_wind_particle_direction(dir: Vector2) -> void:
 	if dir == Vector2.UP or dir == Vector2.DOWN or dir == Vector2.LEFT or dir == Vector2.RIGHT:
 		wind_particles.set_scale_gravity_and_position(dir)
 
-#func _process(_delta: float) -> void:
-	#if is_active and not init_blow_done:
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("ui_end"):
+		for i in shadow_by_pos:
+			print(i)
+	
+	if is_active and not init_blow_done:
+		#request_shadow_update()
 		#check_for_objects_to_blow({})
-		#init_blow_done = true
+		#check_for_objects_to_blow({})
+		init_blow_done = true
 
 # ------------------------------------------------------------
 # Shadow API (NEW)
@@ -65,6 +71,7 @@ func set_wind_particle_direction(dir: Vector2) -> void:
 func request_shadow_update() -> void:
 	if _shadow_update_queued:
 		return
+	
 	_shadow_update_queued = true
 	call_deferred("_do_shadow_update")
 
@@ -182,8 +189,15 @@ func _pos_from_xy(x: int, y: int) -> Vector2:
 func check_for_objects_to_blow(_dict: Dictionary = {}) -> void:
 	if not is_active:
 		return
+	
+	request_shadow_update()
+	
+	if not init_blow_done:
+		await get_tree().create_timer(0.005).timeout
+	
 	var objects_to_blow = get_all_blowable_objects()
 	Signals.wind_blows.emit(objects_to_blow, blow_direction, wind_particles)
+
 
 # Called from Level if you want manual trigger
 func blow() -> void:
@@ -225,7 +239,10 @@ func get_all_objects_actually_hit_by_wind(blowable_objects: Dictionary) -> Dicti
 func get_single_object_actually_hit_by_wind(tile_with_object: Vector2, _blowable_objects: Dictionary, direction_wind_is_coming_from: Vector2) -> bool:
 	var check_tile = tile_with_object
 	var amount_tiles_to_check = get_amount_tiles_in_direction(tile_with_object, direction_wind_is_coming_from)
-
+	
+	if shadow_by_pos.has(tile_with_object):
+		return false
+	
 	for i in amount_tiles_to_check:
 		if get_is_wind_blocking_object_on_tile(get_tile_in_direction(check_tile, direction_wind_is_coming_from)):
 			return false

@@ -751,7 +751,6 @@ polygon = PackedVector2Array(512, 448, 640, 448, 640, 512, 512, 512)
 script = ExtResource("1_0qx37")
 season = 3
 undo_particles = ExtResource("2_ib1yo")
-final_level = null
 level_number = 22
 wind_direction_if_fall = Vector2(1, 0)
 
