@@ -47,13 +47,25 @@ var wind_strength := 20
 var init_blow_done := false
 var is_active := false
 
-var wind_volume := 5.0
+var wind_volume := 0.0
 var wind_volume_quiet := -50.0
+var wind_pitch_normal := 1.0
+var wind_pitch_blowing := 1.5
+var is_blowing_player := false
+var is_blowing_creature
 
 func _ready() -> void:
+	Signals.player_is_blown_by_wind.connect(set_player_is_blown)
+	Signals.creature_is_blown_by_wind.connect(set_creature_is_blown)
 	add_to_group(Constants.GROUP_NAME_WIND)
 	_set_level_tile_positions()
-	audio_stream_player_2d.volume_db = -80.0
+	audio_stream_player_2d.volume_db = -50.0
+
+func set_player_is_blown(val: bool):
+	is_blowing_player = val
+
+func set_creature_is_blown(val: bool):
+	is_blowing_creature = val
 
 func set_wind_particle_direction(dir: Vector2) -> void:
 	if dir == Vector2.UP or dir == Vector2.DOWN or dir == Vector2.LEFT or dir == Vector2.RIGHT:
@@ -61,6 +73,11 @@ func set_wind_particle_direction(dir: Vector2) -> void:
 
 func _process(_delta: float) -> void:
 	audio_stream_player_2d.volume_db = lerp(audio_stream_player_2d.volume_db, wind_volume, _delta*4)
+	
+	if (is_blowing_creature or is_blowing_player) and audio_stream_player_2d.pitch_scale != wind_pitch_blowing:
+		audio_stream_player_2d.pitch_scale = lerp(audio_stream_player_2d.pitch_scale, wind_pitch_blowing, _delta*5)
+	elif (not is_blowing_creature and not is_blowing_player) and audio_stream_player_2d.pitch_scale != wind_pitch_normal:
+		audio_stream_player_2d.pitch_scale = lerp(audio_stream_player_2d.pitch_scale, wind_pitch_normal, _delta*5)
 	
 	if is_active and not init_blow_done:
 		#request_shadow_update()

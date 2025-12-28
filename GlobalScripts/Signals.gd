@@ -69,3 +69,5 @@ signal wind_stopped_blowing
 signal undo_executed
 
 signal stone_revealed(pos: Vector2, wind_blow_direction: Vector2)
+signal creature_is_blown_by_wind(val: bool)
+signal player_is_blown_by_wind(val: bool)

@@ -47,7 +47,10 @@ var last_escape_direction := Vector2.ZERO
 var hard_escape_lock := false
 
 var steps_to_walk_back : Array[Vector2] = []
-var is_blown_by_wind := false
+var is_blown_by_wind := false:
+	set(val):
+		is_blown_by_wind = val
+		Signals.creature_is_blown_by_wind.emit(val)
 
 var parent_node : Node = null
 

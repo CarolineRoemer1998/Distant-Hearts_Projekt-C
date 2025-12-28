@@ -56,6 +56,7 @@ var planted_flower_last_step := false
 var is_blown_by_wind := false:
 	set(val):
 		is_blown_by_wind = val
+		Signals.player_is_blown_by_wind.emit(val)
 
 # ------------------------------------------------
 # READY
