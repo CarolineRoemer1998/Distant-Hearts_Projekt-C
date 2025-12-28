@@ -33,6 +33,7 @@ func fly_away(list_of_blown_objects: Dictionary, _blow_direction: Vector2, _wind
 					hidden_button.reveal()
 				if hidden_stone != null:
 					hidden_stone.reveal()
+					Signals.stone_revealed.emit(global_position, _blow_direction)
 				match _blow_direction:
 					Vector2.UP:
 						animation_player.play("FlyAway_Up")
@@ -44,7 +45,6 @@ func fly_away(list_of_blown_objects: Dictionary, _blow_direction: Vector2, _wind
 						animation_player.play("FlyAway_Left")
 						is_active = false
 					Vector2.RIGHT:
-						print("Animation FlyAway_Right Played for: ", name)
 						animation_player.play("FlyAway_Right")
 						is_active = false
 	

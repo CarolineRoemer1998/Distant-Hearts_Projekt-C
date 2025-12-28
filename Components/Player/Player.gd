@@ -76,6 +76,7 @@ func _ready():
 	Signals.tried_walking_on_bee_area.connect(play_failed_step_in_direction_animation)
 	Signals.wind_blows.connect(get_blown_by_wind)
 	Signals.wind_stopped_blowing.connect(handle_wind_stopped_blowing)
+	Signals.stone_revealed.connect(check_for_new_target_position_by_wind)
 	#Signals.creature_finished_teleporting.connect(activate)
 
 	target_position = position.snapped(Constants.GRID_SIZE / 2)
@@ -304,6 +305,7 @@ func update_movement(delta):
 		update_ice_slide_target()
 	
 	if is_blown_by_wind:
+		print(target_position)
 		position = position.move_toward(target_position, Constants.MOVE_BY_WIND_SPEED * delta)
 
 		if position.distance_to(target_position) < 0.01:
@@ -352,7 +354,7 @@ func on_move_step_finished():
 	var wind = get_tree().get_first_node_in_group(Constants.GROUP_NAME_WIND) as Wind
 	if wind:
 		wind.check_for_objects_to_blow({})
-		wind.request_shadow_update()
+		#wind.request_shadow_update()
 
 	if buffered_direction != Vector2.ZERO:
 		set_is_moving(
@@ -370,6 +372,21 @@ func on_move_step_finished():
 		is_avoiding = false
 		can_move = false
 		avoid_timer.start(timer_step_after_avoiding)
+
+func check_for_new_target_position_by_wind(revealed_stone_pos: Vector2, wind_blow_direction: Vector2):
+	if not is_blown_by_wind:
+		return
+	match wind_blow_direction:
+		Vector2.LEFT:
+			if (global_position-revealed_stone_pos)[0] <= (global_position-target_position)[0]:
+				target_position = Vector2(revealed_stone_pos[0]+Constants.GRID_SIZE[0], revealed_stone_pos[1])
+		Vector2.RIGHT:
+			if (global_position-revealed_stone_pos)[0] >= (global_position-target_position)[0]:
+				target_position = Vector2(revealed_stone_pos[0]-Constants.GRID_SIZE[0], revealed_stone_pos[1])
+		Vector2.DOWN:
+			if (global_position-revealed_stone_pos)[0] >= (global_position-target_position)[0]:
+				target_position = Vector2(revealed_stone_pos[0], revealed_stone_pos[1]-Constants.GRID_SIZE[0])
+		
 
 ## Computes slide target and updates ice-related flags.
 func update_ice_slide_target():
@@ -579,7 +596,8 @@ func get_blown_by_wind(list_of_blown_objects: Dictionary, blow_direction: Vector
 	if currently_possessed_creature == null:
 		return
 	for obj in list_of_blown_objects:
-		if list_of_blown_objects[obj]["Object"] is Player:
+		print(list_of_blown_objects[obj]["Object"].name)
+		if list_of_blown_objects[obj]["Object"] is Player:# or list_of_blown_objects[obj]["Object"].name == currently_possessed_creature.name:
 			target_position = global_position + (Constants.GRID_SIZE*blow_direction*list_of_blown_objects[obj]["travel_distance"]).snapped(Constants.GRID_SIZE / 2)
 			if target_position != global_position:
 				is_blown_by_wind = true

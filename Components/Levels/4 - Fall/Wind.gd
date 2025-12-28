@@ -55,9 +55,6 @@ func set_wind_particle_direction(dir: Vector2) -> void:
 		wind_particles.set_scale_gravity_and_position(dir)
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("ui_end"):
-		for i in shadow_by_pos:
-			print(i)
 	
 	if is_active and not init_blow_done:
 		#request_shadow_update()
@@ -287,7 +284,14 @@ func get_is_tile_next_to_object_empty(obj_tile: Vector2) -> bool:
 	var ignore_open_door = false
 
 	for obj in result_blocking_objects:
+		#print(obj.collider.name)
+		if obj.collider is WaterTile:
+			var water : WaterTile = obj.collider as WaterTile
+			if water.object_under_water_tile != null:
+				result_blocking_objects.erase(obj)
 		if obj.collider is Stone:
+			if obj.collider.is_in_water:
+				result_blocking_objects.erase(obj)
 			ignore_open_door = true
 
 	if result_blocking_objects.is_empty() or (result_blocking_objects[0].collider is Door and not result_blocking_objects[0].collider.door_is_closed and not ignore_open_door):

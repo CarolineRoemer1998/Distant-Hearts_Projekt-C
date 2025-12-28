@@ -15,6 +15,7 @@ const MODULATE_UNDER_WATER := Color(0.775, 1.288, 1.416)
 var is_in_water := false
 
 var is_hidden := false
+var object_hiding_under : PileOfLeaves = null
 
 
 ## Initializes the stone when the scene starts:
@@ -41,6 +42,8 @@ func get_info() -> Dictionary:
 	info["global_position"] = global_position.snapped(Constants.GRID_SIZE / 2)
 	info["target_position"] = target_position.snapped(Constants.GRID_SIZE / 2)
 	info["is_in_water"] = is_in_water
+	info["is_hidden"] = is_hidden
+	info["object_hiding_under"] = object_hiding_under
 	if not is_in_water:
 		info["position"] = Vector2(0.0, 0.0)
 	else:
@@ -67,23 +70,31 @@ func set_info(info : Dictionary):
 	is_in_water = info.get("is_in_water")
 	if not is_in_water and sprite_stone.modulate == MODULATE_UNDER_WATER:
 		turn_from_platform_back_into_stone()
+	
+	if info.get("is_hidden") == true and is_hidden == false:
+		hide_self(info.get("object_hiding_under"))
+	#check_is_hidden()
 
 func check_is_hidden():
-	if name == "Stone10":
-		print("stone10")
 	var result_pile_of_leaves = Helper.get_collision_on_tile(global_position, (1 << Constants.LAYER_BIT_PILE_OF_LEAVES), get_world_2d())
 	if not result_pile_of_leaves.is_empty() and result_pile_of_leaves[0].collider.is_active:
 		hide_self(result_pile_of_leaves[0].collider)
+	else:
+		object_hiding_under = null
+		enable_collision_layer()
 
 func hide_self(pile_of_leaves: PileOfLeaves):
 	pile_of_leaves.hidden_stone = self
 	is_hidden = true
 	visible = false
+	object_hiding_under = pile_of_leaves
+	disable_collision_layer()
 
 func reveal():
 	visible = true
 	is_hidden = false
 	animation_player.play("Reveal")
+	enable_collision_layer()
 	
 	await get_tree().process_frame
 

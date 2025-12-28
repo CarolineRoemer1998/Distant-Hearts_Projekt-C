@@ -67,3 +67,5 @@ signal wind_blows(list_of_blown_objects: Dictionary, blow_direction: Vector2, wi
 signal wind_stopped_blowing
 
 signal undo_executed
+
+signal stone_revealed(pos: Vector2, wind_blow_direction: Vector2)

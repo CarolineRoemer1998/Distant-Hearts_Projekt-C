@@ -91,6 +91,7 @@ func _process(delta: float) -> void:
 			global_position = target_position
 			is_blown_by_wind = false
 
+
 # -----------------------------------------------------------
 # Undo State
 # -----------------------------------------------------------
@@ -203,11 +204,21 @@ func start_teleport(teleporter_manager: TeleporterManager, body: Node2D):
 		audio_teleport.play()
 		Signals.creature_started_teleporting.emit()
 		is_teleporting = true
-		match global_position:
-			teleporter_manager.flower_1.global_position:
-				target_position = teleporter_manager.flower_2.global_position
-			teleporter_manager.flower_2.global_position:
-				target_position = teleporter_manager.flower_1.global_position
+		
+		var distance_to_flower_1 = global_position.distance_to(teleporter_manager.flower_1.global_position)
+		var distance_to_flower_2 = global_position.distance_to(teleporter_manager.flower_2.global_position)
+		
+		if distance_to_flower_1 > distance_to_flower_2:
+			target_position = teleporter_manager.flower_1.global_position
+		else:
+			target_position = teleporter_manager.flower_2.global_position
+			
+		#var transport_pos = min(target_position.distance_to(teleporter_manager.flower_1.global_position),target_position.distance_to(teleporter_manager.flower_2.global_position))
+		#match global_position.snapped(Constants.GRID_SIZE / 2):
+			#teleporter_manager.flower_1.global_position:
+				#target_position = teleporter_manager.flower_2.global_position
+			#teleporter_manager.flower_2.global_position:
+				#target_position = teleporter_manager.flower_1.global_position
 		animation_player.play("Shrink_Teleport")
 
 func teleport():
@@ -229,6 +240,9 @@ func finish_teleport():
 	Globals.is_teleporting = false
 	Signals.creature_finished_teleporting.emit(self)
 	is_teleporting = false
+	var wind = get_tree().get_first_node_in_group(Constants.GROUP_NAME_WIND) as Wind
+	if wind:
+		wind.check_for_objects_to_blow({})
 
 
 # -----------------------------------------------------------
@@ -313,7 +327,17 @@ func walk_to_free_tile_if_bees_nearby():
 		tremble()
 
 func get_blown_by_wind(list_of_blown_objects: Dictionary, blow_direction: Vector2, _wind_particles: GPUParticles2D):
-	if is_possessed:
+	#var teleporters = get_tree().get_first_node_in_group(Constants.GROUP_NAME_TELEPORTER_MANAGERS) as TeleporterManager
+	#var tel1_pos = teleporters.flower_1.global_position
+	#var tel2_pos = teleporters.flower_2.global_position
+	##print(tel1_pos, ", ", tel2_pos, ", ", global_position, ", ", target_position)
+	#var result_standing_on_teleporter = Helper.get_collision_on_tile(global_position, (1 << Constants.LAYER_BIT_TELEPORTER), get_world_2d())
+	#var w = global_position.distance_to(tel1_pos) < 32.0 or global_position.distance_to(tel2_pos) < 32.0
+	#print(global_position.distance_to(tel1_pos))
+	#print(global_position.distance_to(tel2_pos))
+	#print()
+	#var will_teleport = tel1_pos == global_position or tel2_pos == global_position 
+	if is_possessed:# or will_teleport:
 		## TODO: Player.get_blown_by_wind
 		pass
 	else:

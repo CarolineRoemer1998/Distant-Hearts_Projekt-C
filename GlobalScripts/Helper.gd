@@ -82,7 +82,9 @@ func can_move_in_direction(_position: Vector2, _direction, world : World2D, is_p
 	
 	# State: PUSHABLE
 	elif tile_states.has(TILE_CONTENT.pushable):
-		if tile_states[TILE_CONTENT.pushable][0].get_can_be_pushed(new_pos, _direction):
+		if tile_states.has(TILE_CONTENT.door) and tile_states[TILE_CONTENT.door][0].door_is_closed:
+			can_move_in_dir = false
+		elif tile_states[TILE_CONTENT.pushable][0].get_can_be_pushed(new_pos, _direction):
 			tile_states[TILE_CONTENT.pushable][0].push() # TODO: Später push() erst nachdem diese funktion aufgerufen wurde
 			can_move_in_dir = true
 		else:
