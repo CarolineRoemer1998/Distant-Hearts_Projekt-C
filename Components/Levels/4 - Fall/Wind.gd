@@ -8,6 +8,7 @@ class_name Wind
 @onready var timer_blow_wind_interval: Timer = $TimerBlowWindInterval
 @onready var timer_blow_duration: Timer = $TimerBlowDuration
 @onready var wind_particles: WindParticle = $WindParticles
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 # --- Shadow handling (NEW) ---
 var shadow := preload(Constants.SPRITE_2D_SHADOW)
@@ -46,15 +47,20 @@ var wind_strength := 20
 var init_blow_done := false
 var is_active := false
 
+var wind_volume := 5.0
+var wind_volume_quiet := -50.0
+
 func _ready() -> void:
 	add_to_group(Constants.GROUP_NAME_WIND)
 	_set_level_tile_positions()
+	audio_stream_player_2d.volume_db = -80.0
 
 func set_wind_particle_direction(dir: Vector2) -> void:
 	if dir == Vector2.UP or dir == Vector2.DOWN or dir == Vector2.LEFT or dir == Vector2.RIGHT:
 		wind_particles.set_scale_gravity_and_position(dir)
 
 func _process(_delta: float) -> void:
+	audio_stream_player_2d.volume_db = lerp(audio_stream_player_2d.volume_db, wind_volume, _delta*4)
 	
 	if is_active and not init_blow_done:
 		#request_shadow_update()

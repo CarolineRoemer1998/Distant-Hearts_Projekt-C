@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://brpyqrynlw7y2"]
+[gd_scene load_steps=4 format=3 uid="uid://brpyqrynlw7y2"]
 
 [ext_resource type="Script" uid="uid://cliuml78fyqi" path="res://Components/Levels/4 - Fall/Wind.gd" id="1_qn7r6"]
 [ext_resource type="PackedScene" uid="uid://dxqr8n7w345bw" path="res://Components/Mechanics/Fall Mechanics/wind_particles.tscn" id="2_xxnaq"]
+[ext_resource type="AudioStream" uid="uid://cfmds8166wgjq" path="res://Sounds/SFX/wind.mp3" id="3_ao7e4"]
 
 [node name="Wind" type="Node2D"]
 visible = false
 script = ExtResource("1_qn7r6")
+blow_direction = null
 
 [node name="TimerBlowWindInterval" type="Timer" parent="."]
 
@@ -14,6 +16,11 @@ wait_time = 0.5
 one_shot = true
 
 [node name="WindParticles" parent="." instance=ExtResource("2_xxnaq")]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_ao7e4")
+volume_db = -50.0
+autoplay = true
 
 [connection signal="timeout" from="TimerBlowWindInterval" to="." method="_on_timer_blow_wind_interval_timeout"]
 [connection signal="timeout" from="TimerBlowDuration" to="." method="_on_timer_blow_duration_timeout"]
