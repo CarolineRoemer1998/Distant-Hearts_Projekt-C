@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 class_name PushableObject
 
+@onready var audio_stream_player_2d_pushed: AudioStreamPlayer2D = $AudioStreamPlayer2D_Pushed
+
 const MOVE_SPEED := 500.0
 
 var target_position: Vector2:

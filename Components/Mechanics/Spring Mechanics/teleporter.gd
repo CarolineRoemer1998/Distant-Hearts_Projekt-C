@@ -21,6 +21,9 @@ class_name Teleporter
 @onready var animated_sprite_2d_bounce_light: AnimatedSprite2D = $AnimatedSprites/AnimatedSprite2D_BounceLight
 @onready var effects: Node2D = $Effects
 
+@onready var audio_player_activate: AudioStreamPlayer2D = $AudioPlayer_Activate
+@onready var audio_player_deactivate: AudioStreamPlayer2D = $AudioPlayer_Deactivate
+
 var is_teleporting: bool = false
 enum Phase { IDLE, UP, DOWN }
 var phase: int = Phase.IDLE
@@ -44,7 +47,7 @@ func _ready() -> void:
 		if teleporter != self:
 			other_teleporter = teleporter
 	
-	activate(false)
+	activate(false, true)
 	
 	for path in buttons:
 		var button = get_node_or_null(path)
@@ -65,9 +68,9 @@ func _ready() -> void:
 	
 	#if button_refs.size() == 0:
 		#activate(true)
-	_check_buttons()
+	_check_buttons(true)
 
-func _check_buttons():
+func _check_buttons(level_loaded = false):
 	#if is_activated and other_teleporter.is_activated:
 		#return
 	#if button_refs.size() == 0:
@@ -77,11 +80,21 @@ func _check_buttons():
 		if not button.is_pressed():
 			all_pressed = false
 			break
-	activate(all_pressed)
+	activate(all_pressed, level_loaded)
 
-func activate(_activate_val: bool):
+func activate(_activate_val: bool, level_loaded = false):
 	if other_teleporter.is_activated and is_activated and _activate_val==true:
 		return
+	if not is_activated and _activate_val == true:
+		if not other_teleporter.is_activated:
+			audio_player_activate.pitch_scale = 1.0
+			audio_player_activate.play()
+		else:
+			audio_player_activate.pitch_scale = 1.05
+			audio_player_activate.play()
+	if is_activated and _activate_val == false:
+		if not level_loaded:
+			audio_player_deactivate.play()
 	is_activated = _activate_val
 	effects.visible = _activate_val
 	animated_sprite_2d_bounce_light.visible = _activate_val
@@ -91,6 +104,8 @@ func activate(_activate_val: bool):
 		animated_sprite_2d_flower.modulate = Constants.TELEPORTER_MODULATE_ACTIVE
 		Signals.teleporter_activated.emit(self)
 	else:
+		#if not level_loaded:
+			#audio_player_deactivate.play()
 		animated_sprite_2d_flower.modulate = Constants.TELEPORTER_MODULATE_INACTIVE
 		Signals.teleporter_deactivated.emit(self)
 

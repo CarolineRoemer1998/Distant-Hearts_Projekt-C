@@ -18,6 +18,8 @@ class_name Player
 @onready var step_timer: Timer = $StepTimer
 @onready var avoid_timer: Timer = $AvoidTimer
 
+@onready var audio_stream_player_2d_push_object: AudioStreamPlayer2D = $AudioStreamPlayer2D_PushObject
+
 var is_step_timer_triggered := false
 var is_active := true
 
@@ -541,6 +543,10 @@ func play_step_sound():
 	audio_stream_player_2d.volume_db = Constants.STEP_SOUND_VOLUME_CHANGE.pick_random()
 	audio_stream_player_2d.stop()
 	audio_stream_player_2d.play()
+
+func play_push_object_sound():
+	audio_stream_player_2d_push_object.pitch_scale = [1.95, 1.975, 2.0, 2.025, 2.05].pick_random()
+	audio_stream_player_2d_push_object.play()
 
 
 # ------------------------------------------------

@@ -86,6 +86,7 @@ func can_move_in_direction(_position: Vector2, _direction, world : World2D, is_p
 			can_move_in_dir = false
 		elif tile_states[TILE_CONTENT.pushable][0].get_can_be_pushed(new_pos, _direction):
 			tile_states[TILE_CONTENT.pushable][0].push() # TODO: Später push() erst nachdem diese funktion aufgerufen wurde
+			player.play_push_object_sound()
 			can_move_in_dir = true
 		else:
 			can_move_in_dir = false

@@ -121,14 +121,14 @@ func turn_into_platform_in_water():
 		rnd.shuffle()
 		animated_sprite_platform.frame = rnd[0]
 		animated_sprite_platform.play("default")
-		z_index -= 2
+		z_index -= 3
 		disable_collision_layer()
 		set_collision_layer_value(Constants.LAYER_BIT_WATER_PLATFORM+1, true)
 
 func turn_from_platform_back_into_stone():
 	sprite_stone.modulate = MODULATE_INIT
 	animated_sprite_platform.visible = false
-	z_index += 2
+	z_index += 3
 	enable_collision_layer()
 	set_collision_layer_value(Constants.LAYER_BIT_WATER_PLATFORM+1, false)
 
