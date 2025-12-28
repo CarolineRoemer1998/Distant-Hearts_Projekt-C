@@ -597,7 +597,7 @@ func get_blown_by_wind(list_of_blown_objects: Dictionary, blow_direction: Vector
 		return
 	for obj in list_of_blown_objects:
 		print(list_of_blown_objects[obj]["Object"].name)
-		if list_of_blown_objects[obj]["Object"] is Player:# or list_of_blown_objects[obj]["Object"].name == currently_possessed_creature.name:
+		if list_of_blown_objects[obj]["Object"] is Player or list_of_blown_objects[obj]["Object"].name == currently_possessed_creature.name:
 			target_position = global_position + (Constants.GRID_SIZE*blow_direction*list_of_blown_objects[obj]["travel_distance"]).snapped(Constants.GRID_SIZE / 2)
 			if target_position != global_position:
 				is_blown_by_wind = true

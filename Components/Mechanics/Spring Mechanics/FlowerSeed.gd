@@ -12,6 +12,7 @@ enum STATE {
 @onready var collider: CollisionShape2D = $CollisionShape2D
 @onready var animation_player = $AnimationPlayer
 @onready var twinkle = $Twinkle
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 var current_state := STATE.Seed
 
@@ -74,6 +75,8 @@ func grow():
 	pollen.visible = true
 	var nearest_bee_swarm : BeeSwarm = get_nearest_bee_swarm()
 	Signals.flower_grows.emit(self, nearest_bee_swarm)
+	await get_tree().create_timer(0.05).timeout
+	audio_stream_player_2d.play()
 
 func get_nearest_bee_swarm() -> BeeSwarm:
 	var bee_swarms = get_tree().get_nodes_in_group(Constants.GROUP_NAME_BEES) as Array[BeeSwarm]

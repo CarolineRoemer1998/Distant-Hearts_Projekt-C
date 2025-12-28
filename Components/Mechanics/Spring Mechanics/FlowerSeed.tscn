@@ -1,9 +1,12 @@
-[gd_scene load_steps=23 format=3 uid="uid://ba8q3gl8ussnm"]
+[gd_scene load_steps=27 format=3 uid="uid://ba8q3gl8ussnm"]
 
 [ext_resource type="Script" uid="uid://dytdyife3qh6p" path="res://Components/Mechanics/Spring Mechanics/FlowerSeed.gd" id="1_rjnan"]
 [ext_resource type="Texture2D" uid="uid://c4bdewfthxc5h" path="res://Assets/Spring Mechanics/Flower/PinkFlowerBiggerBorderSpriteSheet.png" id="1_t7jgl"]
 [ext_resource type="Texture2D" uid="uid://c20w74uuv2bar" path="res://Assets/Particles/twinkle.png" id="4_2yydt"]
 [ext_resource type="Texture2D" uid="uid://dbtlkxrnci834" path="res://Assets/Spring Mechanics/Flower/Seed3.png" id="4_tpjqu"]
+[ext_resource type="AudioStream" uid="uid://c1ckbfrqm44jr" path="res://Sounds/SFX/flower_growing_1.mp3" id="5_3053t"]
+[ext_resource type="AudioStream" uid="uid://dbil7s55qwdyk" path="res://Sounds/SFX/flower_growing_2.mp3" id="6_dc7xp"]
+[ext_resource type="AudioStream" uid="uid://dnwppmb0gfrj6" path="res://Sounds/SFX/flower_growing_3.mp3" id="7_hxin8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rjnan"]
 size = Vector2(16, 16)
@@ -154,6 +157,12 @@ scale_min = 0.5
 scale_max = 2.0
 scale_curve = SubResource("CurveTexture_q3upb")
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_qtt1i"]
+streams_count = 3
+stream_0/stream = ExtResource("5_3053t")
+stream_1/stream = ExtResource("6_dc7xp")
+stream_2/stream = ExtResource("7_hxin8")
+
 [node name="FlowerSeed" type="CharacterBody2D"]
 z_index = 6
 collision_layer = 4
@@ -200,3 +209,7 @@ explosiveness = 0.35
 use_fixed_seed = true
 seed = 8
 process_material = SubResource("ParticleProcessMaterial_q3upb")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_qtt1i")
+bus = &"sfx"
