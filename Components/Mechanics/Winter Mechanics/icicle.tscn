@@ -7,7 +7,7 @@
 size = Vector2(64, 64)
 
 [node name="Icicle" type="StaticBody2D"]
-modulate = Color(1.1498969, 1.1498969, 1.1498969, 1)
+modulate = Color(1.1, 1.1, 1.1, 1)
 collision_layer = 8
 collision_mask = 7
 script = ExtResource("1_0d3l5")
@@ -18,12 +18,4 @@ shape = SubResource("RectangleShape2D_0d3l5")
 [node name="Icicle2" type="Sprite2D" parent="."]
 position = Vector2(8.34465e-07, 1.90735e-06)
 scale = Vector2(2, 2)
-texture = ExtResource("1_c2d26")
-
-[node name="Icicle7" type="Sprite2D" parent="."]
-position = Vector2(22, 16)
-texture = ExtResource("1_c2d26")
-
-[node name="Icicle4" type="Sprite2D" parent="."]
-position = Vector2(-20, 16)
 texture = ExtResource("1_c2d26")

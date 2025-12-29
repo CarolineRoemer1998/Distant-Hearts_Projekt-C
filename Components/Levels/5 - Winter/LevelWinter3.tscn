@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://vge7wou5ewmh"]
+[gd_scene load_steps=23 format=3 uid="uid://vge7wou5ewmh"]
 
 [ext_resource type="Script" uid="uid://ddiwo6yyhfkuc" path="res://Components/Levels/level.gd" id="1_7ae7w"]
 [ext_resource type="PackedScene" uid="uid://i448npnkeckp" path="res://Components/Mechanics/Winter Mechanics/ice_floor.tscn" id="2_a03e5"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://bt4pnhd7cx7xc" path="res://Components/Mechanics/Buttons/button.tscn" id="3_xhsd0"]
 [ext_resource type="Texture2D" uid="uid://d2wcstlnxmknt" path="res://Assets/Winter Mechanics/Ice Floors/Ice-floor-L.png" id="4_0656e"]
 [ext_resource type="Texture2D" uid="uid://btwlvk2xprfh2" path="res://Assets/Winter Mechanics/Ice Floors/Ice-floor-R.png" id="4_1855q"]
-[ext_resource type="PackedScene" uid="uid://q064q65pkb0q" path="res://Components/Mechanics/Winter Mechanics/icicle_2_v.tscn" id="4_mc2c8"]
 [ext_resource type="Texture2D" uid="uid://dhgxskyq6mhsp" path="res://Assets/Winter Mechanics/Ice Floors/Ice-floor-B.png" id="5_wgcib"]
 [ext_resource type="PackedScene" uid="uid://be6k5yjppap8y" path="res://Components/Creatures/creature_yellow.tscn" id="5_y20sl"]
 [ext_resource type="Texture2D" uid="uid://b45v4bjjuo8eb" path="res://Assets/Winter Mechanics/Ice Floors/Ice-floor-R-B.png" id="6_vu1yg"]
@@ -222,9 +221,6 @@ texture = ExtResource("6_vu1yg")
 
 [node name="Icicles" type="Node" parent="."]
 
-[node name="Icicle 2 Vertical8" parent="Icicles" instance=ExtResource("4_mc2c8")]
-position = Vector2(352, 160)
-
 [node name="Icicle4" parent="Icicles" instance=ExtResource("10_xhsd0")]
 position = Vector2(352, 416)
 
@@ -237,17 +233,35 @@ position = Vector2(480, 224)
 [node name="Icicle3" parent="Icicles" instance=ExtResource("10_xhsd0")]
 position = Vector2(608, 608)
 
-[node name="Icicle 2 Vertical" parent="Icicles" instance=ExtResource("4_mc2c8")]
+[node name="Icicle6" parent="Icicles" instance=ExtResource("10_xhsd0")]
 position = Vector2(288, 608)
 
-[node name="Icicle 2 Vertical2" parent="Icicles" instance=ExtResource("4_mc2c8")]
+[node name="Icicle7" parent="Icicles" instance=ExtResource("10_xhsd0")]
+position = Vector2(288, 544)
+
+[node name="Icicle8" parent="Icicles" instance=ExtResource("10_xhsd0")]
 position = Vector2(288, 480)
 
-[node name="Icicle 2 Vertical3" parent="Icicles" instance=ExtResource("4_mc2c8")]
+[node name="Icicle9" parent="Icicles" instance=ExtResource("10_xhsd0")]
+position = Vector2(288, 416)
+
+[node name="Icicle10" parent="Icicles" instance=ExtResource("10_xhsd0")]
 position = Vector2(288, 352)
 
-[node name="Icicle 2 Vertical4" parent="Icicles" instance=ExtResource("4_mc2c8")]
+[node name="Icicle11" parent="Icicles" instance=ExtResource("10_xhsd0")]
+position = Vector2(288, 288)
+
+[node name="Icicle12" parent="Icicles" instance=ExtResource("10_xhsd0")]
 position = Vector2(288, 160)
+
+[node name="Icicle13" parent="Icicles" instance=ExtResource("10_xhsd0")]
+position = Vector2(288, 96)
+
+[node name="Icicle14" parent="Icicles" instance=ExtResource("10_xhsd0")]
+position = Vector2(352, 96)
+
+[node name="Icicle15" parent="Icicles" instance=ExtResource("10_xhsd0")]
+position = Vector2(352, 160)
 
 [node name="Doors" type="Node" parent="."]
 
@@ -287,3 +301,5 @@ position = Vector2(160, 288)
 position = Vector2(160, 608)
 
 [node name="LevelUI" parent="." instance=ExtResource("23_tyvua")]
+
+[editable path="BackgroundWinter3"]

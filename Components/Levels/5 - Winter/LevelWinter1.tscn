@@ -1,11 +1,10 @@
-[gd_scene load_steps=23 format=3 uid="uid://bvr06lubx5mid"]
+[gd_scene load_steps=22 format=3 uid="uid://bvr06lubx5mid"]
 
 [ext_resource type="Script" uid="uid://ddiwo6yyhfkuc" path="res://Components/Levels/level.gd" id="1_vb4or"]
 [ext_resource type="PackedScene" uid="uid://lrodaawkgfob" path="res://Components/UI/VFX/undo_particles.tscn" id="2_6iyt6"]
 [ext_resource type="PackedScene" uid="uid://i448npnkeckp" path="res://Components/Mechanics/Winter Mechanics/ice_floor.tscn" id="3_4yqt1"]
 [ext_resource type="PackedScene" uid="uid://ccncnjkm8w8ta" path="res://Components/Creatures/creature_blue.tscn" id="3_ddi5y"]
 [ext_resource type="PackedScene" uid="uid://dhwiddm405cfm" path="res://Components/Levels/Backgrounds/bg-winter-1.tscn" id="3_gps5n"]
-[ext_resource type="PackedScene" uid="uid://q064q65pkb0q" path="res://Components/Mechanics/Winter Mechanics/icicle_2_v.tscn" id="3_mehec"]
 [ext_resource type="Texture2D" uid="uid://d2wcstlnxmknt" path="res://Assets/Winter Mechanics/Ice Floors/Ice-floor-L.png" id="4_2eq8c"]
 [ext_resource type="PackedScene" uid="uid://be6k5yjppap8y" path="res://Components/Creatures/creature_yellow.tscn" id="4_ba60x"]
 [ext_resource type="PackedScene" uid="uid://c6dmpno4s3103" path="res://Components/Mechanics/Doors/door.tscn" id="4_fy58k"]
@@ -212,8 +211,11 @@ position = Vector2(96, 288)
 [node name="Icicle" parent="Icicles" instance=ExtResource("11_fy58k")]
 position = Vector2(288, 352)
 
-[node name="Icicle 2 Vertical" parent="Icicles" instance=ExtResource("3_mehec")]
+[node name="Icicle2" parent="Icicles" instance=ExtResource("11_fy58k")]
 position = Vector2(544, 160)
+
+[node name="Icicle3" parent="Icicles" instance=ExtResource("11_fy58k")]
+position = Vector2(544, 96)
 
 [node name="Creatures" type="Node" parent="."]
 

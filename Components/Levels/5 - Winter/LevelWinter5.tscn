@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://j75l20l3hoo0"]
+[gd_scene load_steps=23 format=3 uid="uid://j75l20l3hoo0"]
 
 [ext_resource type="Script" uid="uid://ddiwo6yyhfkuc" path="res://Components/Levels/level.gd" id="1_onvjm"]
 [ext_resource type="PackedScene" uid="uid://lrodaawkgfob" path="res://Components/UI/VFX/undo_particles.tscn" id="2_netts"]
@@ -15,7 +15,6 @@
 [ext_resource type="Texture2D" uid="uid://bc7d4qmidqg4y" path="res://Assets/Winter Mechanics/Ice Floors/Ice-floor-L-T.png" id="9_netts"]
 [ext_resource type="PackedScene" uid="uid://c6dmpno4s3103" path="res://Components/Mechanics/Doors/door.tscn" id="9_ulphs"]
 [ext_resource type="PackedScene" uid="uid://i448npnkeckp" path="res://Components/Mechanics/Winter Mechanics/ice_floor.tscn" id="9_wlj7w"]
-[ext_resource type="PackedScene" uid="uid://q064q65pkb0q" path="res://Components/Mechanics/Winter Mechanics/icicle_2_v.tscn" id="10_odjst"]
 [ext_resource type="Texture2D" uid="uid://ce8efu0a3oy2r" path="res://Assets/Winter Mechanics/Ice Floors/Ice-floor-L-B.png" id="10_wlj7w"]
 [ext_resource type="PackedScene" uid="uid://bt4pnhd7cx7xc" path="res://Components/Mechanics/Buttons/button.tscn" id="11_lkie1"]
 [ext_resource type="Texture2D" uid="uid://d2wcstlnxmknt" path="res://Assets/Winter Mechanics/Ice Floors/Ice-floor-L.png" id="11_odjst"]
@@ -251,32 +250,47 @@ position = Vector2(160, 416)
 
 [node name="Icicles" type="Node" parent="."]
 
-[node name="Icicle" parent="Icicles" instance=ExtResource("10_odjst")]
-position = Vector2(352, 160)
-
 [node name="Icicle4" parent="Icicles" instance=ExtResource("11_xhcyn")]
 position = Vector2(352, 416)
 
 [node name="Icicle5" parent="Icicles" instance=ExtResource("11_xhcyn")]
-position = Vector2(417, 416)
-
-[node name="Icicle2" parent="Icicles" instance=ExtResource("11_xhcyn")]
 position = Vector2(480, 224)
 
-[node name="Icicle3" parent="Icicles" instance=ExtResource("11_xhcyn")]
+[node name="Icicle6" parent="Icicles" instance=ExtResource("11_xhcyn")]
+position = Vector2(416, 416)
+
+[node name="Icicle7" parent="Icicles" instance=ExtResource("11_xhcyn")]
 position = Vector2(608, 608)
 
-[node name="Icicle6" parent="Icicles" instance=ExtResource("10_odjst")]
+[node name="Icicle8" parent="Icicles" instance=ExtResource("11_xhcyn")]
 position = Vector2(288, 608)
 
-[node name="Icicle7" parent="Icicles" instance=ExtResource("10_odjst")]
+[node name="Icicle9" parent="Icicles" instance=ExtResource("11_xhcyn")]
+position = Vector2(288, 544)
+
+[node name="Icicle10" parent="Icicles" instance=ExtResource("11_xhcyn")]
 position = Vector2(288, 480)
 
-[node name="Icicle8" parent="Icicles" instance=ExtResource("10_odjst")]
+[node name="Icicle11" parent="Icicles" instance=ExtResource("11_xhcyn")]
+position = Vector2(288, 416)
+
+[node name="Icicle12" parent="Icicles" instance=ExtResource("11_xhcyn")]
 position = Vector2(288, 352)
 
-[node name="Icicle9" parent="Icicles" instance=ExtResource("10_odjst")]
+[node name="Icicle13" parent="Icicles" instance=ExtResource("11_xhcyn")]
+position = Vector2(288, 288)
+
+[node name="Icicle14" parent="Icicles" instance=ExtResource("11_xhcyn")]
 position = Vector2(288, 160)
+
+[node name="Icicle15" parent="Icicles" instance=ExtResource("11_xhcyn")]
+position = Vector2(288, 96)
+
+[node name="Icicle16" parent="Icicles" instance=ExtResource("11_xhcyn")]
+position = Vector2(352, 96)
+
+[node name="Icicle17" parent="Icicles" instance=ExtResource("11_xhcyn")]
+position = Vector2(352, 160)
 
 [node name="Creatures" type="Node" parent="."]
 
