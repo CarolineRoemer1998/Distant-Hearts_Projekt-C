@@ -31,3 +31,6 @@ position = Vector2(352, 480)
 [node name="LevelUI" parent="." instance=ExtResource("7_ggy0l")]
 
 [editable path="Creature/CreatureBlue"]
+[editable path="Creature/CreatureBlue/Visuals/AnimationPlayer"]
+[editable path="LevelUI"]
+[editable path="LevelUI/UndoMechanic"]

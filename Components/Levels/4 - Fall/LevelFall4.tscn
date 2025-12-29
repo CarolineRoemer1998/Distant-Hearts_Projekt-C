@@ -55,28 +55,30 @@ tile_map_data = PackedByteArray("AAAAAAAACAAAAAAAAAAKAAAACAAEAAAAAAAKAAoACAAEAAQ
 [node name="LevelWall" parent="BackgroundSpring" index="2"]
 visible = true
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="BackgroundSpring"]
+[node name="LightOccluders" type="Node2D" parent="BackgroundSpring"]
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="BackgroundSpring/LightOccluders"]
 occluder = SubResource("OccluderPolygon2D_7tdwl")
 
-[node name="LightOccluder2D3" type="LightOccluder2D" parent="BackgroundSpring"]
+[node name="LightOccluder2D3" type="LightOccluder2D" parent="BackgroundSpring/LightOccluders"]
 occluder = SubResource("OccluderPolygon2D_gxeiy")
 
-[node name="LightOccluder2D4" type="LightOccluder2D" parent="BackgroundSpring"]
+[node name="LightOccluder2D4" type="LightOccluder2D" parent="BackgroundSpring/LightOccluders"]
 occluder = SubResource("OccluderPolygon2D_1qi7j")
 
-[node name="LightOccluder2D2" type="LightOccluder2D" parent="BackgroundSpring"]
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="BackgroundSpring/LightOccluders"]
 occluder = SubResource("OccluderPolygon2D_s0amj")
 
-[node name="LightOccluder2D5" type="LightOccluder2D" parent="BackgroundSpring"]
+[node name="LightOccluder2D5" type="LightOccluder2D" parent="BackgroundSpring/LightOccluders"]
 occluder = SubResource("OccluderPolygon2D_ldlp8")
 
-[node name="LightOccluder2D6" type="LightOccluder2D" parent="BackgroundSpring"]
+[node name="LightOccluder2D6" type="LightOccluder2D" parent="BackgroundSpring/LightOccluders"]
 occluder = SubResource("OccluderPolygon2D_l62ib")
 
-[node name="LightOccluder2D7" type="LightOccluder2D" parent="BackgroundSpring"]
+[node name="LightOccluder2D7" type="LightOccluder2D" parent="BackgroundSpring/LightOccluders"]
 occluder = SubResource("OccluderPolygon2D_brtki")
 
-[node name="LightOccluder2D8" type="LightOccluder2D" parent="BackgroundSpring"]
+[node name="LightOccluder2D8" type="LightOccluder2D" parent="BackgroundSpring/LightOccluders"]
 occluder = SubResource("OccluderPolygon2D_unk7g")
 
 [node name="Creatures" type="Node" parent="."]
@@ -161,6 +163,9 @@ position = Vector2(544, 544)
 
 [node name="PileOfLeaves3" parent="PilesOfLeaves" instance=ExtResource("12_7tdwl")]
 position = Vector2(416, 224)
+
+[node name="PileOfLeaves4" parent="PilesOfLeaves" instance=ExtResource("12_7tdwl")]
+position = Vector2(224, 608)
 
 [editable path="BackgroundSpring"]
 [editable path="LevelUI"]

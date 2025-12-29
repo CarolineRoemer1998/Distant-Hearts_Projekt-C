@@ -1,155 +1,153 @@
-[gd_scene load_steps=122 format=4 uid="uid://chk2q203gf17t"]
+[gd_scene load_steps=120 format=4 uid="uid://b5jma2em83wwe"]
 
-[ext_resource type="Script" uid="uid://ddiwo6yyhfkuc" path="res://Components/Levels/level.gd" id="1_ipak5"]
-[ext_resource type="PackedScene" uid="uid://lrodaawkgfob" path="res://Components/UI/VFX/undo_particles.tscn" id="2_8vbub"]
-[ext_resource type="TileSet" uid="uid://b27d63bpsa4u5" path="res://Components/Levels/bg-tileset.tres" id="3_j81p3"]
-[ext_resource type="PackedScene" uid="uid://drgrjwt83imw6" path="res://Components/Mechanics/Summer/Water/water.tscn" id="4_65jlg"]
-[ext_resource type="TileSet" uid="uid://cg74raylrlo3u" path="res://Components/Levels/bg_tileset_lower_edge.tres" id="4_j81p3"]
-[ext_resource type="Texture2D" uid="uid://cjcbdthfv00rv" path="res://Assets/Environments/Wall-under-water.png" id="5_1w8kx"]
-[ext_resource type="Texture2D" uid="uid://bkymahrso2o3g" path="res://Assets/Environments/Wall-under-water-left-corner.png" id="6_ysa65"]
-[ext_resource type="Texture2D" uid="uid://dwq2gfl7kbx1k" path="res://Assets/Environments/Wall-under-water-right-corner.png" id="7_oqjjj"]
-[ext_resource type="PackedScene" uid="uid://n6aitd6xhp4u" path="res://Components/Mechanics/Summer/Water/water_tile.tscn" id="8_bdeiv"]
-[ext_resource type="PackedScene" uid="uid://ihdvu1wqfcub" path="res://Components/Levels/Backgrounds/bg-base-spring.tscn" id="9_877aj"]
-[ext_resource type="PackedScene" uid="uid://ccncnjkm8w8ta" path="res://Components/Creatures/creature_blue.tscn" id="10_mrk6t"]
-[ext_resource type="PackedScene" uid="uid://be6k5yjppap8y" path="res://Components/Creatures/creature_yellow.tscn" id="11_ooqfm"]
-[ext_resource type="PackedScene" uid="uid://g3u7bc1jo6gj" path="res://Components/Player/player.tscn" id="12_w4o08"]
-[ext_resource type="PackedScene" uid="uid://dtrjxhb3ayo1c" path="res://Components/Levels/LevelUI.tscn" id="13_hik8m"]
-[ext_resource type="PackedScene" uid="uid://cmlnlah0e5vn3" path="res://Components/Mechanics/Fall Mechanics/PileOfLeaves.tscn" id="14_v117m"]
-[ext_resource type="PackedScene" uid="uid://oy61arlldjo3" path="res://Components/Mechanics/Stones/Stone.tscn" id="15_7he1l"]
-[ext_resource type="PackedScene" uid="uid://bt4pnhd7cx7xc" path="res://Components/Mechanics/Buttons/button.tscn" id="16_jd87j"]
-[ext_resource type="PackedScene" uid="uid://c6dmpno4s3103" path="res://Components/Mechanics/Doors/door.tscn" id="17_d7vhe"]
-[ext_resource type="PackedScene" uid="uid://c02bi0sc4lswo" path="res://Components/Mechanics/Spring Mechanics/TeleporterManager.tscn" id="18_8vbub"]
+[ext_resource type="Script" uid="uid://ddiwo6yyhfkuc" path="res://Components/Levels/level.gd" id="1_d0pwk"]
+[ext_resource type="PackedScene" uid="uid://lrodaawkgfob" path="res://Components/UI/VFX/undo_particles.tscn" id="2_10d3k"]
+[ext_resource type="PackedScene" uid="uid://ihdvu1wqfcub" path="res://Components/Levels/Backgrounds/bg-base-spring.tscn" id="3_3crfi"]
+[ext_resource type="TileSet" uid="uid://b27d63bpsa4u5" path="res://Components/Levels/bg-tileset.tres" id="3_wkbbm"]
+[ext_resource type="PackedScene" uid="uid://drgrjwt83imw6" path="res://Components/Mechanics/Summer/Water/water.tscn" id="4_i8ktu"]
+[ext_resource type="PackedScene" uid="uid://ccncnjkm8w8ta" path="res://Components/Creatures/creature_blue.tscn" id="4_slw7h"]
+[ext_resource type="Texture2D" uid="uid://cjcbdthfv00rv" path="res://Assets/Environments/Wall-under-water.png" id="5_1ko46"]
+[ext_resource type="PackedScene" uid="uid://be6k5yjppap8y" path="res://Components/Creatures/creature_yellow.tscn" id="5_j3fos"]
+[ext_resource type="PackedScene" uid="uid://g3u7bc1jo6gj" path="res://Components/Player/player.tscn" id="6_8dy5s"]
+[ext_resource type="Texture2D" uid="uid://bkymahrso2o3g" path="res://Assets/Environments/Wall-under-water-left-corner.png" id="6_ueguf"]
+[ext_resource type="PackedScene" uid="uid://dtrjxhb3ayo1c" path="res://Components/Levels/LevelUI.tscn" id="7_gcpkr"]
+[ext_resource type="Texture2D" uid="uid://dwq2gfl7kbx1k" path="res://Assets/Environments/Wall-under-water-right-corner.png" id="7_ith4v"]
+[ext_resource type="PackedScene" uid="uid://n6aitd6xhp4u" path="res://Components/Mechanics/Summer/Water/water_tile.tscn" id="8_iq2ct"]
+[ext_resource type="PackedScene" uid="uid://oy61arlldjo3" path="res://Components/Mechanics/Stones/Stone.tscn" id="9_3crfi"]
+[ext_resource type="PackedScene" uid="uid://bt4pnhd7cx7xc" path="res://Components/Mechanics/Buttons/button.tscn" id="9_slw7h"]
+[ext_resource type="PackedScene" uid="uid://cmlnlah0e5vn3" path="res://Components/Mechanics/Fall Mechanics/PileOfLeaves.tscn" id="16_1ko46"]
+[ext_resource type="PackedScene" uid="uid://c6dmpno4s3103" path="res://Components/Mechanics/Doors/door.tscn" id="16_i8ktu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fd80y"]
-atlas = ExtResource("5_1w8kx")
+atlas = ExtResource("5_1ko46")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qufx4"]
-atlas = ExtResource("5_1w8kx")
+atlas = ExtResource("5_1ko46")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lyyqj"]
-atlas = ExtResource("5_1w8kx")
+atlas = ExtResource("5_1ko46")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pukl1"]
-atlas = ExtResource("5_1w8kx")
+atlas = ExtResource("5_1ko46")
 region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5octm"]
-atlas = ExtResource("5_1w8kx")
+atlas = ExtResource("5_1ko46")
 region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hnomi"]
-atlas = ExtResource("5_1w8kx")
+atlas = ExtResource("5_1ko46")
 region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5wtu6"]
-atlas = ExtResource("5_1w8kx")
+atlas = ExtResource("5_1ko46")
 region = Rect2(0, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p0oyr"]
-atlas = ExtResource("5_1w8kx")
+atlas = ExtResource("5_1ko46")
 region = Rect2(32, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mjndt"]
-atlas = ExtResource("5_1w8kx")
+atlas = ExtResource("5_1ko46")
 region = Rect2(64, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i2wdw"]
-atlas = ExtResource("5_1w8kx")
+atlas = ExtResource("5_1ko46")
 region = Rect2(96, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1odux"]
-atlas = ExtResource("5_1w8kx")
+atlas = ExtResource("5_1ko46")
 region = Rect2(128, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0pgxc"]
-atlas = ExtResource("5_1w8kx")
+atlas = ExtResource("5_1ko46")
 region = Rect2(160, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_weuj2"]
-atlas = ExtResource("5_1w8kx")
+atlas = ExtResource("5_1ko46")
 region = Rect2(0, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k3xp7"]
-atlas = ExtResource("5_1w8kx")
+atlas = ExtResource("5_1ko46")
 region = Rect2(32, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_357iw"]
-atlas = ExtResource("5_1w8kx")
+atlas = ExtResource("5_1ko46")
 region = Rect2(64, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b2vtf"]
-atlas = ExtResource("5_1w8kx")
+atlas = ExtResource("5_1ko46")
 region = Rect2(96, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p5bjv"]
-atlas = ExtResource("5_1w8kx")
+atlas = ExtResource("5_1ko46")
 region = Rect2(128, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nxw0m"]
-atlas = ExtResource("5_1w8kx")
+atlas = ExtResource("5_1ko46")
 region = Rect2(160, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3gjvu"]
-atlas = ExtResource("5_1w8kx")
+atlas = ExtResource("5_1ko46")
 region = Rect2(0, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bku46"]
-atlas = ExtResource("5_1w8kx")
+atlas = ExtResource("5_1ko46")
 region = Rect2(32, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wbsgw"]
-atlas = ExtResource("5_1w8kx")
+atlas = ExtResource("5_1ko46")
 region = Rect2(64, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bjfr7"]
-atlas = ExtResource("5_1w8kx")
+atlas = ExtResource("5_1ko46")
 region = Rect2(96, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_08ut3"]
-atlas = ExtResource("5_1w8kx")
+atlas = ExtResource("5_1ko46")
 region = Rect2(128, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iykwl"]
-atlas = ExtResource("5_1w8kx")
+atlas = ExtResource("5_1ko46")
 region = Rect2(160, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q8yol"]
-atlas = ExtResource("5_1w8kx")
+atlas = ExtResource("5_1ko46")
 region = Rect2(0, 128, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ekno6"]
-atlas = ExtResource("5_1w8kx")
+atlas = ExtResource("5_1ko46")
 region = Rect2(32, 128, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i52g5"]
-atlas = ExtResource("5_1w8kx")
+atlas = ExtResource("5_1ko46")
 region = Rect2(64, 128, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_scf7r"]
-atlas = ExtResource("5_1w8kx")
+atlas = ExtResource("5_1ko46")
 region = Rect2(96, 128, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_onrfk"]
-atlas = ExtResource("5_1w8kx")
+atlas = ExtResource("5_1ko46")
 region = Rect2(128, 128, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oqivr"]
-atlas = ExtResource("5_1w8kx")
+atlas = ExtResource("5_1ko46")
 region = Rect2(160, 128, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_884ps"]
-atlas = ExtResource("5_1w8kx")
+atlas = ExtResource("5_1ko46")
 region = Rect2(0, 160, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yea3m"]
-atlas = ExtResource("5_1w8kx")
+atlas = ExtResource("5_1ko46")
 region = Rect2(32, 160, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c5l6q"]
-atlas = ExtResource("5_1w8kx")
+atlas = ExtResource("5_1ko46")
 region = Rect2(64, 160, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_odxm7"]
@@ -260,135 +258,135 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tbivu"]
-atlas = ExtResource("6_ysa65")
+atlas = ExtResource("6_ueguf")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o2kg2"]
-atlas = ExtResource("6_ysa65")
+atlas = ExtResource("6_ueguf")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kngxr"]
-atlas = ExtResource("6_ysa65")
+atlas = ExtResource("6_ueguf")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cne0v"]
-atlas = ExtResource("6_ysa65")
+atlas = ExtResource("6_ueguf")
 region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nsl7p"]
-atlas = ExtResource("6_ysa65")
+atlas = ExtResource("6_ueguf")
 region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e7y7s"]
-atlas = ExtResource("6_ysa65")
+atlas = ExtResource("6_ueguf")
 region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bxfyo"]
-atlas = ExtResource("6_ysa65")
+atlas = ExtResource("6_ueguf")
 region = Rect2(0, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yu568"]
-atlas = ExtResource("6_ysa65")
+atlas = ExtResource("6_ueguf")
 region = Rect2(32, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a00yn"]
-atlas = ExtResource("6_ysa65")
+atlas = ExtResource("6_ueguf")
 region = Rect2(64, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t75by"]
-atlas = ExtResource("6_ysa65")
+atlas = ExtResource("6_ueguf")
 region = Rect2(96, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hb0v0"]
-atlas = ExtResource("6_ysa65")
+atlas = ExtResource("6_ueguf")
 region = Rect2(128, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5rjwl"]
-atlas = ExtResource("6_ysa65")
+atlas = ExtResource("6_ueguf")
 region = Rect2(160, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tclxb"]
-atlas = ExtResource("6_ysa65")
+atlas = ExtResource("6_ueguf")
 region = Rect2(0, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dt45s"]
-atlas = ExtResource("6_ysa65")
+atlas = ExtResource("6_ueguf")
 region = Rect2(32, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k4xb0"]
-atlas = ExtResource("6_ysa65")
+atlas = ExtResource("6_ueguf")
 region = Rect2(64, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2ovyc"]
-atlas = ExtResource("6_ysa65")
+atlas = ExtResource("6_ueguf")
 region = Rect2(96, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xfvlc"]
-atlas = ExtResource("6_ysa65")
+atlas = ExtResource("6_ueguf")
 region = Rect2(128, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e4b6j"]
-atlas = ExtResource("6_ysa65")
+atlas = ExtResource("6_ueguf")
 region = Rect2(160, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_okpj5"]
-atlas = ExtResource("6_ysa65")
+atlas = ExtResource("6_ueguf")
 region = Rect2(0, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5db1k"]
-atlas = ExtResource("6_ysa65")
+atlas = ExtResource("6_ueguf")
 region = Rect2(32, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rbdvj"]
-atlas = ExtResource("6_ysa65")
+atlas = ExtResource("6_ueguf")
 region = Rect2(64, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3hjj2"]
-atlas = ExtResource("6_ysa65")
+atlas = ExtResource("6_ueguf")
 region = Rect2(96, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r63kg"]
-atlas = ExtResource("6_ysa65")
+atlas = ExtResource("6_ueguf")
 region = Rect2(128, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oemju"]
-atlas = ExtResource("6_ysa65")
+atlas = ExtResource("6_ueguf")
 region = Rect2(160, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qx280"]
-atlas = ExtResource("6_ysa65")
+atlas = ExtResource("6_ueguf")
 region = Rect2(0, 128, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bmnfm"]
-atlas = ExtResource("6_ysa65")
+atlas = ExtResource("6_ueguf")
 region = Rect2(32, 128, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ddhgm"]
-atlas = ExtResource("6_ysa65")
+atlas = ExtResource("6_ueguf")
 region = Rect2(64, 128, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t6gjo"]
-atlas = ExtResource("6_ysa65")
+atlas = ExtResource("6_ueguf")
 region = Rect2(96, 128, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_67qy2"]
-atlas = ExtResource("6_ysa65")
+atlas = ExtResource("6_ueguf")
 region = Rect2(128, 128, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0n2y7"]
-atlas = ExtResource("6_ysa65")
+atlas = ExtResource("6_ueguf")
 region = Rect2(160, 128, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n81vk"]
-atlas = ExtResource("6_ysa65")
+atlas = ExtResource("6_ueguf")
 region = Rect2(0, 160, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g03u2"]
-atlas = ExtResource("6_ysa65")
+atlas = ExtResource("6_ueguf")
 region = Rect2(32, 160, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hk0jw"]
-atlas = ExtResource("6_ysa65")
+atlas = ExtResource("6_ueguf")
 region = Rect2(64, 160, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xr4o6"]
@@ -499,135 +497,135 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_36kvf"]
-atlas = ExtResource("7_oqjjj")
+atlas = ExtResource("7_ith4v")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_327mi"]
-atlas = ExtResource("7_oqjjj")
+atlas = ExtResource("7_ith4v")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x4v6t"]
-atlas = ExtResource("7_oqjjj")
+atlas = ExtResource("7_ith4v")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gv22k"]
-atlas = ExtResource("7_oqjjj")
+atlas = ExtResource("7_ith4v")
 region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4xg3m"]
-atlas = ExtResource("7_oqjjj")
+atlas = ExtResource("7_ith4v")
 region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k1te7"]
-atlas = ExtResource("7_oqjjj")
+atlas = ExtResource("7_ith4v")
 region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2e6tm"]
-atlas = ExtResource("7_oqjjj")
+atlas = ExtResource("7_ith4v")
 region = Rect2(0, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ob0vh"]
-atlas = ExtResource("7_oqjjj")
+atlas = ExtResource("7_ith4v")
 region = Rect2(32, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xltij"]
-atlas = ExtResource("7_oqjjj")
+atlas = ExtResource("7_ith4v")
 region = Rect2(64, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s5vyb"]
-atlas = ExtResource("7_oqjjj")
+atlas = ExtResource("7_ith4v")
 region = Rect2(96, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kpw70"]
-atlas = ExtResource("7_oqjjj")
+atlas = ExtResource("7_ith4v")
 region = Rect2(128, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p5bp3"]
-atlas = ExtResource("7_oqjjj")
+atlas = ExtResource("7_ith4v")
 region = Rect2(160, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2glvs"]
-atlas = ExtResource("7_oqjjj")
+atlas = ExtResource("7_ith4v")
 region = Rect2(0, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_psn2o"]
-atlas = ExtResource("7_oqjjj")
+atlas = ExtResource("7_ith4v")
 region = Rect2(32, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s80mo"]
-atlas = ExtResource("7_oqjjj")
+atlas = ExtResource("7_ith4v")
 region = Rect2(64, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a2ymj"]
-atlas = ExtResource("7_oqjjj")
+atlas = ExtResource("7_ith4v")
 region = Rect2(96, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6lxlh"]
-atlas = ExtResource("7_oqjjj")
+atlas = ExtResource("7_ith4v")
 region = Rect2(128, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8chfw"]
-atlas = ExtResource("7_oqjjj")
+atlas = ExtResource("7_ith4v")
 region = Rect2(160, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lcfpy"]
-atlas = ExtResource("7_oqjjj")
+atlas = ExtResource("7_ith4v")
 region = Rect2(0, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1gqdc"]
-atlas = ExtResource("7_oqjjj")
+atlas = ExtResource("7_ith4v")
 region = Rect2(32, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tlyvo"]
-atlas = ExtResource("7_oqjjj")
+atlas = ExtResource("7_ith4v")
 region = Rect2(64, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1j57j"]
-atlas = ExtResource("7_oqjjj")
+atlas = ExtResource("7_ith4v")
 region = Rect2(96, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rpyr4"]
-atlas = ExtResource("7_oqjjj")
+atlas = ExtResource("7_ith4v")
 region = Rect2(128, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8r7gk"]
-atlas = ExtResource("7_oqjjj")
+atlas = ExtResource("7_ith4v")
 region = Rect2(160, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qem4e"]
-atlas = ExtResource("7_oqjjj")
+atlas = ExtResource("7_ith4v")
 region = Rect2(0, 128, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x5ody"]
-atlas = ExtResource("7_oqjjj")
+atlas = ExtResource("7_ith4v")
 region = Rect2(32, 128, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bjrsv"]
-atlas = ExtResource("7_oqjjj")
+atlas = ExtResource("7_ith4v")
 region = Rect2(64, 128, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s821g"]
-atlas = ExtResource("7_oqjjj")
+atlas = ExtResource("7_ith4v")
 region = Rect2(96, 128, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rm71v"]
-atlas = ExtResource("7_oqjjj")
+atlas = ExtResource("7_ith4v")
 region = Rect2(128, 128, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_22hoy"]
-atlas = ExtResource("7_oqjjj")
+atlas = ExtResource("7_ith4v")
 region = Rect2(160, 128, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r242q"]
-atlas = ExtResource("7_oqjjj")
+atlas = ExtResource("7_ith4v")
 region = Rect2(0, 160, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ixf8n"]
-atlas = ExtResource("7_oqjjj")
+atlas = ExtResource("7_ith4v")
 region = Rect2(32, 160, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r4dwh"]
-atlas = ExtResource("7_oqjjj")
+atlas = ExtResource("7_ith4v")
 region = Rect2(64, 160, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_aqjm3"]
@@ -738,172 +736,260 @@ animations = [{
 }]
 
 [node name="LevelFall6" type="Node2D"]
-script = ExtResource("1_ipak5")
+script = ExtResource("1_d0pwk")
 season = 3
-undo_particles = ExtResource("2_8vbub")
+undo_particles = ExtResource("2_10d3k")
 level_number = 23
-wind_direction_if_fall = Vector2(-1, 0)
+wind_direction_if_fall = Vector2(0, 1)
 
 [node name="WaterElements" type="Node2D" parent="."]
 
 [node name="FloorWater" type="TileMapLayer" parent="WaterElements"]
 modulate = Color(1.1, 1.1, 1.1, 1)
 scale = Vector2(2, 2)
-tile_map_data = PackedByteArray("AAAEAAYACQAGAAEAAAAFAAYACQAGAAEAAAAGAAYACQAGAAEAAAA=")
-tile_set = ExtResource("3_j81p3")
+tile_map_data = PackedByteArray("AAACAAEACQAIAAIAAAAGAAEACQAIAAIAAAAIAAEACQAIAAIAAAADAAUACQAGAAEAAAAEAAUACQAGAAEAAAAFAAUACQAGAAEAAAAGAAUACQAGAAEAAAAHAAUACQAGAAEAAAAIAAUACQAGAAEAAAAJAAUACQAGAAEAAAABAAUACQAGAAEAAAAJAAYACQAGAAEAAAAHAAYACQAGAAEAAAAFAAYACQAGAAEAAAAEAAYACQAGAAEAAAADAAYACQAGAAEAAAABAAYACQAGAAEAAAA=")
+tile_set = ExtResource("3_wkbbm")
 
-[node name="Floor_LowerEdge" type="TileMapLayer" parent="WaterElements"]
-modulate = Color(1.1, 1.1, 1.1, 1)
-z_index = 4
-scale = Vector2(2, 2)
-tile_map_data = PackedByteArray("AAAEAAcACQAGAAIAAAAFAAcACQAGAAIAAAAGAAcACQAGAAIAAAA=")
-tile_set = ExtResource("4_j81p3")
-
-[node name="Water" parent="WaterElements" instance=ExtResource("4_65jlg")]
+[node name="Water" parent="WaterElements" instance=ExtResource("4_i8ktu")]
 modulate = Color(1, 1, 1, 0.5647059)
 z_index = 0
 
 [node name="WallOverWaterWhole1" type="AnimatedSprite2D" parent="WaterElements"]
-position = Vector2(352, 416)
+position = Vector2(160, 96)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_odxm7")
+autoplay = "default"
+
+[node name="WallOverWaterWhole3" type="AnimatedSprite2D" parent="WaterElements"]
+position = Vector2(416, 96)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_odxm7")
+autoplay = "default"
+
+[node name="WallOverWaterWhole4" type="AnimatedSprite2D" parent="WaterElements"]
+position = Vector2(544, 96)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_odxm7")
+autoplay = "default"
+
+[node name="WallOverWaterWhole8" type="AnimatedSprite2D" parent="WaterElements"]
+position = Vector2(416, 352)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_odxm7")
+autoplay = "default"
+
+[node name="WallOverWaterWhole10" type="AnimatedSprite2D" parent="WaterElements"]
+position = Vector2(544, 352)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_odxm7")
+autoplay = "default"
+
+[node name="WallOverWaterWhole13" type="AnimatedSprite2D" parent="WaterElements"]
+position = Vector2(96, 416)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_odxm7")
+autoplay = "default"
+
+[node name="WallOverWaterWhole14" type="AnimatedSprite2D" parent="WaterElements"]
+position = Vector2(224, 416)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_odxm7")
+autoplay = "default"
+
+[node name="WallOverWaterWhole15" type="AnimatedSprite2D" parent="WaterElements"]
+position = Vector2(288, 416)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_odxm7")
+autoplay = "default"
+
+[node name="WallOverWaterWhole19" type="AnimatedSprite2D" parent="WaterElements"]
+position = Vector2(480, 416)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_odxm7")
 autoplay = "default"
 
 [node name="WallOverWaterLeftEdge1" type="AnimatedSprite2D" parent="WaterElements"]
-position = Vector2(288, 416)
+position = Vector2(608, 416)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_xr4o6")
 autoplay = "default"
 
 [node name="WallOverWaterRightEdge1" type="AnimatedSprite2D" parent="WaterElements"]
-position = Vector2(416, 416)
+position = Vector2(352, 416)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_aqjm3")
 autoplay = "default"
 
-[node name="WaterTile12" parent="WaterElements" instance=ExtResource("8_bdeiv")]
+[node name="WaterTile12" parent="WaterElements" instance=ExtResource("8_iq2ct")]
+position = Vector2(416, 96)
+
+[node name="WaterTile13" parent="WaterElements" instance=ExtResource("8_iq2ct")]
+position = Vector2(544, 96)
+
+[node name="WaterTile15" parent="WaterElements" instance=ExtResource("8_iq2ct")]
+position = Vector2(160, 96)
+
+[node name="WaterTile16" parent="WaterElements" instance=ExtResource("8_iq2ct")]
+position = Vector2(96, 416)
+
+[node name="WaterTile17" parent="WaterElements" instance=ExtResource("8_iq2ct")]
+position = Vector2(224, 416)
+
+[node name="WaterTile18" parent="WaterElements" instance=ExtResource("8_iq2ct")]
 position = Vector2(288, 416)
 
-[node name="WaterTile13" parent="WaterElements" instance=ExtResource("8_bdeiv")]
+[node name="WaterTile19" parent="WaterElements" instance=ExtResource("8_iq2ct")]
 position = Vector2(352, 416)
 
-[node name="WaterTile14" parent="WaterElements" instance=ExtResource("8_bdeiv")]
+[node name="WaterTile20" parent="WaterElements" instance=ExtResource("8_iq2ct")]
 position = Vector2(416, 416)
 
-[node name="BackgroundSpring" parent="." instance=ExtResource("9_877aj")]
+[node name="WaterTile21" parent="WaterElements" instance=ExtResource("8_iq2ct")]
+position = Vector2(480, 416)
+
+[node name="WaterTile22" parent="WaterElements" instance=ExtResource("8_iq2ct")]
+position = Vector2(544, 416)
+
+[node name="WaterTile23" parent="WaterElements" instance=ExtResource("8_iq2ct")]
+position = Vector2(608, 416)
+
+[node name="WaterTile28" parent="WaterElements" instance=ExtResource("8_iq2ct")]
+position = Vector2(416, 352)
+
+[node name="WaterTile30" parent="WaterElements" instance=ExtResource("8_iq2ct")]
+position = Vector2(544, 352)
+
+[node name="WaterTile31" parent="WaterElements" instance=ExtResource("8_iq2ct")]
+position = Vector2(352, 480)
+
+[node name="WaterTile32" parent="WaterElements" instance=ExtResource("8_iq2ct")]
+position = Vector2(416, 480)
+
+[node name="WaterTile33" parent="WaterElements" instance=ExtResource("8_iq2ct")]
+position = Vector2(480, 480)
+
+[node name="WaterTile34" parent="WaterElements" instance=ExtResource("8_iq2ct")]
+position = Vector2(544, 480)
+
+[node name="WaterTile35" parent="WaterElements" instance=ExtResource("8_iq2ct")]
+position = Vector2(608, 480)
+
+[node name="BackgroundSpring" parent="." instance=ExtResource("3_3crfi")]
 
 [node name="floor" parent="BackgroundSpring" index="0"]
-tile_map_data = PackedByteArray("AAAAAAAACQAAAAAAAAAAAAEACQAAAAEAAAAAAAIACQAAAAIAAAAAAAMACQAAAAMAAAAAAAQACQAAAAQAAAABAAAACQABAAAAAAABAAEACQABAAEAAAABAAIACQABAAIAAAABAAMACQABAAMAAAABAAQACQABAAQAAAACAAAACQACAAAAAAACAAEACQACAAEAAAACAAIACQACAAIAAAACAAMACQACAAMAAAACAAQACQACAAQAAAADAAAACQADAAAAAAADAAEACQADAAEAAAADAAIACQADAAIAAAADAAMACQADAAMAAAADAAQACQADAAQAAAAEAAAACQAEAAAAAAAEAAEACQAEAAEAAAAEAAIACQAEAAIAAAAEAAMACQAEAAMAAAAEAAQACQAEAAQAAAAFAAAACQAAAAAAAAAFAAEACQAAAAEAAAAFAAIACQAAAAIAAAAFAAMACQAAAAMAAAAFAAQACQAAAAQAAAAGAAAACQABAAAAAAAGAAEACQABAAEAAAAGAAIACQABAAIAAAAGAAMACQABAAMAAAAGAAQACQABAAQAAAAHAAAACQACAAAAAAAHAAEACQACAAEAAAAHAAIACQACAAIAAAAHAAMACQACAAMAAAAHAAQACQACAAQAAAAIAAAACQADAAAAAAAIAAEACQADAAEAAAAIAAIACQADAAIAAAAIAAMACQADAAMAAAAIAAQACQADAAQAAAAJAAAACQAEAAAAAAAJAAEACQAEAAEAAAAJAAIACQAEAAIAAAAJAAMACQAEAAMAAAAJAAQACQAEAAQAAAAAAAUACQAAAAAAAAAAAAYACQAAAAEAAAAAAAcACQAAAAIAAAAAAAgACQAAAAMAAAAAAAkACQAAAAQAAAABAAUACQABAAAAAAABAAYACQABAAEAAAABAAcACQABAAIAAAABAAgACQABAAMAAAABAAkACQABAAQAAAACAAUACQACAAAAAAACAAcACQACAAIAAAACAAgACQACAAMAAAACAAkACQACAAQAAAADAAUACQAFAAAAAAADAAgACQADAAMAAAADAAkACQADAAQAAAAEAAUACQAGAAAAAAAEAAgACQAEAAMAAAAEAAkACQAEAAQAAAAFAAUACQAGAAAAAAAFAAYACQAFAAMAAAAFAAcACQAGAAIAAAAFAAgACQAAAAMAAAAFAAkACQAAAAQAAAAGAAUACQAGAAAAAAAGAAYACQAFAAMAAAAGAAcACQAGAAIAAAAGAAgACQABAAMAAAAGAAkACQABAAQAAAAHAAUACQAHAAAAAAAHAAYACQAHAAEAAAAHAAcACQAHAAIAAAAHAAgACQACAAMAAAAHAAkACQACAAQAAAAIAAUACQADAAAAAAAIAAYACQADAAEAAAAIAAcACQADAAIAAAAIAAgACQADAAMAAAAIAAkACQADAAQAAAAJAAUACQAEAAAAAAAJAAYACQAEAAEAAAAJAAcACQAEAAIAAAAJAAgACQAEAAMAAAAJAAkACQAEAAQAAAAAAAoACQAAAAAAAAABAAoACQABAAAAAAACAAoACQACAAAAAAADAAoACQADAAAAAAAEAAoACQAEAAAAAAAFAAoACQAAAAAAAAAGAAoACQABAAAAAAAHAAoACQACAAAAAAAIAAoACQADAAAAAAAJAAoACQAEAAAAAAAKAAoACQAAAAAAAAAKAAAACQAAAAAAAAAKAAEACQAAAAEAAAAKAAIACQAAAAIAAAAKAAMACQAAAAMAAAAKAAQACQAAAAQAAAAKAAUACQAAAAAAAAAKAAYACQAAAAEAAAAKAAcACQAAAAIAAAAKAAgACQAAAAMAAAAKAAkACQAAAAQAAAACAAYACQACAAEAAAADAAYACQAFAAEAAAADAAcACQAFAAIAAAAEAAYACQAFAAMAAAAEAAcACQAGAAIAAAA=")
+tile_map_data = PackedByteArray("AAAAAAAACQAAAAAAAAAAAAEACQAAAAEAAAAAAAIACQAAAAIAAAABAAAACQAFAAAAAAABAAEACQAFAAEAAAABAAIACQABAAIAAAACAAAACQAGAAAAAAACAAIACQAGAAIAAAADAAAACQAFAAAAAAADAAEACQAHAAEAAAADAAIACQADAAIAAAAEAAAACQACAAAAAAAEAAIACQACAAIAAAAFAAAACQAFAAAAAAAFAAEACQAFAAEAAAAFAAIACQAAAAIAAAAGAAAACQAGAAAAAAAGAAIACQAGAAIAAAAHAAAACQAFAAAAAAAHAAEACQAJAAIAAAAHAAIACQACAAIAAAAIAAAACQAGAAAAAAAIAAIACQAGAAIAAAAJAAAACQAHAAAAAAAJAAEACQAHAAEAAAAJAAIACQAEAAIAAAAAAAkACQAAAAQAAAABAAkACQABAAQAAAACAAkACQACAAQAAAADAAkACQADAAQAAAAEAAkACQAEAAQAAAAFAAkACQAAAAQAAAAGAAkACQABAAQAAAAHAAkACQACAAQAAAAIAAkACQADAAQAAAAJAAkACQAEAAQAAAAAAAoACQAAAAAAAAABAAoACQABAAAAAAACAAoACQACAAAAAAADAAoACQADAAAAAAAEAAoACQAEAAAAAAAFAAoACQAAAAAAAAAGAAoACQABAAAAAAAHAAoACQACAAAAAAAIAAoACQADAAAAAAAJAAoACQAEAAAAAAAKAAoACQAAAAAAAAAKAAAACQAAAAAAAAAKAAEACQAAAAEAAAAKAAIACQAAAAIAAAAKAAkACQAAAAQAAAAAAAQACQAAAAIAAAAAAAUACQAFAAAAAAAAAAYACQAFAAEAAAAAAAcACQAFAAIAAAACAAQACQACAAIAAAACAAUACQAGAAAAAAACAAYACQAJAAIAAAACAAcACQAFAAIAAAAKAAQACQAAAAIAAAAKAAUACQAHAAAAAAAKAAYACQAHAAEAAAAKAAcACQAHAAEAAAABAAUACQAGAAAAAAABAAcACQAGAAIAAAADAAUACQAGAAAAAAADAAcACQAGAAIAAAAEAAUACQAGAAAAAAAEAAcACQAHAAMAAAAFAAUACQAHAAQAAAAFAAcACQAFAAMAAAAGAAcACQAFAAMAAAAHAAUACQAGAAAAAAAHAAcACQAFAAMAAAAIAAcACQAFAAMAAAAJAAUACQAGAAQAAAAJAAcACQAFAAMAAAABAAQACQABAAIAAAADAAQACQADAAIAAAAEAAQACQAEAAIAAAAFAAQACQAFAAAAAAAGAAQACQAGAAAAAAAHAAQACQAFAAAAAAAIAAQACQAGAAAAAAAJAAQACQAHAAAAAAAAAAMACQAAAAAAAAABAAMACQABAAAAAAACAAMACQACAAAAAAADAAMACQADAAAAAAAEAAMACQAEAAAAAAAFAAMACQAAAAAAAAAGAAMACQABAAAAAAAHAAMACQACAAAAAAAIAAMACQADAAAAAAAJAAMACQAEAAAAAAAKAAMACQAAAAAAAAAAAAgACQAAAAEAAAABAAgACQABAAEAAAACAAgACQACAAEAAAADAAgACQADAAEAAAAEAAgACQAEAAEAAAAFAAgACQAGAAIAAAAGAAgACQAGAAIAAAAHAAgACQAGAAIAAAAIAAgACQAGAAIAAAAJAAgACQAGAAIAAAAKAAgACQAHAAIAAAAGAAUACQAFAAMAAAAIAAUACQAFAAMAAAAEAAEACQACAAEAAAA=")
 
 [node name="walls" parent="BackgroundSpring" index="1"]
-tile_map_data = PackedByteArray("AAAAAAAACAAAAAAAAAAKAAAACAAEAAAAAAAKAAoACAAEAAQAAAAAAAoACAAAAAQAAAAAAAEACAAAAAMAAAAAAAMACAAFAAEAAAAAAAUACAAAAAIAAAAAAAcACAAAAAIAAAAAAAkACAAAAAMAAAAKAAEACAAEAAEAAAAKAAMACAAEAAEAAAAKAAUACAAEAAIAAAAKAAcACAAEAAEAAAAKAAkACAAEAAEAAAAKAAIACAAAAAMAAAAKAAQACAAAAAMAAAAKAAYACAAEAAEAAAAKAAgACAAAAAMAAAAAAAgACAAEAAEAAAAAAAYACAAAAAEAAAAAAAQACAAFAAEAAAAAAAIACAAEAAEAAAABAAAACAABAAQAAAADAAAACAABAAQAAAAFAAAACAABAAQAAAAHAAAACAABAAQAAAAJAAAACAABAAQAAAACAAAACAABAAQAAAAEAAAACAADAAAAAAAGAAAACAABAAQAAAAIAAAACAABAAQAAAABAAoACAABAAQAAAADAAoACAABAAQAAAAFAAoACAABAAQAAAAHAAoACAABAAQAAAAJAAoACAABAAQAAAACAAoACAABAAQAAAAEAAoACAABAAQAAAAGAAoACAABAAQAAAAIAAoACAABAAQAAAACAAMACAAHAAEAAAACAAcACAABAAIAAAABAAcACAABAAIAAAAFAAUACAABAAIAAAAGAAUACAABAAIAAAAHAAUACAABAAIAAAAIAAUACAABAAIAAAAJAAUACAABAAIAAAADAAcACAABAAIAAAAEAAUACAABAAIAAAACAAUACAAHAAIAAAACAAIACAAEAAAAAAABAAQACAAGAAEAAAACAAQACAAHAAEAAAABAAUACAAGAAIAAAABAAMACAAGAAAAAAA=")
+tile_map_data = PackedByteArray("AAAAAAAACAAAAAAAAAAKAAAACAAEAAAAAAAKAAoACAAEAAQAAAAAAAoACAAAAAQAAAAAAAEACAAAAAMAAAAAAAMACAAAAAMAAAAAAAcACAAAAAMAAAAAAAkACAAAAAMAAAAKAAEACAAEAAEAAAAKAAMACAAEAAEAAAAKAAcACAAEAAEAAAAKAAkACAAEAAEAAAAKAAIACAAAAAMAAAAKAAQACAAAAAMAAAAKAAgACAAAAAMAAAAAAAgACAAEAAEAAAAAAAQACAAEAAEAAAAAAAIACAAEAAEAAAABAAAACAABAAQAAAADAAAACAABAAQAAAAFAAAACAABAAQAAAAHAAAACAABAAQAAAAJAAAACAABAAQAAAACAAAACAABAAQAAAAEAAAACAACAAAAAAAGAAAACAABAAQAAAAIAAAACAABAAQAAAABAAoACAABAAQAAAADAAoACAABAAQAAAAFAAoACAABAAQAAAAHAAoACAABAAQAAAAJAAoACAABAAQAAAACAAoACAABAAQAAAAEAAoACAABAAQAAAAGAAoACAABAAQAAAAIAAoACAABAAQAAAAAAAUACAAAAAIAAAABAAUACAADAAIAAAADAAUACAADAAIAAAAEAAUACAACAAQAAAAFAAUACAABAAIAAAAHAAUACAADAAIAAAAJAAUACAADAAIAAAAKAAUACAAEAAIAAAAAAAYACAAAAAEAAAAKAAYACAAEAAEAAAAEAAEACAACAAEAAAAEAAQACAAEAAAAAAAEAAIACAAEAAQAAAA=")
 
 [node name="LevelWall" parent="BackgroundSpring" index="2"]
 visible = true
 
+[node name="Creatures" type="Node" parent="."]
+
+[node name="CreatureBlue" parent="Creatures" instance=ExtResource("4_slw7h")]
+position = Vector2(480, 544)
+
+[node name="CreatureYellow" parent="Creatures" instance=ExtResource("5_j3fos")]
+position = Vector2(160, 160)
+
 [node name="Player" type="Node" parent="."]
 
-[node name="Player" parent="Player" instance=ExtResource("12_w4o08")]
+[node name="Player" parent="Player" instance=ExtResource("6_8dy5s")]
 position = Vector2(160, 544)
 
-[node name="LevelUI" parent="." instance=ExtResource("13_hik8m")]
+[node name="LevelUI" parent="." instance=ExtResource("7_gcpkr")]
 
 [node name="PilesOfLeaves" type="Node" parent="."]
 
-[node name="PileOfLeaves" parent="PilesOfLeaves" instance=ExtResource("14_v117m")]
-position = Vector2(288, 224)
+[node name="PileOfLeaves" parent="PilesOfLeaves" instance=ExtResource("16_1ko46")]
+position = Vector2(416, 608)
 
-[node name="PileOfLeaves5" parent="PilesOfLeaves" instance=ExtResource("14_v117m")]
-position = Vector2(288, 480)
+[node name="PileOfLeaves2" parent="PilesOfLeaves" instance=ExtResource("16_1ko46")]
+position = Vector2(544, 608)
 
-[node name="PileOfLeaves6" parent="PilesOfLeaves" instance=ExtResource("14_v117m")]
-position = Vector2(96, 544)
+[node name="PileOfLeaves3" parent="PilesOfLeaves" instance=ExtResource("16_1ko46")]
+position = Vector2(96, 480)
 
-[node name="PileOfLeaves7" parent="PilesOfLeaves" instance=ExtResource("14_v117m")]
-position = Vector2(224, 160)
+[node name="PileOfLeaves4" parent="PilesOfLeaves" instance=ExtResource("16_1ko46")]
+position = Vector2(224, 608)
 
-[node name="PileOfLeaves8" parent="PilesOfLeaves" instance=ExtResource("14_v117m")]
-position = Vector2(544, 288)
+[node name="PileOfLeaves5" parent="PilesOfLeaves" instance=ExtResource("16_1ko46")]
+position = Vector2(224, 288)
+
+[node name="PileOfLeaves6" parent="PilesOfLeaves" instance=ExtResource("16_1ko46")]
+position = Vector2(608, 544)
 
 [node name="Stones" type="Node" parent="."]
 
-[node name="Stone10" parent="Stones" instance=ExtResource("15_7he1l")]
-position = Vector2(352, 288)
+[node name="Stone9" parent="Stones" instance=ExtResource("9_3crfi")]
+position = Vector2(160, 224)
 
-[node name="Stone12" parent="Stones" instance=ExtResource("15_7he1l")]
-position = Vector2(608, 288)
+[node name="Stone3" parent="Stones" instance=ExtResource("9_3crfi")]
+position = Vector2(224, 160)
 
-[node name="Stone13" parent="Stones" instance=ExtResource("15_7he1l")]
-position = Vector2(224, 416)
+[node name="Stone12" parent="Stones" instance=ExtResource("9_3crfi")]
+position = Vector2(416, 224)
 
-[node name="Stone20" parent="Stones" instance=ExtResource("15_7he1l")]
-position = Vector2(160, 544)
-
-[node name="Stone21" parent="Stones" instance=ExtResource("15_7he1l")]
-position = Vector2(288, 224)
-
-[node name="Stone22" parent="Stones" instance=ExtResource("15_7he1l")]
+[node name="Stone14" parent="Stones" instance=ExtResource("9_3crfi")]
 position = Vector2(544, 224)
 
-[node name="Stone27" parent="Stones" instance=ExtResource("15_7he1l")]
-position = Vector2(480, 480)
+[node name="Stone5" parent="Stones" instance=ExtResource("9_3crfi")]
+position = Vector2(224, 224)
 
-[node name="Stone26" parent="Stones" instance=ExtResource("15_7he1l")]
-position = Vector2(416, 160)
+[node name="Stone15" parent="Stones" instance=ExtResource("9_3crfi")]
+position = Vector2(416, 608)
+
+[node name="Stone16" parent="Stones" instance=ExtResource("9_3crfi")]
+position = Vector2(544, 608)
+
+[node name="Stone17" parent="Stones" instance=ExtResource("9_3crfi")]
+position = Vector2(544, 288)
+
+[node name="Stone18" parent="Stones" instance=ExtResource("9_3crfi")]
+position = Vector2(288, 544)
 
 [node name="Buttons" type="Node" parent="."]
 
-[node name="Button" parent="Buttons" instance=ExtResource("16_jd87j")]
-position = Vector2(96, 160)
+[node name="Button" parent="Buttons" instance=ExtResource("9_slw7h")]
+position = Vector2(608, 96)
+
+[node name="Button2" parent="Buttons" instance=ExtResource("9_slw7h")]
+position = Vector2(480, 96)
+
+[node name="Button3" parent="Buttons" instance=ExtResource("9_slw7h")]
+position = Vector2(96, 608)
 type = 2
 
-[node name="Button3" parent="Buttons" instance=ExtResource("16_jd87j")]
-position = Vector2(96, 416)
+[node name="Button6" parent="Buttons" instance=ExtResource("9_slw7h")]
+position = Vector2(352, 608)
 type = 2
 
-[node name="Button2" parent="Buttons" instance=ExtResource("16_jd87j")]
+[node name="Button7" parent="Buttons" instance=ExtResource("9_slw7h")]
 position = Vector2(608, 608)
 type = 2
 
-[node name="Creatures" type="Node" parent="."]
-
-[node name="CreatureBlue" parent="Creatures" instance=ExtResource("10_mrk6t")]
-position = Vector2(416, 288)
-
-[node name="CreatureYellow" parent="Creatures" instance=ExtResource("11_ooqfm")]
-position = Vector2(96, 416)
-
 [node name="Doors" type="Node" parent="."]
 
-[node name="Door" parent="Doors" instance=ExtResource("17_d7vhe")]
-position = Vector2(160, 416)
-rotation = 1.5707941
+[node name="Door" parent="Doors" instance=ExtResource("16_i8ktu")]
+position = Vector2(160, 352)
+buttons = Array[NodePath]([NodePath("../../Buttons/Button3"), NodePath("../../Buttons/Button6"), NodePath("../../Buttons/Button7")])
+
+[node name="Door2" parent="Doors" instance=ExtResource("16_i8ktu")]
+position = Vector2(416, 352)
+buttons = Array[NodePath]([NodePath("../../Buttons/Button2")])
+
+[node name="Door3" parent="Doors" instance=ExtResource("16_i8ktu")]
+position = Vector2(544, 352)
 buttons = Array[NodePath]([NodePath("../../Buttons/Button")])
 
-[node name="Door2" parent="Doors" instance=ExtResource("17_d7vhe")]
-position = Vector2(160, 96)
-rotation = 4.7123823
+[node name="Door4" parent="Doors" instance=ExtResource("16_i8ktu")]
+position = Vector2(288, 224)
+rotation = 1.5707941
 mode = 1
 starts_closed = false
-buttons = Array[NodePath]([NodePath("../../Buttons/Button")])
-
-[node name="Door5" parent="Doors" instance=ExtResource("17_d7vhe")]
-position = Vector2(224, 352)
-rotation = 6.2831764
-buttons = Array[NodePath]([NodePath("../../Buttons/Button3")])
-
-[node name="TeleporterManager" parent="." instance=ExtResource("18_8vbub")]
-
-[node name="Flower1" parent="TeleporterManager" index="0"]
-position = Vector2(608, 96)
-
-[node name="Flower2" parent="TeleporterManager" index="1"]
-position = Vector2(544, 608)
-buttons = Array[NodePath]([NodePath("../../Buttons/Button2")])
+buttons = Array[NodePath]([NodePath("../../Buttons/Button"), NodePath("../../Buttons/Button2")])
 
 [editable path="BackgroundSpring"]
 [editable path="LevelUI"]
 [editable path="LevelUI/UndoMechanic"]
-[editable path="TeleporterManager"]
-[editable path="TeleporterManager/Flower1"]
-[editable path="TeleporterManager/Flower2"]

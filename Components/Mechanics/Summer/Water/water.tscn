@@ -306,7 +306,6 @@ seamless = true
 
 [node name="Water" type="Node2D"]
 modulate = Color(1.3167266, 1.3167266, 1.3167266, 0.29803923)
-z_index = -1
 z_as_relative = false
 script = ExtResource("1_y2uts")
 

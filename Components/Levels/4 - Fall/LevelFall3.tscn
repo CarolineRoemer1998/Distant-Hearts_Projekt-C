@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://b78ohvunpuwc7"]
+[gd_scene load_steps=15 format=4 uid="uid://b78ohvunpuwc7"]
 
 [ext_resource type="Script" uid="uid://ddiwo6yyhfkuc" path="res://Components/Levels/level.gd" id="1_mcqwf"]
 [ext_resource type="PackedScene" uid="uid://lrodaawkgfob" path="res://Components/UI/VFX/undo_particles.tscn" id="2_uyff1"]
@@ -19,10 +19,7 @@ polygon = PackedVector2Array(256, 64, 256, 192, 192, 192, 192, 256, 320, 256, 32
 polygon = PackedVector2Array(384, 576, 384, 640, 448, 640, 448, 576)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_njdk8"]
-polygon = PackedVector2Array(512, 64, 512, 128, 576, 128, 576, 64)
-
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_opkr5"]
-polygon = PackedVector2Array(512, 192, 576, 192, 576, 256, 640, 256, 640, 320, 576, 320, 512, 320)
+polygon = PackedVector2Array(512, 64, 512, 320, 576, 320, 576, 64)
 
 [node name="LevelFall3" type="Node2D"]
 script = ExtResource("1_mcqwf")
@@ -50,9 +47,6 @@ occluder = SubResource("OccluderPolygon2D_nb5m2")
 
 [node name="LightOccluder2D3" type="LightOccluder2D" parent="BackgroundSpring"]
 occluder = SubResource("OccluderPolygon2D_njdk8")
-
-[node name="LightOccluder2D4" type="LightOccluder2D" parent="BackgroundSpring"]
-occluder = SubResource("OccluderPolygon2D_opkr5")
 
 [node name="Creatures" type="Node" parent="."]
 

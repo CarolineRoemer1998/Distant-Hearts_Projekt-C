@@ -108,9 +108,7 @@ func set_wind():
 	wind.request_shadow_update()
 	wind.check_for_objects_to_blow({})
 	
-	#_initial_wind_blow_after_physics_frame()
 
-## TODO: Wind bläst in Herbst Level 1 (und mehr) Laubhaufen falsch weg
 
 
 func _initial_wind_blow_after_physics_frame() -> void:

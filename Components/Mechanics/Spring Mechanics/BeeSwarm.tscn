@@ -225,7 +225,7 @@ size = Vector2(192, 192)
 
 [node name="BeeSwarm" type="StaticBody2D" node_paths=PackedStringArray("bee_sprites", "animation_players")]
 modulate = Color(1.096, 1.096, 1.096, 1)
-z_index = 7
+z_index = 8
 collision_layer = 16
 collision_mask = 3
 script = ExtResource("1_tbglw")
