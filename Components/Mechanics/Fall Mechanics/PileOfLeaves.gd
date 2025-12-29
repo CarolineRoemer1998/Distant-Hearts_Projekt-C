@@ -53,7 +53,7 @@ func fly_away(list_of_blown_objects: Dictionary, _blow_direction: Vector2, _wind
 func _on_creature_detector_body_entered(body: Node2D) -> void:
 	if not is_active:
 		return
-	if body is Creature:
+	if body is Creature or body is PushableObject:
 		var leaf_particles : GPUParticles2D = rustling_leaf_particles.instantiate() as GPUParticles2D
 		$ParticleSlot.add_child(leaf_particles)
 		leaf_particles.emitting = true
