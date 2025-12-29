@@ -24,19 +24,15 @@ func set_scale_gravity_and_position(direction: Vector2):
 			process_material.emission_shape_scale 	= scale_up_down
 			process_material.gravity 				= gravity_up
 			global_position 						= position_wind_direction_up
-			visible = true
 		Vector2.DOWN:
 			process_material.emission_shape_scale 	= scale_up_down
 			process_material.gravity 				= gravity_down
 			global_position 						= position_wind_direction_down
-			visible = true
 		Vector2.LEFT:
 			process_material.emission_shape_scale 	= scale_left_and_right
 			process_material.gravity 				= gravity_left
 			global_position 						= position_wind_direction_right
-			visible = true
 		Vector2.RIGHT:
 			process_material.emission_shape_scale 	= scale_left_and_right
 			process_material.gravity 				= gravity_right
 			global_position 						= position_wind_direction_left
-			visible = true

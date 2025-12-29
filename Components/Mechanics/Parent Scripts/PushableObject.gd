@@ -2,14 +2,19 @@ extends CharacterBody2D
 
 class_name PushableObject
 
-@onready var audio_stream_player_2d_pushed: AudioStreamPlayer2D = $AudioStreamPlayer2D_Pushed
-
 const MOVE_SPEED := 500.0
 
 var target_position: Vector2:
 	set = _set_target_position
+
 var is_moving := false
-var is_sliding := false
+var is_sliding := false:
+	set(val):
+		is_sliding = val
+		if is_sliding:
+			Signals.stone_is_sliding.emit(true)
+		else:
+			Signals.stone_is_sliding.emit(false)
 
 # Cached push data, set by get_can_be_pushed
 var pending_target_position: Vector2 = Vector2.ZERO
@@ -37,6 +42,7 @@ func slide(slide_target: Vector2) -> bool:
 	
 	FieldReservation.reserve(self, [slide_target])
 	is_sliding = true
+	print("Slide")
 	target_position = slide_target
 	return true
 
@@ -140,7 +146,7 @@ func _reset_pending_push() -> void:
 func _process(delta):
 	position = position.move_toward(target_position, MOVE_SPEED * delta)
 	
-	if position == target_position:
+	if position == target_position and (is_moving or is_sliding):
 		_finish_move_step()
 
 ## Finalizes a move or slide step: clears movement flags,

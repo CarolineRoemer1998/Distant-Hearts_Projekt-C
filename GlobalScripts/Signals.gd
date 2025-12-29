@@ -37,6 +37,7 @@ signal player_move_finished #
 # Stone Signals
 @warning_ignore("unused_signal")
 signal stone_reached_target(stone: PushableObject)
+signal stone_is_sliding(val: bool)
 
 # Button Signals
 

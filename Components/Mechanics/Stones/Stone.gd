@@ -53,7 +53,7 @@ func get_info() -> Dictionary:
 ## Restores the stone state from a Dictionary snapshot.
 ## Resets movement and pending push data.
 func set_info(info : Dictionary):
-	global_position = info.get("global_position")
+	global_position = StateSaver.saved_states[StateSaver.saved_states.size()-1][Constants.GROUP_NAME_STONES][0]["global_position"] #info.get("global_position")
 	target_position = global_position
 	
 	is_moving = false

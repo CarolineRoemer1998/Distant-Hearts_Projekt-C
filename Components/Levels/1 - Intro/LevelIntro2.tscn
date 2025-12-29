@@ -74,4 +74,6 @@ position = Vector2(352, 608)
 [node name="LevelUI" parent="." instance=ExtResource("8_yxbx0")]
 
 [editable path="Creatures/CreatureBlue"]
+[editable path="Creatures/CreatureBlue/Visuals/AnimationPlayer"]
 [editable path="Creatures/CreatureYellow"]
+[editable path="Creatures/CreatureYellow/Visuals/AnimationPlayer"]

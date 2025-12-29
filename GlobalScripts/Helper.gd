@@ -30,6 +30,7 @@ func get_tile_states(pos: Vector2, world: World2D, is_physical_body: bool):
 	var result_water = get_collision_on_tile(pos, (1 << Constants.LAYER_BIT_WATER), world)
 	var result_water_platform = get_collision_on_tile(pos, (1 << Constants.LAYER_BIT_WATER_PLATFORM), world)
 	var result_lily_pads = get_collision_on_tile(pos, (1 << Constants.LAYER_BIT_LILY_PAD), world)
+	var result_ice_floor = get_collision_on_area(pos, (1 << Constants.LAYER_BIT_ICE), world)
 	
 	if not result_wall_outside.is_empty():
 		tile_states[TILE_CONTENT.wall] = result_wall_outside
@@ -49,6 +50,8 @@ func get_tile_states(pos: Vector2, world: World2D, is_physical_body: bool):
 			tile_states[TILE_CONTENT.stone_platform] = get_tile_contents_of_collider(result_water_platform)
 		if not result_pushables.is_empty(): 
 			tile_states[TILE_CONTENT.pushable] = get_tile_contents_of_collider(result_pushables)
+		if not result_ice_floor.is_empty(): 
+			tile_states[TILE_CONTENT.ice] = get_tile_contents_of_collider(result_ice_floor)
 	
 	return tile_states
 
@@ -109,8 +112,29 @@ func can_move_in_direction(_position: Vector2, _direction, world : World2D, is_p
 		else:
 			can_move_in_dir = true
 	
+	elif tile_states.has(TILE_CONTENT.ice):
+		can_move_in_dir = true
+	
 	if not can_move_in_dir and player.currently_possessed_creature != null:
-		player.currently_possessed_creature.play_failed_step_in_direction_animation()
+		# Damit Animation nicht abgespielt wird, wenn man gerade einen Stein auf Eis geschoben hat und in die Richtung weiter gedrückt hält
+		#print("tile_states.has(TILE_CONTENT.ice): ", tile_states.has(TILE_CONTENT.ice))
+		#print("tile_states.has(TILE_CONTENT.pushable): ", tile_states.has(TILE_CONTENT.pushable))
+		#print("tile_states[TILE_CONTENT.pushable][0].is_sliding: ", tile_states[TILE_CONTENT.pushable][0].is_sliding)
+		print()
+		if player.is_active:
+			if not tile_states.has(TILE_CONTENT.ice):
+				player.currently_possessed_creature.play_failed_step_in_direction_animation() 
+			elif not tile_states.has(TILE_CONTENT.pushable):
+				player.currently_possessed_creature.play_failed_step_in_direction_animation()
+			elif not tile_states[TILE_CONTENT.pushable][0].is_sliding:
+				player.currently_possessed_creature.play_failed_step_in_direction_animation()
+				var last_player_pos = StateSaver.get_last_player_position()
+				print("last_player_pos: ", last_player_pos)
+				print("player position: ", player.global_position)
+				print()
+				#if last_player_pos == player.global_position:
+					#StateSaver.remove_last_state()
+		
 	return can_move_in_dir
 
 func get_tile_contents_of_collider(arr: Array):

@@ -80,6 +80,7 @@ func _ready():
 	Signals.wind_blows.connect(get_blown_by_wind)
 	Signals.wind_stopped_blowing.connect(handle_wind_stopped_blowing)
 	Signals.stone_revealed.connect(check_for_new_target_position_by_wind)
+	Signals.stone_is_sliding.connect(set_stone_is_sliding)
 	#Signals.creature_finished_teleporting.connect(activate)
 
 	target_position = position.snapped(Constants.GRID_SIZE / 2)
@@ -92,6 +93,8 @@ func _process(delta):
 	update_movement(delta)
 	update_heart_icons()
 	handle_input(delta)
+	if not is_active:
+		print(is_active)
 
 
 # ------------------------------------------------
@@ -177,6 +180,7 @@ func prepare_movement(_direction: Vector2, animation_direction: Vector2):
 		buffered_direction = _direction
 	else:
 		if Helper.can_move_in_direction(position, _direction, get_world_2d(), currently_possessed_creature!=null, self):
+			print("Moved")
 			set_is_moving(true)
 
 ## Handles switching possession of creatures.
@@ -415,6 +419,12 @@ func update_ice_slide_target():
 ## Resets stone push state after stone finishes moving.
 func reset_stone_push_state(_stone: PushableObject = null):
 	is_pushing_stone_on_ice = false
+
+func set_stone_is_sliding(val: bool):
+	if val == true:
+		deactivate()
+	else:
+		activate()
 
 ## Disables player input.
 func deactivate():
