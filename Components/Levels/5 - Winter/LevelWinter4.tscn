@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bvgharfdl8dr3"]
+[gd_scene load_steps=26 format=3 uid="uid://bvgharfdl8dr3"]
 
 [ext_resource type="Script" uid="uid://ddiwo6yyhfkuc" path="res://Components/Levels/level.gd" id="1_mehec"]
 [ext_resource type="PackedScene" uid="uid://lrodaawkgfob" path="res://Components/UI/VFX/undo_particles.tscn" id="2_11ccv"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://eetnkwksse75" path="res://Components/Levels/Backgrounds/bg-winter-4.tscn" id="3_ojqvu"]
 [ext_resource type="PackedScene" uid="uid://be6k5yjppap8y" path="res://Components/Creatures/creature_yellow.tscn" id="4_ba60x"]
 [ext_resource type="PackedScene" uid="uid://c6dmpno4s3103" path="res://Components/Mechanics/Doors/door.tscn" id="4_fy58k"]
-[ext_resource type="PackedScene" uid="uid://bu7a5geiluu3r" path="res://Components/Mechanics/Winter Mechanics/icicle.tscn" id="4_rew0p"]
 [ext_resource type="Texture2D" uid="uid://cmeverec805io" path="res://Assets/Winter Mechanics/Ice Floors/Ice-floor-T.png" id="4_wja1h"]
 [ext_resource type="Texture2D" uid="uid://btwlvk2xprfh2" path="res://Assets/Winter Mechanics/Ice Floors/Ice-floor-R.png" id="5_a8gpy"]
 [ext_resource type="PackedScene" uid="uid://bt4pnhd7cx7xc" path="res://Components/Mechanics/Buttons/button.tscn" id="5_mehec"]
@@ -21,6 +20,8 @@
 [ext_resource type="Texture2D" uid="uid://dkgld5dg1asp" path="res://Assets/Winter Mechanics/Ice Floors/Ice-floor-L-R.png" id="9_s20ic"]
 [ext_resource type="Texture2D" uid="uid://dis43boq1dnwi" path="res://Assets/Winter Mechanics/Ice Floors/Ice-floor-L-R-B.png" id="11_11ccv"]
 [ext_resource type="PackedScene" uid="uid://g3u7bc1jo6gj" path="res://Components/Player/player.tscn" id="14_7agio"]
+[ext_resource type="PackedScene" uid="uid://q064q65pkb0q" path="res://Components/Mechanics/Winter Mechanics/icicle_2_v.tscn" id="16_hp1m6"]
+[ext_resource type="PackedScene" uid="uid://ukmrqoqi27ie" path="res://Components/Mechanics/Winter Mechanics/icicle_2_h.tscn" id="17_xl6ld"]
 [ext_resource type="PackedScene" uid="uid://ccncnjkm8w8ta" path="res://Components/Creatures/creature_blue.tscn" id="22_ojqvu"]
 [ext_resource type="PackedScene" uid="uid://dtrjxhb3ayo1c" path="res://Components/Levels/LevelUI.tscn" id="24_denfq"]
 [ext_resource type="PackedScene" uid="uid://23u33yt4jga3" path="res://Components/Creatures/merged_creature.tscn" id="24_u732r"]
@@ -283,29 +284,17 @@ texture = ExtResource("8_s0dtf")
 
 [node name="Icicles" type="Node" parent="."]
 
-[node name="Icicle" parent="Icicles" instance=ExtResource("4_rew0p")]
-position = Vector2(96, 96)
-
-[node name="Icicle2" parent="Icicles" instance=ExtResource("4_rew0p")]
-position = Vector2(160, 96)
-
-[node name="Icicle3" parent="Icicles" instance=ExtResource("4_rew0p")]
-position = Vector2(608, 96)
-
-[node name="Icicle4" parent="Icicles" instance=ExtResource("4_rew0p")]
-position = Vector2(608, 160)
-
-[node name="Icicle5" parent="Icicles" instance=ExtResource("4_rew0p")]
-position = Vector2(608, 608)
-
-[node name="Icicle6" parent="Icicles" instance=ExtResource("4_rew0p")]
-position = Vector2(545, 608)
-
-[node name="Icicle7" parent="Icicles" instance=ExtResource("4_rew0p")]
+[node name="Icicle 2 Vertical" parent="Icicles" instance=ExtResource("16_hp1m6")]
 position = Vector2(96, 608)
 
-[node name="Icicle8" parent="Icicles" instance=ExtResource("4_rew0p")]
-position = Vector2(96, 544)
+[node name="Icicle 2 Vertical2" parent="Icicles" instance=ExtResource("16_hp1m6")]
+position = Vector2(608, 160)
+
+[node name="Icicle 2 Horizontal" parent="Icicles" instance=ExtResource("17_xl6ld")]
+position = Vector2(96, 96)
+
+[node name="Icicle 2 Horizontal2" parent="Icicles" instance=ExtResource("17_xl6ld")]
+position = Vector2(544, 608)
 
 [node name="Doors" type="Node" parent="."]
 
@@ -324,7 +313,7 @@ buttons = Array[NodePath]([NodePath("../../Buttons/Button3_1")])
 
 [node name="Door4" parent="Doors" instance=ExtResource("4_fy58k")]
 position = Vector2(416, 480)
-buttons = Array[NodePath]([NodePath("../../Buttons/Button4_1"), NodePath("../../Buttons/ButtonBottom2"), NodePath("../../Buttons/Button4_2")])
+buttons = Array[NodePath]([NodePath("../../Buttons/Button4_1"), NodePath("../../Buttons/Button4_2"), NodePath("../../Buttons/Button4_3")])
 
 [node name="Buttons" type="Node" parent="."]
 

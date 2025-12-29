@@ -330,16 +330,6 @@ func walk_to_free_tile_if_bees_nearby():
 		tremble()
 
 func get_blown_by_wind(list_of_blown_objects: Dictionary, blow_direction: Vector2, _wind_particles: GPUParticles2D):
-	#var teleporters = get_tree().get_first_node_in_group(Constants.GROUP_NAME_TELEPORTER_MANAGERS) as TeleporterManager
-	#var tel1_pos = teleporters.flower_1.global_position
-	#var tel2_pos = teleporters.flower_2.global_position
-	##print(tel1_pos, ", ", tel2_pos, ", ", global_position, ", ", target_position)
-	#var result_standing_on_teleporter = Helper.get_collision_on_tile(global_position, (1 << Constants.LAYER_BIT_TELEPORTER), get_world_2d())
-	#var w = global_position.distance_to(tel1_pos) < 32.0 or global_position.distance_to(tel2_pos) < 32.0
-	#print(global_position.distance_to(tel1_pos))
-	#print(global_position.distance_to(tel2_pos))
-	#print()
-	#var will_teleport = tel1_pos == global_position or tel2_pos == global_position 
 	if is_possessed:# or will_teleport:
 		## TODO: Player.get_blown_by_wind
 		pass

@@ -151,6 +151,9 @@ position = Vector2(288, 288)
 [node name="Icicle2" parent="Icicles" instance=ExtResource("4_teeuy")]
 position = Vector2(96, 224)
 
+[node name="Icicle3" parent="Icicles" instance=ExtResource("4_teeuy")]
+position = Vector2(480, 608)
+
 [node name="Creatures" type="Node" parent="."]
 
 [node name="CreatureYellow" parent="Creatures" instance=ExtResource("5_tf17e")]

@@ -307,7 +307,6 @@ func get_is_tile_next_to_object_empty(obj_tile: Vector2) -> bool:
 	var ignore_open_door = false
 
 	for obj in result_blocking_objects:
-		#print(obj.collider.name)
 		if obj.collider is WaterTile:
 			var water : WaterTile = obj.collider as WaterTile
 			if water.object_under_water_tile != null:

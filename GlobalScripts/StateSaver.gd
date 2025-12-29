@@ -11,6 +11,12 @@ func get_last_state() -> Dictionary:
 		return saved_states[amount_states-1]
 	return {}
 
+func get_last_player_position() -> Vector2:
+	if saved_states.size() > 0:
+		var amount_states = saved_states.size()
+		return saved_states[amount_states-1][Constants.GROUP_NAME_PLAYER][0]["global_position"]
+	return Vector2.ZERO
+	
 func remove_last_state():
 	if saved_states.size() > 0:
 		saved_states.remove_at(saved_states.size()-1)

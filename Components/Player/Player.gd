@@ -308,15 +308,18 @@ func update_movement(delta):
 		update_ice_slide_target()
 	
 	if is_blown_by_wind:
-		print(target_position)
 		position = position.move_toward(target_position, Constants.MOVE_BY_WIND_SPEED * delta)
 
 		if position.distance_to(target_position) < 0.01:
 			position = target_position
+			global_position = target_position
 			if currently_possessed_creature:
 				currently_possessed_creature.position = target_position
 				currently_possessed_creature.target_position = target_position  # wichtig für Konsistenz
-			
+			var last_pos = StateSaver.get_last_player_position()
+			if last_pos == global_position:
+				StateSaver.remove_last_state()
+			print()
 			is_blown_by_wind = false
 			can_move = true          # fühlt sich direkt responsive an
 			step_timer.stop()        # optional, verhindert “Rest-Wartezeit”
@@ -603,7 +606,6 @@ func get_blown_by_wind(list_of_blown_objects: Dictionary, blow_direction: Vector
 	if currently_possessed_creature == null:
 		return
 	for obj in list_of_blown_objects:
-		print(list_of_blown_objects[obj]["Object"].name)
 		if list_of_blown_objects[obj]["Object"] is Player or list_of_blown_objects[obj]["Object"].name == currently_possessed_creature.name:
 			target_position = global_position + (Constants.GRID_SIZE*blow_direction*list_of_blown_objects[obj]["travel_distance"]).snapped(Constants.GRID_SIZE / 2)
 			if target_position != global_position:
