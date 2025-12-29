@@ -331,8 +331,7 @@ func walk_to_free_tile_if_bees_nearby():
 		tremble()
 
 func get_blown_by_wind(list_of_blown_objects: Dictionary, blow_direction: Vector2, _wind_particles: GPUParticles2D):
-	if is_possessed:# or will_teleport:
-		## TODO: Player.get_blown_by_wind
+	if is_possessed:
 		pass
 	else:
 		for obj in list_of_blown_objects:

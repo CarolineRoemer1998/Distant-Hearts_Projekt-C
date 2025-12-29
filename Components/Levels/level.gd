@@ -43,7 +43,7 @@ func _ready() -> void:
 	
 	set_wind()
 	SceneSwitcher.set_curent_level(level_number)
-	if level_number >= 6:
+	if level_number >= 24:
 		AudioManager.play_music(Constants.BGM_PATH_WINTER_THEME)
 	else:
 		AudioManager.play_music(Constants.BGM_PATH_SUMMER_THEME)

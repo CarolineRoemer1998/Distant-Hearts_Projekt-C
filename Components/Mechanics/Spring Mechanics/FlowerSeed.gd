@@ -48,7 +48,6 @@ func set_info(info : Dictionary):
 	current_state = info.get("current_state")
 	if turns_back_into_seed:
 		turn_back_into_seed()
-		# TODO: Play Animation for turning into Seed
 	pending_target_position = Vector2.ZERO
 	pending_direction = Vector2.ZERO
 

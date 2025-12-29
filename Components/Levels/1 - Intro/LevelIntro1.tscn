@@ -30,6 +30,9 @@ position = Vector2(352, 480)
 
 [node name="LevelUI" parent="." instance=ExtResource("7_ggy0l")]
 
+[node name="UndoBar" parent="LevelUI" index="2"]
+metadata/_edit_use_anchors_ = true
+
 [editable path="Creature/CreatureBlue"]
 [editable path="Creature/CreatureBlue/Visuals/AnimationPlayer"]
 [editable path="LevelUI"]
