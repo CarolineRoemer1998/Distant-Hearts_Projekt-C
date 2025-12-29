@@ -124,6 +124,10 @@ func turn_into_platform_in_water():
 		z_index -= 3
 		disable_collision_layer()
 		set_collision_layer_value(Constants.LAYER_BIT_WATER_PLATFORM+1, true)
+		var wind = get_tree().get_first_node_in_group(Constants.GROUP_NAME_WIND) as Wind
+		if wind:
+			wind.request_shadow_update()
+			wind.check_for_objects_to_blow({})
 
 func turn_from_platform_back_into_stone():
 	sprite_stone.modulate = MODULATE_INIT

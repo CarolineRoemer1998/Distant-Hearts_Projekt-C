@@ -120,8 +120,8 @@ func _open_door():
 		
 		var wind = get_tree().get_first_node_in_group(Constants.GROUP_NAME_WIND) as Wind
 		if wind:
-			wind.check_for_objects_to_blow({})
 			wind.request_shadow_update()
+			wind.check_for_objects_to_blow({})
 		
 		set_deferred("collider.disabled", true)
 		sprite.texture = opened_door_sprite
@@ -137,8 +137,8 @@ func _close_door():
 
 		var wind = get_tree().get_first_node_in_group(Constants.GROUP_NAME_WIND) as Wind
 		if wind:
-			wind.check_for_objects_to_blow({})
 			wind.request_shadow_update()		
+			wind.check_for_objects_to_blow({})
 		
 		light_occluder_2d.global_position[0] -= 1000
 		collider.set_deferred("disabled", false)

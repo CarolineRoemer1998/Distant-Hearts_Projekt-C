@@ -105,8 +105,8 @@ func set_wind():
 	Signals.stone_reached_target.connect(Callable(wind, "request_shadow_update").unbind(1))
 
 	# Initial: Schatten + erster Windstoß
-	wind.request_shadow_update()
 	wind.check_for_objects_to_blow({})
+	wind.request_shadow_update()
 	
 
 
@@ -115,19 +115,19 @@ func _initial_wind_blow_after_physics_frame() -> void:
 	await get_tree().physics_frame
 	if wind_node == null or not is_instance_valid(wind_node):
 		return
-	wind_node.request_shadow_update()
+	#wind_node.request_shadow_update()
 	wind_node.check_for_objects_to_blow({})
 	has_first_wind_blown = true
 	
 
-func _exit_tree():
-	if Signals.stone_reached_target.is_connected(_on_stone_reached_target):
-		Signals.stone_reached_target.disconnect(_on_stone_reached_target)
+#func _exit_tree():
+	#if Signals.stone_reached_target.is_connected(_on_stone_reached_target):
+		#Signals.stone_reached_target.disconnect(_on_stone_reached_target)
 
-func _on_stone_reached_target(_s: PushableObject) -> void:
-	var wind = get_tree().get_first_node_in_group(Constants.GROUP_NAME_WIND) as Wind
-	if wind:
-		wind.request_shadow_update()
+#func _on_stone_reached_target(_s: PushableObject) -> void:
+	#var wind = get_tree().get_first_node_in_group(Constants.GROUP_NAME_WIND) as Wind
+	#if wind:
+		#wind.request_shadow_update()
 
 #func set_shadows():
 	#var wind = get_tree().get_first_node_in_group(Constants.GROUP_NAME_WIND)

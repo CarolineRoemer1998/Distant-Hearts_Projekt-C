@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dlpkvrjy1fpb1" path="res://Scenes/Ui_Controller/Ui_Interact.tres" id="7_rt2b7"]
 [ext_resource type="AudioStream" uid="uid://cg110h5fksqrl" path="res://Sounds/SFX/possess.mp3" id="8_8jmue"]
 [ext_resource type="AudioStream" uid="uid://dbr1bkia48w5f" path="res://Sounds/SFX/unpossess.mp3" id="9_ble7g"]
-[ext_resource type="AudioStream" uid="uid://djsywc8damxwq" path="res://Sounds/SFX/push_stone.wav" id="11_l83wq"]
+[ext_resource type="AudioStream" uid="uid://crlo4nqh5cj5b" path="res://Sounds/SFX/push_stone.wav" id="11_l83wq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f1ek2"]
 atlas = ExtResource("3_l83wq")
@@ -550,7 +550,7 @@ one_shot = true
 [node name="AudioStreamPlayer2D_PushObject" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("11_l83wq")
 volume_db = -3.0
-pitch_scale = 2.2
+pitch_scale = 1.46
 bus = &"sfx"
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_creature_detected"]

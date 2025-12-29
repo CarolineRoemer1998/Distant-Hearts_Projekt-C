@@ -7,10 +7,12 @@ func _ready() -> void:
 	add_to_group(Constants.GROUP_NAME_SHADOW)
 
 func appear() -> void:
+	animation_player.speed_scale = 1.0
 	animation_player.play("Appear")
 
 func disappear_and_free() -> void:
 	# rückwärts abspielen und danach entfernen
+	animation_player.speed_scale = 1.0
 	animation_player.play_backwards("Appear")
 	await animation_player.animation_finished
 	queue_free()

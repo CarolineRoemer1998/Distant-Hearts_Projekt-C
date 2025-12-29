@@ -245,6 +245,7 @@ func finish_teleport():
 	is_teleporting = false
 	var wind = get_tree().get_first_node_in_group(Constants.GROUP_NAME_WIND) as Wind
 	if wind:
+		wind.request_shadow_update()
 		wind.check_for_objects_to_blow({})
 
 

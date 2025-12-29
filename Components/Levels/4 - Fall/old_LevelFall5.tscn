@@ -1,0 +1,201 @@
+[gd_scene load_steps=22 format=4 uid="uid://tpsvexd7mb6j"]
+
+[ext_resource type="Script" uid="uid://ddiwo6yyhfkuc" path="res://Components/Levels/level.gd" id="1_0qx37"]
+[ext_resource type="PackedScene" uid="uid://lrodaawkgfob" path="res://Components/UI/VFX/undo_particles.tscn" id="2_ib1yo"]
+[ext_resource type="PackedScene" uid="uid://ihdvu1wqfcub" path="res://Components/Levels/Backgrounds/bg-base-spring.tscn" id="3_e1uvv"]
+[ext_resource type="TileSet" uid="uid://cg74raylrlo3u" path="res://Components/Levels/bg_tileset_lower_edge.tres" id="4_3bdr4"]
+[ext_resource type="TileSet" uid="uid://b27d63bpsa4u5" path="res://Components/Levels/bg-tileset.tres" id="4_d023l"]
+[ext_resource type="PackedScene" uid="uid://ccncnjkm8w8ta" path="res://Components/Creatures/creature_blue.tscn" id="4_dxg16"]
+[ext_resource type="PackedScene" uid="uid://c5emhoi70w35" path="res://Components/Mechanics/Summer/Water/WallOverWater.tscn" id="5_ojw5i"]
+[ext_resource type="PackedScene" uid="uid://be6k5yjppap8y" path="res://Components/Creatures/creature_yellow.tscn" id="5_qtiox"]
+[ext_resource type="PackedScene" uid="uid://drgrjwt83imw6" path="res://Components/Mechanics/Summer/Water/water.tscn" id="5_tsuvv"]
+[ext_resource type="PackedScene" uid="uid://ctmjofg5vqnlx" path="res://Components/Mechanics/Summer/Water/WallOverWaterLeftCorner.tscn" id="6_3bdr4"]
+[ext_resource type="PackedScene" uid="uid://g3u7bc1jo6gj" path="res://Components/Player/player.tscn" id="6_3thi5"]
+[ext_resource type="PackedScene" uid="uid://dtrjxhb3ayo1c" path="res://Components/Levels/LevelUI.tscn" id="7_1jal8"]
+[ext_resource type="PackedScene" uid="uid://cmlnlah0e5vn3" path="res://Components/Mechanics/Fall Mechanics/PileOfLeaves.tscn" id="8_ib1yo"]
+[ext_resource type="PackedScene" uid="uid://n6aitd6xhp4u" path="res://Components/Mechanics/Summer/Water/water_tile.tscn" id="9_84h0w"]
+[ext_resource type="PackedScene" uid="uid://oy61arlldjo3" path="res://Components/Mechanics/Stones/Stone.tscn" id="15_tsuvv"]
+[ext_resource type="PackedScene" uid="uid://c6dmpno4s3103" path="res://Components/Mechanics/Doors/door.tscn" id="16_84h0w"]
+[ext_resource type="PackedScene" uid="uid://bt4pnhd7cx7xc" path="res://Components/Mechanics/Buttons/button.tscn" id="17_hfxf5"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_3bdr4"]
+polygon = PackedVector2Array(256, 128, 320, 128, 320, 192, 256, 192)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_8mok0"]
+polygon = PackedVector2Array(256, 256, 320, 256, 320, 320, 384, 320, 384, 384, 192, 384, 192, 320, 256, 320)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_84h0w"]
+polygon = PackedVector2Array(64, 320, 128, 320, 128, 384, 64, 384)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_hfxf5"]
+polygon = PackedVector2Array(512, 448, 640, 448, 640, 512, 512, 512)
+
+[node name="LevelFall5" type="Node2D"]
+script = ExtResource("1_0qx37")
+season = 3
+undo_particles = ExtResource("2_ib1yo")
+level_number = 22
+wind_direction_if_fall = Vector2(1, 0)
+
+[node name="WaterElements" type="Node2D" parent="."]
+
+[node name="FloorWater" type="TileMapLayer" parent="WaterElements"]
+modulate = Color(1.1, 1.1, 1.1, 1)
+scale = Vector2(2, 2)
+tile_map_data = PackedByteArray("AAABAAcACQAGAAEAAAACAAcACQAGAAEAAAADAAgACQAIAAAAAAAIAAEACQAGAAEAAAAJAAEACQAGAAEAAAA=")
+tile_set = ExtResource("4_d023l")
+
+[node name="FloorBelowWater" type="TileMapLayer" parent="WaterElements"]
+modulate = Color(1.1, 1.1, 1.1, 1)
+z_index = 2
+scale = Vector2(2, 2)
+tile_map_data = PackedByteArray("AAABAAkACQAGAAIAAAACAAkACQAHAAMAAAAIAAIACQAGAAIAAAAJAAIACQAGAAIAAAA=")
+tile_set = ExtResource("4_3bdr4")
+
+[node name="Water" parent="WaterElements" instance=ExtResource("5_tsuvv")]
+modulate = Color(1, 1, 1, 0.5647059)
+
+[node name="WallsOverWater" type="Node2D" parent="WaterElements"]
+modulate = Color(0.898, 0.925, 0.796, 1)
+
+[node name="WallOverWater1" parent="WaterElements/WallsOverWater" instance=ExtResource("5_ojw5i")]
+position = Vector2(544, 96)
+
+[node name="WallOverWater2" parent="WaterElements/WallsOverWater" instance=ExtResource("5_ojw5i")]
+position = Vector2(608, 96)
+
+[node name="WallOverWater3" parent="WaterElements/WallsOverWater" instance=ExtResource("5_ojw5i")]
+position = Vector2(96, 480)
+
+[node name="WallOverWater4" parent="WaterElements/WallsOverWater" instance=ExtResource("5_ojw5i")]
+position = Vector2(160, 480)
+
+[node name="WallOverWaterLeftCorner1" parent="WaterElements/WallsOverWater" instance=ExtResource("6_3bdr4")]
+position = Vector2(224, 544)
+
+[node name="WaterTiles" type="Node2D" parent="WaterElements"]
+
+[node name="WaterTile1" parent="WaterElements/WaterTiles" instance=ExtResource("9_84h0w")]
+position = Vector2(96, 480)
+
+[node name="WaterTile2" parent="WaterElements/WaterTiles" instance=ExtResource("9_84h0w")]
+position = Vector2(160, 480)
+
+[node name="WaterTile3" parent="WaterElements/WaterTiles" instance=ExtResource("9_84h0w")]
+position = Vector2(96, 544)
+
+[node name="WaterTile4" parent="WaterElements/WaterTiles" instance=ExtResource("9_84h0w")]
+position = Vector2(160, 544)
+
+[node name="WaterTile5" parent="WaterElements/WaterTiles" instance=ExtResource("9_84h0w")]
+position = Vector2(224, 544)
+
+[node name="WaterTile6" parent="WaterElements/WaterTiles" instance=ExtResource("9_84h0w")]
+position = Vector2(224, 608)
+
+[node name="WaterTile7" parent="WaterElements/WaterTiles" instance=ExtResource("9_84h0w")]
+position = Vector2(544, 96)
+
+[node name="WaterTile8" parent="WaterElements/WaterTiles" instance=ExtResource("9_84h0w")]
+position = Vector2(608, 96)
+
+[node name="BackgroundSpring" parent="." instance=ExtResource("3_e1uvv")]
+
+[node name="floor" parent="BackgroundSpring" index="0"]
+tile_map_data = PackedByteArray("AAAAAAAACQAAAAAAAAAAAAEACQAAAAEAAAAAAAIACQAAAAIAAAAAAAMACQAAAAMAAAAAAAQACQAAAAQAAAABAAAACQABAAAAAAABAAEACQABAAEAAAABAAIACQABAAIAAAABAAMACQABAAMAAAABAAQACQABAAQAAAACAAAACQACAAAAAAACAAEACQACAAEAAAACAAIACQACAAIAAAACAAMACQACAAMAAAACAAQACQACAAQAAAADAAAACQADAAAAAAADAAEACQADAAEAAAADAAIACQADAAIAAAADAAMACQADAAMAAAADAAQACQADAAQAAAAEAAAACQAEAAAAAAAEAAEACQAEAAEAAAAEAAIACQAEAAIAAAAEAAMACQAEAAMAAAAEAAQACQAEAAQAAAAFAAAACQAAAAAAAAAFAAEACQAAAAEAAAAFAAIACQAAAAIAAAAFAAMACQAAAAMAAAAFAAQACQAAAAQAAAAGAAAACQABAAAAAAAGAAEACQABAAEAAAAGAAIACQABAAIAAAAGAAMACQABAAMAAAAGAAQACQABAAQAAAAHAAAACQAFAAAAAAAHAAEACQAFAAEAAAAHAAIACQAFAAIAAAAHAAMACQACAAMAAAAHAAQACQACAAQAAAAIAAAACQAGAAAAAAAIAAIACQAGAAIAAAAIAAMACQADAAMAAAAIAAQACQADAAQAAAAJAAAACQAGAAAAAAAJAAIACQAGAAIAAAAJAAMACQAEAAMAAAAJAAQACQAEAAQAAAAAAAUACQAAAAAAAAAAAAYACQAFAAAAAAAAAAcACQAFAAEAAAAAAAgACQAFAAEAAAAAAAkACQAFAAIAAAABAAUACQABAAAAAAABAAYACQAGAAAAAAABAAkACQAGAAIAAAACAAUACQACAAAAAAACAAkACQAHAAMAAAADAAUACQADAAAAAAAEAAUACQAEAAAAAAAEAAgACQAHAAEAAAAEAAkACQAHAAEAAAAFAAUACQAAAAAAAAAFAAYACQAAAAEAAAAFAAcACQAAAAIAAAAFAAgACQAAAAMAAAAFAAkACQAAAAQAAAAGAAUACQABAAAAAAAGAAYACQABAAEAAAAGAAcACQABAAIAAAAGAAgACQABAAMAAAAGAAkACQABAAQAAAAHAAUACQACAAAAAAAHAAYACQACAAEAAAAHAAcACQACAAIAAAAHAAgACQACAAMAAAAHAAkACQACAAQAAAAIAAUACQADAAAAAAAIAAYACQADAAEAAAAIAAcACQADAAIAAAAIAAgACQADAAMAAAAIAAkACQADAAQAAAAJAAUACQAEAAAAAAAJAAYACQAEAAEAAAAJAAcACQAEAAIAAAAJAAgACQAEAAMAAAAJAAkACQAEAAQAAAAAAAoACQAEAAEAAAABAAoACQAEAAEAAAACAAoACQAFAAIAAAADAAoACQAGAAIAAAAEAAoACQAHAAIAAAAFAAoACQAAAAAAAAAGAAoACQABAAAAAAAHAAoACQACAAAAAAAIAAoACQADAAAAAAAJAAoACQAEAAAAAAAKAAoACQAAAAAAAAAKAAAACQAHAAAAAAAKAAEACQAHAAEAAAAKAAIACQAHAAIAAAAKAAMACQAAAAMAAAAKAAQACQAAAAQAAAAKAAUACQAAAAAAAAAKAAYACQAAAAEAAAAKAAcACQAAAAIAAAAKAAgACQAAAAMAAAAKAAkACQAAAAQAAAACAAYACQAGAAAAAAADAAYACQAHAAAAAAADAAcACQAGAAQAAAAEAAYACQAEAAEAAAAEAAcACQAHAAAAAAA=")
+
+[node name="walls" parent="BackgroundSpring" index="1"]
+tile_map_data = PackedByteArray("AAAAAAAACAAAAAAAAAAKAAAACAAEAAAAAAAKAAoACAAEAAQAAAAAAAoACAAAAAQAAAAAAAEACAAAAAEAAAAAAAMACAAAAAMAAAAAAAUACAAAAAIAAAAAAAcACAAAAAMAAAAAAAkACAAAAAMAAAAKAAEACAAEAAEAAAAKAAMACAAEAAEAAAAKAAUACAAEAAEAAAAKAAcACAAEAAIAAAAKAAkACAAEAAEAAAAKAAIACAAAAAMAAAAKAAQACAAAAAMAAAAKAAYACAAAAAEAAAAKAAgACAAAAAMAAAAAAAgACAAEAAEAAAAAAAYACAAEAAEAAAAAAAQACAAEAAEAAAAAAAIACAAEAAEAAAABAAAACAABAAAAAAADAAAACAABAAQAAAAFAAAACAABAAQAAAAHAAAACAABAAQAAAAJAAAACAABAAQAAAACAAAACAABAAQAAAAEAAAACAADAAAAAAAGAAAACAABAAQAAAAIAAAACAABAAQAAAABAAoACAABAAQAAAADAAoACAABAAQAAAAFAAoACAABAAQAAAAHAAoACAABAAQAAAAJAAoACAABAAQAAAACAAoACAABAAQAAAAEAAoACAABAAQAAAAGAAoACAABAAQAAAAIAAoACAABAAQAAAABAAUACAABAAIAAAADAAUACAABAAIAAAAEAAUACAACAAQAAAAEAAQACAAEAAAAAAAIAAcACAADAAIAAAAJAAcACAADAAIAAAAFAAUACAADAAQAAAAEAAIACAABAAIAAAA=")
+
+[node name="LevelWall" parent="BackgroundSpring" index="2"]
+visible = true
+
+[node name="LightOccluders" type="Node2D" parent="BackgroundSpring"]
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="BackgroundSpring/LightOccluders"]
+occluder = SubResource("OccluderPolygon2D_3bdr4")
+
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="BackgroundSpring/LightOccluders"]
+occluder = SubResource("OccluderPolygon2D_8mok0")
+
+[node name="LightOccluder2D3" type="LightOccluder2D" parent="BackgroundSpring/LightOccluders"]
+occluder = SubResource("OccluderPolygon2D_84h0w")
+
+[node name="LightOccluder2D4" type="LightOccluder2D" parent="BackgroundSpring/LightOccluders"]
+occluder = SubResource("OccluderPolygon2D_hfxf5")
+
+[node name="Creatures" type="Node" parent="."]
+
+[node name="CreatureBlue" parent="Creatures" instance=ExtResource("4_dxg16")]
+position = Vector2(544, 608)
+
+[node name="CreatureYellow" parent="Creatures" instance=ExtResource("5_qtiox")]
+position = Vector2(480, 416)
+
+[node name="Player" type="Node" parent="."]
+
+[node name="Player" parent="Player" instance=ExtResource("6_3thi5")]
+position = Vector2(352, 224)
+
+[node name="LevelUI" parent="." instance=ExtResource("7_1jal8")]
+
+[node name="PilesOfLeaves" type="Node" parent="."]
+
+[node name="PileOfLeaves" parent="PilesOfLeaves" instance=ExtResource("8_ib1yo")]
+position = Vector2(224, 160)
+
+[node name="PileOfLeaves2" parent="PilesOfLeaves" instance=ExtResource("8_ib1yo")]
+position = Vector2(352, 96)
+
+[node name="PileOfLeaves3" parent="PilesOfLeaves" instance=ExtResource("8_ib1yo")]
+position = Vector2(352, 288)
+
+[node name="PileOfLeaves4" parent="PilesOfLeaves" instance=ExtResource("8_ib1yo")]
+position = Vector2(480, 608)
+
+[node name="Stones" type="Node" parent="."]
+
+[node name="Stone" parent="Stones" instance=ExtResource("15_tsuvv")]
+position = Vector2(160, 160)
+
+[node name="Stone2" parent="Stones" instance=ExtResource("15_tsuvv")]
+position = Vector2(352, 608)
+
+[node name="Stone3" parent="Stones" instance=ExtResource("15_tsuvv")]
+position = Vector2(416, 608)
+
+[node name="Stone4" parent="Stones" instance=ExtResource("15_tsuvv")]
+position = Vector2(352, 160)
+
+[node name="Stone5" parent="Stones" instance=ExtResource("15_tsuvv")]
+position = Vector2(160, 96)
+
+[node name="Stone6" parent="Stones" instance=ExtResource("15_tsuvv")]
+position = Vector2(96, 288)
+
+[node name="Doors" type="Node" parent="."]
+
+[node name="Door" parent="Doors" instance=ExtResource("16_84h0w")]
+position = Vector2(288, 224)
+rotation = 1.5707964
+buttons = Array[NodePath]([NodePath("../../Buttons/Button")])
+
+[node name="Door2" parent="Doors" instance=ExtResource("16_84h0w")]
+position = Vector2(288, 96)
+rotation = 1.5707964
+mode = 1
+starts_closed = false
+buttons = Array[NodePath]([NodePath("../../Buttons/Button")])
+
+[node name="Buttons" type="Node" parent="."]
+
+[node name="Button" parent="Buttons" instance=ExtResource("17_hfxf5")]
+position = Vector2(160, 608)
+type = 0
+
+[node name="Button2" parent="Buttons" instance=ExtResource("17_hfxf5")]
+position = Vector2(224, 160)
+
+[editable path="BackgroundSpring"]
+[editable path="LevelUI"]
+[editable path="LevelUI/UndoMechanic"]

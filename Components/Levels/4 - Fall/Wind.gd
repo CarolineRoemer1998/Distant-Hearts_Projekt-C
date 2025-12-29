@@ -5,7 +5,7 @@ class_name Wind
 	set(val):
 		blow_direction = val
 
-@onready var timer_blow_wind_interval: Timer = $TimerBlowWindInterval
+@onready var timer_update_shadow: Timer = $TimerUpdateShadow
 @onready var timer_blow_duration: Timer = $TimerBlowDuration
 @onready var wind_particles: WindParticle = $WindParticles
 @onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
@@ -57,6 +57,7 @@ var is_blowing_creature
 func _ready() -> void:
 	Signals.player_is_blown_by_wind.connect(set_player_is_blown)
 	Signals.creature_is_blown_by_wind.connect(set_creature_is_blown)
+	#Signals.undo_executed.connect(request_shadow_update)
 	add_to_group(Constants.GROUP_NAME_WIND)
 	_set_level_tile_positions()
 	audio_stream_player_2d.volume_db = -50.0
@@ -211,6 +212,8 @@ func check_for_objects_to_blow(_dict: Dictionary = {}) -> void:
 		return
 	
 	request_shadow_update()
+	_refresh_shadow_tiles()
+	#request_shadow_update()
 	
 	if not init_blow_done:
 		await get_tree().create_timer(0.005).timeout
@@ -331,9 +334,7 @@ func get_travel_distance(tile_with_object: Vector2) -> int:
 
 	return travel_distance
 
-func _on_timer_blow_wind_interval_timeout() -> void:
-	timer_blow_duration.start()
-	blow()
+
 
 func _on_timer_blow_duration_timeout() -> void:
 	Signals.wind_stopped_blowing.emit()
@@ -351,3 +352,8 @@ func _set_level_tile_positions() -> void:
 	for x in range(level_width_in_tiles):
 		for y in range(level_height_in_tiles):
 			all_level_tile_positions.append(_pos_from_xy(x, y))
+
+
+func _on_timer_update_shadow_timeout() -> void:
+	request_shadow_update()
+	timer_update_shadow.start()
