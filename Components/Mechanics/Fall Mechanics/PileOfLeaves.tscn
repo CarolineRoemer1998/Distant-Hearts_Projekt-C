@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cmlnlah0e5vn3"]
+[gd_scene load_steps=27 format=3 uid="uid://cmlnlah0e5vn3"]
 
 [ext_resource type="Script" uid="uid://cab8gbtqp538c" path="res://Components/Mechanics/Fall Mechanics/PileOfLeaves.gd" id="1_c0kej"]
 [ext_resource type="Texture2D" uid="uid://brl1p5jtrdusy" path="res://Assets/Fall Mechanics/Pile of Leaves/SingleLeafOfPile9.png" id="1_jtq23"]
@@ -12,6 +12,9 @@
 [ext_resource type="Texture2D" uid="uid://7of0mp4rgf74" path="res://Assets/Fall Mechanics/Pile of Leaves/SingleLeafOfPile2.png" id="7_ju68o"]
 [ext_resource type="Texture2D" uid="uid://crnagft8f6ykr" path="res://Assets/Fall Mechanics/Pile of Leaves/SingleLeafOfPile1.png" id="8_vg7pk"]
 [ext_resource type="Texture2D" uid="uid://c0u3jw5xopg2d" path="res://Assets/Fall Mechanics/Pile of Leaves/SingleLeafOfPile10.png" id="10_rxhd1"]
+[ext_resource type="AudioStream" uid="uid://dg1sdqnyd6fx1" path="res://Sounds/SFX/rustling_leaves_1.mp3" id="13_vg7pk"]
+[ext_resource type="AudioStream" uid="uid://bfoewqjk278aj" path="res://Sounds/SFX/rustling_leaves_2.mp3" id="14_2go1m"]
+[ext_resource type="AudioStream" uid="uid://bqmxjucxpl2bp" path="res://Sounds/SFX/rustling_leaves_3.mp3" id="15_30voj"]
 
 [sub_resource type="Animation" id="Animation_ju68o"]
 resource_name = "FlyAway_Down"
@@ -2035,6 +2038,13 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gpl4j"]
 size = Vector2(80, 80)
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_rb6t8"]
+random_pitch = 1.25
+streams_count = 3
+stream_0/stream = ExtResource("13_vg7pk")
+stream_1/stream = ExtResource("14_2go1m")
+stream_2/stream = ExtResource("15_30voj")
+
 [node name="PileOfLeaves" type="StaticBody2D"]
 z_index = 3
 collision_layer = 0
@@ -2142,5 +2152,8 @@ shape = SubResource("RectangleShape2D_gpl4j")
 
 [node name="ParticleSlot" type="Node2D" parent="."]
 position = Vector2(0, -14)
+
+[node name="AudioRustling" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_rb6t8")
 
 [connection signal="body_entered" from="CreatureDetector" to="." method="_on_creature_detector_body_entered"]

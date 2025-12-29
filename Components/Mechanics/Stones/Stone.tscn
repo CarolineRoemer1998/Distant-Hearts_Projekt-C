@@ -13,7 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://dywrg1pws18pm" path="res://Sounds/SFX/WaterSplashing/Splash4.mp3" id="11_wsrwl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1l0tm"]
-size = Vector2(60, 60)
+size = Vector2(32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ufa7o"]
 atlas = ExtResource("3_m66tl")
@@ -622,7 +622,6 @@ scale = Vector2(2, 2)
 texture = ExtResource("2_3mq7y")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource("RectangleShape2D_1l0tm")
 
 [node name="AnimatedSpritePlatform" type="AnimatedSprite2D" parent="."]

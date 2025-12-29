@@ -4,6 +4,7 @@ class_name PileOfLeaves
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @export var rustling_leaf_particles: PackedScene
+@onready var audio_rustling: AudioStreamPlayer2D = $AudioRustling
 
 var is_active := true
 var hidden_button : GameButton = null
@@ -37,15 +38,19 @@ func fly_away(list_of_blown_objects: Dictionary, _blow_direction: Vector2, _wind
 				match _blow_direction:
 					Vector2.UP:
 						animation_player.play("FlyAway_Up")
+						audio_rustling.play()
 						is_active = false
 					Vector2.DOWN:
 						animation_player.play("FlyAway_Down")
+						audio_rustling.play()
 						is_active = false
 					Vector2.LEFT:
 						animation_player.play("FlyAway_Left")
+						audio_rustling.play()
 						is_active = false
 					Vector2.RIGHT:
 						animation_player.play("FlyAway_Right")
+						audio_rustling.play()
 						is_active = false
 	
 
@@ -60,6 +65,7 @@ func _on_creature_detector_body_entered(body: Node2D) -> void:
 		#rustling_leaf_particles.emitting = false
 		animation_player.speed_scale = 1
 		animation_player.play("Rustle")
+		audio_rustling.play()
 		#rustling_leaf_particles.emitting = true
 
 func change_animation_speed():
