@@ -19,7 +19,7 @@
 [sub_resource type="Animation" id="Animation_ju68o"]
 resource_name = "FlyAway_Down"
 length = 0.5
-step = 0.125
+step = 0.02
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -51,7 +51,7 @@ tracks/2/path = NodePath("Visuals/Leaf1:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.1, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, -1.717404]
@@ -63,7 +63,7 @@ tracks/3/path = NodePath("Visuals/Leaf2:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.08, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, -2.2602015]
@@ -75,7 +75,7 @@ tracks/4/path = NodePath("Visuals/Leaf3:rotation")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.06, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, -2.5307274]
@@ -87,7 +87,7 @@ tracks/5/path = NodePath("Visuals/Leaf4:rotation")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.04, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, -1.717404]
@@ -99,7 +99,7 @@ tracks/6/path = NodePath("Visuals/Leaf5:rotation")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.02, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, -1.446878]
@@ -147,7 +147,7 @@ tracks/10/path = NodePath("Visuals/Leaf1:position")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.14, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(-0.5, 6), Vector2(1, 50.999996)]
@@ -159,7 +159,7 @@ tracks/11/path = NodePath("Visuals/Leaf2:position")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.12, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(-7, 3), Vector2(-21, 51.500004)]
@@ -171,7 +171,7 @@ tracks/12/path = NodePath("Visuals/Leaf3:position")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.1, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(5, 4.5), Vector2(14.5, 47.5)]
@@ -183,7 +183,7 @@ tracks/13/path = NodePath("Visuals/Leaf4:position")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.08, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(4, 2), Vector2(8, 38.499996)]
@@ -195,7 +195,7 @@ tracks/14/path = NodePath("Visuals/Leaf5:position")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.06, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(5.5, -1.5), Vector2(-10.5, 35.5)]
@@ -207,7 +207,7 @@ tracks/15/path = NodePath("Visuals/Leaf6:position")
 tracks/15/interp = 1
 tracks/15/loop_wrap = true
 tracks/15/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.04, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(-5, -3.5), Vector2(-1.5, 39.5)]
@@ -219,7 +219,7 @@ tracks/16/path = NodePath("Visuals/Leaf7:position")
 tracks/16/interp = 1
 tracks/16/loop_wrap = true
 tracks/16/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.02, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(6, -6), Vector2(10.500003, 55.499996)]
@@ -243,7 +243,7 @@ tracks/18/path = NodePath("Visuals/Leaf1:scale")
 tracks/18/interp = 1
 tracks/18/loop_wrap = true
 tracks/18/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.14, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
@@ -255,7 +255,7 @@ tracks/19/path = NodePath("Visuals/Leaf2:scale")
 tracks/19/interp = 1
 tracks/19/loop_wrap = true
 tracks/19/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.12, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
@@ -267,7 +267,7 @@ tracks/20/path = NodePath("Visuals/Leaf3:scale")
 tracks/20/interp = 1
 tracks/20/loop_wrap = true
 tracks/20/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.1, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
@@ -279,7 +279,7 @@ tracks/21/path = NodePath("Visuals/Leaf4:scale")
 tracks/21/interp = 1
 tracks/21/loop_wrap = true
 tracks/21/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.08, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
@@ -291,7 +291,7 @@ tracks/22/path = NodePath("Visuals/Leaf5:scale")
 tracks/22/interp = 1
 tracks/22/loop_wrap = true
 tracks/22/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.06, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
@@ -303,7 +303,7 @@ tracks/23/path = NodePath("Visuals/Leaf6:scale")
 tracks/23/interp = 1
 tracks/23/loop_wrap = true
 tracks/23/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.04, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
@@ -315,7 +315,7 @@ tracks/24/path = NodePath("Visuals/Leaf7:scale")
 tracks/24/interp = 1
 tracks/24/loop_wrap = true
 tracks/24/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.02, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
@@ -336,7 +336,7 @@ tracks/25/keys = {
 [sub_resource type="Animation" id="Animation_rxhd1"]
 resource_name = "FlyAway_Left"
 length = 0.5
-step = 0.125
+step = 0.02
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -368,7 +368,7 @@ tracks/2/path = NodePath("Visuals/Leaf1:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.08, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, -1.8081611]
@@ -380,7 +380,7 @@ tracks/3/path = NodePath("Visuals/Leaf2:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.06, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, -2.6214845]
@@ -392,7 +392,7 @@ tracks/4/path = NodePath("Visuals/Leaf3:rotation")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.04, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, -1.717404]
@@ -404,7 +404,7 @@ tracks/5/path = NodePath("Visuals/Leaf4:rotation")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.02, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, -1.0855948]
@@ -428,7 +428,7 @@ tracks/7/path = NodePath("Visuals/Leaf6:rotation")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(-0.02, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, -2.5307274]
@@ -440,7 +440,7 @@ tracks/8/path = NodePath("Visuals/Leaf7:rotation")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(-0.02, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, -1.0855948]
@@ -452,7 +452,7 @@ tracks/9/path = NodePath("Visuals/Leaf8:rotation")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(-0.020000003, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, -1.8989183]
@@ -464,7 +464,7 @@ tracks/10/path = NodePath("Visuals/Leaf1:position")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.120000005, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(-0.5, 6), Vector2(-45.5, -3.5)]
@@ -476,7 +476,7 @@ tracks/11/path = NodePath("Visuals/Leaf2:position")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.10000001, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(-7, 3), Vector2(-51, 2.4999998)]
@@ -488,7 +488,7 @@ tracks/12/path = NodePath("Visuals/Leaf3:position")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.08, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(5, 4.5), Vector2(-39, -2.999999)]
@@ -500,7 +500,7 @@ tracks/13/path = NodePath("Visuals/Leaf4:position")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.06, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(4, 2), Vector2(-37, 4)]
@@ -512,7 +512,7 @@ tracks/14/path = NodePath("Visuals/Leaf5:position")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.04, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(5.5, -1.5), Vector2(-35, -10)]
@@ -524,7 +524,7 @@ tracks/15/path = NodePath("Visuals/Leaf6:position")
 tracks/15/interp = 1
 tracks/15/loop_wrap = true
 tracks/15/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.02, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(-5, -3.5), Vector2(-47, 3)]
@@ -548,7 +548,7 @@ tracks/17/path = NodePath("Visuals/Leaf8:position")
 tracks/17/interp = 1
 tracks/17/loop_wrap = true
 tracks/17/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(-0.020000003, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(-4, -8.5), Vector2(-64, 2.500001)]
@@ -560,7 +560,7 @@ tracks/18/path = NodePath("Visuals/Leaf1:scale")
 tracks/18/interp = 1
 tracks/18/loop_wrap = true
 tracks/18/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.120000005, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
@@ -572,7 +572,7 @@ tracks/19/path = NodePath("Visuals/Leaf2:scale")
 tracks/19/interp = 1
 tracks/19/loop_wrap = true
 tracks/19/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.10000001, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
@@ -584,7 +584,7 @@ tracks/20/path = NodePath("Visuals/Leaf3:scale")
 tracks/20/interp = 1
 tracks/20/loop_wrap = true
 tracks/20/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.08, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
@@ -596,7 +596,7 @@ tracks/21/path = NodePath("Visuals/Leaf4:scale")
 tracks/21/interp = 1
 tracks/21/loop_wrap = true
 tracks/21/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.06, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
@@ -608,7 +608,7 @@ tracks/22/path = NodePath("Visuals/Leaf5:scale")
 tracks/22/interp = 1
 tracks/22/loop_wrap = true
 tracks/22/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.04, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
@@ -620,7 +620,7 @@ tracks/23/path = NodePath("Visuals/Leaf6:scale")
 tracks/23/interp = 1
 tracks/23/loop_wrap = true
 tracks/23/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.02, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
@@ -644,7 +644,7 @@ tracks/25/path = NodePath("Visuals/Leaf8:scale")
 tracks/25/interp = 1
 tracks/25/loop_wrap = true
 tracks/25/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(-0.020000003, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
@@ -653,7 +653,7 @@ tracks/25/keys = {
 [sub_resource type="Animation" id="Animation_gpl4j"]
 resource_name = "FlyAway_Right"
 length = 0.5
-step = 0.125
+step = 0.02
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -685,7 +685,7 @@ tracks/2/path = NodePath("Visuals/Leaf1:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.1, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, 2.1694443]
@@ -697,7 +697,7 @@ tracks/3/path = NodePath("Visuals/Leaf2:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.08, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, 2.5307274]
@@ -709,7 +709,7 @@ tracks/4/path = NodePath("Visuals/Leaf3:rotation")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.06, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, 2.7122416]
@@ -721,7 +721,7 @@ tracks/5/path = NodePath("Visuals/Leaf4:rotation")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.04, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, 2.5307274]
@@ -733,7 +733,7 @@ tracks/6/path = NodePath("Visuals/Leaf5:rotation")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.02, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, 1.8989183]
@@ -781,7 +781,7 @@ tracks/10/path = NodePath("Visuals/Leaf1:position")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.14, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(-0.5, 6), Vector2(54.5, 6)]
@@ -793,7 +793,7 @@ tracks/11/path = NodePath("Visuals/Leaf2:position")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.12, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(-7, 3), Vector2(46.5, 11.5)]
@@ -805,7 +805,7 @@ tracks/12/path = NodePath("Visuals/Leaf3:position")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.1, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(5, 4.5), Vector2(53.5, -4)]
@@ -817,7 +817,7 @@ tracks/13/path = NodePath("Visuals/Leaf4:position")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.08, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(4, 2), Vector2(39, 6)]
@@ -829,7 +829,7 @@ tracks/14/path = NodePath("Visuals/Leaf5:position")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.06, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(5.5, -1.5), Vector2(45.5, -11)]
@@ -841,7 +841,7 @@ tracks/15/path = NodePath("Visuals/Leaf6:position")
 tracks/15/interp = 1
 tracks/15/loop_wrap = true
 tracks/15/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.04, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(-5, -3.5), Vector2(36.5, 14.999999)]
@@ -853,7 +853,7 @@ tracks/16/path = NodePath("Visuals/Leaf7:position")
 tracks/16/interp = 1
 tracks/16/loop_wrap = true
 tracks/16/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.02, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(6, -6), Vector2(53, -17.5)]
@@ -877,7 +877,7 @@ tracks/18/path = NodePath("Visuals/Leaf1:scale")
 tracks/18/interp = 1
 tracks/18/loop_wrap = true
 tracks/18/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.14, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
@@ -889,7 +889,7 @@ tracks/19/path = NodePath("Visuals/Leaf2:scale")
 tracks/19/interp = 1
 tracks/19/loop_wrap = true
 tracks/19/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.12, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
@@ -901,7 +901,7 @@ tracks/20/path = NodePath("Visuals/Leaf3:scale")
 tracks/20/interp = 1
 tracks/20/loop_wrap = true
 tracks/20/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.1, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
@@ -913,7 +913,7 @@ tracks/21/path = NodePath("Visuals/Leaf4:scale")
 tracks/21/interp = 1
 tracks/21/loop_wrap = true
 tracks/21/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.08, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
@@ -925,7 +925,7 @@ tracks/22/path = NodePath("Visuals/Leaf5:scale")
 tracks/22/interp = 1
 tracks/22/loop_wrap = true
 tracks/22/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.06, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
@@ -937,7 +937,7 @@ tracks/23/path = NodePath("Visuals/Leaf6:scale")
 tracks/23/interp = 1
 tracks/23/loop_wrap = true
 tracks/23/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.04, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
@@ -949,7 +949,7 @@ tracks/24/path = NodePath("Visuals/Leaf7:scale")
 tracks/24/interp = 1
 tracks/24/loop_wrap = true
 tracks/24/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.02, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
@@ -970,7 +970,7 @@ tracks/25/keys = {
 [sub_resource type="Animation" id="Animation_6707x"]
 resource_name = "FlyAway_Up"
 length = 0.5
-step = 0.125
+step = 0.02
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1002,7 +1002,7 @@ tracks/2/path = NodePath("Visuals/Leaf1:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.1, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, 2.1694443]
@@ -1014,7 +1014,7 @@ tracks/3/path = NodePath("Visuals/Leaf2:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.08, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, 3.345796]
@@ -1026,7 +1026,7 @@ tracks/4/path = NodePath("Visuals/Leaf3:rotation")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.06, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, 2.5307274]
@@ -1038,7 +1038,7 @@ tracks/5/path = NodePath("Visuals/Leaf4:rotation")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.04, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, 2.7122416]
@@ -1050,7 +1050,7 @@ tracks/6/path = NodePath("Visuals/Leaf5:rotation")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.02, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, 1.8989183]
@@ -1098,7 +1098,7 @@ tracks/10/path = NodePath("Visuals/Leaf1:position")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.14, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(-0.5, 6), Vector2(-6.000002, -53)]
@@ -1110,7 +1110,7 @@ tracks/11/path = NodePath("Visuals/Leaf2:position")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.12, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(-7, 3), Vector2(5.5, -44.5)]
@@ -1122,7 +1122,7 @@ tracks/12/path = NodePath("Visuals/Leaf3:position")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.1, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(5, 4.5), Vector2(-2.9999995, -38.5)]
@@ -1134,7 +1134,7 @@ tracks/13/path = NodePath("Visuals/Leaf4:position")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.08, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(4, 2), Vector2(19, -43.5)]
@@ -1146,7 +1146,7 @@ tracks/14/path = NodePath("Visuals/Leaf5:position")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.06, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(5.5, -1.5), Vector2(16.5, -60)]
@@ -1158,7 +1158,7 @@ tracks/15/path = NodePath("Visuals/Leaf6:position")
 tracks/15/interp = 1
 tracks/15/loop_wrap = true
 tracks/15/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.04, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(-5, -3.5), Vector2(-14, -39)]
@@ -1170,7 +1170,7 @@ tracks/16/path = NodePath("Visuals/Leaf7:position")
 tracks/16/interp = 1
 tracks/16/loop_wrap = true
 tracks/16/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.02, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(6, -6), Vector2(20, -50.5)]
@@ -1194,7 +1194,7 @@ tracks/18/path = NodePath("Visuals/Leaf1:scale")
 tracks/18/interp = 1
 tracks/18/loop_wrap = true
 tracks/18/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.14, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
@@ -1206,7 +1206,7 @@ tracks/19/path = NodePath("Visuals/Leaf2:scale")
 tracks/19/interp = 1
 tracks/19/loop_wrap = true
 tracks/19/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.12, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
@@ -1218,7 +1218,7 @@ tracks/20/path = NodePath("Visuals/Leaf3:scale")
 tracks/20/interp = 1
 tracks/20/loop_wrap = true
 tracks/20/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.1, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
@@ -1230,7 +1230,7 @@ tracks/21/path = NodePath("Visuals/Leaf4:scale")
 tracks/21/interp = 1
 tracks/21/loop_wrap = true
 tracks/21/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.08, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
@@ -1242,7 +1242,7 @@ tracks/22/path = NodePath("Visuals/Leaf5:scale")
 tracks/22/interp = 1
 tracks/22/loop_wrap = true
 tracks/22/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.06, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
@@ -1254,7 +1254,7 @@ tracks/23/path = NodePath("Visuals/Leaf6:scale")
 tracks/23/interp = 1
 tracks/23/loop_wrap = true
 tracks/23/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.04, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
@@ -1266,7 +1266,7 @@ tracks/24/path = NodePath("Visuals/Leaf7:scale")
 tracks/24/interp = 1
 tracks/24/loop_wrap = true
 tracks/24/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.02, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
@@ -2036,7 +2036,7 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c0kej"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gpl4j"]
-size = Vector2(80, 80)
+size = Vector2(73, 73)
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_rb6t8"]
 random_pitch = 1.25
@@ -2045,12 +2045,13 @@ stream_0/stream = ExtResource("13_vg7pk")
 stream_1/stream = ExtResource("14_2go1m")
 stream_2/stream = ExtResource("15_30voj")
 
-[node name="PileOfLeaves" type="StaticBody2D"]
-z_index = 3
+[node name="PileOfLeaves" type="StaticBody2D" node_paths=PackedStringArray("top_layer_of_leaves", "bottom_layer_of_leaves")]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_c0kej")
 rustling_leaf_particles = ExtResource("2_gpl4j")
+top_layer_of_leaves = [NodePath("Visuals/Leaf5"), NodePath("Visuals/Leaf6"), NodePath("Visuals/Leaf7"), NodePath("Visuals/Leaf8")]
+bottom_layer_of_leaves = [NodePath("Visuals/Leaf1"), NodePath("Visuals/Leaf2"), NodePath("Visuals/Leaf3"), NodePath("Visuals/Leaf4")]
 
 [node name="Visuals" type="Node2D" parent="."]
 modulate = Color(1.0586369, 1.0586369, 1.0586369, 1)
@@ -2098,6 +2099,7 @@ position = Vector2(-4, -2)
 texture = ExtResource("4_c0kej")
 
 [node name="Leaf5" type="Node2D" parent="Visuals"]
+z_index = 3
 position = Vector2(5.5, -1.5)
 
 [node name="SpriteLeaf5" type="Sprite2D" parent="Visuals/Leaf5"]
@@ -2106,6 +2108,7 @@ position = Vector2(-5.5, 1.5)
 texture = ExtResource("5_gpl4j")
 
 [node name="Leaf6" type="Node2D" parent="Visuals"]
+z_index = 3
 position = Vector2(-5, -3.5)
 
 [node name="SpriteLeaf6" type="Sprite2D" parent="Visuals/Leaf6"]
@@ -2114,6 +2117,7 @@ position = Vector2(5, 3.5)
 texture = ExtResource("6_6707x")
 
 [node name="Leaf7" type="Node2D" parent="Visuals"]
+z_index = 3
 position = Vector2(6, -6)
 
 [node name="SpriteLeaf7" type="Sprite2D" parent="Visuals/Leaf7"]
@@ -2122,6 +2126,7 @@ position = Vector2(-6, 6)
 texture = ExtResource("7_ju68o")
 
 [node name="Leaf8" type="Node2D" parent="Visuals"]
+z_index = 3
 position = Vector2(-4, -8.5)
 
 [node name="SpriteLeaf8" type="Sprite2D" parent="Visuals/Leaf8"]
@@ -2145,7 +2150,7 @@ shape = SubResource("RectangleShape2D_c0kej")
 
 [node name="CreatureDetector" type="Area2D" parent="."]
 collision_layer = 65536
-collision_mask = 6
+collision_mask = 131078
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CreatureDetector"]
 shape = SubResource("RectangleShape2D_gpl4j")

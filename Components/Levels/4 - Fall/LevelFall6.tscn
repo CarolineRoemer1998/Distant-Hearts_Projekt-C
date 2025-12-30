@@ -106,7 +106,7 @@ occluder = SubResource("OccluderPolygon2D_ysa65")
 [node name="Player" type="Node" parent="."]
 
 [node name="Player" parent="Player" instance=ExtResource("6_8dy5s")]
-position = Vector2(160, 544)
+position = Vector2(352, 160)
 
 [node name="PilesOfLeaves" type="Node" parent="."]
 
@@ -134,7 +134,7 @@ position = Vector2(352, 288)
 position = Vector2(608, 288)
 
 [node name="Stone13" parent="Stones" instance=ExtResource("9_3crfi")]
-position = Vector2(224, 416)
+position = Vector2(224, 224)
 
 [node name="Stone20" parent="Stones" instance=ExtResource("9_3crfi")]
 position = Vector2(160, 544)
@@ -168,7 +168,8 @@ type = 2
 [node name="Creatures" type="Node" parent="."]
 
 [node name="CreatureBlue" parent="Creatures" instance=ExtResource("4_slw7h")]
-position = Vector2(416, 288)
+position = Vector2(224, 416)
+init_direction = Vector2(-1, 0)
 
 [node name="CreatureYellow" parent="Creatures" instance=ExtResource("5_j3fos")]
 position = Vector2(96, 416)

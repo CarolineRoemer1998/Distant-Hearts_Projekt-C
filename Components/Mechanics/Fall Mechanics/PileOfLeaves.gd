@@ -6,6 +6,9 @@ class_name PileOfLeaves
 @export var rustling_leaf_particles: PackedScene
 @onready var audio_rustling: AudioStreamPlayer2D = $AudioRustling
 
+@export var top_layer_of_leaves: Array[Node2D]
+@export var bottom_layer_of_leaves: Array[Node2D]
+
 var is_active := true
 var hidden_button : GameButton = null
 var hidden_stone : Stone = null
@@ -22,6 +25,8 @@ func get_info():
 
 func set_info(info : Dictionary):
 	if not is_active and info.get("is_active") == true:
+		for leaf in top_layer_of_leaves:
+			leaf.z_index -= 3
 		animation_player.play("RESET")
 	is_active = info.get("is_active")
 	
@@ -35,23 +40,21 @@ func fly_away(list_of_blown_objects: Dictionary, _blow_direction: Vector2, _wind
 				if hidden_stone != null:
 					hidden_stone.reveal()
 					Signals.stone_revealed.emit(global_position, _blow_direction)
+					
+				audio_rustling.play()
+				is_active = false
+				for leaf in top_layer_of_leaves:
+					leaf.z_index += 3
+					
 				match _blow_direction:
 					Vector2.UP:
 						animation_player.play("FlyAway_Up")
-						audio_rustling.play()
-						is_active = false
 					Vector2.DOWN:
 						animation_player.play("FlyAway_Down")
-						audio_rustling.play()
-						is_active = false
 					Vector2.LEFT:
 						animation_player.play("FlyAway_Left")
-						audio_rustling.play()
-						is_active = false
 					Vector2.RIGHT:
 						animation_player.play("FlyAway_Right")
-						audio_rustling.play()
-						is_active = false
 	
 
 
