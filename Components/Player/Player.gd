@@ -19,6 +19,7 @@ class_name Player
 @onready var avoid_timer: Timer = $AvoidTimer
 
 @onready var audio_stream_player_2d_push_object: AudioStreamPlayer2D = $AudioStreamPlayer2D_PushObject
+@onready var audio_bump_into_wall: AudioStreamPlayer2D = $AudioBumpIntoWall
 
 var is_step_timer_triggered := false
 var is_active := true
@@ -54,6 +55,8 @@ var pushable_stone_in_direction : Stone = null
 var bees_are_flying := false
 var is_avoiding := false
 var planted_flower_last_step := false
+
+var bumped_into_wall_last_step := false
 
 var is_blown_by_wind := false:
 	set(val):
@@ -105,6 +108,7 @@ func _process(delta):
 func handle_input(delta: float):
 	if Input.is_action_just_released("Player_Up") or Input.is_action_just_released("Player_Down") or Input.is_action_just_released("Player_Left") or Input.is_action_just_released("Player_Right"):
 		is_step_timer_triggered = false
+		bumped_into_wall_last_step = false
 		timer_step = timer_step_init
 	if Input.is_action_just_pressed("ui_cancel"):
 		SceneSwitcher.go_to_settings()
@@ -361,6 +365,7 @@ func on_move_step_finished():
 	is_pushing_stone_on_ice = false
 	is_moving_on_ice = false
 	is_blown_by_wind = false
+	bumped_into_wall_last_step = false
 	var wind = get_tree().get_first_node_in_group(Constants.GROUP_NAME_WIND) as Wind
 	if wind:
 		wind.request_shadow_update()
@@ -425,6 +430,8 @@ func set_stone_is_sliding(val: bool):
 		deactivate()
 	else:
 		activate()
+
+
 
 ## Disables player input.
 func deactivate():
@@ -509,10 +516,12 @@ func _start_bee_avoid_step():
 		is_avoiding = false
 		can_move = true
 
-func play_failed_step_in_direction_animation(_bees: BeeSwarm):
-	can_move = false
-	currently_possessed_creature.play_failed_step_in_direction_animation()
-	avoid_timer.start()
+func play_failed_step_in_direction_animation():
+	if not bumped_into_wall_last_step:
+		bumped_into_wall_last_step = true
+		can_move = false
+		currently_possessed_creature.play_failed_step_in_direction_animation()
+		avoid_timer.start()
 
 # ------------------------------------------------
 # MOVE START
@@ -543,6 +552,17 @@ func begin_move_step():
 
 	spawn_trail(position)
 	play_step_sound()
+	if currently_possessed_creature:
+		match direction:
+			Vector2.UP:
+				currently_possessed_creature.animation_player.play("stretch_step_up_down")
+			Vector2.DOWN:
+				currently_possessed_creature.animation_player.play("stretch_step_up_down")
+			Vector2.LEFT:
+				currently_possessed_creature.animation_player.play("stretch_step_left_right")
+			Vector2.RIGHT:
+				currently_possessed_creature.animation_player.play("stretch_step_left_right")
+
 	if not is_avoiding:
 		Signals.state_changed.emit(get_info())
 		

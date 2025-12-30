@@ -306,12 +306,16 @@ func play_failed_step_in_direction_animation():
 	match current_direction:
 		Vector2.UP:
 			animation_player.play("failed_step_up")
+			player.audio_bump_into_wall.play()
 		Vector2.RIGHT:
 			animation_player.play("failed_step_right")
+			player.audio_bump_into_wall.play()
 		Vector2.DOWN:
 			animation_player.play("failed_step_down")
+			player.audio_bump_into_wall.play()
 		Vector2.LEFT:
 			animation_player.play("failed_step_left")
+			player.audio_bump_into_wall.play()
 
 func walk_to_free_tile_if_bees_nearby():
 	if is_possessed or Helper.get_collision_on_tile(global_position, (1 << Constants.LAYER_BIT_BEES), get_world_2d()).is_empty():

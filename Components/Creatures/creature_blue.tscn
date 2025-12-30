@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://ccncnjkm8w8ta"]
+[gd_scene load_steps=61 format=3 uid="uid://ccncnjkm8w8ta"]
 
 [ext_resource type="Script" uid="uid://kjtpy8vvpaku" path="res://Components/Creatures/Creature.gd" id="1_lgxpu"]
 [ext_resource type="Texture2D" uid="uid://bj7pm75smwnqp" path="res://Assets/Creatures/Blue/creature2_blue.png" id="2_ufwjw"]
@@ -665,8 +665,8 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_7rcwi"]
 resource_name = "failed_step_down"
-length = 0.1563
-step = 0.0313
+length = 0.1
+step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -674,16 +674,28 @@ tracks/0/path = NodePath("Visuals:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0625, 0.15625),
+"times": PackedFloat32Array(0, 0.04, 0.1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0, -5), Vector2(0, 15), Vector2(0, -5)]
+"values": [Vector2(0, -5), Vector2(0, 5), Vector2(0, -5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.04, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 0.9), Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_bl4fn"]
 resource_name = "failed_step_left"
-length = 0.1563
-step = 0.0313
+length = 0.1
+step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -691,16 +703,28 @@ tracks/0/path = NodePath("Visuals:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0625, 0.15625),
+"times": PackedFloat32Array(0, 0.04, 0.1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0, -5), Vector2(-20, -5), Vector2(0, -5)]
+"values": [Vector2(0, -5), Vector2(-10, -5), Vector2(0, -5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.04, 0.099999994),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.9, 1.1), Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_qddge"]
 resource_name = "failed_step_right"
-length = 0.1563
-step = 0.0313
+length = 0.1
+step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -708,16 +732,28 @@ tracks/0/path = NodePath("Visuals:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0625, 0.15625),
+"times": PackedFloat32Array(0, 0.04, 0.1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0, -5), Vector2(20, -5), Vector2(0, -5)]
+"values": [Vector2(0, -5), Vector2(10, -5), Vector2(0, -5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.04, 0.099999994),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.9, 1.1), Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_cule2"]
 resource_name = "failed_step_up"
-length = 0.1563
-step = 0.0313
+length = 0.1
+step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -725,10 +761,56 @@ tracks/0/path = NodePath("Visuals:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0625, 0.15625),
+"times": PackedFloat32Array(0, 0.04, 0.1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0, -5), Vector2(0, -25), Vector2(0, -5)]
+"values": [Vector2(0, -5), Vector2(0, -15), Vector2(0, -5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.04, 0.099999994),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 0.9), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_xbm6y"]
+resource_name = "stretch_step_left_right"
+length = 0.12
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.12),
+"transitions": PackedFloat32Array(1, 2.3784163, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.15, 0.85), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_fr2fe"]
+resource_name = "stretch_step_up_down"
+length = 0.12
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.12),
+"transitions": PackedFloat32Array(1, 2.9281714, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.85, 1.15), Vector2(1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ii28y"]
@@ -740,7 +822,9 @@ _data = {
 &"failed_step_down": SubResource("Animation_7rcwi"),
 &"failed_step_left": SubResource("Animation_bl4fn"),
 &"failed_step_right": SubResource("Animation_qddge"),
-&"failed_step_up": SubResource("Animation_cule2")
+&"failed_step_up": SubResource("Animation_cule2"),
+&"stretch_step_left_right": SubResource("Animation_xbm6y"),
+&"stretch_step_up_down": SubResource("Animation_fr2fe")
 }
 
 [node name="CreatureBlue" type="CharacterBody2D" groups=["creature"]]

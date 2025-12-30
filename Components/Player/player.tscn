@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://g3u7bc1jo6gj"]
+[gd_scene load_steps=52 format=3 uid="uid://g3u7bc1jo6gj"]
 
 [ext_resource type="Script" uid="uid://dr4elx8otc5ga" path="res://Components/Player/Player.gd" id="1_lakyf"]
 [ext_resource type="PackedScene" uid="uid://cknlg04piy5rc" path="res://Components/UI/VFX/move_trail.tscn" id="2_1yt0s"]
@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://cg110h5fksqrl" path="res://Sounds/SFX/possess.mp3" id="8_8jmue"]
 [ext_resource type="AudioStream" uid="uid://dbr1bkia48w5f" path="res://Sounds/SFX/unpossess.mp3" id="9_ble7g"]
 [ext_resource type="AudioStream" uid="uid://crlo4nqh5cj5b" path="res://Sounds/SFX/push_stone.wav" id="11_l83wq"]
+[ext_resource type="AudioStream" uid="uid://cdlpq0b2s7msx" path="res://Sounds/SFX/bump-into-wall(6).mp3" id="12_wh2kk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f1ek2"]
 atlas = ExtResource("3_l83wq")
@@ -552,6 +553,9 @@ stream = ExtResource("11_l83wq")
 volume_db = -3.0
 pitch_scale = 1.46
 bus = &"sfx"
+
+[node name="AudioBumpIntoWall" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_wh2kk")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_creature_detected"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_creature_undetected"]

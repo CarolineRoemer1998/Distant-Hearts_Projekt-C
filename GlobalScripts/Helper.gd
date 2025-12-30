@@ -123,11 +123,11 @@ func can_move_in_direction(_position: Vector2, _direction, world : World2D, is_p
 		print()
 		if player.is_active:
 			if not tile_states.has(TILE_CONTENT.ice):
-				player.currently_possessed_creature.play_failed_step_in_direction_animation() 
+				player.play_failed_step_in_direction_animation() 
 			elif not tile_states.has(TILE_CONTENT.pushable):
-				player.currently_possessed_creature.play_failed_step_in_direction_animation()
+				player.play_failed_step_in_direction_animation()
 			elif not tile_states[TILE_CONTENT.pushable][0].is_sliding:
-				player.currently_possessed_creature.play_failed_step_in_direction_animation()
+				player.play_failed_step_in_direction_animation()
 				var last_player_pos = StateSaver.get_last_player_position()
 				print("last_player_pos: ", last_player_pos)
 				print("player position: ", player.global_position)
