@@ -552,7 +552,7 @@ func begin_move_step():
 
 	spawn_trail(position)
 	play_step_sound()
-	if currently_possessed_creature:
+	if currently_possessed_creature and not currently_possessed_creature.is_merging:
 		match direction:
 			Vector2.UP:
 				currently_possessed_creature.animation_player.play("stretch_step_up_down")
