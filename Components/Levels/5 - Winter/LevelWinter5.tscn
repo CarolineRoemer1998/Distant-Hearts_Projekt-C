@@ -253,6 +253,9 @@ position = Vector2(160, 416)
 [node name="Icicle2" parent="Icicles" instance=ExtResource("11_xhcyn")]
 position = Vector2(480, 224)
 
+[node name="Icicle27" parent="Icicles" instance=ExtResource("11_xhcyn")]
+position = Vector2(608, 608)
+
 [node name="Icicle3" parent="Icicles" instance=ExtResource("11_xhcyn")]
 position = Vector2(288, 96)
 
@@ -354,3 +357,4 @@ position = Vector2(160, 608)
 
 [editable path="LevelUI"]
 [editable path="LevelUI/UndoMechanic"]
+[editable path="LevelUI/LeafEmitter"]

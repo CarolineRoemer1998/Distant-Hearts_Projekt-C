@@ -1,0 +1,289 @@
+[gd_scene load_steps=26 format=4 uid="uid://civq6ixtrosgf"]
+
+[ext_resource type="Script" uid="uid://ddiwo6yyhfkuc" path="res://Components/Levels/level.gd" id="1_a4w2x"]
+[ext_resource type="PackedScene" uid="uid://lrodaawkgfob" path="res://Components/UI/VFX/undo_particles.tscn" id="2_xhmpx"]
+[ext_resource type="PackedScene" uid="uid://ihdvu1wqfcub" path="res://Components/Levels/Backgrounds/bg-base-spring.tscn" id="3_s8kaa"]
+[ext_resource type="Texture2D" uid="uid://b3mrle8i1ppxw" path="res://Assets/Environments/tiny-flower-sheet.png" id="4_rvtt6"]
+[ext_resource type="Texture2D" uid="uid://clag0wtxxyxx1" path="res://Assets/Environments/cherry-blossom-flower-sheet.png" id="5_371di"]
+[ext_resource type="PackedScene" uid="uid://bt4pnhd7cx7xc" path="res://Components/Mechanics/Buttons/button.tscn" id="7_u5fvs"]
+[ext_resource type="PackedScene" uid="uid://ccncnjkm8w8ta" path="res://Components/Creatures/creature_blue.tscn" id="8_78lro"]
+[ext_resource type="PackedScene" uid="uid://be6k5yjppap8y" path="res://Components/Creatures/creature_yellow.tscn" id="9_ihd6c"]
+[ext_resource type="PackedScene" uid="uid://g3u7bc1jo6gj" path="res://Components/Player/player.tscn" id="10_ktwnl"]
+[ext_resource type="PackedScene" uid="uid://c02bi0sc4lswo" path="res://Components/Mechanics/Spring Mechanics/TeleporterManager.tscn" id="11_6opii"]
+[ext_resource type="PackedScene" uid="uid://dtrjxhb3ayo1c" path="res://Components/Levels/LevelUI.tscn" id="12_53t1u"]
+[ext_resource type="PackedScene" uid="uid://0edfjrrf5011" path="res://Components/Mechanics/Spring Mechanics/BeeSwarm.tscn" id="12_a4w2x"]
+[ext_resource type="PackedScene" uid="uid://dpemn8sewapip" path="res://Components/Mechanics/Spring Mechanics/soil.tscn" id="13_xhmpx"]
+[ext_resource type="PackedScene" uid="uid://ba8q3gl8ussnm" path="res://Components/Mechanics/Spring Mechanics/FlowerSeed.tscn" id="14_s8kaa"]
+[ext_resource type="PackedScene" uid="uid://c6dmpno4s3103" path="res://Components/Mechanics/Doors/door.tscn" id="15_rvtt6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dyqwu"]
+atlas = ExtResource("4_rvtt6")
+region = Rect2(18, 0, 9, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d5lcf"]
+atlas = ExtResource("4_rvtt6")
+region = Rect2(9, 0, 9, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jmsol"]
+atlas = ExtResource("4_rvtt6")
+region = Rect2(0, 0, 9, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0qghm"]
+atlas = ExtResource("4_rvtt6")
+region = Rect2(9, 0, 9, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yfmws"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dyqwu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d5lcf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jmsol")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0qghm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rjegf"]
+atlas = ExtResource("5_371di")
+region = Rect2(0, 0, 24, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_igtey"]
+atlas = ExtResource("5_371di")
+region = Rect2(24, 0, 24, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_thesx"]
+atlas = ExtResource("5_371di")
+region = Rect2(48, 0, 24, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1gcqw"]
+atlas = ExtResource("5_371di")
+region = Rect2(24, 0, 24, 21)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dyqwu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rjegf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_igtey")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_thesx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1gcqw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[node name="ShowCaseLevelSpring" type="Node2D"]
+script = ExtResource("1_a4w2x")
+season = 1
+undo_particles = ExtResource("2_xhmpx")
+level_number = 6
+
+[node name="BackgroundSpring" parent="." instance=ExtResource("3_s8kaa")]
+
+[node name="floor" parent="BackgroundSpring" index="0"]
+tile_map_data = PackedByteArray("AAAAAAAACQAAAAAAAAAAAAEACQAAAAEAAAAAAAIACQAAAAIAAAAAAAMACQAAAAMAAAAAAAQACQAAAAQAAAABAAAACQABAAAAAAABAAEACQABAAEAAAABAAIACQABAAIAAAABAAMACQABAAMAAAABAAQACQABAAQAAAACAAAACQACAAAAAAACAAEACQACAAEAAAACAAIACQACAAIAAAACAAMACQACAAMAAAACAAQACQACAAQAAAADAAAACQADAAAAAAADAAEACQADAAEAAAADAAIACQADAAIAAAADAAMACQADAAMAAAADAAQACQADAAQAAAAEAAAACQAEAAAAAAAEAAEACQAEAAEAAAAEAAIACQAEAAIAAAAEAAMACQAEAAMAAAAEAAQACQAEAAQAAAAFAAAACQAAAAAAAAAFAAEACQAAAAEAAAAFAAIACQAAAAIAAAAFAAMACQAAAAMAAAAFAAQACQAAAAQAAAAGAAAACQABAAAAAAAGAAEACQABAAEAAAAGAAIACQABAAIAAAAGAAMACQABAAMAAAAGAAQACQABAAQAAAAHAAAACQACAAAAAAAHAAEACQACAAEAAAAHAAIACQACAAIAAAAHAAMACQACAAMAAAAHAAQACQACAAQAAAAIAAAACQADAAAAAAAIAAEACQADAAEAAAAIAAIACQADAAIAAAAIAAMACQADAAMAAAAIAAQACQADAAQAAAAJAAAACQAEAAAAAAAJAAEACQAEAAEAAAAJAAIACQAEAAIAAAAJAAMACQAEAAMAAAAJAAQACQAEAAQAAAAAAAUACQAAAAAAAAAAAAYACQAAAAEAAAAAAAcACQAAAAIAAAAAAAgACQAAAAMAAAAAAAkACQAAAAQAAAABAAUACQABAAAAAAABAAYACQABAAEAAAABAAcACQABAAIAAAABAAgACQABAAMAAAABAAkACQABAAQAAAACAAUACQACAAAAAAACAAcACQACAAIAAAACAAgACQACAAMAAAACAAkACQACAAQAAAADAAUACQADAAAAAAADAAgACQADAAMAAAADAAkACQADAAQAAAAEAAUACQAEAAAAAAAEAAgACQAEAAMAAAAEAAkACQAEAAQAAAAFAAUACQAAAAAAAAAFAAYACQAAAAEAAAAFAAcACQAAAAIAAAAFAAgACQAAAAMAAAAFAAkACQAAAAQAAAAGAAUACQABAAAAAAAGAAYACQABAAEAAAAGAAcACQABAAIAAAAGAAgACQABAAMAAAAGAAkACQABAAQAAAAHAAUACQACAAAAAAAHAAYACQACAAEAAAAHAAcACQACAAIAAAAHAAgACQACAAMAAAAHAAkACQACAAQAAAAIAAUACQADAAAAAAAIAAYACQADAAEAAAAIAAcACQADAAIAAAAIAAgACQADAAMAAAAIAAkACQADAAQAAAAJAAUACQAEAAAAAAAJAAYACQAEAAEAAAAJAAcACQAEAAIAAAAJAAgACQAEAAMAAAAJAAkACQAEAAQAAAAAAAoABwAAAAAAAAABAAoABwABAAAAAAACAAoABwACAAAAAAADAAoABwADAAAAAAAEAAoABwAEAAAAAAAFAAoABwAAAAAAAAAGAAoABwABAAAAAAAHAAoABwACAAAAAAAIAAoABwADAAAAAAAJAAoABwAEAAAAAAAKAAoABwAAAAAAAAAKAAAABwAAAAAAAAAKAAEABwAAAAEAAAAKAAIABwAAAAIAAAAKAAMABwAAAAMAAAAKAAQABwAAAAQAAAAKAAUABwAAAAAAAAAKAAYABwAAAAEAAAAKAAcABwAAAAIAAAAKAAgABwAAAAMAAAAKAAkABwAAAAQAAAACAAYACQACAAEAAAADAAYACQADAAEAAAADAAcACQADAAIAAAAEAAYACQAEAAEAAAAEAAcACQAEAAIAAAA=")
+
+[node name="walls" parent="BackgroundSpring" index="1"]
+tile_map_data = PackedByteArray("AAAAAAAABgAAAAAAAAAKAAAABgAEAAAAAAAKAAoABgAEAAQAAAAAAAoABgAAAAQAAAAAAAEABgAAAAEAAAAAAAMABgAAAAEAAAAAAAUABgAAAAEAAAAAAAcABgAAAAEAAAAAAAkABgAAAAEAAAAKAAEABgAEAAEAAAAKAAMABgAEAAEAAAAKAAUABgAEAAEAAAAKAAcABgAEAAEAAAAKAAkABgAEAAEAAAAKAAIABgAAAAEAAAAKAAQABgAAAAEAAAAKAAYABgAAAAEAAAAKAAgABgAAAAEAAAAAAAgABgAEAAEAAAAAAAYABgAEAAEAAAAAAAQABgAEAAEAAAAAAAIABgAEAAEAAAABAAAABgABAAAAAAADAAAABgACAAAAAAAFAAAABgABAAAAAAAHAAAABgACAAAAAAAJAAAABgABAAAAAAACAAAABgABAAAAAAAEAAAABgABAAAAAAAGAAAABgABAAAAAAAIAAAABgABAAAAAAABAAoABgABAAQAAAADAAoABgABAAQAAAAFAAoABgABAAQAAAAHAAoABgABAAQAAAAJAAoABgABAAQAAAACAAoABgABAAQAAAAEAAoABgABAAQAAAAGAAoABgABAAQAAAAIAAoABgABAAQAAAA=")
+
+[node name="SmallFlowerRotated" type="AnimatedSprite2D" parent="BackgroundSpring/walls" index="0"]
+top_level = true
+position = Vector2(25, 27)
+sprite_frames = SubResource("SpriteFrames_yfmws")
+autoplay = "default"
+frame_progress = 0.034025896
+
+[node name="SmallFlowerRotated2" type="AnimatedSprite2D" parent="BackgroundSpring/walls" index="1"]
+top_level = true
+position = Vector2(38, 490.00003)
+sprite_frames = SubResource("SpriteFrames_yfmws")
+autoplay = "default"
+frame_progress = 0.83773416
+
+[node name="SmallFlowerRotated3" type="AnimatedSprite2D" parent="BackgroundSpring/walls" index="2"]
+top_level = true
+position = Vector2(664, 619.00006)
+sprite_frames = SubResource("SpriteFrames_yfmws")
+autoplay = "default"
+
+[node name="SmallFlowerRotated4" type="AnimatedSprite2D" parent="BackgroundSpring/walls" index="3"]
+top_level = true
+position = Vector2(659, 53)
+sprite_frames = SubResource("SpriteFrames_yfmws")
+autoplay = "default"
+
+[node name="SmallFlowerRotated5" type="AnimatedSprite2D" parent="BackgroundSpring/walls" index="4"]
+top_level = true
+position = Vector2(340, 110)
+sprite_frames = SubResource("SpriteFrames_yfmws")
+autoplay = "default"
+
+[node name="SmallFlowerRotated6" type="AnimatedSprite2D" parent="BackgroundSpring/walls" index="5"]
+top_level = true
+position = Vector2(350, 554)
+sprite_frames = SubResource("SpriteFrames_yfmws")
+autoplay = "default"
+
+[node name="SmallFlowerRotated7" type="AnimatedSprite2D" parent="BackgroundSpring/walls" index="6"]
+top_level = true
+position = Vector2(461, 271)
+sprite_frames = SubResource("SpriteFrames_yfmws")
+autoplay = "default"
+
+[node name="SmallFlower" type="AnimatedSprite2D" parent="BackgroundSpring/walls" index="7"]
+top_level = true
+position = Vector2(16.000004, 208)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_dyqwu")
+autoplay = "default"
+
+[node name="SmallFlower2" type="AnimatedSprite2D" parent="BackgroundSpring/walls" index="8"]
+top_level = true
+position = Vector2(48, 366)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_dyqwu")
+autoplay = "default"
+
+[node name="SmallFlower3" type="AnimatedSprite2D" parent="BackgroundSpring/walls" index="9"]
+top_level = true
+position = Vector2(248, 660)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_dyqwu")
+autoplay = "default"
+
+[node name="SmallFlower4" type="AnimatedSprite2D" parent="BackgroundSpring/walls" index="10"]
+top_level = true
+position = Vector2(504, 656)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_dyqwu")
+autoplay = "default"
+
+[node name="SmallFlower5" type="AnimatedSprite2D" parent="BackgroundSpring/walls" index="11"]
+top_level = true
+position = Vector2(654, 426)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_dyqwu")
+autoplay = "default"
+
+[node name="SmallFlower6" type="AnimatedSprite2D" parent="BackgroundSpring/walls" index="12"]
+top_level = true
+position = Vector2(664, 239)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_dyqwu")
+autoplay = "default"
+
+[node name="SmallFlower7" type="AnimatedSprite2D" parent="BackgroundSpring/walls" index="13"]
+top_level = true
+position = Vector2(401, 9)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_dyqwu")
+autoplay = "default"
+
+[node name="SmallFlower8" type="AnimatedSprite2D" parent="BackgroundSpring/walls" index="14"]
+top_level = true
+position = Vector2(103, 7)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_dyqwu")
+autoplay = "default"
+
+[node name="SmallFlower9" type="AnimatedSprite2D" parent="BackgroundSpring/walls" index="15"]
+top_level = true
+position = Vector2(346, 296)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_dyqwu")
+autoplay = "default"
+
+[node name="SmallFlower10" type="AnimatedSprite2D" parent="BackgroundSpring/walls" index="16"]
+top_level = true
+position = Vector2(243, 403)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_dyqwu")
+autoplay = "default"
+
+[node name="LevelWall" parent="BackgroundSpring" index="2"]
+visible = true
+
+[node name="Doors" type="Node" parent="."]
+
+[node name="Buttons" type="Node" parent="."]
+
+[node name="Button_Teleporter1" parent="Buttons" instance=ExtResource("7_u5fvs")]
+position = Vector2(736, 32)
+
+[node name="Button_Teleporter2" parent="Buttons" instance=ExtResource("7_u5fvs")]
+position = Vector2(864, 160)
+
+[node name="Creatures" type="Node" parent="."]
+
+[node name="CreatureBlue" parent="Creatures" instance=ExtResource("8_78lro")]
+position = Vector2(608, 224)
+
+[node name="CreatureYellow" parent="Creatures" instance=ExtResource("9_ihd6c")]
+position = Vector2(800, 736)
+
+[node name="Player" type="Node" parent="."]
+
+[node name="Player" parent="Player" instance=ExtResource("10_ktwnl")]
+position = Vector2(608, 288)
+
+[node name="TeleporterManager" parent="." instance=ExtResource("11_6opii")]
+position = Vector2(800, 96)
+
+[node name="Flower1" parent="TeleporterManager" index="0" node_paths=PackedStringArray("other_teleporter")]
+position = Vector2(0, -64)
+buttons = Array[NodePath]([NodePath("../../Buttons/Button_Teleporter1")])
+other_teleporter = NodePath("../Flower2")
+
+[node name="Flower2" parent="TeleporterManager" index="1" node_paths=PackedStringArray("other_teleporter")]
+position = Vector2(0, 64)
+buttons = Array[NodePath]([NodePath("../../Buttons/Button_Teleporter2")])
+other_teleporter = NodePath("../Flower1")
+
+[node name="LevelUI" parent="." instance=ExtResource("12_53t1u")]
+visible = false
+
+[node name="BeeSwarm" parent="." instance=ExtResource("12_a4w2x")]
+position = Vector2(896, 320)
+
+[node name="Soil" parent="." instance=ExtResource("13_xhmpx")]
+position = Vector2(1088, 320)
+
+[node name="FlowerSeed" parent="." instance=ExtResource("14_s8kaa")]
+position = Vector2(1088, 448)
+
+[node name="Door" parent="." instance=ExtResource("15_rvtt6")]
+position = Vector2(1024, 672)
+buttons = Array[NodePath]([NodePath("../Button"), NodePath("../Button2"), NodePath("../Button3")])
+
+[node name="Button" parent="." instance=ExtResource("7_u5fvs")]
+position = Vector2(960, 608)
+
+[node name="Button2" parent="." instance=ExtResource("7_u5fvs")]
+position = Vector2(1024, 544)
+
+[node name="Button3" parent="." instance=ExtResource("7_u5fvs")]
+position = Vector2(1088, 608)
+
+[editable path="BackgroundSpring"]
+[editable path="TeleporterManager"]
+[editable path="TeleporterManager/Flower1"]
+[editable path="TeleporterManager/Flower2"]
+[editable path="LevelUI"]
+[editable path="LevelUI/UndoMechanic"]
+[editable path="LevelUI/LeafEmitter"]

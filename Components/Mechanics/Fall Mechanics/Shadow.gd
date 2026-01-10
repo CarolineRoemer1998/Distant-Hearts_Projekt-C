@@ -5,6 +5,7 @@ class_name Shadow
 
 func _ready() -> void:
 	add_to_group(Constants.GROUP_NAME_SHADOW)
+	appear()
 
 func appear() -> void:
 	animation_player.play("Appear")

@@ -21,8 +21,16 @@ class_name Player
 @onready var audio_stream_player_2d_push_object: AudioStreamPlayer2D = $AudioStreamPlayer2D_PushObject
 @onready var audio_bump_into_wall: AudioStreamPlayer2D = $AudioBumpIntoWall
 
+@onready var debug_label_is_active: Label = $DebugLabelIsActive
+@onready var debug_label_is_sliding: Label = $DebugLabelIsSliding
+@onready var debug_label_can_move: Label = $DebugLabelCanMove
+
 var is_step_timer_triggered := false
-var is_active := true
+var is_active := true:
+	set(val):
+		is_active = val
+		debug_label_is_active.text = "is_active: " + str(is_active)
+		
 
 var direction := Vector2.ZERO
 var input_direction := Vector2.ZERO
@@ -42,9 +50,16 @@ var timer_step_after_avoiding := 0.125
 var is_moving := false
 var is_moving_on_ice := false
 var is_on_ice := false
-var is_sliding := false
+var is_sliding := false:
+	set(val):
+		is_sliding = val
+		debug_label_is_sliding.text = "is_sliding: " + str(is_sliding)
+		
 var is_pushing_stone_on_ice := false
-var can_move := true
+var can_move := true:
+	set(val):
+		can_move = val
+		debug_label_can_move.text = "can_move: " + str(can_move)
 
 var next_tile_states : Array[Helper.TILE_CONTENT] = [Helper.TILE_CONTENT.empty]
 
@@ -110,6 +125,8 @@ func handle_input(delta: float):
 		is_step_timer_triggered = false
 		bumped_into_wall_last_step = false
 		timer_step = timer_step_init
+	if Input.is_action_just_pressed("Toggle Debug Labels"):
+		_toggle_debug_labels()
 	if Input.is_action_just_pressed("ui_cancel"):
 		SceneSwitcher.go_to_settings()
 		return
@@ -329,8 +346,8 @@ func update_movement(delta):
 				StateSaver.remove_last_state()
 			print()
 			is_blown_by_wind = false
-			can_move = true          # fühlt sich direkt responsive an
-			step_timer.stop()        # optional, verhindert “Rest-Wartezeit”
+			can_move = true         
+			step_timer.stop()        
 			buffered_direction = Vector2.ZERO
 
 		
@@ -519,7 +536,7 @@ func _start_bee_avoid_step():
 func play_failed_step_in_direction_animation():
 	if not bumped_into_wall_last_step:
 		bumped_into_wall_last_step = true
-		can_move = false
+		#can_moved = false
 		currently_possessed_creature.play_failed_step_in_direction_animation()
 		avoid_timer.start()
 
@@ -759,3 +776,8 @@ func _on_avoid_timer_timeout() -> void:
 		#StateSaver.remove_last_state()
 	can_move = true
 	planted_flower_last_step = false
+
+func _toggle_debug_labels():
+	debug_label_can_move.visible = !debug_label_can_move.visible
+	debug_label_is_active.visible = !debug_label_is_active.visible
+	debug_label_is_sliding.visible = !debug_label_is_sliding.visible

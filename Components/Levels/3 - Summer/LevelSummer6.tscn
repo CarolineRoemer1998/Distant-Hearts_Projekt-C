@@ -754,7 +754,7 @@ environment = SubResource("Environment_7ogri")
 [node name="FloorWater" type="TileMapLayer" parent="WaterElements"]
 modulate = Color(1.1, 1.1, 1.1, 1)
 scale = Vector2(2, 2)
-tile_map_data = PackedByteArray("AAAEAAQABwAGAAEAAAAFAAQABwAGAAEAAAAGAAQABwAGAAEAAAAIAAcABwAGAAEAAAAEAAgABwAIAAIAAAADAAQABwAIAAAAAAAHAAcABwAIAAAAAAABAAMABwAIAAEAAAACAAIABwAGAAEAAAAIAAIABwAGAAEAAAAJAAIABwAGAAEAAAACAAUABwAGAAEAAAABAAUABwAGAAEAAAAJAAcABwAGAAEAAAAHAAQABwAIAAEAAAA=")
+tile_map_data = PackedByteArray("AAAEAAQABwAGAAEAAAAFAAQABwAGAAEAAAAGAAQABwAGAAEAAAAIAAcABwAGAAEAAAAEAAgABwAIAAIAAAADAAQABwAIAAAAAAAHAAcABwAIAAAAAAABAAMABwAIAAEAAAACAAIABwAGAAEAAAAIAAIABwAGAAEAAAAJAAIABwAGAAEAAAACAAUABwAGAAEAAAABAAUABwAGAAEAAAAJAAcABwAGAAEAAAAHAAQABwAIAAEAAAADAAYABwAIAAAAAAA=")
 tile_set = ExtResource("10_oe8fo")
 
 [node name="Water" parent="WaterElements" instance=ExtResource("4_w4gsh")]
@@ -1055,6 +1055,7 @@ position = Vector2(608, 608)
 [editable path="BackgroundSpring"]
 [editable path="LevelUI"]
 [editable path="LevelUI/UndoMechanic"]
+[editable path="LevelUI/LeafEmitter"]
 [editable path="TeleporterManager"]
 [editable path="TeleporterManager/Flower1"]
 [editable path="TeleporterManager/Flower2"]

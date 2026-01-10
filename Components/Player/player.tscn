@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://g3u7bc1jo6gj"]
+[gd_scene load_steps=53 format=3 uid="uid://g3u7bc1jo6gj"]
 
 [ext_resource type="Script" uid="uid://dr4elx8otc5ga" path="res://Components/Player/Player.gd" id="1_lakyf"]
 [ext_resource type="PackedScene" uid="uid://cknlg04piy5rc" path="res://Components/UI/VFX/move_trail.tscn" id="2_1yt0s"]
@@ -419,6 +419,10 @@ _data = {
 &"RESET": SubResource("Animation_gymyn")
 }
 
+[sub_resource type="LabelSettings" id="LabelSettings_wh2kk"]
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("hearts")]
 z_index = 7
 collision_layer = 131072
@@ -556,6 +560,32 @@ bus = &"sfx"
 
 [node name="AudioBumpIntoWall" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("12_wh2kk")
+
+[node name="DebugLabelIsActive" type="Label" parent="."]
+visible = false
+top_level = true
+offset_right = 40.0
+offset_bottom = 23.0
+text = "is_active: "
+label_settings = SubResource("LabelSettings_wh2kk")
+
+[node name="DebugLabelIsSliding" type="Label" parent="."]
+visible = false
+top_level = true
+offset_top = 32.0
+offset_right = 40.0
+offset_bottom = 55.0
+text = "is_sliding: "
+label_settings = SubResource("LabelSettings_wh2kk")
+
+[node name="DebugLabelCanMove" type="Label" parent="."]
+visible = false
+top_level = true
+offset_top = 64.0
+offset_right = 40.0
+offset_bottom = 87.0
+text = "can_move: "
+label_settings = SubResource("LabelSettings_wh2kk")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_creature_detected"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_creature_undetected"]

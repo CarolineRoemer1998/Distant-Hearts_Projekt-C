@@ -224,6 +224,9 @@ texture = ExtResource("6_vu1yg")
 [node name="Icicle2" parent="Icicles" instance=ExtResource("10_xhsd0")]
 position = Vector2(480, 224)
 
+[node name="Icicle27" parent="Icicles" instance=ExtResource("10_xhsd0")]
+position = Vector2(608, 608)
+
 [node name="Icicle3" parent="Icicles" instance=ExtResource("10_xhsd0")]
 position = Vector2(288, 96)
 
