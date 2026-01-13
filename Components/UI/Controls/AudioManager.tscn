@@ -6,10 +6,12 @@
 script = ExtResource("1_bxr8e")
 
 [node name="SFXAudioPlayer" type="AudioStreamPlayer" parent="."]
+max_polyphony = 3
 bus = &"sfx"
 
 [node name="MusicAudioPlayer" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 bus = &"music"
 
+[connection signal="finished" from="SFXAudioPlayer" to="." method="_on_sfx_audio_player_finished"]
 [connection signal="finished" from="MusicAudioPlayer" to="." method="_replay"]

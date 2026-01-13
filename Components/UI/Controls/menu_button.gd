@@ -12,7 +12,7 @@ func _ready():
 	pressed.connect(self._on_button_pressed)
 	
 func _on_focus_entered():
-	AudioManager.play_sfx(HOVER_SOUND)	
+	AudioManager.play_sfx(HOVER_SOUND)
 	
 func _on_button_pressed():
 	AudioManager.play_sfx(PRESS_SOUND)

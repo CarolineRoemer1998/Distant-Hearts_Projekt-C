@@ -1,4 +1,4 @@
-[gd_scene load_steps=109 format=4 uid="uid://bjlb842jvvq0k"]
+[gd_scene load_steps=111 format=4 uid="uid://bjlb842jvvq0k"]
 
 [ext_resource type="Script" uid="uid://ckji0el187dht" path="res://Components/UI/Menues/level_select.gd" id="1_6aqvj"]
 [ext_resource type="Texture2D" uid="uid://daocnama176b2" path="res://Assets/Presentation/Verworfen/Tile.png" id="3_31xks"]
@@ -38,6 +38,7 @@
 [ext_resource type="Texture2D" uid="uid://cjb75v4l4bhn8" path="res://Assets/Presentation/ScreenShots/preview_summer_6.png" id="29_s106q"]
 [ext_resource type="Texture2D" uid="uid://d33tote321at0" path="res://Assets/Presentation/ScreenShots/preview_fall_3.png" id="30_ugvoj"]
 [ext_resource type="Texture2D" uid="uid://bu5vsg07jry0d" path="res://Assets/Presentation/ScreenShots/preview_fall_4.png" id="31_y3rbo"]
+[ext_resource type="Texture2D" uid="uid://cp7qu4iwhh7m" path="res://Assets/Presentation/ScreenShots/preview_fall_5.png" id="34_inc37"]
 [ext_resource type="Texture2D" uid="uid://dnqo5258h36wa" path="res://Assets/Presentation/ScreenShots/preview_fall_6.png" id="34_t7h6r"]
 
 [sub_resource type="Environment" id="Environment_ok3ky"]
@@ -947,6 +948,9 @@ func _on_button_pressed():
 	AudioManager.play_sfx(PRESS_SOUND)
 "
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xqy0b"]
+texture = ExtResource("34_inc37")
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qh2v7"]
 texture = ExtResource("34_t7h6r")
 
@@ -1418,7 +1422,7 @@ offset_top = 6.0
 offset_right = 94.0
 offset_bottom = 94.0
 mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_qh2v7")
+theme_override_styles/panel = SubResource("StyleBoxTexture_xqy0b")
 
 [node name="Fall6" type="Button" parent="VBoxContainer/LevelsFall"]
 custom_minimum_size = Vector2(100, 100)

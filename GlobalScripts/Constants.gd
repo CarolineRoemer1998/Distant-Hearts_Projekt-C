@@ -120,6 +120,7 @@ const LEVELS = {
 	26:  "res://Components/Levels/5 - Winter/LevelWinter3.tscn",
 	27:  "res://Components/Levels/5 - Winter/LevelWinter4.tscn",
 	28:  "res://Components/Levels/5 - Winter/LevelWinter5.tscn"
+	#29:  "res://Components/Levels/5 - Winter/LevelWinter6.tscn"
 }
 
 # MECHANIC SCENES

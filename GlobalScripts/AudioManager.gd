@@ -17,7 +17,6 @@ func play_music(path: String):
 	curently_playing_song = path
 	is_music_playing = true
 	
-	## TODO: Wieder einschalten
 	music_player.play() 
 
 func stop_music():

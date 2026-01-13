@@ -564,26 +564,30 @@ stream = ExtResource("12_wh2kk")
 [node name="DebugLabelIsActive" type="Label" parent="."]
 visible = false
 top_level = true
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 16.0
+offset_top = 64.0
+offset_right = 90.0
+offset_bottom = 87.0
 text = "is_active: "
 label_settings = SubResource("LabelSettings_wh2kk")
 
 [node name="DebugLabelIsSliding" type="Label" parent="."]
 visible = false
 top_level = true
-offset_top = 32.0
-offset_right = 40.0
-offset_bottom = 55.0
+offset_left = 16.0
+offset_top = 96.0
+offset_right = 94.0
+offset_bottom = 119.0
 text = "is_sliding: "
 label_settings = SubResource("LabelSettings_wh2kk")
 
 [node name="DebugLabelCanMove" type="Label" parent="."]
 visible = false
 top_level = true
-offset_top = 64.0
-offset_right = 40.0
-offset_bottom = 87.0
+offset_left = 16.0
+offset_top = 128.0
+offset_right = 102.0
+offset_bottom = 151.0
 text = "can_move: "
 label_settings = SubResource("LabelSettings_wh2kk")
 
